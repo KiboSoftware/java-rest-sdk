@@ -1,0 +1,2863 @@
+openapi: 3.0.1
+info:
+  description: OpenAPI Spec for Kibo PricingRuntime Service
+  title: Kibo PricingRuntime Service
+servers:
+- description: TenantPod Host
+  url: "https://{tenantPodHost}/api"
+- description: Tenant Level Api
+  url: "https://t{tenantId}.{env}.mozu.com/api"
+  variables:
+    tenantId:
+      default: "0"
+      description: Id of the Tenant
+    env:
+      default: sandbox
+      enum:
+      - sandbox
+      - tp1
+      - tp2
+      - tp3
+      - tp4
+      - tp5
+      - stg1
+      - stg2
+- description: Site Level Api
+  url: "https://t{tenantId}-s{siteId}.{env}.mozu.com/api"
+  variables:
+    tenantId:
+      default: "0"
+      description: Id of the Tenant
+    siteId:
+      default: "0"
+      description: Id of the Site
+    env:
+      default: sandbox
+      enum:
+      - sandbox
+      - tp1
+      - tp2
+      - tp3
+      - tp4
+      - tp5
+      - stg1
+- description: HomePod Api
+  url: https://home.mozu.com/api
+- description: EURO Tenant Level Api
+  url: "https://t{tenantId}.{env}.euw1.kibocommerce.com/api"
+  variables:
+    tenantId:
+      default: "0"
+      description: Id of the Tenant
+    env:
+      default: sandbox
+      enum:
+      - sb
+      - tp1
+- description: EURO Site Level Api
+  url: "https://t{tenantId}-s{siteId}.{env}.euw1.kibocommerce.com/api"
+  variables:
+    tenantId:
+      default: "0"
+      description: Id of the Tenant
+    siteId:
+      default: "0"
+      description: Id of the Site
+    env:
+      default: sandbox
+      enum:
+      - sb
+      - tp1
+- description: EURO HomePod Api
+  url: https://home.euw1.kibocommerce.com/api
+security:
+- bearerAuth: []
+  clientOauth2: []
+paths:
+  /commerce/catalog/storefront/discounts/autoaddtarget/{discountId}:
+    get:
+      description: Get Auto Add Target
+      operationId: getAutoAddTarget
+      parameters:
+      - explode: false
+        in: path
+        name: discountId
+        required: true
+        schema:
+          format: int32
+          type: integer
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AutoAddDiscountTarget'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/AutoAddDiscountTarget'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/AutoAddDiscountTarget'
+          description: Success
+      summary: Get Auto Add Target
+      tags:
+      - DiscountRuntime
+      x-accepts: application/json
+  /tax:
+    post:
+      description: Get Tax
+      operationId: getTax
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ThrirdPartyTaxableOrder'
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ThrirdPartyOrderTaxContext'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ThrirdPartyOrderTaxContext'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ThrirdPartyOrderTaxContext'
+          description: Success
+      summary: Get Tax
+      tags:
+      - TaxCapability
+      x-content-type: application/json
+      x-accepts: application/json
+  /commerce/catalog/storefront/tax/estimate-order:
+    post:
+      description: Estimate Taxes
+      operationId: estimateTaxes
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TaxableOrder'
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/OrderTaxContext'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/OrderTaxContext'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/OrderTaxContext'
+          description: Success
+      summary: Estimate Taxes
+      tags:
+      - TaxRuntime
+      x-content-type: application/json
+      x-accepts: application/json
+components:
+  schemas:
+    AutoAddDiscountTarget:
+      additionalProperties: false
+      example:
+        includedProductCodes:
+        - includedProductCodes
+        - includedProductCodes
+        friendlyDescription: friendlyDescription
+        discountId: 0
+      properties:
+        discountId:
+          description: Unique identifier of the discount. System-supplied and read-only.
+          format: int32
+          type: integer
+        friendlyDescription:
+          description: Friendly description of the discount.
+          nullable: true
+          type: string
+        includedProductCodes:
+          description: Included product codes
+          items:
+            type: string
+          nullable: true
+          type: array
+      type: object
+    ThrirdPartyTaxContext:
+      additionalProperties: false
+      description: The context for the tax calculation.
+      example:
+        destinationAddress:
+          postalOrZipCode: postalOrZipCode
+          isValidated: true
+          address3: address3
+          stateOrProvince: stateOrProvince
+          address2: address2
+          address1: address1
+          countryCode: countryCode
+          addressType: addressType
+          address4: address4
+          cityOrTown: cityOrTown
+        taxExemptId: taxExemptId
+        originAddress:
+          postalOrZipCode: postalOrZipCode
+          isValidated: true
+          address3: address3
+          stateOrProvince: stateOrProvince
+          address2: address2
+          address1: address1
+          countryCode: countryCode
+          addressType: addressType
+          address4: address4
+          cityOrTown: cityOrTown
+        taxShipping: true
+        customerId: customerId
+        taxContextId: taxContextId
+      properties:
+        taxContextId:
+          description: "The unique id of this context. Will typically be the OrderId\
+            \ or CartId, depending when the tax is being calculated."
+          nullable: true
+          type: string
+        customerId:
+          description: "A unique id for a customer.  This may be the userid, checking\
+            \ with Avalara to determine the meaning of this"
+          nullable: true
+          type: string
+        taxExemptId:
+          description: Tax exemption id.  Indicates that this customer or user is
+            tax exempt
+          nullable: true
+          type: string
+        taxShipping:
+          description: Indicates whether shipping amounts should be taxed
+          nullable: true
+          type: boolean
+        originAddress:
+          $ref: '#/components/schemas/CommerceRuntimeAddress'
+        destinationAddress:
+          $ref: '#/components/schemas/CommerceRuntimeAddress'
+      type: object
+    ProductAttribute:
+      additionalProperties: false
+      description: Duplicate definition from ProductRuntime
+      example:
+        valueType: valueType
+        dataType: dataType
+        name: name
+        description: description
+        inputType: inputType
+      properties:
+        inputType:
+          description: The InputType type of the attribute. Valid values for InputType
+            are defined in InputTypeConst.
+          nullable: true
+          type: string
+        valueType:
+          description: The ValueType of the attribute. Valid values for ValueType
+            are defined in ValueTypeTypeConst.
+          nullable: true
+          type: string
+        dataType:
+          description: The DataType of the attribute. Valid values for DataType are
+            defined in DataTypeTypeConst.
+          nullable: true
+          type: string
+        name:
+          description: Name of the attribute in the language specified by LocaleCode.
+          nullable: true
+          type: string
+        description:
+          description: Description of the attribute in the language specified by LocaleCode.
+          nullable: true
+          type: string
+      type: object
+    AppliedLineItemDiscount:
+      additionalProperties: false
+      allOf:
+      - $ref: '#/components/schemas/PricingRuntimeAppliedDiscount'
+      description: Details of the discount applied to a product.
+      properties:
+        quantity:
+          description: Quantity of items from the line item that the discount applies
+            to.
+          format: int32
+          type: integer
+        impactPerUnit:
+          description: "Discount impact per unit for the quantity applied.\r\nThis\
+            \ value is not rounded.\r\nImpactPerUnit * Quantity = Impact @ Quantity"
+          format: double
+          type: number
+        isForced:
+          description: Signifies that the discount is forced and not applied via best
+            match.
+          type: boolean
+        normalizedImpact:
+          format: double
+          type: number
+      type: object
+    TaxableLineItem:
+      additionalProperties: false
+      example:
+        reason: reason
+        lineItemPrice: 6.027456183070403
+        productProperties:
+        - attributeDetail:
+            valueType: valueType
+            dataType: dataType
+            name: name
+            description: description
+            inputType: inputType
+          values:
+          - stringValue: stringValue
+            value: ""
+          - stringValue: stringValue
+            value: ""
+          isMultiValue: true
+          attributeFQN: attributeFQN
+          isHidden: true
+        - attributeDetail:
+            valueType: valueType
+            dataType: dataType
+            name: name
+            description: description
+            inputType: inputType
+          values:
+          - stringValue: stringValue
+            value: ""
+          - stringValue: stringValue
+            value: ""
+          isMultiValue: true
+          attributeFQN: attributeFQN
+          isHidden: true
+        quantity: 0
+        productDiscounts:
+        - appliesToSalePrice: true
+        - appliesToSalePrice: true
+        destinationAddress:
+          postalOrZipCode: postalOrZipCode
+          isValidated: true
+          address3: address3
+          stateOrProvince: stateOrProvince
+          address2: address2
+          address1: address1
+          countryCode: countryCode
+          addressType: addressType
+          address4: address4
+          cityOrTown: cityOrTown
+        handlingAmount: 2.3021358869347655
+        feeTotal: 7.061401241503109
+        data: ""
+        originAddress:
+          postalOrZipCode: postalOrZipCode
+          isValidated: true
+          address3: address3
+          stateOrProvince: stateOrProvince
+          address2: address2
+          address1: address1
+          countryCode: countryCode
+          addressType: addressType
+          address4: address4
+          cityOrTown: cityOrTown
+        isTaxable: true
+        variantProductCode: variantProductCode
+        productName: productName
+        discountedTotal: 5.962133916683182
+        productCode: productCode
+        discountTotal: 1.4658129805029452
+        shippingDiscounts:
+        - shippingMethodCode: shippingMethodCode
+        - shippingMethodCode: shippingMethodCode
+        productDiscount:
+          appliesToSalePrice: true
+        shippingAmount: 5.637376656633329
+        id: id
+        shippingDiscount:
+          shippingMethodCode: shippingMethodCode
+      properties:
+        id:
+          description: Unique identifier of the line item.
+          nullable: true
+          type: string
+        productCode:
+          description: Unique code of the product.
+          nullable: true
+          type: string
+        variantProductCode:
+          description: "For configurable products, the unique identifier of the product\
+            \ variation that has been selected."
+          nullable: true
+          type: string
+        productName:
+          description: Name of the product.
+          nullable: true
+          type: string
+        productProperties:
+          description: Custom Properties of the product (i.e. inclues TaxCode)
+          items:
+            $ref: '#/components/schemas/PricingRuntimeProductProperty'
+          nullable: true
+          type: array
+        quantity:
+          description: The number of products for this line item
+          format: int32
+          type: integer
+        lineItemPrice:
+          description: The line item subtotal of quantity * Product.TaxablePrice
+          format: double
+          type: number
+        discountTotal:
+          description: How much the shopper saves with the applied discount or sale
+            price. This is a negative number.
+          format: double
+          nullable: true
+          type: number
+        discountedTotal:
+          description: Subtotal minus any discounts.
+          format: double
+          nullable: true
+          type: number
+        shippingAmount:
+          description: The line item shipping amount.
+          format: double
+          type: number
+        handlingAmount:
+          description: Handling Amount for this item
+          format: double
+          nullable: true
+          type: number
+        feeTotal:
+          description: Not implemented. Total cost of fees that apply to this item.
+          format: double
+          nullable: true
+          type: number
+        isTaxable:
+          description: Is the Product taxable
+          nullable: true
+          type: boolean
+        reason:
+          description: Clarifications on the reason this item is being taxed/returned?
+          nullable: true
+          type: string
+        data:
+          nullable: true
+        productDiscount:
+          $ref: '#/components/schemas/PricingRuntimeAppliedLineItemProductDiscount'
+        shippingDiscount:
+          $ref: '#/components/schemas/PricingRuntimeAppliedLineItemShippingDiscount'
+        productDiscounts:
+          description: A list of discounts applied to the product
+          items:
+            $ref: '#/components/schemas/PricingRuntimeAppliedLineItemProductDiscount'
+          nullable: true
+          type: array
+        shippingDiscounts:
+          description: A discount applied to the shipping
+          items:
+            $ref: '#/components/schemas/PricingRuntimeAppliedLineItemShippingDiscount'
+          nullable: true
+          type: array
+        originAddress:
+          $ref: '#/components/schemas/CommerceRuntimeAddress'
+        destinationAddress:
+          $ref: '#/components/schemas/CommerceRuntimeAddress'
+      type: object
+    TaxAttribute:
+      additionalProperties: false
+      example:
+        attributeDefinitionId: 4
+        values:
+        - ""
+        - ""
+        fullyQualifiedName: fullyQualifiedName
+      properties:
+        fullyQualifiedName:
+          nullable: true
+          type: string
+        attributeDefinitionId:
+          format: int32
+          nullable: true
+          type: integer
+        values:
+          items: {}
+          nullable: true
+          type: array
+      type: object
+    AppliedOrderShippingDiscount:
+      additionalProperties: false
+      allOf:
+      - $ref: '#/components/schemas/PricingRuntimeAppliedDiscount'
+      example:
+        shippingMethodCode: shippingMethodCode
+      properties:
+        shippingMethodCode:
+          description: Unique identifier of the shipping method discount.
+          nullable: true
+          type: string
+      type: object
+    ThrirdPartyTaxableOrder:
+      additionalProperties: false
+      description: An order sent to a thirdparty implementation for calculating taxes
+      example:
+        originalDocumentCode: originalDocumentCode
+        orderNumber: 2
+        handlingFee: 3.616076749251911
+        orderId: orderId
+        shippingMethodName: shippingMethodName
+        originalOrderDate: 2000-01-23T04:56:07.000+00:00
+        orderDiscounts:
+        - impact: 7.386281948385884
+          discount:
+            maximumUsesPerUser: 6
+            amountType: amountType
+            amount: 1.0246457001441578
+            maxRedemptions: 1
+            requiresAuthenticatedUser: true
+            maximumDiscountValuePerOrder: 1.1730742509559433
+            includedPriceLists:
+            - includedPriceLists
+            - includedPriceLists
+            friendlyDescription: friendlyDescription
+            doesNotApplyToMultiShipToOrders: true
+            type: type
+            target:
+              includedCategoryIds:
+              - 9
+              - 9
+              excludedProductCodes:
+              - excludedProductCodes
+              - excludedProductCodes
+              includedProductCodes:
+              - includedProductCodes
+              - includedProductCodes
+              shippingZones:
+              - shippingZones
+              - shippingZones
+              excludedCategoryIds:
+              - 9
+              - 9
+              includedCategoriesOperator: includedCategoriesOperator
+              type: type
+              includeAllProducts: true
+              excludedCategoriesOperator: excludedCategoriesOperator
+              shippingMethods:
+              - shippingMethods
+              - shippingMethods
+            condition:
+              includedCategoryIds:
+              - 8
+              - 8
+              includedProductCodes:
+              - includedProductCodes
+              - includedProductCodes
+              maximumOrderAmount: 1.284659006116532
+              paymentWorkflows:
+              - paymentWorkflows
+              - paymentWorkflows
+              minimumCategorySubtotalBeforeDiscounts: 6.778324963048013
+              customerSegmentIds:
+              - 3
+              - 3
+              minDistinctProductsRequired: 6
+              minimumQuantityRequiredProducts: 6
+              excludedProductCodes:
+              - excludedProductCodes
+              - excludedProductCodes
+              minimumOrderAmount: 6.965117697638846
+              minimumQuantityProductsRequiredInCategories: 6
+              excludedCategoryIds:
+              - 9
+              - 9
+              minimumLifetimeValueAmount: 2.8841621266687802
+              requiresCoupon: true
+              couponCode: couponCode
+              startDate: 2000-01-23T04:56:07.000+00:00
+              expirationDate: 2000-01-23T04:56:07.000+00:00
+            maxDiscountValuePerRedemption: 4.965218492984954
+            redemptions: 5
+            doesNotApplyToProductsWithSalePrice: true
+            scope: scope
+            name: name
+            maximumRedemptionsPerOrder: 7
+            stackingLayer: 5
+            discountId: 1
+            expirationDate: 2000-01-23T04:56:07.000+00:00
+          couponSetId: 6
+          couponCode: couponCode
+        - impact: 7.386281948385884
+          discount:
+            maximumUsesPerUser: 6
+            amountType: amountType
+            amount: 1.0246457001441578
+            maxRedemptions: 1
+            requiresAuthenticatedUser: true
+            maximumDiscountValuePerOrder: 1.1730742509559433
+            includedPriceLists:
+            - includedPriceLists
+            - includedPriceLists
+            friendlyDescription: friendlyDescription
+            doesNotApplyToMultiShipToOrders: true
+            type: type
+            target:
+              includedCategoryIds:
+              - 9
+              - 9
+              excludedProductCodes:
+              - excludedProductCodes
+              - excludedProductCodes
+              includedProductCodes:
+              - includedProductCodes
+              - includedProductCodes
+              shippingZones:
+              - shippingZones
+              - shippingZones
+              excludedCategoryIds:
+              - 9
+              - 9
+              includedCategoriesOperator: includedCategoriesOperator
+              type: type
+              includeAllProducts: true
+              excludedCategoriesOperator: excludedCategoriesOperator
+              shippingMethods:
+              - shippingMethods
+              - shippingMethods
+            condition:
+              includedCategoryIds:
+              - 8
+              - 8
+              includedProductCodes:
+              - includedProductCodes
+              - includedProductCodes
+              maximumOrderAmount: 1.284659006116532
+              paymentWorkflows:
+              - paymentWorkflows
+              - paymentWorkflows
+              minimumCategorySubtotalBeforeDiscounts: 6.778324963048013
+              customerSegmentIds:
+              - 3
+              - 3
+              minDistinctProductsRequired: 6
+              minimumQuantityRequiredProducts: 6
+              excludedProductCodes:
+              - excludedProductCodes
+              - excludedProductCodes
+              minimumOrderAmount: 6.965117697638846
+              minimumQuantityProductsRequiredInCategories: 6
+              excludedCategoryIds:
+              - 9
+              - 9
+              minimumLifetimeValueAmount: 2.8841621266687802
+              requiresCoupon: true
+              couponCode: couponCode
+              startDate: 2000-01-23T04:56:07.000+00:00
+              expirationDate: 2000-01-23T04:56:07.000+00:00
+            maxDiscountValuePerRedemption: 4.965218492984954
+            redemptions: 5
+            doesNotApplyToProductsWithSalePrice: true
+            scope: scope
+            name: name
+            maximumRedemptionsPerOrder: 7
+            stackingLayer: 5
+            discountId: 1
+            expirationDate: 2000-01-23T04:56:07.000+00:00
+          couponSetId: 6
+          couponCode: couponCode
+        lineItems:
+        - reason: reason
+          lineItemPrice: 6.027456183070403
+          productProperties:
+          - attributeDetail:
+              valueType: valueType
+              dataType: dataType
+              name: name
+              description: description
+              inputType: inputType
+            values:
+            - stringValue: stringValue
+              value: ""
+            - stringValue: stringValue
+              value: ""
+            isMultiValue: true
+            attributeFQN: attributeFQN
+            isHidden: true
+          - attributeDetail:
+              valueType: valueType
+              dataType: dataType
+              name: name
+              description: description
+              inputType: inputType
+            values:
+            - stringValue: stringValue
+              value: ""
+            - stringValue: stringValue
+              value: ""
+            isMultiValue: true
+            attributeFQN: attributeFQN
+            isHidden: true
+          quantity: 0
+          productDiscounts:
+          - appliesToSalePrice: true
+          - appliesToSalePrice: true
+          destinationAddress:
+            postalOrZipCode: postalOrZipCode
+            isValidated: true
+            address3: address3
+            stateOrProvince: stateOrProvince
+            address2: address2
+            address1: address1
+            countryCode: countryCode
+            addressType: addressType
+            address4: address4
+            cityOrTown: cityOrTown
+          handlingAmount: 2.3021358869347655
+          feeTotal: 7.061401241503109
+          data: ""
+          originAddress:
+            postalOrZipCode: postalOrZipCode
+            isValidated: true
+            address3: address3
+            stateOrProvince: stateOrProvince
+            address2: address2
+            address1: address1
+            countryCode: countryCode
+            addressType: addressType
+            address4: address4
+            cityOrTown: cityOrTown
+          isTaxable: true
+          variantProductCode: variantProductCode
+          productName: productName
+          discountedTotal: 5.962133916683182
+          productCode: productCode
+          discountTotal: 1.4658129805029452
+          shippingDiscounts:
+          - shippingMethodCode: shippingMethodCode
+          - shippingMethodCode: shippingMethodCode
+          productDiscount:
+            appliesToSalePrice: true
+          shippingAmount: 5.637376656633329
+          id: id
+          shippingDiscount:
+            shippingMethodCode: shippingMethodCode
+        - reason: reason
+          lineItemPrice: 6.027456183070403
+          productProperties:
+          - attributeDetail:
+              valueType: valueType
+              dataType: dataType
+              name: name
+              description: description
+              inputType: inputType
+            values:
+            - stringValue: stringValue
+              value: ""
+            - stringValue: stringValue
+              value: ""
+            isMultiValue: true
+            attributeFQN: attributeFQN
+            isHidden: true
+          - attributeDetail:
+              valueType: valueType
+              dataType: dataType
+              name: name
+              description: description
+              inputType: inputType
+            values:
+            - stringValue: stringValue
+              value: ""
+            - stringValue: stringValue
+              value: ""
+            isMultiValue: true
+            attributeFQN: attributeFQN
+            isHidden: true
+          quantity: 0
+          productDiscounts:
+          - appliesToSalePrice: true
+          - appliesToSalePrice: true
+          destinationAddress:
+            postalOrZipCode: postalOrZipCode
+            isValidated: true
+            address3: address3
+            stateOrProvince: stateOrProvince
+            address2: address2
+            address1: address1
+            countryCode: countryCode
+            addressType: addressType
+            address4: address4
+            cityOrTown: cityOrTown
+          handlingAmount: 2.3021358869347655
+          feeTotal: 7.061401241503109
+          data: ""
+          originAddress:
+            postalOrZipCode: postalOrZipCode
+            isValidated: true
+            address3: address3
+            stateOrProvince: stateOrProvince
+            address2: address2
+            address1: address1
+            countryCode: countryCode
+            addressType: addressType
+            address4: address4
+            cityOrTown: cityOrTown
+          isTaxable: true
+          variantProductCode: variantProductCode
+          productName: productName
+          discountedTotal: 5.962133916683182
+          productCode: productCode
+          discountTotal: 1.4658129805029452
+          shippingDiscounts:
+          - shippingMethodCode: shippingMethodCode
+          - shippingMethodCode: shippingMethodCode
+          productDiscount:
+            appliesToSalePrice: true
+          shippingAmount: 5.637376656633329
+          id: id
+          shippingDiscount:
+            shippingMethodCode: shippingMethodCode
+        shippingMethodCode: shippingMethodCode
+        handlingDiscounts:
+        - impact: 7.386281948385884
+          discount:
+            maximumUsesPerUser: 6
+            amountType: amountType
+            amount: 1.0246457001441578
+            maxRedemptions: 1
+            requiresAuthenticatedUser: true
+            maximumDiscountValuePerOrder: 1.1730742509559433
+            includedPriceLists:
+            - includedPriceLists
+            - includedPriceLists
+            friendlyDescription: friendlyDescription
+            doesNotApplyToMultiShipToOrders: true
+            type: type
+            target:
+              includedCategoryIds:
+              - 9
+              - 9
+              excludedProductCodes:
+              - excludedProductCodes
+              - excludedProductCodes
+              includedProductCodes:
+              - includedProductCodes
+              - includedProductCodes
+              shippingZones:
+              - shippingZones
+              - shippingZones
+              excludedCategoryIds:
+              - 9
+              - 9
+              includedCategoriesOperator: includedCategoriesOperator
+              type: type
+              includeAllProducts: true
+              excludedCategoriesOperator: excludedCategoriesOperator
+              shippingMethods:
+              - shippingMethods
+              - shippingMethods
+            condition:
+              includedCategoryIds:
+              - 8
+              - 8
+              includedProductCodes:
+              - includedProductCodes
+              - includedProductCodes
+              maximumOrderAmount: 1.284659006116532
+              paymentWorkflows:
+              - paymentWorkflows
+              - paymentWorkflows
+              minimumCategorySubtotalBeforeDiscounts: 6.778324963048013
+              customerSegmentIds:
+              - 3
+              - 3
+              minDistinctProductsRequired: 6
+              minimumQuantityRequiredProducts: 6
+              excludedProductCodes:
+              - excludedProductCodes
+              - excludedProductCodes
+              minimumOrderAmount: 6.965117697638846
+              minimumQuantityProductsRequiredInCategories: 6
+              excludedCategoryIds:
+              - 9
+              - 9
+              minimumLifetimeValueAmount: 2.8841621266687802
+              requiresCoupon: true
+              couponCode: couponCode
+              startDate: 2000-01-23T04:56:07.000+00:00
+              expirationDate: 2000-01-23T04:56:07.000+00:00
+            maxDiscountValuePerRedemption: 4.965218492984954
+            redemptions: 5
+            doesNotApplyToProductsWithSalePrice: true
+            scope: scope
+            name: name
+            maximumRedemptionsPerOrder: 7
+            stackingLayer: 5
+            discountId: 1
+            expirationDate: 2000-01-23T04:56:07.000+00:00
+          couponSetId: 6
+          couponCode: couponCode
+        - impact: 7.386281948385884
+          discount:
+            maximumUsesPerUser: 6
+            amountType: amountType
+            amount: 1.0246457001441578
+            maxRedemptions: 1
+            requiresAuthenticatedUser: true
+            maximumDiscountValuePerOrder: 1.1730742509559433
+            includedPriceLists:
+            - includedPriceLists
+            - includedPriceLists
+            friendlyDescription: friendlyDescription
+            doesNotApplyToMultiShipToOrders: true
+            type: type
+            target:
+              includedCategoryIds:
+              - 9
+              - 9
+              excludedProductCodes:
+              - excludedProductCodes
+              - excludedProductCodes
+              includedProductCodes:
+              - includedProductCodes
+              - includedProductCodes
+              shippingZones:
+              - shippingZones
+              - shippingZones
+              excludedCategoryIds:
+              - 9
+              - 9
+              includedCategoriesOperator: includedCategoriesOperator
+              type: type
+              includeAllProducts: true
+              excludedCategoriesOperator: excludedCategoriesOperator
+              shippingMethods:
+              - shippingMethods
+              - shippingMethods
+            condition:
+              includedCategoryIds:
+              - 8
+              - 8
+              includedProductCodes:
+              - includedProductCodes
+              - includedProductCodes
+              maximumOrderAmount: 1.284659006116532
+              paymentWorkflows:
+              - paymentWorkflows
+              - paymentWorkflows
+              minimumCategorySubtotalBeforeDiscounts: 6.778324963048013
+              customerSegmentIds:
+              - 3
+              - 3
+              minDistinctProductsRequired: 6
+              minimumQuantityRequiredProducts: 6
+              excludedProductCodes:
+              - excludedProductCodes
+              - excludedProductCodes
+              minimumOrderAmount: 6.965117697638846
+              minimumQuantityProductsRequiredInCategories: 6
+              excludedCategoryIds:
+              - 9
+              - 9
+              minimumLifetimeValueAmount: 2.8841621266687802
+              requiresCoupon: true
+              couponCode: couponCode
+              startDate: 2000-01-23T04:56:07.000+00:00
+              expirationDate: 2000-01-23T04:56:07.000+00:00
+            maxDiscountValuePerRedemption: 4.965218492984954
+            redemptions: 5
+            doesNotApplyToProductsWithSalePrice: true
+            scope: scope
+            name: name
+            maximumRedemptionsPerOrder: 7
+            stackingLayer: 5
+            discountId: 1
+            expirationDate: 2000-01-23T04:56:07.000+00:00
+          couponSetId: 6
+          couponCode: couponCode
+        shippingDiscounts:
+        - shippingMethodCode: shippingMethodCode
+        - shippingMethodCode: shippingMethodCode
+        taxContext:
+          destinationAddress:
+            postalOrZipCode: postalOrZipCode
+            isValidated: true
+            address3: address3
+            stateOrProvince: stateOrProvince
+            address2: address2
+            address1: address1
+            countryCode: countryCode
+            addressType: addressType
+            address4: address4
+            cityOrTown: cityOrTown
+          taxExemptId: taxExemptId
+          originAddress:
+            postalOrZipCode: postalOrZipCode
+            isValidated: true
+            address3: address3
+            stateOrProvince: stateOrProvince
+            address2: address2
+            address1: address1
+            countryCode: countryCode
+            addressType: addressType
+            address4: address4
+            cityOrTown: cityOrTown
+          taxShipping: true
+          customerId: customerId
+          taxContextId: taxContextId
+        orderDiscount:
+          impact: 7.386281948385884
+          discount:
+            maximumUsesPerUser: 6
+            amountType: amountType
+            amount: 1.0246457001441578
+            maxRedemptions: 1
+            requiresAuthenticatedUser: true
+            maximumDiscountValuePerOrder: 1.1730742509559433
+            includedPriceLists:
+            - includedPriceLists
+            - includedPriceLists
+            friendlyDescription: friendlyDescription
+            doesNotApplyToMultiShipToOrders: true
+            type: type
+            target:
+              includedCategoryIds:
+              - 9
+              - 9
+              excludedProductCodes:
+              - excludedProductCodes
+              - excludedProductCodes
+              includedProductCodes:
+              - includedProductCodes
+              - includedProductCodes
+              shippingZones:
+              - shippingZones
+              - shippingZones
+              excludedCategoryIds:
+              - 9
+              - 9
+              includedCategoriesOperator: includedCategoriesOperator
+              type: type
+              includeAllProducts: true
+              excludedCategoriesOperator: excludedCategoriesOperator
+              shippingMethods:
+              - shippingMethods
+              - shippingMethods
+            condition:
+              includedCategoryIds:
+              - 8
+              - 8
+              includedProductCodes:
+              - includedProductCodes
+              - includedProductCodes
+              maximumOrderAmount: 1.284659006116532
+              paymentWorkflows:
+              - paymentWorkflows
+              - paymentWorkflows
+              minimumCategorySubtotalBeforeDiscounts: 6.778324963048013
+              customerSegmentIds:
+              - 3
+              - 3
+              minDistinctProductsRequired: 6
+              minimumQuantityRequiredProducts: 6
+              excludedProductCodes:
+              - excludedProductCodes
+              - excludedProductCodes
+              minimumOrderAmount: 6.965117697638846
+              minimumQuantityProductsRequiredInCategories: 6
+              excludedCategoryIds:
+              - 9
+              - 9
+              minimumLifetimeValueAmount: 2.8841621266687802
+              requiresCoupon: true
+              couponCode: couponCode
+              startDate: 2000-01-23T04:56:07.000+00:00
+              expirationDate: 2000-01-23T04:56:07.000+00:00
+            maxDiscountValuePerRedemption: 4.965218492984954
+            redemptions: 5
+            doesNotApplyToProductsWithSalePrice: true
+            scope: scope
+            name: name
+            maximumRedemptionsPerOrder: 7
+            stackingLayer: 5
+            discountId: 1
+            expirationDate: 2000-01-23T04:56:07.000+00:00
+          couponSetId: 6
+          couponCode: couponCode
+        shippingAmount: 9.301444243932576
+        attributes:
+        - attributeDefinitionId: 4
+          values:
+          - ""
+          - ""
+          fullyQualifiedName: fullyQualifiedName
+        - attributeDefinitionId: 4
+          values:
+          - ""
+          - ""
+          fullyQualifiedName: fullyQualifiedName
+        shippingDiscount:
+          shippingMethodCode: shippingMethodCode
+        orderDate: 2000-01-23T04:56:07.000+00:00
+        currencyCode: currencyCode
+        taxRequestType: taxRequestType
+        handlingDiscount:
+          impact: 7.386281948385884
+          discount:
+            maximumUsesPerUser: 6
+            amountType: amountType
+            amount: 1.0246457001441578
+            maxRedemptions: 1
+            requiresAuthenticatedUser: true
+            maximumDiscountValuePerOrder: 1.1730742509559433
+            includedPriceLists:
+            - includedPriceLists
+            - includedPriceLists
+            friendlyDescription: friendlyDescription
+            doesNotApplyToMultiShipToOrders: true
+            type: type
+            target:
+              includedCategoryIds:
+              - 9
+              - 9
+              excludedProductCodes:
+              - excludedProductCodes
+              - excludedProductCodes
+              includedProductCodes:
+              - includedProductCodes
+              - includedProductCodes
+              shippingZones:
+              - shippingZones
+              - shippingZones
+              excludedCategoryIds:
+              - 9
+              - 9
+              includedCategoriesOperator: includedCategoriesOperator
+              type: type
+              includeAllProducts: true
+              excludedCategoriesOperator: excludedCategoriesOperator
+              shippingMethods:
+              - shippingMethods
+              - shippingMethods
+            condition:
+              includedCategoryIds:
+              - 8
+              - 8
+              includedProductCodes:
+              - includedProductCodes
+              - includedProductCodes
+              maximumOrderAmount: 1.284659006116532
+              paymentWorkflows:
+              - paymentWorkflows
+              - paymentWorkflows
+              minimumCategorySubtotalBeforeDiscounts: 6.778324963048013
+              customerSegmentIds:
+              - 3
+              - 3
+              minDistinctProductsRequired: 6
+              minimumQuantityRequiredProducts: 6
+              excludedProductCodes:
+              - excludedProductCodes
+              - excludedProductCodes
+              minimumOrderAmount: 6.965117697638846
+              minimumQuantityProductsRequiredInCategories: 6
+              excludedCategoryIds:
+              - 9
+              - 9
+              minimumLifetimeValueAmount: 2.8841621266687802
+              requiresCoupon: true
+              couponCode: couponCode
+              startDate: 2000-01-23T04:56:07.000+00:00
+              expirationDate: 2000-01-23T04:56:07.000+00:00
+            maxDiscountValuePerRedemption: 4.965218492984954
+            redemptions: 5
+            doesNotApplyToProductsWithSalePrice: true
+            scope: scope
+            name: name
+            maximumRedemptionsPerOrder: 7
+            stackingLayer: 5
+            discountId: 1
+            expirationDate: 2000-01-23T04:56:07.000+00:00
+          couponSetId: 6
+          couponCode: couponCode
+      properties:
+        orderDate:
+          description: "Date on which the order is/was submitted.\r\nCannot be a future\
+            \ date."
+          format: date-time
+          type: string
+        taxContext:
+          $ref: '#/components/schemas/ThrirdPartyTaxContext'
+        lineItems:
+          description: List of taxable items.
+          items:
+            $ref: '#/components/schemas/TaxableLineItem'
+          nullable: true
+          type: array
+        shippingAmount:
+          description: Shipping Amount rolled up for the order
+          format: double
+          type: number
+        currencyCode:
+          description: The currency code for this order
+          nullable: true
+          type: string
+        handlingFee:
+          description: Handling Fee
+          format: double
+          type: number
+        originalDocumentCode:
+          description: The order id of the original order.  This can be used to track
+            changes to the order for taxing purposes.
+          nullable: true
+          type: string
+        orderId:
+          nullable: true
+          type: string
+        orderNumber:
+          format: int32
+          nullable: true
+          type: integer
+        originalOrderDate:
+          description: "The date of the original order.  This is used when calculating\
+            \ changes to the Taxable Order, evaluating them at this time rather than\
+            \ the present."
+          format: date-time
+          type: string
+        taxRequestType:
+          description: Used to differentiate between an Order and a Return being used
+            as the source of this Taxable Order
+          nullable: true
+          type: string
+        attributes:
+          items:
+            $ref: '#/components/schemas/TaxAttribute'
+          nullable: true
+          type: array
+        shippingDiscounts:
+          items:
+            $ref: '#/components/schemas/AppliedOrderShippingDiscount'
+          nullable: true
+          type: array
+        shippingDiscount:
+          $ref: '#/components/schemas/AppliedOrderShippingDiscount'
+        orderDiscounts:
+          description: "The discount that has been applied to the cart itself. If\
+            \ multiple discounts exist, this is the discount that the system applies\
+            \ because it offers the best savings for the shopper. This is a negative\
+            \ number."
+          items:
+            $ref: '#/components/schemas/PricingRuntimeAppliedDiscount'
+          nullable: true
+          type: array
+        orderDiscount:
+          $ref: '#/components/schemas/PricingRuntimeAppliedDiscount'
+        handlingDiscounts:
+          description: The list of historically-applied handling discounts.  The active
+            one will have IsExcluded == false
+          items:
+            $ref: '#/components/schemas/PricingRuntimeAppliedDiscount'
+          nullable: true
+          type: array
+        handlingDiscount:
+          $ref: '#/components/schemas/PricingRuntimeAppliedDiscount'
+        shippingMethodCode:
+          description: "Code that uniquely identifies the shipping method such as\
+            \ \"Ground,\" \"Overnight,\" or \"Digital.\"\r\nThe site's shipping settings\
+            \ lists the valid shipping methods specified for this site."
+          nullable: true
+          type: string
+        shippingMethodName:
+          description: Readable name of the shipping method
+          nullable: true
+          type: string
+      type: object
+    ThrirdPartyItemTaxContext:
+      additionalProperties: false
+      description: The tax applied to an individual order item.
+      example:
+        shippingTax: 1.4658129805029452
+        productCode: productCode
+        quantity: 0
+        tax: 6.027456183070403
+        id: id
+      properties:
+        id:
+          description: Unique identifier of the line item.
+          nullable: true
+          type: string
+        productCode:
+          description: Merchant-created code that uniquely identifies the product.
+          nullable: true
+          type: string
+        quantity:
+          description: The number of products in this lineitem
+          format: int32
+          type: integer
+        tax:
+          description: Line item tax amount not including shipping
+          format: double
+          type: number
+        shippingTax:
+          description: The shipping tax amount for this line item
+          format: double
+          type: number
+      type: object
+    ThrirdPartyOrderTaxContext:
+      additionalProperties: false
+      example:
+        shippingTax: 5.962133916683182
+        itemTaxContexts:
+        - shippingTax: 1.4658129805029452
+          productCode: productCode
+          quantity: 0
+          tax: 6.027456183070403
+          id: id
+        - shippingTax: 1.4658129805029452
+          productCode: productCode
+          quantity: 0
+          tax: 6.027456183070403
+          id: id
+        handlingFeeTax: 5.637376656633329
+        orderTax: 2.3021358869347655
+      properties:
+        itemTaxContexts:
+          description: Taxes applied to each item in the order.
+          items:
+            $ref: '#/components/schemas/ThrirdPartyItemTaxContext'
+          nullable: true
+          type: array
+        shippingTax:
+          description: Rollup shipping tax for this order
+          format: double
+          type: number
+        handlingFeeTax:
+          description: The handling fee tax amount for this line item
+          format: double
+          type: number
+        orderTax:
+          description: Rollup tax on the order not including shipping
+          format: double
+          type: number
+      type: object
+    TaxContext:
+      additionalProperties: false
+      description: The context for the tax calculation.
+      example:
+        destinationAddress:
+          postalOrZipCode: postalOrZipCode
+          isValidated: true
+          address3: address3
+          stateOrProvince: stateOrProvince
+          address2: address2
+          address1: address1
+          countryCode: countryCode
+          addressType: addressType
+          address4: address4
+          cityOrTown: cityOrTown
+        taxExemptId: taxExemptId
+        originAddress:
+          postalOrZipCode: postalOrZipCode
+          isValidated: true
+          address3: address3
+          stateOrProvince: stateOrProvince
+          address2: address2
+          address1: address1
+          countryCode: countryCode
+          addressType: addressType
+          address4: address4
+          cityOrTown: cityOrTown
+        customerId: customerId
+        taxContextId: taxContextId
+      properties:
+        taxContextId:
+          description: "The unique id of this context. Will typically be the OrderId\
+            \ or CartId, depending when the tax is being calculated."
+          nullable: true
+          type: string
+        customerId:
+          description: "A unique id for a customer.  This may be the userid, checking\
+            \ with Avalara to determine the meaning of this"
+          nullable: true
+          type: string
+        taxExemptId:
+          description: Tax exemption id.  Indicates that this customer or user is
+            tax exempt
+          nullable: true
+          type: string
+        originAddress:
+          $ref: '#/components/schemas/CommerceRuntimeAddress'
+        destinationAddress:
+          $ref: '#/components/schemas/CommerceRuntimeAddress'
+      type: object
+    TaxableOrder:
+      additionalProperties: false
+      description: Properties of a taxable order
+      example:
+        originalDocumentCode: originalDocumentCode
+        orderNumber: 1
+        handlingFee: 6.027456183070403
+        data: ""
+        orderId: orderId
+        shippingMethodName: shippingMethodName
+        originalOrderDate: 2000-01-23T04:56:07.000+00:00
+        orderDiscounts:
+        - impact: 7.386281948385884
+          discount:
+            maximumUsesPerUser: 6
+            amountType: amountType
+            amount: 1.0246457001441578
+            maxRedemptions: 1
+            requiresAuthenticatedUser: true
+            maximumDiscountValuePerOrder: 1.1730742509559433
+            includedPriceLists:
+            - includedPriceLists
+            - includedPriceLists
+            friendlyDescription: friendlyDescription
+            doesNotApplyToMultiShipToOrders: true
+            type: type
+            target:
+              includedCategoryIds:
+              - 9
+              - 9
+              excludedProductCodes:
+              - excludedProductCodes
+              - excludedProductCodes
+              includedProductCodes:
+              - includedProductCodes
+              - includedProductCodes
+              shippingZones:
+              - shippingZones
+              - shippingZones
+              excludedCategoryIds:
+              - 9
+              - 9
+              includedCategoriesOperator: includedCategoriesOperator
+              type: type
+              includeAllProducts: true
+              excludedCategoriesOperator: excludedCategoriesOperator
+              shippingMethods:
+              - shippingMethods
+              - shippingMethods
+            condition:
+              includedCategoryIds:
+              - 8
+              - 8
+              includedProductCodes:
+              - includedProductCodes
+              - includedProductCodes
+              maximumOrderAmount: 1.284659006116532
+              paymentWorkflows:
+              - paymentWorkflows
+              - paymentWorkflows
+              minimumCategorySubtotalBeforeDiscounts: 6.778324963048013
+              customerSegmentIds:
+              - 3
+              - 3
+              minDistinctProductsRequired: 6
+              minimumQuantityRequiredProducts: 6
+              excludedProductCodes:
+              - excludedProductCodes
+              - excludedProductCodes
+              minimumOrderAmount: 6.965117697638846
+              minimumQuantityProductsRequiredInCategories: 6
+              excludedCategoryIds:
+              - 9
+              - 9
+              minimumLifetimeValueAmount: 2.8841621266687802
+              requiresCoupon: true
+              couponCode: couponCode
+              startDate: 2000-01-23T04:56:07.000+00:00
+              expirationDate: 2000-01-23T04:56:07.000+00:00
+            maxDiscountValuePerRedemption: 4.965218492984954
+            redemptions: 5
+            doesNotApplyToProductsWithSalePrice: true
+            scope: scope
+            name: name
+            maximumRedemptionsPerOrder: 7
+            stackingLayer: 5
+            discountId: 1
+            expirationDate: 2000-01-23T04:56:07.000+00:00
+          couponSetId: 6
+          couponCode: couponCode
+        - impact: 7.386281948385884
+          discount:
+            maximumUsesPerUser: 6
+            amountType: amountType
+            amount: 1.0246457001441578
+            maxRedemptions: 1
+            requiresAuthenticatedUser: true
+            maximumDiscountValuePerOrder: 1.1730742509559433
+            includedPriceLists:
+            - includedPriceLists
+            - includedPriceLists
+            friendlyDescription: friendlyDescription
+            doesNotApplyToMultiShipToOrders: true
+            type: type
+            target:
+              includedCategoryIds:
+              - 9
+              - 9
+              excludedProductCodes:
+              - excludedProductCodes
+              - excludedProductCodes
+              includedProductCodes:
+              - includedProductCodes
+              - includedProductCodes
+              shippingZones:
+              - shippingZones
+              - shippingZones
+              excludedCategoryIds:
+              - 9
+              - 9
+              includedCategoriesOperator: includedCategoriesOperator
+              type: type
+              includeAllProducts: true
+              excludedCategoriesOperator: excludedCategoriesOperator
+              shippingMethods:
+              - shippingMethods
+              - shippingMethods
+            condition:
+              includedCategoryIds:
+              - 8
+              - 8
+              includedProductCodes:
+              - includedProductCodes
+              - includedProductCodes
+              maximumOrderAmount: 1.284659006116532
+              paymentWorkflows:
+              - paymentWorkflows
+              - paymentWorkflows
+              minimumCategorySubtotalBeforeDiscounts: 6.778324963048013
+              customerSegmentIds:
+              - 3
+              - 3
+              minDistinctProductsRequired: 6
+              minimumQuantityRequiredProducts: 6
+              excludedProductCodes:
+              - excludedProductCodes
+              - excludedProductCodes
+              minimumOrderAmount: 6.965117697638846
+              minimumQuantityProductsRequiredInCategories: 6
+              excludedCategoryIds:
+              - 9
+              - 9
+              minimumLifetimeValueAmount: 2.8841621266687802
+              requiresCoupon: true
+              couponCode: couponCode
+              startDate: 2000-01-23T04:56:07.000+00:00
+              expirationDate: 2000-01-23T04:56:07.000+00:00
+            maxDiscountValuePerRedemption: 4.965218492984954
+            redemptions: 5
+            doesNotApplyToProductsWithSalePrice: true
+            scope: scope
+            name: name
+            maximumRedemptionsPerOrder: 7
+            stackingLayer: 5
+            discountId: 1
+            expirationDate: 2000-01-23T04:56:07.000+00:00
+          couponSetId: 6
+          couponCode: couponCode
+        lineItems:
+        - reason: reason
+          lineItemPrice: 6.027456183070403
+          productProperties:
+          - attributeDetail:
+              valueType: valueType
+              dataType: dataType
+              name: name
+              description: description
+              inputType: inputType
+            values:
+            - stringValue: stringValue
+              value: ""
+            - stringValue: stringValue
+              value: ""
+            isMultiValue: true
+            attributeFQN: attributeFQN
+            isHidden: true
+          - attributeDetail:
+              valueType: valueType
+              dataType: dataType
+              name: name
+              description: description
+              inputType: inputType
+            values:
+            - stringValue: stringValue
+              value: ""
+            - stringValue: stringValue
+              value: ""
+            isMultiValue: true
+            attributeFQN: attributeFQN
+            isHidden: true
+          quantity: 0
+          productDiscounts:
+          - appliesToSalePrice: true
+          - appliesToSalePrice: true
+          destinationAddress:
+            postalOrZipCode: postalOrZipCode
+            isValidated: true
+            address3: address3
+            stateOrProvince: stateOrProvince
+            address2: address2
+            address1: address1
+            countryCode: countryCode
+            addressType: addressType
+            address4: address4
+            cityOrTown: cityOrTown
+          handlingAmount: 2.3021358869347655
+          feeTotal: 7.061401241503109
+          data: ""
+          originAddress:
+            postalOrZipCode: postalOrZipCode
+            isValidated: true
+            address3: address3
+            stateOrProvince: stateOrProvince
+            address2: address2
+            address1: address1
+            countryCode: countryCode
+            addressType: addressType
+            address4: address4
+            cityOrTown: cityOrTown
+          isTaxable: true
+          variantProductCode: variantProductCode
+          productName: productName
+          discountedTotal: 5.962133916683182
+          productCode: productCode
+          discountTotal: 1.4658129805029452
+          shippingDiscounts:
+          - shippingMethodCode: shippingMethodCode
+          - shippingMethodCode: shippingMethodCode
+          productDiscount:
+            appliesToSalePrice: true
+          shippingAmount: 5.637376656633329
+          id: id
+          shippingDiscount:
+            shippingMethodCode: shippingMethodCode
+        - reason: reason
+          lineItemPrice: 6.027456183070403
+          productProperties:
+          - attributeDetail:
+              valueType: valueType
+              dataType: dataType
+              name: name
+              description: description
+              inputType: inputType
+            values:
+            - stringValue: stringValue
+              value: ""
+            - stringValue: stringValue
+              value: ""
+            isMultiValue: true
+            attributeFQN: attributeFQN
+            isHidden: true
+          - attributeDetail:
+              valueType: valueType
+              dataType: dataType
+              name: name
+              description: description
+              inputType: inputType
+            values:
+            - stringValue: stringValue
+              value: ""
+            - stringValue: stringValue
+              value: ""
+            isMultiValue: true
+            attributeFQN: attributeFQN
+            isHidden: true
+          quantity: 0
+          productDiscounts:
+          - appliesToSalePrice: true
+          - appliesToSalePrice: true
+          destinationAddress:
+            postalOrZipCode: postalOrZipCode
+            isValidated: true
+            address3: address3
+            stateOrProvince: stateOrProvince
+            address2: address2
+            address1: address1
+            countryCode: countryCode
+            addressType: addressType
+            address4: address4
+            cityOrTown: cityOrTown
+          handlingAmount: 2.3021358869347655
+          feeTotal: 7.061401241503109
+          data: ""
+          originAddress:
+            postalOrZipCode: postalOrZipCode
+            isValidated: true
+            address3: address3
+            stateOrProvince: stateOrProvince
+            address2: address2
+            address1: address1
+            countryCode: countryCode
+            addressType: addressType
+            address4: address4
+            cityOrTown: cityOrTown
+          isTaxable: true
+          variantProductCode: variantProductCode
+          productName: productName
+          discountedTotal: 5.962133916683182
+          productCode: productCode
+          discountTotal: 1.4658129805029452
+          shippingDiscounts:
+          - shippingMethodCode: shippingMethodCode
+          - shippingMethodCode: shippingMethodCode
+          productDiscount:
+            appliesToSalePrice: true
+          shippingAmount: 5.637376656633329
+          id: id
+          shippingDiscount:
+            shippingMethodCode: shippingMethodCode
+        shippingMethodCode: shippingMethodCode
+        handlingDiscounts:
+        - impact: 7.386281948385884
+          discount:
+            maximumUsesPerUser: 6
+            amountType: amountType
+            amount: 1.0246457001441578
+            maxRedemptions: 1
+            requiresAuthenticatedUser: true
+            maximumDiscountValuePerOrder: 1.1730742509559433
+            includedPriceLists:
+            - includedPriceLists
+            - includedPriceLists
+            friendlyDescription: friendlyDescription
+            doesNotApplyToMultiShipToOrders: true
+            type: type
+            target:
+              includedCategoryIds:
+              - 9
+              - 9
+              excludedProductCodes:
+              - excludedProductCodes
+              - excludedProductCodes
+              includedProductCodes:
+              - includedProductCodes
+              - includedProductCodes
+              shippingZones:
+              - shippingZones
+              - shippingZones
+              excludedCategoryIds:
+              - 9
+              - 9
+              includedCategoriesOperator: includedCategoriesOperator
+              type: type
+              includeAllProducts: true
+              excludedCategoriesOperator: excludedCategoriesOperator
+              shippingMethods:
+              - shippingMethods
+              - shippingMethods
+            condition:
+              includedCategoryIds:
+              - 8
+              - 8
+              includedProductCodes:
+              - includedProductCodes
+              - includedProductCodes
+              maximumOrderAmount: 1.284659006116532
+              paymentWorkflows:
+              - paymentWorkflows
+              - paymentWorkflows
+              minimumCategorySubtotalBeforeDiscounts: 6.778324963048013
+              customerSegmentIds:
+              - 3
+              - 3
+              minDistinctProductsRequired: 6
+              minimumQuantityRequiredProducts: 6
+              excludedProductCodes:
+              - excludedProductCodes
+              - excludedProductCodes
+              minimumOrderAmount: 6.965117697638846
+              minimumQuantityProductsRequiredInCategories: 6
+              excludedCategoryIds:
+              - 9
+              - 9
+              minimumLifetimeValueAmount: 2.8841621266687802
+              requiresCoupon: true
+              couponCode: couponCode
+              startDate: 2000-01-23T04:56:07.000+00:00
+              expirationDate: 2000-01-23T04:56:07.000+00:00
+            maxDiscountValuePerRedemption: 4.965218492984954
+            redemptions: 5
+            doesNotApplyToProductsWithSalePrice: true
+            scope: scope
+            name: name
+            maximumRedemptionsPerOrder: 7
+            stackingLayer: 5
+            discountId: 1
+            expirationDate: 2000-01-23T04:56:07.000+00:00
+          couponSetId: 6
+          couponCode: couponCode
+        - impact: 7.386281948385884
+          discount:
+            maximumUsesPerUser: 6
+            amountType: amountType
+            amount: 1.0246457001441578
+            maxRedemptions: 1
+            requiresAuthenticatedUser: true
+            maximumDiscountValuePerOrder: 1.1730742509559433
+            includedPriceLists:
+            - includedPriceLists
+            - includedPriceLists
+            friendlyDescription: friendlyDescription
+            doesNotApplyToMultiShipToOrders: true
+            type: type
+            target:
+              includedCategoryIds:
+              - 9
+              - 9
+              excludedProductCodes:
+              - excludedProductCodes
+              - excludedProductCodes
+              includedProductCodes:
+              - includedProductCodes
+              - includedProductCodes
+              shippingZones:
+              - shippingZones
+              - shippingZones
+              excludedCategoryIds:
+              - 9
+              - 9
+              includedCategoriesOperator: includedCategoriesOperator
+              type: type
+              includeAllProducts: true
+              excludedCategoriesOperator: excludedCategoriesOperator
+              shippingMethods:
+              - shippingMethods
+              - shippingMethods
+            condition:
+              includedCategoryIds:
+              - 8
+              - 8
+              includedProductCodes:
+              - includedProductCodes
+              - includedProductCodes
+              maximumOrderAmount: 1.284659006116532
+              paymentWorkflows:
+              - paymentWorkflows
+              - paymentWorkflows
+              minimumCategorySubtotalBeforeDiscounts: 6.778324963048013
+              customerSegmentIds:
+              - 3
+              - 3
+              minDistinctProductsRequired: 6
+              minimumQuantityRequiredProducts: 6
+              excludedProductCodes:
+              - excludedProductCodes
+              - excludedProductCodes
+              minimumOrderAmount: 6.965117697638846
+              minimumQuantityProductsRequiredInCategories: 6
+              excludedCategoryIds:
+              - 9
+              - 9
+              minimumLifetimeValueAmount: 2.8841621266687802
+              requiresCoupon: true
+              couponCode: couponCode
+              startDate: 2000-01-23T04:56:07.000+00:00
+              expirationDate: 2000-01-23T04:56:07.000+00:00
+            maxDiscountValuePerRedemption: 4.965218492984954
+            redemptions: 5
+            doesNotApplyToProductsWithSalePrice: true
+            scope: scope
+            name: name
+            maximumRedemptionsPerOrder: 7
+            stackingLayer: 5
+            discountId: 1
+            expirationDate: 2000-01-23T04:56:07.000+00:00
+          couponSetId: 6
+          couponCode: couponCode
+        shippingDiscounts:
+        - shippingMethodCode: shippingMethodCode
+        - shippingMethodCode: shippingMethodCode
+        taxContext:
+          destinationAddress:
+            postalOrZipCode: postalOrZipCode
+            isValidated: true
+            address3: address3
+            stateOrProvince: stateOrProvince
+            address2: address2
+            address1: address1
+            countryCode: countryCode
+            addressType: addressType
+            address4: address4
+            cityOrTown: cityOrTown
+          taxExemptId: taxExemptId
+          originAddress:
+            postalOrZipCode: postalOrZipCode
+            isValidated: true
+            address3: address3
+            stateOrProvince: stateOrProvince
+            address2: address2
+            address1: address1
+            countryCode: countryCode
+            addressType: addressType
+            address4: address4
+            cityOrTown: cityOrTown
+          customerId: customerId
+          taxContextId: taxContextId
+        orderDiscount:
+          impact: 7.386281948385884
+          discount:
+            maximumUsesPerUser: 6
+            amountType: amountType
+            amount: 1.0246457001441578
+            maxRedemptions: 1
+            requiresAuthenticatedUser: true
+            maximumDiscountValuePerOrder: 1.1730742509559433
+            includedPriceLists:
+            - includedPriceLists
+            - includedPriceLists
+            friendlyDescription: friendlyDescription
+            doesNotApplyToMultiShipToOrders: true
+            type: type
+            target:
+              includedCategoryIds:
+              - 9
+              - 9
+              excludedProductCodes:
+              - excludedProductCodes
+              - excludedProductCodes
+              includedProductCodes:
+              - includedProductCodes
+              - includedProductCodes
+              shippingZones:
+              - shippingZones
+              - shippingZones
+              excludedCategoryIds:
+              - 9
+              - 9
+              includedCategoriesOperator: includedCategoriesOperator
+              type: type
+              includeAllProducts: true
+              excludedCategoriesOperator: excludedCategoriesOperator
+              shippingMethods:
+              - shippingMethods
+              - shippingMethods
+            condition:
+              includedCategoryIds:
+              - 8
+              - 8
+              includedProductCodes:
+              - includedProductCodes
+              - includedProductCodes
+              maximumOrderAmount: 1.284659006116532
+              paymentWorkflows:
+              - paymentWorkflows
+              - paymentWorkflows
+              minimumCategorySubtotalBeforeDiscounts: 6.778324963048013
+              customerSegmentIds:
+              - 3
+              - 3
+              minDistinctProductsRequired: 6
+              minimumQuantityRequiredProducts: 6
+              excludedProductCodes:
+              - excludedProductCodes
+              - excludedProductCodes
+              minimumOrderAmount: 6.965117697638846
+              minimumQuantityProductsRequiredInCategories: 6
+              excludedCategoryIds:
+              - 9
+              - 9
+              minimumLifetimeValueAmount: 2.8841621266687802
+              requiresCoupon: true
+              couponCode: couponCode
+              startDate: 2000-01-23T04:56:07.000+00:00
+              expirationDate: 2000-01-23T04:56:07.000+00:00
+            maxDiscountValuePerRedemption: 4.965218492984954
+            redemptions: 5
+            doesNotApplyToProductsWithSalePrice: true
+            scope: scope
+            name: name
+            maximumRedemptionsPerOrder: 7
+            stackingLayer: 5
+            discountId: 1
+            expirationDate: 2000-01-23T04:56:07.000+00:00
+          couponSetId: 6
+          couponCode: couponCode
+        shippingAmount: 0.8008281904610115
+        attributes:
+        - attributeDefinitionId: 4
+          values:
+          - ""
+          - ""
+          fullyQualifiedName: fullyQualifiedName
+        - attributeDefinitionId: 4
+          values:
+          - ""
+          - ""
+          fullyQualifiedName: fullyQualifiedName
+        shippingDiscount:
+          shippingMethodCode: shippingMethodCode
+        orderDate: 2000-01-23T04:56:07.000+00:00
+        currencyCode: currencyCode
+        handlingDiscount:
+          impact: 7.386281948385884
+          discount:
+            maximumUsesPerUser: 6
+            amountType: amountType
+            amount: 1.0246457001441578
+            maxRedemptions: 1
+            requiresAuthenticatedUser: true
+            maximumDiscountValuePerOrder: 1.1730742509559433
+            includedPriceLists:
+            - includedPriceLists
+            - includedPriceLists
+            friendlyDescription: friendlyDescription
+            doesNotApplyToMultiShipToOrders: true
+            type: type
+            target:
+              includedCategoryIds:
+              - 9
+              - 9
+              excludedProductCodes:
+              - excludedProductCodes
+              - excludedProductCodes
+              includedProductCodes:
+              - includedProductCodes
+              - includedProductCodes
+              shippingZones:
+              - shippingZones
+              - shippingZones
+              excludedCategoryIds:
+              - 9
+              - 9
+              includedCategoriesOperator: includedCategoriesOperator
+              type: type
+              includeAllProducts: true
+              excludedCategoriesOperator: excludedCategoriesOperator
+              shippingMethods:
+              - shippingMethods
+              - shippingMethods
+            condition:
+              includedCategoryIds:
+              - 8
+              - 8
+              includedProductCodes:
+              - includedProductCodes
+              - includedProductCodes
+              maximumOrderAmount: 1.284659006116532
+              paymentWorkflows:
+              - paymentWorkflows
+              - paymentWorkflows
+              minimumCategorySubtotalBeforeDiscounts: 6.778324963048013
+              customerSegmentIds:
+              - 3
+              - 3
+              minDistinctProductsRequired: 6
+              minimumQuantityRequiredProducts: 6
+              excludedProductCodes:
+              - excludedProductCodes
+              - excludedProductCodes
+              minimumOrderAmount: 6.965117697638846
+              minimumQuantityProductsRequiredInCategories: 6
+              excludedCategoryIds:
+              - 9
+              - 9
+              minimumLifetimeValueAmount: 2.8841621266687802
+              requiresCoupon: true
+              couponCode: couponCode
+              startDate: 2000-01-23T04:56:07.000+00:00
+              expirationDate: 2000-01-23T04:56:07.000+00:00
+            maxDiscountValuePerRedemption: 4.965218492984954
+            redemptions: 5
+            doesNotApplyToProductsWithSalePrice: true
+            scope: scope
+            name: name
+            maximumRedemptionsPerOrder: 7
+            stackingLayer: 5
+            discountId: 1
+            expirationDate: 2000-01-23T04:56:07.000+00:00
+          couponSetId: 6
+          couponCode: couponCode
+        taxRequestType: taxRequestType
+      properties:
+        orderDate:
+          description: "Date on which the order is/was submitted.\r\nCannot be a future\
+            \ date."
+          format: date-time
+          type: string
+        taxContext:
+          $ref: '#/components/schemas/TaxContext'
+        lineItems:
+          description: List of taxable items.
+          items:
+            $ref: '#/components/schemas/TaxableLineItem'
+          nullable: true
+          type: array
+        shippingAmount:
+          description: Shipping Amount rolled up for the order
+          format: double
+          type: number
+        currencyCode:
+          description: The currency code for this order
+          nullable: true
+          type: string
+        handlingFee:
+          description: Handling Fee
+          format: double
+          type: number
+        originalDocumentCode:
+          description: The order id of the original order.  This can be used to track
+            changes to the order for taxing purposes.
+          nullable: true
+          type: string
+        orderId:
+          nullable: true
+          type: string
+        orderNumber:
+          format: int32
+          nullable: true
+          type: integer
+        originalOrderDate:
+          description: "The date of the original order.  This is used when calculating\
+            \ changes to the Taxable Order, evaluating them at this time rather than\
+            \ the present."
+          format: date-time
+          type: string
+        data:
+          nullable: true
+        attributes:
+          items:
+            $ref: '#/components/schemas/TaxAttribute'
+          nullable: true
+          type: array
+        shippingDiscounts:
+          description: The list of historically-applied shipping discounts.  The active
+            one will have IsExcluded == false
+          items:
+            $ref: '#/components/schemas/AppliedOrderShippingDiscount'
+          nullable: true
+          type: array
+        shippingDiscount:
+          $ref: '#/components/schemas/AppliedOrderShippingDiscount'
+        orderDiscounts:
+          description: "The discount that has been applied to the cart itself. If\
+            \ multiple discounts exist, this is the discount that the system applies\
+            \ because it offers the best savings for the shopper. This is a negative\
+            \ number."
+          items:
+            $ref: '#/components/schemas/PricingRuntimeAppliedDiscount'
+          nullable: true
+          type: array
+        orderDiscount:
+          $ref: '#/components/schemas/PricingRuntimeAppliedDiscount'
+        handlingDiscounts:
+          description: The list of historically-applied handling discounts.  The active
+            one will have IsExcluded == false
+          items:
+            $ref: '#/components/schemas/PricingRuntimeAppliedDiscount'
+          nullable: true
+          type: array
+        handlingDiscount:
+          $ref: '#/components/schemas/PricingRuntimeAppliedDiscount'
+        shippingMethodCode:
+          description: "Code that uniquely identifies the shipping method such as\
+            \ \"Ground,\" \"Overnight,\" or \"Digital.\"\r\nThe site's shipping settings\
+            \ lists the valid shipping methods specified for this site."
+          nullable: true
+          type: string
+        shippingMethodName:
+          description: Readable name of the shipping method
+          nullable: true
+          type: string
+        taxRequestType:
+          description: Used to differentiate between an Order and a Return being used
+            as the source of this Taxable Order
+          nullable: true
+          type: string
+      type: object
+    ItemTaxContext:
+      additionalProperties: false
+      description: The tax applied to an individual order item.
+      example:
+        shippingTax: 1.4658129805029452
+        taxData: ""
+        productCode: productCode
+        quantity: 0
+        tax: 6.027456183070403
+        id: id
+      properties:
+        id:
+          description: Unique identifier of the line item.
+          nullable: true
+          type: string
+        productCode:
+          description: Merchant-created code that uniquely identifies the product.
+          nullable: true
+          type: string
+        quantity:
+          description: The number of products in this lineitem
+          format: int32
+          type: integer
+        tax:
+          description: Line item tax amount not including shipping
+          format: double
+          type: number
+        shippingTax:
+          description: The shipping tax amount for this line item
+          format: double
+          type: number
+        taxData:
+          description: Storage for any additional/custom tax data.
+          nullable: true
+      type: object
+    OrderTaxContext:
+      additionalProperties: false
+      example:
+        shippingTax: 5.962133916683182
+        taxData: ""
+        itemTaxContexts:
+        - shippingTax: 1.4658129805029452
+          taxData: ""
+          productCode: productCode
+          quantity: 0
+          tax: 6.027456183070403
+          id: id
+        - shippingTax: 1.4658129805029452
+          taxData: ""
+          productCode: productCode
+          quantity: 0
+          tax: 6.027456183070403
+          id: id
+        handlingFeeTax: 5.637376656633329
+        orderTax: 2.3021358869347655
+      properties:
+        itemTaxContexts:
+          description: Taxes applied to each item in the order.
+          items:
+            $ref: '#/components/schemas/ItemTaxContext'
+          nullable: true
+          type: array
+        shippingTax:
+          description: Rollup shipping tax for this order
+          format: double
+          type: number
+        handlingFeeTax:
+          description: The handling fee tax amount for this line item
+          format: double
+          type: number
+        orderTax:
+          description: Rollup tax on the order not including shipping
+          format: double
+          type: number
+        taxData:
+          description: Storage for any additional/custom tax data.
+          nullable: true
+      type: object
+    CommerceRuntimeAddress:
+      additionalProperties: false
+      example:
+        postalOrZipCode: postalOrZipCode
+        isValidated: true
+        address3: address3
+        stateOrProvince: stateOrProvince
+        address2: address2
+        address1: address1
+        countryCode: countryCode
+        addressType: addressType
+        address4: address4
+        cityOrTown: cityOrTown
+      properties:
+        address1:
+          nullable: true
+          type: string
+        address2:
+          nullable: true
+          type: string
+        address3:
+          nullable: true
+          type: string
+        address4:
+          nullable: true
+          type: string
+        cityOrTown:
+          nullable: true
+          type: string
+        stateOrProvince:
+          nullable: true
+          type: string
+        postalOrZipCode:
+          nullable: true
+          type: string
+        countryCode:
+          nullable: true
+          type: string
+        addressType:
+          nullable: true
+          type: string
+        isValidated:
+          nullable: true
+          type: boolean
+      type: object
+    PricingRuntimeDiscount:
+      additionalProperties: false
+      description: "Name of the discount that can be applied and its expiration date.\
+        \ The discount can be on a single product or the\r\nentire order."
+      example:
+        maximumUsesPerUser: 6
+        amountType: amountType
+        amount: 1.0246457001441578
+        maxRedemptions: 1
+        requiresAuthenticatedUser: true
+        maximumDiscountValuePerOrder: 1.1730742509559433
+        includedPriceLists:
+        - includedPriceLists
+        - includedPriceLists
+        friendlyDescription: friendlyDescription
+        doesNotApplyToMultiShipToOrders: true
+        type: type
+        target:
+          includedCategoryIds:
+          - 9
+          - 9
+          excludedProductCodes:
+          - excludedProductCodes
+          - excludedProductCodes
+          includedProductCodes:
+          - includedProductCodes
+          - includedProductCodes
+          shippingZones:
+          - shippingZones
+          - shippingZones
+          excludedCategoryIds:
+          - 9
+          - 9
+          includedCategoriesOperator: includedCategoriesOperator
+          type: type
+          includeAllProducts: true
+          excludedCategoriesOperator: excludedCategoriesOperator
+          shippingMethods:
+          - shippingMethods
+          - shippingMethods
+        condition:
+          includedCategoryIds:
+          - 8
+          - 8
+          includedProductCodes:
+          - includedProductCodes
+          - includedProductCodes
+          maximumOrderAmount: 1.284659006116532
+          paymentWorkflows:
+          - paymentWorkflows
+          - paymentWorkflows
+          minimumCategorySubtotalBeforeDiscounts: 6.778324963048013
+          customerSegmentIds:
+          - 3
+          - 3
+          minDistinctProductsRequired: 6
+          minimumQuantityRequiredProducts: 6
+          excludedProductCodes:
+          - excludedProductCodes
+          - excludedProductCodes
+          minimumOrderAmount: 6.965117697638846
+          minimumQuantityProductsRequiredInCategories: 6
+          excludedCategoryIds:
+          - 9
+          - 9
+          minimumLifetimeValueAmount: 2.8841621266687802
+          requiresCoupon: true
+          couponCode: couponCode
+          startDate: 2000-01-23T04:56:07.000+00:00
+          expirationDate: 2000-01-23T04:56:07.000+00:00
+        maxDiscountValuePerRedemption: 4.965218492984954
+        redemptions: 5
+        doesNotApplyToProductsWithSalePrice: true
+        scope: scope
+        name: name
+        maximumRedemptionsPerOrder: 7
+        stackingLayer: 5
+        discountId: 1
+        expirationDate: 2000-01-23T04:56:07.000+00:00
+      properties:
+        discountId:
+          description: Unique identifier of the discount. System-supplied and read-only.
+          format: int32
+          type: integer
+        name:
+          description: Name of the discount.
+          nullable: true
+          type: string
+        friendlyDescription:
+          description: Friendly description of the discount.
+          nullable: true
+          type: string
+        amount:
+          format: double
+          type: number
+        scope:
+          nullable: true
+          type: string
+        maxRedemptions:
+          format: int32
+          nullable: true
+          type: integer
+        maximumUsesPerUser:
+          format: int32
+          nullable: true
+          type: integer
+        requiresAuthenticatedUser:
+          type: boolean
+        doesNotApplyToProductsWithSalePrice:
+          type: boolean
+        maximumRedemptionsPerOrder:
+          format: int32
+          nullable: true
+          type: integer
+        maximumDiscountValuePerOrder:
+          format: double
+          nullable: true
+          type: number
+        maxDiscountValuePerRedemption:
+          format: double
+          nullable: true
+          type: number
+        doesNotApplyToMultiShipToOrders:
+          nullable: true
+          type: boolean
+        includedPriceLists:
+          items:
+            type: string
+          nullable: true
+          type: array
+        redemptions:
+          format: int32
+          type: integer
+        type:
+          nullable: true
+          type: string
+        amountType:
+          description: "Type of discount, which can be either a percentage off the\
+            \ price, a specific monetary amount, or free. Possible values: \"Percentage,\"\
+            \ \"Amount,\" and \"Free\"."
+          nullable: true
+          type: string
+        target:
+          $ref: '#/components/schemas/PricingRuntimeDiscountTarget'
+        condition:
+          $ref: '#/components/schemas/PricingRuntimeDiscountCondition'
+        expirationDate:
+          deprecated: true
+          description: "When the discount expires. If null, there's no expiration\
+            \ date."
+          format: date-time
+          nullable: true
+          type: string
+        stackingLayer:
+          format: int32
+          type: integer
+      type: object
+    PricingRuntimeAppliedDiscount:
+      additionalProperties: false
+      description: "Details of the applied discount, including how much the shopper\
+        \ saves if the discount is applied and the coupon\r\ncode\r\nrequired to redeem\
+        \ the discount, if any."
+      example:
+        impact: 7.386281948385884
+        discount:
+          maximumUsesPerUser: 6
+          amountType: amountType
+          amount: 1.0246457001441578
+          maxRedemptions: 1
+          requiresAuthenticatedUser: true
+          maximumDiscountValuePerOrder: 1.1730742509559433
+          includedPriceLists:
+          - includedPriceLists
+          - includedPriceLists
+          friendlyDescription: friendlyDescription
+          doesNotApplyToMultiShipToOrders: true
+          type: type
+          target:
+            includedCategoryIds:
+            - 9
+            - 9
+            excludedProductCodes:
+            - excludedProductCodes
+            - excludedProductCodes
+            includedProductCodes:
+            - includedProductCodes
+            - includedProductCodes
+            shippingZones:
+            - shippingZones
+            - shippingZones
+            excludedCategoryIds:
+            - 9
+            - 9
+            includedCategoriesOperator: includedCategoriesOperator
+            type: type
+            includeAllProducts: true
+            excludedCategoriesOperator: excludedCategoriesOperator
+            shippingMethods:
+            - shippingMethods
+            - shippingMethods
+          condition:
+            includedCategoryIds:
+            - 8
+            - 8
+            includedProductCodes:
+            - includedProductCodes
+            - includedProductCodes
+            maximumOrderAmount: 1.284659006116532
+            paymentWorkflows:
+            - paymentWorkflows
+            - paymentWorkflows
+            minimumCategorySubtotalBeforeDiscounts: 6.778324963048013
+            customerSegmentIds:
+            - 3
+            - 3
+            minDistinctProductsRequired: 6
+            minimumQuantityRequiredProducts: 6
+            excludedProductCodes:
+            - excludedProductCodes
+            - excludedProductCodes
+            minimumOrderAmount: 6.965117697638846
+            minimumQuantityProductsRequiredInCategories: 6
+            excludedCategoryIds:
+            - 9
+            - 9
+            minimumLifetimeValueAmount: 2.8841621266687802
+            requiresCoupon: true
+            couponCode: couponCode
+            startDate: 2000-01-23T04:56:07.000+00:00
+            expirationDate: 2000-01-23T04:56:07.000+00:00
+          maxDiscountValuePerRedemption: 4.965218492984954
+          redemptions: 5
+          doesNotApplyToProductsWithSalePrice: true
+          scope: scope
+          name: name
+          maximumRedemptionsPerOrder: 7
+          stackingLayer: 5
+          discountId: 1
+          expirationDate: 2000-01-23T04:56:07.000+00:00
+        couponSetId: 6
+        couponCode: couponCode
+      properties:
+        impact:
+          description: "Value of the discount, that is how much the shopper saves\
+            \ if discount is applied."
+          format: double
+          type: number
+        discount:
+          $ref: '#/components/schemas/PricingRuntimeDiscount'
+        couponCode:
+          description: Code of the coupon associated with the discount (if a coupon
+            code is required in order to receive the discount).
+          nullable: true
+          type: string
+        couponSetId:
+          description: Contains coupon set id if there is one
+          format: int32
+          nullable: true
+          type: integer
+      type: object
+    PricingRuntimeProductPropertyValue:
+      additionalProperties: false
+      description: Duplicate definition from ProductRuntime
+      example:
+        stringValue: stringValue
+        value: ""
+      properties:
+        value:
+          nullable: true
+        stringValue:
+          description: Localized Value in the language of the locale code
+          nullable: true
+          type: string
+      type: object
+    PricingRuntimeProductProperty:
+      additionalProperties: false
+      description: Duplicate definition from ProductRuntime
+      example:
+        attributeDetail:
+          valueType: valueType
+          dataType: dataType
+          name: name
+          description: description
+          inputType: inputType
+        values:
+        - stringValue: stringValue
+          value: ""
+        - stringValue: stringValue
+          value: ""
+        isMultiValue: true
+        attributeFQN: attributeFQN
+        isHidden: true
+      properties:
+        attributeFQN:
+          description: Attribute fully qualified name
+          nullable: true
+          type: string
+        values:
+          description: Value(s) of the product property
+          items:
+            $ref: '#/components/schemas/PricingRuntimeProductPropertyValue'
+          nullable: true
+          type: array
+        attributeDetail:
+          $ref: '#/components/schemas/ProductAttribute'
+        isHidden:
+          description: Indicates whether the product property should be hidden from
+            the customer
+          nullable: true
+          type: boolean
+        isMultiValue:
+          description: Indicates whether it's possible for there to be more than one
+            value in the Values field
+          nullable: true
+          type: boolean
+      type: object
+    PricingRuntimeAppliedLineItemProductDiscount:
+      additionalProperties: false
+      allOf:
+      - $ref: '#/components/schemas/AppliedLineItemDiscount'
+      example:
+        appliesToSalePrice: true
+      properties:
+        appliesToSalePrice:
+          description: "Indicates that this discount is to be applied to the sale\
+            \ price if true or the list price if false.\r\nThis only applies to product\
+            \ and line item discounts."
+          type: boolean
+      type: object
+    PricingRuntimeAppliedLineItemShippingDiscount:
+      additionalProperties: false
+      allOf:
+      - $ref: '#/components/schemas/AppliedLineItemDiscount'
+      example:
+        shippingMethodCode: shippingMethodCode
+      properties:
+        shippingMethodCode:
+          description: Unique identifier of the shipping method discount.
+          nullable: true
+          type: string
+      type: object
+    PricingRuntimeDiscountTarget:
+      additionalProperties: false
+      example:
+        includedCategoryIds:
+        - 9
+        - 9
+        excludedProductCodes:
+        - excludedProductCodes
+        - excludedProductCodes
+        includedProductCodes:
+        - includedProductCodes
+        - includedProductCodes
+        shippingZones:
+        - shippingZones
+        - shippingZones
+        excludedCategoryIds:
+        - 9
+        - 9
+        includedCategoriesOperator: includedCategoriesOperator
+        type: type
+        includeAllProducts: true
+        excludedCategoriesOperator: excludedCategoriesOperator
+        shippingMethods:
+        - shippingMethods
+        - shippingMethods
+      properties:
+        type:
+          nullable: true
+          type: string
+        includedCategoryIds:
+          items:
+            format: int32
+            type: integer
+          nullable: true
+          type: array
+        excludedCategoryIds:
+          items:
+            format: int32
+            type: integer
+          nullable: true
+          type: array
+        includedCategoriesOperator:
+          nullable: true
+          type: string
+        excludedCategoriesOperator:
+          nullable: true
+          type: string
+        includedProductCodes:
+          items:
+            type: string
+          nullable: true
+          type: array
+        excludedProductCodes:
+          items:
+            type: string
+          nullable: true
+          type: array
+        includeAllProducts:
+          description: "When IncludeAllProducts is true then IncludedCategories and\
+            \ IncludedProducts are not evaluated and should be \r\nempty.  Only exclusions\
+            \ apply."
+          type: boolean
+        shippingMethods:
+          items:
+            type: string
+          nullable: true
+          type: array
+        shippingZones:
+          items:
+            type: string
+          nullable: true
+          type: array
+      type: object
+    PricingRuntimeDiscountCondition:
+      additionalProperties: false
+      example:
+        includedCategoryIds:
+        - 8
+        - 8
+        includedProductCodes:
+        - includedProductCodes
+        - includedProductCodes
+        maximumOrderAmount: 1.284659006116532
+        paymentWorkflows:
+        - paymentWorkflows
+        - paymentWorkflows
+        minimumCategorySubtotalBeforeDiscounts: 6.778324963048013
+        customerSegmentIds:
+        - 3
+        - 3
+        minDistinctProductsRequired: 6
+        minimumQuantityRequiredProducts: 6
+        excludedProductCodes:
+        - excludedProductCodes
+        - excludedProductCodes
+        minimumOrderAmount: 6.965117697638846
+        minimumQuantityProductsRequiredInCategories: 6
+        excludedCategoryIds:
+        - 9
+        - 9
+        minimumLifetimeValueAmount: 2.8841621266687802
+        requiresCoupon: true
+        couponCode: couponCode
+        startDate: 2000-01-23T04:56:07.000+00:00
+        expirationDate: 2000-01-23T04:56:07.000+00:00
+      properties:
+        requiresCoupon:
+          description: "If true, the shopper needs to enter a coupon code to redeem\
+            \ the discount."
+          type: boolean
+        couponCode:
+          description: ShippingMethodCode of the coupon associated with the discount
+            (if a coupon code is required). The merchant can supply the code or the
+            system can generate it.
+          nullable: true
+          type: string
+        minimumQuantityProductsRequiredInCategories:
+          description: "Minimum quantity of products in the categories specified in\
+            \ IncludedCategories that must be purchased to\r\nqualify for the associated\
+            \ discount.\r\nValid values are null and ints greater than zero"
+          format: int32
+          nullable: true
+          type: integer
+        includedCategoryIds:
+          description: "List of categories to discount. When a discount applies to\
+            \ a category, all products in the category are discounted."
+          items:
+            format: int32
+            type: integer
+          nullable: true
+          type: array
+        excludedCategoryIds:
+          description: "List of categories to discount. When a discount applies to\
+            \ a category, all products in the category are discounted."
+          items:
+            format: int32
+            type: integer
+          nullable: true
+          type: array
+        minimumQuantityRequiredProducts:
+          description: "Minimum quantity of products in the specified IncludedProducts\
+            \ that must be purchased to\r\nqualify for the associated discount.\r\n\
+            Defaults to 0"
+          format: int32
+          nullable: true
+          type: integer
+        includedProductCodes:
+          description: List of products that are eligible for the discount.
+          items:
+            type: string
+          nullable: true
+          type: array
+        excludedProductCodes:
+          description: List of products that are eligible for the discount.
+          items:
+            type: string
+          nullable: true
+          type: array
+        paymentWorkflows:
+          description: "List of payment types that are valid for this discount.\r\n\
+            An empty list signifies all payment types."
+          items:
+            type: string
+          nullable: true
+          type: array
+        customerSegmentIds:
+          description: List of customer groups for which the discount applies
+          items:
+            format: int32
+            type: integer
+          nullable: true
+          type: array
+        minimumOrderAmount:
+          description: "If the discount is for products, how many products must be\
+            \ purchased to be eligible for the discount.\r\nIf the discount is for\
+            \ an order, how much the order must total to be eligible for the discount.\
+            \ For example, you might want to offer a 10% discount on orders over $100."
+          format: double
+          nullable: true
+          type: number
+        maximumOrderAmount:
+          description: "If the discount is for products, how many product can you\
+            \ have and still be eligible for the discount.\r\nIf the discount is for\
+            \ an order, what is the max the order can total to be eligible for the\
+            \ discount. For example, you might want to offer a 10% discount on orders\
+            \ under $100."
+          format: double
+          nullable: true
+          type: number
+        minimumLifetimeValueAmount:
+          description: Minimum lifetime value amount required for this discount to
+            apply
+          format: double
+          nullable: true
+          type: number
+        startDate:
+          description: "Date when the discount can goes into effect, in the format\
+            \ yyyy-mm-dd."
+          format: date-time
+          nullable: true
+          type: string
+        expirationDate:
+          description: Date when the discount expires. Default is null (no expiration
+            date).
+          format: date-time
+          nullable: true
+          type: string
+        minimumCategorySubtotalBeforeDiscounts:
+          description: "Minimum amount that must be purchased in the combined categories\
+            \ defined in \r\nIncludedCategories.  Amount is calculated before discounting."
+          format: double
+          nullable: true
+          type: number
+        minDistinctProductsRequired:
+          description: Minimum number of distinct products that must be purchased
+            that are also not free.
+          format: int32
+          nullable: true
+          type: integer
+      type: object
+  securitySchemes:
+    bearerAuth:
+      bearerFormat: JWT
+      description: JWT Authorization header using the Bearer scheme.
+      scheme: bearer
+      type: http
+    clientOauth2:
+      flows:
+        clientCredentials:
+          scopes: {}
+          tokenUrl: /api/platform/applications/authtickets/oauth
+      type: oauth2
+

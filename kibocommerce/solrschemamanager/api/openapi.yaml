@@ -1,0 +1,630 @@
+openapi: 3.0.1
+info:
+  description: OpenAPI Spec for Kibo ProductRuntime Service
+  title: Kibo ProductRuntime Service
+servers:
+- description: TenantPod Host
+  url: "https://{tenantPodHost}/api"
+- description: Tenant Level Api
+  url: "https://t{tenantId}.{env}.mozu.com/api"
+  variables:
+    tenantId:
+      default: "0"
+      description: Id of the Tenant
+    env:
+      default: sandbox
+      enum:
+      - sandbox
+      - tp1
+      - tp2
+      - tp3
+      - tp4
+      - tp5
+      - stg1
+      - stg2
+- description: Site Level Api
+  url: "https://t{tenantId}-s{siteId}.{env}.mozu.com/api"
+  variables:
+    tenantId:
+      default: "0"
+      description: Id of the Tenant
+    siteId:
+      default: "0"
+      description: Id of the Site
+    env:
+      default: sandbox
+      enum:
+      - sandbox
+      - tp1
+      - tp2
+      - tp3
+      - tp4
+      - tp5
+      - stg1
+- description: HomePod Api
+  url: https://home.mozu.com/api
+- description: EURO Tenant Level Api
+  url: "https://t{tenantId}.{env}.euw1.kibocommerce.com/api"
+  variables:
+    tenantId:
+      default: "0"
+      description: Id of the Tenant
+    env:
+      default: sandbox
+      enum:
+      - sb
+      - tp1
+- description: EURO Site Level Api
+  url: "https://t{tenantId}-s{siteId}.{env}.euw1.kibocommerce.com/api"
+  variables:
+    tenantId:
+      default: "0"
+      description: Id of the Tenant
+    siteId:
+      default: "0"
+      description: Id of the Site
+    env:
+      default: sandbox
+      enum:
+      - sb
+      - tp1
+- description: EURO HomePod Api
+  url: https://home.euw1.kibocommerce.com/api
+security:
+- bearerAuth: []
+  clientOauth2: []
+paths:
+  /commerce/catalog/admin/searchSchema/fieldTypes/{language}:
+    get:
+      description: Get Field Type Definitions
+      operationId: getFieldTypeDefinitions
+      parameters:
+      - explode: false
+        in: path
+        name: language
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/FieldTypeDefinitionRepositoryEntry'
+                type: array
+            text/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/FieldTypeDefinitionRepositoryEntry'
+                type: array
+            text/plain:
+              schema:
+                items:
+                  $ref: '#/components/schemas/FieldTypeDefinitionRepositoryEntry'
+                type: array
+          description: Success
+      summary: Get Field Type Definitions
+      tags:
+      - FieldTypeDefinition
+      x-accepts: application/json
+  /commerce/catalog/admin/searchSchema/definition:
+    get:
+      description: List Schema Definitions
+      operationId: listSchemaDefinitions
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/SchemaDefinition'
+                type: array
+            text/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/SchemaDefinition'
+                type: array
+            text/plain:
+              schema:
+                items:
+                  $ref: '#/components/schemas/SchemaDefinition'
+                type: array
+          description: Success
+      summary: List Schema Definitions
+      tags:
+      - SchemaDefinition
+      x-accepts: application/json
+  /commerce/catalog/admin/searchSchema/definition/{language}:
+    get:
+      description: Get Schema Definition
+      operationId: getSchemaDefinition
+      parameters:
+      - explode: false
+        in: path
+        name: language
+        required: true
+        schema:
+          type: string
+        style: simple
+      - explode: true
+        in: query
+        name: published
+        required: false
+        schema:
+          type: boolean
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SchemaDefinition'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/SchemaDefinition'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/SchemaDefinition'
+          description: Success
+      summary: Get Schema Definition
+      tags:
+      - SchemaDefinition
+      x-accepts: application/json
+    put:
+      description: Update Schema Definition
+      operationId: updateSchemaDefinition
+      parameters:
+      - explode: false
+        in: path
+        name: language
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          text/plain:
+            schema:
+              $ref: '#/components/schemas/SchemaDefinition'
+          application/octet-stream:
+            schema:
+              $ref: '#/components/schemas/SchemaDefinition'
+          application/zip:
+            schema:
+              $ref: '#/components/schemas/SchemaDefinition'
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SchemaDefinition'
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SchemaDefinition'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/SchemaDefinition'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/SchemaDefinition'
+          description: Success
+      summary: Update Schema Definition
+      tags:
+      - SchemaDefinition
+      x-content-type: text/plain
+      x-accepts: application/json
+  /commerce/catalog/admin/searchSchema/definition/{language}/revert:
+    post:
+      description: Revert
+      operationId: revert
+      parameters:
+      - explode: false
+        in: path
+        name: language
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                type: boolean
+            text/json:
+              schema:
+                type: boolean
+            text/plain:
+              schema:
+                type: boolean
+          description: Success
+      summary: Revert
+      tags:
+      - SchemaDefinition
+      x-accepts: application/json
+  /commerce/catalog/admin/searchSchema/definition/{language}/publish:
+    post:
+      description: Publish
+      operationId: publish
+      parameters:
+      - explode: false
+        in: path
+        name: language
+        required: true
+        schema:
+          type: string
+        style: simple
+      - explode: true
+        in: query
+        name: reindex
+        required: false
+        schema:
+          default: false
+          type: boolean
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                type: boolean
+            text/json:
+              schema:
+                type: boolean
+            text/plain:
+              schema:
+                type: boolean
+          description: Success
+      summary: Publish
+      tags:
+      - SchemaDefinition
+      x-accepts: application/json
+  /commerce/catalog/admin/searchSchema/suggest/{language}:
+    get:
+      description: Downloads the suggest file for the site
+      operationId: downLoadSuggest
+      parameters:
+      - description: "langage code used by the site (en, es, fr)"
+        explode: false
+        in: path
+        name: language
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          description: Success
+      summary: Downloads the suggest file for the site
+      tags:
+      - SuggestDefinition
+      x-accepts: application/json
+    put:
+      description: Uploads a suggest file for the site in tab seperated format)
+      operationId: uploadSuggest
+      parameters:
+      - description: "language code use by the site (en, es, fr)"
+        explode: false
+        in: path
+        name: language
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                items:
+                  type: string
+                type: array
+            text/json:
+              schema:
+                items:
+                  type: string
+                type: array
+            text/plain:
+              schema:
+                items:
+                  type: string
+                type: array
+          description: Success
+      summary: Uploads a suggest file for the site in tab seperated format)
+      tags:
+      - SuggestDefinition
+      x-accepts: application/json
+  /commerce/catalog/admin/searchSchema/suggest/settings/{language}:
+    get:
+      description: Gets the suggester settings for the site
+      operationId: getSuggestSettings
+      parameters:
+      - description: "language code use by the site (en, es, fr)"
+        explode: false
+        in: path
+        name: language
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Suggester'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Suggester'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Suggester'
+          description: Success
+      summary: Gets the suggester settings for the site
+      tags:
+      - SuggestDefinition
+      x-accepts: application/json
+    put:
+      description: Updates the suggester settings for the site
+      operationId: updateSuggestSettings
+      parameters:
+      - description: "language code use by the site (en, es, fr)"
+        explode: false
+        in: path
+        name: language
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          text/plain:
+            schema:
+              $ref: '#/components/schemas/Suggester'
+          application/octet-stream:
+            schema:
+              $ref: '#/components/schemas/Suggester'
+          application/zip:
+            schema:
+              $ref: '#/components/schemas/Suggester'
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Suggester'
+        description: suggset definition in
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Suggester'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Suggester'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Suggester'
+          description: Success
+      summary: Updates the suggester settings for the site
+      tags:
+      - SuggestDefinition
+      x-content-type: text/plain
+      x-accepts: application/json
+  /commerce/catalog/admin/searchSchema/synonyms/reload:
+    post:
+      description: Update Synonyms
+      operationId: updateSynonyms
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                type: boolean
+            text/json:
+              schema:
+                type: boolean
+            text/plain:
+              schema:
+                type: boolean
+          description: Success
+      summary: Update Synonyms
+      tags:
+      - Synonym
+      x-accepts: application/json
+  /commerce/catalog/admin/searchSchema/synonyms:
+    get:
+      description: List Synonyms
+      operationId: listSynonyms
+      parameters:
+      - explode: true
+        in: query
+        name: language
+        required: false
+        schema:
+          type: string
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                type: string
+            text/json:
+              schema:
+                type: string
+            text/plain:
+              schema:
+                type: string
+          description: Success
+      summary: List Synonyms
+      tags:
+      - Synonym
+      x-accepts: application/json
+components:
+  schemas:
+    FieldTypeDefinitionRepositoryEntry:
+      additionalProperties: false
+      description: ""
+      example:
+        name: name
+        description: description
+        usageRestrictions: ""
+        suffix: suffix
+        solrFieldType: ""
+      properties:
+        name:
+          nullable: true
+          type: string
+        suffix:
+          nullable: true
+          type: string
+        solrFieldType:
+          nullable: true
+        description:
+          nullable: true
+          type: string
+        usageRestrictions:
+          description: "Restricts the fields used by specific SOLR analyzer.\r\nOriginally\
+            \ developed for entity entraction/ aka noun_extraction\r\n(e.g. searching\
+            \ for sofa tables should return tables, not sofas)"
+          nullable: true
+      type: object
+    SchemaDefinitionField:
+      additionalProperties: false
+      example:
+        fieldName: fieldName
+        ingestFieldName: ingestFieldName
+        fieldDefinition: fieldDefinition
+        friendlyName: friendlyName
+        searchFieldName: searchFieldName
+      properties:
+        fieldName:
+          type: string
+        fieldDefinition:
+          type: string
+        friendlyName:
+          nullable: true
+          type: string
+        searchFieldName:
+          nullable: true
+          type: string
+        ingestFieldName:
+          nullable: true
+          type: string
+      required:
+      - fieldDefinition
+      - fieldName
+      type: object
+    SpellingSchemaDefinitionField:
+      additionalProperties: false
+      example:
+        ingestFieldName: ingestFieldName
+      properties:
+        ingestFieldName:
+          nullable: true
+          type: string
+      type: object
+    SchemaDefinition:
+      additionalProperties: false
+      example:
+        auditInfo:
+          updateDate: 2000-01-23T04:56:07.000+00:00
+          createBy: createBy
+          updateBy: updateBy
+          createDate: 2000-01-23T04:56:07.000+00:00
+        spellingFields:
+        - ingestFieldName: ingestFieldName
+        - ingestFieldName: ingestFieldName
+        spellCorrectEnabled: true
+        isPublished: true
+        language: language
+        fields:
+        - fieldName: fieldName
+          ingestFieldName: ingestFieldName
+          fieldDefinition: fieldDefinition
+          friendlyName: friendlyName
+          searchFieldName: searchFieldName
+        - fieldName: fieldName
+          ingestFieldName: ingestFieldName
+          fieldDefinition: fieldDefinition
+          friendlyName: friendlyName
+          searchFieldName: searchFieldName
+      properties:
+        language:
+          type: string
+        isPublished:
+          type: boolean
+        fields:
+          items:
+            $ref: '#/components/schemas/SchemaDefinitionField'
+          type: array
+        spellingFields:
+          description: List of attributes used in the spelling dictionary
+          items:
+            $ref: '#/components/schemas/SpellingSchemaDefinitionField'
+          nullable: true
+          type: array
+        spellCorrectEnabled:
+          description: Returns boolean if contains any SpellingFields members.
+          nullable: true
+          type: boolean
+        auditInfo:
+          $ref: '#/components/schemas/AdminUserAuditInfo'
+      required:
+      - fields
+      - language
+      type: object
+    Suggester:
+      additionalProperties: false
+      example:
+        highlight: highlight
+        allTermsRequired: allTermsRequired
+        name: name
+      properties:
+        name:
+          nullable: true
+          type: string
+        highlight:
+          nullable: true
+          type: string
+        allTermsRequired:
+          nullable: true
+          type: string
+      type: object
+    AdminUserAuditInfo:
+      additionalProperties: false
+      example:
+        updateDate: 2000-01-23T04:56:07.000+00:00
+        createBy: createBy
+        updateBy: updateBy
+        createDate: 2000-01-23T04:56:07.000+00:00
+      properties:
+        updateDate:
+          format: date-time
+          nullable: true
+          type: string
+        createDate:
+          format: date-time
+          nullable: true
+          type: string
+        updateBy:
+          nullable: true
+          type: string
+        createBy:
+          nullable: true
+          type: string
+      type: object
+  securitySchemes:
+    bearerAuth:
+      bearerFormat: JWT
+      description: JWT Authorization header using the Bearer scheme.
+      scheme: bearer
+      type: http
+    clientOauth2:
+      flows:
+        clientCredentials:
+          scopes: {}
+          tokenUrl: /api/platform/applications/authtickets/oauth
+      type: oauth2
+

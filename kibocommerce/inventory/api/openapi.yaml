@@ -1,0 +1,4729 @@
+openapi: 3.0.0
+info:
+  description: Swagger JSON for inventory apis
+  title: Inventory
+servers:
+- description: TenantPod Host
+  url: "https://{tenantPodHost}/api"
+- description: Tenant Level Api
+  url: "https://t{tenantId}.{env}.mozu.com/api"
+  variables:
+    tenantId:
+      default: "0"
+      description: Id of the Tenant
+    env:
+      default: sandbox
+      enum:
+      - sandbox
+      - tp1
+      - tp2
+      - tp3
+      - tp4
+      - tp5
+      - stg1
+      - stg2
+- description: Site Level Api
+  url: "https://t{tenantId}-s{siteId}.{env}.mozu.com/api"
+  variables:
+    tenantId:
+      default: "0"
+      description: Id of the Tenant
+    siteId:
+      default: "0"
+      description: Id of the Site
+    env:
+      default: sandbox
+      enum:
+      - sandbox
+      - tp1
+      - tp2
+      - tp3
+      - tp4
+      - tp5
+      - stg1
+- description: HomePod Api
+  url: https://home.mozu.com/api
+- description: EURO Tenant Level Api
+  url: "https://t{tenantId}.{env}.euw1.kibocommerce.com/api"
+  variables:
+    tenantId:
+      default: "0"
+      description: Id of the Tenant
+    env:
+      default: sandbox
+      enum:
+      - sb
+      - tp1
+- description: EURO Site Level Api
+  url: "https://t{tenantId}-s{siteId}.{env}.euw1.kibocommerce.com/api"
+  variables:
+    tenantId:
+      default: "0"
+      description: Id of the Tenant
+    siteId:
+      default: "0"
+      description: Id of the Site
+    env:
+      default: sandbox
+      enum:
+      - sb
+      - tp1
+- description: EURO HomePod Api
+  url: https://home.euw1.kibocommerce.com/api
+security:
+- bearerAuth: []
+  clientOauth2: []
+paths:
+  /commerce/inventory/v1/export/create:
+    post:
+      description: Create an Export Settings
+      operationId: createExportSettings
+      parameters:
+      - description: Tenant ID
+        explode: false
+        in: header
+        name: x-vol-tenant
+        required: true
+        schema:
+          type: integer
+        style: simple
+      requestBody:
+        $ref: '#/components/requestBodies/CreateExportSettingsRequest'
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ExportSettingsResponse'
+          description: Success
+        "400":
+          description: Bad Request
+        "500":
+          description: Internal Service Error
+      summary: Create Export Settings
+      tags:
+      - ExportInventory
+      x-content-type: application/json
+      x-accepts: application/json
+  /commerce/inventory/v1/export/update:
+    post:
+      description: Update an Export Settings
+      operationId: updateExportSettings
+      parameters:
+      - description: Tenant ID
+        explode: false
+        in: header
+        name: x-vol-tenant
+        required: true
+        schema:
+          type: integer
+        style: simple
+      requestBody:
+        $ref: '#/components/requestBodies/UpdateExportSettingsRequest'
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UpdateExportSettingsResponse'
+          description: Success
+        "400":
+          description: Bad Request
+        "404":
+          description: No Settings Found
+        "500":
+          description: Internal Service Error
+      summary: Update Export Settings
+      tags:
+      - ExportInventory
+      x-content-type: application/json
+      x-accepts: application/json
+  /commerce/inventory/v1/export/{exportSettingsName}:
+    delete:
+      description: Deletes an Export Settings
+      operationId: deleteExportSettings
+      parameters:
+      - description: Tenant ID
+        explode: false
+        in: header
+        name: x-vol-tenant
+        required: true
+        schema:
+          type: integer
+        style: simple
+      - description: Export Settings Name
+        explode: true
+        in: query
+        name: exportSettingsName
+        required: true
+        schema:
+          type: string
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DeletedCountResponse'
+          description: Success
+        "400":
+          description: Bad Request
+      summary: Delete Export Settings
+      tags:
+      - ExportInventory
+      x-accepts: application/json
+  /commerce/inventory/v1/export/ftp/create:
+    post:
+      description: Create an Export Settings FTP
+      operationId: createExportSettingsFTP
+      parameters:
+      - description: Tenant ID
+        explode: false
+        in: header
+        name: x-vol-tenant
+        required: true
+        schema:
+          type: integer
+        style: simple
+      requestBody:
+        $ref: '#/components/requestBodies/CreateExportSettingsFTPRequest'
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ExportSettingsResponse'
+          description: Success
+        "400":
+          description: Bad Request
+        "500":
+          description: Internal Service Error
+      summary: Create Export Settings FTP
+      tags:
+      - ExportInventory
+      x-content-type: application/json
+      x-accepts: application/json
+  /commerce/inventory/v1/export/ftp/update:
+    post:
+      description: Update an Export Settings FTP
+      operationId: updateExportSettingsFTP
+      parameters:
+      - description: Tenant ID
+        explode: false
+        in: header
+        name: x-vol-tenant
+        required: true
+        schema:
+          type: integer
+        style: simple
+      requestBody:
+        $ref: '#/components/requestBodies/UpdateExportSettingsFTPRequest'
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UpdateExportSettingsFTPResponse'
+          description: Success
+        "400":
+          description: Bad Request
+        "404":
+          description: No Settings Found
+        "500":
+          description: Internal Service Error
+      summary: Update Export Settings FTP
+      tags:
+      - ExportInventory
+      x-content-type: application/json
+      x-accepts: application/json
+  /commerce/inventory/v1/export/ftp/{exportSettingsName}/{exportSettingsFTPName}:
+    delete:
+      description: Deletes an Export Settings FTP. Not specifying exportSettingsFTPID
+        deletes ALL ftp settings for the specified export settings.
+      operationId: deleteExportSettingsFTP
+      parameters:
+      - description: Tenant ID
+        explode: false
+        in: header
+        name: x-vol-tenant
+        required: true
+        schema:
+          type: integer
+        style: simple
+      - description: Export Settings Name
+        explode: true
+        in: query
+        name: exportSettingsName
+        required: true
+        schema:
+          type: string
+        style: form
+      - description: Export Settings FTP Name
+        explode: false
+        in: path
+        name: exportSettingsFTPName
+        required: false
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DeletedCountResponse'
+          description: Success
+        "400":
+          description: Bad Request
+      summary: Delete Export Settings FTP
+      tags:
+      - ExportInventory
+      x-accepts: application/json
+  /commerce/inventory/v1/export/s3/create:
+    post:
+      description: Create an Export Settings S3
+      operationId: createExportSettingsS3
+      parameters:
+      - description: Tenant ID
+        explode: false
+        in: header
+        name: x-vol-tenant
+        required: true
+        schema:
+          type: integer
+        style: simple
+      requestBody:
+        $ref: '#/components/requestBodies/CreateExportSettingsS3Request'
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ExportSettingsResponse'
+          description: Success
+        "400":
+          description: Bad Request
+        "500":
+          description: Internal Service Error
+      summary: Create Export Settings S3
+      tags:
+      - ExportInventory
+      x-content-type: application/json
+      x-accepts: application/json
+  /commerce/inventory/v1/export/s3/update:
+    post:
+      description: Update an Export Settings S3
+      operationId: updateExportSettingsS3
+      parameters:
+      - description: Tenant ID
+        explode: false
+        in: header
+        name: x-vol-tenant
+        required: true
+        schema:
+          type: integer
+        style: simple
+      requestBody:
+        $ref: '#/components/requestBodies/UpdateExportSettingsS3Request'
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UpdateExportSettingsS3Response'
+          description: Success
+        "400":
+          description: Bad Request
+        "404":
+          description: No Settings Found
+        "500":
+          description: Internal Service Error
+      summary: Update Export Settings S3
+      tags:
+      - ExportInventory
+      x-content-type: application/json
+      x-accepts: application/json
+  /commerce/inventory/v1/export/s3/{exportSettingsName}/{exportSettingsS3Name}:
+    delete:
+      description: Deletes an Export Settings S3. Not specifying exportSettingsS3ID
+        deletes ALL s3 settings for the specified export settings.
+      operationId: deleteExportSettingsS3
+      parameters:
+      - description: Tenant ID
+        explode: false
+        in: header
+        name: x-vol-tenant
+        required: true
+        schema:
+          type: integer
+        style: simple
+      - description: Export Settings Name
+        explode: true
+        in: query
+        name: exportSettingsName
+        required: true
+        schema:
+          type: string
+        style: form
+      - description: Export Settings S3 Name
+        explode: false
+        in: path
+        name: exportSettingsS3Name
+        required: false
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DeletedCountResponse'
+          description: Success
+        "400":
+          description: Bad Request
+      summary: Delete Export Settings S3
+      tags:
+      - ExportInventory
+      x-accepts: application/json
+  /commerce/inventory/v1/config/fetchfile/{fetchFileConfigID}:
+    delete:
+      description: Deletes a fetch file config
+      operationId: deleteFetchConfig
+      parameters:
+      - description: Tenant ID
+        explode: false
+        in: header
+        name: x-vol-tenant
+        required: true
+        schema:
+          type: integer
+        style: simple
+      - description: Id of fetch file config
+        explode: false
+        in: path
+        name: fetchFileConfigID
+        required: true
+        schema:
+          format: int64
+          type: integer
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DeletedResponse'
+          description: Success
+        "400":
+          description: Bad Request
+        "500":
+          description: Internal Server Error
+      summary: Delete Fetch Config
+      tags:
+      - InventoryFetchFileConfig
+      x-accepts: application/json
+  /commerce/inventory/v1/config/fetchfile/testConnection/{fetchFileConfigID}:
+    get:
+      description: Attempts to connect to a fetch file endpoint and lists current
+        files if successful
+      operationId: testConnection
+      parameters:
+      - description: Tenant ID
+        explode: false
+        in: header
+        name: x-vol-tenant
+        required: true
+        schema:
+          type: integer
+        style: simple
+      - description: Id of fetch file config
+        explode: false
+        in: path
+        name: fetchFileConfigID
+        required: true
+        schema:
+          format: int64
+          type: integer
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FetchFileConnectionResponse'
+          description: Success
+        "400":
+          description: Bad Request
+        "500":
+          description: Internal Server Error
+      summary: Test Connection
+      tags:
+      - InventoryFetchFileConfig
+      x-accepts: application/json
+  /commerce/inventory/v1/deleteOldInventory/{months}:
+    delete:
+      description: Deletes older records from inventory table
+      operationId: deleteOldInventory
+      parameters:
+      - description: Tenant ID
+        explode: false
+        in: header
+        name: x-vol-tenant
+        required: true
+        schema:
+          type: integer
+        style: simple
+      - description: The x months before which we want the records to get deleted
+        explode: false
+        in: path
+        name: months
+        required: true
+        schema:
+          type: integer
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JobIDResponse'
+          description: Success
+        "400":
+          description: Bad Request
+      summary: Delete Old Inventory
+      tags:
+      - InventoryJob
+      x-accepts: application/json
+  /commerce/inventory/v1/deleteOldInventory/allSilo/{months}:
+    delete:
+      description: Deletes older records from inventory table of all silos
+      operationId: deleteAllOldInventory
+      parameters:
+      - description: Tenant ID
+        explode: false
+        in: header
+        name: x-vol-tenant
+        required: true
+        schema:
+          type: integer
+        style: simple
+      - description: The x months before which we want the records to get deleted
+        explode: false
+        in: path
+        name: months
+        required: true
+        schema:
+          type: integer
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/JobIDResponse'
+                type: array
+          description: Success
+        "400":
+          description: Bad Request
+      summary: Delete All Old Inventory
+      tags:
+      - InventoryJob
+      x-accepts: application/json
+  /commerce/inventory/v1/location/{locationCode}:
+    get:
+      description: Get Locations
+      operationId: getLocations
+      parameters:
+      - description: Tenant ID
+        explode: false
+        in: header
+        name: x-vol-tenant
+        required: true
+        schema:
+          type: integer
+        style: simple
+      - description: Location Code of the location to get
+        explode: false
+        in: path
+        name: locationCode
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/LocationResponse'
+                type: array
+          description: Success
+        "404":
+          description: Location Not Found
+      summary: Get Locations
+      tags:
+      - InventoryLocation
+      x-accepts: application/json
+  /commerce/inventory/v1/location/{locationGroupCode}:
+    get:
+      description: Get LocationGroups
+      operationId: getLocationGroups
+      parameters:
+      - description: Tenant ID
+        explode: false
+        in: header
+        name: x-vol-tenant
+        required: true
+        schema:
+          type: integer
+        style: simple
+      - description: Location Group Code of the location to get
+        explode: false
+        in: path
+        name: locationGroupCode
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/LocationGroupResponse'
+                type: array
+          description: Success
+        "404":
+          description: Location Not Found
+      summary: Get Location Groups
+      tags:
+      - InventoryLocation
+      x-accepts: application/json
+  /commerce/inventory/v5/inventory/redistribute:
+    post:
+      description: Create jobs to redistribute inventory across tags for the given
+        tenant
+      operationId: redistributeInventoryAcrossTags
+      parameters:
+      - description: Tenant ID
+        explode: false
+        in: header
+        name: x-vol-tenant
+        required: true
+        schema:
+          type: integer
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/JobQueueResponse'
+                type: array
+          description: Success
+      summary: Redistribute Inventory Across Tags
+      tags:
+      - ModifyInventory
+      x-accepts: application/json
+  /commerce/inventory/v5/inventory/shipmentInventoryAllocations:
+    post:
+      description: Get future Inventory Allocations by shipment Ids
+      operationId: getShipmentInventoryAllocations
+      parameters:
+      - description: Tenant ID
+        explode: false
+        in: header
+        name: x-vol-tenant
+        required: true
+        schema:
+          type: integer
+        style: simple
+      requestBody:
+        $ref: '#/components/requestBodies/ShipmentInventoryAllocationRequest'
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ShipmentInventoryAllocationResponse'
+          description: Success
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/getShipmentInventoryAllocations_500_response'
+          description: Internal Server Error
+      summary: Get Shipment Inventory Allocations
+      tags:
+      - ShipmentInventoryAllocation
+      x-content-type: application/json
+      x-accepts: application/json
+  /commerce/inventory/v1/silo/siloConfig:
+    post:
+      description: Updates tenant silo config
+      operationId: updateTenantSiloConfig
+      parameters:
+      - description: Tenant ID
+        explode: false
+        in: header
+        name: x-vol-tenant
+        required: true
+        schema:
+          type: integer
+        style: simple
+      requestBody:
+        $ref: '#/components/requestBodies/UpdateTenantSiloConfigRequest'
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TenantSiloConfigModel'
+          description: Success
+        "400":
+          description: Bad Request
+      summary: Update Tenant Silo Config
+      tags:
+      - InventorySilo
+      x-content-type: application/json
+      x-accepts: application/json
+  /commerce/inventory/v1/tagCategory/{tag_category_name}/tag:
+    post:
+      description: Create a tag
+      operationId: createTag
+      parameters:
+      - description: Tenant ID
+        explode: false
+        in: header
+        name: x-vol-tenant
+        required: true
+        schema:
+          type: integer
+        style: simple
+      - description: Tag Category Name
+        explode: true
+        in: query
+        name: tagCategoryName
+        required: true
+        schema:
+          type: string
+        style: form
+      requestBody:
+        $ref: '#/components/requestBodies/Tag'
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InventoryTag'
+          description: Success
+        "400":
+          description: Bad Request
+      summary: Create Tag
+      tags:
+      - InventoryTag
+      x-content-type: application/json
+      x-accepts: application/json
+  /commerce/inventory/v1/tagCategory/{tag_category_name}/tag/{tag_value}:
+    delete:
+      description: Delete a Tag
+      operationId: deleteTag
+      parameters:
+      - description: Tenant ID
+        explode: false
+        in: header
+        name: x-vol-tenant
+        required: true
+        schema:
+          type: integer
+        style: simple
+      - description: Tag Category Name
+        explode: true
+        in: query
+        name: tagCategoryName
+        required: true
+        schema:
+          type: string
+        style: form
+      - description: Tag Value
+        explode: true
+        in: query
+        name: tagValue
+        required: true
+        schema:
+          type: string
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DeletedCountResponse'
+          description: Success
+        "400":
+          description: Bad Request
+        "404":
+          description: Tag Not Found
+      summary: Delete Tag
+      tags:
+      - InventoryTag
+      x-accepts: application/json
+    get:
+      description: Get a tag
+      operationId: getTag
+      parameters:
+      - description: Tenant ID
+        explode: false
+        in: header
+        name: x-vol-tenant
+        required: true
+        schema:
+          type: integer
+        style: simple
+      - description: Tag Category Name
+        explode: true
+        in: query
+        name: tagCategoryName
+        required: true
+        schema:
+          type: string
+        style: form
+      - description: Tag Value
+        explode: true
+        in: query
+        name: tagValue
+        required: true
+        schema:
+          type: string
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InventoryTag'
+          description: Success
+        "404":
+          description: Tag Not Found
+      summary: Get Tag
+      tags:
+      - InventoryTag
+      x-accepts: application/json
+    put:
+      description: Update the designated tag
+      operationId: updateTag
+      parameters:
+      - description: Tenant ID
+        explode: false
+        in: header
+        name: x-vol-tenant
+        required: true
+        schema:
+          type: integer
+        style: simple
+      - description: Tag Category Name
+        explode: true
+        in: query
+        name: tagCategoryName
+        required: true
+        schema:
+          type: string
+        style: form
+      - description: Tag Value
+        explode: true
+        in: query
+        name: tagValue
+        required: true
+        schema:
+          type: string
+        style: form
+      requestBody:
+        $ref: '#/components/requestBodies/Tag'
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InventoryTag'
+          description: Success
+        "400":
+          description: Bad Request
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BaseResponse'
+          description: Internal Server Error
+      summary: Update Tag
+      tags:
+      - InventoryTag
+      x-content-type: application/json
+      x-accepts: application/json
+  /commerce/inventory/v1/tagCategory:
+    get:
+      description: Get all tag categories for a tenant
+      operationId: getTagCategoryAll
+      parameters:
+      - description: Tenant ID
+        explode: false
+        in: header
+        name: x-vol-tenant
+        required: true
+        schema:
+          type: integer
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/TagCategory'
+                type: array
+          description: Success
+        "404":
+          description: Tag Categories Not Found
+      summary: Get Tag Category All
+      tags:
+      - InventoryTagCategory
+      x-accepts: application/json
+  /commerce/inventory/v1/tagCategory/{tag_category_name}:
+    delete:
+      description: Delete a Tag category
+      operationId: deleteTagCategory
+      parameters:
+      - description: Tenant ID
+        explode: false
+        in: header
+        name: x-vol-tenant
+        required: true
+        schema:
+          type: integer
+        style: simple
+      - description: Tag Category Name
+        explode: true
+        in: query
+        name: tagCategoryName
+        required: true
+        schema:
+          type: string
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DeletedCountResponse'
+          description: Success
+        "400":
+          description: Bad Request
+        "404":
+          description: Tag category Not Found
+      summary: Delete Tag Category
+      tags:
+      - InventoryTagCategory
+      x-accepts: application/json
+    get:
+      description: Get a tag category
+      operationId: getTagCategory
+      parameters:
+      - description: Tenant ID
+        explode: false
+        in: header
+        name: x-vol-tenant
+        required: true
+        schema:
+          type: integer
+        style: simple
+      - description: Tag Category Name
+        explode: true
+        in: query
+        name: tagCategoryName
+        required: true
+        schema:
+          type: string
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TagCategory'
+          description: Success
+        "404":
+          description: Tag Not Found
+      summary: Get Tag Category
+      tags:
+      - InventoryTagCategory
+      x-accepts: application/json
+    put:
+      description: Update the designated tag category
+      operationId: updateTagCategory
+      parameters:
+      - description: Tenant ID
+        explode: false
+        in: header
+        name: x-vol-tenant
+        required: true
+        schema:
+          type: integer
+        style: simple
+      - description: Tag Category Name
+        explode: true
+        in: query
+        name: tagCategoryName
+        required: true
+        schema:
+          type: string
+        style: form
+      requestBody:
+        $ref: '#/components/requestBodies/TagCategory'
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TagCategory'
+          description: Success
+        "400":
+          description: Bad Request
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BaseResponse'
+          description: Internal Server Error
+      summary: Update Tag Category
+      tags:
+      - InventoryTagCategory
+      x-content-type: application/json
+      x-accepts: application/json
+  /adjustFutureDate/{futureInventoryID}:
+    put:
+      description: Adjust future_date of future inventory
+      operationId: adjustFutureDate
+      parameters:
+      - description: Tenant ID
+        explode: false
+        in: header
+        name: x-vol-tenant
+        required: true
+        schema:
+          type: integer
+        style: simple
+      - description: id of the future_inventory row in db
+        explode: false
+        in: path
+        name: futureInventoryID
+        required: true
+        schema:
+          format: int64
+          type: integer
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JobQueueResponse'
+          description: Success
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/adjustFutureDate_404_response'
+          description: Future Inventory ID not found
+      summary: Adjust Future Date
+      tags:
+      - InventoryFutureDate
+      x-accepts: application/json
+  /commerce/inventory/v5/inventory/allocate:
+    post:
+      description: Allocates inventory based on the given request
+      operationId: allocateInventory
+      parameters:
+      - description: Tenant ID
+        explode: false
+        in: header
+        name: x-vol-tenant
+        required: true
+        schema:
+          type: integer
+        style: simple
+      requestBody:
+        $ref: '#/components/requestBodies/AllocateInventoryRequest'
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JobQueueResponse'
+          description: Success
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/allocateInventory_500_response'
+          description: Internal Server Error
+      summary: Allocate Inventory
+      tags:
+      - InventoryAllocation
+      x-content-type: application/json
+      x-accepts: application/json
+  /commerce/inventory/v5/inventory/deallocate:
+    post:
+      description: Deallocates inventory based on the given request
+      operationId: deallocateInventory
+      parameters:
+      - description: Tenant ID
+        explode: false
+        in: header
+        name: x-vol-tenant
+        required: true
+        schema:
+          type: integer
+        style: simple
+      requestBody:
+        $ref: '#/components/requestBodies/AllocateInventoryRequest'
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BaseResponse'
+          description: Success
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/allocateInventory_500_response'
+          description: Internal Server Error
+      summary: Deallocate Inventory
+      tags:
+      - InventoryAllocation
+      x-content-type: application/json
+      x-accepts: application/json
+  /commerce/inventory/v5/inventory/fulfill:
+    post:
+      description: Fulfills inventory based on the given request
+      operationId: fulfillInventory
+      parameters:
+      - description: Tenant ID
+        explode: false
+        in: header
+        name: x-vol-tenant
+        required: true
+        schema:
+          type: integer
+        style: simple
+      requestBody:
+        $ref: '#/components/requestBodies/AllocateInventoryRequest'
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BaseResponse'
+          description: Success
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/allocateInventory_500_response'
+          description: Internal Server Error
+      summary: Fulfill Inventory
+      tags:
+      - InventoryAllocation
+      x-content-type: application/json
+      x-accepts: application/json
+  /commerce/inventory/v5/inventory/transitionCart:
+    post:
+      description: Transitions a cart allocation into a normal order/shipment allocation
+      operationId: transitionCart
+      parameters:
+      - description: Tenant ID
+        explode: false
+        in: header
+        name: x-vol-tenant
+        required: true
+        schema:
+          type: integer
+        style: simple
+      requestBody:
+        $ref: '#/components/requestBodies/TransitionCartRequest'
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BaseResponse'
+          description: Success
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/allocateInventory_500_response'
+          description: Internal Server Error
+      summary: Transition Cart
+      tags:
+      - InventoryAllocation
+      x-content-type: application/json
+      x-accepts: application/json
+  /commerce/inventory/v5/inventory/blockAssignment:
+    post:
+      description: Setting the blockAssignment flag to true for the product based
+        on the given request
+      operationId: blockAssignment
+      parameters:
+      - description: Tenant ID
+        explode: false
+        in: header
+        name: x-vol-tenant
+        required: true
+        schema:
+          type: integer
+        style: simple
+      requestBody:
+        $ref: '#/components/requestBodies/BlockAssignmentRequest'
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BaseResponse'
+          description: Success
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/allocateInventory_500_response'
+          description: Internal Server Error
+      summary: Block Assignment
+      tags:
+      - InventoryBlockAssignment
+      x-content-type: application/json
+      x-accepts: application/json
+  /commerce/inventory/v1/export:
+    get:
+      description: Get an export settings
+      operationId: getExportSettings
+      parameters:
+      - description: Tenant ID
+        explode: false
+        in: header
+        name: x-vol-tenant
+        required: true
+        schema:
+          type: integer
+        style: simple
+      - description: Export Settings Name
+        explode: true
+        in: query
+        name: exportSettingsName
+        required: true
+        schema:
+          type: string
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/GetExportSettingsResponse'
+                type: array
+          description: Success
+        "404":
+          description: Export Setting Not Found
+      summary: Get Export Settings
+      tags:
+      - ExportInventory
+      x-accepts: application/json
+    post:
+      description: Run Export Settings Job
+      operationId: runExport
+      parameters:
+      - description: Tenant ID
+        explode: false
+        in: header
+        name: x-vol-tenant
+        required: true
+        schema:
+          type: integer
+        style: simple
+      requestBody:
+        $ref: '#/components/requestBodies/ExportInventoryRequest'
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ExportInventoryResponse'
+          description: Success
+        "400":
+          description: Bad Request
+        "500":
+          description: Internal Service Error
+      summary: Run Export
+      tags:
+      - ExportInventory
+      x-content-type: application/json
+      x-accepts: application/json
+  /commerce/inventory/v1/config/fetchfile:
+    get:
+      description: Get the Fetch File Configs for the current tenant
+      operationId: getFetchConfig
+      parameters:
+      - description: Tenant ID
+        explode: false
+        in: header
+        name: x-vol-tenant
+        required: true
+        schema:
+          type: integer
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/M_FetchFileConfig'
+          description: Success
+        "404":
+          description: Not Found
+      summary: Get Fetch Config
+      tags:
+      - InventoryFetchFileConfig
+      x-accepts: application/json
+    post:
+      description: Save a new Fetch File Config
+      operationId: saveFetchConfig
+      parameters:
+      - description: Tenant ID
+        explode: false
+        in: header
+        name: x-vol-tenant
+        required: true
+        schema:
+          type: integer
+        style: simple
+      requestBody:
+        $ref: '#/components/requestBodies/FetchFileConfigRequest'
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BaseResponse'
+          description: Success
+        "400":
+          description: Bad Request
+      summary: Save Fetch Config
+      tags:
+      - InventoryFetchFileConfig
+      x-content-type: application/json
+      x-accepts: application/json
+  /commerce/inventory/v5/inventory:
+    post:
+      description: Queries for specified inventory at given location
+      operationId: postQueryInventory
+      parameters:
+      - description: Tenant ID
+        explode: false
+        in: header
+        name: x-vol-tenant
+        required: true
+        schema:
+          type: integer
+        style: simple
+      - description: Site ID
+        explode: false
+        in: header
+        name: x-vol-site
+        required: false
+        schema:
+          type: integer
+        style: simple
+      requestBody:
+        $ref: '#/components/requestBodies/InventoryRequest'
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/InventoryInventoryResponse'
+                type: array
+          description: Success
+        "400":
+          description: Bad Request
+      summary: Post Query Inventory
+      tags:
+      - Inventory
+      x-content-type: application/json
+      x-accepts: application/json
+  /commerce/inventory/v5/inventory/aggregate:
+    post:
+      description: Aggregates Inventory
+      operationId: aggregate
+      parameters:
+      - description: Tenant ID
+        explode: false
+        in: header
+        name: x-vol-tenant
+        required: true
+        schema:
+          type: integer
+        style: simple
+      - description: Site ID
+        explode: false
+        in: header
+        name: x-vol-site
+        required: false
+        schema:
+          type: integer
+        style: simple
+      requestBody:
+        $ref: '#/components/requestBodies/AggregateRequest'
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/AggregateResponse'
+                type: array
+          description: Success
+        "400":
+          description: Bad Request
+      summary: Aggregate
+      tags:
+      - Inventory
+      x-content-type: application/json
+      x-accepts: application/json
+  /commerce/inventory/v1/queue/{jobID}:
+    get:
+      description: Get the specified job
+      operationId: getJob
+      parameters:
+      - description: Tenant ID
+        explode: false
+        in: header
+        name: x-vol-tenant
+        required: true
+        schema:
+          type: integer
+        style: simple
+      - description: Id of bin to get
+        explode: false
+        in: path
+        name: jobID
+        required: true
+        schema:
+          format: int64
+          type: integer
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JobQueueResponse'
+          description: Success
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/adjustFutureDate_404_response'
+          description: Job Not Found
+      summary: Get Job
+      tags:
+      - InventoryJob
+      x-accepts: application/json
+  /commerce/inventory/v1/queue:
+    get:
+      description: Get the requested jobs
+      operationId: getJobs
+      parameters:
+      - description: Tenant ID
+        explode: false
+        in: header
+        name: x-vol-tenant
+        required: true
+        schema:
+          type: integer
+        style: simple
+      - description: Tenant specified unique Identifier of the owning location
+        explode: true
+        in: query
+        name: locationCode
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: "The maximum number of results to return, defaults to 100 for\
+          \ most"
+        explode: true
+        in: query
+        name: limit
+        required: false
+        schema:
+          type: integer
+        style: form
+      - description: User that owns the job
+        explode: true
+        in: query
+        name: owner
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Type of the Job Queue Request
+        explode: true
+        in: query
+        name: types
+        required: false
+        schema:
+          items:
+            enum:
+            - REFRESH
+            - ADJUST
+            - RELEASE_SHIPMENTS
+            - CREATE_PICK_WAVE
+            - CLOSE_PICK_WAVE
+            - PUT_AWAY_FILE
+            - SHORT_PICK_ERROR
+            - BIN_AUDIT_START
+            - BIN_AUDIT_COMPLETION
+            - CREATE_BIN_AUDIT
+            - RELEASE_PENDING_ITEMS
+            type: string
+          type: array
+        style: form
+      - description: The full name of the file that was picked up at the secure droppoint
+          server before being split up by location.
+        explode: true
+        in: query
+        name: originalFilename
+        required: false
+        schema:
+          type: string
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/JobQueueResponse'
+                type: array
+          description: Success
+        "404":
+          description: Job Not Found
+      summary: Get Jobs
+      tags:
+      - InventoryJob
+      x-accepts: application/json
+  /commerce/inventory/v1/location:
+    get:
+      description: Get Locations
+      operationId: getLocations
+      parameters:
+      - description: Tenant ID
+        explode: false
+        in: header
+        name: x-vol-tenant
+        required: true
+        schema:
+          type: integer
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/LocationResponse'
+                type: array
+          description: Success
+        "400":
+          description: Bad Request
+      summary: Get Locations
+      tags:
+      - InventoryLocation
+      x-accepts: application/json
+    post:
+      description: Save Location
+      operationId: saveLocation
+      parameters:
+      - description: Tenant ID
+        explode: false
+        in: header
+        name: x-vol-tenant
+        required: true
+        schema:
+          type: integer
+        style: simple
+      requestBody:
+        $ref: '#/components/requestBodies/LocationRequest'
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/LocationResponse'
+                type: array
+          description: Success
+        "400":
+          description: Bad Request
+      summary: Save Location
+      tags:
+      - InventoryLocation
+      x-content-type: application/json
+      x-accepts: application/json
+  /commerce/inventory/v1/locationGroup:
+    get:
+      description: Get LocationGroups
+      operationId: getLocationGroups
+      parameters:
+      - description: Tenant ID
+        explode: false
+        in: header
+        name: x-vol-tenant
+        required: true
+        schema:
+          type: integer
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/LocationGroupResponse'
+                type: array
+          description: Success
+        "400":
+          description: Bad Request
+      summary: Get Location Groups
+      tags:
+      - InventoryLocationGroup
+      x-accepts: application/json
+  /commerce/inventory/v5/inventory/refresh:
+    post:
+      description: Refresh Inventory
+      operationId: refresh
+      parameters:
+      - description: Tenant ID
+        explode: false
+        in: header
+        name: x-vol-tenant
+        required: true
+        schema:
+          type: integer
+        style: simple
+      requestBody:
+        $ref: '#/components/requestBodies/RefreshRequest'
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JobIDResponse'
+          description: Success
+        "400":
+          description: Bad Request
+      summary: Refresh
+      tags:
+      - ModifyInventory
+      x-content-type: application/json
+      x-accepts: application/json
+  /commerce/inventory/v5/inventory/adjust:
+    post:
+      description: Adjust Inventory
+      operationId: adjust
+      parameters:
+      - description: Tenant ID
+        explode: false
+        in: header
+        name: x-vol-tenant
+        required: true
+        schema:
+          type: integer
+        style: simple
+      requestBody:
+        $ref: '#/components/requestBodies/AdjustRequest'
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JobIDResponse'
+          description: Success
+        "400":
+          description: Bad Request
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/adjustFutureDate_404_response'
+          description: Forbidden
+      summary: Adjust
+      tags:
+      - ModifyInventory
+      x-content-type: application/json
+      x-accepts: application/json
+  /commerce/inventory/v5/inventory/delete:
+    post:
+      description: Delete Inventory
+      operationId: delete
+      parameters:
+      - description: Tenant ID
+        explode: false
+        in: header
+        name: x-vol-tenant
+        required: true
+        schema:
+          type: integer
+        style: simple
+      - description: Site ID
+        explode: false
+        in: header
+        name: x-vol-site
+        required: false
+        schema:
+          type: integer
+        style: simple
+      requestBody:
+        $ref: '#/components/requestBodies/DeleteItemRequest'
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DeleteItemResponse'
+          description: Success
+        "400":
+          description: Bad Request
+      summary: Delete
+      tags:
+      - ModifyInventory
+      x-content-type: application/json
+      x-accepts: application/json
+  /commerce/inventory/v5/inventory/deleteFutureInventory:
+    post:
+      description: Delete Future Inventory
+      operationId: delete-future-inventory
+      parameters:
+      - description: Tenant ID
+        explode: false
+        in: header
+        name: x-vol-tenant
+        required: true
+        schema:
+          type: integer
+        style: simple
+      - description: Site ID
+        explode: false
+        in: header
+        name: x-vol-site
+        required: false
+        schema:
+          type: integer
+        style: simple
+      requestBody:
+        $ref: '#/components/requestBodies/DeleteFutureItemRequest'
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DeleteFutureItemResponse'
+          description: Success
+        "400":
+          description: Bad Request
+      summary: Delete-future-inventory
+      tags:
+      - ModifyInventory
+      x-content-type: application/json
+      x-accepts: application/json
+  /commerce/inventory/v5/inventory/deleteItems:
+    post:
+      description: Delete Multiple Inventory
+      operationId: delete-items
+      parameters:
+      - description: Tenant ID
+        explode: false
+        in: header
+        name: x-vol-tenant
+        required: true
+        schema:
+          type: integer
+        style: simple
+      - description: Site ID
+        explode: false
+        in: header
+        name: x-vol-site
+        required: false
+        schema:
+          type: integer
+        style: simple
+      requestBody:
+        $ref: '#/components/requestBodies/DeleteItemsRequest'
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DeleteItemResponse'
+          description: Success
+        "400":
+          description: Bad Request
+      summary: Delete-items
+      tags:
+      - ModifyInventory
+      x-content-type: application/json
+      x-accepts: application/json
+components:
+  parameters:
+    x-vol-tenant:
+      description: Tenant ID
+      explode: false
+      in: header
+      name: x-vol-tenant
+      required: true
+      schema:
+        type: integer
+      style: simple
+    exportSettingsName:
+      description: Export Settings Name
+      explode: true
+      in: query
+      name: exportSettingsName
+      required: true
+      schema:
+        type: string
+      style: form
+    exportSettingsFTPName:
+      description: Export Settings FTP Name
+      explode: false
+      in: path
+      name: exportSettingsFTPName
+      required: false
+      schema:
+        type: string
+      style: simple
+    exportSettingsS3Name:
+      description: Export Settings S3 Name
+      explode: false
+      in: path
+      name: exportSettingsS3Name
+      required: false
+      schema:
+        type: string
+      style: simple
+    tagCategoryName:
+      description: Tag Category Name
+      explode: true
+      in: query
+      name: tagCategoryName
+      required: true
+      schema:
+        type: string
+      style: form
+    tagValue:
+      description: Tag Value
+      explode: true
+      in: query
+      name: tagValue
+      required: true
+      schema:
+        type: string
+      style: form
+    x-vol-site:
+      description: Site ID
+      explode: false
+      in: header
+      name: x-vol-site
+      required: false
+      schema:
+        type: integer
+      style: simple
+    limit:
+      description: "The maximum number of results to return, defaults to 100 for most"
+      explode: true
+      in: query
+      name: limit
+      required: false
+      schema:
+        type: integer
+      style: form
+  requestBodies:
+    CreateExportSettingsRequest:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/CreateExportSettingsRequest'
+      description: Request to create a new Export Settings
+      required: true
+    UpdateExportSettingsRequest:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/UpdateExportSettingsRequest'
+      description: Request to update an existing Export Settings
+      required: true
+    CreateExportSettingsFTPRequest:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/CreateExportSettingsFTPRequest'
+      description: Request to create a new Export Settings FTP
+      required: true
+    UpdateExportSettingsFTPRequest:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/UpdateExportSettingsFTPRequest'
+      description: Request to update an existing Export Settings FTP
+      required: true
+    CreateExportSettingsS3Request:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/CreateExportSettingsS3Request'
+      description: Request to create a new Export Settings S3
+      required: true
+    UpdateExportSettingsS3Request:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/UpdateExportSettingsS3Request'
+      description: Request to update an existing Export Settings S3
+      required: true
+    ShipmentInventoryAllocationRequest:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ShipmentInventoryAllocationRequest'
+      description: Request to future and current inventory allocations of item
+      required: true
+    UpdateTenantSiloConfigRequest:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/UpdateTenantSiloConfigRequest'
+      description: Request to create tenant silo config
+      required: true
+    Tag:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/InventoryTag'
+      description: Request create or modify Tag
+      required: true
+    TagCategory:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/TagCategory'
+      description: Request create or modify Tag Categories
+      required: true
+    AllocateInventoryRequest:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/AllocateInventoryRequest'
+      description: Request to allocate inventory
+      required: true
+    TransitionCartRequest:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/TransitionCartRequest'
+      description: Request needed for transitioning cart allocations to order/shipment
+        allocations
+      required: true
+    BlockAssignmentRequest:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/BlockAssignmentRequest'
+      description: Request to block assignment on the product
+      required: true
+    ExportInventoryRequest:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ExportInventoryRequest'
+      description: Request to run an inventory export
+      required: true
+    FetchFileConfigRequest:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/FetchFileConfigRequest'
+      description: Request to fetch file configs
+      required: true
+    InventoryRequest:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/InventoryRequest'
+      description: Request to get inventory
+      required: true
+    AggregateRequest:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/AggregateRequest'
+      description: Request to aggregate inventory
+      required: true
+    LocationRequest:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/LocationRequest'
+      description: Location Request Object
+      required: true
+    RefreshRequest:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/RefreshRequest'
+      description: Request to refresh inventory
+      required: true
+    AdjustRequest:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/AdjustRequest'
+      description: Request to adjust inventory
+      required: true
+    DeleteItemRequest:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/DeleteItemRequest'
+      description: Request to delete item(s)
+      required: true
+    DeleteFutureItemRequest:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/DeleteFutureItemRequest'
+      description: Request to delete future item(s)
+      required: true
+    DeleteItemsRequest:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/DeleteItemsRequest'
+      description: Request to batch delete items
+      required: true
+  schemas:
+    ExportSettingsFTP:
+      description: Export Settings FTP
+      example:
+        deliveryClass: deliveryClass
+        controlFileEmail: controlFileEmail
+        exportSettingsID: 0
+        remoteFileName: remoteFileName
+        controlFile: controlFile
+        ftpPassword: ftpPassword
+        ftpServer: ftpServer
+        active: true
+        exportSettingsFTPID: 6
+        ftpUser: ftpUser
+        endpoint: endpoint
+        environment: environment
+        ftpDirectory: ftpDirectory
+        name: name
+        ftpDirectoryControlFile: ftpDirectoryControlFile
+        controlFileName: controlFileName
+        ftpPort: 1
+      properties:
+        active:
+          description: Flag for Active State
+          type: boolean
+        exportSettingsID:
+          description: Export Settings ID
+          type: integer
+        exportSettingsFTPID:
+          description: Export Settings FTP ID
+          type: integer
+        name:
+          description: Export Settings FTP Name
+          type: string
+        ftpServer:
+          description: FTP Server Address
+          type: string
+        ftpPort:
+          description: FTP Server Port
+          type: integer
+        ftpDirectory:
+          description: FTP Server Directory
+          type: string
+        ftpDirectoryControlFile:
+          description: FTP Server Control File Directory
+          type: string
+        ftpUser:
+          description: FTP Username
+          type: string
+        ftpPassword:
+          description: FTP Password
+          type: string
+        deliveryClass:
+          description: FTP Delivery Class. Defaults to ExportDeliveryDefault
+          type: string
+        controlFile:
+          description: Control File
+          type: string
+        controlFileEmail:
+          description: Control File Email
+          type: string
+        remoteFileName:
+          description: Remote File Name
+          type: string
+        controlFileName:
+          description: Control File Name
+          type: string
+        endpoint:
+          description: Endpoint
+          type: string
+        environment:
+          description: Environment
+          type: string
+      required:
+      - ftpDirectory
+      - ftpPort
+      - ftpServer
+      - name
+      title: Export Settings FTP
+      type: object
+    ExportSettingsS3:
+      description: Export Settings S3
+      example:
+        bucket: bucket
+        exportSettingsID: 5
+        name: name
+        active: true
+        exportSettingsS3ID: 5
+        region: region
+      properties:
+        exportSettingsID:
+          description: Export Settings ID
+          type: integer
+        exportSettingsS3ID:
+          description: Export Settings S3 ID
+          type: integer
+        name:
+          description: Export Settings S3 Name
+          type: string
+        active:
+          description: Flag for Active State
+          type: boolean
+        region:
+          description: S3 Region
+          type: string
+        bucket:
+          description: S3 Bucket (directory)
+          type: string
+      required:
+      - bucket
+      - name
+      - region
+      title: Export Settings S3
+      type: object
+    tags:
+      additionalProperties:
+        type: string
+      description: "Associative Map of <String, String> for tagCategoryName => tagName"
+      type: object
+    ExportSettings:
+      description: Export Settings
+      example:
+        fileName: fileName
+        exportSingleFile: true
+        locationGroupIDs:
+        - 2
+        - 2
+        ignoreNegativeInventoryLocations: true
+        untransformedFileName: untransformedFileName
+        s3Information:
+        - bucket: bucket
+          exportSettingsID: 5
+          name: name
+          active: true
+          exportSettingsS3ID: 5
+          region: region
+        - bucket: bucket
+          exportSettingsID: 5
+          name: name
+          active: true
+          exportSettingsS3ID: 5
+          region: region
+        directShip: true
+        includeAttributes: true
+        isClassic: true
+        floor: FLOOR_MAX
+        ltd: LTD_MAX
+        untransformedZipFileName: untransformedZipFileName
+        ftpInformation:
+        - deliveryClass: deliveryClass
+          controlFileEmail: controlFileEmail
+          exportSettingsID: 0
+          remoteFileName: remoteFileName
+          controlFile: controlFile
+          ftpPassword: ftpPassword
+          ftpServer: ftpServer
+          active: true
+          exportSettingsFTPID: 6
+          ftpUser: ftpUser
+          endpoint: endpoint
+          environment: environment
+          ftpDirectory: ftpDirectory
+          name: name
+          ftpDirectoryControlFile: ftpDirectoryControlFile
+          controlFileName: controlFileName
+          ftpPort: 1
+        - deliveryClass: deliveryClass
+          controlFileEmail: controlFileEmail
+          exportSettingsID: 0
+          remoteFileName: remoteFileName
+          controlFile: controlFile
+          ftpPassword: ftpPassword
+          ftpServer: ftpServer
+          active: true
+          exportSettingsFTPID: 6
+          ftpUser: ftpUser
+          endpoint: endpoint
+          environment: environment
+          ftpDirectory: ftpDirectory
+          name: name
+          ftpDirectoryControlFile: ftpDirectoryControlFile
+          controlFileName: controlFileName
+          ftpPort: 1
+        safetyStock: SAFETY_STOCK_MAX
+        zipFileName: zipFileName
+        onlySendAvailable: true
+        pickup: true
+        shortenFilename: true
+        productMapping: SWAP_PART_NUMBER_WITH_UPC
+        tags:
+          key: tags
+        transfer: true
+        exportType: AGGREGATE
+        onlySendActiveLocations: true
+        name: name
+        siteIDs:
+        - 7
+        - 7
+        fileFormat: XML
+        zipFiles: true
+      properties:
+        name:
+          description: Export Settings Name
+          type: string
+        fileFormat:
+          description: Format for the export file
+          enum:
+          - XML
+          - CSV
+          type: string
+        exportType:
+          description: Type of exportGG for the settings
+          enum:
+          - AGGREGATE
+          - LOCATION
+          type: string
+        onlySendAvailable:
+          description: Flag for only sending available
+          type: boolean
+        onlySendActiveLocations:
+          description: Flag for only sending from active locations
+          type: boolean
+        ftpInformation:
+          description: List of export FTP settings
+          items:
+            $ref: '#/components/schemas/ExportSettingsFTP'
+          type: array
+        s3Information:
+          description: List of export S3 settings
+          items:
+            $ref: '#/components/schemas/ExportSettingsS3'
+          type: array
+        exportSingleFile:
+          description: Flag for exporting as a single file
+          type: boolean
+        safetyStock:
+          description: Safety Stock
+          enum:
+          - SAFETY_STOCK_MAX
+          - SAFETY_STOCK_MIN
+          - SAFETY_STOCK_AVG
+          - SAFETY_STOCK_SUM
+          type: string
+        floor:
+          description: Floor
+          enum:
+          - FLOOR_MAX
+          - FLOOR_MIN
+          - FLOOR_AVG
+          - FLOOR_SUM
+          type: string
+        ltd:
+          description: LTD
+          enum:
+          - LTD_MAX
+          - LTD_MIN
+          - LTD_AVG
+          - LTD_SUM
+          type: string
+        fileName:
+          description: Name for the export file
+          type: string
+        shortenFilename:
+          description: Flag for using shortened filenames
+          type: boolean
+        includeAttributes:
+          description: Flag for including attributes
+          type: boolean
+        zipFiles:
+          description: Flag for zipping the files
+          type: boolean
+        zipFileName:
+          description: Name for the zipped file
+          type: string
+        untransformedFileName:
+          description: Untransformed File Name
+          type: string
+        untransformedZipFileName:
+          description: Untransformed Zip File Name
+          type: string
+        locationGroupIDs:
+          description: Location Group Ids associated with the settings
+          items:
+            type: integer
+          type: array
+        siteIDs:
+          description: Site Ids associated with the settings
+          items:
+            type: integer
+          type: array
+        directShip:
+          description: Flag for only using locations with Direct Ship enabled
+          type: boolean
+        pickup:
+          description: Flag for only using locations with In Store Pickup enabled
+          type: boolean
+        transfer:
+          description: Flag for only using locations with Transfer enabled
+          type: boolean
+        productMapping:
+          description: Enum for export productMapping
+          enum:
+          - SWAP_PART_NUMBER_WITH_UPC
+          - SWAP_SKU_WITH_UPC
+          title: productMapping
+          type: string
+        isClassic:
+          description: Flag for marking the setting as a classic export
+          type: boolean
+        ignoreNegativeInventoryLocations:
+          description: Flag for excluding negative inventory locations
+          type: boolean
+        tags:
+          additionalProperties:
+            type: string
+          description: "Associative Map of <String, String> for tagCategoryName =>\
+            \ tagName"
+          type: object
+      required:
+      - exportType
+      - fileFormat
+      - ftpInformation
+      - name
+      title: Export Settings
+      type: object
+    BaseRequest:
+      description: Base Request Model
+      properties:
+        locationCode:
+          description: Location Code
+          title: location code
+          type: string
+        userID:
+          description: user id
+          type: integer
+        pageSize:
+          description: how many results to show per page
+          type: integer
+        pageNum:
+          description: which page to show
+          type: integer
+        sortBy:
+          description: index to sort results by
+          type: string
+      title: Base Request
+      type: object
+    CreateExportSettingsRequest:
+      allOf:
+      - $ref: '#/components/schemas/CreateExportSettingsRequest_allOf'
+      - $ref: '#/components/schemas/BaseRequest'
+      description: Request needed for creating Export Settings
+      required:
+      - exportSettings
+      title: Create Export Settings Request
+    ExportSettingsResponse:
+      description: Job ID Response
+      example:
+        exportSettingsName: exportSettingsName
+        exportSettingsFTPName: exportSettingsFTPName
+        exportSettingsS3Name: exportSettingsS3Name
+      properties:
+        exportSettingsName:
+          description: Created Export Settings Name
+          type: string
+        exportSettingsFTPName:
+          description: Created Export Settings FTP Name
+          type: string
+        exportSettingsS3Name:
+          description: Created Export Settings S3 Name
+          type: string
+      title: Job ID Response
+      type: object
+    UpdateExportSettingsRequest:
+      allOf:
+      - $ref: '#/components/schemas/CreateExportSettingsRequest_allOf'
+      - $ref: '#/components/schemas/BaseRequest'
+      description: Request needed updating existing Export Settings
+      required:
+      - exportSettings
+      - exportSettingsID
+      title: Update Export Settings Request
+    BaseResponse:
+      description: Base Response Model
+      example:
+        success: true
+        messages:
+        - messages
+        - messages
+        numResults: 0
+      properties:
+        success:
+          description: Flag for success
+          type: boolean
+        messages:
+          description: List of messages
+          items:
+            type: string
+          type: array
+        numResults:
+          description: Number of results
+          type: integer
+      title: Base Response
+      type: object
+    UpdateExportSettingsResponse:
+      allOf:
+      - $ref: '#/components/schemas/UpdateExportSettingsResponse_allOf'
+      - $ref: '#/components/schemas/BaseResponse'
+      description: Update Export Settings Response
+      title: Update Export Settings Response
+    DeletedCountResponse:
+      description: Deleted Count Response Model
+      example:
+        deleted: 0
+      properties:
+        deleted:
+          description: Count of deleted entries
+          type: integer
+      title: Deleted Count Response
+      type: object
+    CreateExportSettingsFTPRequest:
+      allOf:
+      - $ref: '#/components/schemas/CreateExportSettingsFTPRequest_allOf'
+      - $ref: '#/components/schemas/BaseRequest'
+      description: Request needed for creating Export Settings FTP
+      required:
+      - exportSettingsFTP
+      - exportSettingsName
+      title: Create Export Settings FTP Request
+    UpdateExportSettingsFTPRequest:
+      allOf:
+      - $ref: '#/components/schemas/CreateExportSettingsFTPRequest_allOf'
+      - $ref: '#/components/schemas/BaseRequest'
+      description: Request needed updating existing Export Settings FTP
+      required:
+      - exportSettingsFTP
+      - exportSettingsName
+      title: Update Export Settings FTP Request
+    UpdateExportSettingsFTPResponse:
+      allOf:
+      - $ref: '#/components/schemas/UpdateExportSettingsFTPResponse_allOf'
+      - $ref: '#/components/schemas/BaseResponse'
+      description: Update Export Settings FTP Response
+      title: Update Export Settings FTP Response
+    CreateExportSettingsS3Request:
+      allOf:
+      - $ref: '#/components/schemas/CreateExportSettingsS3Request_allOf'
+      - $ref: '#/components/schemas/BaseRequest'
+      description: Request needed for creating Export Settings S3
+      required:
+      - exportSettingsName
+      - exportSettingsS3
+      title: Create Export Settings S3 Request
+    UpdateExportSettingsS3Request:
+      allOf:
+      - $ref: '#/components/schemas/CreateExportSettingsS3Request_allOf'
+      - $ref: '#/components/schemas/BaseRequest'
+      description: Request needed updating existing Export Settings S3
+      required:
+      - exportSettingsName
+      - exportSettingsS3
+      title: Update Export Settings S3 Request
+    UpdateExportSettingsS3Response:
+      allOf:
+      - $ref: '#/components/schemas/UpdateExportSettingsS3Response_allOf'
+      - $ref: '#/components/schemas/BaseResponse'
+      description: Update Export Settings S3 Response
+      title: Update Export Settings S3 Response
+    DeletedResponse:
+      description: Deleted Response Model
+      example:
+        deleted: true
+      properties:
+        deleted:
+          description: Whether the delete was successful
+          type: boolean
+      title: Deleted Response
+      type: object
+    FetchFileConnectionResponse:
+      description: FetchFileConnectionResponse
+      example:
+        ftpFiles:
+        - ftpFiles
+        - ftpFiles
+        ftpArchiveFiles:
+        - ftpArchiveFiles
+        - ftpArchiveFiles
+        s3ArchiveFiles:
+        - s3ArchiveFiles
+        - s3ArchiveFiles
+        s3Files:
+        - s3Files
+        - s3Files
+      properties:
+        ftpFiles:
+          description: List of files found on the specified sftp directory
+          items:
+            type: string
+          type: array
+        ftpArchiveFiles:
+          description: List of files found on the specified sftp archive directory
+          items:
+            type: string
+          type: array
+        s3Files:
+          description: List of files found on the specified s3 bucket/path
+          items:
+            type: string
+          type: array
+        s3ArchiveFiles:
+          description: List of files found on the specified s3 archive bucket/path
+          items:
+            type: string
+          type: array
+      title: FetchFileConnectionResponse
+      type: object
+    JobIDResponse:
+      description: Job ID Response
+      example:
+        jobID: 0
+      properties:
+        jobID:
+          description: Job ID
+          type: integer
+      title: Job ID Response
+      type: object
+    LocationResponse:
+      allOf:
+      - $ref: '#/components/schemas/LocationResponse_allOf'
+      - $ref: '#/components/schemas/BaseResponse'
+      description: Location Response Object
+      title: LocationResponse
+    LocationGroupResponse:
+      allOf:
+      - $ref: '#/components/schemas/LocationGroupResponse_allOf'
+      - $ref: '#/components/schemas/BaseResponse'
+      description: LocationGroup Response Object
+      title: LocationGroupResponse
+    JobQueueResponse:
+      allOf:
+      - $ref: '#/components/schemas/JobQueueResponse_allOf'
+      - $ref: '#/components/schemas/BaseResponse'
+      description: Response for getting a job
+      title: Job Queue Response
+    ShipmentInventoryAllocationRequest:
+      description: ShipmentInventoryAllocation Request Object
+      example:
+        shipmentIDs:
+        - 0
+        - 0
+      properties:
+        shipmentIDs:
+          description: Shipment Ids
+          items:
+            type: integer
+          type: array
+      required:
+      - shipmentIDs
+      title: ShipmentInventoryAllocation Request
+      type: object
+    InventoryAllocationResponse:
+      description: InventoryAllocationResponse Object
+      example:
+        futureDate: ""
+        quantity: 6
+        orderItemID: 0
+        upc: upc
+        state: state
+        tags:
+          key: tags
+      properties:
+        orderItemID:
+          description: order item ID
+          title: order item ID
+          type: integer
+        upc:
+          description: upc
+          title: upc
+          type: string
+        state:
+          description: state
+          title: state
+          type: string
+        quantity:
+          description: quantity
+          title: quantity
+          type: integer
+        futureDate:
+          description: Future Date at which the inventory should be allocated against.
+            Expected format '2020-09-28T12:00:00-0500'
+          type: DateTime
+        tags:
+          additionalProperties:
+            type: string
+          description: "Associative Map of <String, String> for tagCategoryName =>\
+            \ tagName"
+          type: object
+      title: InventoryAllocationResponse
+      type: object
+    allocationList:
+      description: List of InventoryAllocationResponse objects
+      items:
+        $ref: '#/components/schemas/InventoryAllocationResponse'
+      type: array
+    ShipmentAllocationsResponse:
+      description: ShipmentAllocationsResponse Object
+      example:
+        futureAllocations:
+        - futureDate: ""
+          quantity: 6
+          orderItemID: 0
+          upc: upc
+          state: state
+          tags:
+            key: tags
+        - futureDate: ""
+          quantity: 6
+          orderItemID: 0
+          upc: upc
+          state: state
+          tags:
+            key: tags
+        currentAllocations:
+        - futureDate: ""
+          quantity: 6
+          orderItemID: 0
+          upc: upc
+          state: state
+          tags:
+            key: tags
+        - futureDate: ""
+          quantity: 6
+          orderItemID: 0
+          upc: upc
+          state: state
+          tags:
+            key: tags
+      properties:
+        currentAllocations:
+          description: List of InventoryAllocationResponse objects
+          items:
+            $ref: '#/components/schemas/InventoryAllocationResponse'
+          type: array
+        futureAllocations:
+          description: List of InventoryAllocationResponse objects
+          items:
+            $ref: '#/components/schemas/InventoryAllocationResponse'
+          type: array
+      title: ShipmentAllocationsResponse
+      type: object
+    shipments:
+      additionalProperties:
+        $ref: '#/components/schemas/ShipmentAllocationsResponse'
+      description: "Associative Map of Map<shipmentId, ShipmentAllocationsResponse>"
+      type: object
+    ShipmentInventoryAllocationResponse:
+      description: ShipmentInventoryAllocation Response Object
+      example:
+        shipments:
+          key:
+            futureAllocations:
+            - futureDate: ""
+              quantity: 6
+              orderItemID: 0
+              upc: upc
+              state: state
+              tags:
+                key: tags
+            - futureDate: ""
+              quantity: 6
+              orderItemID: 0
+              upc: upc
+              state: state
+              tags:
+                key: tags
+            currentAllocations:
+            - futureDate: ""
+              quantity: 6
+              orderItemID: 0
+              upc: upc
+              state: state
+              tags:
+                key: tags
+            - futureDate: ""
+              quantity: 6
+              orderItemID: 0
+              upc: upc
+              state: state
+              tags:
+                key: tags
+      properties:
+        shipments:
+          additionalProperties:
+            $ref: '#/components/schemas/ShipmentAllocationsResponse'
+          description: "Associative Map of Map<shipmentId, ShipmentAllocationsResponse>"
+          type: object
+      title: ShipmentInventoryAllocation Response
+      type: object
+    UpdateTenantSiloConfigRequest:
+      description: Request for creating or updating tenant silo config.
+      example:
+        tenantID: 0
+        batchWorkers: 6
+        eventSenderWorkers: 1
+      properties:
+        tenantID:
+          description: A Tenant ID
+          type: integer
+        batchWorkers:
+          description: Number of batch workers to run for this tenant.
+          type: integer
+        eventSenderWorkers:
+          description: Number of event sender workers to run for this tenant.
+          type: integer
+      title: Create Tenant Silo Config Request
+      type: object
+    TenantSiloConfigModel:
+      description: Model of a tenant silo config.
+      example:
+        usable: true
+        additonalTenantsAllowed: true
+        siloID: 0
+        name: name
+        tenantID: 5
+        description: description
+        batchWorkers: 6
+        eventSenderWorkers: 1
+      properties:
+        siloID:
+          description: A Silo ID
+          type: integer
+        name:
+          description: Name of the Silo
+          type: string
+        description:
+          description: Description of silo configuration
+          type: string
+        usable:
+          description: Whether the  silo config is usable or not
+          type: boolean
+        additonalTenantsAllowed:
+          description: 'Check whether theAdditional tenants allowed or not '
+          type: boolean
+        batchWorkers:
+          description: Number of Batch Workers to run for this tenant.
+          type: integer
+        eventSenderWorkers:
+          description: Number of Event Sender Workers to run for this tenant.
+          type: integer
+        tenantID:
+          description: A Tenant ID
+          type: integer
+      title: Tenant Silo Config Model
+      type: object
+    TagCategory:
+      description: Request and response object for a tag category
+      example:
+        created: created
+        tagCategoryID: 0
+        name: name
+        deletion_job_ids:
+        - 6
+        - 6
+        tags:
+        - isDefault: true
+          tagID: 0
+          tagValue: tagValue
+          created: created
+          percent: 6
+          updated: updated
+        - isDefault: true
+          tagID: 0
+          tagValue: tagValue
+          created: created
+          percent: 6
+          updated: updated
+      properties:
+        tagCategoryID:
+          description: Tag Category ID
+          type: integer
+        name:
+          description: Tag Category Name
+          type: string
+        created:
+          description: Date tag category was created.
+          type: string
+        deletion_job_ids:
+          description: List of deletion job ID's
+          items:
+            type: integer
+          type: array
+        tags:
+          description: Tags within this category
+          items:
+            $ref: '#/components/schemas/InventoryTag'
+          type: array
+      title: Tag Category Response
+      type: object
+    AllocateItem:
+      description: Item for Allocation
+      properties:
+        partNumber:
+          description: part number
+          title: part number
+          type: string
+        upc:
+          description: upc
+          title: upc
+          type: string
+        sku:
+          description: sku
+          title: sku
+          type: string
+        quantity:
+          description: quantity
+          title: quantity
+          type: integer
+        orderID:
+          description: order ID
+          title: order ID
+          type: integer
+        orderItemID:
+          description: order item ID
+          title: order item ID
+          type: integer
+        cartID:
+          description: Cart ID (GUID)
+          title: Cart ID
+          type: string
+        reservationID:
+          description: Reservation ID
+          title: Reservation ID
+          type: string
+        cartItemID:
+          description: Cart Item ID (GUID)
+          title: Cart Item ID
+          type: string
+        shipmentID:
+          description: shipment ID
+          title: shipment ID
+          type: integer
+        locationCode:
+          description: location Code
+          title: location Code
+          type: string
+        previousOrderItemID:
+          description: previous order item ID
+          title: previous order item ID
+          type: integer
+        binID:
+          description: Bin Location Identifier
+          title: bin ID
+          type: integer
+        blockAssignment:
+          description: Block assignment of item at product/location level. ONLY allowed
+            on deallocate.
+          title: Block Item Assignment
+          type: boolean
+        tags:
+          additionalProperties:
+            type: string
+          description: "Associative Map of <String, String> for tagCategoryName =>\
+            \ tagName"
+          type: object
+        futureDate:
+          description: Future Date at which the inventory should be allocated against.
+            Expected format '2020-09-28T12:00:00-0500'
+          type: DateTime
+      required:
+      - locationID
+      - orderID
+      - orderItemID
+      - quantity
+      - shipmentID
+      title: AllocateItem
+      type: object
+    AllocateInventoryRequest:
+      allOf:
+      - $ref: '#/components/schemas/AllocateInventoryRequest_allOf'
+      - $ref: '#/components/schemas/BaseRequest'
+      description: Request needed for allocating inventory
+      required:
+      - items
+      - tenantID
+      title: Allocate Inventory Request
+    TransitionCartItem:
+      description: Item for Transitioning Cart allocations
+      properties:
+        orderItemID:
+          description: order item ID
+          title: order item ID
+          type: integer
+        cartItemID:
+          description: Cart Item ID (GUID)
+          title: Cart Item ID
+          type: string
+        shipmentID:
+          description: shipment ID
+          title: shipment ID
+          type: integer
+      required:
+      - cartItemID
+      - orderItemID
+      - shipmentID
+      title: TransitionCartItem
+      type: object
+    TransitionCartRequest:
+      allOf:
+      - $ref: '#/components/schemas/TransitionCartRequest_allOf'
+      - $ref: '#/components/schemas/BaseRequest'
+      description: Request needed for transitioning cart allocations to order/shipment
+        allocations
+      required:
+      - cartID
+      - items
+      - orderID
+      title: Transition Cart Request
+    BlockAssignmentItem:
+      description: Items for enabling blockAssignment
+      properties:
+        partNumber:
+          description: part number
+          title: part number
+          type: string
+        upc:
+          description: upc
+          title: upc
+          type: string
+        sku:
+          description: sku
+          title: sku
+          type: string
+        quantity:
+          description: quantity
+          title: quantity
+          type: integer
+        blockAssignment:
+          description: Block assignment of item at product/location level. ONLY allowed
+            on deallocate.
+          title: Block Item Assignment
+          type: boolean
+      required:
+      - blockAssignment
+      - itemIdentifiers
+      title: BlockAssignmentItem
+      type: object
+    BlockAssignmentRequest:
+      allOf:
+      - $ref: '#/components/schemas/BlockAssignmentRequest_allOf'
+      - $ref: '#/components/schemas/BaseRequest'
+      description: Request to block assignment on the product
+      required:
+      - items
+      - tenantID
+      title: Block Assignment Request
+    GetExportSettingsResponse:
+      description: Response for get Export Settings
+      example:
+        exportSettings:
+          fileName: fileName
+          exportSingleFile: true
+          locationGroupIDs:
+          - 2
+          - 2
+          ignoreNegativeInventoryLocations: true
+          untransformedFileName: untransformedFileName
+          s3Information:
+          - bucket: bucket
+            exportSettingsID: 5
+            name: name
+            active: true
+            exportSettingsS3ID: 5
+            region: region
+          - bucket: bucket
+            exportSettingsID: 5
+            name: name
+            active: true
+            exportSettingsS3ID: 5
+            region: region
+          directShip: true
+          includeAttributes: true
+          isClassic: true
+          floor: FLOOR_MAX
+          ltd: LTD_MAX
+          untransformedZipFileName: untransformedZipFileName
+          ftpInformation:
+          - deliveryClass: deliveryClass
+            controlFileEmail: controlFileEmail
+            exportSettingsID: 0
+            remoteFileName: remoteFileName
+            controlFile: controlFile
+            ftpPassword: ftpPassword
+            ftpServer: ftpServer
+            active: true
+            exportSettingsFTPID: 6
+            ftpUser: ftpUser
+            endpoint: endpoint
+            environment: environment
+            ftpDirectory: ftpDirectory
+            name: name
+            ftpDirectoryControlFile: ftpDirectoryControlFile
+            controlFileName: controlFileName
+            ftpPort: 1
+          - deliveryClass: deliveryClass
+            controlFileEmail: controlFileEmail
+            exportSettingsID: 0
+            remoteFileName: remoteFileName
+            controlFile: controlFile
+            ftpPassword: ftpPassword
+            ftpServer: ftpServer
+            active: true
+            exportSettingsFTPID: 6
+            ftpUser: ftpUser
+            endpoint: endpoint
+            environment: environment
+            ftpDirectory: ftpDirectory
+            name: name
+            ftpDirectoryControlFile: ftpDirectoryControlFile
+            controlFileName: controlFileName
+            ftpPort: 1
+          safetyStock: SAFETY_STOCK_MAX
+          zipFileName: zipFileName
+          onlySendAvailable: true
+          pickup: true
+          shortenFilename: true
+          productMapping: SWAP_PART_NUMBER_WITH_UPC
+          tags:
+            key: tags
+          transfer: true
+          exportType: AGGREGATE
+          onlySendActiveLocations: true
+          name: name
+          siteIDs:
+          - 7
+          - 7
+          fileFormat: XML
+          zipFiles: true
+      properties:
+        exportSettings:
+          $ref: '#/components/schemas/ExportSettings'
+      title: Get Export Settings Response
+      type: object
+    ExportInventoryRequest:
+      allOf:
+      - $ref: '#/components/schemas/ExportInventoryRequest_allOf'
+      - $ref: '#/components/schemas/BaseRequest'
+      description: Export Inventory Request
+      title: Export Inventory Request
+    ExportInventoryJobResponse:
+      description: Response for each export job creation
+      example:
+        jobID: 6
+        exportSettingsID: 0
+      properties:
+        exportSettingsID:
+          description: Export Settings ID
+          type: integer
+        jobID:
+          description: ID of newly created job
+          type: integer
+      title: Export Inventory Job Response
+      type: object
+    ExportInventoryResponse:
+      description: Response for Export Inventory api
+      example:
+        exportInventoryJobResponses:
+        - jobID: 6
+          exportSettingsID: 0
+        - jobID: 6
+          exportSettingsID: 0
+      properties:
+        exportInventoryJobResponses:
+          description: List of Export Inventory Job Responses
+          items:
+            $ref: '#/components/schemas/ExportInventoryJobResponse'
+          type: array
+      title: Export Inventory Response
+      type: object
+    M_FetchFileConfig:
+      description: Fetch File Config Model
+      example:
+        ftpUsername: ftpUsername
+        exportAfterRefresh: true
+        emailList: emailList
+        failed_attempts: 1
+        useControlFile: true
+        fieldNameMap:
+        - fieldNameMap
+        - fieldNameMap
+        ignoreExtraFields: true
+        secret: secret
+        zeroOutNegatives: true
+        s3Path: s3Path
+        updateFileDescription: updateFileDescription
+        refreshFileDescription: refreshFileDescription
+        tenantID: 6
+        ftpRemotePathArchive: ftpRemotePathArchive
+        fetchFileConfigID: 0
+        updateEnabled: true
+        lockName: lockName
+        multipleFiles: true
+        postProcessAction: 5
+        postImportFtpId: 7
+        ftpPassword: ftpPassword
+        refreshEnabled: true
+        ftpServer: ftpServer
+        active: true
+        csvDelimiter: csvDelimiter
+        productMapping: SWAP_PART_NUMBER_WITH_UPC
+        ftpRemotePath: ftpRemotePath
+        postImportExportId: 2
+        bucket: bucket
+        s3ArchivePath: s3ArchivePath
+        s3Key: s3Key
+        archiveBucket: archiveBucket
+        blankQuantityIsZero: true
+        lastModified: lastModified
+        region: region
+        ftpPort: 5
+      properties:
+        fetchFileConfigID:
+          description: Fetch File Config ID
+          type: integer
+        tenantID:
+          description: Tenant ID
+          type: integer
+        active:
+          description: Active
+          type: boolean
+        failed_attempts:
+          description: Failed Attempts
+          type: integer
+        lastModified:
+          description: Time config was last modified
+          type: string
+        emailList:
+          description: Email List
+          type: string
+        refreshEnabled:
+          description: Flag for Refresh Enabled
+          type: boolean
+        refreshFileDescription:
+          description: Description for the refresh file
+          type: string
+        updateEnabled:
+          description: Flag for Update Enabled
+          type: boolean
+        updateFileDescription:
+          description: Description for the update file
+          type: string
+        ftpServer:
+          description: FTP server address
+          type: string
+        ftpUsername:
+          description: FTP server username
+          type: string
+        ftpPassword:
+          description: FTP server password
+          type: string
+        ftpPort:
+          description: FTP server port
+          type: integer
+        ftpRemotePath:
+          description: FTP server remote path
+          type: string
+        ftpRemotePathArchive:
+          description: FTP server remote path archive
+          type: string
+        region:
+          description: S3 Region
+          type: string
+        s3Key:
+          description: S3 Key
+          type: string
+        secret:
+          description: S3 Secret
+          type: string
+        bucket:
+          description: S3 Bucket
+          type: string
+        s3Path:
+          description: S3 Bucket Path (directory)
+          type: string
+        archiveBucket:
+          description: S3 Archive Bucket
+          type: string
+        s3ArchivePath:
+          description: S3 Archive Bucket Path (directory)
+          type: string
+        lockName:
+          description: Lock name
+          type: string
+        postProcessAction:
+          description: Enum denoting action post processing
+          type: integer
+        useControlFile:
+          description: Flag for using control file
+          type: boolean
+        multipleFiles:
+          description: Flag for using multiple files
+          type: boolean
+        zeroOutNegatives:
+          description: Flag for converting negatives to zero
+          type: boolean
+        fieldNameMap:
+          description: List of field names
+          items:
+            type: string
+          type: array
+        ignoreExtraFields:
+          description: Flag for ignoring extra fields
+          type: boolean
+        blankQuantityIsZero:
+          description: Flag to convert null quantities to zero
+          type: boolean
+        csvDelimiter:
+          description: CSV Delimiter
+          type: string
+        exportAfterRefresh:
+          description: Flag for exporting after refresh
+          type: boolean
+        postImportExportId:
+          description: Export id post import
+          type: integer
+        postImportFtpId:
+          description: FTP id post import
+          type: integer
+        productMapping:
+          description: Enum for fetch file mapping
+          enum:
+          - SWAP_PART_NUMBER_WITH_UPC
+          - SWAP_SKU_WITH_UPC
+          title: productMapping
+          type: string
+      title: M_FetchFileConfig
+      type: object
+    FetchFileConfigRequest:
+      allOf:
+      - $ref: '#/components/schemas/FetchFileConfigRequest_allOf'
+      - $ref: '#/components/schemas/BaseRequest'
+      description: Request for Fetch File Configs
+      required:
+      - active
+      - ftpPassword
+      - ftpRemotePath
+      - ftpServer
+      - ftpUsername
+      - lockName
+      - postProcessAction
+      title: Fetch File Config Request
+    ItemQuantity:
+      description: Item Quantity Model
+      properties:
+        partNumber:
+          description: Part/Product Number
+          type: string
+        upc:
+          description: Universal Product Code
+          type: string
+        sku:
+          description: Stock Keeping Unit
+          type: string
+        quantity:
+          description: Quantity
+          type: integer
+        tags:
+          additionalProperties:
+            type: string
+          description: "Associative Map of <String, String> for tagCategoryName =>\
+            \ tagName"
+          type: object
+      title: Item Quantity
+      type: object
+    RequestLocation:
+      description: Request Location
+      properties:
+        unit:
+          default: MILES
+          description: Unit of distance used for radius
+          enum:
+          - MILES
+          - KM
+          type: string
+        radius:
+          description: Distance from location
+          type: number
+        postalCode:
+          description: Postal Code of this location
+          type: string
+        latitude:
+          description: Latitude coordinate of this location
+          type: number
+        longitude:
+          description: Longitude coordinate of this location
+          type: number
+        countryCode:
+          description: Country Code for this location
+          type: string
+        locationCode:
+          description: Location Code for this location. This being set will trigger
+            GetInventoryByLocation
+          type: string
+        addressID:
+          description: Address ID for this location
+          type: integer
+        customerID:
+          description: CustomerID ID for this location
+          type: integer
+        addressLine1:
+          description: Address line 1 for this location
+          type: string
+        phone:
+          description: Phone number for this location
+          type: string
+        city:
+          description: City for this location
+          type: string
+        state:
+          description: State for this location
+          type: string
+      title: Request Location
+      type: object
+    InventoryRequest:
+      allOf:
+      - $ref: '#/components/schemas/InventoryRequest_allOf'
+      - $ref: '#/components/schemas/BaseRequest'
+      description: Request for getting Inventory
+      required:
+      - items
+      - type
+      title: Inventory Request
+    futureInventoryArray:
+      items:
+        $ref: '#/components/schemas/InventoryFutureInventory'
+      type: array
+    taggedInventoryMap:
+      items:
+        $ref: '#/components/schemas/InventoryTagQuantity'
+      type: array
+    AggregateRequest:
+      allOf:
+      - $ref: '#/components/schemas/AggregateRequest_allOf'
+      - $ref: '#/components/schemas/BaseRequest'
+      description: Request for aggregating inventory
+      required:
+      - items
+      title: Aggregate Request
+    AggregateResponse:
+      allOf:
+      - $ref: '#/components/schemas/AggregateResponse_allOf'
+      - $ref: '#/components/schemas/BaseResponse'
+      description: Response for aggregating Inventory
+      title: Aggregate Response
+    LocationRequest:
+      description: Location Request Object
+      example:
+        transferEnabled: true
+        includeInLocationExport: true
+        locationName: locationName
+        includeInAggregate: true
+        postalCode: postalCode
+        latitude: ""
+        active: true
+        pickup: true
+        express: true
+        wmsEnabled: true
+        directShip: true
+        countryCode: countryCode
+        tenantID: 0
+        locationCode: locationCode
+        longitude: ""
+      properties:
+        tenantID:
+          description: Tenant ID
+          type: integer
+        locationCode:
+          description: Location Code
+          type: string
+        express:
+          description: Flag for whether the location is express enabled or not
+          type: boolean
+        includeInLocationExport:
+          description: Flag for whether the location is to be included in location
+            exports
+          type: boolean
+        includeInAggregate:
+          description: Flag for whether the location is to be included in aggregate
+            exports
+          type: boolean
+        active:
+          description: Flag for whether the location is active
+          type: boolean
+        directShip:
+          description: Flag for whether the location allows Direct Ship (STH) orders
+          type: boolean
+        pickup:
+          description: Flag for whether the location allows Pickup (BOPIS) orders
+          type: boolean
+        transferEnabled:
+          description: Flag for whether the location allows Transfer orders
+          type: boolean
+        postalCode:
+          description: Postal Code
+          type: string
+        countryCode:
+          description: Country Code
+          type: string
+        latitude:
+          description: Latitude
+          type: float
+        longitude:
+          description: Longitude
+          type: float
+        locationName:
+          description: Location Name
+          type: string
+        wmsEnabled:
+          description: Flag for whether the location is WMS Enabled
+          type: boolean
+      required:
+      - active
+      - directShip
+      - locationCode
+      - locationName
+      - pickup
+      - tenantID
+      title: LocationRequest
+      type: object
+    RefreshItem:
+      description: Refresh Item
+      properties:
+        partNumber:
+          description: Part/Product Number
+          type: string
+        upc:
+          description: Universal Product Code
+          type: string
+        sku:
+          description: Stock Keeping Unit
+          type: string
+        binID:
+          description: Bin Location Identifier
+          type: integer
+        LTD:
+          description: Custom field used for store prioritization
+          type: float
+        floor:
+          description: Absolute minimum quantity of this item that should be in stock
+            at any time
+          type: integer
+        safetyStock:
+          description: Quantity of this item the location wants to keep in stock to
+            ensure stock isn't completely depleted
+          type: integer
+        quantity:
+          description: Current Quantity of Item
+          type: integer
+        retailPrice:
+          description: Stock Keeping Unit
+          type: number
+        currencyID:
+          description: The price of the item
+          type: integer
+        inventoryLocatorName:
+          description: The inventory locator name of the item
+          type: string
+        attributes:
+          description: List of Item Attributes
+          items:
+            type: string
+          type: array
+        tags:
+          additionalProperties:
+            type: string
+          description: "Associative Map of <String, String> for tagCategoryName =>\
+            \ tagName"
+          type: object
+        deliveryDate:
+          description: Date at which this inventory will become available. Expected
+            format '2020-09-28T12:00:00-0500'
+          type: DateTime
+      title: Refresh Item
+      type: object
+    RefreshRequest:
+      allOf:
+      - $ref: '#/components/schemas/RefreshRequest_allOf'
+      - $ref: '#/components/schemas/BaseRequest'
+      description: Request needed for refreshing inventory
+      required:
+      - locationCode
+      title: Refresh Request
+    AdjustItem:
+      description: Adjust Item
+      properties:
+        partNumber:
+          description: Part/Product Number
+          type: string
+        upc:
+          description: Universal Product Code
+          type: string
+        sku:
+          description: Stock Keeping Unit
+          type: string
+        binID:
+          description: Bin Location Identifier
+          type: integer
+        quantity:
+          description: Current Quantity of Item
+          type: integer
+        tags:
+          additionalProperties:
+            type: string
+          description: "Associative Map of <String, String> for tagCategoryName =>\
+            \ tagName"
+          type: object
+        deliveryDate:
+          description: Date at which this inventory will become available. Expected
+            format '2020-09-28T12:00:00-0500'
+          type: DateTime
+      title: Adjust Item
+      type: object
+    AdjustRequest:
+      allOf:
+      - $ref: '#/components/schemas/AdjustRequest_allOf'
+      - $ref: '#/components/schemas/BaseRequest'
+      description: Request needed for adjusting inventory
+      title: Adjust Request
+    DeleteItemRequest:
+      description: Request needed for deleting inventory
+      example:
+        explicit: true
+        allLocations: true
+        dryRun: true
+        upc: upc
+        partNumber: partNumber
+        locationCodes:
+        - locationCodes
+        - locationCodes
+        sku: sku
+        tags:
+          key: tags
+      properties:
+        dryRun:
+          description: Flag used to differentiate between a test and a non-test run.
+          type: boolean
+        explicit:
+          description: "Flag used to request explicit inventory, location, pick wave,\
+            \ and audit information for each request item."
+          type: boolean
+        locationCodes:
+          description: |-
+            An array of locationCodes to be considered for item-deletion purposes. Optional.
+                All locationCodes associated with the requesting tenant will be considered if no locationCodes are provided.
+          items:
+            type: string
+          type: array
+        allLocations:
+          description: Flag used to request deletion of inventory across all locations
+            (overrides locationCodes).
+          type: boolean
+        partNumber:
+          description: "The part number of the item to be deleted. Supports basic\
+            \ regex operators: .*+?^$[]"
+          type: string
+        upc:
+          description: "The upc of the item to be deleted. Supports basic regex operators:\
+            \ .*+?^$[]"
+          type: string
+        sku:
+          description: "The sku of the item to be deleted. Supports basic regex operators:\
+            \ .*+?^$[]"
+          type: string
+        tags:
+          additionalProperties:
+            type: string
+          description: "Associative Map of <String, String> for tagCategoryName =>\
+            \ tagName"
+          type: object
+      title: Delete Item Request
+      type: object
+    ProductIdentifier:
+      description: Product Identifier Model
+      example:
+        upc: upc
+        partNumber: partNumber
+        sku: sku
+      properties:
+        partNumber:
+          description: Part/Product Number
+          type: string
+        upc:
+          description: Universal Product Code
+          type: string
+        sku:
+          description: Stock Keeping Unit
+          type: string
+      title: ProductIdentifier
+      type: object
+    M_DeleteItem:
+      description: Delete Item Model
+      example:
+        auditIDs:
+        - 5
+        - 5
+        productID: 0
+        inventoryIDs:
+        - 6
+        - 6
+        locationIDs:
+        - 1
+        - 1
+        itemIdentifier:
+          upc: upc
+          partNumber: partNumber
+          sku: sku
+        locationCodes:
+        - locationCodes
+        - locationCodes
+      properties:
+        productID:
+          description: Product Identifier
+          type: integer
+        inventoryIDs:
+          description: List of inventory identifiers associated with the deleted item
+          items:
+            type: integer
+          type: array
+        locationIDs:
+          description: List of location identifiers associated with the deleted item
+          items:
+            type: integer
+          type: array
+        locationCodes:
+          description: List of location codes associated with the deleted item
+          items:
+            type: string
+          type: array
+        auditIDs:
+          description: List of audit identifiers associated with the deleted item
+          items:
+            type: integer
+          type: array
+        itemIdentifier:
+          $ref: '#/components/schemas/ProductIdentifier'
+      title: M_DeleteItem
+      type: object
+    DeleteItemResponse:
+      description: Delete Item Response
+      example:
+        jobIDs: true
+        dryRun: true
+        totalPickWavesDeleted: true
+        totalInventoryEntriesDeleted: true
+        totalAuditsDeleted: true
+        totalProductsDeleted: true
+        itemsDeleted:
+        - auditIDs:
+          - 5
+          - 5
+          productID: 0
+          inventoryIDs:
+          - 6
+          - 6
+          locationIDs:
+          - 1
+          - 1
+          itemIdentifier:
+            upc: upc
+            partNumber: partNumber
+            sku: sku
+          locationCodes:
+          - locationCodes
+          - locationCodes
+        - auditIDs:
+          - 5
+          - 5
+          productID: 0
+          inventoryIDs:
+          - 6
+          - 6
+          locationIDs:
+          - 1
+          - 1
+          itemIdentifier:
+            upc: upc
+            partNumber: partNumber
+            sku: sku
+          locationCodes:
+          - locationCodes
+          - locationCodes
+        totalLocationsAffected: true
+      properties:
+        dryRun:
+          description: Flag used to differentiate between a test and a non-test run.
+          type: boolean
+        itemsDeleted:
+          description: Items deleted due to the request
+          items:
+            $ref: '#/components/schemas/M_DeleteItem'
+          type: array
+        totalAuditsDeleted:
+          description: Flag used to differentiate between a test and a non-test run.
+          type: boolean
+        totalInventoryEntriesDeleted:
+          description: Flag used to differentiate between a test and a non-test run.
+          type: boolean
+        totalLocationsAffected:
+          description: Flag used to differentiate between a test and a non-test run.
+          type: boolean
+        totalPickWavesDeleted:
+          description: Flag used to differentiate between a test and a non-test run.
+          type: boolean
+        totalProductsDeleted:
+          description: Flag used to differentiate between a test and a non-test run.
+          type: boolean
+        jobIDs:
+          description: Flag used to differentiate between a test and a non-test run.
+          type: boolean
+      title: Delete Item Response
+      type: object
+    DeleteFutureItemRequest:
+      description: Request needed for deleting future inventory
+      example:
+        explicit: true
+        allLocations: true
+        dryRun: true
+        futureStartDate: 2000-01-23T04:56:07.000+00:00
+        upc: upc
+        partNumber: partNumber
+        locationCodes:
+        - locationCodes
+        - locationCodes
+        sku: sku
+        futureEndDate: 2000-01-23T04:56:07.000+00:00
+      properties:
+        dryRun:
+          description: Flag used to differentiate between a test and a non-test run.
+          type: boolean
+        explicit:
+          description: "Flag used to request explicit inventory, location, pick wave,\
+            \ and audit information for each request item."
+          type: boolean
+        locationCodes:
+          description: |-
+            An array of locationCodes to be considered for item-deletion purposes. Optional.
+                All locationCodes associated with the requesting tenant will be considered if no locationCodes are provided.
+          items:
+            type: string
+          type: array
+        allLocations:
+          description: Flag used to request deletion of future inventory across all
+            locations (overrides locationCodes).
+          type: boolean
+        partNumber:
+          description: "The part number of the item to be deleted. Supports basic\
+            \ regex operators: .*+?^$[]"
+          type: string
+        upc:
+          description: "The upc of the item to be deleted. Supports basic regex operators:\
+            \ .*+?^$[]"
+          type: string
+        sku:
+          description: "The sku of the item to be deleted. Supports basic regex operators:\
+            \ .*+?^$[]"
+          type: string
+        futureStartDate:
+          description: Start of future date range to search on. Required field example
+            '2023-01-26T19:59:00+0000'
+          format: date-time
+          type: string
+        futureEndDate:
+          description: End of future date range to search on. Required Field example
+            '2023-01-26T19:59:00+0000'
+          format: date-time
+          type: string
+      title: Delete Future Item Request
+      type: object
+    DeleteFutureItemResponse:
+      description: Delete Future Item Response
+      example:
+        jobIDs: true
+        dryRun: true
+        totalInventoryEntriesDeleted: true
+        itemsDeleted:
+        - auditIDs:
+          - 5
+          - 5
+          productID: 0
+          inventoryIDs:
+          - 6
+          - 6
+          locationIDs:
+          - 1
+          - 1
+          itemIdentifier:
+            upc: upc
+            partNumber: partNumber
+            sku: sku
+          locationCodes:
+          - locationCodes
+          - locationCodes
+        - auditIDs:
+          - 5
+          - 5
+          productID: 0
+          inventoryIDs:
+          - 6
+          - 6
+          locationIDs:
+          - 1
+          - 1
+          itemIdentifier:
+            upc: upc
+            partNumber: partNumber
+            sku: sku
+          locationCodes:
+          - locationCodes
+          - locationCodes
+        totalLocationsAffected: true
+      properties:
+        dryRun:
+          description: Flag used to differentiate between a test and a non-test run.
+          type: boolean
+        itemsDeleted:
+          description: Items deleted due to the request
+          items:
+            $ref: '#/components/schemas/M_DeleteItem'
+          type: array
+        totalInventoryEntriesDeleted:
+          description: Flag used to differentiate between a test and a non-test run.
+          type: boolean
+        totalLocationsAffected:
+          description: Flag used to differentiate between a test and a non-test run.
+          type: boolean
+        jobIDs:
+          description: Flag used to differentiate between a test and a non-test run.
+          type: boolean
+      title: Delete Future Item Response
+      type: object
+    DeleteItemsRequest:
+      description: Request needed for deleting inventory
+      example:
+        explicit: true
+        allLocations: true
+        dryRun: true
+        locationCodes:
+        - locationCodes
+        - locationCodes
+        items:
+        - upc: upc
+          partNumber: partNumber
+          sku: sku
+          tags:
+            key: tags
+        - upc: upc
+          partNumber: partNumber
+          sku: sku
+          tags:
+            key: tags
+        tags:
+          key: tags
+      properties:
+        dryRun:
+          description: Flag used to differentiate between a test and a non-test run.
+          type: boolean
+        explicit:
+          description: "Flag used to request explicit inventory, location, pick wave,\
+            \ and audit information for each request item."
+          type: boolean
+        locationCodes:
+          description: |-
+            An array of locationCodes to be considered for item-deletion purposes. Optional.
+                All locationCodes associated with the requesting tenant will be considered if no locationCodes are provided.
+          items:
+            type: string
+          type: array
+        allLocations:
+          description: Flag used to request deletion of inventory across all locations
+            (overrides locationCodes).
+          type: boolean
+        items:
+          description: "List of items to delete. Supports basic regex operators: .*+?^$[]"
+          items:
+            $ref: '#/components/schemas/InventoryItem'
+          type: array
+        tags:
+          additionalProperties:
+            type: string
+          description: "Associative Map of <String, String> for tagCategoryName =>\
+            \ tagName"
+          type: object
+      title: Delete Item Request
+      type: object
+    InventoryFutureInventory:
+      description: Future Inventory Model
+      properties:
+        futureInventoryID:
+          description: Future Inventory unique identifier.
+          type: integer
+        onhand:
+          description: Expected change in the actual onhand inventory value when this
+            future inventory record is released.
+          type: integer
+        available:
+          description: Expected change in the actual available inventory value when
+            this future inventory record is released.
+          type: integer
+        allocated:
+          description: Expected change in the actual allocated inventory value when
+            this future inventory record is released.
+          type: integer
+        pending:
+          description: Number of new expected pending items that would be created
+            by releasing this future inventory record assuming no actual inventory
+            is available
+          type: integer
+        type:
+          description: "Type of future inventory update: REFRESH or ADJUST."
+          type: string
+        deliveryDate:
+          description: Date at which this inventory will become available. Expected
+            format '2020-09-28T12:00:00-0500'
+          type: DateTime
+        createDate:
+          description: Date the inventory was created.
+          type: DateTime
+      title: Future Inventory
+      type: object
+    InventoryItem:
+      description: Item
+      example:
+        upc: upc
+        partNumber: partNumber
+        sku: sku
+        tags:
+          key: tags
+      properties:
+        partNumber:
+          description: Part/Product Number
+          type: string
+        upc:
+          description: Universal Product Code
+          type: string
+        sku:
+          description: Stock Keeping Unit
+          type: string
+        tags:
+          additionalProperties:
+            type: string
+          description: "Associative Map of <String, String> for tagCategoryName =>\
+            \ tagName"
+          type: object
+      title: Item
+      type: object
+    InventoryTag:
+      description: Request/Response object for a tag
+      example:
+        isDefault: true
+        tagID: 0
+        tagValue: tagValue
+        created: created
+        percent: 6
+        updated: updated
+      properties:
+        tagID:
+          description: Tag ID
+          type: integer
+        tagValue:
+          description: Tag Value
+          type: string
+        isDefault:
+          description: Whether or not this tag is the default tag for its category.
+          type: boolean
+        percent:
+          description: Percentage of available inventory this tag will get when the
+            percentage update is performed. Must be between 0 and 100 (inclusive).
+          type: integer
+        created:
+          description: Date this tag was created
+          type: string
+        updated:
+          description: Date this tag was last updated
+          type: string
+      title: Tag Response
+      type: object
+    InventoryTagQuantity:
+      description: Response object for a tag quantity
+      properties:
+        onHand:
+          description: The quantity the the location has in its possession for this
+            tag
+          type: integer
+        available:
+          description: The quantity the location has that are available for purchase
+            for this tag
+          type: integer
+        allocated:
+          description: The quantity the location has that are already allocated for
+            this tag
+          type: integer
+        pending:
+          description: The quantity the location has that are pending for this tag
+          type: integer
+        tags:
+          additionalProperties:
+            type: string
+          description: "Associative Map of <String, String> for tagCategoryName =>\
+            \ tagName"
+          type: object
+        futureInventory:
+          items:
+            $ref: '#/components/schemas/InventoryFutureInventory'
+          type: array
+      title: Tag quantity response
+      type: object
+    InventoryInventoryResponse:
+      allOf:
+      - $ref: '#/components/schemas/InventoryInventoryResponse_allOf'
+      - $ref: '#/components/schemas/BaseResponse'
+      description: Inventory Response
+      title: Inventory Response
+    getShipmentInventoryAllocations_500_response:
+      properties:
+        error:
+          type: string
+        message:
+          $ref: '#/components/schemas/ShipmentInventoryAllocationResponse'
+      type: object
+    adjustFutureDate_404_response:
+      properties:
+        error:
+          type: string
+        message:
+          type: string
+      type: object
+    allocateInventory_500_response:
+      properties:
+        error:
+          type: string
+        message:
+          $ref: '#/components/schemas/BaseResponse'
+      type: object
+    CreateExportSettingsRequest_allOf:
+      properties:
+        exportSettings:
+          $ref: '#/components/schemas/ExportSettings'
+      example: null
+    UpdateExportSettingsResponse_allOf:
+      properties:
+        tenantID:
+          description: Tenant ID
+          type: integer
+        name:
+          description: Name
+          type: string
+      example: null
+    CreateExportSettingsFTPRequest_allOf:
+      properties:
+        exportSettingsName:
+          description: Export Settings Name to associate the ftp settings with
+          type: string
+        exportSettingsFTP:
+          $ref: '#/components/schemas/ExportSettingsFTP'
+      example: null
+    UpdateExportSettingsFTPResponse_allOf:
+      properties:
+        tenantID:
+          description: Tenant ID
+          type: integer
+        exportSettingsFTPName:
+          description: Export Settings FTP Name
+          type: string
+        exportSettingsName:
+          description: Export Settings Name to associate the ftp settings with
+          type: string
+      example: null
+    CreateExportSettingsS3Request_allOf:
+      properties:
+        exportSettingsName:
+          description: Export Settings Name to associate the ftp settings with
+          type: string
+        exportSettingsS3:
+          $ref: '#/components/schemas/ExportSettingsS3'
+      example: null
+    UpdateExportSettingsS3Response_allOf:
+      properties:
+        tenantID:
+          description: Tenant ID
+          type: integer
+        exportSettingsS3ID:
+          description: Export Settings S3 ID
+          type: integer
+        exportSettingsID:
+          description: Export Settings ID to associate the s3 settings with
+          type: integer
+      example: null
+    LocationResponse_allOf:
+      properties:
+        locationID:
+          description: Internal Location ID
+          type: integer
+        tenantID:
+          description: Tenant ID
+          type: integer
+        locationCode:
+          description: Location Code
+          type: string
+        express:
+          description: Flag for whether the location is express enabled or not
+          type: boolean
+        includeInLocationExport:
+          description: Flag for whether the location is to be included in location
+            exports
+          type: boolean
+        includeInAggregate:
+          description: Flag for whether the location is to be included in aggregate
+            exports
+          type: boolean
+        active:
+          description: Flag for whether the location is active
+          type: boolean
+        directShip:
+          description: Flag for whether the location allows Direct Ship (STH) orders
+          type: boolean
+        pickup:
+          description: Flag for whether the location allows Pickup (BOPIS) orders
+          type: boolean
+        transferEnabled:
+          description: Flag for whether the location allows Transfer orders
+          type: boolean
+        postalCode:
+          description: Postal Code
+          type: string
+        countryCode:
+          description: Country Code
+          type: string
+        latitude:
+          description: Latitude
+          type: float
+        longitude:
+          description: Longitude
+          type: float
+        locationName:
+          description: Location Name
+          type: string
+        wmsEnabled:
+          description: Flag for whether the location is WMS Enabled
+          type: boolean
+      example: null
+    LocationGroupResponse_allOf:
+      properties:
+        locationGroupID:
+          description: Location Group ID
+          type: integer
+        tenantID:
+          description: Tenant ID
+          type: integer
+        locationGroupCode:
+          description: Location Group Code
+          type: string
+        created:
+          description: Created
+          type: string
+        adminLocationGroupID:
+          description: Admin Location Group ID
+          type: integer
+        sites:
+          description: Site IDs
+          items:
+            type: integer
+          type: array
+        locationCodes:
+          description: Location IDs
+          items:
+            type: string
+          type: array
+      example: null
+    JobQueueResponse_allOf:
+      properties:
+        jobID:
+          description: Internal identifier that uniquely identifies a single job
+          type: integer
+        tenantID:
+          description: Unique internal identifier of the tenant that owns the job
+          type: integer
+        locationCode:
+          description: Unique internal Identifier of the owning location
+          type: string
+        type:
+          description: Purpose of the job
+          enum:
+          - REFRESH
+          - ADJUST
+          - RELEASE_SHIPMENTS
+          - CREATE_PICK_WAVE
+          - CLOSE_PICK_WAVE
+          - PUT_AWAY_FILE
+          - SHORT_PICK_ERROR
+          - BIN_AUDIT_START
+          - BIN_AUDIT_COMPLETION
+          - CREATE_BIN_AUDIT
+          - RELEASE_PENDING_ITEMS
+          - ALLOCATE
+          - DEALLOCATE
+          - FULFILL
+          - DELETE
+          type: string
+        added:
+          description: Time and date the job was added to the queue in ISO8601 format
+            in UTC
+          type: string
+        started:
+          description: Time and date the job was started in ISO8601 format in UTC
+          type: string
+        finished:
+          description: Time and date the job was finished in ISO8601 format in UTC
+          type: string
+        originalFilename:
+          description: The full name of the file that was picked up at the secure
+            droppoint server before being split up by location. Applies only to refresh
+            and adjust jobs created via file fetch process
+          type: string
+        hasData:
+          description: True if the job was not created from a fetched file
+          type: boolean
+        itemCount:
+          description: "The number of items processed, only for job types REFRESH\
+            \ and ADJUST"
+          type: integer
+        status:
+          description: Current status of job completion
+          enum:
+          - PENDING
+          - WORKING
+          - SUCCESS
+          - FAILED
+          type: string
+      example: null
+    AllocateInventoryRequest_allOf:
+      properties:
+        items:
+          description: list of AllocateItems
+          items:
+            $ref: '#/components/schemas/AllocateItem'
+          type: array
+        orderDate:
+          description: order date
+          type: string
+        orderWeight:
+          description: order weight
+          type: integer
+        decrementOnHandOnDeallocate:
+          description: flag to determine deallocation on decrements
+          type: boolean
+        autoAssign:
+          description: flag to determine whether the allocation was due to auto assignment
+          type: boolean
+      example: null
+    TransitionCartRequest_allOf:
+      properties:
+        items:
+          description: list of TransitionCartItem
+          items:
+            $ref: '#/components/schemas/TransitionCartItem'
+          type: array
+        cartID:
+          description: Cart ID that we are transitioning the allocation from
+          type: string
+        orderID:
+          description: Order ID for the cart to transition to
+          type: integer
+      example: null
+    BlockAssignmentRequest_allOf:
+      properties:
+        items:
+          description: list of items for blocking Assignment
+          items:
+            $ref: '#/components/schemas/BlockAssignmentItem'
+          type: array
+      example: null
+    ExportInventoryRequest_allOf:
+      properties:
+        exportSettingsName:
+          description: Name of the Export Settings to use
+          type: string
+        exportSettingsFTPName:
+          description: Name of the FTP Settings to use. Will only check for this if
+            exportID is already set
+          type: string
+        exportSettingsS3Name:
+          description: Name of the S3 Settings to use. Will only check for this if
+            exportID is already set
+          type: string
+        development:
+          description: Flag for sending the exports to the development droppoint
+          type: boolean
+      example: null
+    FetchFileConfigRequest_allOf:
+      properties:
+        fetchFileConfigID:
+          description: Fetch File Config ID
+          type: integer
+        active:
+          description: Flag for active state
+          type: boolean
+        emailList:
+          description: Email List
+          type: string
+        refreshEnabled:
+          description: Flag for Refresh Enabled
+          type: boolean
+        refreshFileDescription:
+          description: Description for the refresh file
+          type: string
+        updateEnabled:
+          description: Flag for Update Enabled
+          type: boolean
+        updateFileDescription:
+          description: Description for the update file
+          type: string
+        ftpServer:
+          description: FTP server address
+          type: string
+        ftpUsername:
+          description: FTP server username
+          type: string
+        ftpPassword:
+          description: FTP server password
+          type: string
+        ftpPort:
+          description: FTP server port
+          type: integer
+        ftpRemotePath:
+          description: FTP server remote path
+          type: string
+        ftpRemotePathArchive:
+          description: FTP server remote path archive
+          type: string
+        region:
+          description: S3 Region
+          type: string
+        bucket:
+          description: S3 Bucket
+          type: string
+        s3Path:
+          description: S3 Bucket Path (directory)
+          type: string
+        archiveBucket:
+          description: S3 Archive Bucket
+          type: string
+        s3ArchivePath:
+          description: S3 Archive Bucket Path (directory)
+          type: string
+        lockName:
+          description: Lock name
+          type: string
+        postProcessAction:
+          description: Enum denoting action post processing
+          type: integer
+        useControlFile:
+          description: Flag for using control file
+          type: boolean
+        multipleFiles:
+          description: Flag for using multiple files
+          type: boolean
+        zeroOutNegatives:
+          description: Flag for converting negatives to zero
+          type: boolean
+        testFTPConfigs:
+          description: Flag for if its a test ftp config
+          type: boolean
+        fieldNameMap:
+          description: List of field names
+          items:
+            type: string
+          type: array
+        ignoreExtraFields:
+          description: Flag for ignoring extra fields
+          type: boolean
+        blankQuantityIsZero:
+          description: Flag to convert null quantities to zero
+          type: boolean
+        csvDelimiter:
+          description: Delimiter
+          type: string
+        productMapping:
+          description: Enum for fetch file productMapping
+          enum:
+          - SWAP_PART_NUMBER_WITH_UPC
+          - SWAP_SKU_WITH_UPC
+          title: productMapping
+          type: string
+      example: null
+    InventoryRequest_allOf:
+      properties:
+        type:
+          description: Inventory Request Type Enum
+          enum:
+          - ALL
+          - PARTIAL
+          - ANY
+          - ALL_STORES
+          type: string
+        items:
+          description: List of Items to search on
+          items:
+            $ref: '#/components/schemas/ItemQuantity'
+          type: array
+        requestLocation:
+          $ref: '#/components/schemas/RequestLocation'
+        limit:
+          description: "The maximum number of results to return, defaults to 100 for\
+            \ most"
+          type: integer
+        locationWhitelist:
+          description: List of location codes that are allowed to be included in results
+          items:
+            type: string
+          type: array
+        locationPriorityList:
+          description: "List of location codes that should be returned before all\
+            \ others, preventing them from being excluded by limit"
+          items:
+            type: string
+          type: array
+        locationBlacklist:
+          description: List of location codes that are NOT allowed to be included
+            in results
+          items:
+            type: string
+          type: array
+        ignoreSafetyStock:
+          description: Whether to ignore the safety stock buffer put in place
+          type: boolean
+        includeNegativeInventory:
+          description: Whether to allow items with negative inventory in the results
+          type: boolean
+        directShip:
+          description: Whether to limit results to locations that are shipping enabled
+          type: boolean
+        transferEnabled:
+          description: Filter results by locations that have transfer enabled (true)
+            or don't (false)
+          type: boolean
+        pickup:
+          description: Filter results by locations that have finderbot enabled (true)
+            or don't (false)
+          type: boolean
+        includeInAggregateExport:
+          description: Filter results by locations that have aggregate export enabled
+            (true) or don't (false)
+          type: boolean
+        includeInLocationExport:
+          description: Filter results by locations that have physical storefronts
+            (true) or don't (false)
+          type: boolean
+        excludeBlockedAssignment:
+          description: 'Filter out results that are blocked from assignment (at the
+            product/location level) '
+          type: boolean
+        includeAttributes:
+          description: Flag to include attributes or not
+          type: boolean
+        includeFutureInventory:
+          description: "If set to true, include future inventory in response (records\
+            \ that were set with a deliveryDate)."
+          type: boolean
+        includeNegativeFutureInventory:
+          description: Whether to allow items with negative future inventory in the
+            results
+          type: boolean
+        deliveryDateBefore:
+          description: DateTime to filter for only future inventory with a delivery
+            date before or equal to the given date
+          type: DateTime
+        deliveryDateAfter:
+          description: DateTime to filter for only future inventory with a delivery
+            date after or equal to the given date
+          type: DateTime
+        sortByEnum:
+          description: What to sort the inventory results by. Only used for GetInventoryByLocation
+            calls (locationCode must be set)
+          enum:
+          - ON_HAND
+          - AVAILABLE
+          - ALLOCATED
+          - PART_NUMBER
+          - PRODUCT_ID
+          type: string
+        sortDescending:
+          description: Whether to sort by descending order or not. Must be used in
+            conjunction with the sortByEnum value
+          type: boolean
+        forceDefaultsForUnspecifiedTagCategories:
+          description: Whether to force populate default tags onto the request if
+            they are unspecified for any tag category
+          type: boolean
+        tags:
+          additionalProperties:
+            type: string
+          description: "Associative Map of <String, String> for tagCategoryName =>\
+            \ tagName"
+          type: object
+      example: null
+    AggregateRequest_allOf:
+      properties:
+        items:
+          description: List of Items to search on
+          items:
+            $ref: '#/components/schemas/InventoryItem'
+          type: array
+        ignoreSafetyStock:
+          description: Whether to ignore the safety stock buffer put in place
+          type: boolean
+        includeNegativeInventory:
+          description: Whether to allow items with negative inventory in the results
+          type: boolean
+        directShip:
+          description: Whether to limit results to locations that are shipping enabled
+          type: boolean
+        transferEnabled:
+          description: Filter results by locations that apply tax (true) or don't
+            (false)
+          type: boolean
+        pickup:
+          description: Filter results by pickup enabled (true) or not (false)
+          type: boolean
+        tags:
+          additionalProperties:
+            type: string
+          description: "Associative Map of <String, String> for tagCategoryName =>\
+            \ tagName"
+          type: object
+        includeFutureInventory:
+          description: Include future inventory or not
+          enum:
+          - FUTURE_ONLY
+          - FUTURE_AND_CURRENT
+          type: string
+        includeNegativeFutureInventory:
+          description: Whether to allow items with negative future inventory in the
+            results
+          type: boolean
+        futureStartDate:
+          description: Future start Date at which the inventory should be allocated
+            against.
+          type: DateTime
+        futureEndDate:
+          description: Future end Date at which the inventory should be allocated
+            against.
+          type: DateTime
+        forceDefaultsForUnspecifiedTagCategories:
+          description: Whether to force populate default tags onto the request if
+            they are unspecified for any tag category
+          type: boolean
+      example: null
+    AggregateResponse_allOf:
+      properties:
+        tenantID:
+          description: Manufacturer Identifier
+          type: integer
+        onHand:
+          description: The quantity the location has in its possession
+          type: integer
+        available:
+          description: The quantity the location has that are available for purchase
+          type: integer
+        partNumber:
+          description: Part/Product Number
+          type: string
+        upc:
+          description: Universal Product Code
+          type: string
+        sku:
+          description: Stock Keeping Unit
+          type: string
+        floor:
+          description: Absolute minimum quantity of this item that should be in stock
+            at any time
+          type: integer
+        tags:
+          additionalProperties:
+            type: string
+          description: "Associative Map of <String, String> for tagCategoryName =>\
+            \ tagName"
+          type: object
+      example: null
+    RefreshRequest_allOf:
+      properties:
+        items:
+          description: List of items to refresh
+          items:
+            $ref: '#/components/schemas/RefreshItem'
+          type: array
+      example: null
+    AdjustRequest_allOf:
+      properties:
+        items:
+          description: List of items to adjust
+          items:
+            $ref: '#/components/schemas/AdjustItem'
+          type: array
+      example: null
+    InventoryInventoryResponse_allOf:
+      properties:
+        locationName:
+          description: Location Name
+          type: string
+        locationCode:
+          description: Location Code
+          type: string
+        tenantID:
+          description: Tenant Identifier
+          type: integer
+        onHand:
+          description: The quantity the location has in its possession
+          type: integer
+        available:
+          description: The quantity the location has that are available for purchase
+          type: integer
+        allocated:
+          description: The quantity the location has that are already allocated.
+          type: integer
+        pending:
+          description: The quantity the location has that are pending.
+          type: integer
+        partNumber:
+          description: Part/Product Number
+          type: string
+        upc:
+          description: Universal Product Code
+          type: string
+        sku:
+          description: Stock Keeping Unit
+          type: string
+        blockAssignment:
+          description: Whether or not the product is blocked for assignment
+          type: boolean
+        ltd:
+          description: Custom field used for store prioritization
+          type: number
+        floor:
+          description: Absolute minimum quantity of this item that should be in stock
+            at any time
+          type: integer
+        safetyStock:
+          description: Quantity of this item the location wants to keep in stock to
+            ensure stock isn't completely depleted
+          type: integer
+        distance:
+          description: The distance in miles from this location to the item's destination
+          type: number
+        directShip:
+          description: Whether this location can ship to a consumer
+          type: boolean
+        transferEnabled:
+          description: "Whether the location can ship to another location (store),\
+            \ thus restocking that location."
+          type: boolean
+        pickup:
+          description: Whether a consumer can pick up product at this location (store)
+          type: boolean
+        countryCode:
+          description: The country code of this location
+          type: string
+        currencyID:
+          description: The currency identifier for the retailPrice
+          type: integer
+        retailPrice:
+          description: The price of the product at this location
+          type: number
+        inventoryLocatorName:
+          description: The inventory locator name of the individual item
+          type: string
+        attributes:
+          description: List of Inventory Attributes
+          items:
+            type: string
+          type: array
+        taggedInventory:
+          items:
+            $ref: '#/components/schemas/InventoryTagQuantity'
+          type: array
+        futureInventory:
+          items:
+            $ref: '#/components/schemas/InventoryFutureInventory'
+          type: array
+      example: null
+  securitySchemes:
+    bearerAuth:
+      bearerFormat: JWT
+      description: JWT Authorization header using the Bearer scheme.
+      scheme: bearer
+      type: http
+    clientOauth2:
+      flows:
+        clientCredentials:
+          scopes: {}
+          tokenUrl: /api/platform/applications/authtickets/oauth
+      type: oauth2
+

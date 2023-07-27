@@ -1,0 +1,1331 @@
+openapi: 3.0.1
+info:
+  description: OpenAPI Spec for Kibo Event Service
+  title: Kibo Event Service
+servers:
+- description: HomePod Host
+  url: "https://{homePodHost}/api"
+- description: Tenant Level Api
+  url: "https://t{tenantId}.{env}.mozu.com/api"
+  variables:
+    tenantId:
+      default: "0"
+      description: Id of the Tenant
+    env:
+      default: sandbox
+      enum:
+      - sandbox
+      - tp1
+      - tp2
+      - tp3
+      - tp4
+      - tp5
+      - stg1
+      - stg2
+- description: Site Level Api
+  url: "https://t{tenantId}-s{siteId}.{env}.mozu.com/api"
+  variables:
+    tenantId:
+      default: "0"
+      description: Id of the Tenant
+    siteId:
+      default: "0"
+      description: Id of the Site
+    env:
+      default: sandbox
+      enum:
+      - sandbox
+      - tp1
+      - tp2
+      - tp3
+      - tp4
+      - tp5
+      - stg1
+- description: HomePod Api
+  url: https://home.mozu.com/api
+- description: EURO Tenant Level Api
+  url: "https://t{tenantId}.{env}.euw1.kibocommerce.com/api"
+  variables:
+    tenantId:
+      default: "0"
+      description: Id of the Tenant
+    env:
+      default: sandbox
+      enum:
+      - sb
+      - tp1
+- description: EURO Site Level Api
+  url: "https://t{tenantId}-s{siteId}.{env}.euw1.kibocommerce.com/api"
+  variables:
+    tenantId:
+      default: "0"
+      description: Id of the Tenant
+    siteId:
+      default: "0"
+      description: Id of the Site
+    env:
+      default: sandbox
+      enum:
+      - sb
+      - tp1
+- description: EURO HomePod Api
+  url: https://home.euw1.kibocommerce.com/api
+security:
+- bearerAuth: []
+  clientOauth2: []
+paths:
+  /event/pull:
+    get:
+      description: Retrieves a list of events according to any specified filter criteria
+        and sort options.
+      operationId: getEvents
+      parameters:
+      - description: "Used to page results from a query. Indicates the zero-based\
+          \ offset in the complete result set where the returned entities begin. For\
+          \ example, with a PageSize of 25, to get the 51st through the 75th items,\
+          \ startIndex=3. The default value is 0. Optional."
+        explode: true
+        in: query
+        name: startIndex
+        required: false
+        schema:
+          default: 0
+          format: int32
+          type: integer
+        style: form
+      - description: Used to page results from a query. Indicates the maximum number
+          of entities to return from a query. The default value is 20 and the maximum
+          value is 200. Optional.
+        explode: true
+        in: query
+        name: pageSize
+        required: false
+        schema:
+          default: 0
+          format: int32
+          type: integer
+        style: form
+      - description: The element to sort the results by and the order in which the
+          results appear. Either ascending (a-z) or descending (z-a) order. Optional.
+        explode: true
+        in: query
+        name: sortBy
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: "A set of filter expressions representing the search parameters\
+          \ for a query: eq=equals, ne=not equals, gt=greater than, lt = less than\
+          \ or equals, gt = greater than or equals, lt = less than or equals, sw =\
+          \ starts with, or cont = contains. Optional."
+        explode: true
+        in: query
+        name: filter
+        required: false
+        schema:
+          type: string
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EventCollection'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/EventCollection'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/EventCollection'
+          description: Success
+      summary: Get Events
+      tags:
+      - Event
+      x-accepts: application/json
+  /event/pull/{eventId}:
+    get:
+      description: Retrieves the details of a single event.
+      operationId: getEvent
+      parameters:
+      - description: Unique identifier of the event. System-supplied and read-only.
+        explode: false
+        in: path
+        name: eventId
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EventEvent'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/EventEvent'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/EventEvent'
+          description: Success
+      summary: Get Event
+      tags:
+      - Event
+      x-accepts: application/json
+  /event/push/subscriptions/deliveryattempts:
+    get:
+      description: Get delivery attempts
+      operationId: getDeliveryAttemptSummariesAllSubscriptions
+      parameters:
+      - description: "Used to page results from a query. Indicates the zero-based\
+          \ offset in the complete result set where the returned entities begin. For\
+          \ example, with a PageSize of 25, to get the 51st through the 75th items,\
+          \ startIndex=3. The default value is 0. Optional."
+        explode: true
+        in: query
+        name: startIndex
+        required: false
+        schema:
+          default: 0
+          format: int32
+          type: integer
+        style: form
+      - description: Used to page results from a query. Indicates the maximum number
+          of entities to return from a query. The default value is 20 and the maximum
+          value is 200. Optional.
+        explode: true
+        in: query
+        name: pageSize
+        required: false
+        schema:
+          default: 0
+          format: int32
+          type: integer
+        style: form
+      - description: The element to sort the results by and the order in which the
+          results appear. Either ascending (a-z) or descending (z-a) order. Optional.
+        explode: true
+        in: query
+        name: sortBy
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: "A set of filter expressions representing the search parameters\
+          \ for a query: eq=equals, ne=not equals, gt=greater than, lt = less than\
+          \ or equals, gt = greater than or equals, lt = less than or equals, sw =\
+          \ starts with, or cont = contains. Optional."
+        explode: true
+        in: query
+        name: filter
+        required: false
+        schema:
+          type: string
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EventDeliverySummaryCollection'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/EventDeliverySummaryCollection'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/EventDeliverySummaryCollection'
+          description: Success
+      summary: Get Delivery Attempt Summaries All Subscriptions
+      tags:
+      - Subscription
+      x-accepts: application/json
+  /event/push/subscriptions/{subscriptionId}/deliveryattempts:
+    get:
+      description: Get delivery attempts for the specified subscription
+      operationId: getDeliveryAttemptSummaries
+      parameters:
+      - description: Subscription Identifier.
+        explode: false
+        in: path
+        name: subscriptionId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: "Used to page results from a query. Indicates the zero-based\
+          \ offset in the complete result set where the returned entities begin. For\
+          \ example, with a PageSize of 25, to get the 51st through the 75th items,\
+          \ startIndex=3. The default value is 0. Optional."
+        explode: true
+        in: query
+        name: startIndex
+        required: false
+        schema:
+          default: 0
+          format: int32
+          type: integer
+        style: form
+      - description: Used to page results from a query. Indicates the maximum number
+          of entities to return from a query. The default value is 20 and the maximum
+          value is 200. Optional.
+        explode: true
+        in: query
+        name: pageSize
+        required: false
+        schema:
+          default: 0
+          format: int32
+          type: integer
+        style: form
+      - description: The element to sort the results by and the order in which the
+          results appear. Either ascending (a-z) or descending (z-a) order. Optional.
+        explode: true
+        in: query
+        name: sortBy
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: "A set of filter expressions representing the search parameters\
+          \ for a query: eq=equals, ne=not equals, gt=greater than, lt = less than\
+          \ or equals, gt = greater than or equals, lt = less than or equals, sw =\
+          \ starts with, or cont = contains. Optional."
+        explode: true
+        in: query
+        name: filter
+        required: false
+        schema:
+          type: string
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EventDeliverySummaryCollection'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/EventDeliverySummaryCollection'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/EventDeliverySummaryCollection'
+          description: Success
+      summary: Get Delivery Attempt Summaries
+      tags:
+      - Subscription
+      x-accepts: application/json
+  /event/push/subscriptions/{subscriptionId}/deliveryattempts/{processId}:
+    get:
+      description: Get delivery attempt summary
+      operationId: getDeliveryAttemptSummary
+      parameters:
+      - description: ""
+        explode: false
+        in: path
+        name: subscriptionId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - explode: false
+        in: path
+        name: processId
+        required: true
+        schema:
+          format: int32
+          type: integer
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EventDeliverySummary'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/EventDeliverySummary'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/EventDeliverySummary'
+          description: Success
+      summary: Get Delivery Attempt Summary
+      tags:
+      - Subscription
+      x-accepts: application/json
+  /event/push/subscriptions:
+    get:
+      description: Retrieves a list of events according to any specified filter criteria
+        and sort options.
+      operationId: getSubscriptions
+      parameters:
+      - description: "Used to page results from a query. Indicates the zero-based\
+          \ offset in the complete result set where the returned entities begin. For\
+          \ example, with a PageSize of 25, to get the 51st through the 75th items,\
+          \ startIndex=3. The default value is 0. Optional."
+        explode: true
+        in: query
+        name: startIndex
+        required: false
+        schema:
+          default: 0
+          format: int32
+          type: integer
+        style: form
+      - description: Used to page results from a query. Indicates the maximum number
+          of entities to return from a query. The default value is 20 and the maximum
+          value is 200. Optional.
+        explode: true
+        in: query
+        name: pageSize
+        required: false
+        schema:
+          default: 0
+          format: int32
+          type: integer
+        style: form
+      - description: The element to sort the results by and the order in which the
+          results appear. Either ascending (a-z) or descending (z-a) order. Optional.
+        explode: true
+        in: query
+        name: sortBy
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: "A set of filter expressions representing the search parameters\
+          \ for a query: eq=equals, ne=not equals, gt=greater than, lt = less than\
+          \ or equals, gt = greater than or equals, lt = less than or equals, sw =\
+          \ starts with, or cont = contains. Optional."
+        explode: true
+        in: query
+        name: filter
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: "Used to get more specific information from the request.  Available\
+          \ response groups: SubscribingSites."
+        explode: true
+        in: query
+        name: responseGroups
+        required: false
+        schema:
+          type: string
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EventSubscriptionCollection'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/EventSubscriptionCollection'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/EventSubscriptionCollection'
+          description: Success
+      summary: Get Subscriptions
+      tags:
+      - Subscription
+      x-accepts: application/json
+components:
+  schemas:
+    EventExtendedProperty:
+      additionalProperties: false
+      description: Event Extended Property
+      example:
+        value: ""
+        key: key
+      properties:
+        key:
+          nullable: true
+          type: string
+        value:
+          nullable: true
+      type: object
+    EventCollection:
+      additionalProperties: false
+      description: Collection of events returned as a whole.
+      example:
+        startIndex: 0
+        pageCount: 1
+        pageSize: 6
+        totalCount: 5
+        items:
+        - auditInfo:
+            updateDate: 2000-01-23T04:56:07.000+00:00
+            createBy: createBy
+            updateBy: updateBy
+            createDate: 2000-01-23T04:56:07.000+00:00
+          extendedProperties:
+          - value: ""
+            key: key
+          - value: ""
+            key: key
+          catalogId: 7
+          isTest: true
+          tenantId: 5
+          siteId: 9
+          topic: topic
+          entityId: entityId
+          correlationId: correlationId
+          id: id
+          masterCatalogId: 2
+        - auditInfo:
+            updateDate: 2000-01-23T04:56:07.000+00:00
+            createBy: createBy
+            updateBy: updateBy
+            createDate: 2000-01-23T04:56:07.000+00:00
+          extendedProperties:
+          - value: ""
+            key: key
+          - value: ""
+            key: key
+          catalogId: 7
+          isTest: true
+          tenantId: 5
+          siteId: 9
+          topic: topic
+          entityId: entityId
+          correlationId: correlationId
+          id: id
+          masterCatalogId: 2
+      properties:
+        startIndex:
+          format: int32
+          type: integer
+        pageSize:
+          format: int32
+          type: integer
+        pageCount:
+          format: int32
+          type: integer
+        totalCount:
+          format: int32
+          type: integer
+        items:
+          items:
+            $ref: '#/components/schemas/EventEvent'
+          nullable: true
+          type: array
+      type: object
+    EventSummary:
+      additionalProperties: false
+      description: "Event Summary is a trimmed version of an event that is utilized\
+        \ when displaying the event delivery (aka webhook, HTTP callback, HTTP POST)\
+        \ process history/details"
+      example:
+        eventId: eventId
+        extendedProperties:
+        - value: ""
+          key: key
+        - value: ""
+          key: key
+        catalogId: 9
+        tenantId: 2
+        siteId: 3
+        topic: topic
+        entityId: entityId
+        correlationId: correlationId
+        masterCatalogId: 7
+        createDate: 2000-01-23T04:56:07.000+00:00
+      properties:
+        eventId:
+          description: "Note: Remember in the contract version to convert this Guid\
+            \ to ToString(\"N\") so the dashes are not present"
+          nullable: true
+          type: string
+        tenantId:
+          description: Tenant Id
+          format: int32
+          nullable: true
+          type: integer
+        masterCatalogId:
+          description: Master Catalog Id
+          format: int32
+          nullable: true
+          type: integer
+        catalogId:
+          description: Catalog Id
+          format: int32
+          nullable: true
+          type: integer
+        siteId:
+          description: Site Id
+          format: int32
+          nullable: true
+          type: integer
+        entityId:
+          description: Entity Id
+          nullable: true
+          type: string
+        topic:
+          description: Topic
+          nullable: true
+          type: string
+        extendedProperties:
+          description: "Extended properties. Note: This is purposefully not a CollectionBase\
+            \ type wrapper so consumers start to get used to not having counts returned."
+          items:
+            $ref: '#/components/schemas/EventExtendedProperty'
+          nullable: true
+          type: array
+        correlationId:
+          description: Correlation Id
+          nullable: true
+          type: string
+        createDate:
+          description: Create Date
+          format: date-time
+          nullable: true
+          type: string
+      type: object
+    HttpStatus:
+      additionalProperties: false
+      description: Http Status
+      example:
+        code: 4
+        name: name
+      properties:
+        code:
+          description: The higher-level integer based HTTP Status Code returned by
+            the remote endpoint
+          format: int32
+          type: integer
+        name:
+          description: Friendly text the HTTP Status Code returned by the remote endpoint
+          nullable: true
+          type: string
+      type: object
+    EventDeliveryAttempt:
+      additionalProperties: false
+      description: The external/public Event entity used specifically in PULL/POLL
+        event scenarios
+      example:
+        errorType: errorType
+        httpStatus:
+          code: 4
+          name: name
+        executionDate: 2000-01-23T04:56:07.000+00:00
+        message: message
+        deliveryStatus: deliveryStatus
+      properties:
+        deliveryStatus:
+          description: Status of the delivery process (EventDeliveryStatusType). System-supplied
+            and read-only.
+          nullable: true
+          type: string
+        errorType:
+          description: "Type of error that occurred, if the delivery was unsuccessful"
+          nullable: true
+          type: string
+        httpStatus:
+          $ref: '#/components/schemas/HttpStatus'
+        message:
+          description: HTTP message returned by the remote endpoint
+          nullable: true
+          type: string
+        executionDate:
+          description: The date that the delivery was attempted
+          format: date-time
+          nullable: true
+          type: string
+      type: object
+    EventDeliverySummary:
+      additionalProperties: false
+      description: The external/public Event entity used specifically in PULL/POLL
+        event scenarios
+      example:
+        updateDate: 2000-01-23T04:56:07.000+00:00
+        nextExecutionDate: 2000-01-23T04:56:07.000+00:00
+        eventSummary:
+          eventId: eventId
+          extendedProperties:
+          - value: ""
+            key: key
+          - value: ""
+            key: key
+          catalogId: 9
+          tenantId: 2
+          siteId: 3
+          topic: topic
+          entityId: entityId
+          correlationId: correlationId
+          masterCatalogId: 7
+          createDate: 2000-01-23T04:56:07.000+00:00
+        isRunning: true
+        id: 5
+        lastExecutionDate: 2000-01-23T04:56:07.000+00:00
+        retriesRemaining: 2
+        deliveryAttempts:
+        - errorType: errorType
+          httpStatus:
+            code: 4
+            name: name
+          executionDate: 2000-01-23T04:56:07.000+00:00
+          message: message
+          deliveryStatus: deliveryStatus
+        - errorType: errorType
+          httpStatus:
+            code: 4
+            name: name
+          executionDate: 2000-01-23T04:56:07.000+00:00
+          message: message
+          deliveryStatus: deliveryStatus
+        deliveryStatus: deliveryStatus
+        createDate: 2000-01-23T04:56:07.000+00:00
+      properties:
+        id:
+          description: The unique identifier for an event delivery summary
+          format: int32
+          nullable: true
+          type: integer
+        deliveryStatus:
+          description: Status of the delivery process (EventDeliveryStatusType)
+          nullable: true
+          type: string
+        eventSummary:
+          $ref: '#/components/schemas/EventSummary'
+        isRunning:
+          description: Indicates whether delivery of the event is currently being
+            attempted at this moment in time
+          type: boolean
+        lastExecutionDate:
+          description: The date that the delivery was last attempted (either successfully
+            or not)
+          format: date-time
+          type: string
+        nextExecutionDate:
+          description: "The date that the delivery will next be attempted, if the\
+            \ event has not been successfully delivered yet and there are still retries\
+            \ remaining"
+          format: date-time
+          type: string
+        retriesRemaining:
+          description: Number of delivery attempts remaining
+          format: int32
+          nullable: true
+          type: integer
+        createDate:
+          description: Create Date
+          format: date-time
+          nullable: true
+          type: string
+        updateDate:
+          description: Update Date
+          format: date-time
+          nullable: true
+          type: string
+        deliveryAttempts:
+          description: Details about each attempted delivery of the event to the endpoint
+          items:
+            $ref: '#/components/schemas/EventDeliveryAttempt'
+          nullable: true
+          type: array
+      type: object
+    EventDeliverySummaryCollection:
+      additionalProperties: false
+      description: Collection of event deliver summaries
+      example:
+        startIndex: 0
+        pageCount: 1
+        pageSize: 6
+        totalCount: 5
+        items:
+        - updateDate: 2000-01-23T04:56:07.000+00:00
+          nextExecutionDate: 2000-01-23T04:56:07.000+00:00
+          eventSummary:
+            eventId: eventId
+            extendedProperties:
+            - value: ""
+              key: key
+            - value: ""
+              key: key
+            catalogId: 9
+            tenantId: 2
+            siteId: 3
+            topic: topic
+            entityId: entityId
+            correlationId: correlationId
+            masterCatalogId: 7
+            createDate: 2000-01-23T04:56:07.000+00:00
+          isRunning: true
+          id: 5
+          lastExecutionDate: 2000-01-23T04:56:07.000+00:00
+          retriesRemaining: 2
+          deliveryAttempts:
+          - errorType: errorType
+            httpStatus:
+              code: 4
+              name: name
+            executionDate: 2000-01-23T04:56:07.000+00:00
+            message: message
+            deliveryStatus: deliveryStatus
+          - errorType: errorType
+            httpStatus:
+              code: 4
+              name: name
+            executionDate: 2000-01-23T04:56:07.000+00:00
+            message: message
+            deliveryStatus: deliveryStatus
+          deliveryStatus: deliveryStatus
+          createDate: 2000-01-23T04:56:07.000+00:00
+        - updateDate: 2000-01-23T04:56:07.000+00:00
+          nextExecutionDate: 2000-01-23T04:56:07.000+00:00
+          eventSummary:
+            eventId: eventId
+            extendedProperties:
+            - value: ""
+              key: key
+            - value: ""
+              key: key
+            catalogId: 9
+            tenantId: 2
+            siteId: 3
+            topic: topic
+            entityId: entityId
+            correlationId: correlationId
+            masterCatalogId: 7
+            createDate: 2000-01-23T04:56:07.000+00:00
+          isRunning: true
+          id: 5
+          lastExecutionDate: 2000-01-23T04:56:07.000+00:00
+          retriesRemaining: 2
+          deliveryAttempts:
+          - errorType: errorType
+            httpStatus:
+              code: 4
+              name: name
+            executionDate: 2000-01-23T04:56:07.000+00:00
+            message: message
+            deliveryStatus: deliveryStatus
+          - errorType: errorType
+            httpStatus:
+              code: 4
+              name: name
+            executionDate: 2000-01-23T04:56:07.000+00:00
+            message: message
+            deliveryStatus: deliveryStatus
+          deliveryStatus: deliveryStatus
+          createDate: 2000-01-23T04:56:07.000+00:00
+      properties:
+        startIndex:
+          format: int32
+          type: integer
+        pageSize:
+          format: int32
+          type: integer
+        pageCount:
+          format: int32
+          type: integer
+        totalCount:
+          format: int32
+          type: integer
+        items:
+          items:
+            $ref: '#/components/schemas/EventDeliverySummary'
+          nullable: true
+          type: array
+      type: object
+    SubscribingSite:
+      additionalProperties: false
+      description: A site that is associated with a subscription
+      example:
+        auditInfo:
+          updateDate: 2000-01-23T04:56:07.000+00:00
+          createBy: createBy
+          updateBy: updateBy
+          createDate: 2000-01-23T04:56:07.000+00:00
+        siteId: 2
+        isActive: true
+      properties:
+        siteId:
+          description: The site identifier
+          format: int32
+          nullable: true
+          type: integer
+        isActive:
+          description: Is the subscription active at the site level?
+          nullable: true
+          type: boolean
+        auditInfo:
+          $ref: '#/components/schemas/AdminUserAuditInfo'
+      type: object
+    SubscribingTenant:
+      additionalProperties: false
+      description: A tenant that is associated with a subscription
+      example:
+        auditInfo:
+          updateDate: 2000-01-23T04:56:07.000+00:00
+          createBy: createBy
+          updateBy: updateBy
+          createDate: 2000-01-23T04:56:07.000+00:00
+        tenantId: 5
+        subscribingSites:
+        - auditInfo:
+            updateDate: 2000-01-23T04:56:07.000+00:00
+            createBy: createBy
+            updateBy: updateBy
+            createDate: 2000-01-23T04:56:07.000+00:00
+          siteId: 2
+          isActive: true
+        - auditInfo:
+            updateDate: 2000-01-23T04:56:07.000+00:00
+            createBy: createBy
+            updateBy: updateBy
+            createDate: 2000-01-23T04:56:07.000+00:00
+          siteId: 2
+          isActive: true
+        isActive: true
+        subscribingContextLevelType: subscribingContextLevelType
+      properties:
+        subscribingContextLevelType:
+          description: "Type of Subscribing Context\r\n!:SubscribingContextLevelTypeConst\r\
+            \nDerived from state of the subscription.  If any Subscribing Sites exist\
+            \ (e.g. subscription is not at the Tenant Level, then the value will be\
+            \ Site)"
+          nullable: true
+          type: string
+        tenantId:
+          description: The tenant identifier
+          format: int32
+          nullable: true
+          type: integer
+        isActive:
+          description: Is the subscription active at the tenant level?  If the subscription
+            context is at the Tenant Level this property will be utilized over the
+            SiteLevel
+          nullable: true
+          type: boolean
+        auditInfo:
+          $ref: '#/components/schemas/AdminUserAuditInfo'
+        subscribingSites:
+          description: Subscribing Sites
+          items:
+            $ref: '#/components/schemas/SubscribingSite'
+          nullable: true
+          type: array
+      type: object
+    AdminUserAuditInfo:
+      additionalProperties: false
+      example:
+        updateDate: 2000-01-23T04:56:07.000+00:00
+        createBy: createBy
+        updateBy: updateBy
+        createDate: 2000-01-23T04:56:07.000+00:00
+      properties:
+        updateDate:
+          format: date-time
+          nullable: true
+          type: string
+        createDate:
+          format: date-time
+          nullable: true
+          type: string
+        updateBy:
+          nullable: true
+          type: string
+        createBy:
+          nullable: true
+          type: string
+      type: object
+    EventEvent:
+      additionalProperties: false
+      description: The external/public Event entity used specifically in PULL/POLL
+        event scenarios
+      example:
+        auditInfo:
+          updateDate: 2000-01-23T04:56:07.000+00:00
+          createBy: createBy
+          updateBy: updateBy
+          createDate: 2000-01-23T04:56:07.000+00:00
+        extendedProperties:
+        - value: ""
+          key: key
+        - value: ""
+          key: key
+        catalogId: 7
+        isTest: true
+        tenantId: 5
+        siteId: 9
+        topic: topic
+        entityId: entityId
+        correlationId: correlationId
+        id: id
+        masterCatalogId: 2
+      properties:
+        id:
+          description: The unique identifier for an event
+          nullable: true
+          type: string
+        tenantId:
+          description: TenantId
+          format: int32
+          nullable: true
+          type: integer
+        masterCatalogId:
+          description: MasterCatalogId
+          format: int32
+          nullable: true
+          type: integer
+        catalogId:
+          description: CatalogId
+          format: int32
+          nullable: true
+          type: integer
+        siteId:
+          description: SiteId
+          format: int32
+          nullable: true
+          type: integer
+        topic:
+          description: The topic of the event (i.e. product.created)
+          nullable: true
+          type: string
+        entityId:
+          description: The identifier / ID of the entity that changed (i.e. product
+            code)
+          nullable: true
+          type: string
+        isTest:
+          description: Is this a test?
+          nullable: true
+          type: boolean
+        correlationId:
+          description: The Correlation Id of the original API request that caused
+            this event to occur
+          nullable: true
+          type: string
+        extendedProperties:
+          description: "Extended properties. Note: This is purposefully not a CollectionBase\
+            \ type wrapper so consumers start to get used to not having counts returned."
+          items:
+            $ref: '#/components/schemas/EventExtendedProperty'
+          nullable: true
+          type: array
+        auditInfo:
+          $ref: '#/components/schemas/AdminUserAuditInfo'
+      type: object
+    EventSubscription:
+      additionalProperties: false
+      description: The subscription entity used specifically in PUSH event scenarios
+        where a third-party desires to receive notification of events
+      example:
+        updateDate: 2000-01-23T04:56:07.000+00:00
+        topics:
+        - topics
+        - topics
+        isActive: true
+        confirmed: true
+        endpoint: endpoint
+        createBy: createBy
+        apiVersion: apiVersion
+        updateBy: updateBy
+        appId: appId
+        noCallback: true
+        subscribingTenants:
+        - auditInfo:
+            updateDate: 2000-01-23T04:56:07.000+00:00
+            createBy: createBy
+            updateBy: updateBy
+            createDate: 2000-01-23T04:56:07.000+00:00
+          tenantId: 5
+          subscribingSites:
+          - auditInfo:
+              updateDate: 2000-01-23T04:56:07.000+00:00
+              createBy: createBy
+              updateBy: updateBy
+              createDate: 2000-01-23T04:56:07.000+00:00
+            siteId: 2
+            isActive: true
+          - auditInfo:
+              updateDate: 2000-01-23T04:56:07.000+00:00
+              createBy: createBy
+              updateBy: updateBy
+              createDate: 2000-01-23T04:56:07.000+00:00
+            siteId: 2
+            isActive: true
+          isActive: true
+          subscribingContextLevelType: subscribingContextLevelType
+        - auditInfo:
+            updateDate: 2000-01-23T04:56:07.000+00:00
+            createBy: createBy
+            updateBy: updateBy
+            createDate: 2000-01-23T04:56:07.000+00:00
+          tenantId: 5
+          subscribingSites:
+          - auditInfo:
+              updateDate: 2000-01-23T04:56:07.000+00:00
+              createBy: createBy
+              updateBy: updateBy
+              createDate: 2000-01-23T04:56:07.000+00:00
+            siteId: 2
+            isActive: true
+          - auditInfo:
+              updateDate: 2000-01-23T04:56:07.000+00:00
+              createBy: createBy
+              updateBy: updateBy
+              createDate: 2000-01-23T04:56:07.000+00:00
+            siteId: 2
+            isActive: true
+          isActive: true
+          subscribingContextLevelType: subscribingContextLevelType
+        id: id
+        contentType: contentType
+        notificationDeliveryType: notificationDeliveryType
+        createDate: 2000-01-23T04:56:07.000+00:00
+      properties:
+        id:
+          description: The unique identifier for a subscription
+          nullable: true
+          type: string
+        appId:
+          description: Application identifier for subscription
+          nullable: true
+          type: string
+        apiVersion:
+          description: ApiVersion
+          nullable: true
+          type: string
+        topics:
+          description: A list of topics that the subscription relates to
+          items:
+            type: string
+          nullable: true
+          type: array
+        subscribingTenants:
+          description: A list of subscribers or subscribing tenants that the subscription
+            relates to
+          items:
+            $ref: '#/components/schemas/SubscribingTenant'
+          nullable: true
+          type: array
+        notificationDeliveryType:
+          description: "Notification delivery type which is a string representation\
+            \ of an enumeration of values.  Example: Http (this is case insensitive,\
+            \ so http may also be passed in)"
+          nullable: true
+          type: string
+        contentType:
+          description: "Content type of the payload that will be delivered.  This\
+            \ is utilized in combination with the notification delivery type.  Example:\
+            \  A HTTP Post (notification delivery type) is performed with a JSON representation\
+            \ of the event data (content type)."
+          nullable: true
+          type: string
+        endpoint:
+          description: "The delivery endpoint that will receive notifications when\
+            \ events concerning the specified topics on the subscription occur.  The\
+            \ format of the endpoint may differ depending on the notification type.\
+            \  For example, the endpoint may be a URL in some cases and an email address\
+            \ in others if multiple notification types are available."
+          nullable: true
+          type: string
+        confirmed:
+          description: A boolean value that indicates if the subscription endpoint
+            has been confirmed
+          nullable: true
+          type: boolean
+        isActive:
+          description: A boolean value that indicates if the subscription is active.  The
+            subscription may be inactive due to repeated downtimes at the endpoint.  If
+            they subscription is deactivated the subscription owner or application
+            will need to reactivate it for notifications to be delivered.
+          nullable: true
+          type: boolean
+        noCallback:
+          description: "A boolean value that indicates if events should be delivered\
+            \ that resulted from an API call by the application.  If true, any events\
+            \ that occur as a result of a direct API call by the same application\
+            \ will not be delivered. This can prevent an endless loop in certain scenarios."
+          nullable: true
+          type: boolean
+        createDate:
+          description: When the entity was created. System-supplied and read-only.
+          format: date-time
+          nullable: true
+          type: string
+        updateDate:
+          description: When the entity was updated. System-supplied and read-only.
+          format: date-time
+          nullable: true
+          type: string
+        createBy:
+          description: Identifier of the user who created the entity. System-supplied
+            and read-only.
+          nullable: true
+          type: string
+        updateBy:
+          description: Identifier of the user who updated the entity. System-supplied
+            and read-only.
+          nullable: true
+          type: string
+      type: object
+    EventSubscriptionCollection:
+      additionalProperties: false
+      description: Collection of subscriptions returned as a whole.
+      example:
+        startIndex: 0
+        pageCount: 1
+        pageSize: 6
+        totalCount: 5
+        items:
+        - updateDate: 2000-01-23T04:56:07.000+00:00
+          topics:
+          - topics
+          - topics
+          isActive: true
+          confirmed: true
+          endpoint: endpoint
+          createBy: createBy
+          apiVersion: apiVersion
+          updateBy: updateBy
+          appId: appId
+          noCallback: true
+          subscribingTenants:
+          - auditInfo:
+              updateDate: 2000-01-23T04:56:07.000+00:00
+              createBy: createBy
+              updateBy: updateBy
+              createDate: 2000-01-23T04:56:07.000+00:00
+            tenantId: 5
+            subscribingSites:
+            - auditInfo:
+                updateDate: 2000-01-23T04:56:07.000+00:00
+                createBy: createBy
+                updateBy: updateBy
+                createDate: 2000-01-23T04:56:07.000+00:00
+              siteId: 2
+              isActive: true
+            - auditInfo:
+                updateDate: 2000-01-23T04:56:07.000+00:00
+                createBy: createBy
+                updateBy: updateBy
+                createDate: 2000-01-23T04:56:07.000+00:00
+              siteId: 2
+              isActive: true
+            isActive: true
+            subscribingContextLevelType: subscribingContextLevelType
+          - auditInfo:
+              updateDate: 2000-01-23T04:56:07.000+00:00
+              createBy: createBy
+              updateBy: updateBy
+              createDate: 2000-01-23T04:56:07.000+00:00
+            tenantId: 5
+            subscribingSites:
+            - auditInfo:
+                updateDate: 2000-01-23T04:56:07.000+00:00
+                createBy: createBy
+                updateBy: updateBy
+                createDate: 2000-01-23T04:56:07.000+00:00
+              siteId: 2
+              isActive: true
+            - auditInfo:
+                updateDate: 2000-01-23T04:56:07.000+00:00
+                createBy: createBy
+                updateBy: updateBy
+                createDate: 2000-01-23T04:56:07.000+00:00
+              siteId: 2
+              isActive: true
+            isActive: true
+            subscribingContextLevelType: subscribingContextLevelType
+          id: id
+          contentType: contentType
+          notificationDeliveryType: notificationDeliveryType
+          createDate: 2000-01-23T04:56:07.000+00:00
+        - updateDate: 2000-01-23T04:56:07.000+00:00
+          topics:
+          - topics
+          - topics
+          isActive: true
+          confirmed: true
+          endpoint: endpoint
+          createBy: createBy
+          apiVersion: apiVersion
+          updateBy: updateBy
+          appId: appId
+          noCallback: true
+          subscribingTenants:
+          - auditInfo:
+              updateDate: 2000-01-23T04:56:07.000+00:00
+              createBy: createBy
+              updateBy: updateBy
+              createDate: 2000-01-23T04:56:07.000+00:00
+            tenantId: 5
+            subscribingSites:
+            - auditInfo:
+                updateDate: 2000-01-23T04:56:07.000+00:00
+                createBy: createBy
+                updateBy: updateBy
+                createDate: 2000-01-23T04:56:07.000+00:00
+              siteId: 2
+              isActive: true
+            - auditInfo:
+                updateDate: 2000-01-23T04:56:07.000+00:00
+                createBy: createBy
+                updateBy: updateBy
+                createDate: 2000-01-23T04:56:07.000+00:00
+              siteId: 2
+              isActive: true
+            isActive: true
+            subscribingContextLevelType: subscribingContextLevelType
+          - auditInfo:
+              updateDate: 2000-01-23T04:56:07.000+00:00
+              createBy: createBy
+              updateBy: updateBy
+              createDate: 2000-01-23T04:56:07.000+00:00
+            tenantId: 5
+            subscribingSites:
+            - auditInfo:
+                updateDate: 2000-01-23T04:56:07.000+00:00
+                createBy: createBy
+                updateBy: updateBy
+                createDate: 2000-01-23T04:56:07.000+00:00
+              siteId: 2
+              isActive: true
+            - auditInfo:
+                updateDate: 2000-01-23T04:56:07.000+00:00
+                createBy: createBy
+                updateBy: updateBy
+                createDate: 2000-01-23T04:56:07.000+00:00
+              siteId: 2
+              isActive: true
+            isActive: true
+            subscribingContextLevelType: subscribingContextLevelType
+          id: id
+          contentType: contentType
+          notificationDeliveryType: notificationDeliveryType
+          createDate: 2000-01-23T04:56:07.000+00:00
+      properties:
+        startIndex:
+          format: int32
+          type: integer
+        pageSize:
+          format: int32
+          type: integer
+        pageCount:
+          format: int32
+          type: integer
+        totalCount:
+          format: int32
+          type: integer
+        items:
+          items:
+            $ref: '#/components/schemas/EventSubscription'
+          nullable: true
+          type: array
+      type: object
+  securitySchemes:
+    bearerAuth:
+      bearerFormat: JWT
+      description: JWT Authorization header using the Bearer scheme.
+      scheme: bearer
+      type: http
+    clientOauth2:
+      flows:
+        clientCredentials:
+          scopes: {}
+          tokenUrl: /api/platform/applications/authtickets/oauth
+      type: oauth2
+

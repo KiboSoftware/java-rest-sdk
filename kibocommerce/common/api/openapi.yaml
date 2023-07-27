@@ -1,0 +1,390 @@
+openapi: 3.0.1
+info:
+  description: OpenAPI Spec for Kibo Tenant Service
+  title: Kibo Tenant Service
+servers:
+- description: HomePod Host
+  url: "https://{homePodHost}/api"
+- description: Tenant Level Api
+  url: "https://t{tenantId}.{env}.mozu.com/api"
+  variables:
+    tenantId:
+      default: "0"
+      description: Id of the Tenant
+    env:
+      default: sandbox
+      enum:
+      - sandbox
+      - tp1
+      - tp2
+      - tp3
+      - tp4
+      - tp5
+      - stg1
+      - stg2
+- description: Site Level Api
+  url: "https://t{tenantId}-s{siteId}.{env}.mozu.com/api"
+  variables:
+    tenantId:
+      default: "0"
+      description: Id of the Tenant
+    siteId:
+      default: "0"
+      description: Id of the Site
+    env:
+      default: sandbox
+      enum:
+      - sandbox
+      - tp1
+      - tp2
+      - tp3
+      - tp4
+      - tp5
+      - stg1
+- description: HomePod Api
+  url: https://home.mozu.com/api
+- description: EURO Tenant Level Api
+  url: "https://t{tenantId}.{env}.euw1.kibocommerce.com/api"
+  variables:
+    tenantId:
+      default: "0"
+      description: Id of the Tenant
+    env:
+      default: sandbox
+      enum:
+      - sb
+      - tp1
+- description: EURO Site Level Api
+  url: "https://t{tenantId}-s{siteId}.{env}.euw1.kibocommerce.com/api"
+  variables:
+    tenantId:
+      default: "0"
+      description: Id of the Tenant
+    siteId:
+      default: "0"
+      description: Id of the Site
+    env:
+      default: sandbox
+      enum:
+      - sb
+      - tp1
+- description: EURO HomePod Api
+  url: https://home.euw1.kibocommerce.com/api
+security:
+- bearerAuth: []
+  clientOauth2: []
+paths:
+  /platform/tenants/{tenantId}:
+    get:
+      description: Get Tenant by ID
+      operationId: getTenant
+      parameters:
+      - description: ""
+        explode: false
+        in: path
+        name: tenantId
+        required: true
+        schema:
+          format: int32
+          type: integer
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TenantTenant'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/TenantTenant'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/TenantTenant'
+          description: Success
+      summary: Get Tenant by ID
+      tags:
+      - Tenants
+      x-accepts: application/json
+components:
+  schemas:
+    BaseTenantEntity:
+      additionalProperties: false
+      properties:
+        id:
+          format: int32
+          type: integer
+        name:
+          nullable: true
+          type: string
+      type: object
+    TenantAttribute:
+      additionalProperties: false
+      example:
+        createBy: createBy
+        updateDate: 2000-01-23T04:56:07.000+00:00
+        updateBy: updateBy
+        name: name
+        value: ""
+        createDate: 2000-01-23T04:56:07.000+00:00
+      properties:
+        name:
+          nullable: true
+          type: string
+        value:
+          nullable: true
+        createBy:
+          nullable: true
+          type: string
+        createDate:
+          format: date-time
+          type: string
+        updateBy:
+          nullable: true
+          type: string
+        updateDate:
+          format: date-time
+          type: string
+      type: object
+    Site:
+      additionalProperties: false
+      allOf:
+      - $ref: '#/components/schemas/BaseTenantEntity'
+      example:
+        catalogId: 6
+        primaryCustomDomain: primaryCustomDomain
+        localeCode: localeCode
+        countryCode: countryCode
+        domain: domain
+        tenantId: 0
+        attributes:
+        - createBy: createBy
+          updateDate: 2000-01-23T04:56:07.000+00:00
+          updateBy: updateBy
+          name: name
+          value: ""
+          createDate: 2000-01-23T04:56:07.000+00:00
+        - createBy: createBy
+          updateDate: 2000-01-23T04:56:07.000+00:00
+          updateBy: updateBy
+          name: name
+          value: ""
+          createDate: 2000-01-23T04:56:07.000+00:00
+        currencyCode: currencyCode
+      properties:
+        tenantId:
+          format: int32
+          type: integer
+        catalogId:
+          format: int32
+          type: integer
+        localeCode:
+          nullable: true
+          type: string
+        countryCode:
+          nullable: true
+          type: string
+        currencyCode:
+          nullable: true
+          type: string
+        domain:
+          nullable: true
+          type: string
+        primaryCustomDomain:
+          nullable: true
+          type: string
+        attributes:
+          items:
+            $ref: '#/components/schemas/TenantAttribute'
+          nullable: true
+          type: array
+      type: object
+    Catalog:
+      additionalProperties: false
+      allOf:
+      - $ref: '#/components/schemas/BaseTenantEntity'
+      example:
+        tenantId: 5
+        defaultCurrencyCode: defaultCurrencyCode
+        masterCatalogId: 5
+        defaultLocaleCode: defaultLocaleCode
+      properties:
+        tenantId:
+          format: int32
+          type: integer
+        masterCatalogId:
+          format: int32
+          type: integer
+        defaultLocaleCode:
+          nullable: true
+          type: string
+        defaultCurrencyCode:
+          nullable: true
+          type: string
+      type: object
+    AdminUserMasterCatalog:
+      additionalProperties: false
+      allOf:
+      - $ref: '#/components/schemas/BaseTenantEntity'
+      example:
+        catalogs:
+        - tenantId: 5
+          defaultCurrencyCode: defaultCurrencyCode
+          masterCatalogId: 5
+          defaultLocaleCode: defaultLocaleCode
+        - tenantId: 5
+          defaultCurrencyCode: defaultCurrencyCode
+          masterCatalogId: 5
+          defaultLocaleCode: defaultLocaleCode
+        tenantId: 1
+        defaultCurrencyCode: defaultCurrencyCode
+        defaultLocaleCode: defaultLocaleCode
+      properties:
+        tenantId:
+          format: int32
+          type: integer
+        defaultLocaleCode:
+          nullable: true
+          type: string
+        defaultCurrencyCode:
+          nullable: true
+          type: string
+        catalogs:
+          items:
+            $ref: '#/components/schemas/Catalog'
+          nullable: true
+          type: array
+      type: object
+    TenantTenant:
+      additionalProperties: false
+      allOf:
+      - $ref: '#/components/schemas/BaseTenantEntity'
+      example:
+        masterCatalogs:
+        - catalogs:
+          - tenantId: 5
+            defaultCurrencyCode: defaultCurrencyCode
+            masterCatalogId: 5
+            defaultLocaleCode: defaultLocaleCode
+          - tenantId: 5
+            defaultCurrencyCode: defaultCurrencyCode
+            masterCatalogId: 5
+            defaultLocaleCode: defaultLocaleCode
+          tenantId: 1
+          defaultCurrencyCode: defaultCurrencyCode
+          defaultLocaleCode: defaultLocaleCode
+        - catalogs:
+          - tenantId: 5
+            defaultCurrencyCode: defaultCurrencyCode
+            masterCatalogId: 5
+            defaultLocaleCode: defaultLocaleCode
+          - tenantId: 5
+            defaultCurrencyCode: defaultCurrencyCode
+            masterCatalogId: 5
+            defaultLocaleCode: defaultLocaleCode
+          tenantId: 1
+          defaultCurrencyCode: defaultCurrencyCode
+          defaultLocaleCode: defaultLocaleCode
+        domain: domain
+        sites:
+        - catalogId: 6
+          primaryCustomDomain: primaryCustomDomain
+          localeCode: localeCode
+          countryCode: countryCode
+          domain: domain
+          tenantId: 0
+          attributes:
+          - createBy: createBy
+            updateDate: 2000-01-23T04:56:07.000+00:00
+            updateBy: updateBy
+            name: name
+            value: ""
+            createDate: 2000-01-23T04:56:07.000+00:00
+          - createBy: createBy
+            updateDate: 2000-01-23T04:56:07.000+00:00
+            updateBy: updateBy
+            name: name
+            value: ""
+            createDate: 2000-01-23T04:56:07.000+00:00
+          currencyCode: currencyCode
+        - catalogId: 6
+          primaryCustomDomain: primaryCustomDomain
+          localeCode: localeCode
+          countryCode: countryCode
+          domain: domain
+          tenantId: 0
+          attributes:
+          - createBy: createBy
+            updateDate: 2000-01-23T04:56:07.000+00:00
+            updateBy: updateBy
+            name: name
+            value: ""
+            createDate: 2000-01-23T04:56:07.000+00:00
+          - createBy: createBy
+            updateDate: 2000-01-23T04:56:07.000+00:00
+            updateBy: updateBy
+            name: name
+            value: ""
+            createDate: 2000-01-23T04:56:07.000+00:00
+          currencyCode: currencyCode
+        attributes:
+        - createBy: createBy
+          updateDate: 2000-01-23T04:56:07.000+00:00
+          updateBy: updateBy
+          name: name
+          value: ""
+          createDate: 2000-01-23T04:56:07.000+00:00
+        - createBy: createBy
+          updateDate: 2000-01-23T04:56:07.000+00:00
+          updateBy: updateBy
+          name: name
+          value: ""
+          createDate: 2000-01-23T04:56:07.000+00:00
+        lastLoginDate: 2000-01-23T04:56:07.000+00:00
+        expiry: 2000-01-23T04:56:07.000+00:00
+        isDevTenant: true
+        isUnified: true
+      properties:
+        isDevTenant:
+          type: boolean
+        sites:
+          items:
+            $ref: '#/components/schemas/Site'
+          nullable: true
+          type: array
+        masterCatalogs:
+          items:
+            $ref: '#/components/schemas/AdminUserMasterCatalog'
+          nullable: true
+          type: array
+        domain:
+          nullable: true
+          type: string
+        lastLoginDate:
+          format: date-time
+          nullable: true
+          type: string
+        attributes:
+          items:
+            $ref: '#/components/schemas/TenantAttribute'
+          nullable: true
+          type: array
+        expiry:
+          format: date-time
+          nullable: true
+          type: string
+        isUnified:
+          type: boolean
+      type: object
+  securitySchemes:
+    bearerAuth:
+      bearerFormat: JWT
+      description: JWT Authorization header using the Bearer scheme.
+      scheme: bearer
+      type: http
+    clientOauth2:
+      flows:
+        clientCredentials:
+          scopes: {}
+          tokenUrl: /api/platform/applications/authtickets/oauth
+      type: oauth2
+

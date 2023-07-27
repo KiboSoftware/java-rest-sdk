@@ -1,0 +1,3774 @@
+openapi: 3.0.1
+info:
+  description: OpenAPI Spec for Kibo AppDev Service
+  title: Kibo AppDev Service
+servers:
+- description: HomePod Host
+  url: "https://{homePodHost}/api"
+- description: Tenant Level Api
+  url: "https://t{tenantId}.{env}.mozu.com/api"
+  variables:
+    tenantId:
+      default: "0"
+      description: Id of the Tenant
+    env:
+      default: sandbox
+      enum:
+      - sandbox
+      - tp1
+      - tp2
+      - tp3
+      - tp4
+      - tp5
+      - stg1
+      - stg2
+- description: Site Level Api
+  url: "https://t{tenantId}-s{siteId}.{env}.mozu.com/api"
+  variables:
+    tenantId:
+      default: "0"
+      description: Id of the Tenant
+    siteId:
+      default: "0"
+      description: Id of the Site
+    env:
+      default: sandbox
+      enum:
+      - sandbox
+      - tp1
+      - tp2
+      - tp3
+      - tp4
+      - tp5
+      - stg1
+- description: HomePod Api
+  url: https://home.mozu.com/api
+- description: EURO Tenant Level Api
+  url: "https://t{tenantId}.{env}.euw1.kibocommerce.com/api"
+  variables:
+    tenantId:
+      default: "0"
+      description: Id of the Tenant
+    env:
+      default: sandbox
+      enum:
+      - sb
+      - tp1
+- description: EURO Site Level Api
+  url: "https://t{tenantId}-s{siteId}.{env}.euw1.kibocommerce.com/api"
+  variables:
+    tenantId:
+      default: "0"
+      description: Id of the Tenant
+    siteId:
+      default: "0"
+      description: Id of the Site
+    env:
+      default: sandbox
+      enum:
+      - sb
+      - tp1
+- description: EURO HomePod Api
+  url: https://home.euw1.kibocommerce.com/api
+security:
+- bearerAuth: []
+  clientOauth2: []
+paths:
+  /platform/applications/authtickets:
+    post:
+      description: Authenticates an application using shared secret and application
+        id. The method returns a set of authentication tokens used to manage application
+        authentication.
+      operationId: authenticateApp
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AppAuthInfo'
+        description: ""
+      responses:
+        "200":
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/AuthTicket'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthTicket'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/AuthTicket'
+          description: Success
+      summary: App Authenticate
+      tags:
+      - AppAuthTickets
+      x-content-type: application/json
+      x-accepts: application/json
+  /platform/applications/authtickets/oauth:
+    post:
+      description: Oauth Authenticate App
+      operationId: oauthAuthenticateApp
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/OauthAuthRequest'
+      responses:
+        "200":
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/OAuthAccessTokenResponse'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/OAuthAccessTokenResponse'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/OAuthAccessTokenResponse'
+          description: Success
+      summary: Oauth Authenticate App
+      tags:
+      - AppAuthTickets
+      x-content-type: application/json
+      x-accepts: application/json
+  /platform/applications/authtickets/refresh-ticket:
+    put:
+      description: Returns the AppAuthTicket with a refreshed AccessToken
+      operationId: refreshAppAuthTicket
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AuthTicketRequest'
+        description: ""
+      responses:
+        "200":
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/AuthTicket'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthTicket'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/AuthTicket'
+          description: Success
+      summary: Refresh App Auth Ticket
+      tags:
+      - AppAuthTickets
+      x-content-type: application/json
+      x-accepts: application/json
+  /platform/applications/authtickets/{refreshToken}:
+    delete:
+      description: "This method is used to expire an application's current refresh\
+        \ token which \r\nwill force the application to reauthenticate once the current\
+        \ access token expires."
+      operationId: deleteAppAuthTicket
+      parameters:
+      - description: ""
+        explode: false
+        in: path
+        name: refreshToken
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          description: Success
+      summary: Delete App Auth Ticket
+      tags:
+      - AppAuthTickets
+      x-accepts: application/json
+  /platform/appdev/filebasedpackage/packages/{applicationKey}:
+    get:
+      description: Get File
+      operationId: getFile
+      parameters:
+      - explode: false
+        in: path
+        name: applicationKey
+        required: true
+        schema:
+          type: string
+        style: simple
+      - explode: true
+        in: query
+        name: fileName
+        required: false
+        schema:
+          type: string
+        style: form
+      responses:
+        "200":
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/AppDevHttpResponseMessage'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AppDevHttpResponseMessage'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/AppDevHttpResponseMessage'
+          description: Success
+      summary: Get File
+      tags:
+      - FilebasedPackage
+      x-accepts: application/json
+  /platform/appdev/apppackages/project:
+    post:
+      description: ""
+      operationId: createPackage
+      parameters:
+      - description: ""
+        explode: true
+        in: query
+        name: projectId
+        required: false
+        schema:
+          format: int32
+          type: integer
+        style: form
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AppDevPackage'
+        description: ""
+      responses:
+        "200":
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/AppDevPackage'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AppDevPackage'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/AppDevPackage'
+          description: Success
+      summary: Create Package
+      tags:
+      - Package
+      x-content-type: application/json
+      x-accepts: application/json
+  /platform/appdev/apppackages/{applicationKey}:
+    delete:
+      description: Use thi operatin to logically delete a package.
+      operationId: deletePackage
+      parameters:
+      - description: ""
+        explode: false
+        in: path
+        name: applicationKey
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          description: Success
+      summary: Delete Package
+      tags:
+      - Package
+      x-accepts: application/json
+    get:
+      description: "Use this operation to retrieve the package for the requested\r\
+        \npackage and its associated application core information."
+      operationId: getPackage
+      parameters:
+      - description: ""
+        explode: false
+        in: path
+        name: applicationKey
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: ""
+        explode: true
+        in: query
+        name: includeChildren
+        required: false
+        schema:
+          default: false
+          type: boolean
+        style: form
+      - description: ""
+        explode: true
+        in: query
+        name: skipDevAccountCheck
+        required: false
+        schema:
+          default: false
+          type: boolean
+        style: form
+      responses:
+        "200":
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/AppDevPackage'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AppDevPackage'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/AppDevPackage'
+          description: Success
+      summary: Get Package
+      tags:
+      - Package
+      x-accepts: application/json
+    put:
+      description: ""
+      operationId: updatePackage
+      parameters:
+      - description: ""
+        explode: false
+        in: path
+        name: applicationKey
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AppDevPackage'
+        description: ""
+      responses:
+        "200":
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/AppDevPackage'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AppDevPackage'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/AppDevPackage'
+          description: Success
+      summary: Update Package
+      tags:
+      - Package
+      x-content-type: application/json
+      x-accepts: application/json
+  /platform/appdev/apppackages/collection:
+    get:
+      description: ""
+      operationId: getApplicationSummaryParents
+      parameters:
+      - description: ""
+        explode: true
+        in: query
+        name: startIndex
+        required: false
+        schema:
+          default: 0
+          format: int32
+          type: integer
+        style: form
+      - description: ""
+        explode: true
+        in: query
+        name: pageSize
+        required: false
+        schema:
+          default: 20
+          format: int32
+          type: integer
+        style: form
+      - description: ""
+        explode: true
+        in: query
+        name: sortBy
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: ""
+        explode: true
+        in: query
+        name: filter
+        required: false
+        schema:
+          type: string
+        style: form
+      responses:
+        "200":
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ApplicationSummaryCollection'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApplicationSummaryCollection'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ApplicationSummaryCollection'
+          description: Success
+      summary: Get Application Summary Parents
+      tags:
+      - Package
+      x-accepts: application/json
+  /platform/appdev/apppackages/apps/{appId}:
+    get:
+      description: ""
+      operationId: getApplicationSummaryChildren
+      parameters:
+      - description: ""
+        explode: false
+        in: path
+        name: appId
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            text/plain:
+              schema:
+                items:
+                  $ref: '#/components/schemas/ApplicationSummary'
+                type: array
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/ApplicationSummary'
+                type: array
+            text/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/ApplicationSummary'
+                type: array
+          description: Success
+      summary: Get Application Summary Children
+      tags:
+      - Package
+      x-accepts: application/json
+  /platform/appdev/apppackages/{applicationKey}/clone/{packageName}:
+    post:
+      description: Use this operation to clone an existing package.
+      operationId: clonePackage
+      parameters:
+      - description: ""
+        explode: false
+        in: path
+        name: applicationKey
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: ""
+        explode: false
+        in: path
+        name: packageName
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/AppDevPackage'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AppDevPackage'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/AppDevPackage'
+          description: Success
+      summary: Clone Package
+      tags:
+      - Package
+      x-accepts: application/json
+  /platform/appdev/apppackages/applications/{applicationKey}/packages:
+    get:
+      description: Use this operation to retieve all packages for a given applicationKey.
+      operationId: getPackages
+      parameters:
+      - description: ""
+        explode: false
+        in: path
+        name: applicationKey
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: ""
+        explode: true
+        in: query
+        name: startIndex
+        required: false
+        schema:
+          default: 0
+          format: int32
+          type: integer
+        style: form
+      - description: ""
+        explode: true
+        in: query
+        name: pageSize
+        required: false
+        schema:
+          default: 50
+          format: int32
+          type: integer
+        style: form
+      - description: ""
+        explode: true
+        in: query
+        name: sortBy
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: ""
+        explode: true
+        in: query
+        name: filter
+        required: false
+        schema:
+          type: string
+        style: form
+      responses:
+        "200":
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/PackageCollection'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PackageCollection'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/PackageCollection'
+          description: Success
+      summary: Get Packages
+      tags:
+      - Package
+      x-accepts: application/json
+  /platform/appdev/apppackages:
+    get:
+      description: Get all packages for a given Developer Account.
+      operationId: getAllPackages
+      parameters:
+      - description: ""
+        explode: true
+        in: query
+        name: startIndex
+        required: false
+        schema:
+          default: 0
+          format: int32
+          type: integer
+        style: form
+      - description: ""
+        explode: true
+        in: query
+        name: pageSize
+        required: false
+        schema:
+          default: 20
+          format: int32
+          type: integer
+        style: form
+      - description: ""
+        explode: true
+        in: query
+        name: sortBy
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: ""
+        explode: true
+        in: query
+        name: filter
+        required: false
+        schema:
+          type: string
+        style: form
+      responses:
+        "200":
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/PackageSummaryCollection'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PackageSummaryCollection'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/PackageSummaryCollection'
+          description: Success
+      summary: Get All Packages
+      tags:
+      - Package
+      x-accepts: application/json
+  /platform/appdev/apppackages/create:
+    post:
+      description: Save as new version of the application core with only a release
+        package included.
+      operationId: createNewCorePackage
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PackageRequest'
+        description: ""
+      responses:
+        "200":
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/AppDevPackage'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AppDevPackage'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/AppDevPackage'
+          description: Success
+      summary: Create New Core Package
+      tags:
+      - Package
+      x-content-type: application/json
+      x-accepts: application/json
+  /platform/developer/packages/{applicationKey}/files/{filepath}:
+    delete:
+      description: ""
+      operationId: deletePackageFile
+      parameters:
+      - description: ""
+        explode: false
+        in: path
+        name: applicationKey
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: ""
+        explode: false
+        in: path
+        name: filepath
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          description: Success
+      summary: Delete Package File
+      tags:
+      - PublicApplication
+      x-accepts: application/json
+    post:
+      description: ""
+      operationId: upsertPackageFile
+      parameters:
+      - description: ""
+        explode: false
+        in: path
+        name: applicationKey
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: ""
+        explode: false
+        in: path
+        name: filepath
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: ""
+        explode: true
+        in: query
+        name: lastModifiedTime
+        required: false
+        schema:
+          type: string
+        style: form
+      responses:
+        "200":
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/FileMetadata'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FileMetadata'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/FileMetadata'
+          description: Success
+      summary: Upsert Package File
+      tags:
+      - PublicApplication
+      x-accepts: application/json
+  /platform/developer/packages/{applicationKey}/files_rename:
+    post:
+      description: ""
+      operationId: renamePackageFile
+      parameters:
+      - description: ""
+        explode: false
+        in: path
+        name: applicationKey
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RenameInfo'
+        description: ""
+      responses:
+        "200":
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/FileMetadata'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FileMetadata'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/FileMetadata'
+          description: Success
+      summary: Rename Package File
+      tags:
+      - PublicApplication
+      x-content-type: application/json
+      x-accepts: application/json
+  /platform/developer/packages/{applicationKey}/metadata:
+    get:
+      description: ""
+      operationId: getPackageMetadata
+      parameters:
+      - description: ""
+        explode: false
+        in: path
+        name: applicationKey
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/FolderMetadata'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FolderMetadata'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/FolderMetadata'
+          description: Success
+      summary: Get Package Metadata
+      tags:
+      - PublicApplication
+      x-accepts: application/json
+  /platform/developer/packages/{applicationKey}/filemetadata/{filepath}:
+    get:
+      description: ""
+      operationId: getPackageFileMetadata
+      parameters:
+      - description: ""
+        explode: false
+        in: path
+        name: applicationKey
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: ""
+        explode: false
+        in: path
+        name: filepath
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/FileMetadata'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FileMetadata'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/FileMetadata'
+          description: Success
+      summary: Get Package File Metadata
+      tags:
+      - PublicApplication
+      x-accepts: application/json
+  /platform/developer/applications/versions/{nsAndAppId}:
+    get:
+      description: ""
+      operationId: getAppVersions
+      parameters:
+      - explode: false
+        in: path
+        name: nsAndAppId
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ApplicationVersionsCollection'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApplicationVersionsCollection'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ApplicationVersionsCollection'
+          description: Success
+      summary: Get App Versions
+      tags:
+      - PublicApplication
+      x-accepts: application/json
+  /platform/developer/applications/{applicationKey}/packagenames:
+    get:
+      description: ""
+      operationId: getAppPackageNames
+      parameters:
+      - explode: false
+        in: path
+        name: applicationKey
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/PackageNamesCollection'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PackageNamesCollection'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/PackageNamesCollection'
+          description: Success
+      summary: Get App Package Names
+      tags:
+      - PublicApplication
+      x-accepts: application/json
+components:
+  schemas:
+    AppAuthInfo:
+      additionalProperties: false
+      example:
+        applicationId: applicationId
+        sharedSecret: sharedSecret
+      properties:
+        applicationId:
+          nullable: true
+          type: string
+        sharedSecret:
+          nullable: true
+          type: string
+      type: object
+    AuthTicket:
+      additionalProperties: false
+      example:
+        refreshTokenExpiration: 2000-01-23T04:56:07.000+00:00
+        accessTokenExpiration: 2000-01-23T04:56:07.000+00:00
+        accessToken: accessToken
+        refreshToken: refreshToken
+      properties:
+        refreshToken:
+          nullable: true
+          type: string
+        accessToken:
+          nullable: true
+          type: string
+        accessTokenExpiration:
+          format: date-time
+          type: string
+        refreshTokenExpiration:
+          format: date-time
+          type: string
+      type: object
+    OauthAuthRequest:
+      additionalProperties: false
+      example:
+        refresh_token: refresh_token
+        grant_type: grant_type
+        client_secret: client_secret
+        client_id: client_id
+      properties:
+        client_id:
+          nullable: true
+          type: string
+        client_secret:
+          nullable: true
+          type: string
+        refresh_token:
+          nullable: true
+          type: string
+        grant_type:
+          nullable: true
+          type: string
+      type: object
+    OAuthAccessTokenResponse:
+      additionalProperties: false
+      example:
+        access_token: access_token
+        refresh_token: refresh_token
+        token_type: token_type
+        expires_in: 0
+      properties:
+        access_token:
+          nullable: true
+          type: string
+        token_type:
+          nullable: true
+          type: string
+        expires_in:
+          format: int32
+          type: integer
+        refresh_token:
+          nullable: true
+          type: string
+      type: object
+    AuthTicketRequest:
+      additionalProperties: false
+      description: Complex object to have the refresh token sent in the body intead
+        of as clear text in the query string.
+      example:
+        refreshToken: refreshToken
+      properties:
+        refreshToken:
+          description: The refresh token for renewing the authorization.
+          nullable: true
+          type: string
+      type: object
+    StringStringIEnumerableKeyValuePair:
+      additionalProperties: false
+      example:
+        value:
+        - value
+        - value
+        key: key
+      properties:
+        key:
+          nullable: true
+          type: string
+        value:
+          items:
+            type: string
+          nullable: true
+          type: array
+      type: object
+    HttpMethod:
+      additionalProperties: false
+      example:
+        method: method
+      properties:
+        method:
+          nullable: true
+          type: string
+      type: object
+    ApplicationBehavior:
+      additionalProperties: false
+      description: ""
+      example:
+        behaviorId: 7
+        packageId: 1
+      properties:
+        behaviorId:
+          description: ""
+          format: int32
+          type: integer
+        packageId:
+          description: ""
+          format: int32
+          type: integer
+      type: object
+    ApplicationSubscription:
+      additionalProperties: false
+      description: Defines an event that an Application Version is subscribed to.
+      example:
+        applicationEndPoint: applicationEndPoint
+        noCallback: true
+        packageId: 6
+        applicationSubscriptionId: 1
+        events:
+        - eventId: 1
+          eventCategory: eventCategory
+          eventName: eventName
+          apiVersionNumber: apiVersionNumber
+        - eventId: 1
+          eventCategory: eventCategory
+          eventName: eventName
+          apiVersionNumber: apiVersionNumber
+      properties:
+        applicationSubscriptionId:
+          description: The unique identifier of an ApplicationVersionEvent record.
+          format: int32
+          type: integer
+        applicationEndPoint:
+          description: The End Point where the event information will be sent to when
+            the event is fired.
+          nullable: true
+          type: string
+        events:
+          description: ""
+          items:
+            $ref: '#/components/schemas/AppDevEvent'
+          nullable: true
+          type: array
+        packageId:
+          description: ""
+          format: int32
+          type: integer
+        noCallback:
+          description: ""
+          type: boolean
+      type: object
+    ApplicationCapability:
+      additionalProperties: false
+      description: ""
+      example:
+        applicationCapabilityId: 5
+        applicationEndPoint: applicationEndPoint
+        applicationCapabilityTypeId: 9
+        packageId: 6
+        capabilityTypeContractId: 9
+      properties:
+        applicationCapabilityId:
+          description: ""
+          format: int32
+          type: integer
+        capabilityTypeContractId:
+          description: ""
+          format: int32
+          type: integer
+        applicationEndPoint:
+          description: ""
+          nullable: true
+          type: string
+        applicationCapabilityTypeId:
+          description: ""
+          format: int32
+          nullable: true
+          type: integer
+        packageId:
+          description: ""
+          format: int32
+          type: integer
+      type: object
+    ApplicationCapabilityDomainValue:
+      additionalProperties: false
+      description: ""
+      example:
+        valueName: valueName
+        applicationCapabilityDomainValueId: 6
+        applicationCapabilityDomainId1: 3
+        displayName: displayName
+        applicationCapabilityDomainId2: 6
+      properties:
+        applicationCapabilityDomainValueId:
+          description: ""
+          format: int32
+          type: integer
+        applicationCapabilityDomainId1:
+          description: ""
+          format: int32
+          nullable: true
+          type: integer
+        applicationCapabilityDomainId2:
+          description: ""
+          format: int32
+          nullable: true
+          type: integer
+        valueName:
+          description: ""
+          nullable: true
+          type: string
+        displayName:
+          description: ""
+          nullable: true
+          type: string
+      type: object
+    ApplicationCapabilityDomain:
+      additionalProperties: false
+      description: ""
+      example:
+        applicationCapabilityDomainValues2:
+        - valueName: valueName
+          applicationCapabilityDomainValueId: 6
+          applicationCapabilityDomainId1: 3
+          displayName: displayName
+          applicationCapabilityDomainId2: 6
+        - valueName: valueName
+          applicationCapabilityDomainValueId: 6
+          applicationCapabilityDomainId1: 3
+          displayName: displayName
+          applicationCapabilityDomainId2: 6
+        applicationCapabilityTypeId: 9
+        applicationCapabilityDomainValues1:
+        - valueName: valueName
+          applicationCapabilityDomainValueId: 6
+          applicationCapabilityDomainId1: 3
+          displayName: displayName
+          applicationCapabilityDomainId2: 6
+        - valueName: valueName
+          applicationCapabilityDomainValueId: 6
+          applicationCapabilityDomainId1: 3
+          displayName: displayName
+          applicationCapabilityDomainId2: 6
+        name: name
+        applicationCapabilityDomainId: 8
+      properties:
+        applicationCapabilityDomainId:
+          description: ""
+          format: int32
+          type: integer
+        applicationCapabilityTypeId:
+          description: ""
+          format: int32
+          type: integer
+        name:
+          description: ""
+          nullable: true
+          type: string
+        applicationCapabilityDomainValues1:
+          description: ""
+          items:
+            $ref: '#/components/schemas/ApplicationCapabilityDomainValue'
+          nullable: true
+          type: array
+        applicationCapabilityDomainValues2:
+          description: ""
+          items:
+            $ref: '#/components/schemas/ApplicationCapabilityDomainValue'
+          nullable: true
+          type: array
+      type: object
+    ApplicationCapabilityType:
+      additionalProperties: false
+      description: ""
+      example:
+        applicationCapabilities:
+        - applicationCapabilityId: 5
+          applicationEndPoint: applicationEndPoint
+          applicationCapabilityTypeId: 9
+          packageId: 6
+          capabilityTypeContractId: 9
+        - applicationCapabilityId: 5
+          applicationEndPoint: applicationEndPoint
+          applicationCapabilityTypeId: 9
+          packageId: 6
+          capabilityTypeContractId: 9
+        isInitializedByDefault: true
+        applicationCapabilityTypeId: 7
+        isImplemented: true
+        applicationCapabilityDomains:
+        - applicationCapabilityDomainValues2:
+          - valueName: valueName
+            applicationCapabilityDomainValueId: 6
+            applicationCapabilityDomainId1: 3
+            displayName: displayName
+            applicationCapabilityDomainId2: 6
+          - valueName: valueName
+            applicationCapabilityDomainValueId: 6
+            applicationCapabilityDomainId1: 3
+            displayName: displayName
+            applicationCapabilityDomainId2: 6
+          applicationCapabilityTypeId: 9
+          applicationCapabilityDomainValues1:
+          - valueName: valueName
+            applicationCapabilityDomainValueId: 6
+            applicationCapabilityDomainId1: 3
+            displayName: displayName
+            applicationCapabilityDomainId2: 6
+          - valueName: valueName
+            applicationCapabilityDomainValueId: 6
+            applicationCapabilityDomainId1: 3
+            displayName: displayName
+            applicationCapabilityDomainId2: 6
+          name: name
+          applicationCapabilityDomainId: 8
+        - applicationCapabilityDomainValues2:
+          - valueName: valueName
+            applicationCapabilityDomainValueId: 6
+            applicationCapabilityDomainId1: 3
+            displayName: displayName
+            applicationCapabilityDomainId2: 6
+          - valueName: valueName
+            applicationCapabilityDomainValueId: 6
+            applicationCapabilityDomainId1: 3
+            displayName: displayName
+            applicationCapabilityDomainId2: 6
+          applicationCapabilityTypeId: 9
+          applicationCapabilityDomainValues1:
+          - valueName: valueName
+            applicationCapabilityDomainValueId: 6
+            applicationCapabilityDomainId1: 3
+            displayName: displayName
+            applicationCapabilityDomainId2: 6
+          - valueName: valueName
+            applicationCapabilityDomainValueId: 6
+            applicationCapabilityDomainId1: 3
+            displayName: displayName
+            applicationCapabilityDomainId2: 6
+          name: name
+          applicationCapabilityDomainId: 8
+        packageId: 1
+        capabilityTypeId: 4
+        capabilityTypeName: capabilityTypeName
+        applicationId: 1
+      properties:
+        applicationCapabilityTypeId:
+          description: ""
+          format: int32
+          type: integer
+        applicationId:
+          description: ""
+          format: int32
+          type: integer
+        capabilityTypeId:
+          description: ""
+          format: int32
+          type: integer
+        capabilityTypeName:
+          description: ""
+          nullable: true
+          type: string
+        isImplemented:
+          description: ""
+          type: boolean
+        isInitializedByDefault:
+          description: ""
+          type: boolean
+        applicationCapabilities:
+          description: ""
+          items:
+            $ref: '#/components/schemas/ApplicationCapability'
+          nullable: true
+          type: array
+        applicationCapabilityDomains:
+          description: ""
+          items:
+            $ref: '#/components/schemas/ApplicationCapabilityDomain'
+          nullable: true
+          type: array
+        packageId:
+          description: ""
+          format: int32
+          type: integer
+      type: object
+    ApplicationAttribute:
+      additionalProperties: false
+      description: Holds attribute definitions for AppVersion
+      example:
+        sourceTenantName: sourceTenantName
+        attributeCodes: attributeCodes
+        sourceTenantId: 2
+        attributeJson: attributeJson
+        packageId: 6
+        subsystem: subsystem
+        productTypeJson: productTypeJson
+        attributes:
+        - attributeId: 6
+          adminName: adminName
+          sequence: 5
+          fqn: fqn
+          code: code
+          vocabularyValues: vocabularyValues
+          vocabularyJson: vocabularyJson
+          name: name
+          inputType: inputType
+          type: type
+          applicationAttributeId: 6
+        - attributeId: 6
+          adminName: adminName
+          sequence: 5
+          fqn: fqn
+          code: code
+          vocabularyValues: vocabularyValues
+          vocabularyJson: vocabularyJson
+          name: name
+          inputType: inputType
+          type: type
+          applicationAttributeId: 6
+        isAppliedToBase: true
+      properties:
+        subsystem:
+          description: "Customer, Order, or Product"
+          nullable: true
+          type: string
+        attributeJson:
+          description: json representation of attribute definitions
+          nullable: true
+          type: string
+        productTypeJson:
+          description: "Will contain ProductTypeCollection if Product, else AttributeSet"
+          nullable: true
+          type: string
+        isAppliedToBase:
+          type: boolean
+        sourceTenantId:
+          description: Source Tenant Id
+          format: int32
+          type: integer
+        sourceTenantName:
+          description: Source Tenant Name
+          nullable: true
+          type: string
+        attributeCodes:
+          description: Comma delimited list of attribute codes.
+          nullable: true
+          type: string
+        packageId:
+          description: ""
+          format: int32
+          type: integer
+        attributes:
+          description: ""
+          items:
+            $ref: '#/components/schemas/AppDevAttribute'
+          nullable: true
+          type: array
+      type: object
+    ApplicationTransaction:
+      additionalProperties: false
+      description: ""
+      example:
+        transactionTax: 3.0576100241049344
+        applicationEntitlementId: 0
+        orderNumber: orderNumber
+        localeCode: 7
+        applicationTransactionId: 7
+        tenantId: 4
+        transactionPrice: 3.0205796992916243
+        siteId: 8
+        applicationId: 6
+        transactionDate: 2000-01-23T04:56:07.000+00:00
+        transactionTotal: 7.04836565559697
+        isoCurrencyCode: isoCurrencyCode
+      properties:
+        applicationTransactionId:
+          description: ""
+          format: int32
+          type: integer
+        applicationId:
+          description: ""
+          format: int32
+          type: integer
+        applicationEntitlementId:
+          description: ""
+          format: int32
+          nullable: true
+          type: integer
+        tenantId:
+          description: ""
+          format: int32
+          type: integer
+        siteId:
+          description: ""
+          format: int32
+          nullable: true
+          type: integer
+        localeCode:
+          description: ""
+          format: int32
+          type: integer
+        isoCurrencyCode:
+          description: ""
+          nullable: true
+          type: string
+        transactionDate:
+          description: ""
+          format: date-time
+          type: string
+        transactionPrice:
+          description: ""
+          format: double
+          type: number
+        transactionTax:
+          description: ""
+          format: double
+          type: number
+        transactionTotal:
+          description: ""
+          format: double
+          type: number
+        orderNumber:
+          description: ""
+          nullable: true
+          type: string
+      type: object
+    ApplicationEntitlement:
+      additionalProperties: false
+      description: ""
+      example:
+        effectiveEndDate: 2000-01-23T04:56:07.000+00:00
+        applicationVersion: applicationVersion
+        applicationEntitlementId: 3
+        applicationLicenseType: applicationLicenseType
+        packageId: 3
+        entitlementStatus: entitlementStatus
+        installedByLastName: installedByLastName
+        installedByFirstName: installedByFirstName
+        tenantName: tenantName
+        devAccountId: 3
+        installedAppsApplicationId: installedAppsApplicationId
+        installedDate: 2000-01-23T04:56:07.000+00:00
+        tenantId: 7
+        effectiveStartDate: 2000-01-23T04:56:07.000+00:00
+        applicationStatusId: applicationStatusId
+        siteId: 0
+        appKey: appKey
+        packageName: packageName
+        applicationId: 5
+        applicationTransactions:
+        - transactionTax: 3.0576100241049344
+          applicationEntitlementId: 0
+          orderNumber: orderNumber
+          localeCode: 7
+          applicationTransactionId: 7
+          tenantId: 4
+          transactionPrice: 3.0205796992916243
+          siteId: 8
+          applicationId: 6
+          transactionDate: 2000-01-23T04:56:07.000+00:00
+          transactionTotal: 7.04836565559697
+          isoCurrencyCode: isoCurrencyCode
+        - transactionTax: 3.0576100241049344
+          applicationEntitlementId: 0
+          orderNumber: orderNumber
+          localeCode: 7
+          applicationTransactionId: 7
+          tenantId: 4
+          transactionPrice: 3.0205796992916243
+          siteId: 8
+          applicationId: 6
+          transactionDate: 2000-01-23T04:56:07.000+00:00
+          transactionTotal: 7.04836565559697
+          isoCurrencyCode: isoCurrencyCode
+        applicationName: applicationName
+        appOwnerDevAccountId: 4
+      properties:
+        appKey:
+          description: ""
+          nullable: true
+          type: string
+        applicationEntitlementId:
+          description: ""
+          format: int32
+          type: integer
+        packageId:
+          description: ""
+          format: int32
+          type: integer
+        applicationLicenseType:
+          description: ""
+          nullable: true
+          type: string
+        entitlementStatus:
+          description: ""
+          nullable: true
+          type: string
+        tenantId:
+          description: ""
+          format: int32
+          type: integer
+        siteId:
+          description: ""
+          format: int32
+          nullable: true
+          type: integer
+        effectiveStartDate:
+          description: ""
+          format: date-time
+          nullable: true
+          type: string
+        effectiveEndDate:
+          description: ""
+          format: date-time
+          nullable: true
+          type: string
+        applicationTransactions:
+          description: ""
+          items:
+            $ref: '#/components/schemas/ApplicationTransaction'
+          nullable: true
+          type: array
+        applicationName:
+          description: ""
+          nullable: true
+          type: string
+        applicationVersion:
+          description: ""
+          nullable: true
+          type: string
+        installedByFirstName:
+          description: ""
+          nullable: true
+          type: string
+        installedByLastName:
+          description: ""
+          nullable: true
+          type: string
+        installedDate:
+          description: ""
+          format: date-time
+          type: string
+        packageName:
+          description: ""
+          nullable: true
+          type: string
+        tenantName:
+          description: ""
+          nullable: true
+          type: string
+        applicationStatusId:
+          description: ""
+          nullable: true
+          type: string
+        applicationId:
+          description: ""
+          format: int32
+          type: integer
+        devAccountId:
+          description: Denotes which DevAccountId is the application installed in
+          format: int32
+          type: integer
+        installedAppsApplicationId:
+          description: ""
+          nullable: true
+          type: string
+        appOwnerDevAccountId:
+          description: Denotes the application owner dev account id
+          format: int32
+          type: integer
+      type: object
+    AppVersion:
+      additionalProperties: false
+      description: ""
+      example:
+        majorVersion: 9
+        minorVersion: 3
+        revision: 2
+      properties:
+        majorVersion:
+          description: ""
+          format: int32
+          type: integer
+        minorVersion:
+          description: ""
+          format: int32
+          type: integer
+        revision:
+          description: ""
+          format: int32
+          type: integer
+      type: object
+    ApplicationSummary:
+      additionalProperties: false
+      example:
+        applicationVersion:
+          majorVersion: 9
+          minorVersion: 3
+          revision: 2
+        releasePackageName: releasePackageName
+        applicationNamespace: applicationNamespace
+        appSchemeVersion: 7
+        parentName: parentName
+        releasePackageId: 7
+        applicationTypeId: 2
+        hasVersions: true
+        appId: appId
+        name: name
+        applicationStatusId: 4
+        updateParentAppKey: updateParentAppKey
+        parentAppKey: parentAppKey
+        appKey: appKey
+        applicationId: 5
+        updateAvailable: true
+        applicationStatusName: applicationStatusName
+      properties:
+        parentName:
+          description: ""
+          nullable: true
+          type: string
+        applicationId:
+          description: ""
+          format: int32
+          type: integer
+        applicationTypeId:
+          description: ""
+          format: int32
+          type: integer
+        releasePackageId:
+          description: ""
+          format: int32
+          type: integer
+        releasePackageName:
+          description: ""
+          nullable: true
+          type: string
+        name:
+          description: ""
+          nullable: true
+          type: string
+        applicationNamespace:
+          description: ""
+          nullable: true
+          type: string
+        applicationVersion:
+          $ref: '#/components/schemas/AppVersion'
+        applicationStatusId:
+          description: ""
+          format: int32
+          type: integer
+        appId:
+          description: ""
+          nullable: true
+          type: string
+        applicationStatusName:
+          description: ""
+          nullable: true
+          type: string
+        hasVersions:
+          description: ""
+          type: boolean
+        appSchemeVersion:
+          description: ""
+          format: int32
+          type: integer
+        appKey:
+          description: The AppKey is a runtime type.
+          nullable: true
+          type: string
+        parentAppKey:
+          description: "The AppKey is a runtime type.\r\nThis only applies for themes\
+            \ that inherit from another theme."
+          nullable: true
+          type: string
+        updateParentAppKey:
+          description: "The AppKey is a runtime type.\r\nThis only applies for themes\
+            \ that inherit from another theme.\r\nIt shows the most current update\
+            \ available."
+          nullable: true
+          type: string
+        updateAvailable:
+          description: ""
+          type: boolean
+      type: object
+    ApplicationSummaryCollection:
+      additionalProperties: false
+      description: Collection of products returned as a whole. A collection is not
+        paged.
+      example:
+        startIndex: 0
+        pageCount: 1
+        pageSize: 6
+        totalCount: 5
+        items:
+        - applicationVersion:
+            majorVersion: 9
+            minorVersion: 3
+            revision: 2
+          releasePackageName: releasePackageName
+          applicationNamespace: applicationNamespace
+          appSchemeVersion: 7
+          parentName: parentName
+          releasePackageId: 7
+          applicationTypeId: 2
+          hasVersions: true
+          appId: appId
+          name: name
+          applicationStatusId: 4
+          updateParentAppKey: updateParentAppKey
+          parentAppKey: parentAppKey
+          appKey: appKey
+          applicationId: 5
+          updateAvailable: true
+          applicationStatusName: applicationStatusName
+        - applicationVersion:
+            majorVersion: 9
+            minorVersion: 3
+            revision: 2
+          releasePackageName: releasePackageName
+          applicationNamespace: applicationNamespace
+          appSchemeVersion: 7
+          parentName: parentName
+          releasePackageId: 7
+          applicationTypeId: 2
+          hasVersions: true
+          appId: appId
+          name: name
+          applicationStatusId: 4
+          updateParentAppKey: updateParentAppKey
+          parentAppKey: parentAppKey
+          appKey: appKey
+          applicationId: 5
+          updateAvailable: true
+          applicationStatusName: applicationStatusName
+      properties:
+        startIndex:
+          format: int32
+          type: integer
+        pageSize:
+          format: int32
+          type: integer
+        pageCount:
+          format: int32
+          type: integer
+        totalCount:
+          format: int32
+          type: integer
+        items:
+          items:
+            $ref: '#/components/schemas/ApplicationSummary'
+          nullable: true
+          type: array
+      type: object
+    PackageCollection:
+      additionalProperties: false
+      description: ""
+      example:
+        startIndex: 0
+        pageCount: 1
+        pageSize: 6
+        totalCount: 5
+        items:
+        - majorVersion: 1
+          parentThemeName: parentThemeName
+          packageDescription: packageDescription
+          attributeNamespace: attributeNamespace
+          apiVersion: apiVersion
+          applicationStatus: applicationStatus
+          applicationTypeId: 6
+          publishedParentSemanticVersion: publishedParentSemanticVersion
+          appId: appId
+          isLocked: true
+          namespaceRegistryId: namespaceRegistryId
+          appKey: appKey
+          id: 0
+          updateAvailable: true
+          themeEngineVersion: themeEngineVersion
+          applicationSubscriptions:
+          - applicationEndPoint: applicationEndPoint
+            noCallback: true
+            packageId: 6
+            applicationSubscriptionId: 1
+            events:
+            - eventId: 1
+              eventCategory: eventCategory
+              eventName: eventName
+              apiVersionNumber: apiVersionNumber
+            - eventId: 1
+              eventCategory: eventCategory
+              eventName: eventName
+              apiVersionNumber: apiVersionNumber
+          - applicationEndPoint: applicationEndPoint
+            noCallback: true
+            packageId: 6
+            applicationSubscriptionId: 1
+            events:
+            - eventId: 1
+              eventCategory: eventCategory
+              eventName: eventName
+              apiVersionNumber: apiVersionNumber
+            - eventId: 1
+              eventCategory: eventCategory
+              eventName: eventName
+              apiVersionNumber: apiVersionNumber
+          revision: 5
+          applicationDescription: applicationDescription
+          applicationStatusId: 2
+          updateParentAppKey: updateParentAppKey
+          semanticVersionRange: semanticVersionRange
+          applicationCapabilityTypes:
+          - applicationCapabilities:
+            - applicationCapabilityId: 5
+              applicationEndPoint: applicationEndPoint
+              applicationCapabilityTypeId: 9
+              packageId: 6
+              capabilityTypeContractId: 9
+            - applicationCapabilityId: 5
+              applicationEndPoint: applicationEndPoint
+              applicationCapabilityTypeId: 9
+              packageId: 6
+              capabilityTypeContractId: 9
+            isInitializedByDefault: true
+            applicationCapabilityTypeId: 7
+            isImplemented: true
+            applicationCapabilityDomains:
+            - applicationCapabilityDomainValues2:
+              - valueName: valueName
+                applicationCapabilityDomainValueId: 6
+                applicationCapabilityDomainId1: 3
+                displayName: displayName
+                applicationCapabilityDomainId2: 6
+              - valueName: valueName
+                applicationCapabilityDomainValueId: 6
+                applicationCapabilityDomainId1: 3
+                displayName: displayName
+                applicationCapabilityDomainId2: 6
+              applicationCapabilityTypeId: 9
+              applicationCapabilityDomainValues1:
+              - valueName: valueName
+                applicationCapabilityDomainValueId: 6
+                applicationCapabilityDomainId1: 3
+                displayName: displayName
+                applicationCapabilityDomainId2: 6
+              - valueName: valueName
+                applicationCapabilityDomainValueId: 6
+                applicationCapabilityDomainId1: 3
+                displayName: displayName
+                applicationCapabilityDomainId2: 6
+              name: name
+              applicationCapabilityDomainId: 8
+            - applicationCapabilityDomainValues2:
+              - valueName: valueName
+                applicationCapabilityDomainValueId: 6
+                applicationCapabilityDomainId1: 3
+                displayName: displayName
+                applicationCapabilityDomainId2: 6
+              - valueName: valueName
+                applicationCapabilityDomainValueId: 6
+                applicationCapabilityDomainId1: 3
+                displayName: displayName
+                applicationCapabilityDomainId2: 6
+              applicationCapabilityTypeId: 9
+              applicationCapabilityDomainValues1:
+              - valueName: valueName
+                applicationCapabilityDomainValueId: 6
+                applicationCapabilityDomainId1: 3
+                displayName: displayName
+                applicationCapabilityDomainId2: 6
+              - valueName: valueName
+                applicationCapabilityDomainValueId: 6
+                applicationCapabilityDomainId1: 3
+                displayName: displayName
+                applicationCapabilityDomainId2: 6
+              name: name
+              applicationCapabilityDomainId: 8
+            packageId: 1
+            capabilityTypeId: 4
+            capabilityTypeName: capabilityTypeName
+            applicationId: 1
+          - applicationCapabilities:
+            - applicationCapabilityId: 5
+              applicationEndPoint: applicationEndPoint
+              applicationCapabilityTypeId: 9
+              packageId: 6
+              capabilityTypeContractId: 9
+            - applicationCapabilityId: 5
+              applicationEndPoint: applicationEndPoint
+              applicationCapabilityTypeId: 9
+              packageId: 6
+              capabilityTypeContractId: 9
+            isInitializedByDefault: true
+            applicationCapabilityTypeId: 7
+            isImplemented: true
+            applicationCapabilityDomains:
+            - applicationCapabilityDomainValues2:
+              - valueName: valueName
+                applicationCapabilityDomainValueId: 6
+                applicationCapabilityDomainId1: 3
+                displayName: displayName
+                applicationCapabilityDomainId2: 6
+              - valueName: valueName
+                applicationCapabilityDomainValueId: 6
+                applicationCapabilityDomainId1: 3
+                displayName: displayName
+                applicationCapabilityDomainId2: 6
+              applicationCapabilityTypeId: 9
+              applicationCapabilityDomainValues1:
+              - valueName: valueName
+                applicationCapabilityDomainValueId: 6
+                applicationCapabilityDomainId1: 3
+                displayName: displayName
+                applicationCapabilityDomainId2: 6
+              - valueName: valueName
+                applicationCapabilityDomainValueId: 6
+                applicationCapabilityDomainId1: 3
+                displayName: displayName
+                applicationCapabilityDomainId2: 6
+              name: name
+              applicationCapabilityDomainId: 8
+            - applicationCapabilityDomainValues2:
+              - valueName: valueName
+                applicationCapabilityDomainValueId: 6
+                applicationCapabilityDomainId1: 3
+                displayName: displayName
+                applicationCapabilityDomainId2: 6
+              - valueName: valueName
+                applicationCapabilityDomainValueId: 6
+                applicationCapabilityDomainId1: 3
+                displayName: displayName
+                applicationCapabilityDomainId2: 6
+              applicationCapabilityTypeId: 9
+              applicationCapabilityDomainValues1:
+              - valueName: valueName
+                applicationCapabilityDomainValueId: 6
+                applicationCapabilityDomainId1: 3
+                displayName: displayName
+                applicationCapabilityDomainId2: 6
+              - valueName: valueName
+                applicationCapabilityDomainValueId: 6
+                applicationCapabilityDomainId1: 3
+                displayName: displayName
+                applicationCapabilityDomainId2: 6
+              name: name
+              applicationCapabilityDomainId: 8
+            packageId: 1
+            capabilityTypeId: 4
+            capabilityTypeName: capabilityTypeName
+            applicationId: 1
+          applicationId: 3
+          applicationStatusName: applicationStatusName
+          applicationEntitlements:
+          - effectiveEndDate: 2000-01-23T04:56:07.000+00:00
+            applicationVersion: applicationVersion
+            applicationEntitlementId: 3
+            applicationLicenseType: applicationLicenseType
+            packageId: 3
+            entitlementStatus: entitlementStatus
+            installedByLastName: installedByLastName
+            installedByFirstName: installedByFirstName
+            tenantName: tenantName
+            devAccountId: 3
+            installedAppsApplicationId: installedAppsApplicationId
+            installedDate: 2000-01-23T04:56:07.000+00:00
+            tenantId: 7
+            effectiveStartDate: 2000-01-23T04:56:07.000+00:00
+            applicationStatusId: applicationStatusId
+            siteId: 0
+            appKey: appKey
+            packageName: packageName
+            applicationId: 5
+            applicationTransactions:
+            - transactionTax: 3.0576100241049344
+              applicationEntitlementId: 0
+              orderNumber: orderNumber
+              localeCode: 7
+              applicationTransactionId: 7
+              tenantId: 4
+              transactionPrice: 3.0205796992916243
+              siteId: 8
+              applicationId: 6
+              transactionDate: 2000-01-23T04:56:07.000+00:00
+              transactionTotal: 7.04836565559697
+              isoCurrencyCode: isoCurrencyCode
+            - transactionTax: 3.0576100241049344
+              applicationEntitlementId: 0
+              orderNumber: orderNumber
+              localeCode: 7
+              applicationTransactionId: 7
+              tenantId: 4
+              transactionPrice: 3.0205796992916243
+              siteId: 8
+              applicationId: 6
+              transactionDate: 2000-01-23T04:56:07.000+00:00
+              transactionTotal: 7.04836565559697
+              isoCurrencyCode: isoCurrencyCode
+            applicationName: applicationName
+            appOwnerDevAccountId: 4
+          - effectiveEndDate: 2000-01-23T04:56:07.000+00:00
+            applicationVersion: applicationVersion
+            applicationEntitlementId: 3
+            applicationLicenseType: applicationLicenseType
+            packageId: 3
+            entitlementStatus: entitlementStatus
+            installedByLastName: installedByLastName
+            installedByFirstName: installedByFirstName
+            tenantName: tenantName
+            devAccountId: 3
+            installedAppsApplicationId: installedAppsApplicationId
+            installedDate: 2000-01-23T04:56:07.000+00:00
+            tenantId: 7
+            effectiveStartDate: 2000-01-23T04:56:07.000+00:00
+            applicationStatusId: applicationStatusId
+            siteId: 0
+            appKey: appKey
+            packageName: packageName
+            applicationId: 5
+            applicationTransactions:
+            - transactionTax: 3.0576100241049344
+              applicationEntitlementId: 0
+              orderNumber: orderNumber
+              localeCode: 7
+              applicationTransactionId: 7
+              tenantId: 4
+              transactionPrice: 3.0205796992916243
+              siteId: 8
+              applicationId: 6
+              transactionDate: 2000-01-23T04:56:07.000+00:00
+              transactionTotal: 7.04836565559697
+              isoCurrencyCode: isoCurrencyCode
+            - transactionTax: 3.0576100241049344
+              applicationEntitlementId: 0
+              orderNumber: orderNumber
+              localeCode: 7
+              applicationTransactionId: 7
+              tenantId: 4
+              transactionPrice: 3.0205796992916243
+              siteId: 8
+              applicationId: 6
+              transactionDate: 2000-01-23T04:56:07.000+00:00
+              transactionTotal: 7.04836565559697
+              isoCurrencyCode: isoCurrencyCode
+            applicationName: applicationName
+            appOwnerDevAccountId: 4
+          updateDate: 2000-01-23T04:56:07.000+00:00
+          applicationUpdateDate: 2000-01-23T04:56:07.000+00:00
+          assetFileCount: 4
+          legacyNamespace: legacyNamespace
+          packageGuid: packageGuid
+          publishedParentThemeId: 0
+          applicationBehaviors:
+          - behaviorId: 7
+            packageId: 1
+          - behaviorId: 7
+            packageId: 1
+          appSchemeVersion: 9
+          appConfigUrl: appConfigUrl
+          isDeleted: true
+          dataNamespace: dataNamespace
+          isReleasePackage: true
+          packageName: packageName
+          sharedSecret: sharedSecret
+          applicationName: applicationName
+          applicationAttributes:
+          - sourceTenantName: sourceTenantName
+            attributeCodes: attributeCodes
+            sourceTenantId: 2
+            attributeJson: attributeJson
+            packageId: 6
+            subsystem: subsystem
+            productTypeJson: productTypeJson
+            attributes:
+            - attributeId: 6
+              adminName: adminName
+              sequence: 5
+              fqn: fqn
+              code: code
+              vocabularyValues: vocabularyValues
+              vocabularyJson: vocabularyJson
+              name: name
+              inputType: inputType
+              type: type
+              applicationAttributeId: 6
+            - attributeId: 6
+              adminName: adminName
+              sequence: 5
+              fqn: fqn
+              code: code
+              vocabularyValues: vocabularyValues
+              vocabularyJson: vocabularyJson
+              name: name
+              inputType: inputType
+              type: type
+              applicationAttributeId: 6
+            isAppliedToBase: true
+          - sourceTenantName: sourceTenantName
+            attributeCodes: attributeCodes
+            sourceTenantId: 2
+            attributeJson: attributeJson
+            packageId: 6
+            subsystem: subsystem
+            productTypeJson: productTypeJson
+            attributes:
+            - attributeId: 6
+              adminName: adminName
+              sequence: 5
+              fqn: fqn
+              code: code
+              vocabularyValues: vocabularyValues
+              vocabularyJson: vocabularyJson
+              name: name
+              inputType: inputType
+              type: type
+              applicationAttributeId: 6
+            - attributeId: 6
+              adminName: adminName
+              sequence: 5
+              fqn: fqn
+              code: code
+              vocabularyValues: vocabularyValues
+              vocabularyJson: vocabularyJson
+              name: name
+              inputType: inputType
+              type: type
+              applicationAttributeId: 6
+            isAppliedToBase: true
+          updateParentThemeVersion: updateParentThemeVersion
+          parentThemeAppKey: parentThemeAppKey
+          applicationTypeName: applicationTypeName
+          userId: userId
+          applicationDetailId: 2
+          applicationCapabilities:
+          - applicationCapabilityId: 5
+            applicationEndPoint: applicationEndPoint
+            applicationCapabilityTypeId: 9
+            packageId: 6
+            capabilityTypeContractId: 9
+          - applicationCapabilityId: 5
+            applicationEndPoint: applicationEndPoint
+            applicationCapabilityTypeId: 9
+            packageId: 6
+            capabilityTypeContractId: 9
+          validApplicationStatusIdList:
+          - 7
+          - 7
+          namespace: namespace
+          hasApplicationVersions: true
+          minorVersion: 5
+          applicationOwnerDevAccountId: 6
+          updateParentThemeName: updateParentThemeName
+        - majorVersion: 1
+          parentThemeName: parentThemeName
+          packageDescription: packageDescription
+          attributeNamespace: attributeNamespace
+          apiVersion: apiVersion
+          applicationStatus: applicationStatus
+          applicationTypeId: 6
+          publishedParentSemanticVersion: publishedParentSemanticVersion
+          appId: appId
+          isLocked: true
+          namespaceRegistryId: namespaceRegistryId
+          appKey: appKey
+          id: 0
+          updateAvailable: true
+          themeEngineVersion: themeEngineVersion
+          applicationSubscriptions:
+          - applicationEndPoint: applicationEndPoint
+            noCallback: true
+            packageId: 6
+            applicationSubscriptionId: 1
+            events:
+            - eventId: 1
+              eventCategory: eventCategory
+              eventName: eventName
+              apiVersionNumber: apiVersionNumber
+            - eventId: 1
+              eventCategory: eventCategory
+              eventName: eventName
+              apiVersionNumber: apiVersionNumber
+          - applicationEndPoint: applicationEndPoint
+            noCallback: true
+            packageId: 6
+            applicationSubscriptionId: 1
+            events:
+            - eventId: 1
+              eventCategory: eventCategory
+              eventName: eventName
+              apiVersionNumber: apiVersionNumber
+            - eventId: 1
+              eventCategory: eventCategory
+              eventName: eventName
+              apiVersionNumber: apiVersionNumber
+          revision: 5
+          applicationDescription: applicationDescription
+          applicationStatusId: 2
+          updateParentAppKey: updateParentAppKey
+          semanticVersionRange: semanticVersionRange
+          applicationCapabilityTypes:
+          - applicationCapabilities:
+            - applicationCapabilityId: 5
+              applicationEndPoint: applicationEndPoint
+              applicationCapabilityTypeId: 9
+              packageId: 6
+              capabilityTypeContractId: 9
+            - applicationCapabilityId: 5
+              applicationEndPoint: applicationEndPoint
+              applicationCapabilityTypeId: 9
+              packageId: 6
+              capabilityTypeContractId: 9
+            isInitializedByDefault: true
+            applicationCapabilityTypeId: 7
+            isImplemented: true
+            applicationCapabilityDomains:
+            - applicationCapabilityDomainValues2:
+              - valueName: valueName
+                applicationCapabilityDomainValueId: 6
+                applicationCapabilityDomainId1: 3
+                displayName: displayName
+                applicationCapabilityDomainId2: 6
+              - valueName: valueName
+                applicationCapabilityDomainValueId: 6
+                applicationCapabilityDomainId1: 3
+                displayName: displayName
+                applicationCapabilityDomainId2: 6
+              applicationCapabilityTypeId: 9
+              applicationCapabilityDomainValues1:
+              - valueName: valueName
+                applicationCapabilityDomainValueId: 6
+                applicationCapabilityDomainId1: 3
+                displayName: displayName
+                applicationCapabilityDomainId2: 6
+              - valueName: valueName
+                applicationCapabilityDomainValueId: 6
+                applicationCapabilityDomainId1: 3
+                displayName: displayName
+                applicationCapabilityDomainId2: 6
+              name: name
+              applicationCapabilityDomainId: 8
+            - applicationCapabilityDomainValues2:
+              - valueName: valueName
+                applicationCapabilityDomainValueId: 6
+                applicationCapabilityDomainId1: 3
+                displayName: displayName
+                applicationCapabilityDomainId2: 6
+              - valueName: valueName
+                applicationCapabilityDomainValueId: 6
+                applicationCapabilityDomainId1: 3
+                displayName: displayName
+                applicationCapabilityDomainId2: 6
+              applicationCapabilityTypeId: 9
+              applicationCapabilityDomainValues1:
+              - valueName: valueName
+                applicationCapabilityDomainValueId: 6
+                applicationCapabilityDomainId1: 3
+                displayName: displayName
+                applicationCapabilityDomainId2: 6
+              - valueName: valueName
+                applicationCapabilityDomainValueId: 6
+                applicationCapabilityDomainId1: 3
+                displayName: displayName
+                applicationCapabilityDomainId2: 6
+              name: name
+              applicationCapabilityDomainId: 8
+            packageId: 1
+            capabilityTypeId: 4
+            capabilityTypeName: capabilityTypeName
+            applicationId: 1
+          - applicationCapabilities:
+            - applicationCapabilityId: 5
+              applicationEndPoint: applicationEndPoint
+              applicationCapabilityTypeId: 9
+              packageId: 6
+              capabilityTypeContractId: 9
+            - applicationCapabilityId: 5
+              applicationEndPoint: applicationEndPoint
+              applicationCapabilityTypeId: 9
+              packageId: 6
+              capabilityTypeContractId: 9
+            isInitializedByDefault: true
+            applicationCapabilityTypeId: 7
+            isImplemented: true
+            applicationCapabilityDomains:
+            - applicationCapabilityDomainValues2:
+              - valueName: valueName
+                applicationCapabilityDomainValueId: 6
+                applicationCapabilityDomainId1: 3
+                displayName: displayName
+                applicationCapabilityDomainId2: 6
+              - valueName: valueName
+                applicationCapabilityDomainValueId: 6
+                applicationCapabilityDomainId1: 3
+                displayName: displayName
+                applicationCapabilityDomainId2: 6
+              applicationCapabilityTypeId: 9
+              applicationCapabilityDomainValues1:
+              - valueName: valueName
+                applicationCapabilityDomainValueId: 6
+                applicationCapabilityDomainId1: 3
+                displayName: displayName
+                applicationCapabilityDomainId2: 6
+              - valueName: valueName
+                applicationCapabilityDomainValueId: 6
+                applicationCapabilityDomainId1: 3
+                displayName: displayName
+                applicationCapabilityDomainId2: 6
+              name: name
+              applicationCapabilityDomainId: 8
+            - applicationCapabilityDomainValues2:
+              - valueName: valueName
+                applicationCapabilityDomainValueId: 6
+                applicationCapabilityDomainId1: 3
+                displayName: displayName
+                applicationCapabilityDomainId2: 6
+              - valueName: valueName
+                applicationCapabilityDomainValueId: 6
+                applicationCapabilityDomainId1: 3
+                displayName: displayName
+                applicationCapabilityDomainId2: 6
+              applicationCapabilityTypeId: 9
+              applicationCapabilityDomainValues1:
+              - valueName: valueName
+                applicationCapabilityDomainValueId: 6
+                applicationCapabilityDomainId1: 3
+                displayName: displayName
+                applicationCapabilityDomainId2: 6
+              - valueName: valueName
+                applicationCapabilityDomainValueId: 6
+                applicationCapabilityDomainId1: 3
+                displayName: displayName
+                applicationCapabilityDomainId2: 6
+              name: name
+              applicationCapabilityDomainId: 8
+            packageId: 1
+            capabilityTypeId: 4
+            capabilityTypeName: capabilityTypeName
+            applicationId: 1
+          applicationId: 3
+          applicationStatusName: applicationStatusName
+          applicationEntitlements:
+          - effectiveEndDate: 2000-01-23T04:56:07.000+00:00
+            applicationVersion: applicationVersion
+            applicationEntitlementId: 3
+            applicationLicenseType: applicationLicenseType
+            packageId: 3
+            entitlementStatus: entitlementStatus
+            installedByLastName: installedByLastName
+            installedByFirstName: installedByFirstName
+            tenantName: tenantName
+            devAccountId: 3
+            installedAppsApplicationId: installedAppsApplicationId
+            installedDate: 2000-01-23T04:56:07.000+00:00
+            tenantId: 7
+            effectiveStartDate: 2000-01-23T04:56:07.000+00:00
+            applicationStatusId: applicationStatusId
+            siteId: 0
+            appKey: appKey
+            packageName: packageName
+            applicationId: 5
+            applicationTransactions:
+            - transactionTax: 3.0576100241049344
+              applicationEntitlementId: 0
+              orderNumber: orderNumber
+              localeCode: 7
+              applicationTransactionId: 7
+              tenantId: 4
+              transactionPrice: 3.0205796992916243
+              siteId: 8
+              applicationId: 6
+              transactionDate: 2000-01-23T04:56:07.000+00:00
+              transactionTotal: 7.04836565559697
+              isoCurrencyCode: isoCurrencyCode
+            - transactionTax: 3.0576100241049344
+              applicationEntitlementId: 0
+              orderNumber: orderNumber
+              localeCode: 7
+              applicationTransactionId: 7
+              tenantId: 4
+              transactionPrice: 3.0205796992916243
+              siteId: 8
+              applicationId: 6
+              transactionDate: 2000-01-23T04:56:07.000+00:00
+              transactionTotal: 7.04836565559697
+              isoCurrencyCode: isoCurrencyCode
+            applicationName: applicationName
+            appOwnerDevAccountId: 4
+          - effectiveEndDate: 2000-01-23T04:56:07.000+00:00
+            applicationVersion: applicationVersion
+            applicationEntitlementId: 3
+            applicationLicenseType: applicationLicenseType
+            packageId: 3
+            entitlementStatus: entitlementStatus
+            installedByLastName: installedByLastName
+            installedByFirstName: installedByFirstName
+            tenantName: tenantName
+            devAccountId: 3
+            installedAppsApplicationId: installedAppsApplicationId
+            installedDate: 2000-01-23T04:56:07.000+00:00
+            tenantId: 7
+            effectiveStartDate: 2000-01-23T04:56:07.000+00:00
+            applicationStatusId: applicationStatusId
+            siteId: 0
+            appKey: appKey
+            packageName: packageName
+            applicationId: 5
+            applicationTransactions:
+            - transactionTax: 3.0576100241049344
+              applicationEntitlementId: 0
+              orderNumber: orderNumber
+              localeCode: 7
+              applicationTransactionId: 7
+              tenantId: 4
+              transactionPrice: 3.0205796992916243
+              siteId: 8
+              applicationId: 6
+              transactionDate: 2000-01-23T04:56:07.000+00:00
+              transactionTotal: 7.04836565559697
+              isoCurrencyCode: isoCurrencyCode
+            - transactionTax: 3.0576100241049344
+              applicationEntitlementId: 0
+              orderNumber: orderNumber
+              localeCode: 7
+              applicationTransactionId: 7
+              tenantId: 4
+              transactionPrice: 3.0205796992916243
+              siteId: 8
+              applicationId: 6
+              transactionDate: 2000-01-23T04:56:07.000+00:00
+              transactionTotal: 7.04836565559697
+              isoCurrencyCode: isoCurrencyCode
+            applicationName: applicationName
+            appOwnerDevAccountId: 4
+          updateDate: 2000-01-23T04:56:07.000+00:00
+          applicationUpdateDate: 2000-01-23T04:56:07.000+00:00
+          assetFileCount: 4
+          legacyNamespace: legacyNamespace
+          packageGuid: packageGuid
+          publishedParentThemeId: 0
+          applicationBehaviors:
+          - behaviorId: 7
+            packageId: 1
+          - behaviorId: 7
+            packageId: 1
+          appSchemeVersion: 9
+          appConfigUrl: appConfigUrl
+          isDeleted: true
+          dataNamespace: dataNamespace
+          isReleasePackage: true
+          packageName: packageName
+          sharedSecret: sharedSecret
+          applicationName: applicationName
+          applicationAttributes:
+          - sourceTenantName: sourceTenantName
+            attributeCodes: attributeCodes
+            sourceTenantId: 2
+            attributeJson: attributeJson
+            packageId: 6
+            subsystem: subsystem
+            productTypeJson: productTypeJson
+            attributes:
+            - attributeId: 6
+              adminName: adminName
+              sequence: 5
+              fqn: fqn
+              code: code
+              vocabularyValues: vocabularyValues
+              vocabularyJson: vocabularyJson
+              name: name
+              inputType: inputType
+              type: type
+              applicationAttributeId: 6
+            - attributeId: 6
+              adminName: adminName
+              sequence: 5
+              fqn: fqn
+              code: code
+              vocabularyValues: vocabularyValues
+              vocabularyJson: vocabularyJson
+              name: name
+              inputType: inputType
+              type: type
+              applicationAttributeId: 6
+            isAppliedToBase: true
+          - sourceTenantName: sourceTenantName
+            attributeCodes: attributeCodes
+            sourceTenantId: 2
+            attributeJson: attributeJson
+            packageId: 6
+            subsystem: subsystem
+            productTypeJson: productTypeJson
+            attributes:
+            - attributeId: 6
+              adminName: adminName
+              sequence: 5
+              fqn: fqn
+              code: code
+              vocabularyValues: vocabularyValues
+              vocabularyJson: vocabularyJson
+              name: name
+              inputType: inputType
+              type: type
+              applicationAttributeId: 6
+            - attributeId: 6
+              adminName: adminName
+              sequence: 5
+              fqn: fqn
+              code: code
+              vocabularyValues: vocabularyValues
+              vocabularyJson: vocabularyJson
+              name: name
+              inputType: inputType
+              type: type
+              applicationAttributeId: 6
+            isAppliedToBase: true
+          updateParentThemeVersion: updateParentThemeVersion
+          parentThemeAppKey: parentThemeAppKey
+          applicationTypeName: applicationTypeName
+          userId: userId
+          applicationDetailId: 2
+          applicationCapabilities:
+          - applicationCapabilityId: 5
+            applicationEndPoint: applicationEndPoint
+            applicationCapabilityTypeId: 9
+            packageId: 6
+            capabilityTypeContractId: 9
+          - applicationCapabilityId: 5
+            applicationEndPoint: applicationEndPoint
+            applicationCapabilityTypeId: 9
+            packageId: 6
+            capabilityTypeContractId: 9
+          validApplicationStatusIdList:
+          - 7
+          - 7
+          namespace: namespace
+          hasApplicationVersions: true
+          minorVersion: 5
+          applicationOwnerDevAccountId: 6
+          updateParentThemeName: updateParentThemeName
+      properties:
+        startIndex:
+          format: int32
+          type: integer
+        pageSize:
+          format: int32
+          type: integer
+        pageCount:
+          format: int32
+          type: integer
+        totalCount:
+          format: int32
+          type: integer
+        items:
+          items:
+            $ref: '#/components/schemas/AppDevPackage'
+          nullable: true
+          type: array
+      type: object
+    PackageSummary:
+      additionalProperties: false
+      description: ""
+      example:
+        applicationTypeId: 2
+        isLocked: true
+        name: name
+        id: 5
+        majorVersion: 7
+        minorVersion: 9
+        applicationId: 2
+        applicationName: applicationName
+        revision: 3
+      properties:
+        id:
+          description: Package Id
+          format: int32
+          type: integer
+        name:
+          description: Package Name
+          nullable: true
+          type: string
+        applicationName:
+          description: Application Name
+          nullable: true
+          type: string
+        applicationTypeId:
+          description: Application Type Id
+          format: int32
+          type: integer
+        majorVersion:
+          description: Application Major Version
+          format: int32
+          type: integer
+        minorVersion:
+          description: Application Minor Version
+          format: int32
+          type: integer
+        revision:
+          description: Application Revision
+          format: int32
+          type: integer
+        isLocked:
+          description: IsLocked
+          type: boolean
+        applicationId:
+          description: ApplicationId
+          format: int32
+          type: integer
+      type: object
+    PackageSummaryCollection:
+      additionalProperties: false
+      description: ""
+      example:
+        startIndex: 0
+        pageCount: 1
+        pageSize: 6
+        totalCount: 5
+        items:
+        - applicationTypeId: 2
+          isLocked: true
+          name: name
+          id: 5
+          majorVersion: 7
+          minorVersion: 9
+          applicationId: 2
+          applicationName: applicationName
+          revision: 3
+        - applicationTypeId: 2
+          isLocked: true
+          name: name
+          id: 5
+          majorVersion: 7
+          minorVersion: 9
+          applicationId: 2
+          applicationName: applicationName
+          revision: 3
+      properties:
+        startIndex:
+          format: int32
+          type: integer
+        pageSize:
+          format: int32
+          type: integer
+        pageCount:
+          format: int32
+          type: integer
+        totalCount:
+          format: int32
+          type: integer
+        items:
+          items:
+            $ref: '#/components/schemas/PackageSummary'
+          nullable: true
+          type: array
+      type: object
+    PackageRequest:
+      additionalProperties: false
+      description: ""
+      example:
+        appKey: appKey
+        parentThemeAppKey: parentThemeAppKey
+      properties:
+        appKey:
+          description: ""
+          nullable: true
+          type: string
+        parentThemeAppKey:
+          description: ""
+          nullable: true
+          type: string
+      type: object
+    FileMetadata:
+      additionalProperties: false
+      example:
+        auditInfo:
+          updateDate: 2000-01-23T04:56:07.000+00:00
+          createBy: createBy
+          updateBy: updateBy
+          createDate: 2000-01-23T04:56:07.000+00:00
+        path: path
+        sizeInBytes: 0
+        checkSum: checkSum
+        id: id
+        type: type
+      properties:
+        id:
+          nullable: true
+          type: string
+        type:
+          nullable: true
+          type: string
+        path:
+          nullable: true
+          type: string
+        checkSum:
+          nullable: true
+          type: string
+        sizeInBytes:
+          format: int64
+          type: integer
+        auditInfo:
+          $ref: '#/components/schemas/AdminUserAuditInfo'
+      type: object
+    RenameInfo:
+      additionalProperties: false
+      example:
+        oldFullPath: oldFullPath
+        newFullPath: newFullPath
+      properties:
+        oldFullPath:
+          nullable: true
+          type: string
+        newFullPath:
+          nullable: true
+          type: string
+      type: object
+    FolderMetadata:
+      additionalProperties: false
+      example:
+        fullPath: fullPath
+        subFolders:
+        - null
+        - null
+        name: name
+        files:
+        - auditInfo:
+            updateDate: 2000-01-23T04:56:07.000+00:00
+            createBy: createBy
+            updateBy: updateBy
+            createDate: 2000-01-23T04:56:07.000+00:00
+          path: path
+          sizeInBytes: 0
+          checkSum: checkSum
+          id: id
+          type: type
+        - auditInfo:
+            updateDate: 2000-01-23T04:56:07.000+00:00
+            createBy: createBy
+            updateBy: updateBy
+            createDate: 2000-01-23T04:56:07.000+00:00
+          path: path
+          sizeInBytes: 0
+          checkSum: checkSum
+          id: id
+          type: type
+      properties:
+        name:
+          nullable: true
+          type: string
+        fullPath:
+          nullable: true
+          type: string
+        files:
+          items:
+            $ref: '#/components/schemas/FileMetadata'
+          nullable: true
+          type: array
+        subFolders:
+          items:
+            $ref: '#/components/schemas/FolderMetadata'
+          nullable: true
+          type: array
+      type: object
+    ApplicationVersionsCollection:
+      additionalProperties: false
+      example:
+        totalCount: 0
+        items:
+        - items
+        - items
+      properties:
+        totalCount:
+          format: int32
+          type: integer
+        items:
+          items:
+            type: string
+          nullable: true
+          type: array
+      type: object
+    PackageNamesCollection:
+      additionalProperties: false
+      example:
+        totalCount: 0
+        items:
+        - items
+        - items
+      properties:
+        totalCount:
+          format: int32
+          type: integer
+        items:
+          items:
+            type: string
+          nullable: true
+          type: array
+      type: object
+    AdminUserAuditInfo:
+      additionalProperties: false
+      example:
+        updateDate: 2000-01-23T04:56:07.000+00:00
+        createBy: createBy
+        updateBy: updateBy
+        createDate: 2000-01-23T04:56:07.000+00:00
+      properties:
+        updateDate:
+          format: date-time
+          nullable: true
+          type: string
+        createDate:
+          format: date-time
+          nullable: true
+          type: string
+        updateBy:
+          nullable: true
+          type: string
+        createBy:
+          nullable: true
+          type: string
+      type: object
+    AppDevHttpContent:
+      additionalProperties: false
+      example:
+        headers:
+        - value:
+          - value
+          - value
+          key: key
+        - value:
+          - value
+          - value
+          key: key
+      properties:
+        headers:
+          items:
+            $ref: '#/components/schemas/StringStringIEnumerableKeyValuePair'
+          nullable: true
+          readOnly: true
+          type: array
+      type: object
+    AppDevHttpStatusCode:
+      enum:
+      - 100
+      - 101
+      - 102
+      - 103
+      - 200
+      - 201
+      - 202
+      - 203
+      - 204
+      - 205
+      - 206
+      - 207
+      - 208
+      - 226
+      - 300
+      - 301
+      - 302
+      - 303
+      - 304
+      - 305
+      - 306
+      - 307
+      - 308
+      - 400
+      - 401
+      - 402
+      - 403
+      - 404
+      - 405
+      - 406
+      - 407
+      - 408
+      - 409
+      - 410
+      - 411
+      - 412
+      - 413
+      - 414
+      - 415
+      - 416
+      - 417
+      - 421
+      - 422
+      - 423
+      - 424
+      - 426
+      - 428
+      - 429
+      - 431
+      - 451
+      - 500
+      - 501
+      - 502
+      - 503
+      - 504
+      - 505
+      - 506
+      - 507
+      - 508
+      - 510
+      - 511
+      format: int32
+      type: integer
+    AppDevHttpRequestMessage:
+      additionalProperties: false
+      example:
+        headers:
+        - value:
+          - value
+          - value
+          key: key
+        - value:
+          - value
+          - value
+          key: key
+        method:
+          method: method
+        requestUri: https://openapi-generator.tech
+        version: version
+        content:
+          headers:
+          - value:
+            - value
+            - value
+            key: key
+          - value:
+            - value
+            - value
+            key: key
+        properties:
+          key: ""
+      properties:
+        version:
+          nullable: true
+          type: string
+        content:
+          $ref: '#/components/schemas/AppDevHttpContent'
+        method:
+          $ref: '#/components/schemas/HttpMethod'
+        requestUri:
+          format: uri
+          nullable: true
+          type: string
+        headers:
+          items:
+            $ref: '#/components/schemas/StringStringIEnumerableKeyValuePair'
+          nullable: true
+          readOnly: true
+          type: array
+        properties:
+          additionalProperties: {}
+          nullable: true
+          readOnly: true
+          type: object
+      type: object
+    AppDevEvent:
+      additionalProperties: false
+      description: Describes an event that a 3rd party developer can subscribe to.
+      example:
+        eventId: 1
+        eventCategory: eventCategory
+        eventName: eventName
+        apiVersionNumber: apiVersionNumber
+      properties:
+        eventId:
+          description: Unique identifier of an Event record.
+          format: int32
+          type: integer
+        eventName:
+          description: The name of the event.
+          nullable: true
+          type: string
+        eventCategory:
+          description: The category the event belongs to.
+          nullable: true
+          type: string
+        apiVersionNumber:
+          description: The Api Version Number which defines what events are available
+            for a given API version.
+          nullable: true
+          type: string
+      type: object
+    AppDevAttribute:
+      additionalProperties: false
+      description: ""
+      example:
+        attributeId: 6
+        adminName: adminName
+        sequence: 5
+        fqn: fqn
+        code: code
+        vocabularyValues: vocabularyValues
+        vocabularyJson: vocabularyJson
+        name: name
+        inputType: inputType
+        type: type
+        applicationAttributeId: 6
+      properties:
+        attributeId:
+          description: ""
+          format: int32
+          type: integer
+        code:
+          description: ""
+          nullable: true
+          type: string
+        type:
+          description: ""
+          nullable: true
+          type: string
+        fqn:
+          description: ""
+          nullable: true
+          type: string
+        sequence:
+          description: ""
+          format: int32
+          type: integer
+        vocabularyJson:
+          description: ""
+          nullable: true
+          type: string
+        applicationAttributeId:
+          description: ""
+          format: int32
+          type: integer
+        name:
+          description: ""
+          nullable: true
+          type: string
+        inputType:
+          description: ""
+          nullable: true
+          type: string
+        adminName:
+          description: ""
+          nullable: true
+          type: string
+        vocabularyValues:
+          description: ""
+          nullable: true
+          type: string
+      type: object
+    AppDevPackage:
+      additionalProperties: false
+      description: ""
+      example:
+        majorVersion: 1
+        parentThemeName: parentThemeName
+        packageDescription: packageDescription
+        attributeNamespace: attributeNamespace
+        apiVersion: apiVersion
+        applicationStatus: applicationStatus
+        applicationTypeId: 6
+        publishedParentSemanticVersion: publishedParentSemanticVersion
+        appId: appId
+        isLocked: true
+        namespaceRegistryId: namespaceRegistryId
+        appKey: appKey
+        id: 0
+        updateAvailable: true
+        themeEngineVersion: themeEngineVersion
+        applicationSubscriptions:
+        - applicationEndPoint: applicationEndPoint
+          noCallback: true
+          packageId: 6
+          applicationSubscriptionId: 1
+          events:
+          - eventId: 1
+            eventCategory: eventCategory
+            eventName: eventName
+            apiVersionNumber: apiVersionNumber
+          - eventId: 1
+            eventCategory: eventCategory
+            eventName: eventName
+            apiVersionNumber: apiVersionNumber
+        - applicationEndPoint: applicationEndPoint
+          noCallback: true
+          packageId: 6
+          applicationSubscriptionId: 1
+          events:
+          - eventId: 1
+            eventCategory: eventCategory
+            eventName: eventName
+            apiVersionNumber: apiVersionNumber
+          - eventId: 1
+            eventCategory: eventCategory
+            eventName: eventName
+            apiVersionNumber: apiVersionNumber
+        revision: 5
+        applicationDescription: applicationDescription
+        applicationStatusId: 2
+        updateParentAppKey: updateParentAppKey
+        semanticVersionRange: semanticVersionRange
+        applicationCapabilityTypes:
+        - applicationCapabilities:
+          - applicationCapabilityId: 5
+            applicationEndPoint: applicationEndPoint
+            applicationCapabilityTypeId: 9
+            packageId: 6
+            capabilityTypeContractId: 9
+          - applicationCapabilityId: 5
+            applicationEndPoint: applicationEndPoint
+            applicationCapabilityTypeId: 9
+            packageId: 6
+            capabilityTypeContractId: 9
+          isInitializedByDefault: true
+          applicationCapabilityTypeId: 7
+          isImplemented: true
+          applicationCapabilityDomains:
+          - applicationCapabilityDomainValues2:
+            - valueName: valueName
+              applicationCapabilityDomainValueId: 6
+              applicationCapabilityDomainId1: 3
+              displayName: displayName
+              applicationCapabilityDomainId2: 6
+            - valueName: valueName
+              applicationCapabilityDomainValueId: 6
+              applicationCapabilityDomainId1: 3
+              displayName: displayName
+              applicationCapabilityDomainId2: 6
+            applicationCapabilityTypeId: 9
+            applicationCapabilityDomainValues1:
+            - valueName: valueName
+              applicationCapabilityDomainValueId: 6
+              applicationCapabilityDomainId1: 3
+              displayName: displayName
+              applicationCapabilityDomainId2: 6
+            - valueName: valueName
+              applicationCapabilityDomainValueId: 6
+              applicationCapabilityDomainId1: 3
+              displayName: displayName
+              applicationCapabilityDomainId2: 6
+            name: name
+            applicationCapabilityDomainId: 8
+          - applicationCapabilityDomainValues2:
+            - valueName: valueName
+              applicationCapabilityDomainValueId: 6
+              applicationCapabilityDomainId1: 3
+              displayName: displayName
+              applicationCapabilityDomainId2: 6
+            - valueName: valueName
+              applicationCapabilityDomainValueId: 6
+              applicationCapabilityDomainId1: 3
+              displayName: displayName
+              applicationCapabilityDomainId2: 6
+            applicationCapabilityTypeId: 9
+            applicationCapabilityDomainValues1:
+            - valueName: valueName
+              applicationCapabilityDomainValueId: 6
+              applicationCapabilityDomainId1: 3
+              displayName: displayName
+              applicationCapabilityDomainId2: 6
+            - valueName: valueName
+              applicationCapabilityDomainValueId: 6
+              applicationCapabilityDomainId1: 3
+              displayName: displayName
+              applicationCapabilityDomainId2: 6
+            name: name
+            applicationCapabilityDomainId: 8
+          packageId: 1
+          capabilityTypeId: 4
+          capabilityTypeName: capabilityTypeName
+          applicationId: 1
+        - applicationCapabilities:
+          - applicationCapabilityId: 5
+            applicationEndPoint: applicationEndPoint
+            applicationCapabilityTypeId: 9
+            packageId: 6
+            capabilityTypeContractId: 9
+          - applicationCapabilityId: 5
+            applicationEndPoint: applicationEndPoint
+            applicationCapabilityTypeId: 9
+            packageId: 6
+            capabilityTypeContractId: 9
+          isInitializedByDefault: true
+          applicationCapabilityTypeId: 7
+          isImplemented: true
+          applicationCapabilityDomains:
+          - applicationCapabilityDomainValues2:
+            - valueName: valueName
+              applicationCapabilityDomainValueId: 6
+              applicationCapabilityDomainId1: 3
+              displayName: displayName
+              applicationCapabilityDomainId2: 6
+            - valueName: valueName
+              applicationCapabilityDomainValueId: 6
+              applicationCapabilityDomainId1: 3
+              displayName: displayName
+              applicationCapabilityDomainId2: 6
+            applicationCapabilityTypeId: 9
+            applicationCapabilityDomainValues1:
+            - valueName: valueName
+              applicationCapabilityDomainValueId: 6
+              applicationCapabilityDomainId1: 3
+              displayName: displayName
+              applicationCapabilityDomainId2: 6
+            - valueName: valueName
+              applicationCapabilityDomainValueId: 6
+              applicationCapabilityDomainId1: 3
+              displayName: displayName
+              applicationCapabilityDomainId2: 6
+            name: name
+            applicationCapabilityDomainId: 8
+          - applicationCapabilityDomainValues2:
+            - valueName: valueName
+              applicationCapabilityDomainValueId: 6
+              applicationCapabilityDomainId1: 3
+              displayName: displayName
+              applicationCapabilityDomainId2: 6
+            - valueName: valueName
+              applicationCapabilityDomainValueId: 6
+              applicationCapabilityDomainId1: 3
+              displayName: displayName
+              applicationCapabilityDomainId2: 6
+            applicationCapabilityTypeId: 9
+            applicationCapabilityDomainValues1:
+            - valueName: valueName
+              applicationCapabilityDomainValueId: 6
+              applicationCapabilityDomainId1: 3
+              displayName: displayName
+              applicationCapabilityDomainId2: 6
+            - valueName: valueName
+              applicationCapabilityDomainValueId: 6
+              applicationCapabilityDomainId1: 3
+              displayName: displayName
+              applicationCapabilityDomainId2: 6
+            name: name
+            applicationCapabilityDomainId: 8
+          packageId: 1
+          capabilityTypeId: 4
+          capabilityTypeName: capabilityTypeName
+          applicationId: 1
+        applicationId: 3
+        applicationStatusName: applicationStatusName
+        applicationEntitlements:
+        - effectiveEndDate: 2000-01-23T04:56:07.000+00:00
+          applicationVersion: applicationVersion
+          applicationEntitlementId: 3
+          applicationLicenseType: applicationLicenseType
+          packageId: 3
+          entitlementStatus: entitlementStatus
+          installedByLastName: installedByLastName
+          installedByFirstName: installedByFirstName
+          tenantName: tenantName
+          devAccountId: 3
+          installedAppsApplicationId: installedAppsApplicationId
+          installedDate: 2000-01-23T04:56:07.000+00:00
+          tenantId: 7
+          effectiveStartDate: 2000-01-23T04:56:07.000+00:00
+          applicationStatusId: applicationStatusId
+          siteId: 0
+          appKey: appKey
+          packageName: packageName
+          applicationId: 5
+          applicationTransactions:
+          - transactionTax: 3.0576100241049344
+            applicationEntitlementId: 0
+            orderNumber: orderNumber
+            localeCode: 7
+            applicationTransactionId: 7
+            tenantId: 4
+            transactionPrice: 3.0205796992916243
+            siteId: 8
+            applicationId: 6
+            transactionDate: 2000-01-23T04:56:07.000+00:00
+            transactionTotal: 7.04836565559697
+            isoCurrencyCode: isoCurrencyCode
+          - transactionTax: 3.0576100241049344
+            applicationEntitlementId: 0
+            orderNumber: orderNumber
+            localeCode: 7
+            applicationTransactionId: 7
+            tenantId: 4
+            transactionPrice: 3.0205796992916243
+            siteId: 8
+            applicationId: 6
+            transactionDate: 2000-01-23T04:56:07.000+00:00
+            transactionTotal: 7.04836565559697
+            isoCurrencyCode: isoCurrencyCode
+          applicationName: applicationName
+          appOwnerDevAccountId: 4
+        - effectiveEndDate: 2000-01-23T04:56:07.000+00:00
+          applicationVersion: applicationVersion
+          applicationEntitlementId: 3
+          applicationLicenseType: applicationLicenseType
+          packageId: 3
+          entitlementStatus: entitlementStatus
+          installedByLastName: installedByLastName
+          installedByFirstName: installedByFirstName
+          tenantName: tenantName
+          devAccountId: 3
+          installedAppsApplicationId: installedAppsApplicationId
+          installedDate: 2000-01-23T04:56:07.000+00:00
+          tenantId: 7
+          effectiveStartDate: 2000-01-23T04:56:07.000+00:00
+          applicationStatusId: applicationStatusId
+          siteId: 0
+          appKey: appKey
+          packageName: packageName
+          applicationId: 5
+          applicationTransactions:
+          - transactionTax: 3.0576100241049344
+            applicationEntitlementId: 0
+            orderNumber: orderNumber
+            localeCode: 7
+            applicationTransactionId: 7
+            tenantId: 4
+            transactionPrice: 3.0205796992916243
+            siteId: 8
+            applicationId: 6
+            transactionDate: 2000-01-23T04:56:07.000+00:00
+            transactionTotal: 7.04836565559697
+            isoCurrencyCode: isoCurrencyCode
+          - transactionTax: 3.0576100241049344
+            applicationEntitlementId: 0
+            orderNumber: orderNumber
+            localeCode: 7
+            applicationTransactionId: 7
+            tenantId: 4
+            transactionPrice: 3.0205796992916243
+            siteId: 8
+            applicationId: 6
+            transactionDate: 2000-01-23T04:56:07.000+00:00
+            transactionTotal: 7.04836565559697
+            isoCurrencyCode: isoCurrencyCode
+          applicationName: applicationName
+          appOwnerDevAccountId: 4
+        updateDate: 2000-01-23T04:56:07.000+00:00
+        applicationUpdateDate: 2000-01-23T04:56:07.000+00:00
+        assetFileCount: 4
+        legacyNamespace: legacyNamespace
+        packageGuid: packageGuid
+        publishedParentThemeId: 0
+        applicationBehaviors:
+        - behaviorId: 7
+          packageId: 1
+        - behaviorId: 7
+          packageId: 1
+        appSchemeVersion: 9
+        appConfigUrl: appConfigUrl
+        isDeleted: true
+        dataNamespace: dataNamespace
+        isReleasePackage: true
+        packageName: packageName
+        sharedSecret: sharedSecret
+        applicationName: applicationName
+        applicationAttributes:
+        - sourceTenantName: sourceTenantName
+          attributeCodes: attributeCodes
+          sourceTenantId: 2
+          attributeJson: attributeJson
+          packageId: 6
+          subsystem: subsystem
+          productTypeJson: productTypeJson
+          attributes:
+          - attributeId: 6
+            adminName: adminName
+            sequence: 5
+            fqn: fqn
+            code: code
+            vocabularyValues: vocabularyValues
+            vocabularyJson: vocabularyJson
+            name: name
+            inputType: inputType
+            type: type
+            applicationAttributeId: 6
+          - attributeId: 6
+            adminName: adminName
+            sequence: 5
+            fqn: fqn
+            code: code
+            vocabularyValues: vocabularyValues
+            vocabularyJson: vocabularyJson
+            name: name
+            inputType: inputType
+            type: type
+            applicationAttributeId: 6
+          isAppliedToBase: true
+        - sourceTenantName: sourceTenantName
+          attributeCodes: attributeCodes
+          sourceTenantId: 2
+          attributeJson: attributeJson
+          packageId: 6
+          subsystem: subsystem
+          productTypeJson: productTypeJson
+          attributes:
+          - attributeId: 6
+            adminName: adminName
+            sequence: 5
+            fqn: fqn
+            code: code
+            vocabularyValues: vocabularyValues
+            vocabularyJson: vocabularyJson
+            name: name
+            inputType: inputType
+            type: type
+            applicationAttributeId: 6
+          - attributeId: 6
+            adminName: adminName
+            sequence: 5
+            fqn: fqn
+            code: code
+            vocabularyValues: vocabularyValues
+            vocabularyJson: vocabularyJson
+            name: name
+            inputType: inputType
+            type: type
+            applicationAttributeId: 6
+          isAppliedToBase: true
+        updateParentThemeVersion: updateParentThemeVersion
+        parentThemeAppKey: parentThemeAppKey
+        applicationTypeName: applicationTypeName
+        userId: userId
+        applicationDetailId: 2
+        applicationCapabilities:
+        - applicationCapabilityId: 5
+          applicationEndPoint: applicationEndPoint
+          applicationCapabilityTypeId: 9
+          packageId: 6
+          capabilityTypeContractId: 9
+        - applicationCapabilityId: 5
+          applicationEndPoint: applicationEndPoint
+          applicationCapabilityTypeId: 9
+          packageId: 6
+          capabilityTypeContractId: 9
+        validApplicationStatusIdList:
+        - 7
+        - 7
+        namespace: namespace
+        hasApplicationVersions: true
+        minorVersion: 5
+        applicationOwnerDevAccountId: 6
+        updateParentThemeName: updateParentThemeName
+      properties:
+        updateDate:
+          description: ""
+          format: date-time
+          type: string
+        applicationUpdateDate:
+          description: ""
+          format: date-time
+          nullable: true
+          type: string
+        id:
+          description: ""
+          format: int32
+          type: integer
+        applicationName:
+          description: ""
+          nullable: true
+          type: string
+        applicationTypeId:
+          description: ""
+          format: int32
+          type: integer
+        applicationTypeName:
+          description: ""
+          nullable: true
+          type: string
+        majorVersion:
+          description: ""
+          format: int32
+          type: integer
+        minorVersion:
+          description: ""
+          format: int32
+          type: integer
+        revision:
+          description: ""
+          format: int32
+          type: integer
+        sharedSecret:
+          description: ""
+          nullable: true
+          type: string
+        applicationStatusId:
+          description: ""
+          format: int32
+          type: integer
+        applicationStatusName:
+          description: ""
+          nullable: true
+          type: string
+        apiVersion:
+          description: ""
+          nullable: true
+          type: string
+        applicationDescription:
+          description: ""
+          nullable: true
+          type: string
+        themeEngineVersion:
+          description: ""
+          nullable: true
+          type: string
+        namespace:
+          description: ""
+          nullable: true
+          type: string
+        validApplicationStatusIdList:
+          description: "List of Statuses that the application can move to during the\
+            \ application lifecycle.\r\nThis is based on what the current value of\
+            \ the ApplicatinStatusId is."
+          items:
+            format: int32
+            type: integer
+          nullable: true
+          type: array
+        appSchemeVersion:
+          description: ""
+          format: int32
+          type: integer
+        appConfigUrl:
+          description: "This will be used by the 3rd party developers to set a URL\
+            \ the intalled \r\napplications can call from the Tenant installation/"
+          nullable: true
+          type: string
+        isReleasePackage:
+          description: ""
+          type: boolean
+        packageName:
+          description: ""
+          nullable: true
+          type: string
+        packageDescription:
+          description: ""
+          nullable: true
+          type: string
+        dataNamespace:
+          description: ""
+          nullable: true
+          type: string
+        userId:
+          description: ""
+          nullable: true
+          type: string
+        appId:
+          description: ""
+          nullable: true
+          type: string
+        applicationId:
+          description: ""
+          format: int32
+          type: integer
+        applicationDetailId:
+          description: ""
+          format: int32
+          nullable: true
+          type: integer
+        isLocked:
+          description: ""
+          type: boolean
+        isDeleted:
+          description: ""
+          type: boolean
+        assetFileCount:
+          description: ""
+          format: int32
+          type: integer
+        packageGuid:
+          description: ""
+          nullable: true
+          type: string
+        applicationStatus:
+          description: ""
+          nullable: true
+          type: string
+        applicationBehaviors:
+          description: List of Application Behaviors that apply to this version of
+            the application.
+          items:
+            $ref: '#/components/schemas/ApplicationBehavior'
+          nullable: true
+          type: array
+        applicationSubscriptions:
+          description: ""
+          items:
+            $ref: '#/components/schemas/ApplicationSubscription'
+          nullable: true
+          type: array
+        applicationCapabilityTypes:
+          description: ""
+          items:
+            $ref: '#/components/schemas/ApplicationCapabilityType'
+          nullable: true
+          type: array
+        applicationAttributes:
+          description: ""
+          items:
+            $ref: '#/components/schemas/ApplicationAttribute'
+          nullable: true
+          type: array
+        applicationCapabilities:
+          description: ""
+          items:
+            $ref: '#/components/schemas/ApplicationCapability'
+          nullable: true
+          type: array
+        applicationEntitlements:
+          description: ""
+          items:
+            $ref: '#/components/schemas/ApplicationEntitlement'
+          nullable: true
+          type: array
+        attributeNamespace:
+          description: ""
+          nullable: true
+          type: string
+        hasApplicationVersions:
+          description: ""
+          type: boolean
+        legacyNamespace:
+          description: ""
+          nullable: true
+          type: string
+        namespaceRegistryId:
+          description: ""
+          nullable: true
+          type: string
+        publishedParentThemeId:
+          description: ""
+          format: int32
+          nullable: true
+          type: integer
+        publishedParentSemanticVersion:
+          description: ""
+          nullable: true
+          type: string
+        semanticVersionRange:
+          description: ""
+          nullable: true
+          type: string
+        parentThemeName:
+          description: ""
+          nullable: true
+          type: string
+        parentThemeAppKey:
+          description: "The parent theme AppKey if this is a theme and \r\nthe theme\
+            \ extends a valid, published theme."
+          nullable: true
+          type: string
+        updateParentAppKey:
+          description: "The AppKey is a runtime type.\r\nThis only applies for themes\
+            \ that inherit from another theme.\r\nIt shows the most current update\
+            \ available."
+          nullable: true
+          type: string
+        updateAvailable:
+          description: Whether or not there's a theme update.
+          type: boolean
+        appKey:
+          description: App Key for the package in question.
+          nullable: true
+          type: string
+        updateParentThemeName:
+          description: "This only applies for themes that inherit from another theme.\r\
+            \nIt shows the name of the most current update available."
+          nullable: true
+          type: string
+        updateParentThemeVersion:
+          description: "This only applies for themes that inherit from another theme.\r\
+            \nIt shows the version of the most current update available."
+          nullable: true
+          type: string
+        applicationOwnerDevAccountId:
+          description: This is the DevAccountId that owns the application
+          format: int32
+          type: integer
+      type: object
+    AppDevHttpResponseMessage:
+      additionalProperties: false
+      example:
+        requestMessage:
+          headers:
+          - value:
+            - value
+            - value
+            key: key
+          - value:
+            - value
+            - value
+            key: key
+          method:
+            method: method
+          requestUri: https://openapi-generator.tech
+          version: version
+          content:
+            headers:
+            - value:
+              - value
+              - value
+              key: key
+            - value:
+              - value
+              - value
+              key: key
+          properties:
+            key: ""
+        headers:
+        - value:
+          - value
+          - value
+          key: key
+        - value:
+          - value
+          - value
+          key: key
+        reasonPhrase: reasonPhrase
+        trailingHeaders:
+        - value:
+          - value
+          - value
+          key: key
+        - value:
+          - value
+          - value
+          key: key
+        isSuccessStatusCode: true
+        version: version
+        content:
+          headers:
+          - value:
+            - value
+            - value
+            key: key
+          - value:
+            - value
+            - value
+            key: key
+        statusCode: null
+      properties:
+        version:
+          nullable: true
+          type: string
+        content:
+          $ref: '#/components/schemas/AppDevHttpContent'
+        statusCode:
+          $ref: '#/components/schemas/AppDevHttpStatusCode'
+        reasonPhrase:
+          nullable: true
+          type: string
+        headers:
+          items:
+            $ref: '#/components/schemas/StringStringIEnumerableKeyValuePair'
+          nullable: true
+          readOnly: true
+          type: array
+        trailingHeaders:
+          items:
+            $ref: '#/components/schemas/StringStringIEnumerableKeyValuePair'
+          nullable: true
+          readOnly: true
+          type: array
+        requestMessage:
+          $ref: '#/components/schemas/AppDevHttpRequestMessage'
+        isSuccessStatusCode:
+          readOnly: true
+          type: boolean
+      type: object
+  securitySchemes:
+    bearerAuth:
+      bearerFormat: JWT
+      description: JWT Authorization header using the Bearer scheme.
+      scheme: bearer
+      type: http
+    clientOauth2:
+      flows:
+        clientCredentials:
+          scopes: {}
+          tokenUrl: /api/platform/applications/authtickets/oauth
+      type: oauth2
+

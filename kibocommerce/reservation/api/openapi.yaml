@@ -1,0 +1,2220 @@
+openapi: 3.0.1
+info:
+  description: OpenAPI Spec for Kibo Reservation Web API
+  title: Kibo Reservation Web API
+servers:
+- description: TenantPod Host
+  url: "https://{tenantPodHost}/api"
+- description: Tenant Level Api
+  url: "https://t{tenantId}.{env}.mozu.com/api"
+  variables:
+    tenantId:
+      default: "0"
+      description: Id of the Tenant
+    env:
+      default: sandbox
+      enum:
+      - sandbox
+      - tp1
+      - tp2
+      - tp3
+      - tp4
+      - tp5
+      - stg1
+      - stg2
+- description: Site Level Api
+  url: "https://t{tenantId}-s{siteId}.{env}.mozu.com/api"
+  variables:
+    tenantId:
+      default: "0"
+      description: Id of the Tenant
+    siteId:
+      default: "0"
+      description: Id of the Site
+    env:
+      default: sandbox
+      enum:
+      - sandbox
+      - tp1
+      - tp2
+      - tp3
+      - tp4
+      - tp5
+      - stg1
+- description: HomePod Api
+  url: https://home.mozu.com/api
+- description: EURO Tenant Level Api
+  url: "https://t{tenantId}.{env}.euw1.kibocommerce.com/api"
+  variables:
+    tenantId:
+      default: "0"
+      description: Id of the Tenant
+    env:
+      default: sandbox
+      enum:
+      - sb
+      - tp1
+- description: EURO Site Level Api
+  url: "https://t{tenantId}-s{siteId}.{env}.euw1.kibocommerce.com/api"
+  variables:
+    tenantId:
+      default: "0"
+      description: Id of the Tenant
+    siteId:
+      default: "0"
+      description: Id of the Site
+    env:
+      default: sandbox
+      enum:
+      - sb
+      - tp1
+- description: EURO HomePod Api
+  url: https://home.euw1.kibocommerce.com/api
+security:
+- bearerAuth: []
+  clientOauth2: []
+paths:
+  /commerce/reservation:
+    get:
+      description: Get Reservations
+      operationId: getReservations
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Reservati'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Reservati'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Reservati'
+          description: Success
+      summary: Get Reservations
+      tags:
+      - Reservation
+      x-accepts: application/json
+    post:
+      description: Create Reservation
+      operationId: createReservation
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Reservati'
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Reservati'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Reservati'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Reservati'
+          description: Success
+      summary: Create Reservation
+      tags:
+      - Reservation
+      x-content-type: application/json
+      x-accepts: application/json
+  /commerce/reservation/{reservationId}:
+    delete:
+      description: Delete Reservation
+      operationId: deleteReservation
+      parameters:
+      - explode: false
+        in: path
+        name: reservationId
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          description: Success
+      summary: Delete Reservation
+      tags:
+      - Reservation
+      x-accepts: application/json
+    get:
+      description: Get Reservation By Id
+      operationId: getReservationById
+      parameters:
+      - explode: false
+        in: path
+        name: reservationId
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Reservati'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Reservati'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Reservati'
+          description: Success
+      summary: Get Reservation By Id
+      tags:
+      - Reservation
+      x-accepts: application/json
+    put:
+      description: Update Reservation
+      operationId: updateReservation
+      parameters:
+      - explode: false
+        in: path
+        name: reservationId
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Reservati'
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Reservati'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Reservati'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Reservati'
+          description: Success
+      summary: Update Reservation
+      tags:
+      - Reservation
+      x-content-type: application/json
+      x-accepts: application/json
+  /commerce/reservation/cart/{cartId}:
+    get:
+      description: Get Reservations By Cart Id
+      operationId: getReservationsByCartId
+      parameters:
+      - explode: false
+        in: path
+        name: cartId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - explode: true
+        in: query
+        name: startIndex
+        required: false
+        schema:
+          format: int32
+          type: integer
+        style: form
+      - explode: true
+        in: query
+        name: pageSize
+        required: false
+        schema:
+          format: int32
+          type: integer
+        style: form
+      - explode: true
+        in: query
+        name: sortBy
+        required: false
+        schema:
+          type: string
+        style: form
+      - explode: true
+        in: query
+        name: filter
+        required: false
+        schema:
+          type: string
+        style: form
+      - explode: true
+        in: query
+        name: q
+        required: false
+        schema:
+          type: string
+        style: form
+      - explode: true
+        in: query
+        name: qLimit
+        required: false
+        schema:
+          format: int32
+          type: integer
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ReservationCollecti'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ReservationCollecti'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ReservationCollecti'
+          description: Success
+      summary: Get Reservations By Cart Id
+      tags:
+      - Reservation
+      x-accepts: application/json
+  /commerce/reservation/{reservationId}/zipcode/{zipCode}:
+    post:
+      description: Update Zip Code
+      operationId: updateZipCode
+      parameters:
+      - explode: false
+        in: path
+        name: reservationId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - explode: false
+        in: path
+        name: zipCode
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              items:
+                $ref: '#/components/schemas/ReservationWebAPIOrderAttribute'
+              type: array
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Reservati'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Reservati'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Reservati'
+          description: Success
+      summary: Update Zip Code
+      tags:
+      - Reservation
+      x-content-type: application/json
+      x-accepts: application/json
+  /commerce/reservation/{reservationId}/updatetimer:
+    put:
+      description: Update Timer
+      operationId: updateTimer
+      parameters:
+      - explode: false
+        in: path
+        name: reservationId
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Reservati'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Reservati'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Reservati'
+          description: Success
+      summary: Update Timer
+      tags:
+      - Reservation
+      x-accepts: application/json
+  /commerce/reservation/{reservationId}/close:
+    put:
+      description: Close Reservation
+      operationId: closeReservation
+      parameters:
+      - explode: false
+        in: path
+        name: reservationId
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Reservati'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Reservati'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Reservati'
+          description: Success
+      summary: Close Reservation
+      tags:
+      - Reservation
+      x-accepts: application/json
+  /commerce/reservation/{reservationId}/activate:
+    put:
+      description: Activate Reservation
+      operationId: activateReservation
+      parameters:
+      - explode: false
+        in: path
+        name: reservationId
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Reservati'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Reservati'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Reservati'
+          description: Success
+      summary: Activate Reservation
+      tags:
+      - Reservation
+      x-accepts: application/json
+  /commerce/reservation/{reservationId}/getallocationstatus:
+    get:
+      description: Get Allocation Status
+      operationId: getAllocationStatus
+      parameters:
+      - explode: false
+        in: path
+        name: reservationId
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                additionalProperties:
+                  type: string
+                type: object
+            text/json:
+              schema:
+                additionalProperties:
+                  type: string
+                type: object
+            text/plain:
+              schema:
+                additionalProperties:
+                  type: string
+                type: object
+          description: Success
+      summary: Get Allocation Status
+      tags:
+      - Reservation
+      x-accepts: application/json
+  /commerce/reservation/{reservationId}/converttoorderreservation:
+    post:
+      description: Convert To Order Reservation
+      operationId: convertToOrderReservation
+      parameters:
+      - explode: false
+        in: path
+        name: reservationId
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/OrderReservati'
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Reservati'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Reservati'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Reservati'
+          description: Success
+      summary: Convert To Order Reservation
+      tags:
+      - Reservation
+      x-content-type: application/json
+      x-accepts: application/json
+  /commerce/reservation/{reservationId}/items:
+    post:
+      description: Add Item
+      operationId: addItem
+      parameters:
+      - explode: false
+        in: path
+        name: reservationId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - explode: true
+        in: query
+        name: zipCode
+        required: false
+        schema:
+          type: string
+        style: form
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ReservationItem'
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Reservati'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Reservati'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Reservati'
+          description: Success
+      summary: Add Item
+      tags:
+      - Reservation
+      x-content-type: application/json
+      x-accepts: application/json
+  /commerce/reservation/{reservationId}/items/{reservationItemId}:
+    delete:
+      description: Remove Item
+      operationId: removeItem
+      parameters:
+      - explode: false
+        in: path
+        name: reservationId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - explode: false
+        in: path
+        name: reservationItemId
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Reservati'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Reservati'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Reservati'
+          description: Success
+      summary: Remove Item
+      tags:
+      - Reservation
+      x-accepts: application/json
+    put:
+      description: Update Reservation Item
+      operationId: updateReservationItem
+      parameters:
+      - explode: false
+        in: path
+        name: reservationId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - explode: false
+        in: path
+        name: reservationItemId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - explode: true
+        in: query
+        name: zipCode
+        required: false
+        schema:
+          type: string
+        style: form
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ReservationItem'
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Reservati'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Reservati'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Reservati'
+          description: Success
+      summary: Update Reservation Item
+      tags:
+      - Reservation
+      x-content-type: application/json
+      x-accepts: application/json
+  /commerce/reservation/{reservationId}/items/{reservationItemId}/quantity/{quantity}:
+    put:
+      description: Update Item Quantity
+      operationId: updateItemQuantity
+      parameters:
+      - explode: false
+        in: path
+        name: reservationId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - explode: false
+        in: path
+        name: reservationItemId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - explode: false
+        in: path
+        name: quantity
+        required: true
+        schema:
+          format: int32
+          type: integer
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Reservati'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Reservati'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Reservati'
+          description: Success
+      summary: Update Item Quantity
+      tags:
+      - Reservation
+      x-accepts: application/json
+components:
+  schemas:
+    BundledProdu:
+      additionalProperties: false
+      example:
+        productCode: productCode
+        quantity: 5
+        optionValue: ""
+        name: name
+        goodsType: goodsType
+        optionAttributeFQN: optionAttributeFQN
+        measurements:
+          width:
+            unit: unit
+            value: 2.3021358869347655
+          length:
+            unit: unit
+            value: 2.3021358869347655
+          weight:
+            unit: unit
+            value: 2.3021358869347655
+          height:
+            unit: unit
+            value: 2.3021358869347655
+      properties:
+        productCode:
+          nullable: true
+          type: string
+        name:
+          nullable: true
+          type: string
+        goodsType:
+          nullable: true
+          type: string
+        quantity:
+          format: int32
+          type: integer
+        optionAttributeFQN:
+          nullable: true
+          type: string
+        optionValue:
+          nullable: true
+        measurements:
+          $ref: '#/components/schemas/ReservationWebAPIPackageMeasurements'
+      type: object
+    Produ:
+      additionalProperties: false
+      example:
+        bundledProducts:
+        - productCode: productCode
+          quantity: 5
+          optionValue: ""
+          name: name
+          goodsType: goodsType
+          optionAttributeFQN: optionAttributeFQN
+          measurements:
+            width:
+              unit: unit
+              value: 2.3021358869347655
+            length:
+              unit: unit
+              value: 2.3021358869347655
+            weight:
+              unit: unit
+              value: 2.3021358869347655
+            height:
+              unit: unit
+              value: 2.3021358869347655
+        - productCode: productCode
+          quantity: 5
+          optionValue: ""
+          name: name
+          goodsType: goodsType
+          optionAttributeFQN: optionAttributeFQN
+          measurements:
+            width:
+              unit: unit
+              value: 2.3021358869347655
+            length:
+              unit: unit
+              value: 2.3021358869347655
+            weight:
+              unit: unit
+              value: 2.3021358869347655
+            height:
+              unit: unit
+              value: 2.3021358869347655
+        mfgPartNumber: mfgPartNumber
+        isSplitExtrasInShipment: true
+        isTaxable: true
+        goodsType: goodsType
+        productCode: productCode
+        name: name
+        variationProductCode: variationProductCode
+        productUsage: productUsage
+        sku: sku
+        productType: productType
+        properties:
+        - values:
+          - stringValue: stringValue
+            value: ""
+          - stringValue: stringValue
+            value: ""
+          attributeFQN: attributeFQN
+        - values:
+          - stringValue: stringValue
+            value: ""
+          - stringValue: stringValue
+            value: ""
+          attributeFQN: attributeFQN
+        measurements:
+          width:
+            unit: unit
+            value: 2.3021358869347655
+          length:
+            unit: unit
+            value: 2.3021358869347655
+          weight:
+            unit: unit
+            value: 2.3021358869347655
+          height:
+            unit: unit
+            value: 2.3021358869347655
+      properties:
+        productCode:
+          nullable: true
+          type: string
+        name:
+          nullable: true
+          type: string
+        productType:
+          nullable: true
+          type: string
+        mfgPartNumber:
+          nullable: true
+          type: string
+        variationProductCode:
+          nullable: true
+          type: string
+        sku:
+          nullable: true
+          type: string
+        goodsType:
+          nullable: true
+          type: string
+        productUsage:
+          nullable: true
+          type: string
+        bundledProducts:
+          items:
+            $ref: '#/components/schemas/BundledProdu'
+          nullable: true
+          type: array
+        isSplitExtrasInShipment:
+          type: boolean
+        properties:
+          items:
+            $ref: '#/components/schemas/ReservationWebAPIProductProperty'
+          nullable: true
+          type: array
+        measurements:
+          $ref: '#/components/schemas/ReservationWebAPIPackageMeasurements'
+        isTaxable:
+          nullable: true
+          type: boolean
+      type: object
+    Allocati:
+      additionalProperties: false
+      example:
+        itemId: itemId
+        transferLocationCode: transferLocationCode
+        quantity: 9
+        productCode: productCode
+        isStateChange: true
+        fulfillmentLocationCode: fulfillmentLocationCode
+      properties:
+        itemId:
+          nullable: true
+          type: string
+        quantity:
+          format: int32
+          type: integer
+        fulfillmentLocationCode:
+          nullable: true
+          type: string
+        transferLocationCode:
+          nullable: true
+          type: string
+        productCode:
+          nullable: true
+          type: string
+        isStateChange:
+          type: boolean
+      type: object
+    InventoryTags:
+      additionalProperties: false
+      example:
+        name: name
+        value: value
+      properties:
+        name:
+          nullable: true
+          type: string
+        value:
+          nullable: true
+          type: string
+      type: object
+    ReservationItem:
+      additionalProperties: false
+      example:
+        product:
+          bundledProducts:
+          - productCode: productCode
+            quantity: 5
+            optionValue: ""
+            name: name
+            goodsType: goodsType
+            optionAttributeFQN: optionAttributeFQN
+            measurements:
+              width:
+                unit: unit
+                value: 2.3021358869347655
+              length:
+                unit: unit
+                value: 2.3021358869347655
+              weight:
+                unit: unit
+                value: 2.3021358869347655
+              height:
+                unit: unit
+                value: 2.3021358869347655
+          - productCode: productCode
+            quantity: 5
+            optionValue: ""
+            name: name
+            goodsType: goodsType
+            optionAttributeFQN: optionAttributeFQN
+            measurements:
+              width:
+                unit: unit
+                value: 2.3021358869347655
+              length:
+                unit: unit
+                value: 2.3021358869347655
+              weight:
+                unit: unit
+                value: 2.3021358869347655
+              height:
+                unit: unit
+                value: 2.3021358869347655
+          mfgPartNumber: mfgPartNumber
+          isSplitExtrasInShipment: true
+          isTaxable: true
+          goodsType: goodsType
+          productCode: productCode
+          name: name
+          variationProductCode: variationProductCode
+          productUsage: productUsage
+          sku: sku
+          productType: productType
+          properties:
+          - values:
+            - stringValue: stringValue
+              value: ""
+            - stringValue: stringValue
+              value: ""
+            attributeFQN: attributeFQN
+          - values:
+            - stringValue: stringValue
+              value: ""
+            - stringValue: stringValue
+              value: ""
+            attributeFQN: attributeFQN
+          measurements:
+            width:
+              unit: unit
+              value: 2.3021358869347655
+            length:
+              unit: unit
+              value: 2.3021358869347655
+            weight:
+              unit: unit
+              value: 2.3021358869347655
+            height:
+              unit: unit
+              value: 2.3021358869347655
+        quantity: 7
+        allocations:
+        - itemId: itemId
+          transferLocationCode: transferLocationCode
+          quantity: 9
+          productCode: productCode
+          isStateChange: true
+          fulfillmentLocationCode: fulfillmentLocationCode
+        - itemId: itemId
+          transferLocationCode: transferLocationCode
+          quantity: 9
+          productCode: productCode
+          isStateChange: true
+          fulfillmentLocationCode: fulfillmentLocationCode
+        orderItemId: orderItemId
+        inventoryTags:
+        - name: name
+          value: value
+        - name: name
+          value: value
+        lineId: 5
+        fulfillmentMethod: fulfillmentMethod
+        id: id
+        fulfillmentLocationCode: fulfillmentLocationCode
+        allowsBackOrder: true
+        allocationStatus: allocationStatus
+      properties:
+        lineId:
+          format: int32
+          type: integer
+        id:
+          nullable: true
+          type: string
+        orderItemId:
+          nullable: true
+          type: string
+        product:
+          $ref: '#/components/schemas/Produ'
+        quantity:
+          format: int32
+          type: integer
+        fulfillmentLocationCode:
+          nullable: true
+          type: string
+        fulfillmentMethod:
+          nullable: true
+          type: string
+        allocations:
+          items:
+            $ref: '#/components/schemas/Allocati'
+          nullable: true
+          type: array
+        allowsBackOrder:
+          type: boolean
+        allocationStatus:
+          nullable: true
+          type: string
+        inventoryTags:
+          items:
+            $ref: '#/components/schemas/InventoryTags'
+          nullable: true
+          type: array
+      type: object
+    AuditInf:
+      additionalProperties: false
+      example:
+        createdAt: 2000-01-23T04:56:07.000+00:00
+        updatedBy: updatedBy
+        createdBy: createdBy
+        updatedAt: 2000-01-23T04:56:07.000+00:00
+      properties:
+        createdBy:
+          nullable: true
+          type: string
+        createdAt:
+          format: date-time
+          type: string
+        updatedBy:
+          nullable: true
+          type: string
+        updatedAt:
+          format: date-time
+          nullable: true
+          type: string
+      type: object
+    Reservati:
+      additionalProperties: false
+      example:
+        zipCode: zipCode
+        expirationDateTime: 2000-01-23T04:56:07.000+00:00
+        orderNumber: 3
+        orderId: orderId
+        cartId: cartId
+        userId: userId
+        auditInfo:
+          createdAt: 2000-01-23T04:56:07.000+00:00
+          updatedBy: updatedBy
+          createdBy: createdBy
+          updatedAt: 2000-01-23T04:56:07.000+00:00
+        customerAccountId: 1
+        changeMessages:
+        - identifier: identifier
+          appName: appName
+          subject: subject
+          verb: verb
+          correlationId: correlationId
+          appKey: appKey
+          id: id
+          message: message
+          userId: userId
+          subjectType: subjectType
+          createDate: 2000-01-23T04:56:07.000+00:00
+        - identifier: identifier
+          appName: appName
+          subject: subject
+          verb: verb
+          correlationId: correlationId
+          appKey: appKey
+          id: id
+          message: message
+          userId: userId
+          subjectType: subjectType
+          createDate: 2000-01-23T04:56:07.000+00:00
+        tenantId: 6
+        reservationType: reservationType
+        siteId: 0
+        id: id
+        items:
+        - product:
+            bundledProducts:
+            - productCode: productCode
+              quantity: 5
+              optionValue: ""
+              name: name
+              goodsType: goodsType
+              optionAttributeFQN: optionAttributeFQN
+              measurements:
+                width:
+                  unit: unit
+                  value: 2.3021358869347655
+                length:
+                  unit: unit
+                  value: 2.3021358869347655
+                weight:
+                  unit: unit
+                  value: 2.3021358869347655
+                height:
+                  unit: unit
+                  value: 2.3021358869347655
+            - productCode: productCode
+              quantity: 5
+              optionValue: ""
+              name: name
+              goodsType: goodsType
+              optionAttributeFQN: optionAttributeFQN
+              measurements:
+                width:
+                  unit: unit
+                  value: 2.3021358869347655
+                length:
+                  unit: unit
+                  value: 2.3021358869347655
+                weight:
+                  unit: unit
+                  value: 2.3021358869347655
+                height:
+                  unit: unit
+                  value: 2.3021358869347655
+            mfgPartNumber: mfgPartNumber
+            isSplitExtrasInShipment: true
+            isTaxable: true
+            goodsType: goodsType
+            productCode: productCode
+            name: name
+            variationProductCode: variationProductCode
+            productUsage: productUsage
+            sku: sku
+            productType: productType
+            properties:
+            - values:
+              - stringValue: stringValue
+                value: ""
+              - stringValue: stringValue
+                value: ""
+              attributeFQN: attributeFQN
+            - values:
+              - stringValue: stringValue
+                value: ""
+              - stringValue: stringValue
+                value: ""
+              attributeFQN: attributeFQN
+            measurements:
+              width:
+                unit: unit
+                value: 2.3021358869347655
+              length:
+                unit: unit
+                value: 2.3021358869347655
+              weight:
+                unit: unit
+                value: 2.3021358869347655
+              height:
+                unit: unit
+                value: 2.3021358869347655
+          quantity: 7
+          allocations:
+          - itemId: itemId
+            transferLocationCode: transferLocationCode
+            quantity: 9
+            productCode: productCode
+            isStateChange: true
+            fulfillmentLocationCode: fulfillmentLocationCode
+          - itemId: itemId
+            transferLocationCode: transferLocationCode
+            quantity: 9
+            productCode: productCode
+            isStateChange: true
+            fulfillmentLocationCode: fulfillmentLocationCode
+          orderItemId: orderItemId
+          inventoryTags:
+          - name: name
+            value: value
+          - name: name
+            value: value
+          lineId: 5
+          fulfillmentMethod: fulfillmentMethod
+          id: id
+          fulfillmentLocationCode: fulfillmentLocationCode
+          allowsBackOrder: true
+          allocationStatus: allocationStatus
+        - product:
+            bundledProducts:
+            - productCode: productCode
+              quantity: 5
+              optionValue: ""
+              name: name
+              goodsType: goodsType
+              optionAttributeFQN: optionAttributeFQN
+              measurements:
+                width:
+                  unit: unit
+                  value: 2.3021358869347655
+                length:
+                  unit: unit
+                  value: 2.3021358869347655
+                weight:
+                  unit: unit
+                  value: 2.3021358869347655
+                height:
+                  unit: unit
+                  value: 2.3021358869347655
+            - productCode: productCode
+              quantity: 5
+              optionValue: ""
+              name: name
+              goodsType: goodsType
+              optionAttributeFQN: optionAttributeFQN
+              measurements:
+                width:
+                  unit: unit
+                  value: 2.3021358869347655
+                length:
+                  unit: unit
+                  value: 2.3021358869347655
+                weight:
+                  unit: unit
+                  value: 2.3021358869347655
+                height:
+                  unit: unit
+                  value: 2.3021358869347655
+            mfgPartNumber: mfgPartNumber
+            isSplitExtrasInShipment: true
+            isTaxable: true
+            goodsType: goodsType
+            productCode: productCode
+            name: name
+            variationProductCode: variationProductCode
+            productUsage: productUsage
+            sku: sku
+            productType: productType
+            properties:
+            - values:
+              - stringValue: stringValue
+                value: ""
+              - stringValue: stringValue
+                value: ""
+              attributeFQN: attributeFQN
+            - values:
+              - stringValue: stringValue
+                value: ""
+              - stringValue: stringValue
+                value: ""
+              attributeFQN: attributeFQN
+            measurements:
+              width:
+                unit: unit
+                value: 2.3021358869347655
+              length:
+                unit: unit
+                value: 2.3021358869347655
+              weight:
+                unit: unit
+                value: 2.3021358869347655
+              height:
+                unit: unit
+                value: 2.3021358869347655
+          quantity: 7
+          allocations:
+          - itemId: itemId
+            transferLocationCode: transferLocationCode
+            quantity: 9
+            productCode: productCode
+            isStateChange: true
+            fulfillmentLocationCode: fulfillmentLocationCode
+          - itemId: itemId
+            transferLocationCode: transferLocationCode
+            quantity: 9
+            productCode: productCode
+            isStateChange: true
+            fulfillmentLocationCode: fulfillmentLocationCode
+          orderItemId: orderItemId
+          inventoryTags:
+          - name: name
+            value: value
+          - name: name
+            value: value
+          lineId: 5
+          fulfillmentMethod: fulfillmentMethod
+          id: id
+          fulfillmentLocationCode: fulfillmentLocationCode
+          allowsBackOrder: true
+          allocationStatus: allocationStatus
+        status: status
+      properties:
+        id:
+          nullable: true
+          type: string
+        siteId:
+          format: int32
+          nullable: true
+          type: integer
+        tenantId:
+          format: int32
+          nullable: true
+          type: integer
+        userId:
+          nullable: true
+          type: string
+        customerAccountId:
+          format: int32
+          nullable: true
+          type: integer
+        items:
+          items:
+            $ref: '#/components/schemas/ReservationItem'
+          nullable: true
+          type: array
+        cartId:
+          nullable: true
+          type: string
+        orderId:
+          nullable: true
+          type: string
+        orderNumber:
+          format: int32
+          nullable: true
+          type: integer
+        expirationDateTime:
+          format: date-time
+          nullable: true
+          type: string
+        zipCode:
+          nullable: true
+          type: string
+        status:
+          nullable: true
+          type: string
+        auditInfo:
+          $ref: '#/components/schemas/AuditInf'
+        changeMessages:
+          items:
+            $ref: '#/components/schemas/ReservationWebAPIChangeMessage'
+          nullable: true
+          type: array
+        reservationType:
+          nullable: true
+          type: string
+      type: object
+    ReservationCollecti:
+      additionalProperties: false
+      example:
+        startIndex: 0
+        pageCount: 1
+        pageSize: 6
+        totalCount: 5
+        items:
+        - zipCode: zipCode
+          expirationDateTime: 2000-01-23T04:56:07.000+00:00
+          orderNumber: 3
+          orderId: orderId
+          cartId: cartId
+          userId: userId
+          auditInfo:
+            createdAt: 2000-01-23T04:56:07.000+00:00
+            updatedBy: updatedBy
+            createdBy: createdBy
+            updatedAt: 2000-01-23T04:56:07.000+00:00
+          customerAccountId: 1
+          changeMessages:
+          - identifier: identifier
+            appName: appName
+            subject: subject
+            verb: verb
+            correlationId: correlationId
+            appKey: appKey
+            id: id
+            message: message
+            userId: userId
+            subjectType: subjectType
+            createDate: 2000-01-23T04:56:07.000+00:00
+          - identifier: identifier
+            appName: appName
+            subject: subject
+            verb: verb
+            correlationId: correlationId
+            appKey: appKey
+            id: id
+            message: message
+            userId: userId
+            subjectType: subjectType
+            createDate: 2000-01-23T04:56:07.000+00:00
+          tenantId: 6
+          reservationType: reservationType
+          siteId: 0
+          id: id
+          items:
+          - product:
+              bundledProducts:
+              - productCode: productCode
+                quantity: 5
+                optionValue: ""
+                name: name
+                goodsType: goodsType
+                optionAttributeFQN: optionAttributeFQN
+                measurements:
+                  width:
+                    unit: unit
+                    value: 2.3021358869347655
+                  length:
+                    unit: unit
+                    value: 2.3021358869347655
+                  weight:
+                    unit: unit
+                    value: 2.3021358869347655
+                  height:
+                    unit: unit
+                    value: 2.3021358869347655
+              - productCode: productCode
+                quantity: 5
+                optionValue: ""
+                name: name
+                goodsType: goodsType
+                optionAttributeFQN: optionAttributeFQN
+                measurements:
+                  width:
+                    unit: unit
+                    value: 2.3021358869347655
+                  length:
+                    unit: unit
+                    value: 2.3021358869347655
+                  weight:
+                    unit: unit
+                    value: 2.3021358869347655
+                  height:
+                    unit: unit
+                    value: 2.3021358869347655
+              mfgPartNumber: mfgPartNumber
+              isSplitExtrasInShipment: true
+              isTaxable: true
+              goodsType: goodsType
+              productCode: productCode
+              name: name
+              variationProductCode: variationProductCode
+              productUsage: productUsage
+              sku: sku
+              productType: productType
+              properties:
+              - values:
+                - stringValue: stringValue
+                  value: ""
+                - stringValue: stringValue
+                  value: ""
+                attributeFQN: attributeFQN
+              - values:
+                - stringValue: stringValue
+                  value: ""
+                - stringValue: stringValue
+                  value: ""
+                attributeFQN: attributeFQN
+              measurements:
+                width:
+                  unit: unit
+                  value: 2.3021358869347655
+                length:
+                  unit: unit
+                  value: 2.3021358869347655
+                weight:
+                  unit: unit
+                  value: 2.3021358869347655
+                height:
+                  unit: unit
+                  value: 2.3021358869347655
+            quantity: 7
+            allocations:
+            - itemId: itemId
+              transferLocationCode: transferLocationCode
+              quantity: 9
+              productCode: productCode
+              isStateChange: true
+              fulfillmentLocationCode: fulfillmentLocationCode
+            - itemId: itemId
+              transferLocationCode: transferLocationCode
+              quantity: 9
+              productCode: productCode
+              isStateChange: true
+              fulfillmentLocationCode: fulfillmentLocationCode
+            orderItemId: orderItemId
+            inventoryTags:
+            - name: name
+              value: value
+            - name: name
+              value: value
+            lineId: 5
+            fulfillmentMethod: fulfillmentMethod
+            id: id
+            fulfillmentLocationCode: fulfillmentLocationCode
+            allowsBackOrder: true
+            allocationStatus: allocationStatus
+          - product:
+              bundledProducts:
+              - productCode: productCode
+                quantity: 5
+                optionValue: ""
+                name: name
+                goodsType: goodsType
+                optionAttributeFQN: optionAttributeFQN
+                measurements:
+                  width:
+                    unit: unit
+                    value: 2.3021358869347655
+                  length:
+                    unit: unit
+                    value: 2.3021358869347655
+                  weight:
+                    unit: unit
+                    value: 2.3021358869347655
+                  height:
+                    unit: unit
+                    value: 2.3021358869347655
+              - productCode: productCode
+                quantity: 5
+                optionValue: ""
+                name: name
+                goodsType: goodsType
+                optionAttributeFQN: optionAttributeFQN
+                measurements:
+                  width:
+                    unit: unit
+                    value: 2.3021358869347655
+                  length:
+                    unit: unit
+                    value: 2.3021358869347655
+                  weight:
+                    unit: unit
+                    value: 2.3021358869347655
+                  height:
+                    unit: unit
+                    value: 2.3021358869347655
+              mfgPartNumber: mfgPartNumber
+              isSplitExtrasInShipment: true
+              isTaxable: true
+              goodsType: goodsType
+              productCode: productCode
+              name: name
+              variationProductCode: variationProductCode
+              productUsage: productUsage
+              sku: sku
+              productType: productType
+              properties:
+              - values:
+                - stringValue: stringValue
+                  value: ""
+                - stringValue: stringValue
+                  value: ""
+                attributeFQN: attributeFQN
+              - values:
+                - stringValue: stringValue
+                  value: ""
+                - stringValue: stringValue
+                  value: ""
+                attributeFQN: attributeFQN
+              measurements:
+                width:
+                  unit: unit
+                  value: 2.3021358869347655
+                length:
+                  unit: unit
+                  value: 2.3021358869347655
+                weight:
+                  unit: unit
+                  value: 2.3021358869347655
+                height:
+                  unit: unit
+                  value: 2.3021358869347655
+            quantity: 7
+            allocations:
+            - itemId: itemId
+              transferLocationCode: transferLocationCode
+              quantity: 9
+              productCode: productCode
+              isStateChange: true
+              fulfillmentLocationCode: fulfillmentLocationCode
+            - itemId: itemId
+              transferLocationCode: transferLocationCode
+              quantity: 9
+              productCode: productCode
+              isStateChange: true
+              fulfillmentLocationCode: fulfillmentLocationCode
+            orderItemId: orderItemId
+            inventoryTags:
+            - name: name
+              value: value
+            - name: name
+              value: value
+            lineId: 5
+            fulfillmentMethod: fulfillmentMethod
+            id: id
+            fulfillmentLocationCode: fulfillmentLocationCode
+            allowsBackOrder: true
+            allocationStatus: allocationStatus
+          status: status
+        - zipCode: zipCode
+          expirationDateTime: 2000-01-23T04:56:07.000+00:00
+          orderNumber: 3
+          orderId: orderId
+          cartId: cartId
+          userId: userId
+          auditInfo:
+            createdAt: 2000-01-23T04:56:07.000+00:00
+            updatedBy: updatedBy
+            createdBy: createdBy
+            updatedAt: 2000-01-23T04:56:07.000+00:00
+          customerAccountId: 1
+          changeMessages:
+          - identifier: identifier
+            appName: appName
+            subject: subject
+            verb: verb
+            correlationId: correlationId
+            appKey: appKey
+            id: id
+            message: message
+            userId: userId
+            subjectType: subjectType
+            createDate: 2000-01-23T04:56:07.000+00:00
+          - identifier: identifier
+            appName: appName
+            subject: subject
+            verb: verb
+            correlationId: correlationId
+            appKey: appKey
+            id: id
+            message: message
+            userId: userId
+            subjectType: subjectType
+            createDate: 2000-01-23T04:56:07.000+00:00
+          tenantId: 6
+          reservationType: reservationType
+          siteId: 0
+          id: id
+          items:
+          - product:
+              bundledProducts:
+              - productCode: productCode
+                quantity: 5
+                optionValue: ""
+                name: name
+                goodsType: goodsType
+                optionAttributeFQN: optionAttributeFQN
+                measurements:
+                  width:
+                    unit: unit
+                    value: 2.3021358869347655
+                  length:
+                    unit: unit
+                    value: 2.3021358869347655
+                  weight:
+                    unit: unit
+                    value: 2.3021358869347655
+                  height:
+                    unit: unit
+                    value: 2.3021358869347655
+              - productCode: productCode
+                quantity: 5
+                optionValue: ""
+                name: name
+                goodsType: goodsType
+                optionAttributeFQN: optionAttributeFQN
+                measurements:
+                  width:
+                    unit: unit
+                    value: 2.3021358869347655
+                  length:
+                    unit: unit
+                    value: 2.3021358869347655
+                  weight:
+                    unit: unit
+                    value: 2.3021358869347655
+                  height:
+                    unit: unit
+                    value: 2.3021358869347655
+              mfgPartNumber: mfgPartNumber
+              isSplitExtrasInShipment: true
+              isTaxable: true
+              goodsType: goodsType
+              productCode: productCode
+              name: name
+              variationProductCode: variationProductCode
+              productUsage: productUsage
+              sku: sku
+              productType: productType
+              properties:
+              - values:
+                - stringValue: stringValue
+                  value: ""
+                - stringValue: stringValue
+                  value: ""
+                attributeFQN: attributeFQN
+              - values:
+                - stringValue: stringValue
+                  value: ""
+                - stringValue: stringValue
+                  value: ""
+                attributeFQN: attributeFQN
+              measurements:
+                width:
+                  unit: unit
+                  value: 2.3021358869347655
+                length:
+                  unit: unit
+                  value: 2.3021358869347655
+                weight:
+                  unit: unit
+                  value: 2.3021358869347655
+                height:
+                  unit: unit
+                  value: 2.3021358869347655
+            quantity: 7
+            allocations:
+            - itemId: itemId
+              transferLocationCode: transferLocationCode
+              quantity: 9
+              productCode: productCode
+              isStateChange: true
+              fulfillmentLocationCode: fulfillmentLocationCode
+            - itemId: itemId
+              transferLocationCode: transferLocationCode
+              quantity: 9
+              productCode: productCode
+              isStateChange: true
+              fulfillmentLocationCode: fulfillmentLocationCode
+            orderItemId: orderItemId
+            inventoryTags:
+            - name: name
+              value: value
+            - name: name
+              value: value
+            lineId: 5
+            fulfillmentMethod: fulfillmentMethod
+            id: id
+            fulfillmentLocationCode: fulfillmentLocationCode
+            allowsBackOrder: true
+            allocationStatus: allocationStatus
+          - product:
+              bundledProducts:
+              - productCode: productCode
+                quantity: 5
+                optionValue: ""
+                name: name
+                goodsType: goodsType
+                optionAttributeFQN: optionAttributeFQN
+                measurements:
+                  width:
+                    unit: unit
+                    value: 2.3021358869347655
+                  length:
+                    unit: unit
+                    value: 2.3021358869347655
+                  weight:
+                    unit: unit
+                    value: 2.3021358869347655
+                  height:
+                    unit: unit
+                    value: 2.3021358869347655
+              - productCode: productCode
+                quantity: 5
+                optionValue: ""
+                name: name
+                goodsType: goodsType
+                optionAttributeFQN: optionAttributeFQN
+                measurements:
+                  width:
+                    unit: unit
+                    value: 2.3021358869347655
+                  length:
+                    unit: unit
+                    value: 2.3021358869347655
+                  weight:
+                    unit: unit
+                    value: 2.3021358869347655
+                  height:
+                    unit: unit
+                    value: 2.3021358869347655
+              mfgPartNumber: mfgPartNumber
+              isSplitExtrasInShipment: true
+              isTaxable: true
+              goodsType: goodsType
+              productCode: productCode
+              name: name
+              variationProductCode: variationProductCode
+              productUsage: productUsage
+              sku: sku
+              productType: productType
+              properties:
+              - values:
+                - stringValue: stringValue
+                  value: ""
+                - stringValue: stringValue
+                  value: ""
+                attributeFQN: attributeFQN
+              - values:
+                - stringValue: stringValue
+                  value: ""
+                - stringValue: stringValue
+                  value: ""
+                attributeFQN: attributeFQN
+              measurements:
+                width:
+                  unit: unit
+                  value: 2.3021358869347655
+                length:
+                  unit: unit
+                  value: 2.3021358869347655
+                weight:
+                  unit: unit
+                  value: 2.3021358869347655
+                height:
+                  unit: unit
+                  value: 2.3021358869347655
+            quantity: 7
+            allocations:
+            - itemId: itemId
+              transferLocationCode: transferLocationCode
+              quantity: 9
+              productCode: productCode
+              isStateChange: true
+              fulfillmentLocationCode: fulfillmentLocationCode
+            - itemId: itemId
+              transferLocationCode: transferLocationCode
+              quantity: 9
+              productCode: productCode
+              isStateChange: true
+              fulfillmentLocationCode: fulfillmentLocationCode
+            orderItemId: orderItemId
+            inventoryTags:
+            - name: name
+              value: value
+            - name: name
+              value: value
+            lineId: 5
+            fulfillmentMethod: fulfillmentMethod
+            id: id
+            fulfillmentLocationCode: fulfillmentLocationCode
+            allowsBackOrder: true
+            allocationStatus: allocationStatus
+          status: status
+      properties:
+        startIndex:
+          format: int32
+          type: integer
+        pageSize:
+          format: int32
+          type: integer
+        pageCount:
+          format: int32
+          type: integer
+        totalCount:
+          format: int32
+          type: integer
+        items:
+          items:
+            $ref: '#/components/schemas/Reservati'
+          nullable: true
+          type: array
+      type: object
+    OrderReservati:
+      additionalProperties: false
+      example:
+        reservationItems:
+        - product:
+            bundledProducts:
+            - productCode: productCode
+              quantity: 5
+              optionValue: ""
+              name: name
+              goodsType: goodsType
+              optionAttributeFQN: optionAttributeFQN
+              measurements:
+                width:
+                  unit: unit
+                  value: 2.3021358869347655
+                length:
+                  unit: unit
+                  value: 2.3021358869347655
+                weight:
+                  unit: unit
+                  value: 2.3021358869347655
+                height:
+                  unit: unit
+                  value: 2.3021358869347655
+            - productCode: productCode
+              quantity: 5
+              optionValue: ""
+              name: name
+              goodsType: goodsType
+              optionAttributeFQN: optionAttributeFQN
+              measurements:
+                width:
+                  unit: unit
+                  value: 2.3021358869347655
+                length:
+                  unit: unit
+                  value: 2.3021358869347655
+                weight:
+                  unit: unit
+                  value: 2.3021358869347655
+                height:
+                  unit: unit
+                  value: 2.3021358869347655
+            mfgPartNumber: mfgPartNumber
+            isSplitExtrasInShipment: true
+            isTaxable: true
+            goodsType: goodsType
+            productCode: productCode
+            name: name
+            variationProductCode: variationProductCode
+            productUsage: productUsage
+            sku: sku
+            productType: productType
+            properties:
+            - values:
+              - stringValue: stringValue
+                value: ""
+              - stringValue: stringValue
+                value: ""
+              attributeFQN: attributeFQN
+            - values:
+              - stringValue: stringValue
+                value: ""
+              - stringValue: stringValue
+                value: ""
+              attributeFQN: attributeFQN
+            measurements:
+              width:
+                unit: unit
+                value: 2.3021358869347655
+              length:
+                unit: unit
+                value: 2.3021358869347655
+              weight:
+                unit: unit
+                value: 2.3021358869347655
+              height:
+                unit: unit
+                value: 2.3021358869347655
+          quantity: 7
+          allocations:
+          - itemId: itemId
+            transferLocationCode: transferLocationCode
+            quantity: 9
+            productCode: productCode
+            isStateChange: true
+            fulfillmentLocationCode: fulfillmentLocationCode
+          - itemId: itemId
+            transferLocationCode: transferLocationCode
+            quantity: 9
+            productCode: productCode
+            isStateChange: true
+            fulfillmentLocationCode: fulfillmentLocationCode
+          orderItemId: orderItemId
+          inventoryTags:
+          - name: name
+            value: value
+          - name: name
+            value: value
+          lineId: 5
+          fulfillmentMethod: fulfillmentMethod
+          id: id
+          fulfillmentLocationCode: fulfillmentLocationCode
+          allowsBackOrder: true
+          allocationStatus: allocationStatus
+        - product:
+            bundledProducts:
+            - productCode: productCode
+              quantity: 5
+              optionValue: ""
+              name: name
+              goodsType: goodsType
+              optionAttributeFQN: optionAttributeFQN
+              measurements:
+                width:
+                  unit: unit
+                  value: 2.3021358869347655
+                length:
+                  unit: unit
+                  value: 2.3021358869347655
+                weight:
+                  unit: unit
+                  value: 2.3021358869347655
+                height:
+                  unit: unit
+                  value: 2.3021358869347655
+            - productCode: productCode
+              quantity: 5
+              optionValue: ""
+              name: name
+              goodsType: goodsType
+              optionAttributeFQN: optionAttributeFQN
+              measurements:
+                width:
+                  unit: unit
+                  value: 2.3021358869347655
+                length:
+                  unit: unit
+                  value: 2.3021358869347655
+                weight:
+                  unit: unit
+                  value: 2.3021358869347655
+                height:
+                  unit: unit
+                  value: 2.3021358869347655
+            mfgPartNumber: mfgPartNumber
+            isSplitExtrasInShipment: true
+            isTaxable: true
+            goodsType: goodsType
+            productCode: productCode
+            name: name
+            variationProductCode: variationProductCode
+            productUsage: productUsage
+            sku: sku
+            productType: productType
+            properties:
+            - values:
+              - stringValue: stringValue
+                value: ""
+              - stringValue: stringValue
+                value: ""
+              attributeFQN: attributeFQN
+            - values:
+              - stringValue: stringValue
+                value: ""
+              - stringValue: stringValue
+                value: ""
+              attributeFQN: attributeFQN
+            measurements:
+              width:
+                unit: unit
+                value: 2.3021358869347655
+              length:
+                unit: unit
+                value: 2.3021358869347655
+              weight:
+                unit: unit
+                value: 2.3021358869347655
+              height:
+                unit: unit
+                value: 2.3021358869347655
+          quantity: 7
+          allocations:
+          - itemId: itemId
+            transferLocationCode: transferLocationCode
+            quantity: 9
+            productCode: productCode
+            isStateChange: true
+            fulfillmentLocationCode: fulfillmentLocationCode
+          - itemId: itemId
+            transferLocationCode: transferLocationCode
+            quantity: 9
+            productCode: productCode
+            isStateChange: true
+            fulfillmentLocationCode: fulfillmentLocationCode
+          orderItemId: orderItemId
+          inventoryTags:
+          - name: name
+            value: value
+          - name: name
+            value: value
+          lineId: 5
+          fulfillmentMethod: fulfillmentMethod
+          id: id
+          fulfillmentLocationCode: fulfillmentLocationCode
+          allowsBackOrder: true
+          allocationStatus: allocationStatus
+        zipCode: zipCode
+        orderNumber: 0
+        orderId: orderId
+      properties:
+        orderId:
+          nullable: true
+          type: string
+        orderNumber:
+          format: int32
+          type: integer
+        zipCode:
+          nullable: true
+          type: string
+        reservationItems:
+          items:
+            $ref: '#/components/schemas/ReservationItem'
+          nullable: true
+          type: array
+      type: object
+    ReservationWebAPIChangeMessage:
+      additionalProperties: false
+      example:
+        identifier: identifier
+        appName: appName
+        subject: subject
+        verb: verb
+        correlationId: correlationId
+        appKey: appKey
+        id: id
+        message: message
+        userId: userId
+        subjectType: subjectType
+        createDate: 2000-01-23T04:56:07.000+00:00
+      properties:
+        id:
+          nullable: true
+          type: string
+        identifier:
+          nullable: true
+          type: string
+        correlationId:
+          nullable: true
+          type: string
+        userId:
+          nullable: true
+          type: string
+        appKey:
+          nullable: true
+          type: string
+        appName:
+          nullable: true
+          type: string
+        subjectType:
+          nullable: true
+          type: string
+        subject:
+          nullable: true
+          type: string
+        verb:
+          nullable: true
+          type: string
+        message:
+          nullable: true
+          type: string
+        createDate:
+          format: date-time
+          type: string
+      type: object
+    CommerceRuntimeMeasurement:
+      additionalProperties: false
+      example:
+        unit: unit
+        value: 2.3021358869347655
+      properties:
+        unit:
+          nullable: true
+          type: string
+        value:
+          format: double
+          nullable: true
+          type: number
+      type: object
+    ReservationWebAPIPackageMeasurements:
+      additionalProperties: false
+      example:
+        width:
+          unit: unit
+          value: 2.3021358869347655
+        length:
+          unit: unit
+          value: 2.3021358869347655
+        weight:
+          unit: unit
+          value: 2.3021358869347655
+        height:
+          unit: unit
+          value: 2.3021358869347655
+      properties:
+        height:
+          $ref: '#/components/schemas/CommerceRuntimeMeasurement'
+        width:
+          $ref: '#/components/schemas/CommerceRuntimeMeasurement'
+        length:
+          $ref: '#/components/schemas/CommerceRuntimeMeasurement'
+        weight:
+          $ref: '#/components/schemas/CommerceRuntimeMeasurement'
+      type: object
+    CommerceRuntimeProductPropertyValue:
+      additionalProperties: false
+      example:
+        stringValue: stringValue
+        value: ""
+      properties:
+        stringValue:
+          nullable: true
+          type: string
+        value:
+          nullable: true
+      type: object
+    ReservationWebAPIProductProperty:
+      additionalProperties: false
+      example:
+        values:
+        - stringValue: stringValue
+          value: ""
+        - stringValue: stringValue
+          value: ""
+        attributeFQN: attributeFQN
+      properties:
+        attributeFQN:
+          nullable: true
+          type: string
+        values:
+          items:
+            $ref: '#/components/schemas/CommerceRuntimeProductPropertyValue'
+          nullable: true
+          type: array
+      type: object
+    ReservationWebAPIOrderAttribute:
+      additionalProperties: false
+      example:
+        attributeDefinitionId: 0
+        values:
+        - ""
+        - ""
+        fullyQualifiedName: fullyQualifiedName
+      properties:
+        fullyQualifiedName:
+          nullable: true
+          type: string
+        attributeDefinitionId:
+          format: int32
+          nullable: true
+          type: integer
+        values:
+          items: {}
+          nullable: true
+          type: array
+      type: object
+  securitySchemes:
+    bearerAuth:
+      bearerFormat: JWT
+      description: JWT Authorization header using the Bearer scheme.
+      scheme: bearer
+      type: http
+    clientOauth2:
+      flows:
+        clientCredentials:
+          scopes: {}
+          tokenUrl: /api/platform/applications/authtickets/oauth
+      type: oauth2
+

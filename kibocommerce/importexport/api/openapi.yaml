@@ -1,0 +1,850 @@
+openapi: 3.0.1
+info:
+  description: OpenAPI Spec for Kibo MongoAdmin Service
+  title: Kibo MongoAdmin Service
+servers:
+- description: TenantPod Host
+  url: "https://{tenantPodHost}/api"
+- description: Tenant Level Api
+  url: "https://t{tenantId}.{env}.mozu.com/api"
+  variables:
+    tenantId:
+      default: "0"
+      description: Id of the Tenant
+    env:
+      default: sandbox
+      enum:
+      - sandbox
+      - tp1
+      - tp2
+      - tp3
+      - tp4
+      - tp5
+      - stg1
+      - stg2
+- description: Site Level Api
+  url: "https://t{tenantId}-s{siteId}.{env}.mozu.com/api"
+  variables:
+    tenantId:
+      default: "0"
+      description: Id of the Tenant
+    siteId:
+      default: "0"
+      description: Id of the Site
+    env:
+      default: sandbox
+      enum:
+      - sandbox
+      - tp1
+      - tp2
+      - tp3
+      - tp4
+      - tp5
+      - stg1
+- description: HomePod Api
+  url: https://home.mozu.com/api
+- description: EURO Tenant Level Api
+  url: "https://t{tenantId}.{env}.euw1.kibocommerce.com/api"
+  variables:
+    tenantId:
+      default: "0"
+      description: Id of the Tenant
+    env:
+      default: sandbox
+      enum:
+      - sb
+      - tp1
+- description: EURO Site Level Api
+  url: "https://t{tenantId}-s{siteId}.{env}.euw1.kibocommerce.com/api"
+  variables:
+    tenantId:
+      default: "0"
+      description: Id of the Tenant
+    siteId:
+      default: "0"
+      description: Id of the Site
+    env:
+      default: sandbox
+      enum:
+      - sb
+      - tp1
+- description: EURO HomePod Api
+  url: https://home.euw1.kibocommerce.com/api
+security:
+- bearerAuth: []
+  clientOauth2: []
+paths:
+  /platform/data/export:
+    get:
+      description: List
+      operationId: list
+      parameters:
+      - explode: true
+        in: query
+        name: startIndex
+        required: false
+        schema:
+          default: 0
+          format: int32
+          type: integer
+        style: form
+      - explode: true
+        in: query
+        name: pageSize
+        required: false
+        schema:
+          default: 0
+          format: int32
+          type: integer
+        style: form
+      - explode: true
+        in: query
+        name: filter
+        required: false
+        schema:
+          type: string
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/ExportJob'
+                type: array
+            text/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/ExportJob'
+                type: array
+            text/plain:
+              schema:
+                items:
+                  $ref: '#/components/schemas/ExportJob'
+                type: array
+          description: Success
+      summary: List
+      tags:
+      - Export
+      x-accepts: application/json
+    post:
+      description: Create
+      operationId: create
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ExportJob'
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ExportJob'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ExportJob'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ExportJob'
+          description: Success
+      summary: Create
+      tags:
+      - Export
+      x-content-type: application/json
+      x-accepts: application/json
+  /platform/data/export/{id}:
+    delete:
+      description: Delete
+      operationId: delete
+      parameters:
+      - explode: false
+        in: path
+        name: id
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          description: Success
+      summary: Delete
+      tags:
+      - Export
+      x-accepts: application/json
+    get:
+      description: Get
+      operationId: get
+      parameters:
+      - explode: false
+        in: path
+        name: id
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ExportJob'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ExportJob'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ExportJob'
+          description: Success
+      summary: Get
+      tags:
+      - Export
+      x-accepts: application/json
+  /platform/data/files/{id}/content:
+    get:
+      description: Download
+      operationId: download
+      parameters:
+      - explode: false
+        in: path
+        name: id
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          description: Success
+      summary: Download
+      tags:
+      - Files
+      x-accepts: application/json
+  /platform/data/files/{id}:
+    get:
+      description: Get
+      operationId: get
+      parameters:
+      - explode: false
+        in: path
+        name: id
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DropLocation'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/DropLocation'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/DropLocation'
+          description: Success
+      summary: Get
+      tags:
+      - Files
+      x-accepts: application/json
+  /platform/data/files/{id}/generatelink:
+    post:
+      description: Get Public Link
+      operationId: getPublicLink
+      parameters:
+      - explode: false
+        in: path
+        name: id
+        required: true
+        schema:
+          type: string
+        style: simple
+      - explode: true
+        in: query
+        name: hourDuration
+        required: false
+        schema:
+          default: 24
+          format: int32
+          type: integer
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                type: string
+            text/json:
+              schema:
+                type: string
+            text/plain:
+              schema:
+                type: string
+          description: Success
+      summary: Get Public Link
+      tags:
+      - Files
+      x-accepts: application/json
+  /platform/data/files:
+    post:
+      description: Upload
+      operationId: upload
+      parameters:
+      - explode: true
+        in: query
+        name: fileType
+        required: false
+        schema:
+          type: string
+        style: form
+      - explode: true
+        in: query
+        name: fileName
+        required: false
+        schema:
+          type: string
+        style: form
+      requestBody:
+        content:
+          application/octet-stream:
+            schema:
+              format: binary
+              type: string
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DropLocation'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/DropLocation'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/DropLocation'
+          description: Success
+      summary: Upload
+      tags:
+      - Files
+      x-content-type: application/octet-stream
+      x-accepts: application/json
+  /platform/data/import:
+    get:
+      description: List
+      operationId: list
+      parameters:
+      - explode: true
+        in: query
+        name: startIndex
+        required: false
+        schema:
+          default: 0
+          format: int32
+          type: integer
+        style: form
+      - explode: true
+        in: query
+        name: pageSize
+        required: false
+        schema:
+          default: 0
+          format: int32
+          type: integer
+        style: form
+      - explode: true
+        in: query
+        name: filter
+        required: false
+        schema:
+          type: string
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/ImportJob'
+                type: array
+            text/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/ImportJob'
+                type: array
+            text/plain:
+              schema:
+                items:
+                  $ref: '#/components/schemas/ImportJob'
+                type: array
+          description: Success
+      summary: List
+      tags:
+      - Import
+      x-accepts: application/json
+    post:
+      description: Create
+      operationId: create
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ImportJob'
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ImportJob'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ImportJob'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ImportJob'
+          description: Success
+      summary: Create
+      tags:
+      - Import
+      x-content-type: application/json
+      x-accepts: application/json
+  /platform/data/import/{id}:
+    delete:
+      description: Delete
+      operationId: delete
+      parameters:
+      - explode: false
+        in: path
+        name: id
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          description: Success
+      summary: Delete
+      tags:
+      - Import
+      x-accepts: application/json
+    get:
+      description: Get
+      operationId: get
+      parameters:
+      - explode: false
+        in: path
+        name: id
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ImportJob'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ImportJob'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ImportJob'
+          description: Success
+      summary: Get
+      tags:
+      - Import
+      x-accepts: application/json
+components:
+  schemas:
+    ContextOverride:
+      additionalProperties: false
+      example:
+        site: 5
+        catalog: 1
+        currency: currency
+        locale: locale
+        masterCatalog: 6
+      properties:
+        masterCatalog:
+          format: int32
+          nullable: true
+          type: integer
+        locale:
+          nullable: true
+          type: string
+        currency:
+          nullable: true
+          type: string
+        catalog:
+          format: int32
+          nullable: true
+          type: integer
+        site:
+          format: int32
+          nullable: true
+          type: integer
+      type: object
+    ExportResource:
+      additionalProperties: false
+      example:
+        filter: filter
+        resource: resource
+        configuration: ""
+        format: format
+        fields:
+        - fields
+        - fields
+        stateDetails: stateDetails
+        statusMessage: statusMessage
+        status: status
+        isComplete: true
+      properties:
+        resource:
+          nullable: true
+          type: string
+        filter:
+          nullable: true
+          type: string
+        fields:
+          items:
+            type: string
+          nullable: true
+          type: array
+        format:
+          nullable: true
+          type: string
+        status:
+          nullable: true
+          type: string
+        isComplete:
+          type: boolean
+        statusMessage:
+          nullable: true
+          type: string
+        stateDetails:
+          nullable: true
+          type: string
+        configuration:
+          nullable: true
+      type: object
+    DropLocation:
+      additionalProperties: false
+      example:
+        fileName: fileName
+        locationType: locationType
+        id: id
+        uri: uri
+        fileType: fileType
+      properties:
+        id:
+          nullable: true
+          type: string
+        uri:
+          nullable: true
+          type: string
+        locationType:
+          nullable: true
+          type: string
+        fileName:
+          nullable: true
+          type: string
+        fileType:
+          nullable: true
+          type: string
+      type: object
+    ExportJob:
+      additionalProperties: false
+      example:
+        requester: requester
+        configuration: ""
+        format: format
+        resources:
+        - filter: filter
+          resource: resource
+          configuration: ""
+          format: format
+          fields:
+          - fields
+          - fields
+          stateDetails: stateDetails
+          statusMessage: statusMessage
+          status: status
+          isComplete: true
+        - filter: filter
+          resource: resource
+          configuration: ""
+          format: format
+          fields:
+          - fields
+          - fields
+          stateDetails: stateDetails
+          statusMessage: statusMessage
+          status: status
+          isComplete: true
+        statusMessage: statusMessage
+        contextOverride:
+          site: 5
+          catalog: 1
+          currency: currency
+          locale: locale
+          masterCatalog: 6
+        auditInfo:
+          updateDate: 2000-01-23T04:56:07.000+00:00
+          createBy: createBy
+          updateBy: updateBy
+          createDate: 2000-01-23T04:56:07.000+00:00
+        exportDate: 2000-01-23T04:56:07.000+00:00
+        domain: domain
+        name: name
+        statusDetails: statusDetails
+        files:
+        - fileName: fileName
+          locationType: locationType
+          id: id
+          uri: uri
+          fileType: fileType
+        - fileName: fileName
+          locationType: locationType
+          id: id
+          uri: uri
+          fileType: fileType
+        id: id
+        tenant: 0
+        status: status
+        isComplete: true
+      properties:
+        name:
+          nullable: true
+          type: string
+        id:
+          nullable: true
+          type: string
+        requester:
+          nullable: true
+          type: string
+        tenant:
+          format: int32
+          type: integer
+        contextOverride:
+          $ref: '#/components/schemas/ContextOverride'
+        domain:
+          nullable: true
+          type: string
+        resources:
+          items:
+            $ref: '#/components/schemas/ExportResource'
+          nullable: true
+          type: array
+        exportDate:
+          format: date-time
+          nullable: true
+          type: string
+        format:
+          nullable: true
+          type: string
+        status:
+          nullable: true
+          type: string
+        statusDetails:
+          nullable: true
+          type: string
+        statusMessage:
+          nullable: true
+          type: string
+        isComplete:
+          type: boolean
+        files:
+          items:
+            $ref: '#/components/schemas/DropLocation'
+          nullable: true
+          type: array
+        auditInfo:
+          $ref: '#/components/schemas/AdminUserAuditInfo'
+        configuration:
+          nullable: true
+      type: object
+    ImportResource:
+      additionalProperties: false
+      example:
+        deleteOmitted: true
+        resource: resource
+        configuration: ""
+        format: format
+        fields:
+        - fields
+        - fields
+        stateDetails: stateDetails
+        statusMessage: statusMessage
+        status: status
+        isComplete: true
+      properties:
+        format:
+          nullable: true
+          type: string
+        resource:
+          nullable: true
+          type: string
+        fields:
+          items:
+            type: string
+          nullable: true
+          type: array
+        deleteOmitted:
+          type: boolean
+        status:
+          nullable: true
+          type: string
+        isComplete:
+          type: boolean
+        statusMessage:
+          nullable: true
+          type: string
+        stateDetails:
+          nullable: true
+          type: string
+        configuration:
+          nullable: true
+      type: object
+    ImportJob:
+      additionalProperties: false
+      example:
+        requester: requester
+        configuration: ""
+        format: format
+        resources:
+        - deleteOmitted: true
+          resource: resource
+          configuration: ""
+          format: format
+          fields:
+          - fields
+          - fields
+          stateDetails: stateDetails
+          statusMessage: statusMessage
+          status: status
+          isComplete: true
+        - deleteOmitted: true
+          resource: resource
+          configuration: ""
+          format: format
+          fields:
+          - fields
+          - fields
+          stateDetails: stateDetails
+          statusMessage: statusMessage
+          status: status
+          isComplete: true
+        statusMessage: statusMessage
+        contextOverride:
+          site: 5
+          catalog: 1
+          currency: currency
+          locale: locale
+          masterCatalog: 6
+        auditInfo:
+          updateDate: 2000-01-23T04:56:07.000+00:00
+          createBy: createBy
+          updateBy: updateBy
+          createDate: 2000-01-23T04:56:07.000+00:00
+        domain: domain
+        name: name
+        statusDetails: statusDetails
+        files:
+        - fileName: fileName
+          locationType: locationType
+          id: id
+          uri: uri
+          fileType: fileType
+        - fileName: fileName
+          locationType: locationType
+          id: id
+          uri: uri
+          fileType: fileType
+        id: id
+        tenant: 0
+        isComplete: true
+        status: status
+      properties:
+        name:
+          nullable: true
+          type: string
+        id:
+          nullable: true
+          type: string
+        requester:
+          nullable: true
+          type: string
+        domain:
+          nullable: true
+          type: string
+        format:
+          nullable: true
+          type: string
+        resources:
+          items:
+            $ref: '#/components/schemas/ImportResource'
+          nullable: true
+          type: array
+        contextOverride:
+          $ref: '#/components/schemas/ContextOverride'
+        isComplete:
+          type: boolean
+        auditInfo:
+          $ref: '#/components/schemas/AdminUserAuditInfo'
+        tenant:
+          format: int32
+          type: integer
+        status:
+          nullable: true
+          type: string
+        statusDetails:
+          nullable: true
+          type: string
+        statusMessage:
+          nullable: true
+          type: string
+        configuration:
+          nullable: true
+        files:
+          items:
+            $ref: '#/components/schemas/DropLocation'
+          nullable: true
+          type: array
+      type: object
+    AdminUserAuditInfo:
+      additionalProperties: false
+      example:
+        updateDate: 2000-01-23T04:56:07.000+00:00
+        createBy: createBy
+        updateBy: updateBy
+        createDate: 2000-01-23T04:56:07.000+00:00
+      properties:
+        updateDate:
+          format: date-time
+          nullable: true
+          type: string
+        createDate:
+          format: date-time
+          nullable: true
+          type: string
+        updateBy:
+          nullable: true
+          type: string
+        createBy:
+          nullable: true
+          type: string
+      type: object
+  securitySchemes:
+    bearerAuth:
+      bearerFormat: JWT
+      description: JWT Authorization header using the Bearer scheme.
+      scheme: bearer
+      type: http
+    clientOauth2:
+      flows:
+        clientCredentials:
+          scopes: {}
+          tokenUrl: /api/platform/applications/authtickets/oauth
+      type: oauth2
+

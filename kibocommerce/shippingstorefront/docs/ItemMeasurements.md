@@ -1,0 +1,21 @@
+
+
+# ItemMeasurements
+
+
+## Properties
+
+| Name | Type | Description | Notes |
+|------------ | ------------- | ------------- | -------------|
+|**height** | [**CommerceRuntimeMeasurement**](CommerceRuntimeMeasurement.md) |  |  [optional] |
+|**width** | [**CommerceRuntimeMeasurement**](CommerceRuntimeMeasurement.md) |  |  [optional] |
+|**length** | [**CommerceRuntimeMeasurement**](CommerceRuntimeMeasurement.md) |  |  [optional] |
+|**weight** | [**CommerceRuntimeMeasurement**](CommerceRuntimeMeasurement.md) |  |  [optional] |
+|**girth** | **Double** | Not exposed publicly |  [optional] |
+
+
+## Implemented Interfaces
+
+* Serializable
+
+

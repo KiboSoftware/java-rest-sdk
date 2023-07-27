@@ -1,0 +1,2946 @@
+openapi: 3.0.1
+info:
+  description: OpenAPI Spec for Kibo Admin User Service
+  title: Kibo Admin User Service
+servers:
+- description: HomePod Host
+  url: "https://{homePodHost}/api"
+- description: Tenant Level Api
+  url: "https://t{tenantId}.{env}.mozu.com/api"
+  variables:
+    tenantId:
+      default: "0"
+      description: Id of the Tenant
+    env:
+      default: sandbox
+      enum:
+      - sandbox
+      - tp1
+      - tp2
+      - tp3
+      - tp4
+      - tp5
+      - stg1
+      - stg2
+- description: Site Level Api
+  url: "https://t{tenantId}-s{siteId}.{env}.mozu.com/api"
+  variables:
+    tenantId:
+      default: "0"
+      description: Id of the Tenant
+    siteId:
+      default: "0"
+      description: Id of the Site
+    env:
+      default: sandbox
+      enum:
+      - sandbox
+      - tp1
+      - tp2
+      - tp3
+      - tp4
+      - tp5
+      - stg1
+- description: HomePod Api
+  url: https://home.mozu.com/api
+- description: EURO Tenant Level Api
+  url: "https://t{tenantId}.{env}.euw1.kibocommerce.com/api"
+  variables:
+    tenantId:
+      default: "0"
+      description: Id of the Tenant
+    env:
+      default: sandbox
+      enum:
+      - sb
+      - tp1
+- description: EURO Site Level Api
+  url: "https://t{tenantId}-s{siteId}.{env}.euw1.kibocommerce.com/api"
+  variables:
+    tenantId:
+      default: "0"
+      description: Id of the Tenant
+    siteId:
+      default: "0"
+      description: Id of the Site
+    env:
+      default: sandbox
+      enum:
+      - sb
+      - tp1
+- description: EURO HomePod Api
+  url: https://home.euw1.kibocommerce.com/api
+security:
+- bearerAuth: []
+  clientOauth2: []
+paths:
+  /platform/adminuser/groups:
+    get:
+      description: Gets a collection of user groups
+      operationId: getAdminGroups
+      parameters:
+      - description: ""
+        explode: true
+        in: query
+        name: startIndex
+        required: false
+        schema:
+          default: 0
+          format: int32
+          type: integer
+        style: form
+      - description: ""
+        explode: true
+        in: query
+        name: pageSize
+        required: false
+        schema:
+          default: 100
+          format: int32
+          type: integer
+        style: form
+      - description: ""
+        explode: true
+        in: query
+        name: sortBy
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: ""
+        explode: true
+        in: query
+        name: filter
+        required: false
+        schema:
+          type: string
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AdminGroupCollection'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/AdminGroupCollection'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/AdminGroupCollection'
+          description: Success
+      summary: Get Admin Groups
+      tags:
+      - AdminGroup
+      x-accepts: application/json
+    post:
+      description: Add a admin group
+      operationId: addAdminGroup
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AdminGroup'
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AdminGroup'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/AdminGroup'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/AdminGroup'
+          description: Success
+      summary: Add a admin group
+      tags:
+      - AdminGroup
+      x-content-type: application/json
+      x-accepts: application/json
+  /platform/adminuser/groups/{groupCode}:
+    delete:
+      description: Deletes a Admin Group
+      operationId: deleteAdminGroup
+      parameters:
+      - description: ""
+        explode: false
+        in: path
+        name: groupCode
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          description: Success
+      summary: Deletes a Admin Group
+      tags:
+      - AdminGroup
+      x-accepts: application/json
+    get:
+      description: Gets a Admin group by id
+      operationId: getAdminGroup
+      parameters:
+      - description: groupCode
+        explode: false
+        in: path
+        name: groupCode
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AdminGroup'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/AdminGroup'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/AdminGroup'
+          description: Success
+      summary: Get Admin Group
+      tags:
+      - AdminGroup
+      x-accepts: application/json
+    put:
+      description: Update an existing adminGroup
+      operationId: updateAdminGroup
+      parameters:
+      - description: ""
+        explode: false
+        in: path
+        name: groupCode
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AdminGroup'
+        description: ""
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AdminGroup'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/AdminGroup'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/AdminGroup'
+          description: Success
+      summary: Update an existing adminGroup
+      tags:
+      - AdminGroup
+      x-content-type: application/json
+      x-accepts: application/json
+  /platform/adminuser/groups/{groupCode}/addusers:
+    post:
+      description: Add users to admin group
+      operationId: addUsers
+      parameters:
+      - description: ""
+        explode: false
+        in: path
+        name: groupCode
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              items:
+                type: string
+              type: array
+        description: ""
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AdminGroup'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/AdminGroup'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/AdminGroup'
+          description: Success
+      summary: Add users to admin group
+      tags:
+      - AdminGroup
+      x-content-type: application/json
+      x-accepts: application/json
+  /platform/adminuser/groups/{groupCode}/removeusers:
+    post:
+      description: Remove users from admin group
+      operationId: removeUsers
+      parameters:
+      - description: ""
+        explode: false
+        in: path
+        name: groupCode
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              items:
+                type: string
+              type: array
+        description: ""
+      responses:
+        "200":
+          description: Success
+      summary: Remove users from admin group
+      tags:
+      - AdminGroup
+      x-content-type: application/json
+      x-accepts: application/json
+  /platform/adminuser/authtickets/wsfed/auth/{id}:
+    post:
+      description: Create User Auth Ticket With Ws Fed
+      operationId: createUserAuthTicketWithWsFed
+      parameters:
+      - explode: false
+        in: path
+        name: id
+        required: true
+        schema:
+          type: string
+        style: simple
+      - explode: true
+        in: query
+        name: scopeid
+        required: false
+        schema:
+          format: int32
+          type: integer
+        style: form
+      - explode: true
+        in: query
+        name: scopeType
+        required: false
+        schema:
+          type: string
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TenantAdminUserAuthTicket'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/TenantAdminUserAuthTicket'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/TenantAdminUserAuthTicket'
+          description: Success
+      summary: Create User Auth Ticket With Ws Fed
+      tags:
+      - AdminAuthTicket
+      x-accepts: application/json
+  /platform/adminuser/authtickets/wsfed/SignOut/{id}:
+    get:
+      description: Get Ws Fed Sign Out Url
+      operationId: getWsFedSignOutUrl
+      parameters:
+      - explode: false
+        in: path
+        name: id
+        required: true
+        schema:
+          type: string
+        style: simple
+      - explode: true
+        in: query
+        name: redirect
+        required: false
+        schema:
+          type: string
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                type: string
+            text/json:
+              schema:
+                type: string
+            text/plain:
+              schema:
+                type: string
+          description: Success
+      summary: Get Ws Fed Sign Out Url
+      tags:
+      - AdminAuthTicket
+      x-accepts: application/json
+  /platform/adminuser/authtickets/wsfed/challenge/{id}:
+    get:
+      description: Get Ws Fed Challenge Url
+      operationId: getWsFedChallengeUrl
+      parameters:
+      - explode: false
+        in: path
+        name: id
+        required: true
+        schema:
+          type: string
+        style: simple
+      - explode: true
+        in: query
+        name: scopeid
+        required: false
+        schema:
+          format: int32
+          type: integer
+        style: form
+      - explode: true
+        in: query
+        name: scopeType
+        required: false
+        schema:
+          type: string
+        style: form
+      - explode: true
+        in: query
+        name: redirect
+        required: false
+        schema:
+          type: string
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                type: string
+            text/json:
+              schema:
+                type: string
+            text/plain:
+              schema:
+                type: string
+          description: Success
+      summary: Get Ws Fed Challenge Url
+      tags:
+      - AdminAuthTicket
+      x-accepts: application/json
+  /platform/adminuser/authtickets/tenants:
+    post:
+      description: Authenticates a user for a particular tenant given a set of user
+        credentials adn a tenantId.
+      operationId: createUserAuthTicket
+      parameters:
+      - description: Optional tenant Id parameter
+        explode: true
+        in: query
+        name: tenantId
+        required: false
+        schema:
+          format: int32
+          type: integer
+        style: form
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UserAuthInfo'
+        description: User's email address and password.
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TenantAdminUserAuthTicket'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/TenantAdminUserAuthTicket'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/TenantAdminUserAuthTicket'
+          description: Success
+      summary: Create User Auth Ticket
+      tags:
+      - AdminAuthTicket
+      x-content-type: application/json
+      x-accepts: application/json
+    put:
+      description: "Reauthenticates the current user for a different tenant. If the\
+        \ user does not have access to the tenant, the operation fails."
+      operationId: refreshAuthTicket
+      parameters:
+      - description: The tenant to authenticate the user in
+        explode: true
+        in: query
+        name: tenantId
+        required: false
+        schema:
+          format: int32
+          type: integer
+        style: form
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TenantAdminUserAuthTicket'
+        description: An existing valid auth ticket containing the refresh token.
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TenantAdminUserAuthTicket'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/TenantAdminUserAuthTicket'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/TenantAdminUserAuthTicket'
+          description: Success
+      summary: Refresh Auth Ticket
+      tags:
+      - AdminAuthTicket
+      x-content-type: application/json
+      x-accepts: application/json
+  /platform/adminuser/authtickets:
+    delete:
+      description: Logs out a user by deleting the refresh token
+      operationId: deleteUserAuthTicket
+      parameters:
+      - description: The refresh token to delete.
+        explode: true
+        in: query
+        name: refreshToken
+        required: false
+        schema:
+          type: string
+        style: form
+      responses:
+        "200":
+          description: Success
+      summary: Delete User Auth Ticket
+      tags:
+      - AdminAuthTicket
+      x-accepts: application/json
+  /platform/adminuser/accounts/{userId}/tenants:
+    get:
+      description: Get tenant scope for users
+      operationId: getTenantScopesForUser
+      parameters:
+      - description: ""
+        explode: false
+        in: path
+        name: userId
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TenantCollection'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/TenantCollection'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/TenantCollection'
+          description: Success
+      summary: Get tenant scope for users
+      tags:
+      - AdminUser
+      x-accepts: application/json
+  /platform/adminuser/accounts/{userId}:
+    delete:
+      description: Removes a user account from the site.
+      operationId: deleteUser
+      parameters:
+      - description: Unique identifier of the user account to delete.
+        explode: false
+        in: path
+        name: userId
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          description: Success
+      summary: Delete User
+      tags:
+      - AdminUser
+      x-accepts: application/json
+    get:
+      description: Retrieves the details of a user specified by user ID.
+      operationId: getUser
+      parameters:
+      - description: Unique identifier of the user whose details you want to view.
+        explode: false
+        in: path
+        name: userId
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/User'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/User'
+          description: Success
+      summary: Get User
+      tags:
+      - AdminUser
+      x-accepts: application/json
+    put:
+      description: Modifies user information for a specified user.
+      operationId: updateUser
+      parameters:
+      - description: Unique identifier of the user whose login information you want
+          to change.
+        explode: false
+        in: path
+        name: userId
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/User'
+        description: "Details of the new user account. Required properties: EmailAddress,\
+          \ FirstName, LastName, and Password. Note that the site ID is passed in\
+          \ the request header."
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/User'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/User'
+          description: Success
+      summary: Update User
+      tags:
+      - AdminUser
+      x-content-type: application/json
+      x-accepts: application/json
+  /platform/adminuser/accounts/{userId}/userbyid:
+    get:
+      description: Retrieves the details of a user specified by user ID.
+      operationId: getUserById
+      parameters:
+      - description: Unique identifier of the user whose details you want to view.
+        explode: false
+        in: path
+        name: userId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: ""
+        explode: true
+        in: query
+        name: responseGroups
+        required: false
+        schema:
+          type: string
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/User'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/User'
+          description: Success
+      summary: Get User By Id
+      tags:
+      - AdminUser
+      x-accepts: application/json
+  /platform/adminuser/accounts:
+    get:
+      description: Retrieves a list of Admin users for a specified site according
+        to any specified filter criteria and sort options.
+      operationId: getUsers
+      parameters:
+      - description: ""
+        explode: true
+        in: query
+        name: emailAddress
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: ""
+        explode: true
+        in: query
+        name: startIndex
+        required: false
+        schema:
+          default: 0
+          format: int32
+          type: integer
+        style: form
+      - description: ""
+        explode: true
+        in: query
+        name: pageSize
+        required: false
+        schema:
+          default: 20
+          format: int32
+          type: integer
+        style: form
+      - description: The element to sort the results by and the order in which the
+          results appear. Either ascending (a-z) or descending (z-a) order. Optional.
+        explode: true
+        in: query
+        name: sortBy
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: "A set of filter expressions representing the search parameters\
+          \ for a query: eq=equals, ne=not equals, gt=greater than, lt = less than\
+          \ or equals, gt = greater than or equals, lt = less than or equals, sw =\
+          \ starts with, or cont = contains. Optional."
+        explode: true
+        in: query
+        name: filter
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: ""
+        explode: true
+        in: query
+        name: responseGroups
+        required: false
+        schema:
+          type: string
+        style: form
+      responses:
+        "200":
+          description: Success
+      summary: Get Users
+      tags:
+      - AdminUser
+      x-accepts: application/json
+    post:
+      description: Creates a new user
+      operationId: createUser
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/User'
+        description: The user to be created
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/User'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/User'
+          description: Success
+      summary: Creates a new user
+      tags:
+      - AdminUser
+      x-content-type: application/json
+      x-accepts: application/json
+  /platform/adminuser/accounts/{userId}/roles:
+    get:
+      description: Retrieves all the roles for a specified user on the specified tenant.
+      operationId: getUserRoles
+      parameters:
+      - description: Unique identifier of the user.
+        explode: false
+        in: path
+        name: userId
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AdminUserUserRoleCollection'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/AdminUserUserRoleCollection'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/AdminUserUserRoleCollection'
+          description: Success
+      summary: Get User Roles
+      tags:
+      - AdminUser
+      x-accepts: application/json
+  /platform/adminuser/accounts/{userId}/roles/{roleId}:
+    delete:
+      description: Removes a role from the specified Admin account.
+      operationId: removeUserRole
+      parameters:
+      - description: Unique identifier of the user with the role to delete.
+        explode: false
+        in: path
+        name: userId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: Unique identifer of the role to delete.
+        explode: false
+        in: path
+        name: roleId
+        required: true
+        schema:
+          format: int32
+          type: integer
+        style: simple
+      responses:
+        "200":
+          description: Success
+      summary: Remove User Role
+      tags:
+      - AdminUser
+      x-accepts: application/json
+    post:
+      description: Adds a role to the specified user's Admin account.
+      operationId: addUserRole
+      parameters:
+      - description: Unique identifier of the user who receives the role.
+        explode: false
+        in: path
+        name: userId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: Unique identifier of the role to add.
+        explode: false
+        in: path
+        name: roleId
+        required: true
+        schema:
+          format: int32
+          type: integer
+        style: simple
+      responses:
+        "200":
+          description: Success
+      summary: Add User Role
+      tags:
+      - AdminUser
+      x-accepts: application/json
+  /platform/adminuser/accounts/{userId}/Change-Password:
+    post:
+      description: ""
+      operationId: changePassword
+      parameters:
+      - description: Unique identifier of the user for whom to change the password.
+        explode: false
+        in: path
+        name: userId
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AdminUserPasswordInfo'
+        description: Old password and new password.
+      responses:
+        "200":
+          description: Success
+      summary: Changes a user's password
+      tags:
+      - AdminUser
+      x-content-type: application/json
+      x-accepts: application/json
+  /platform/adminuser/accounts/{userId}/Change-User-Password:
+    post:
+      description: Changes a user's password to the provided new password
+      operationId: changeUserPassword
+      parameters:
+      - description: Unique identifier of the user for whom to change the password.
+        explode: false
+        in: path
+        name: userId
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ChangeUserPasswordInfo'
+        description: New password info for this user
+      responses:
+        "200":
+          description: Success
+      summary: Change User Password
+      tags:
+      - AdminUser
+      x-content-type: application/json
+      x-accepts: application/json
+  /platform/adminuser/accounts/Reset-Password:
+    post:
+      description: Resets the password for a user specified by email address.
+      operationId: resetPassword
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AdminUserResetPasswordInfo'
+        description: "Email address of the user who has requested a password reset.\
+          \ \r\n            Note that the site ID is passed in the request header."
+      responses:
+        "200":
+          description: Success
+      summary: Reset Password
+      tags:
+      - AdminUser
+      x-content-type: application/json
+      x-accepts: application/json
+  /platform/adminuser/accounts/{userId}/unlock:
+    post:
+      description: ""
+      operationId: unlockUser
+      parameters:
+      - description: The user id.
+        explode: false
+        in: path
+        name: userId
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          description: Success
+      summary: Enables the user
+      tags:
+      - AdminUser
+      x-accepts: application/json
+  /platform/developer/authtickets:
+    delete:
+      description: Logs out a user by deleting the refresh token
+      operationId: deleteUserAuthTicket
+      parameters:
+      - description: The refresh token to delete.
+        explode: true
+        in: query
+        name: refreshToken
+        required: false
+        schema:
+          type: string
+        style: form
+      responses:
+        "200":
+          description: Success
+      summary: Delete User Auth Ticket
+      tags:
+      - DeveloperAdminAuthTicket
+      x-accepts: application/json
+    post:
+      description: Authenticates a user for a particular tenant given a set of user
+        credentials adn a tenantId.
+      operationId: createDeveloperUserAuthTicket
+      parameters:
+      - description: The users developer account Id
+        explode: true
+        in: query
+        name: developerAccountId
+        required: false
+        schema:
+          format: int32
+          type: integer
+        style: form
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UserAuthInfo'
+        description: User's email address and password.
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DeveloperAdminUserAuthTicket'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/DeveloperAdminUserAuthTicket'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/DeveloperAdminUserAuthTicket'
+          description: Success
+      summary: Create Developer User Auth Ticket
+      tags:
+      - DeveloperAdminAuthTicket
+      x-content-type: application/json
+      x-accepts: application/json
+    put:
+      description: "Reauthenticates the current user for a different tenant. If the\
+        \ user does not have access to the tenant, the operation fails."
+      operationId: refreshDeveloperAuthTicket
+      parameters:
+      - description: The users developer account Id
+        explode: true
+        in: query
+        name: developerAccountId
+        required: false
+        schema:
+          format: int32
+          type: integer
+        style: form
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/DeveloperAdminUserAuthTicket'
+        description: An existing valid auth ticket containing the refresh token.
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DeveloperAdminUserAuthTicket'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/DeveloperAdminUserAuthTicket'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/DeveloperAdminUserAuthTicket'
+          description: Success
+      summary: Refresh Developer Auth Ticket
+      tags:
+      - DeveloperAdminAuthTicket
+      x-content-type: application/json
+      x-accepts: application/json
+  /platform/adminuser/roles:
+    get:
+      description: Retrieves a list of all roles defined for this tenant.
+      operationId: getRoles
+      parameters:
+      - explode: true
+        in: query
+        name: startIndex
+        required: false
+        schema:
+          default: 0
+          format: int32
+          type: integer
+        style: form
+      - explode: true
+        in: query
+        name: pageSize
+        required: false
+        schema:
+          default: 25
+          format: int32
+          type: integer
+        style: form
+      - description: Optional filter param to filter the roles
+        explode: true
+        in: query
+        name: filter
+        required: false
+        schema:
+          type: string
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RoleCollection'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/RoleCollection'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/RoleCollection'
+          description: Success
+      summary: Get Roles
+      tags:
+      - Role
+      x-accepts: application/json
+components:
+  schemas:
+    UserSystemData:
+      additionalProperties: false
+      example:
+        firstFailedLoginAttemptOn: 2000-01-23T04:56:07.000+00:00
+        lastPasswordChangeOn: 2000-01-23T04:56:07.000+00:00
+        lastLockedOn: 2000-01-23T04:56:07.000+00:00
+        isLocked: true
+        lastLoginOn: 2000-01-23T04:56:07.000+00:00
+        isPasswordChangeRequired: true
+        remainingLoginAttempts: 9
+        updatedOn: 2000-01-23T04:56:07.000+00:00
+        failedLoginAttemptCount: 7
+        createdOn: 2000-01-23T04:56:07.000+00:00
+      properties:
+        isPasswordChangeRequired:
+          type: boolean
+        lastPasswordChangeOn:
+          format: date-time
+          nullable: true
+          type: string
+        isLocked:
+          type: boolean
+        lastLockedOn:
+          format: date-time
+          nullable: true
+          type: string
+        failedLoginAttemptCount:
+          format: int32
+          type: integer
+        remainingLoginAttempts:
+          format: int32
+          type: integer
+        firstFailedLoginAttemptOn:
+          format: date-time
+          nullable: true
+          type: string
+        lastLoginOn:
+          format: date-time
+          nullable: true
+          type: string
+        createdOn:
+          format: date-time
+          nullable: true
+          type: string
+        updatedOn:
+          format: date-time
+          nullable: true
+          type: string
+      type: object
+    UserScope:
+      additionalProperties: false
+      example:
+        name: name
+        id: 3
+        type: type
+      properties:
+        type:
+          nullable: true
+          type: string
+        id:
+          format: int32
+          nullable: true
+          type: integer
+        name:
+          nullable: true
+          type: string
+      type: object
+    Resource:
+      additionalProperties: false
+      example:
+        id: id
+        type: type
+      properties:
+        type:
+          nullable: true
+          type: string
+        id:
+          nullable: true
+          type: string
+      type: object
+    UserRole:
+      additionalProperties: false
+      example:
+        assignedInScope:
+          name: name
+          id: 3
+          type: type
+        auditInfo:
+          updateDate: 2000-01-23T04:56:07.000+00:00
+          createBy: createBy
+          updateBy: updateBy
+          createDate: 2000-01-23T04:56:07.000+00:00
+        roleTags:
+        - roleTags
+        - roleTags
+        roleId: 2
+        roleName: roleName
+        roleResources:
+        - id: id
+          type: type
+        - id: id
+          type: type
+        userId: userId
+      properties:
+        userId:
+          nullable: true
+          type: string
+        assignedInScope:
+          $ref: '#/components/schemas/UserScope'
+        roleId:
+          format: int32
+          type: integer
+        roleName:
+          nullable: true
+          type: string
+        roleResources:
+          items:
+            $ref: '#/components/schemas/Resource'
+          nullable: true
+          type: array
+        roleTags:
+          items:
+            type: string
+          nullable: true
+          type: array
+        auditInfo:
+          $ref: '#/components/schemas/AdminUserAuditInfo'
+      type: object
+    User:
+      additionalProperties: false
+      example:
+        lastName: lastName
+        roles:
+        - assignedInScope:
+            name: name
+            id: 3
+            type: type
+          auditInfo:
+            updateDate: 2000-01-23T04:56:07.000+00:00
+            createBy: createBy
+            updateBy: updateBy
+            createDate: 2000-01-23T04:56:07.000+00:00
+          roleTags:
+          - roleTags
+          - roleTags
+          roleId: 2
+          roleName: roleName
+          roleResources:
+          - id: id
+            type: type
+          - id: id
+            type: type
+          userId: userId
+        - assignedInScope:
+            name: name
+            id: 3
+            type: type
+          auditInfo:
+            updateDate: 2000-01-23T04:56:07.000+00:00
+            createBy: createBy
+            updateBy: updateBy
+            createDate: 2000-01-23T04:56:07.000+00:00
+          roleTags:
+          - roleTags
+          - roleTags
+          roleId: 2
+          roleName: roleName
+          roleResources:
+          - id: id
+            type: type
+          - id: id
+            type: type
+          userId: userId
+        externalId: externalId
+        userName: userName
+        isActive: true
+        identityProviderId: identityProviderId
+        firstName: firstName
+        emailAddress: emailAddress
+        password: password
+        phoneNumber: phoneNumber
+        systemData:
+          firstFailedLoginAttemptOn: 2000-01-23T04:56:07.000+00:00
+          lastPasswordChangeOn: 2000-01-23T04:56:07.000+00:00
+          lastLockedOn: 2000-01-23T04:56:07.000+00:00
+          isLocked: true
+          lastLoginOn: 2000-01-23T04:56:07.000+00:00
+          isPasswordChangeRequired: true
+          remainingLoginAttempts: 9
+          updatedOn: 2000-01-23T04:56:07.000+00:00
+          failedLoginAttemptCount: 7
+          createdOn: 2000-01-23T04:56:07.000+00:00
+        localeCode: localeCode
+        optInToTextMessage: true
+        id: id
+        optInToEmail: true
+      properties:
+        emailAddress:
+          nullable: true
+          type: string
+        userName:
+          nullable: true
+          type: string
+        phoneNumber:
+          nullable: true
+          type: string
+        externalId:
+          nullable: true
+          type: string
+        localeCode:
+          nullable: true
+          type: string
+        firstName:
+          nullable: true
+          type: string
+        lastName:
+          nullable: true
+          type: string
+        password:
+          nullable: true
+          type: string
+        optInToEmail:
+          nullable: true
+          type: boolean
+        optInToTextMessage:
+          nullable: true
+          type: boolean
+        id:
+          nullable: true
+          type: string
+        systemData:
+          $ref: '#/components/schemas/UserSystemData'
+        roles:
+          items:
+            $ref: '#/components/schemas/UserRole'
+          nullable: true
+          type: array
+        isActive:
+          type: boolean
+        identityProviderId:
+          nullable: true
+          type: string
+      type: object
+    AdminGroup:
+      additionalProperties: false
+      example:
+        auditInfo:
+          updateDate: 2000-01-23T04:56:07.000+00:00
+          createBy: createBy
+          updateBy: updateBy
+          createDate: 2000-01-23T04:56:07.000+00:00
+        scopeId: 2
+        scopeTypeId: 5
+        name: name
+        description: description
+        users:
+        - lastName: lastName
+          roles:
+          - assignedInScope:
+              name: name
+              id: 3
+              type: type
+            auditInfo:
+              updateDate: 2000-01-23T04:56:07.000+00:00
+              createBy: createBy
+              updateBy: updateBy
+              createDate: 2000-01-23T04:56:07.000+00:00
+            roleTags:
+            - roleTags
+            - roleTags
+            roleId: 2
+            roleName: roleName
+            roleResources:
+            - id: id
+              type: type
+            - id: id
+              type: type
+            userId: userId
+          - assignedInScope:
+              name: name
+              id: 3
+              type: type
+            auditInfo:
+              updateDate: 2000-01-23T04:56:07.000+00:00
+              createBy: createBy
+              updateBy: updateBy
+              createDate: 2000-01-23T04:56:07.000+00:00
+            roleTags:
+            - roleTags
+            - roleTags
+            roleId: 2
+            roleName: roleName
+            roleResources:
+            - id: id
+              type: type
+            - id: id
+              type: type
+            userId: userId
+          externalId: externalId
+          userName: userName
+          isActive: true
+          identityProviderId: identityProviderId
+          firstName: firstName
+          emailAddress: emailAddress
+          password: password
+          phoneNumber: phoneNumber
+          systemData:
+            firstFailedLoginAttemptOn: 2000-01-23T04:56:07.000+00:00
+            lastPasswordChangeOn: 2000-01-23T04:56:07.000+00:00
+            lastLockedOn: 2000-01-23T04:56:07.000+00:00
+            isLocked: true
+            lastLoginOn: 2000-01-23T04:56:07.000+00:00
+            isPasswordChangeRequired: true
+            remainingLoginAttempts: 9
+            updatedOn: 2000-01-23T04:56:07.000+00:00
+            failedLoginAttemptCount: 7
+            createdOn: 2000-01-23T04:56:07.000+00:00
+          localeCode: localeCode
+          optInToTextMessage: true
+          id: id
+          optInToEmail: true
+        - lastName: lastName
+          roles:
+          - assignedInScope:
+              name: name
+              id: 3
+              type: type
+            auditInfo:
+              updateDate: 2000-01-23T04:56:07.000+00:00
+              createBy: createBy
+              updateBy: updateBy
+              createDate: 2000-01-23T04:56:07.000+00:00
+            roleTags:
+            - roleTags
+            - roleTags
+            roleId: 2
+            roleName: roleName
+            roleResources:
+            - id: id
+              type: type
+            - id: id
+              type: type
+            userId: userId
+          - assignedInScope:
+              name: name
+              id: 3
+              type: type
+            auditInfo:
+              updateDate: 2000-01-23T04:56:07.000+00:00
+              createBy: createBy
+              updateBy: updateBy
+              createDate: 2000-01-23T04:56:07.000+00:00
+            roleTags:
+            - roleTags
+            - roleTags
+            roleId: 2
+            roleName: roleName
+            roleResources:
+            - id: id
+              type: type
+            - id: id
+              type: type
+            userId: userId
+          externalId: externalId
+          userName: userName
+          isActive: true
+          identityProviderId: identityProviderId
+          firstName: firstName
+          emailAddress: emailAddress
+          password: password
+          phoneNumber: phoneNumber
+          systemData:
+            firstFailedLoginAttemptOn: 2000-01-23T04:56:07.000+00:00
+            lastPasswordChangeOn: 2000-01-23T04:56:07.000+00:00
+            lastLockedOn: 2000-01-23T04:56:07.000+00:00
+            isLocked: true
+            lastLoginOn: 2000-01-23T04:56:07.000+00:00
+            isPasswordChangeRequired: true
+            remainingLoginAttempts: 9
+            updatedOn: 2000-01-23T04:56:07.000+00:00
+            failedLoginAttemptCount: 7
+            createdOn: 2000-01-23T04:56:07.000+00:00
+          localeCode: localeCode
+          optInToTextMessage: true
+          id: id
+          optInToEmail: true
+        groupCode: groupCode
+      properties:
+        groupCode:
+          description: User Group Id
+          nullable: true
+          type: string
+        scopeTypeId:
+          description: Scope Type Id
+          format: int32
+          type: integer
+        scopeId:
+          description: Scope Id
+          format: int32
+          type: integer
+        name:
+          description: Human-readable Name of the group
+          nullable: true
+          type: string
+        description:
+          description: Human-readable description of the group
+          nullable: true
+          type: string
+        users:
+          description: Users associate with a group
+          items:
+            $ref: '#/components/schemas/User'
+          nullable: true
+          type: array
+        auditInfo:
+          $ref: '#/components/schemas/AdminUserAuditInfo'
+      type: object
+    AdminGroupCollection:
+      additionalProperties: false
+      example:
+        startIndex: 0
+        pageCount: 1
+        pageSize: 6
+        totalCount: 5
+        items:
+        - auditInfo:
+            updateDate: 2000-01-23T04:56:07.000+00:00
+            createBy: createBy
+            updateBy: updateBy
+            createDate: 2000-01-23T04:56:07.000+00:00
+          scopeId: 2
+          scopeTypeId: 5
+          name: name
+          description: description
+          users:
+          - lastName: lastName
+            roles:
+            - assignedInScope:
+                name: name
+                id: 3
+                type: type
+              auditInfo:
+                updateDate: 2000-01-23T04:56:07.000+00:00
+                createBy: createBy
+                updateBy: updateBy
+                createDate: 2000-01-23T04:56:07.000+00:00
+              roleTags:
+              - roleTags
+              - roleTags
+              roleId: 2
+              roleName: roleName
+              roleResources:
+              - id: id
+                type: type
+              - id: id
+                type: type
+              userId: userId
+            - assignedInScope:
+                name: name
+                id: 3
+                type: type
+              auditInfo:
+                updateDate: 2000-01-23T04:56:07.000+00:00
+                createBy: createBy
+                updateBy: updateBy
+                createDate: 2000-01-23T04:56:07.000+00:00
+              roleTags:
+              - roleTags
+              - roleTags
+              roleId: 2
+              roleName: roleName
+              roleResources:
+              - id: id
+                type: type
+              - id: id
+                type: type
+              userId: userId
+            externalId: externalId
+            userName: userName
+            isActive: true
+            identityProviderId: identityProviderId
+            firstName: firstName
+            emailAddress: emailAddress
+            password: password
+            phoneNumber: phoneNumber
+            systemData:
+              firstFailedLoginAttemptOn: 2000-01-23T04:56:07.000+00:00
+              lastPasswordChangeOn: 2000-01-23T04:56:07.000+00:00
+              lastLockedOn: 2000-01-23T04:56:07.000+00:00
+              isLocked: true
+              lastLoginOn: 2000-01-23T04:56:07.000+00:00
+              isPasswordChangeRequired: true
+              remainingLoginAttempts: 9
+              updatedOn: 2000-01-23T04:56:07.000+00:00
+              failedLoginAttemptCount: 7
+              createdOn: 2000-01-23T04:56:07.000+00:00
+            localeCode: localeCode
+            optInToTextMessage: true
+            id: id
+            optInToEmail: true
+          - lastName: lastName
+            roles:
+            - assignedInScope:
+                name: name
+                id: 3
+                type: type
+              auditInfo:
+                updateDate: 2000-01-23T04:56:07.000+00:00
+                createBy: createBy
+                updateBy: updateBy
+                createDate: 2000-01-23T04:56:07.000+00:00
+              roleTags:
+              - roleTags
+              - roleTags
+              roleId: 2
+              roleName: roleName
+              roleResources:
+              - id: id
+                type: type
+              - id: id
+                type: type
+              userId: userId
+            - assignedInScope:
+                name: name
+                id: 3
+                type: type
+              auditInfo:
+                updateDate: 2000-01-23T04:56:07.000+00:00
+                createBy: createBy
+                updateBy: updateBy
+                createDate: 2000-01-23T04:56:07.000+00:00
+              roleTags:
+              - roleTags
+              - roleTags
+              roleId: 2
+              roleName: roleName
+              roleResources:
+              - id: id
+                type: type
+              - id: id
+                type: type
+              userId: userId
+            externalId: externalId
+            userName: userName
+            isActive: true
+            identityProviderId: identityProviderId
+            firstName: firstName
+            emailAddress: emailAddress
+            password: password
+            phoneNumber: phoneNumber
+            systemData:
+              firstFailedLoginAttemptOn: 2000-01-23T04:56:07.000+00:00
+              lastPasswordChangeOn: 2000-01-23T04:56:07.000+00:00
+              lastLockedOn: 2000-01-23T04:56:07.000+00:00
+              isLocked: true
+              lastLoginOn: 2000-01-23T04:56:07.000+00:00
+              isPasswordChangeRequired: true
+              remainingLoginAttempts: 9
+              updatedOn: 2000-01-23T04:56:07.000+00:00
+              failedLoginAttemptCount: 7
+              createdOn: 2000-01-23T04:56:07.000+00:00
+            localeCode: localeCode
+            optInToTextMessage: true
+            id: id
+            optInToEmail: true
+          groupCode: groupCode
+        - auditInfo:
+            updateDate: 2000-01-23T04:56:07.000+00:00
+            createBy: createBy
+            updateBy: updateBy
+            createDate: 2000-01-23T04:56:07.000+00:00
+          scopeId: 2
+          scopeTypeId: 5
+          name: name
+          description: description
+          users:
+          - lastName: lastName
+            roles:
+            - assignedInScope:
+                name: name
+                id: 3
+                type: type
+              auditInfo:
+                updateDate: 2000-01-23T04:56:07.000+00:00
+                createBy: createBy
+                updateBy: updateBy
+                createDate: 2000-01-23T04:56:07.000+00:00
+              roleTags:
+              - roleTags
+              - roleTags
+              roleId: 2
+              roleName: roleName
+              roleResources:
+              - id: id
+                type: type
+              - id: id
+                type: type
+              userId: userId
+            - assignedInScope:
+                name: name
+                id: 3
+                type: type
+              auditInfo:
+                updateDate: 2000-01-23T04:56:07.000+00:00
+                createBy: createBy
+                updateBy: updateBy
+                createDate: 2000-01-23T04:56:07.000+00:00
+              roleTags:
+              - roleTags
+              - roleTags
+              roleId: 2
+              roleName: roleName
+              roleResources:
+              - id: id
+                type: type
+              - id: id
+                type: type
+              userId: userId
+            externalId: externalId
+            userName: userName
+            isActive: true
+            identityProviderId: identityProviderId
+            firstName: firstName
+            emailAddress: emailAddress
+            password: password
+            phoneNumber: phoneNumber
+            systemData:
+              firstFailedLoginAttemptOn: 2000-01-23T04:56:07.000+00:00
+              lastPasswordChangeOn: 2000-01-23T04:56:07.000+00:00
+              lastLockedOn: 2000-01-23T04:56:07.000+00:00
+              isLocked: true
+              lastLoginOn: 2000-01-23T04:56:07.000+00:00
+              isPasswordChangeRequired: true
+              remainingLoginAttempts: 9
+              updatedOn: 2000-01-23T04:56:07.000+00:00
+              failedLoginAttemptCount: 7
+              createdOn: 2000-01-23T04:56:07.000+00:00
+            localeCode: localeCode
+            optInToTextMessage: true
+            id: id
+            optInToEmail: true
+          - lastName: lastName
+            roles:
+            - assignedInScope:
+                name: name
+                id: 3
+                type: type
+              auditInfo:
+                updateDate: 2000-01-23T04:56:07.000+00:00
+                createBy: createBy
+                updateBy: updateBy
+                createDate: 2000-01-23T04:56:07.000+00:00
+              roleTags:
+              - roleTags
+              - roleTags
+              roleId: 2
+              roleName: roleName
+              roleResources:
+              - id: id
+                type: type
+              - id: id
+                type: type
+              userId: userId
+            - assignedInScope:
+                name: name
+                id: 3
+                type: type
+              auditInfo:
+                updateDate: 2000-01-23T04:56:07.000+00:00
+                createBy: createBy
+                updateBy: updateBy
+                createDate: 2000-01-23T04:56:07.000+00:00
+              roleTags:
+              - roleTags
+              - roleTags
+              roleId: 2
+              roleName: roleName
+              roleResources:
+              - id: id
+                type: type
+              - id: id
+                type: type
+              userId: userId
+            externalId: externalId
+            userName: userName
+            isActive: true
+            identityProviderId: identityProviderId
+            firstName: firstName
+            emailAddress: emailAddress
+            password: password
+            phoneNumber: phoneNumber
+            systemData:
+              firstFailedLoginAttemptOn: 2000-01-23T04:56:07.000+00:00
+              lastPasswordChangeOn: 2000-01-23T04:56:07.000+00:00
+              lastLockedOn: 2000-01-23T04:56:07.000+00:00
+              isLocked: true
+              lastLoginOn: 2000-01-23T04:56:07.000+00:00
+              isPasswordChangeRequired: true
+              remainingLoginAttempts: 9
+              updatedOn: 2000-01-23T04:56:07.000+00:00
+              failedLoginAttemptCount: 7
+              createdOn: 2000-01-23T04:56:07.000+00:00
+            localeCode: localeCode
+            optInToTextMessage: true
+            id: id
+            optInToEmail: true
+          groupCode: groupCode
+      properties:
+        startIndex:
+          format: int32
+          type: integer
+        pageSize:
+          format: int32
+          type: integer
+        pageCount:
+          format: int32
+          type: integer
+        totalCount:
+          format: int32
+          type: integer
+        items:
+          items:
+            $ref: '#/components/schemas/AdminGroup'
+          nullable: true
+          type: array
+      type: object
+    UserProfile:
+      additionalProperties: false
+      example:
+        firstName: firstName
+        lastName: lastName
+        emailAddress: emailAddress
+        userName: userName
+        userId: userId
+      properties:
+        userId:
+          nullable: true
+          type: string
+        firstName:
+          nullable: true
+          type: string
+        lastName:
+          nullable: true
+          type: string
+        emailAddress:
+          nullable: true
+          type: string
+        userName:
+          nullable: true
+          type: string
+      type: object
+    BaseTenantEntity:
+      additionalProperties: false
+      properties:
+        id:
+          format: int32
+          type: integer
+        name:
+          nullable: true
+          type: string
+      type: object
+    TenantAttribute:
+      additionalProperties: false
+      example:
+        createBy: createBy
+        updateDate: 2000-01-23T04:56:07.000+00:00
+        updateBy: updateBy
+        name: name
+        value: ""
+        createDate: 2000-01-23T04:56:07.000+00:00
+      properties:
+        name:
+          nullable: true
+          type: string
+        value:
+          nullable: true
+        createBy:
+          nullable: true
+          type: string
+        createDate:
+          format: date-time
+          type: string
+        updateBy:
+          nullable: true
+          type: string
+        updateDate:
+          format: date-time
+          type: string
+      type: object
+    Site:
+      additionalProperties: false
+      allOf:
+      - $ref: '#/components/schemas/BaseTenantEntity'
+      example:
+        catalogId: 6
+        primaryCustomDomain: primaryCustomDomain
+        localeCode: localeCode
+        countryCode: countryCode
+        domain: domain
+        tenantId: 0
+        attributes:
+        - createBy: createBy
+          updateDate: 2000-01-23T04:56:07.000+00:00
+          updateBy: updateBy
+          name: name
+          value: ""
+          createDate: 2000-01-23T04:56:07.000+00:00
+        - createBy: createBy
+          updateDate: 2000-01-23T04:56:07.000+00:00
+          updateBy: updateBy
+          name: name
+          value: ""
+          createDate: 2000-01-23T04:56:07.000+00:00
+        currencyCode: currencyCode
+      properties:
+        tenantId:
+          format: int32
+          type: integer
+        catalogId:
+          format: int32
+          type: integer
+        localeCode:
+          nullable: true
+          type: string
+        countryCode:
+          nullable: true
+          type: string
+        currencyCode:
+          nullable: true
+          type: string
+        domain:
+          nullable: true
+          type: string
+        primaryCustomDomain:
+          nullable: true
+          type: string
+        attributes:
+          items:
+            $ref: '#/components/schemas/TenantAttribute'
+          nullable: true
+          type: array
+      type: object
+    Catalog:
+      additionalProperties: false
+      allOf:
+      - $ref: '#/components/schemas/BaseTenantEntity'
+      example:
+        tenantId: 5
+        defaultCurrencyCode: defaultCurrencyCode
+        masterCatalogId: 5
+        defaultLocaleCode: defaultLocaleCode
+      properties:
+        tenantId:
+          format: int32
+          type: integer
+        masterCatalogId:
+          format: int32
+          type: integer
+        defaultLocaleCode:
+          nullable: true
+          type: string
+        defaultCurrencyCode:
+          nullable: true
+          type: string
+      type: object
+    TenantAdminUserAuthTicket:
+      additionalProperties: false
+      example:
+        redirect: redirect
+        jwtAccessToken: jwtAccessToken
+        refreshTokenExpiration: 2000-01-23T04:56:07.000+00:00
+        accessTokenExpiration: 2000-01-23T04:56:07.000+00:00
+        grantedBehaviors:
+        - 2
+        - 2
+        accessToken: accessToken
+        availableTenants:
+        - masterCatalogs:
+          - catalogs:
+            - tenantId: 5
+              defaultCurrencyCode: defaultCurrencyCode
+              masterCatalogId: 5
+              defaultLocaleCode: defaultLocaleCode
+            - tenantId: 5
+              defaultCurrencyCode: defaultCurrencyCode
+              masterCatalogId: 5
+              defaultLocaleCode: defaultLocaleCode
+            tenantId: 1
+            defaultCurrencyCode: defaultCurrencyCode
+            defaultLocaleCode: defaultLocaleCode
+          - catalogs:
+            - tenantId: 5
+              defaultCurrencyCode: defaultCurrencyCode
+              masterCatalogId: 5
+              defaultLocaleCode: defaultLocaleCode
+            - tenantId: 5
+              defaultCurrencyCode: defaultCurrencyCode
+              masterCatalogId: 5
+              defaultLocaleCode: defaultLocaleCode
+            tenantId: 1
+            defaultCurrencyCode: defaultCurrencyCode
+            defaultLocaleCode: defaultLocaleCode
+          domain: domain
+          sites:
+          - catalogId: 6
+            primaryCustomDomain: primaryCustomDomain
+            localeCode: localeCode
+            countryCode: countryCode
+            domain: domain
+            tenantId: 0
+            attributes:
+            - createBy: createBy
+              updateDate: 2000-01-23T04:56:07.000+00:00
+              updateBy: updateBy
+              name: name
+              value: ""
+              createDate: 2000-01-23T04:56:07.000+00:00
+            - createBy: createBy
+              updateDate: 2000-01-23T04:56:07.000+00:00
+              updateBy: updateBy
+              name: name
+              value: ""
+              createDate: 2000-01-23T04:56:07.000+00:00
+            currencyCode: currencyCode
+          - catalogId: 6
+            primaryCustomDomain: primaryCustomDomain
+            localeCode: localeCode
+            countryCode: countryCode
+            domain: domain
+            tenantId: 0
+            attributes:
+            - createBy: createBy
+              updateDate: 2000-01-23T04:56:07.000+00:00
+              updateBy: updateBy
+              name: name
+              value: ""
+              createDate: 2000-01-23T04:56:07.000+00:00
+            - createBy: createBy
+              updateDate: 2000-01-23T04:56:07.000+00:00
+              updateBy: updateBy
+              name: name
+              value: ""
+              createDate: 2000-01-23T04:56:07.000+00:00
+            currencyCode: currencyCode
+          attributes:
+          - createBy: createBy
+            updateDate: 2000-01-23T04:56:07.000+00:00
+            updateBy: updateBy
+            name: name
+            value: ""
+            createDate: 2000-01-23T04:56:07.000+00:00
+          - createBy: createBy
+            updateDate: 2000-01-23T04:56:07.000+00:00
+            updateBy: updateBy
+            name: name
+            value: ""
+            createDate: 2000-01-23T04:56:07.000+00:00
+          expiry: 2000-01-23T04:56:07.000+00:00
+          isDevTenant: true
+          isUnified: true
+        - masterCatalogs:
+          - catalogs:
+            - tenantId: 5
+              defaultCurrencyCode: defaultCurrencyCode
+              masterCatalogId: 5
+              defaultLocaleCode: defaultLocaleCode
+            - tenantId: 5
+              defaultCurrencyCode: defaultCurrencyCode
+              masterCatalogId: 5
+              defaultLocaleCode: defaultLocaleCode
+            tenantId: 1
+            defaultCurrencyCode: defaultCurrencyCode
+            defaultLocaleCode: defaultLocaleCode
+          - catalogs:
+            - tenantId: 5
+              defaultCurrencyCode: defaultCurrencyCode
+              masterCatalogId: 5
+              defaultLocaleCode: defaultLocaleCode
+            - tenantId: 5
+              defaultCurrencyCode: defaultCurrencyCode
+              masterCatalogId: 5
+              defaultLocaleCode: defaultLocaleCode
+            tenantId: 1
+            defaultCurrencyCode: defaultCurrencyCode
+            defaultLocaleCode: defaultLocaleCode
+          domain: domain
+          sites:
+          - catalogId: 6
+            primaryCustomDomain: primaryCustomDomain
+            localeCode: localeCode
+            countryCode: countryCode
+            domain: domain
+            tenantId: 0
+            attributes:
+            - createBy: createBy
+              updateDate: 2000-01-23T04:56:07.000+00:00
+              updateBy: updateBy
+              name: name
+              value: ""
+              createDate: 2000-01-23T04:56:07.000+00:00
+            - createBy: createBy
+              updateDate: 2000-01-23T04:56:07.000+00:00
+              updateBy: updateBy
+              name: name
+              value: ""
+              createDate: 2000-01-23T04:56:07.000+00:00
+            currencyCode: currencyCode
+          - catalogId: 6
+            primaryCustomDomain: primaryCustomDomain
+            localeCode: localeCode
+            countryCode: countryCode
+            domain: domain
+            tenantId: 0
+            attributes:
+            - createBy: createBy
+              updateDate: 2000-01-23T04:56:07.000+00:00
+              updateBy: updateBy
+              name: name
+              value: ""
+              createDate: 2000-01-23T04:56:07.000+00:00
+            - createBy: createBy
+              updateDate: 2000-01-23T04:56:07.000+00:00
+              updateBy: updateBy
+              name: name
+              value: ""
+              createDate: 2000-01-23T04:56:07.000+00:00
+            currencyCode: currencyCode
+          attributes:
+          - createBy: createBy
+            updateDate: 2000-01-23T04:56:07.000+00:00
+            updateBy: updateBy
+            name: name
+            value: ""
+            createDate: 2000-01-23T04:56:07.000+00:00
+          - createBy: createBy
+            updateDate: 2000-01-23T04:56:07.000+00:00
+            updateBy: updateBy
+            name: name
+            value: ""
+            createDate: 2000-01-23T04:56:07.000+00:00
+          expiry: 2000-01-23T04:56:07.000+00:00
+          isDevTenant: true
+          isUnified: true
+        user:
+          firstName: firstName
+          lastName: lastName
+          emailAddress: emailAddress
+          userName: userName
+          userId: userId
+        createdOn: 2000-01-23T04:56:07.000+00:00
+        tenant:
+          masterCatalogs:
+          - catalogs:
+            - tenantId: 5
+              defaultCurrencyCode: defaultCurrencyCode
+              masterCatalogId: 5
+              defaultLocaleCode: defaultLocaleCode
+            - tenantId: 5
+              defaultCurrencyCode: defaultCurrencyCode
+              masterCatalogId: 5
+              defaultLocaleCode: defaultLocaleCode
+            tenantId: 1
+            defaultCurrencyCode: defaultCurrencyCode
+            defaultLocaleCode: defaultLocaleCode
+          - catalogs:
+            - tenantId: 5
+              defaultCurrencyCode: defaultCurrencyCode
+              masterCatalogId: 5
+              defaultLocaleCode: defaultLocaleCode
+            - tenantId: 5
+              defaultCurrencyCode: defaultCurrencyCode
+              masterCatalogId: 5
+              defaultLocaleCode: defaultLocaleCode
+            tenantId: 1
+            defaultCurrencyCode: defaultCurrencyCode
+            defaultLocaleCode: defaultLocaleCode
+          domain: domain
+          sites:
+          - catalogId: 6
+            primaryCustomDomain: primaryCustomDomain
+            localeCode: localeCode
+            countryCode: countryCode
+            domain: domain
+            tenantId: 0
+            attributes:
+            - createBy: createBy
+              updateDate: 2000-01-23T04:56:07.000+00:00
+              updateBy: updateBy
+              name: name
+              value: ""
+              createDate: 2000-01-23T04:56:07.000+00:00
+            - createBy: createBy
+              updateDate: 2000-01-23T04:56:07.000+00:00
+              updateBy: updateBy
+              name: name
+              value: ""
+              createDate: 2000-01-23T04:56:07.000+00:00
+            currencyCode: currencyCode
+          - catalogId: 6
+            primaryCustomDomain: primaryCustomDomain
+            localeCode: localeCode
+            countryCode: countryCode
+            domain: domain
+            tenantId: 0
+            attributes:
+            - createBy: createBy
+              updateDate: 2000-01-23T04:56:07.000+00:00
+              updateBy: updateBy
+              name: name
+              value: ""
+              createDate: 2000-01-23T04:56:07.000+00:00
+            - createBy: createBy
+              updateDate: 2000-01-23T04:56:07.000+00:00
+              updateBy: updateBy
+              name: name
+              value: ""
+              createDate: 2000-01-23T04:56:07.000+00:00
+            currencyCode: currencyCode
+          attributes:
+          - createBy: createBy
+            updateDate: 2000-01-23T04:56:07.000+00:00
+            updateBy: updateBy
+            name: name
+            value: ""
+            createDate: 2000-01-23T04:56:07.000+00:00
+          - createBy: createBy
+            updateDate: 2000-01-23T04:56:07.000+00:00
+            updateBy: updateBy
+            name: name
+            value: ""
+            createDate: 2000-01-23T04:56:07.000+00:00
+          expiry: 2000-01-23T04:56:07.000+00:00
+          isDevTenant: true
+          isUnified: true
+        refreshToken: refreshToken
+      properties:
+        user:
+          $ref: '#/components/schemas/UserProfile'
+        createdOn:
+          format: date-time
+          type: string
+        jwtAccessToken:
+          nullable: true
+          type: string
+        accessToken:
+          nullable: true
+          type: string
+        accessTokenExpiration:
+          format: date-time
+          type: string
+        refreshToken:
+          nullable: true
+          type: string
+        redirect:
+          nullable: true
+          type: string
+        refreshTokenExpiration:
+          format: date-time
+          type: string
+        tenant:
+          $ref: '#/components/schemas/AdminUserTenant'
+        availableTenants:
+          items:
+            $ref: '#/components/schemas/AdminUserTenant'
+          nullable: true
+          type: array
+        grantedBehaviors:
+          items:
+            format: int32
+            type: integer
+          nullable: true
+          type: array
+      type: object
+    UserAuthInfo:
+      additionalProperties: false
+      example:
+        emailAddress: emailAddress
+        password: password
+        userName: userName
+      properties:
+        emailAddress:
+          nullable: true
+          type: string
+        password:
+          nullable: true
+          type: string
+        userName:
+          nullable: true
+          type: string
+      type: object
+    TenantCollection:
+      additionalProperties: false
+      example:
+        startIndex: 0
+        pageCount: 1
+        pageSize: 6
+        totalCount: 5
+        items:
+        - masterCatalogs:
+          - catalogs:
+            - tenantId: 5
+              defaultCurrencyCode: defaultCurrencyCode
+              masterCatalogId: 5
+              defaultLocaleCode: defaultLocaleCode
+            - tenantId: 5
+              defaultCurrencyCode: defaultCurrencyCode
+              masterCatalogId: 5
+              defaultLocaleCode: defaultLocaleCode
+            tenantId: 1
+            defaultCurrencyCode: defaultCurrencyCode
+            defaultLocaleCode: defaultLocaleCode
+          - catalogs:
+            - tenantId: 5
+              defaultCurrencyCode: defaultCurrencyCode
+              masterCatalogId: 5
+              defaultLocaleCode: defaultLocaleCode
+            - tenantId: 5
+              defaultCurrencyCode: defaultCurrencyCode
+              masterCatalogId: 5
+              defaultLocaleCode: defaultLocaleCode
+            tenantId: 1
+            defaultCurrencyCode: defaultCurrencyCode
+            defaultLocaleCode: defaultLocaleCode
+          domain: domain
+          sites:
+          - catalogId: 6
+            primaryCustomDomain: primaryCustomDomain
+            localeCode: localeCode
+            countryCode: countryCode
+            domain: domain
+            tenantId: 0
+            attributes:
+            - createBy: createBy
+              updateDate: 2000-01-23T04:56:07.000+00:00
+              updateBy: updateBy
+              name: name
+              value: ""
+              createDate: 2000-01-23T04:56:07.000+00:00
+            - createBy: createBy
+              updateDate: 2000-01-23T04:56:07.000+00:00
+              updateBy: updateBy
+              name: name
+              value: ""
+              createDate: 2000-01-23T04:56:07.000+00:00
+            currencyCode: currencyCode
+          - catalogId: 6
+            primaryCustomDomain: primaryCustomDomain
+            localeCode: localeCode
+            countryCode: countryCode
+            domain: domain
+            tenantId: 0
+            attributes:
+            - createBy: createBy
+              updateDate: 2000-01-23T04:56:07.000+00:00
+              updateBy: updateBy
+              name: name
+              value: ""
+              createDate: 2000-01-23T04:56:07.000+00:00
+            - createBy: createBy
+              updateDate: 2000-01-23T04:56:07.000+00:00
+              updateBy: updateBy
+              name: name
+              value: ""
+              createDate: 2000-01-23T04:56:07.000+00:00
+            currencyCode: currencyCode
+          attributes:
+          - createBy: createBy
+            updateDate: 2000-01-23T04:56:07.000+00:00
+            updateBy: updateBy
+            name: name
+            value: ""
+            createDate: 2000-01-23T04:56:07.000+00:00
+          - createBy: createBy
+            updateDate: 2000-01-23T04:56:07.000+00:00
+            updateBy: updateBy
+            name: name
+            value: ""
+            createDate: 2000-01-23T04:56:07.000+00:00
+          expiry: 2000-01-23T04:56:07.000+00:00
+          isDevTenant: true
+          isUnified: true
+        - masterCatalogs:
+          - catalogs:
+            - tenantId: 5
+              defaultCurrencyCode: defaultCurrencyCode
+              masterCatalogId: 5
+              defaultLocaleCode: defaultLocaleCode
+            - tenantId: 5
+              defaultCurrencyCode: defaultCurrencyCode
+              masterCatalogId: 5
+              defaultLocaleCode: defaultLocaleCode
+            tenantId: 1
+            defaultCurrencyCode: defaultCurrencyCode
+            defaultLocaleCode: defaultLocaleCode
+          - catalogs:
+            - tenantId: 5
+              defaultCurrencyCode: defaultCurrencyCode
+              masterCatalogId: 5
+              defaultLocaleCode: defaultLocaleCode
+            - tenantId: 5
+              defaultCurrencyCode: defaultCurrencyCode
+              masterCatalogId: 5
+              defaultLocaleCode: defaultLocaleCode
+            tenantId: 1
+            defaultCurrencyCode: defaultCurrencyCode
+            defaultLocaleCode: defaultLocaleCode
+          domain: domain
+          sites:
+          - catalogId: 6
+            primaryCustomDomain: primaryCustomDomain
+            localeCode: localeCode
+            countryCode: countryCode
+            domain: domain
+            tenantId: 0
+            attributes:
+            - createBy: createBy
+              updateDate: 2000-01-23T04:56:07.000+00:00
+              updateBy: updateBy
+              name: name
+              value: ""
+              createDate: 2000-01-23T04:56:07.000+00:00
+            - createBy: createBy
+              updateDate: 2000-01-23T04:56:07.000+00:00
+              updateBy: updateBy
+              name: name
+              value: ""
+              createDate: 2000-01-23T04:56:07.000+00:00
+            currencyCode: currencyCode
+          - catalogId: 6
+            primaryCustomDomain: primaryCustomDomain
+            localeCode: localeCode
+            countryCode: countryCode
+            domain: domain
+            tenantId: 0
+            attributes:
+            - createBy: createBy
+              updateDate: 2000-01-23T04:56:07.000+00:00
+              updateBy: updateBy
+              name: name
+              value: ""
+              createDate: 2000-01-23T04:56:07.000+00:00
+            - createBy: createBy
+              updateDate: 2000-01-23T04:56:07.000+00:00
+              updateBy: updateBy
+              name: name
+              value: ""
+              createDate: 2000-01-23T04:56:07.000+00:00
+            currencyCode: currencyCode
+          attributes:
+          - createBy: createBy
+            updateDate: 2000-01-23T04:56:07.000+00:00
+            updateBy: updateBy
+            name: name
+            value: ""
+            createDate: 2000-01-23T04:56:07.000+00:00
+          - createBy: createBy
+            updateDate: 2000-01-23T04:56:07.000+00:00
+            updateBy: updateBy
+            name: name
+            value: ""
+            createDate: 2000-01-23T04:56:07.000+00:00
+          expiry: 2000-01-23T04:56:07.000+00:00
+          isDevTenant: true
+          isUnified: true
+      properties:
+        startIndex:
+          format: int32
+          type: integer
+        pageSize:
+          format: int32
+          type: integer
+        pageCount:
+          format: int32
+          type: integer
+        totalCount:
+          format: int32
+          type: integer
+        items:
+          items:
+            $ref: '#/components/schemas/AdminUserTenant'
+          nullable: true
+          type: array
+      type: object
+    ChangeUserPasswordInfo:
+      additionalProperties: false
+      example:
+        newPassword: newPassword
+      properties:
+        newPassword:
+          nullable: true
+          type: string
+      type: object
+    DeveloperAccount:
+      additionalProperties: false
+      example:
+        name: name
+        id: 0
+      properties:
+        id:
+          format: int32
+          type: integer
+        name:
+          nullable: true
+          type: string
+      type: object
+    DeveloperAdminUserAuthTicket:
+      additionalProperties: false
+      example:
+        jwtAccessToken: jwtAccessToken
+        refreshTokenExpiration: 2000-01-23T04:56:07.000+00:00
+        accessTokenExpiration: 2000-01-23T04:56:07.000+00:00
+        availableAccounts:
+        - name: name
+          id: 0
+        - name: name
+          id: 0
+        grantedBehaviors:
+        - 6
+        - 6
+        accessToken: accessToken
+        user:
+          firstName: firstName
+          lastName: lastName
+          emailAddress: emailAddress
+          userName: userName
+          userId: userId
+        createdOn: 2000-01-23T04:56:07.000+00:00
+        account:
+          name: name
+          id: 0
+        refreshToken: refreshToken
+      properties:
+        user:
+          $ref: '#/components/schemas/UserProfile'
+        createdOn:
+          format: date-time
+          type: string
+        jwtAccessToken:
+          nullable: true
+          type: string
+        accessToken:
+          nullable: true
+          type: string
+        accessTokenExpiration:
+          format: date-time
+          type: string
+        refreshToken:
+          nullable: true
+          type: string
+        refreshTokenExpiration:
+          format: date-time
+          type: string
+        account:
+          $ref: '#/components/schemas/DeveloperAccount'
+        availableAccounts:
+          items:
+            $ref: '#/components/schemas/DeveloperAccount'
+          nullable: true
+          type: array
+        grantedBehaviors:
+          items:
+            format: int32
+            type: integer
+          nullable: true
+          type: array
+      type: object
+    Behavior:
+      additionalProperties: false
+      properties:
+        id:
+          format: int32
+          type: integer
+        categoryId:
+          format: int32
+          type: integer
+        name:
+          nullable: true
+          type: string
+        requiresBehaviorIds:
+          items:
+            format: int32
+            type: integer
+          nullable: true
+          type: array
+        validUserTypes:
+          items:
+            type: string
+          nullable: true
+          type: array
+        isPrivate:
+          type: boolean
+        systemRoles:
+          items:
+            type: string
+          nullable: true
+          type: array
+      type: object
+    Owner:
+      additionalProperties: false
+      properties:
+        type:
+          nullable: true
+          type: string
+        id:
+          nullable: true
+          type: string
+      type: object
+    Role:
+      additionalProperties: false
+      properties:
+        name:
+          nullable: true
+          type: string
+        isSystemRole:
+          type: boolean
+        behaviors:
+          items:
+            $ref: '#/components/schemas/Behavior'
+          nullable: true
+          type: array
+        resources:
+          items:
+            $ref: '#/components/schemas/Resource'
+          nullable: true
+          type: array
+        tags:
+          items:
+            type: string
+          nullable: true
+          type: array
+        id:
+          format: int32
+          type: integer
+        userScope:
+          $ref: '#/components/schemas/UserScope'
+        owners:
+          items:
+            $ref: '#/components/schemas/Owner'
+          nullable: true
+          type: array
+        auditInfo:
+          $ref: '#/components/schemas/AdminUserAuditInfo'
+      type: object
+    CollectionOfRole:
+      additionalProperties: false
+      properties:
+        totalCount:
+          format: int32
+          type: integer
+        items:
+          items:
+            $ref: '#/components/schemas/Role'
+          nullable: true
+          type: array
+      type: object
+    RoleCollection:
+      additionalProperties: false
+      allOf:
+      - $ref: '#/components/schemas/CollectionOfRole'
+      type: object
+    AdminUserAuditInfo:
+      additionalProperties: false
+      example:
+        updateDate: 2000-01-23T04:56:07.000+00:00
+        createBy: createBy
+        updateBy: updateBy
+        createDate: 2000-01-23T04:56:07.000+00:00
+      properties:
+        updateDate:
+          format: date-time
+          nullable: true
+          type: string
+        createDate:
+          format: date-time
+          nullable: true
+          type: string
+        updateBy:
+          nullable: true
+          type: string
+        createBy:
+          nullable: true
+          type: string
+      type: object
+    AdminUserMasterCatalog:
+      additionalProperties: false
+      allOf:
+      - $ref: '#/components/schemas/BaseTenantEntity'
+      example:
+        catalogs:
+        - tenantId: 5
+          defaultCurrencyCode: defaultCurrencyCode
+          masterCatalogId: 5
+          defaultLocaleCode: defaultLocaleCode
+        - tenantId: 5
+          defaultCurrencyCode: defaultCurrencyCode
+          masterCatalogId: 5
+          defaultLocaleCode: defaultLocaleCode
+        tenantId: 1
+        defaultCurrencyCode: defaultCurrencyCode
+        defaultLocaleCode: defaultLocaleCode
+      properties:
+        tenantId:
+          format: int32
+          type: integer
+        defaultLocaleCode:
+          nullable: true
+          type: string
+        defaultCurrencyCode:
+          nullable: true
+          type: string
+        catalogs:
+          items:
+            $ref: '#/components/schemas/Catalog'
+          nullable: true
+          type: array
+      type: object
+    AdminUserTenant:
+      additionalProperties: false
+      allOf:
+      - $ref: '#/components/schemas/BaseTenantEntity'
+      example:
+        masterCatalogs:
+        - catalogs:
+          - tenantId: 5
+            defaultCurrencyCode: defaultCurrencyCode
+            masterCatalogId: 5
+            defaultLocaleCode: defaultLocaleCode
+          - tenantId: 5
+            defaultCurrencyCode: defaultCurrencyCode
+            masterCatalogId: 5
+            defaultLocaleCode: defaultLocaleCode
+          tenantId: 1
+          defaultCurrencyCode: defaultCurrencyCode
+          defaultLocaleCode: defaultLocaleCode
+        - catalogs:
+          - tenantId: 5
+            defaultCurrencyCode: defaultCurrencyCode
+            masterCatalogId: 5
+            defaultLocaleCode: defaultLocaleCode
+          - tenantId: 5
+            defaultCurrencyCode: defaultCurrencyCode
+            masterCatalogId: 5
+            defaultLocaleCode: defaultLocaleCode
+          tenantId: 1
+          defaultCurrencyCode: defaultCurrencyCode
+          defaultLocaleCode: defaultLocaleCode
+        domain: domain
+        sites:
+        - catalogId: 6
+          primaryCustomDomain: primaryCustomDomain
+          localeCode: localeCode
+          countryCode: countryCode
+          domain: domain
+          tenantId: 0
+          attributes:
+          - createBy: createBy
+            updateDate: 2000-01-23T04:56:07.000+00:00
+            updateBy: updateBy
+            name: name
+            value: ""
+            createDate: 2000-01-23T04:56:07.000+00:00
+          - createBy: createBy
+            updateDate: 2000-01-23T04:56:07.000+00:00
+            updateBy: updateBy
+            name: name
+            value: ""
+            createDate: 2000-01-23T04:56:07.000+00:00
+          currencyCode: currencyCode
+        - catalogId: 6
+          primaryCustomDomain: primaryCustomDomain
+          localeCode: localeCode
+          countryCode: countryCode
+          domain: domain
+          tenantId: 0
+          attributes:
+          - createBy: createBy
+            updateDate: 2000-01-23T04:56:07.000+00:00
+            updateBy: updateBy
+            name: name
+            value: ""
+            createDate: 2000-01-23T04:56:07.000+00:00
+          - createBy: createBy
+            updateDate: 2000-01-23T04:56:07.000+00:00
+            updateBy: updateBy
+            name: name
+            value: ""
+            createDate: 2000-01-23T04:56:07.000+00:00
+          currencyCode: currencyCode
+        attributes:
+        - createBy: createBy
+          updateDate: 2000-01-23T04:56:07.000+00:00
+          updateBy: updateBy
+          name: name
+          value: ""
+          createDate: 2000-01-23T04:56:07.000+00:00
+        - createBy: createBy
+          updateDate: 2000-01-23T04:56:07.000+00:00
+          updateBy: updateBy
+          name: name
+          value: ""
+          createDate: 2000-01-23T04:56:07.000+00:00
+        expiry: 2000-01-23T04:56:07.000+00:00
+        isDevTenant: true
+        isUnified: true
+      properties:
+        isDevTenant:
+          type: boolean
+        sites:
+          items:
+            $ref: '#/components/schemas/Site'
+          nullable: true
+          type: array
+        masterCatalogs:
+          items:
+            $ref: '#/components/schemas/AdminUserMasterCatalog'
+          nullable: true
+          type: array
+        domain:
+          nullable: true
+          type: string
+        attributes:
+          items:
+            $ref: '#/components/schemas/TenantAttribute'
+          nullable: true
+          type: array
+        expiry:
+          format: date-time
+          nullable: true
+          type: string
+        isUnified:
+          type: boolean
+      type: object
+    AdminUserUserRoleCollection:
+      additionalProperties: false
+      description: Collection of UserRoles for given user.
+      example:
+        totalCount: 0
+        items:
+        - assignedInScope:
+            name: name
+            id: 3
+            type: type
+          auditInfo:
+            updateDate: 2000-01-23T04:56:07.000+00:00
+            createBy: createBy
+            updateBy: updateBy
+            createDate: 2000-01-23T04:56:07.000+00:00
+          roleTags:
+          - roleTags
+          - roleTags
+          roleId: 2
+          roleName: roleName
+          roleResources:
+          - id: id
+            type: type
+          - id: id
+            type: type
+          userId: userId
+        - assignedInScope:
+            name: name
+            id: 3
+            type: type
+          auditInfo:
+            updateDate: 2000-01-23T04:56:07.000+00:00
+            createBy: createBy
+            updateBy: updateBy
+            createDate: 2000-01-23T04:56:07.000+00:00
+          roleTags:
+          - roleTags
+          - roleTags
+          roleId: 2
+          roleName: roleName
+          roleResources:
+          - id: id
+            type: type
+          - id: id
+            type: type
+          userId: userId
+      properties:
+        totalCount:
+          format: int32
+          type: integer
+        items:
+          items:
+            $ref: '#/components/schemas/UserRole'
+          nullable: true
+          type: array
+      type: object
+    AdminUserPasswordInfo:
+      additionalProperties: false
+      description: Old password and new password.
+      example:
+        oldPassword: oldPassword
+        newPassword: newPassword
+      properties:
+        oldPassword:
+          description: Old password.
+          nullable: true
+          type: string
+        newPassword:
+          description: New password.
+          nullable: true
+          type: string
+      type: object
+    AdminUserResetPasswordInfo:
+      additionalProperties: false
+      description: Email address of the user who is requesting a new password.
+      example:
+        emailAddress: emailAddress
+      properties:
+        emailAddress:
+          nullable: true
+          type: string
+      type: object
+  securitySchemes:
+    bearerAuth:
+      bearerFormat: JWT
+      description: JWT Authorization header using the Bearer scheme.
+      scheme: bearer
+      type: http
+    clientOauth2:
+      flows:
+        clientCredentials:
+          scopes: {}
+          tokenUrl: /api/platform/applications/authtickets/oauth
+      type: oauth2
+

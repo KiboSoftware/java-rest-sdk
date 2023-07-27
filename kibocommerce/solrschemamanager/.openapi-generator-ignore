@@ -1,0 +1,45 @@
+# OpenAPI Generator Ignore
+
+# Lines beginning with a # are comments
+
+# This should match build.sh located anywhere.
+
+build.sh
+
+# Matches build.sh in the root
+
+/build.sh
+
+# Exclude all recursively
+
+
+# **ApiCallback.java
+# **ApiClient.java
+# **ApiException.java
+# **ApiResponse.java
+
+# **Configuration.java
+!**ServerConfiguration.java
+# **GzipRequestInterceptor.java
+# **JSON.java
+# **Pair.java
+# **ProgressRequestBody.java
+# **ProgressResponseBody.java
+# **StringUtil.java
+# **ServerVariable.java
+**/src/main/java/com/kibocommerce/**/auth/
+
+**/src/main/java/com/kibocommerce/**/ApiCallback.java
+**/src/main/java/com/kibocommerce/**/ApiClient.java
+**/src/main/java/com/kibocommerce/**/ApiException.java
+**/src/main/java/com/kibocommerce/**/ApiResponse.java
+**/src/main/java/com/kibocommerce/**/Configuration.java
+**/src/main/java/com/kibocommerce/**/GzipRequestInterceptor.java
+**/src/main/java/com/kibocommerce/**/JSON.java
+**/src/main/java/com/kibocommerce/**/Pair.java
+**/src/main/java/com/kibocommerce/**/ProgressRequestBody.java
+**/src/main/java/com/kibocommerce/**/ProgressResponseBody.java
+**/src/main/java/com/kibocommerce/**/StringUtil.java
+**/src/main/java/com/kibocommerce/**/ServerVariable.java
+**/src/main/java/com/kibocommerce/**/ServerVariable.java
+**/src/test/**

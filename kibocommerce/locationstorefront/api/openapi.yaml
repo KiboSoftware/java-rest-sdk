@@ -1,0 +1,1834 @@
+openapi: 3.0.1
+info:
+  description: OpenAPI Spec for Kibo Location Storefront Service
+  title: Kibo Location Storefront Service
+servers:
+- description: TenantPod Host
+  url: "https://{tenantPodHost}/api"
+- description: Tenant Level Api
+  url: "https://t{tenantId}.{env}.mozu.com/api"
+  variables:
+    tenantId:
+      default: "0"
+      description: Id of the Tenant
+    env:
+      default: sandbox
+      enum:
+      - sandbox
+      - tp1
+      - tp2
+      - tp3
+      - tp4
+      - tp5
+      - stg1
+      - stg2
+- description: Site Level Api
+  url: "https://t{tenantId}-s{siteId}.{env}.mozu.com/api"
+  variables:
+    tenantId:
+      default: "0"
+      description: Id of the Tenant
+    siteId:
+      default: "0"
+      description: Id of the Site
+    env:
+      default: sandbox
+      enum:
+      - sandbox
+      - tp1
+      - tp2
+      - tp3
+      - tp4
+      - tp5
+      - stg1
+- description: HomePod Api
+  url: https://home.mozu.com/api
+- description: EURO Tenant Level Api
+  url: "https://t{tenantId}.{env}.euw1.kibocommerce.com/api"
+  variables:
+    tenantId:
+      default: "0"
+      description: Id of the Tenant
+    env:
+      default: sandbox
+      enum:
+      - sb
+      - tp1
+- description: EURO Site Level Api
+  url: "https://t{tenantId}-s{siteId}.{env}.euw1.kibocommerce.com/api"
+  variables:
+    tenantId:
+      default: "0"
+      description: Id of the Tenant
+    siteId:
+      default: "0"
+      description: Id of the Site
+    env:
+      default: sandbox
+      enum:
+      - sb
+      - tp1
+- description: EURO HomePod Api
+  url: https://home.euw1.kibocommerce.com/api
+security:
+- bearerAuth: []
+  clientOauth2: []
+paths:
+  /commerce/storefront/locationUsageTypes/DS/location:
+    get:
+      description: Get the Direct Ship Location for the Site.
+      operationId: getDirectShipLocation
+      parameters:
+      - explode: true
+        in: query
+        name: includeAttributeDefinition
+        required: false
+        schema:
+          default: false
+          type: boolean
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Location'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Location'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Location'
+          description: Success
+      summary: Get Direct Ship Location
+      tags:
+      - Location
+      x-accepts: application/json
+  /commerce/storefront/locationUsageTypes/CS/location:
+    get:
+      description: Get the Curbside Location for the Site.
+      operationId: getCurbsideLocation
+      parameters:
+      - explode: true
+        in: query
+        name: includeAttributeDefinition
+        required: false
+        schema:
+          default: false
+          type: boolean
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Location'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Location'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Location'
+          description: Success
+      summary: Get Curbside Location
+      tags:
+      - Location
+      x-accepts: application/json
+  /commerce/storefront/locationUsageTypes/DL/locations:
+    get:
+      description: Gets the delivery Locations for the site
+      operationId: getDeliveryLocations
+      parameters:
+      - description: ""
+        explode: true
+        in: query
+        name: startIndex
+        required: false
+        schema:
+          default: 0
+          format: int32
+          type: integer
+        style: form
+      - description: ""
+        explode: true
+        in: query
+        name: pageSize
+        required: false
+        schema:
+          default: 100
+          format: int32
+          type: integer
+        style: form
+      - description: ""
+        explode: true
+        in: query
+        name: sortBy
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: ""
+        explode: true
+        in: query
+        name: filter
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Include the location attributes associated definition
+        explode: true
+        in: query
+        name: includeAttributeDefinition
+        required: false
+        schema:
+          default: false
+          type: boolean
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LocationCollection'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/LocationCollection'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/LocationCollection'
+          description: Success
+      summary: Get Delivery Locations
+      tags:
+      - Location
+      x-accepts: application/json
+  /commerce/storefront/locationUsageTypes/DL/location:
+    get:
+      description: Gets a specific Delivery Location for the site
+      operationId: getDeliveryLocation
+      parameters:
+      - explode: true
+        in: query
+        name: includeAttributeDefinition
+        required: false
+        schema:
+          default: false
+          type: boolean
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Location'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Location'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Location'
+          description: Success
+      summary: Get Delivery Location
+      tags:
+      - Location
+      x-accepts: application/json
+  /commerce/storefront/locationUsageTypes/SP/locations:
+    get:
+      description: Gets the in store pickup Locations for the site.
+      operationId: getInStorePickupLocations
+      parameters:
+      - description: ""
+        explode: true
+        in: query
+        name: startIndex
+        required: false
+        schema:
+          default: 0
+          format: int32
+          type: integer
+        style: form
+      - description: ""
+        explode: true
+        in: query
+        name: pageSize
+        required: false
+        schema:
+          default: 100
+          format: int32
+          type: integer
+        style: form
+      - description: ""
+        explode: true
+        in: query
+        name: sortBy
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: ""
+        explode: true
+        in: query
+        name: filter
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Include the location attributes associated definition
+        explode: true
+        in: query
+        name: includeAttributeDefinition
+        required: false
+        schema:
+          default: false
+          type: boolean
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LocationCollection'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/LocationCollection'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/LocationCollection'
+          description: Success
+      summary: Get In Store Pickup Locations
+      tags:
+      - Location
+      x-accepts: application/json
+  /commerce/storefront/locationUsageTypes/SP/locations/{locationCode}:
+    get:
+      description: Get a specific in store pickup Location for the Site
+      operationId: getInStorePickupLocation
+      parameters:
+      - description: ""
+        explode: false
+        in: path
+        name: locationCode
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: Include the location attributes associated definition
+        explode: true
+        in: query
+        name: includeAttributeDefinition
+        required: false
+        schema:
+          default: false
+          type: boolean
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Location'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Location'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Location'
+          description: Success
+      summary: Get In Store Pickup Location
+      tags:
+      - Location
+      x-accepts: application/json
+  /commerce/storefront/locationUsageTypes/{locationUsageType}/locations:
+    get:
+      description: Get the Locations for the Site associated with the locationUsageType.
+      operationId: getLocationsInUsageType
+      parameters:
+      - description: ""
+        explode: false
+        in: path
+        name: locationUsageType
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: ""
+        explode: true
+        in: query
+        name: startIndex
+        required: false
+        schema:
+          default: 0
+          format: int32
+          type: integer
+        style: form
+      - description: ""
+        explode: true
+        in: query
+        name: pageSize
+        required: false
+        schema:
+          default: 100
+          format: int32
+          type: integer
+        style: form
+      - description: ""
+        explode: true
+        in: query
+        name: sortBy
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: ""
+        explode: true
+        in: query
+        name: filter
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Include the location attributes associated definition
+        explode: true
+        in: query
+        name: includeAttributeDefinition
+        required: false
+        schema:
+          default: false
+          type: boolean
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LocationCollection'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/LocationCollection'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/LocationCollection'
+          description: Success
+      summary: Get Locations In Usage Type
+      tags:
+      - Location
+      x-accepts: application/json
+  /commerce/storefront/locations/{locationCode}:
+    get:
+      description: Get a Location by locationCode.
+      operationId: getLocation
+      parameters:
+      - description: ""
+        explode: false
+        in: path
+        name: locationCode
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: Include the location attributes associated definition
+        explode: true
+        in: query
+        name: includeAttributeDefinition
+        required: false
+        schema:
+          default: false
+          type: boolean
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Location'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Location'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Location'
+          description: Success
+      summary: Get Location
+      tags:
+      - Location
+      x-accepts: application/json
+components:
+  schemas:
+    LocationType:
+      additionalProperties: false
+      example:
+        auditInfo:
+          updateDate: 2000-01-23T04:56:07.000+00:00
+          createBy: createBy
+          updateBy: updateBy
+          createDate: 2000-01-23T04:56:07.000+00:00
+        code: code
+        name: name
+      properties:
+        code:
+          nullable: true
+          type: string
+        name:
+          nullable: true
+          type: string
+        auditInfo:
+          $ref: '#/components/schemas/AdminUserAuditInfo'
+      type: object
+    Coordinates:
+      additionalProperties: false
+      example:
+        lng: 6.027456183070403
+        lat: 0.8008281904610115
+      properties:
+        lat:
+          format: double
+          type: number
+        lng:
+          format: double
+          type: number
+      type: object
+    FulfillmentType:
+      additionalProperties: false
+      example:
+        code: code
+        name: name
+      properties:
+        code:
+          nullable: true
+          type: string
+        name:
+          nullable: true
+          type: string
+      type: object
+    Hours:
+      additionalProperties: false
+      example:
+        isClosed: true
+        closeTime: closeTime
+        label: label
+        openTime: openTime
+      properties:
+        label:
+          nullable: true
+          type: string
+        openTime:
+          nullable: true
+          type: string
+        closeTime:
+          nullable: true
+          type: string
+        isClosed:
+          type: boolean
+      type: object
+    RegularHours:
+      additionalProperties: false
+      example:
+        sunday:
+          isClosed: true
+          closeTime: closeTime
+          label: label
+          openTime: openTime
+        saturday:
+          isClosed: true
+          closeTime: closeTime
+          label: label
+          openTime: openTime
+        tuesday:
+          isClosed: true
+          closeTime: closeTime
+          label: label
+          openTime: openTime
+        wednesday:
+          isClosed: true
+          closeTime: closeTime
+          label: label
+          openTime: openTime
+        thursday:
+          isClosed: true
+          closeTime: closeTime
+          label: label
+          openTime: openTime
+        friday:
+          isClosed: true
+          closeTime: closeTime
+          label: label
+          openTime: openTime
+        timeZone: timeZone
+        monday:
+          isClosed: true
+          closeTime: closeTime
+          label: label
+          openTime: openTime
+      properties:
+        sunday:
+          $ref: '#/components/schemas/Hours'
+        monday:
+          $ref: '#/components/schemas/Hours'
+        tuesday:
+          $ref: '#/components/schemas/Hours'
+        wednesday:
+          $ref: '#/components/schemas/Hours'
+        thursday:
+          $ref: '#/components/schemas/Hours'
+        friday:
+          $ref: '#/components/schemas/Hours'
+        saturday:
+          $ref: '#/components/schemas/Hours'
+        timeZone:
+          nullable: true
+          type: string
+      type: object
+    ShippingOriginContact:
+      additionalProperties: false
+      example:
+        firstName: firstName
+        phoneNumber: phoneNumber
+        companyOrOrganization: companyOrOrganization
+        lastNameOrSurname: lastNameOrSurname
+        middleNameOrInitial: middleNameOrInitial
+        email: email
+      properties:
+        firstName:
+          nullable: true
+          type: string
+        middleNameOrInitial:
+          nullable: true
+          type: string
+        lastNameOrSurname:
+          nullable: true
+          type: string
+        companyOrOrganization:
+          nullable: true
+          type: string
+        phoneNumber:
+          nullable: true
+          type: string
+        email:
+          nullable: true
+          type: string
+      type: object
+    AttributeValueLocalizedContent:
+      additionalProperties: false
+      example:
+        localeCode: localeCode
+        value: value
+      properties:
+        localeCode:
+          type: string
+        value:
+          type: string
+      required:
+      - localeCode
+      - value
+      type: object
+    LocationAttribute:
+      additionalProperties: false
+      example:
+        auditInfo:
+          updateDate: 2000-01-23T04:56:07.000+00:00
+          createBy: createBy
+          updateBy: updateBy
+          createDate: 2000-01-23T04:56:07.000+00:00
+        attributeDefinitionId: 2
+        values:
+        - ""
+        - ""
+        attributeDefinition:
+          isRequired: true
+          dataType: dataType
+          isMultiValued: true
+          displayGroup: displayGroup
+          availableForOrderRouting: true
+          isVisible: true
+          isActive: true
+          content:
+            localeCode: localeCode
+            value: value
+          attributeFQN: attributeFQN
+          adminName: adminName
+          attributeCode: attributeCode
+          auditInfo:
+            updateDate: 2000-01-23T04:56:07.000+00:00
+            createBy: createBy
+            updateBy: updateBy
+            createDate: 2000-01-23T04:56:07.000+00:00
+          attributeMetadata:
+          - value: value
+            key: key
+          - value: value
+            key: key
+          isReadOnly: true
+          vocabularyValues:
+          - sequence: 9
+            value: value
+            content:
+              localeCode: localeCode
+              value: value
+            isHidden: true
+          - sequence: 9
+            value: value
+            content:
+              localeCode: localeCode
+              value: value
+            isHidden: true
+          valueType: valueType
+          namespace: namespace
+          inputType: inputType
+          id: 1
+          validation:
+            maxNumericValue: 7.061401241503109
+            minDateTime: 2000-01-23T04:56:07.000+00:00
+            maxDateTime: 2000-01-23T04:56:07.000+00:00
+            regularExpression: regularExpression
+            maxStringLength: 5
+            minStringLength: 5
+            minNumericValue: 2.3021358869347655
+          order: 3
+        fullyQualifiedName: fullyQualifiedName
+      properties:
+        attributeDefinition:
+          $ref: '#/components/schemas/CommerceRuntimeAttribute'
+        auditInfo:
+          $ref: '#/components/schemas/AdminUserAuditInfo'
+        fullyQualifiedName:
+          nullable: true
+          type: string
+        attributeDefinitionId:
+          format: int32
+          nullable: true
+          type: integer
+        values:
+          items: {}
+          nullable: true
+          type: array
+      type: object
+    ProcessingTime:
+      additionalProperties: false
+      example:
+        hours: 4
+        fulfillmentTypeCode: fulfillmentTypeCode
+      properties:
+        fulfillmentTypeCode:
+          nullable: true
+          type: string
+        hours:
+          format: int32
+          type: integer
+      type: object
+    TransferTime:
+      additionalProperties: false
+      example:
+        unit: unit
+        value: 7
+      properties:
+        unit:
+          nullable: true
+          type: string
+        value:
+          format: int32
+          type: integer
+      type: object
+    Location:
+      additionalProperties: false
+      example:
+        note: note
+        code: code
+        allowFulfillmentWithNoStock: true
+        description: description
+        fulfillmentTypes:
+        - code: code
+          name: name
+        - code: code
+          name: name
+        express: true
+        regularHours:
+          sunday:
+            isClosed: true
+            closeTime: closeTime
+            label: label
+            openTime: openTime
+          saturday:
+            isClosed: true
+            closeTime: closeTime
+            label: label
+            openTime: openTime
+          tuesday:
+            isClosed: true
+            closeTime: closeTime
+            label: label
+            openTime: openTime
+          wednesday:
+            isClosed: true
+            closeTime: closeTime
+            label: label
+            openTime: openTime
+          thursday:
+            isClosed: true
+            closeTime: closeTime
+            label: label
+            openTime: openTime
+          friday:
+            isClosed: true
+            closeTime: closeTime
+            label: label
+            openTime: openTime
+          timeZone: timeZone
+          monday:
+            isClosed: true
+            closeTime: closeTime
+            label: label
+            openTime: openTime
+        includeInInventoryAggregrate: true
+        geo:
+          lng: 6.027456183070403
+          lat: 0.8008281904610115
+        auditInfo:
+          updateDate: 2000-01-23T04:56:07.000+00:00
+          createBy: createBy
+          updateBy: updateBy
+          createDate: 2000-01-23T04:56:07.000+00:00
+        locationTypes:
+        - auditInfo:
+            updateDate: 2000-01-23T04:56:07.000+00:00
+            createBy: createBy
+            updateBy: updateBy
+            createDate: 2000-01-23T04:56:07.000+00:00
+          code: code
+          name: name
+        - auditInfo:
+            updateDate: 2000-01-23T04:56:07.000+00:00
+            createBy: createBy
+            updateBy: updateBy
+            createDate: 2000-01-23T04:56:07.000+00:00
+          code: code
+          name: name
+        shipToHomeConsolidation: true
+        warehouseEnabled: true
+        isDisabled: true
+        fax: fax
+        requiresManifest: true
+        transferEnabled: true
+        includeInLocationExport: true
+        address:
+          postalOrZipCode: postalOrZipCode
+          isValidated: true
+          address3: address3
+          stateOrProvince: stateOrProvince
+          address2: address2
+          address1: address1
+          countryCode: countryCode
+          addressType: addressType
+          address4: address4
+          cityOrTown: cityOrTown
+        transferTime:
+          unit: unit
+          value: 7
+        processingTimes:
+        - hours: 4
+          fulfillmentTypeCode: fulfillmentTypeCode
+        - hours: 4
+          fulfillmentTypeCode: fulfillmentTypeCode
+        tags:
+        - tags
+        - tags
+        supportsInventory: true
+        phone: phone
+        shippingOriginContact:
+          firstName: firstName
+          phoneNumber: phoneNumber
+          companyOrOrganization: companyOrOrganization
+          lastNameOrSurname: lastNameOrSurname
+          middleNameOrInitial: middleNameOrInitial
+          email: email
+        name: name
+        attributes:
+        - auditInfo:
+            updateDate: 2000-01-23T04:56:07.000+00:00
+            createBy: createBy
+            updateBy: updateBy
+            createDate: 2000-01-23T04:56:07.000+00:00
+          attributeDefinitionId: 2
+          values:
+          - ""
+          - ""
+          attributeDefinition:
+            isRequired: true
+            dataType: dataType
+            isMultiValued: true
+            displayGroup: displayGroup
+            availableForOrderRouting: true
+            isVisible: true
+            isActive: true
+            content:
+              localeCode: localeCode
+              value: value
+            attributeFQN: attributeFQN
+            adminName: adminName
+            attributeCode: attributeCode
+            auditInfo:
+              updateDate: 2000-01-23T04:56:07.000+00:00
+              createBy: createBy
+              updateBy: updateBy
+              createDate: 2000-01-23T04:56:07.000+00:00
+            attributeMetadata:
+            - value: value
+              key: key
+            - value: value
+              key: key
+            isReadOnly: true
+            vocabularyValues:
+            - sequence: 9
+              value: value
+              content:
+                localeCode: localeCode
+                value: value
+              isHidden: true
+            - sequence: 9
+              value: value
+              content:
+                localeCode: localeCode
+                value: value
+              isHidden: true
+            valueType: valueType
+            namespace: namespace
+            inputType: inputType
+            id: 1
+            validation:
+              maxNumericValue: 7.061401241503109
+              minDateTime: 2000-01-23T04:56:07.000+00:00
+              maxDateTime: 2000-01-23T04:56:07.000+00:00
+              regularExpression: regularExpression
+              maxStringLength: 5
+              minStringLength: 5
+              minNumericValue: 2.3021358869347655
+            order: 3
+          fullyQualifiedName: fullyQualifiedName
+        - auditInfo:
+            updateDate: 2000-01-23T04:56:07.000+00:00
+            createBy: createBy
+            updateBy: updateBy
+            createDate: 2000-01-23T04:56:07.000+00:00
+          attributeDefinitionId: 2
+          values:
+          - ""
+          - ""
+          attributeDefinition:
+            isRequired: true
+            dataType: dataType
+            isMultiValued: true
+            displayGroup: displayGroup
+            availableForOrderRouting: true
+            isVisible: true
+            isActive: true
+            content:
+              localeCode: localeCode
+              value: value
+            attributeFQN: attributeFQN
+            adminName: adminName
+            attributeCode: attributeCode
+            auditInfo:
+              updateDate: 2000-01-23T04:56:07.000+00:00
+              createBy: createBy
+              updateBy: updateBy
+              createDate: 2000-01-23T04:56:07.000+00:00
+            attributeMetadata:
+            - value: value
+              key: key
+            - value: value
+              key: key
+            isReadOnly: true
+            vocabularyValues:
+            - sequence: 9
+              value: value
+              content:
+                localeCode: localeCode
+                value: value
+              isHidden: true
+            - sequence: 9
+              value: value
+              content:
+                localeCode: localeCode
+                value: value
+              isHidden: true
+            valueType: valueType
+            namespace: namespace
+            inputType: inputType
+            id: 1
+            validation:
+              maxNumericValue: 7.061401241503109
+              minDateTime: 2000-01-23T04:56:07.000+00:00
+              maxDateTime: 2000-01-23T04:56:07.000+00:00
+              regularExpression: regularExpression
+              maxStringLength: 5
+              minStringLength: 5
+              minNumericValue: 2.3021358869347655
+            order: 3
+          fullyQualifiedName: fullyQualifiedName
+      properties:
+        code:
+          nullable: true
+          type: string
+        locationTypes:
+          items:
+            $ref: '#/components/schemas/LocationType'
+          nullable: true
+          type: array
+        name:
+          nullable: true
+          type: string
+        description:
+          nullable: true
+          type: string
+        address:
+          $ref: '#/components/schemas/CommerceRuntimeAddress'
+        geo:
+          $ref: '#/components/schemas/Coordinates'
+        phone:
+          nullable: true
+          type: string
+        fax:
+          nullable: true
+          type: string
+        supportsInventory:
+          type: boolean
+        fulfillmentTypes:
+          items:
+            $ref: '#/components/schemas/FulfillmentType'
+          nullable: true
+          type: array
+        regularHours:
+          $ref: '#/components/schemas/RegularHours'
+        shippingOriginContact:
+          $ref: '#/components/schemas/ShippingOriginContact'
+        note:
+          nullable: true
+          type: string
+        tags:
+          items:
+            type: string
+          nullable: true
+          type: array
+        attributes:
+          items:
+            $ref: '#/components/schemas/LocationAttribute'
+          nullable: true
+          type: array
+        auditInfo:
+          $ref: '#/components/schemas/AdminUserAuditInfo'
+        allowFulfillmentWithNoStock:
+          type: boolean
+        isDisabled:
+          type: boolean
+        express:
+          type: boolean
+        transferEnabled:
+          type: boolean
+        shipToHomeConsolidation:
+          type: boolean
+        includeInInventoryAggregrate:
+          type: boolean
+        includeInLocationExport:
+          type: boolean
+        warehouseEnabled:
+          type: boolean
+        requiresManifest:
+          type: boolean
+        processingTimes:
+          items:
+            $ref: '#/components/schemas/ProcessingTime'
+          nullable: true
+          type: array
+        transferTime:
+          $ref: '#/components/schemas/TransferTime'
+      type: object
+    LocationCollection:
+      additionalProperties: false
+      example:
+        startIndex: 0
+        pageCount: 1
+        pageSize: 6
+        totalCount: 5
+        items:
+        - note: note
+          code: code
+          allowFulfillmentWithNoStock: true
+          description: description
+          fulfillmentTypes:
+          - code: code
+            name: name
+          - code: code
+            name: name
+          express: true
+          regularHours:
+            sunday:
+              isClosed: true
+              closeTime: closeTime
+              label: label
+              openTime: openTime
+            saturday:
+              isClosed: true
+              closeTime: closeTime
+              label: label
+              openTime: openTime
+            tuesday:
+              isClosed: true
+              closeTime: closeTime
+              label: label
+              openTime: openTime
+            wednesday:
+              isClosed: true
+              closeTime: closeTime
+              label: label
+              openTime: openTime
+            thursday:
+              isClosed: true
+              closeTime: closeTime
+              label: label
+              openTime: openTime
+            friday:
+              isClosed: true
+              closeTime: closeTime
+              label: label
+              openTime: openTime
+            timeZone: timeZone
+            monday:
+              isClosed: true
+              closeTime: closeTime
+              label: label
+              openTime: openTime
+          includeInInventoryAggregrate: true
+          geo:
+            lng: 6.027456183070403
+            lat: 0.8008281904610115
+          auditInfo:
+            updateDate: 2000-01-23T04:56:07.000+00:00
+            createBy: createBy
+            updateBy: updateBy
+            createDate: 2000-01-23T04:56:07.000+00:00
+          locationTypes:
+          - auditInfo:
+              updateDate: 2000-01-23T04:56:07.000+00:00
+              createBy: createBy
+              updateBy: updateBy
+              createDate: 2000-01-23T04:56:07.000+00:00
+            code: code
+            name: name
+          - auditInfo:
+              updateDate: 2000-01-23T04:56:07.000+00:00
+              createBy: createBy
+              updateBy: updateBy
+              createDate: 2000-01-23T04:56:07.000+00:00
+            code: code
+            name: name
+          shipToHomeConsolidation: true
+          warehouseEnabled: true
+          isDisabled: true
+          fax: fax
+          requiresManifest: true
+          transferEnabled: true
+          includeInLocationExport: true
+          address:
+            postalOrZipCode: postalOrZipCode
+            isValidated: true
+            address3: address3
+            stateOrProvince: stateOrProvince
+            address2: address2
+            address1: address1
+            countryCode: countryCode
+            addressType: addressType
+            address4: address4
+            cityOrTown: cityOrTown
+          transferTime:
+            unit: unit
+            value: 7
+          processingTimes:
+          - hours: 4
+            fulfillmentTypeCode: fulfillmentTypeCode
+          - hours: 4
+            fulfillmentTypeCode: fulfillmentTypeCode
+          tags:
+          - tags
+          - tags
+          supportsInventory: true
+          phone: phone
+          shippingOriginContact:
+            firstName: firstName
+            phoneNumber: phoneNumber
+            companyOrOrganization: companyOrOrganization
+            lastNameOrSurname: lastNameOrSurname
+            middleNameOrInitial: middleNameOrInitial
+            email: email
+          name: name
+          attributes:
+          - auditInfo:
+              updateDate: 2000-01-23T04:56:07.000+00:00
+              createBy: createBy
+              updateBy: updateBy
+              createDate: 2000-01-23T04:56:07.000+00:00
+            attributeDefinitionId: 2
+            values:
+            - ""
+            - ""
+            attributeDefinition:
+              isRequired: true
+              dataType: dataType
+              isMultiValued: true
+              displayGroup: displayGroup
+              availableForOrderRouting: true
+              isVisible: true
+              isActive: true
+              content:
+                localeCode: localeCode
+                value: value
+              attributeFQN: attributeFQN
+              adminName: adminName
+              attributeCode: attributeCode
+              auditInfo:
+                updateDate: 2000-01-23T04:56:07.000+00:00
+                createBy: createBy
+                updateBy: updateBy
+                createDate: 2000-01-23T04:56:07.000+00:00
+              attributeMetadata:
+              - value: value
+                key: key
+              - value: value
+                key: key
+              isReadOnly: true
+              vocabularyValues:
+              - sequence: 9
+                value: value
+                content:
+                  localeCode: localeCode
+                  value: value
+                isHidden: true
+              - sequence: 9
+                value: value
+                content:
+                  localeCode: localeCode
+                  value: value
+                isHidden: true
+              valueType: valueType
+              namespace: namespace
+              inputType: inputType
+              id: 1
+              validation:
+                maxNumericValue: 7.061401241503109
+                minDateTime: 2000-01-23T04:56:07.000+00:00
+                maxDateTime: 2000-01-23T04:56:07.000+00:00
+                regularExpression: regularExpression
+                maxStringLength: 5
+                minStringLength: 5
+                minNumericValue: 2.3021358869347655
+              order: 3
+            fullyQualifiedName: fullyQualifiedName
+          - auditInfo:
+              updateDate: 2000-01-23T04:56:07.000+00:00
+              createBy: createBy
+              updateBy: updateBy
+              createDate: 2000-01-23T04:56:07.000+00:00
+            attributeDefinitionId: 2
+            values:
+            - ""
+            - ""
+            attributeDefinition:
+              isRequired: true
+              dataType: dataType
+              isMultiValued: true
+              displayGroup: displayGroup
+              availableForOrderRouting: true
+              isVisible: true
+              isActive: true
+              content:
+                localeCode: localeCode
+                value: value
+              attributeFQN: attributeFQN
+              adminName: adminName
+              attributeCode: attributeCode
+              auditInfo:
+                updateDate: 2000-01-23T04:56:07.000+00:00
+                createBy: createBy
+                updateBy: updateBy
+                createDate: 2000-01-23T04:56:07.000+00:00
+              attributeMetadata:
+              - value: value
+                key: key
+              - value: value
+                key: key
+              isReadOnly: true
+              vocabularyValues:
+              - sequence: 9
+                value: value
+                content:
+                  localeCode: localeCode
+                  value: value
+                isHidden: true
+              - sequence: 9
+                value: value
+                content:
+                  localeCode: localeCode
+                  value: value
+                isHidden: true
+              valueType: valueType
+              namespace: namespace
+              inputType: inputType
+              id: 1
+              validation:
+                maxNumericValue: 7.061401241503109
+                minDateTime: 2000-01-23T04:56:07.000+00:00
+                maxDateTime: 2000-01-23T04:56:07.000+00:00
+                regularExpression: regularExpression
+                maxStringLength: 5
+                minStringLength: 5
+                minNumericValue: 2.3021358869347655
+              order: 3
+            fullyQualifiedName: fullyQualifiedName
+        - note: note
+          code: code
+          allowFulfillmentWithNoStock: true
+          description: description
+          fulfillmentTypes:
+          - code: code
+            name: name
+          - code: code
+            name: name
+          express: true
+          regularHours:
+            sunday:
+              isClosed: true
+              closeTime: closeTime
+              label: label
+              openTime: openTime
+            saturday:
+              isClosed: true
+              closeTime: closeTime
+              label: label
+              openTime: openTime
+            tuesday:
+              isClosed: true
+              closeTime: closeTime
+              label: label
+              openTime: openTime
+            wednesday:
+              isClosed: true
+              closeTime: closeTime
+              label: label
+              openTime: openTime
+            thursday:
+              isClosed: true
+              closeTime: closeTime
+              label: label
+              openTime: openTime
+            friday:
+              isClosed: true
+              closeTime: closeTime
+              label: label
+              openTime: openTime
+            timeZone: timeZone
+            monday:
+              isClosed: true
+              closeTime: closeTime
+              label: label
+              openTime: openTime
+          includeInInventoryAggregrate: true
+          geo:
+            lng: 6.027456183070403
+            lat: 0.8008281904610115
+          auditInfo:
+            updateDate: 2000-01-23T04:56:07.000+00:00
+            createBy: createBy
+            updateBy: updateBy
+            createDate: 2000-01-23T04:56:07.000+00:00
+          locationTypes:
+          - auditInfo:
+              updateDate: 2000-01-23T04:56:07.000+00:00
+              createBy: createBy
+              updateBy: updateBy
+              createDate: 2000-01-23T04:56:07.000+00:00
+            code: code
+            name: name
+          - auditInfo:
+              updateDate: 2000-01-23T04:56:07.000+00:00
+              createBy: createBy
+              updateBy: updateBy
+              createDate: 2000-01-23T04:56:07.000+00:00
+            code: code
+            name: name
+          shipToHomeConsolidation: true
+          warehouseEnabled: true
+          isDisabled: true
+          fax: fax
+          requiresManifest: true
+          transferEnabled: true
+          includeInLocationExport: true
+          address:
+            postalOrZipCode: postalOrZipCode
+            isValidated: true
+            address3: address3
+            stateOrProvince: stateOrProvince
+            address2: address2
+            address1: address1
+            countryCode: countryCode
+            addressType: addressType
+            address4: address4
+            cityOrTown: cityOrTown
+          transferTime:
+            unit: unit
+            value: 7
+          processingTimes:
+          - hours: 4
+            fulfillmentTypeCode: fulfillmentTypeCode
+          - hours: 4
+            fulfillmentTypeCode: fulfillmentTypeCode
+          tags:
+          - tags
+          - tags
+          supportsInventory: true
+          phone: phone
+          shippingOriginContact:
+            firstName: firstName
+            phoneNumber: phoneNumber
+            companyOrOrganization: companyOrOrganization
+            lastNameOrSurname: lastNameOrSurname
+            middleNameOrInitial: middleNameOrInitial
+            email: email
+          name: name
+          attributes:
+          - auditInfo:
+              updateDate: 2000-01-23T04:56:07.000+00:00
+              createBy: createBy
+              updateBy: updateBy
+              createDate: 2000-01-23T04:56:07.000+00:00
+            attributeDefinitionId: 2
+            values:
+            - ""
+            - ""
+            attributeDefinition:
+              isRequired: true
+              dataType: dataType
+              isMultiValued: true
+              displayGroup: displayGroup
+              availableForOrderRouting: true
+              isVisible: true
+              isActive: true
+              content:
+                localeCode: localeCode
+                value: value
+              attributeFQN: attributeFQN
+              adminName: adminName
+              attributeCode: attributeCode
+              auditInfo:
+                updateDate: 2000-01-23T04:56:07.000+00:00
+                createBy: createBy
+                updateBy: updateBy
+                createDate: 2000-01-23T04:56:07.000+00:00
+              attributeMetadata:
+              - value: value
+                key: key
+              - value: value
+                key: key
+              isReadOnly: true
+              vocabularyValues:
+              - sequence: 9
+                value: value
+                content:
+                  localeCode: localeCode
+                  value: value
+                isHidden: true
+              - sequence: 9
+                value: value
+                content:
+                  localeCode: localeCode
+                  value: value
+                isHidden: true
+              valueType: valueType
+              namespace: namespace
+              inputType: inputType
+              id: 1
+              validation:
+                maxNumericValue: 7.061401241503109
+                minDateTime: 2000-01-23T04:56:07.000+00:00
+                maxDateTime: 2000-01-23T04:56:07.000+00:00
+                regularExpression: regularExpression
+                maxStringLength: 5
+                minStringLength: 5
+                minNumericValue: 2.3021358869347655
+              order: 3
+            fullyQualifiedName: fullyQualifiedName
+          - auditInfo:
+              updateDate: 2000-01-23T04:56:07.000+00:00
+              createBy: createBy
+              updateBy: updateBy
+              createDate: 2000-01-23T04:56:07.000+00:00
+            attributeDefinitionId: 2
+            values:
+            - ""
+            - ""
+            attributeDefinition:
+              isRequired: true
+              dataType: dataType
+              isMultiValued: true
+              displayGroup: displayGroup
+              availableForOrderRouting: true
+              isVisible: true
+              isActive: true
+              content:
+                localeCode: localeCode
+                value: value
+              attributeFQN: attributeFQN
+              adminName: adminName
+              attributeCode: attributeCode
+              auditInfo:
+                updateDate: 2000-01-23T04:56:07.000+00:00
+                createBy: createBy
+                updateBy: updateBy
+                createDate: 2000-01-23T04:56:07.000+00:00
+              attributeMetadata:
+              - value: value
+                key: key
+              - value: value
+                key: key
+              isReadOnly: true
+              vocabularyValues:
+              - sequence: 9
+                value: value
+                content:
+                  localeCode: localeCode
+                  value: value
+                isHidden: true
+              - sequence: 9
+                value: value
+                content:
+                  localeCode: localeCode
+                  value: value
+                isHidden: true
+              valueType: valueType
+              namespace: namespace
+              inputType: inputType
+              id: 1
+              validation:
+                maxNumericValue: 7.061401241503109
+                minDateTime: 2000-01-23T04:56:07.000+00:00
+                maxDateTime: 2000-01-23T04:56:07.000+00:00
+                regularExpression: regularExpression
+                maxStringLength: 5
+                minStringLength: 5
+                minNumericValue: 2.3021358869347655
+              order: 3
+            fullyQualifiedName: fullyQualifiedName
+      properties:
+        startIndex:
+          format: int32
+          type: integer
+        pageSize:
+          format: int32
+          type: integer
+        pageCount:
+          format: int32
+          type: integer
+        totalCount:
+          format: int32
+          type: integer
+        items:
+          items:
+            $ref: '#/components/schemas/Location'
+          nullable: true
+          type: array
+      type: object
+    AdminUserAuditInfo:
+      additionalProperties: false
+      example:
+        updateDate: 2000-01-23T04:56:07.000+00:00
+        createBy: createBy
+        updateBy: updateBy
+        createDate: 2000-01-23T04:56:07.000+00:00
+      properties:
+        updateDate:
+          format: date-time
+          nullable: true
+          type: string
+        createDate:
+          format: date-time
+          nullable: true
+          type: string
+        updateBy:
+          nullable: true
+          type: string
+        createBy:
+          nullable: true
+          type: string
+      type: object
+    CommerceRuntimeAttribute:
+      additionalProperties: false
+      example:
+        isRequired: true
+        dataType: dataType
+        isMultiValued: true
+        displayGroup: displayGroup
+        availableForOrderRouting: true
+        isVisible: true
+        isActive: true
+        content:
+          localeCode: localeCode
+          value: value
+        attributeFQN: attributeFQN
+        adminName: adminName
+        attributeCode: attributeCode
+        auditInfo:
+          updateDate: 2000-01-23T04:56:07.000+00:00
+          createBy: createBy
+          updateBy: updateBy
+          createDate: 2000-01-23T04:56:07.000+00:00
+        attributeMetadata:
+        - value: value
+          key: key
+        - value: value
+          key: key
+        isReadOnly: true
+        vocabularyValues:
+        - sequence: 9
+          value: value
+          content:
+            localeCode: localeCode
+            value: value
+          isHidden: true
+        - sequence: 9
+          value: value
+          content:
+            localeCode: localeCode
+            value: value
+          isHidden: true
+        valueType: valueType
+        namespace: namespace
+        inputType: inputType
+        id: 1
+        validation:
+          maxNumericValue: 7.061401241503109
+          minDateTime: 2000-01-23T04:56:07.000+00:00
+          maxDateTime: 2000-01-23T04:56:07.000+00:00
+          regularExpression: regularExpression
+          maxStringLength: 5
+          minStringLength: 5
+          minNumericValue: 2.3021358869347655
+        order: 3
+      properties:
+        id:
+          format: int32
+          nullable: true
+          type: integer
+        adminName:
+          maxLength: 50
+          nullable: true
+          type: string
+        namespace:
+          maxLength: 200
+          nullable: true
+          type: string
+        attributeCode:
+          maxLength: 50
+          type: string
+        inputType:
+          nullable: true
+          type: string
+        valueType:
+          type: string
+        dataType:
+          nullable: true
+          type: string
+        attributeMetadata:
+          items:
+            $ref: '#/components/schemas/CommerceRuntimeAttributeMetadataItem'
+          nullable: true
+          type: array
+        attributeFQN:
+          nullable: true
+          type: string
+        content:
+          $ref: '#/components/schemas/CommerceRuntimeAttributeLocalizedContent'
+        validation:
+          $ref: '#/components/schemas/CommerceRuntimeAttributeValidation'
+        vocabularyValues:
+          items:
+            $ref: '#/components/schemas/CommerceRuntimeAttributeVocabularyValue'
+          nullable: true
+          type: array
+        auditInfo:
+          $ref: '#/components/schemas/AdminUserAuditInfo'
+        isActive:
+          nullable: true
+          type: boolean
+        isRequired:
+          nullable: true
+          type: boolean
+        isReadOnly:
+          type: boolean
+        isMultiValued:
+          nullable: true
+          type: boolean
+        isVisible:
+          nullable: true
+          type: boolean
+        order:
+          format: int32
+          nullable: true
+          type: integer
+        displayGroup:
+          type: string
+        availableForOrderRouting:
+          type: boolean
+      required:
+      - attributeCode
+      - displayGroup
+      - valueType
+      type: object
+    CommerceRuntimeAddress:
+      additionalProperties: false
+      example:
+        postalOrZipCode: postalOrZipCode
+        isValidated: true
+        address3: address3
+        stateOrProvince: stateOrProvince
+        address2: address2
+        address1: address1
+        countryCode: countryCode
+        addressType: addressType
+        address4: address4
+        cityOrTown: cityOrTown
+      properties:
+        address1:
+          nullable: true
+          type: string
+        address2:
+          nullable: true
+          type: string
+        address3:
+          nullable: true
+          type: string
+        address4:
+          nullable: true
+          type: string
+        cityOrTown:
+          nullable: true
+          type: string
+        stateOrProvince:
+          nullable: true
+          type: string
+        postalOrZipCode:
+          nullable: true
+          type: string
+        countryCode:
+          nullable: true
+          type: string
+        addressType:
+          nullable: true
+          type: string
+        isValidated:
+          nullable: true
+          type: boolean
+      type: object
+    CommerceRuntimeAttributeMetadataItem:
+      additionalProperties: false
+      example:
+        value: value
+        key: key
+      properties:
+        key:
+          maxLength: 50
+          type: string
+        value:
+          type: string
+      required:
+      - key
+      - value
+      type: object
+    CommerceRuntimeAttributeLocalizedContent:
+      additionalProperties: false
+      example:
+        localeCode: localeCode
+        value: value
+      properties:
+        localeCode:
+          maxLength: 8
+          nullable: true
+          type: string
+        value:
+          maxLength: 100
+          nullable: true
+          type: string
+      type: object
+    CommerceRuntimeAttributeValidation:
+      additionalProperties: false
+      example:
+        maxNumericValue: 7.061401241503109
+        minDateTime: 2000-01-23T04:56:07.000+00:00
+        maxDateTime: 2000-01-23T04:56:07.000+00:00
+        regularExpression: regularExpression
+        maxStringLength: 5
+        minStringLength: 5
+        minNumericValue: 2.3021358869347655
+      properties:
+        regularExpression:
+          maxLength: 200
+          nullable: true
+          type: string
+        minStringLength:
+          format: int32
+          nullable: true
+          type: integer
+        maxStringLength:
+          format: int32
+          nullable: true
+          type: integer
+        minNumericValue:
+          format: double
+          nullable: true
+          type: number
+        maxNumericValue:
+          format: double
+          nullable: true
+          type: number
+        minDateTime:
+          format: date-time
+          nullable: true
+          type: string
+        maxDateTime:
+          format: date-time
+          nullable: true
+          type: string
+      type: object
+    CommerceRuntimeAttributeVocabularyValue:
+      additionalProperties: false
+      example:
+        sequence: 9
+        value: value
+        content:
+          localeCode: localeCode
+          value: value
+        isHidden: true
+      properties:
+        value:
+          maxLength: 50
+          type: string
+        sequence:
+          format: int32
+          nullable: true
+          type: integer
+        isHidden:
+          nullable: true
+          type: boolean
+        content:
+          $ref: '#/components/schemas/AttributeValueLocalizedContent'
+      required:
+      - value
+      type: object
+  securitySchemes:
+    bearerAuth:
+      bearerFormat: JWT
+      description: JWT Authorization header using the Bearer scheme.
+      scheme: bearer
+      type: http
+    clientOauth2:
+      flows:
+        clientCredentials:
+          scopes: {}
+          tokenUrl: /api/platform/applications/authtickets/oauth
+      type: oauth2
+

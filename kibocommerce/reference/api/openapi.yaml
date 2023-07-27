@@ -1,0 +1,914 @@
+openapi: 3.0.1
+info:
+  description: OpenAPI Spec for Kibo Reference Service
+  title: Kibo Reference Service
+servers:
+- description: HomePod Host
+  url: "https://{homePodHost}/api"
+- description: Tenant Level Api
+  url: "https://t{tenantId}.{env}.mozu.com/api"
+  variables:
+    tenantId:
+      default: "0"
+      description: Id of the Tenant
+    env:
+      default: sandbox
+      enum:
+      - sandbox
+      - tp1
+      - tp2
+      - tp3
+      - tp4
+      - tp5
+      - stg1
+      - stg2
+- description: Site Level Api
+  url: "https://t{tenantId}-s{siteId}.{env}.mozu.com/api"
+  variables:
+    tenantId:
+      default: "0"
+      description: Id of the Tenant
+    siteId:
+      default: "0"
+      description: Id of the Site
+    env:
+      default: sandbox
+      enum:
+      - sandbox
+      - tp1
+      - tp2
+      - tp3
+      - tp4
+      - tp5
+      - stg1
+- description: HomePod Api
+  url: https://home.mozu.com/api
+- description: EURO Tenant Level Api
+  url: "https://t{tenantId}.{env}.euw1.kibocommerce.com/api"
+  variables:
+    tenantId:
+      default: "0"
+      description: Id of the Tenant
+    env:
+      default: sandbox
+      enum:
+      - sb
+      - tp1
+- description: EURO Site Level Api
+  url: "https://t{tenantId}-s{siteId}.{env}.euw1.kibocommerce.com/api"
+  variables:
+    tenantId:
+      default: "0"
+      description: Id of the Tenant
+    siteId:
+      default: "0"
+      description: Id of the Site
+    env:
+      default: sandbox
+      enum:
+      - sb
+      - tp1
+- description: EURO HomePod Api
+  url: https://home.euw1.kibocommerce.com/api
+security:
+- bearerAuth: []
+  clientOauth2: []
+paths:
+  /platform/reference/contentLocales:
+    get:
+      description: Get the full list of Content Locales supported by the system
+      operationId: getContentLocales
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ContentLocaleCollection'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ContentLocaleCollection'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ContentLocaleCollection'
+          description: Success
+      summary: Get the full list of Content Locales supported by the system
+      tags:
+      - ReferenceData
+      x-accepts: application/json
+  /platform/reference/topleveldomains:
+    get:
+      description: Get a full list of the supported top level domains
+      operationId: getTopLevelDomains
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TopLevelDomainCollection'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/TopLevelDomainCollection'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/TopLevelDomainCollection'
+          description: Success
+      summary: Get a full list of the supported top level domains
+      tags:
+      - ReferenceData
+      x-accepts: application/json
+  /platform/reference/unitsofmeasure:
+    get:
+      description: Get a full list of the units of measure
+      operationId: getUnitsOfMeasure
+      parameters:
+      - description: ""
+        explode: true
+        in: query
+        name: filter
+        required: false
+        schema:
+          type: string
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UnitOfMeasureCollection'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/UnitOfMeasureCollection'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/UnitOfMeasureCollection'
+          description: Success
+      summary: Get a full list of the units of measure
+      tags:
+      - ReferenceData
+      x-accepts: application/json
+  /platform/reference/countries:
+    get:
+      description: Get the full list of Countries supported by the system
+      operationId: getCountries
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CountryCollection'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/CountryCollection'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/CountryCollection'
+          description: Success
+      summary: Get the full list of Countries supported by the system
+      tags:
+      - ReferenceData
+      x-accepts: application/json
+  /platform/reference/currencies:
+    get:
+      description: Get the full list of Currencies supported by the system
+      operationId: getCurrencies
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CurrencyCollection'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/CurrencyCollection'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/CurrencyCollection'
+          description: Success
+      summary: Get the full list of Currencies supported by the system
+      tags:
+      - ReferenceData
+      x-accepts: application/json
+  /platform/reference/timezones:
+    get:
+      description: Get the full list of TimeZones supported by the system
+      operationId: getTimeZones
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TimeZoneCollection'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/TimeZoneCollection'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/TimeZoneCollection'
+          description: Success
+      summary: Get the full list of TimeZones supported by the system
+      tags:
+      - ReferenceData
+      x-accepts: application/json
+  /platform/reference/addressschemas:
+    get:
+      description: Get Address Schemas
+      operationId: getAddressSchemas
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AddressSchemaCollection'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/AddressSchemaCollection'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/AddressSchemaCollection'
+          description: Success
+      summary: Get Address Schemas
+      tags:
+      - ReferenceData
+      x-accepts: application/json
+  /platform/reference/addressschema/{countryCode}:
+    get:
+      description: Get Address Schema
+      operationId: getAddressSchema
+      parameters:
+      - explode: false
+        in: path
+        name: countryCode
+        required: true
+        schema:
+          default: US
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AddressSchema'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/AddressSchema'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/AddressSchema'
+          description: Success
+      summary: Get Address Schema
+      tags:
+      - ReferenceData
+      x-accepts: application/json
+  /platform/reference/behaviors:
+    get:
+      description: ""
+      operationId: getBehaviors
+      parameters:
+      - explode: true
+        in: query
+        name: userType
+        required: false
+        schema:
+          type: string
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BehaviorCollection'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/BehaviorCollection'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/BehaviorCollection'
+          description: Success
+      summary: Retrieves a list of all behaviors
+      tags:
+      - ReferenceData
+      x-accepts: application/json
+  /platform/reference/behaviors/categories:
+    get:
+      description: ""
+      operationId: getBehaviorCategories
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BehaviorCategoryCollection'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/BehaviorCategoryCollection'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/BehaviorCategoryCollection'
+          description: Success
+      summary: Retrieves a list of all behavior categories
+      tags:
+      - ReferenceData
+      x-accepts: application/json
+  /platform/reference/behaviors/{behaviorId}:
+    get:
+      description: ""
+      operationId: getBehavior
+      parameters:
+      - description: Unique identifier of the behavior for which you want details.
+        explode: false
+        in: path
+        name: behaviorId
+        required: true
+        schema:
+          format: int32
+          type: integer
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Behavior'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Behavior'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Behavior'
+          description: Success
+      summary: Retrieves the details of a behavior specified by its behavior ID
+      tags:
+      - ReferenceData
+      x-accepts: application/json
+  /platform/reference/behaviors/categories/{categoryId}:
+    get:
+      description: ""
+      operationId: getBehaviorCategory
+      parameters:
+      - description: Unique identifier of the behavior category for which you want
+          details.
+        explode: false
+        in: path
+        name: categoryId
+        required: true
+        schema:
+          format: int32
+          type: integer
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BehaviorCategory'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/BehaviorCategory'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/BehaviorCategory'
+          description: Success
+      summary: Retrieves the details of a behavior specified by its behavior ID
+      tags:
+      - ReferenceData
+      x-accepts: application/json
+  /platform/reference/countrieswithstates:
+    get:
+      description: Get the full list of Countries supported by the system
+      operationId: getCountriesWithStates
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CountryWithStatesCollection'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/CountryWithStatesCollection'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/CountryWithStatesCollection'
+          description: Success
+      summary: Get the full list of Countries supported by the system
+      tags:
+      - ReferenceData
+      x-accepts: application/json
+components:
+  schemas:
+    ContentLocale:
+      additionalProperties: false
+      example:
+        code: code
+        name: name
+      properties:
+        code:
+          nullable: true
+          type: string
+        name:
+          nullable: true
+          type: string
+      type: object
+    ContentLocaleCollection:
+      additionalProperties: false
+      example:
+        totalCount: 0
+        items:
+        - code: code
+          name: name
+        - code: code
+          name: name
+      properties:
+        totalCount:
+          format: int32
+          type: integer
+        items:
+          items:
+            $ref: '#/components/schemas/ContentLocale'
+          nullable: true
+          type: array
+      type: object
+    TopLevelDomainCollection:
+      additionalProperties: false
+      example:
+        totalCount: 0
+        items:
+        - items
+        - items
+      properties:
+        totalCount:
+          format: int32
+          type: integer
+        items:
+          items:
+            type: string
+          nullable: true
+          type: array
+      type: object
+    UnitOfMeasure:
+      additionalProperties: false
+      example:
+        symbol: symbol
+        pluralName: pluralName
+        name: name
+        unitOfMeasureType: unitOfMeasureType
+      properties:
+        symbol:
+          nullable: true
+          type: string
+        name:
+          nullable: true
+          type: string
+        pluralName:
+          nullable: true
+          type: string
+        unitOfMeasureType:
+          description: "This value can be \"Length\", \"Weight\", or \"Volume\""
+          nullable: true
+          type: string
+      type: object
+    UnitOfMeasureCollection:
+      additionalProperties: false
+      example:
+        totalCount: 0
+        items:
+        - symbol: symbol
+          pluralName: pluralName
+          name: name
+          unitOfMeasureType: unitOfMeasureType
+        - symbol: symbol
+          pluralName: pluralName
+          name: name
+          unitOfMeasureType: unitOfMeasureType
+      properties:
+        totalCount:
+          format: int32
+          type: integer
+        items:
+          items:
+            $ref: '#/components/schemas/UnitOfMeasure'
+          nullable: true
+          type: array
+      type: object
+    Country:
+      additionalProperties: false
+      example:
+        code: code
+        name: name
+      properties:
+        code:
+          nullable: true
+          type: string
+        name:
+          nullable: true
+          type: string
+      type: object
+    CountryCollection:
+      additionalProperties: false
+      example:
+        totalCount: 0
+        items:
+        - code: code
+          name: name
+        - code: code
+          name: name
+      properties:
+        totalCount:
+          format: int32
+          type: integer
+        items:
+          items:
+            $ref: '#/components/schemas/Country'
+          nullable: true
+          type: array
+      type: object
+    Currency:
+      additionalProperties: false
+      example:
+        code: code
+        name: name
+      properties:
+        code:
+          nullable: true
+          type: string
+        name:
+          nullable: true
+          type: string
+      type: object
+    CurrencyCollection:
+      additionalProperties: false
+      example:
+        totalCount: 0
+        items:
+        - code: code
+          name: name
+        - code: code
+          name: name
+      properties:
+        totalCount:
+          format: int32
+          type: integer
+        items:
+          items:
+            $ref: '#/components/schemas/Currency'
+          nullable: true
+          type: array
+      type: object
+    TimeZone:
+      additionalProperties: false
+      example:
+        offset: 6.027456183070403
+        id: id
+        isDaylightSavingsTime: true
+      properties:
+        id:
+          description: "The Id of the TimeZone (examples include: \"Central Standard\
+            \ Time\", ...)"
+          nullable: true
+          type: string
+        offset:
+          description: The current offset for this TimeZone in hours
+          format: double
+          type: number
+        isDaylightSavingsTime:
+          type: boolean
+      type: object
+    TimeZoneCollection:
+      additionalProperties: false
+      example:
+        totalCount: 0
+        items:
+        - offset: 6.027456183070403
+          id: id
+          isDaylightSavingsTime: true
+        - offset: 6.027456183070403
+          id: id
+          isDaylightSavingsTime: true
+      properties:
+        totalCount:
+          format: int32
+          type: integer
+        items:
+          items:
+            $ref: '#/components/schemas/TimeZone'
+          nullable: true
+          type: array
+      type: object
+    FieldData:
+      additionalProperties: false
+      example:
+        code: code
+        value: value
+      properties:
+        value:
+          nullable: true
+          type: string
+        code:
+          nullable: true
+          type: string
+      type: object
+    Field:
+      additionalProperties: false
+      example:
+        data:
+        - code: code
+          value: value
+        - code: code
+          value: value
+        label: label
+        id: 1
+        type: type
+        order: 5
+      properties:
+        type:
+          nullable: true
+          type: string
+        label:
+          nullable: true
+          type: string
+        data:
+          items:
+            $ref: '#/components/schemas/FieldData'
+          nullable: true
+          type: array
+        id:
+          format: int32
+          type: integer
+        order:
+          format: int32
+          type: integer
+      type: object
+    AddressSchema:
+      additionalProperties: false
+      example:
+        countryLabel: countryLabel
+        countryCode: countryCode
+        id: 6
+        fields:
+        - data:
+          - code: code
+            value: value
+          - code: code
+            value: value
+          label: label
+          id: 1
+          type: type
+          order: 5
+        - data:
+          - code: code
+            value: value
+          - code: code
+            value: value
+          label: label
+          id: 1
+          type: type
+          order: 5
+      properties:
+        countryCode:
+          nullable: true
+          type: string
+        id:
+          format: int32
+          type: integer
+        countryLabel:
+          nullable: true
+          type: string
+        fields:
+          items:
+            $ref: '#/components/schemas/Field'
+          nullable: true
+          type: array
+      type: object
+    AddressSchemaCollection:
+      additionalProperties: false
+      example:
+        totalCount: 0
+        items:
+        - countryLabel: countryLabel
+          countryCode: countryCode
+          id: 6
+          fields:
+          - data:
+            - code: code
+              value: value
+            - code: code
+              value: value
+            label: label
+            id: 1
+            type: type
+            order: 5
+          - data:
+            - code: code
+              value: value
+            - code: code
+              value: value
+            label: label
+            id: 1
+            type: type
+            order: 5
+        - countryLabel: countryLabel
+          countryCode: countryCode
+          id: 6
+          fields:
+          - data:
+            - code: code
+              value: value
+            - code: code
+              value: value
+            label: label
+            id: 1
+            type: type
+            order: 5
+          - data:
+            - code: code
+              value: value
+            - code: code
+              value: value
+            label: label
+            id: 1
+            type: type
+            order: 5
+      properties:
+        totalCount:
+          format: int32
+          type: integer
+        items:
+          items:
+            $ref: '#/components/schemas/AddressSchema'
+          nullable: true
+          type: array
+      type: object
+    Behavior:
+      additionalProperties: false
+      example:
+        validUserTypes:
+        - validUserTypes
+        - validUserTypes
+        name: name
+        requiresBehaviorIds:
+        - 1
+        - 1
+        systemRoles:
+        - systemRoles
+        - systemRoles
+        id: 0
+        isPrivate: true
+        categoryId: 6
+      properties:
+        id:
+          format: int32
+          type: integer
+        categoryId:
+          format: int32
+          type: integer
+        name:
+          nullable: true
+          type: string
+        requiresBehaviorIds:
+          items:
+            format: int32
+            type: integer
+          nullable: true
+          type: array
+        validUserTypes:
+          items:
+            type: string
+          nullable: true
+          type: array
+        isPrivate:
+          type: boolean
+        systemRoles:
+          items:
+            type: string
+          nullable: true
+          type: array
+      type: object
+    BehaviorCollectionBase:
+      additionalProperties: false
+      properties:
+        totalCount:
+          format: int32
+          type: integer
+        items:
+          items:
+            $ref: '#/components/schemas/Behavior'
+          nullable: true
+          type: array
+      type: object
+    BehaviorCollection:
+      additionalProperties: false
+      allOf:
+      - $ref: '#/components/schemas/BehaviorCollectionBase'
+      type: object
+    BehaviorCategory:
+      additionalProperties: false
+      example:
+        name: name
+        id: 0
+      properties:
+        id:
+          format: int32
+          type: integer
+        name:
+          nullable: true
+          type: string
+      type: object
+    BehaviorCategoryCollectionBase:
+      additionalProperties: false
+      properties:
+        totalCount:
+          format: int32
+          type: integer
+        items:
+          items:
+            $ref: '#/components/schemas/BehaviorCategory'
+          nullable: true
+          type: array
+      type: object
+    BehaviorCategoryCollection:
+      additionalProperties: false
+      allOf:
+      - $ref: '#/components/schemas/BehaviorCategoryCollectionBase'
+      type: object
+    CountryWithStates:
+      additionalProperties: false
+      example:
+        code: code
+        states:
+        - code: code
+          name: name
+          tags: tags
+        - code: code
+          name: name
+          tags: tags
+      properties:
+        code:
+          nullable: true
+          type: string
+        states:
+          items:
+            $ref: '#/components/schemas/ReferenceState'
+          nullable: true
+          type: array
+      type: object
+    CountryWithStatesCollection:
+      additionalProperties: false
+      example:
+        totalCount: 0
+        items:
+        - code: code
+          states:
+          - code: code
+            name: name
+            tags: tags
+          - code: code
+            name: name
+            tags: tags
+        - code: code
+          states:
+          - code: code
+            name: name
+            tags: tags
+          - code: code
+            name: name
+            tags: tags
+      properties:
+        totalCount:
+          format: int32
+          type: integer
+        items:
+          items:
+            $ref: '#/components/schemas/CountryWithStates'
+          nullable: true
+          type: array
+      type: object
+    ReferenceState:
+      additionalProperties: false
+      example:
+        code: code
+        name: name
+        tags: tags
+      properties:
+        code:
+          nullable: true
+          type: string
+        name:
+          nullable: true
+          type: string
+        tags:
+          nullable: true
+          type: string
+      type: object
+  securitySchemes:
+    bearerAuth:
+      bearerFormat: JWT
+      description: JWT Authorization header using the Bearer scheme.
+      scheme: bearer
+      type: http
+    clientOauth2:
+      flows:
+        clientCredentials:
+          scopes: {}
+          tokenUrl: /api/platform/applications/authtickets/oauth
+      type: oauth2
+

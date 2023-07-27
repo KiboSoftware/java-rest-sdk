@@ -1,0 +1,3519 @@
+openapi: 3.0.1
+info:
+  description: OpenAPI Spec for Kibo Shipping Admin Service
+  title: Kibo Shipping Admin Service
+servers:
+- description: TenantPod Host
+  url: "https://{tenantPodHost}/api"
+- description: Tenant Level Api
+  url: "https://t{tenantId}.{env}.mozu.com/api"
+  variables:
+    tenantId:
+      default: "0"
+      description: Id of the Tenant
+    env:
+      default: sandbox
+      enum:
+      - sandbox
+      - tp1
+      - tp2
+      - tp3
+      - tp4
+      - tp5
+      - stg1
+      - stg2
+- description: Site Level Api
+  url: "https://t{tenantId}-s{siteId}.{env}.mozu.com/api"
+  variables:
+    tenantId:
+      default: "0"
+      description: Id of the Tenant
+    siteId:
+      default: "0"
+      description: Id of the Site
+    env:
+      default: sandbox
+      enum:
+      - sandbox
+      - tp1
+      - tp2
+      - tp3
+      - tp4
+      - tp5
+      - stg1
+- description: HomePod Api
+  url: https://home.mozu.com/api
+- description: EURO Tenant Level Api
+  url: "https://t{tenantId}.{env}.euw1.kibocommerce.com/api"
+  variables:
+    tenantId:
+      default: "0"
+      description: Id of the Tenant
+    env:
+      default: sandbox
+      enum:
+      - sb
+      - tp1
+- description: EURO Site Level Api
+  url: "https://t{tenantId}-s{siteId}.{env}.euw1.kibocommerce.com/api"
+  variables:
+    tenantId:
+      default: "0"
+      description: Id of the Tenant
+    siteId:
+      default: "0"
+      description: Id of the Site
+    env:
+      default: sandbox
+      enum:
+      - sb
+      - tp1
+- description: EURO HomePod Api
+  url: https://home.euw1.kibocommerce.com/api
+security:
+- bearerAuth: []
+  clientOauth2: []
+paths:
+  /commerce/shipping/admin/carriers:
+    get:
+      description: ""
+      operationId: getConfigurations
+      parameters:
+      - description: "Used to page results from a query. Indicates the zero-based\
+          \ offset in the complete result set where the returned entities begin. For\
+          \ example, with a PageSize of 25, to get the 51st through the 75th items,\
+          \ startIndex=3. The default value is 0. Optional."
+        explode: true
+        in: query
+        name: startIndex
+        required: false
+        schema:
+          default: 0
+          format: int32
+          type: integer
+        style: form
+      - description: Used to page results from a query. Indicates the maximum number
+          of entities to return from a query. The default value is 20 and the maximum
+          value is 200. Optional.
+        explode: true
+        in: query
+        name: pageSize
+        required: false
+        schema:
+          default: 0
+          format: int32
+          type: integer
+        style: form
+      - description: The element to sort the results by and the order in which the
+          results appear. Either ascending (a-z) or descending (z-a) order. Optional.
+        explode: true
+        in: query
+        name: sortBy
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: "A set of filter expressions representing the search parameters\
+          \ for a query: eq=equals, ne=not equals, gt=greater than, lt = less than\
+          \ or equals, gt = greater than or equals, lt = less than or equals, sw =\
+          \ starts with, or cont = contains. Optional."
+        explode: true
+        in: query
+        name: filter
+        required: false
+        schema:
+          type: string
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CarrierConfigurationCollection'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/CarrierConfigurationCollection'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/CarrierConfigurationCollection'
+          description: Success
+      summary: Retrieves a list of Carrier Configurations according to any specified
+        filter criteria and sort options
+      tags:
+      - CarrierConfiguration
+      x-accepts: application/json
+  /commerce/shipping/admin/carriers/{carrierId}:
+    delete:
+      description: Delete an existing Carrier Configuration
+      operationId: deleteConfiguration
+      parameters:
+      - description: ""
+        explode: false
+        in: path
+        name: carrierId
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          description: Success
+      summary: Delete an existing Carrier Configuration
+      tags:
+      - CarrierConfiguration
+      x-accepts: application/json
+    get:
+      description: Get Carrier Configuration (for this particular site)
+      operationId: getConfiguration
+      parameters:
+      - description: ""
+        explode: false
+        in: path
+        name: carrierId
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CarrierConfiguration'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/CarrierConfiguration'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/CarrierConfiguration'
+          description: Success
+      summary: Get Carrier Configuration (for this particular site)
+      tags:
+      - CarrierConfiguration
+      x-accepts: application/json
+    post:
+      description: Create Carrier Configuration
+      operationId: createConfiguration
+      parameters:
+      - description: ""
+        explode: false
+        in: path
+        name: carrierId
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CarrierConfiguration'
+        description: ""
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CarrierConfiguration'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/CarrierConfiguration'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/CarrierConfiguration'
+          description: Success
+      summary: Create Carrier Configuration
+      tags:
+      - CarrierConfiguration
+      x-content-type: application/json
+      x-accepts: application/json
+    put:
+      description: Update an existing Carrier Configuration
+      operationId: updateConfiguration
+      parameters:
+      - description: ""
+        explode: false
+        in: path
+        name: carrierId
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CarrierConfiguration'
+        description: ""
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CarrierConfiguration'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/CarrierConfiguration'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/CarrierConfiguration'
+          description: Success
+      summary: Update an existing Carrier Configuration
+      tags:
+      - CarrierConfiguration
+      x-content-type: application/json
+      x-accepts: application/json
+  /commerce/shipping/global/carriers/{carrierId}/serviceTypes/{localeCode}:
+    get:
+      description: Used for retrieving the available service types for the Mozu Default
+        Application carriers
+      operationId: getCarrierServiceTypes
+      parameters:
+      - description: ""
+        explode: false
+        in: path
+        name: carrierId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: ""
+        explode: false
+        in: path
+        name: localeCode
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/ServiceType'
+                type: array
+            text/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/ServiceType'
+                type: array
+            text/plain:
+              schema:
+                items:
+                  $ref: '#/components/schemas/ServiceType'
+                type: array
+          description: Success
+      summary: Used for retrieving the available service types for the Mozu Default
+        Application carriers
+      tags:
+      - CarrierConfigurationGlobal
+      x-accepts: application/json
+  /commerce/shipping/global/carriers/serviceTypes/{localeCode}:
+    get:
+      description: Used for retrieving the available service types for the Mozu Default
+        Application carriers
+      operationId: getAllServiceTypes
+      parameters:
+      - description: ""
+        explode: false
+        in: path
+        name: localeCode
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/ServiceType'
+                type: array
+            text/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/ServiceType'
+                type: array
+            text/plain:
+              schema:
+                items:
+                  $ref: '#/components/schemas/ServiceType'
+                type: array
+          description: Success
+      summary: Used for retrieving the available service types for the Mozu Default
+        Application carriers
+      tags:
+      - CarrierConfigurationGlobal
+      x-accepts: application/json
+  /commerce/shipping/admin/carriers/credentials/{carrierId}:
+    delete:
+      description: hippingAdmin.Contracts.Carriers.CarrierCredential with the specified
+        configuration.
+      operationId: deleteCarrierCredential
+      parameters:
+      - description: The carrier ID.
+        explode: false
+        in: path
+        name: carrierId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: "The site ID, if any."
+        explode: true
+        in: query
+        name: siteId
+        required: false
+        schema:
+          format: int32
+          type: integer
+        style: form
+      - description: "The location group code, if any."
+        explode: true
+        in: query
+        name: locationGroupCode
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: "The location code, if any."
+        explode: true
+        in: query
+        name: locationCode
+        required: false
+        schema:
+          type: string
+        style: form
+      responses:
+        "200":
+          description: Success
+      summary: Deletes a Mozu
+      tags:
+      - CarrierCredential
+      x-accepts: application/json
+    get:
+      description: hippingAdmin.Contracts.Carriers.CarrierCredential with the specified
+        configuration.
+      operationId: getCarrierCredential
+      parameters:
+      - description: The carrier ID.
+        explode: false
+        in: path
+        name: carrierId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: "The site ID, if any."
+        explode: true
+        in: query
+        name: siteId
+        required: false
+        schema:
+          format: int32
+          type: integer
+        style: form
+      - description: "The location group code, if any."
+        explode: true
+        in: query
+        name: locationGroupCode
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: "The location code, if any."
+        explode: true
+        in: query
+        name: locationCode
+        required: false
+        schema:
+          type: string
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CarrierCredential'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/CarrierCredential'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/CarrierCredential'
+          description: Success
+      summary: Gets a Mozu
+      tags:
+      - CarrierCredential
+      x-accepts: application/json
+    post:
+      description: hippingAdmin.Contracts.Carriers.CarrierCredential.
+      operationId: createCarrierCredential
+      parameters:
+      - description: The carrier ID.
+        explode: false
+        in: path
+        name: carrierId
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CarrierCredential'
+        description: The carrier credential data.
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CarrierCredential'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/CarrierCredential'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/CarrierCredential'
+          description: Success
+      summary: Creates a Mozu
+      tags:
+      - CarrierCredential
+      x-content-type: application/json
+      x-accepts: application/json
+    put:
+      description: hippingAdmin.Contracts.Carriers.CarrierCredential with the specified
+        configuration.
+      operationId: updateCarrierCredential
+      parameters:
+      - description: The carrier ID.
+        explode: false
+        in: path
+        name: carrierId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: "The site ID, if any."
+        explode: true
+        in: query
+        name: siteId
+        required: false
+        schema:
+          format: int32
+          type: integer
+        style: form
+      - description: "The location group code, if any."
+        explode: true
+        in: query
+        name: locationGroupCode
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: "The location code, if any."
+        explode: true
+        in: query
+        name: locationCode
+        required: false
+        schema:
+          type: string
+        style: form
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CarrierCredential'
+        description: The carrier credential data.
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CarrierCredential'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/CarrierCredential'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/CarrierCredential'
+          description: Success
+      summary: Updates a Mozu
+      tags:
+      - CarrierCredential
+      x-content-type: application/json
+      x-accepts: application/json
+  /commerce/shipping/admin/carriers/credentials:
+    get:
+      description: hippingAdmin.Contracts.Carriers.CarrierCredentialCollection">collection</see>
+        of <see cref="T:Mozu.ShippingAdmin.Contracts.Carriers.CarrierCredential">carrier
+        credential</see> with the specified filters and options.
+      operationId: getCarrierCredentials
+      parameters:
+      - description: The starting index.
+        explode: true
+        in: query
+        name: startIndex
+        required: false
+        schema:
+          format: int32
+          type: integer
+        style: form
+      - description: The page size.
+        explode: true
+        in: query
+        name: pageSize
+        required: false
+        schema:
+          format: int32
+          type: integer
+        style: form
+      - description: Any sorting filters.
+        explode: true
+        in: query
+        name: sortBy
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Any query filters.
+        explode: true
+        in: query
+        name: filter
+        required: false
+        schema:
+          type: string
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CarrierCredentialCollection'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/CarrierCredentialCollection'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/CarrierCredentialCollection'
+          description: Success
+      summary: Returns a <see cref="T:Mozu
+      tags:
+      - CarrierCredential
+      x-accepts: application/json
+  /commerce/shipping/admin/carriers/credential-sets/{carrierId}:
+    post:
+      description: hippingAdmin.Contracts.Carriers.CarrierCredentialSet.
+      operationId: createCarrierCredentialSet
+      parameters:
+      - description: The carrier ID.
+        explode: false
+        in: path
+        name: carrierId
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CarrierCredentialSet'
+        description: The carrier credential set data.
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CarrierCredentialSet'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/CarrierCredentialSet'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/CarrierCredentialSet'
+          description: Success
+      summary: Creates a Mozu
+      tags:
+      - CarrierCredentialSet
+      x-content-type: application/json
+      x-accepts: application/json
+  /commerce/shipping/admin/carriers/credential-sets/{carrierId}/{code}:
+    delete:
+      description: hippingAdmin.Contracts.Carriers.CarrierCredentialSet with the specified
+        carrier and code.
+      operationId: deleteCarrierCredentialSet
+      parameters:
+      - description: The carrier ID.
+        explode: false
+        in: path
+        name: carrierId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: The carrier credential set code.
+        explode: false
+        in: path
+        name: code
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          description: Success
+      summary: Deletes a Mozu
+      tags:
+      - CarrierCredentialSet
+      x-accepts: application/json
+    get:
+      description: hippingAdmin.Contracts.Carriers.CarrierCredentialSet with the specified
+        carrier and code.
+      operationId: getCarrierCredentialSet
+      parameters:
+      - description: The carrier ID.
+        explode: false
+        in: path
+        name: carrierId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: The carrier credential set code.
+        explode: false
+        in: path
+        name: code
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CarrierCredentialSet'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/CarrierCredentialSet'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/CarrierCredentialSet'
+          description: Success
+      summary: Returns a Mozu
+      tags:
+      - CarrierCredentialSet
+      x-accepts: application/json
+    put:
+      description: hippingAdmin.Contracts.Carriers.CarrierCredentialSet with the specified
+        carrier and code.
+      operationId: updateCarrierCredentialSet
+      parameters:
+      - description: The carrier ID.
+        explode: false
+        in: path
+        name: carrierId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: The carrier credential set code.
+        explode: false
+        in: path
+        name: code
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CarrierCredentialSet'
+        description: The carrier credential set data.
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CarrierCredentialSet'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/CarrierCredentialSet'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/CarrierCredentialSet'
+          description: Success
+      summary: Updates a Mozu
+      tags:
+      - CarrierCredentialSet
+      x-content-type: application/json
+      x-accepts: application/json
+  /commerce/shipping/admin/carriers/credential-sets:
+    get:
+      description: hippingAdmin.Contracts.Carriers.CarrierCredentialSetCollection">collection</see>
+        of <see cref="T:Mozu.ShippingAdmin.Contracts.Carriers.CarrierCredentialSet">carrier
+        credential sets</see> with the specified filters and options.
+      operationId: getCarrierCredentialSets
+      parameters:
+      - description: The starting index.
+        explode: true
+        in: query
+        name: startIndex
+        required: false
+        schema:
+          format: int32
+          type: integer
+        style: form
+      - description: The page size.
+        explode: true
+        in: query
+        name: pageSize
+        required: false
+        schema:
+          format: int32
+          type: integer
+        style: form
+      - description: Any sorting filters.
+        explode: true
+        in: query
+        name: sortBy
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Any query filters.
+        explode: true
+        in: query
+        name: filter
+        required: false
+        schema:
+          type: string
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CarrierCredentialSetCollection'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/CarrierCredentialSetCollection'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/CarrierCredentialSetCollection'
+          description: Success
+      summary: Returns a <see cref="T:Mozu
+      tags:
+      - CarrierCredentialSet
+      x-accepts: application/json
+  /commerce/shipping/admin/carriers/definitions/{carrierId}:
+    get:
+      description: hippingAdmin.Contracts.Carriers.CarrierDefinition for the specified
+        carrier.
+      operationId: getCarrierDefinition
+      parameters:
+      - description: The carrier ID.
+        explode: false
+        in: path
+        name: carrierId
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CarrierDefinition'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/CarrierDefinition'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/CarrierDefinition'
+          description: Success
+      summary: Returns a Mozu
+      tags:
+      - CarrierDefinition
+      x-accepts: application/json
+  /commerce/shipping/admin/carriers/definitions:
+    get:
+      description: hippingAdmin.Contracts.Carriers.CarrierDefinitions for the specified
+        tenant.
+      operationId: getCarrierDefinitions
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/CarrierDefinition'
+                type: array
+            text/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/CarrierDefinition'
+                type: array
+            text/plain:
+              schema:
+                items:
+                  $ref: '#/components/schemas/CarrierDefinition'
+                type: array
+          description: Success
+      summary: Returns a list of Mozu
+      tags:
+      - CarrierDefinition
+      x-accepts: application/json
+  /commerce/shipping/admin/profiles/{profilecode}/rules/orderhandlingfees:
+    get:
+      description: Get Order Handling Fee Rules
+      operationId: getOrderHandlingFeeRules
+      parameters:
+      - explode: false
+        in: path
+        name: profilecode
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HandlingFeeRuleCollection'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/HandlingFeeRuleCollection'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/HandlingFeeRuleCollection'
+          description: Success
+      summary: Get Order Handling Fee Rules
+      tags:
+      - ShippingProfile
+      x-accepts: application/json
+    post:
+      description: Create Order Handling Fee Rule
+      operationId: createOrderHandlingFeeRule
+      parameters:
+      - explode: false
+        in: path
+        name: profilecode
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/HandlingFeeRule'
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HandlingFeeRule'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/HandlingFeeRule'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/HandlingFeeRule'
+          description: Success
+      summary: Create Order Handling Fee Rule
+      tags:
+      - ShippingProfile
+      x-content-type: application/json
+      x-accepts: application/json
+  /commerce/shipping/admin/profiles/{profilecode}/rules/orderhandlingfees/{id}:
+    delete:
+      description: Delete Order Handling Fee Rule
+      operationId: deleteOrderHandlingFeeRule
+      parameters:
+      - explode: false
+        in: path
+        name: profilecode
+        required: true
+        schema:
+          type: string
+        style: simple
+      - explode: false
+        in: path
+        name: id
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ShippingAdminHttpResponseMessage'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ShippingAdminHttpResponseMessage'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ShippingAdminHttpResponseMessage'
+          description: Success
+      summary: Delete Order Handling Fee Rule
+      tags:
+      - ShippingProfile
+      x-accepts: application/json
+    get:
+      description: Get Order Handling Fee Rule
+      operationId: getOrderHandlingFeeRule
+      parameters:
+      - explode: false
+        in: path
+        name: profilecode
+        required: true
+        schema:
+          type: string
+        style: simple
+      - explode: false
+        in: path
+        name: id
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HandlingFeeRule'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/HandlingFeeRule'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/HandlingFeeRule'
+          description: Success
+      summary: Get Order Handling Fee Rule
+      tags:
+      - ShippingProfile
+      x-accepts: application/json
+    put:
+      description: Update Order Handling Fee Rule
+      operationId: updateOrderHandlingFeeRule
+      parameters:
+      - explode: false
+        in: path
+        name: profilecode
+        required: true
+        schema:
+          type: string
+        style: simple
+      - explode: false
+        in: path
+        name: id
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/HandlingFeeRule'
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HandlingFeeRule'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/HandlingFeeRule'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/HandlingFeeRule'
+          description: Success
+      summary: Update Order Handling Fee Rule
+      tags:
+      - ShippingProfile
+      x-content-type: application/json
+      x-accepts: application/json
+  /commerce/shipping/admin/profiles/{profilecode}/rules/producthandlingfees:
+    get:
+      description: Get Product Handling Fee Rules
+      operationId: getProductHandlingFeeRules
+      parameters:
+      - explode: false
+        in: path
+        name: profilecode
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HandlingFeeRuleCollection'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/HandlingFeeRuleCollection'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/HandlingFeeRuleCollection'
+          description: Success
+      summary: Get Product Handling Fee Rules
+      tags:
+      - ShippingProfile
+      x-accepts: application/json
+    post:
+      description: Create Product Handling Fee Rule
+      operationId: createProductHandlingFeeRule
+      parameters:
+      - explode: false
+        in: path
+        name: profilecode
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/HandlingFeeRule'
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HandlingFeeRule'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/HandlingFeeRule'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/HandlingFeeRule'
+          description: Success
+      summary: Create Product Handling Fee Rule
+      tags:
+      - ShippingProfile
+      x-content-type: application/json
+      x-accepts: application/json
+  /commerce/shipping/admin/profiles/{profilecode}/rules/producthandlingfees/{id}:
+    delete:
+      description: Delete Product Handling Fee Rule
+      operationId: deleteProductHandlingFeeRule
+      parameters:
+      - explode: false
+        in: path
+        name: profilecode
+        required: true
+        schema:
+          type: string
+        style: simple
+      - explode: false
+        in: path
+        name: id
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          description: Success
+      summary: Delete Product Handling Fee Rule
+      tags:
+      - ShippingProfile
+      x-accepts: application/json
+    get:
+      description: Get Product Handling Fee Rule
+      operationId: getProductHandlingFeeRule
+      parameters:
+      - explode: false
+        in: path
+        name: profilecode
+        required: true
+        schema:
+          type: string
+        style: simple
+      - explode: false
+        in: path
+        name: id
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HandlingFeeRule'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/HandlingFeeRule'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/HandlingFeeRule'
+          description: Success
+      summary: Get Product Handling Fee Rule
+      tags:
+      - ShippingProfile
+      x-accepts: application/json
+    put:
+      description: Update Product Handling Fee Rule
+      operationId: updateProductHandlingFeeRule
+      parameters:
+      - explode: false
+        in: path
+        name: profilecode
+        required: true
+        schema:
+          type: string
+        style: simple
+      - explode: false
+        in: path
+        name: id
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/HandlingFeeRule'
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HandlingFeeRule'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/HandlingFeeRule'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/HandlingFeeRule'
+          description: Success
+      summary: Update Product Handling Fee Rule
+      tags:
+      - ShippingProfile
+      x-content-type: application/json
+      x-accepts: application/json
+  /commerce/shipping/admin/profiles/{profilecode}/rules/shippinginclusions:
+    get:
+      description: Get Shipping Inclusion Rules
+      operationId: getShippingInclusionRules
+      parameters:
+      - explode: false
+        in: path
+        name: profilecode
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ShippingInclusionRuleCollection'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ShippingInclusionRuleCollection'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ShippingInclusionRuleCollection'
+          description: Success
+      summary: Get Shipping Inclusion Rules
+      tags:
+      - ShippingProfile
+      x-accepts: application/json
+    post:
+      description: Create Shipping Inclusion Rule
+      operationId: createShippingInclusionRule
+      parameters:
+      - explode: false
+        in: path
+        name: profilecode
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ShippingInclusionRule'
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ShippingInclusionRule'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ShippingInclusionRule'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ShippingInclusionRule'
+          description: Success
+      summary: Create Shipping Inclusion Rule
+      tags:
+      - ShippingProfile
+      x-content-type: application/json
+      x-accepts: application/json
+  /commerce/shipping/admin/profiles/{profilecode}/rules/shippinginclusions/{id}:
+    delete:
+      description: Delete Shipping Inclusion Rule
+      operationId: deleteShippingInclusionRule
+      parameters:
+      - explode: false
+        in: path
+        name: profilecode
+        required: true
+        schema:
+          type: string
+        style: simple
+      - explode: false
+        in: path
+        name: id
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          description: Success
+      summary: Delete Shipping Inclusion Rule
+      tags:
+      - ShippingProfile
+      x-accepts: application/json
+    get:
+      description: Get Shipping Inclusion Rule
+      operationId: getShippingInclusionRule
+      parameters:
+      - explode: false
+        in: path
+        name: profilecode
+        required: true
+        schema:
+          type: string
+        style: simple
+      - explode: false
+        in: path
+        name: id
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ShippingInclusionRule'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ShippingInclusionRule'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ShippingInclusionRule'
+          description: Success
+      summary: Get Shipping Inclusion Rule
+      tags:
+      - ShippingProfile
+      x-accepts: application/json
+    put:
+      description: Update Shipping Inclusion Rule
+      operationId: updateShippingInclusionRule
+      parameters:
+      - explode: false
+        in: path
+        name: profilecode
+        required: true
+        schema:
+          type: string
+        style: simple
+      - explode: false
+        in: path
+        name: id
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ShippingInclusionRule'
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ShippingInclusionRule'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ShippingInclusionRule'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ShippingInclusionRule'
+          description: Success
+      summary: Update Shipping Inclusion Rule
+      tags:
+      - ShippingProfile
+      x-content-type: application/json
+      x-accepts: application/json
+  /commerce/shipping/admin/profiles:
+    get:
+      description: Get Shipping Profiles for the Tenant/Master Catalog
+      operationId: getProfiles
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ShippingProfileCollection'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ShippingProfileCollection'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ShippingProfileCollection'
+          description: Success
+      summary: Get Shipping Profiles for the Tenant/Master Catalog
+      tags:
+      - ShippingProfile
+      x-accepts: application/json
+  /commerce/shipping/admin/profiles/{profilecode}/shippingstates:
+    get:
+      description: ""
+      operationId: getStates
+      parameters:
+      - explode: false
+        in: path
+        name: profileCode
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/ShippingStates'
+                type: array
+            text/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/ShippingStates'
+                type: array
+            text/plain:
+              schema:
+                items:
+                  $ref: '#/components/schemas/ShippingStates'
+                type: array
+          description: Success
+      summary: Get Configured Shipping States
+      tags:
+      - ShippingProfile
+      x-accepts: application/json
+    put:
+      description: Update States
+      operationId: updateStates
+      parameters:
+      - explode: false
+        in: path
+        name: profilecode
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              items:
+                $ref: '#/components/schemas/ShippingStates'
+              type: array
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/ShippingStates'
+                type: array
+            text/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/ShippingStates'
+                type: array
+            text/plain:
+              schema:
+                items:
+                  $ref: '#/components/schemas/ShippingStates'
+                type: array
+          description: Success
+      summary: Update States
+      tags:
+      - ShippingProfile
+      x-content-type: application/json
+      x-accepts: application/json
+  /commerce/targetrules:
+    get:
+      description: ""
+      operationId: getTargetRules
+      parameters:
+      - description: Used to page results from a query. Indicates the zero-based offset
+          in the complete result set where the returned entities begin. The default
+          value is 0.
+        explode: true
+        in: query
+        name: startIndex
+        required: false
+        schema:
+          default: 0
+          format: int32
+          type: integer
+        style: form
+      - description: Used to page results from a query. Indicates the maximum number
+          of entities to return from a query. The default value is 20 and the maximum
+          value is 200.
+        explode: true
+        in: query
+        name: pageSize
+        required: false
+        schema:
+          default: 0
+          format: int32
+          type: integer
+        style: form
+      - description: The element to sort the results by and the order in which the
+          results appear. Either ascending (a-z) or descending (z-a) order.
+        explode: true
+        in: query
+        name: sortBy
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: "A set of filter expressions representing the search parameters\
+          \ for a query: eq=equals, ne=not equals, gt=greater than, lt = less than\
+          \ or equals, gt = greater than or equals, lt = less than or equals, sw =\
+          \ starts with, or cont = contains. Optional."
+        explode: true
+        in: query
+        name: filter
+        required: false
+        schema:
+          type: string
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TargetRuleCollection'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/TargetRuleCollection'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/TargetRuleCollection'
+          description: Success
+      summary: Retrieves a list of TargetRules according to any specified filter criteria
+        and sort options
+      tags:
+      - TargetRules
+      x-accepts: application/json
+    post:
+      description: Create Target Rule
+      operationId: createTargetRule
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TargetRule'
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TargetRule'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/TargetRule'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/TargetRule'
+          description: Success
+      summary: Create Target Rule
+      tags:
+      - TargetRules
+      x-content-type: application/json
+      x-accepts: application/json
+  /commerce/targetrules/{code}:
+    delete:
+      description: Delete Target Rule
+      operationId: deleteTargetRule
+      parameters:
+      - explode: false
+        in: path
+        name: code
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          description: Success
+      summary: Delete Target Rule
+      tags:
+      - TargetRules
+      x-accepts: application/json
+    get:
+      description: Get Target Rule
+      operationId: getTargetRule
+      parameters:
+      - explode: false
+        in: path
+        name: code
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TargetRule'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/TargetRule'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/TargetRule'
+          description: Success
+      summary: Get Target Rule
+      tags:
+      - TargetRules
+      x-accepts: application/json
+    put:
+      description: Update Target Rule
+      operationId: updateTargetRule
+      parameters:
+      - explode: false
+        in: path
+        name: code
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TargetRule'
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TargetRule'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/TargetRule'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/TargetRule'
+          description: Success
+      summary: Update Target Rule
+      tags:
+      - TargetRules
+      x-content-type: application/json
+      x-accepts: application/json
+  /commerce/targetrules/validate:
+    post:
+      description: Validate Target Rule
+      operationId: validateTargetRule
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TargetRule'
+      responses:
+        "200":
+          description: Success
+      summary: Validate Target Rule
+      tags:
+      - TargetRules
+      x-content-type: application/json
+      x-accepts: application/json
+components:
+  schemas:
+    Setting:
+      additionalProperties: false
+      example:
+        value: value
+        key: key
+      properties:
+        key:
+          nullable: true
+          type: string
+        value:
+          nullable: true
+          type: string
+      type: object
+    CustomTableRateContent:
+      additionalProperties: false
+      description: ""
+      example:
+        localeCode: localeCode
+        name: name
+      properties:
+        localeCode:
+          nullable: true
+          type: string
+        name:
+          nullable: true
+          type: string
+      type: object
+    CustomTableRate:
+      additionalProperties: false
+      description: ""
+      example:
+        rateType: rateType
+        deliveryDuration: deliveryDuration
+        id: id
+        value: 5.637376656633329
+        content:
+          localeCode: localeCode
+          name: name
+      properties:
+        id:
+          description: The Id of the CustomTableRate
+          nullable: true
+          type: string
+        content:
+          $ref: '#/components/schemas/CustomTableRateContent'
+        rateType:
+          description: "The type of this rate\r\n<value>see ../commerce/catalog/admin/shipping/global/carriers/custom/serviceTypes/en-us</value>"
+          nullable: true
+          type: string
+        value:
+          description: The value of this custom table rate
+          format: double
+          type: number
+        deliveryDuration:
+          description: "The number of days it takes to ship the item on custom carrier\
+            \ types. \r\nAllowed values : EXPRESS, 1_DAY, 2_DAY, 3_DAY"
+          nullable: true
+          type: string
+      type: object
+    CarrierConfiguration:
+      additionalProperties: false
+      example:
+        auditInfo:
+          updateDate: 2000-01-23T04:56:07.000+00:00
+          createBy: createBy
+          updateBy: updateBy
+          createDate: 2000-01-23T04:56:07.000+00:00
+        settings:
+        - value: value
+          key: key
+        - value: value
+          key: key
+        enabledForReturns: true
+        areCredentialsSet: true
+        id: id
+        customTableRates:
+        - rateType: rateType
+          deliveryDuration: deliveryDuration
+          id: id
+          value: 5.637376656633329
+          content:
+            localeCode: localeCode
+            name: name
+        - rateType: rateType
+          deliveryDuration: deliveryDuration
+          id: id
+          value: 5.637376656633329
+          content:
+            localeCode: localeCode
+            name: name
+        enabled: true
+      properties:
+        id:
+          description: "Carrier Id (usually a shortname of a carrier, e.g. FedEx)"
+          nullable: true
+          type: string
+        enabled:
+          description: Indicates that this CarrierConfiguration should be used at
+            runtime
+          type: boolean
+        enabledForReturns:
+          description: Indicates that this CarrierConfiguration should be the default
+            for returns shipping
+          type: boolean
+        settings:
+          description: Carrier Configuration Settings
+          items:
+            $ref: '#/components/schemas/Setting'
+          nullable: true
+          type: array
+        customTableRates:
+          description: "A list of custom table rates for the 'Custom' carrier\r\n\
+            <remarks>only use this if Id == 'Custom'</remarks>"
+          items:
+            $ref: '#/components/schemas/CustomTableRate'
+          nullable: true
+          type: array
+        auditInfo:
+          $ref: '#/components/schemas/AdminUserAuditInfo'
+        areCredentialsSet:
+          description: "Indicates whether the credentials/passwords are set.\r\n<remarks>Credetials\
+            \ are updated only if this flag is set to true</remarks>"
+          type: boolean
+      type: object
+    CarrierConfigurationCollection:
+      additionalProperties: false
+      description: Collection of carrrier configurations.
+      example:
+        startIndex: 0
+        pageCount: 1
+        pageSize: 6
+        totalCount: 5
+        items:
+        - auditInfo:
+            updateDate: 2000-01-23T04:56:07.000+00:00
+            createBy: createBy
+            updateBy: updateBy
+            createDate: 2000-01-23T04:56:07.000+00:00
+          settings:
+          - value: value
+            key: key
+          - value: value
+            key: key
+          enabledForReturns: true
+          areCredentialsSet: true
+          id: id
+          customTableRates:
+          - rateType: rateType
+            deliveryDuration: deliveryDuration
+            id: id
+            value: 5.637376656633329
+            content:
+              localeCode: localeCode
+              name: name
+          - rateType: rateType
+            deliveryDuration: deliveryDuration
+            id: id
+            value: 5.637376656633329
+            content:
+              localeCode: localeCode
+              name: name
+          enabled: true
+        - auditInfo:
+            updateDate: 2000-01-23T04:56:07.000+00:00
+            createBy: createBy
+            updateBy: updateBy
+            createDate: 2000-01-23T04:56:07.000+00:00
+          settings:
+          - value: value
+            key: key
+          - value: value
+            key: key
+          enabledForReturns: true
+          areCredentialsSet: true
+          id: id
+          customTableRates:
+          - rateType: rateType
+            deliveryDuration: deliveryDuration
+            id: id
+            value: 5.637376656633329
+            content:
+              localeCode: localeCode
+              name: name
+          - rateType: rateType
+            deliveryDuration: deliveryDuration
+            id: id
+            value: 5.637376656633329
+            content:
+              localeCode: localeCode
+              name: name
+          enabled: true
+      properties:
+        startIndex:
+          format: int32
+          type: integer
+        pageSize:
+          format: int32
+          type: integer
+        pageCount:
+          format: int32
+          type: integer
+        totalCount:
+          format: int32
+          type: integer
+        items:
+          items:
+            $ref: '#/components/schemas/CarrierConfiguration'
+          nullable: true
+          type: array
+      type: object
+    ServiceTypeLocalizedContent:
+      additionalProperties: false
+      example:
+        localeCode: localeCode
+        name: name
+      properties:
+        localeCode:
+          nullable: true
+          type: string
+        name:
+          nullable: true
+          type: string
+      type: object
+    ServiceType:
+      additionalProperties: false
+      description: Service Type aka Shipping Method
+      example:
+        code: code
+        deliveryDuration: deliveryDuration
+        content:
+          localeCode: localeCode
+          name: name
+      properties:
+        code:
+          description: Unique Service Type Code for a particular Carrier
+          nullable: true
+          type: string
+        deliveryDuration:
+          nullable: true
+          type: string
+        content:
+          $ref: '#/components/schemas/ServiceTypeLocalizedContent'
+      type: object
+    CarrierCredentialSetValue:
+      additionalProperties: false
+      description: A key-value pair associated with a Mozu.ShippingAdmin.Contracts.Carriers.CarrierCredentialSet.
+      example:
+        value: value
+        key: key
+      properties:
+        key:
+          nullable: true
+          type: string
+        value:
+          nullable: true
+          type: string
+      type: object
+    CarrierCredentialSet:
+      additionalProperties: false
+      description: "Stores a set of <see cref=\"T:Mozu.ShippingAdmin.Contracts.Carriers.CarrierCredentialSetValue\"\
+        >carrier credential key-value pairs</see>.\r\nSets are stored at the tenant\
+        \ level and referenced by a Mozu.ShippingAdmin.Contracts.Carriers.CarrierCredential."
+      example:
+        auditInfo:
+          updateDate: 2000-01-23T04:56:07.000+00:00
+          createBy: createBy
+          updateBy: updateBy
+          createDate: 2000-01-23T04:56:07.000+00:00
+        code: code
+        values:
+        - value: value
+          key: key
+        - value: value
+          key: key
+        name: name
+        integrationId: integrationId
+        carrierId: carrierId
+      properties:
+        carrierId:
+          description: "The Carrier ID associated with this credential set.\r\nUsually\
+            \ the short name of a carrier (e.g., \"FedEx\")."
+          nullable: true
+          type: string
+        code:
+          description: "A unique code identifying this credential set.\r\nThe code\
+            \ is only guaranteed to be unique at the tenant and carrier level."
+          nullable: true
+          type: string
+        name:
+          description: "A name (i.e., nickname) for this credential set."
+          nullable: true
+          type: string
+        values:
+          description: A collection of values contained in this credential set.
+          items:
+            $ref: '#/components/schemas/CarrierCredentialSetValue'
+          nullable: true
+          type: array
+        integrationId:
+          description: Specifies the ID returned from an integration.
+          nullable: true
+          type: string
+        auditInfo:
+          $ref: '#/components/schemas/AdminUserAuditInfo'
+      type: object
+    CarrierCredential:
+      additionalProperties: false
+      description: "Stores a reference to a Mozu.ShippingAdmin.Contracts.Carriers.CarrierCredentialSet\
+        \ for use at different levels.\r\nValid levels include Site, Location Group,\
+        \ and Location. Different levels may be used for rates versus labels.\r\n\
+        Site level is overriden by Location Group level which is overriden by Location\
+        \ level."
+      example:
+        credentialSet:
+          auditInfo:
+            updateDate: 2000-01-23T04:56:07.000+00:00
+            createBy: createBy
+            updateBy: updateBy
+            createDate: 2000-01-23T04:56:07.000+00:00
+          code: code
+          values:
+          - value: value
+            key: key
+          - value: value
+            key: key
+          name: name
+          integrationId: integrationId
+          carrierId: carrierId
+        auditInfo:
+          updateDate: 2000-01-23T04:56:07.000+00:00
+          createBy: createBy
+          updateBy: updateBy
+          createDate: 2000-01-23T04:56:07.000+00:00
+        locationGroupCode: locationGroupCode
+        siteId: 0
+        carrierId: carrierId
+        locationCode: locationCode
+      properties:
+        carrierId:
+          description: "The Carrier ID associated with this carrier credential.\r\n\
+            Usually the short name of a carrier (e.g., \"FedEx\")."
+          nullable: true
+          type: string
+        siteId:
+          description: "The Site ID associated with this carrier credential, if any."
+          format: int32
+          nullable: true
+          type: integer
+        locationGroupCode:
+          description: "The Location Group Code associated with this carrier credential,\
+            \ if any."
+          nullable: true
+          type: string
+        locationCode:
+          description: "The Location Code associated with this carrier credential,\
+            \ if any."
+          nullable: true
+          type: string
+        credentialSet:
+          $ref: '#/components/schemas/CarrierCredentialSet'
+        auditInfo:
+          $ref: '#/components/schemas/AdminUserAuditInfo'
+      type: object
+    CarrierCredentialCollection:
+      additionalProperties: false
+      description: A collection of <see cref="T:Mozu.ShippingAdmin.Contracts.Carriers.CarrierCredential">carrier
+        credentials</see>.
+      example:
+        startIndex: 0
+        pageCount: 1
+        pageSize: 6
+        totalCount: 5
+        items:
+        - credentialSet:
+            auditInfo:
+              updateDate: 2000-01-23T04:56:07.000+00:00
+              createBy: createBy
+              updateBy: updateBy
+              createDate: 2000-01-23T04:56:07.000+00:00
+            code: code
+            values:
+            - value: value
+              key: key
+            - value: value
+              key: key
+            name: name
+            integrationId: integrationId
+            carrierId: carrierId
+          auditInfo:
+            updateDate: 2000-01-23T04:56:07.000+00:00
+            createBy: createBy
+            updateBy: updateBy
+            createDate: 2000-01-23T04:56:07.000+00:00
+          locationGroupCode: locationGroupCode
+          siteId: 0
+          carrierId: carrierId
+          locationCode: locationCode
+        - credentialSet:
+            auditInfo:
+              updateDate: 2000-01-23T04:56:07.000+00:00
+              createBy: createBy
+              updateBy: updateBy
+              createDate: 2000-01-23T04:56:07.000+00:00
+            code: code
+            values:
+            - value: value
+              key: key
+            - value: value
+              key: key
+            name: name
+            integrationId: integrationId
+            carrierId: carrierId
+          auditInfo:
+            updateDate: 2000-01-23T04:56:07.000+00:00
+            createBy: createBy
+            updateBy: updateBy
+            createDate: 2000-01-23T04:56:07.000+00:00
+          locationGroupCode: locationGroupCode
+          siteId: 0
+          carrierId: carrierId
+          locationCode: locationCode
+      properties:
+        startIndex:
+          format: int32
+          type: integer
+        pageSize:
+          format: int32
+          type: integer
+        pageCount:
+          format: int32
+          type: integer
+        totalCount:
+          format: int32
+          type: integer
+        items:
+          items:
+            $ref: '#/components/schemas/CarrierCredential'
+          nullable: true
+          type: array
+      type: object
+    CarrierCredentialSetCollection:
+      additionalProperties: false
+      description: A collection of <see cref="T:Mozu.ShippingAdmin.Contracts.Carriers.CarrierCredentialSet">carrier
+        credential sets</see>.
+      example:
+        startIndex: 0
+        pageCount: 1
+        pageSize: 6
+        totalCount: 5
+        items:
+        - auditInfo:
+            updateDate: 2000-01-23T04:56:07.000+00:00
+            createBy: createBy
+            updateBy: updateBy
+            createDate: 2000-01-23T04:56:07.000+00:00
+          code: code
+          values:
+          - value: value
+            key: key
+          - value: value
+            key: key
+          name: name
+          integrationId: integrationId
+          carrierId: carrierId
+        - auditInfo:
+            updateDate: 2000-01-23T04:56:07.000+00:00
+            createBy: createBy
+            updateBy: updateBy
+            createDate: 2000-01-23T04:56:07.000+00:00
+          code: code
+          values:
+          - value: value
+            key: key
+          - value: value
+            key: key
+          name: name
+          integrationId: integrationId
+          carrierId: carrierId
+      properties:
+        startIndex:
+          format: int32
+          type: integer
+        pageSize:
+          format: int32
+          type: integer
+        pageCount:
+          format: int32
+          type: integer
+        totalCount:
+          format: int32
+          type: integer
+        items:
+          items:
+            $ref: '#/components/schemas/CarrierCredentialSet'
+          nullable: true
+          type: array
+      type: object
+    CarrierCredentialSetMetadataDataType:
+      description: The type of field stored in a Mozu.ShippingAdmin.Contracts.Carriers.CarrierCredentialSetMetadata
+        item.
+      enum:
+      - String
+      - Integer
+      - Boolean
+      - Password
+      format: ""
+      type: string
+    CarrierCredentialSetMetadataLocalizedContent:
+      additionalProperties: false
+      description: The localized content for a Mozu.ShippingAdmin.Contracts.Carriers.CarrierCredentialSetMetadata
+        item.
+      example:
+        localeCode: localeCode
+        description: description
+        label: label
+      properties:
+        localeCode:
+          nullable: true
+          type: string
+        label:
+          nullable: true
+          type: string
+        description:
+          nullable: true
+          type: string
+      type: object
+    CarrierCredentialSetMetadata:
+      additionalProperties: false
+      description: "The metadata for a single field on a Mozu.ShippingAdmin.Contracts.Carriers.CarrierCredentialSet.\r\
+        \nThis metadata is used during carrier installation and carrier credential\
+        \ set validation."
+      example:
+        localizations:
+        - localeCode: localeCode
+          description: description
+          label: label
+        - localeCode: localeCode
+          description: description
+          label: label
+        dataType: null
+        name: name
+        required: true
+      properties:
+        name:
+          nullable: true
+          type: string
+        dataType:
+          $ref: '#/components/schemas/CarrierCredentialSetMetadataDataType'
+        required:
+          type: boolean
+        localizations:
+          items:
+            $ref: '#/components/schemas/CarrierCredentialSetMetadataLocalizedContent'
+          nullable: true
+          type: array
+      type: object
+    CarrierDefinition:
+      additionalProperties: false
+      description: "A carrier definition including config field metadata.\r\nCan either\
+        \ be a built-in system carrier or an Extensible Carrier installed via a <see\
+        \ cref=\"T:Mozu.ShippingAdmin.Contracts.Carriers.CarrierInstallation\">carrier\
+        \ installation</see>."
+      example:
+        auditInfo:
+          updateDate: 2000-01-23T04:56:07.000+00:00
+          createBy: createBy
+          updateBy: updateBy
+          createDate: 2000-01-23T04:56:07.000+00:00
+        name: name
+        description: description
+        certified: true
+        carrierId: carrierId
+        isBuiltIn: true
+        configFields:
+        - localizations:
+          - localeCode: localeCode
+            description: description
+            label: label
+          - localeCode: localeCode
+            description: description
+            label: label
+          dataType: null
+          name: name
+          required: true
+        - localizations:
+          - localeCode: localeCode
+            description: description
+            label: label
+          - localeCode: localeCode
+            description: description
+            label: label
+          dataType: null
+          name: name
+          required: true
+        logoUrl: logoUrl
+      properties:
+        carrierId:
+          nullable: true
+          type: string
+        isBuiltIn:
+          type: boolean
+        certified:
+          nullable: true
+          type: boolean
+        name:
+          nullable: true
+          type: string
+        description:
+          nullable: true
+          type: string
+        logoUrl:
+          nullable: true
+          type: string
+        configFields:
+          items:
+            $ref: '#/components/schemas/CarrierCredentialSetMetadata'
+          nullable: true
+          type: array
+        auditInfo:
+          $ref: '#/components/schemas/AdminUserAuditInfo'
+      type: object
+    HandlingFeeRule:
+      additionalProperties: false
+      description: "An object to group a handling fee with zones, rules, and servicetypes"
+      example:
+        auditInfo:
+          updateDate: 2000-01-23T04:56:07.000+00:00
+          createBy: createBy
+          updateBy: updateBy
+          createDate: 2000-01-23T04:56:07.000+00:00
+        sequence: 6
+        productTargetRuleCodes:
+        - productTargetRuleCodes
+        - productTargetRuleCodes
+        valueType: valueType
+        serviceTypes:
+        - code: code
+          deliveryDuration: deliveryDuration
+          content:
+            localeCode: localeCode
+            name: name
+        - code: code
+          deliveryDuration: deliveryDuration
+          content:
+            localeCode: localeCode
+            name: name
+        appliesTo: appliesTo
+        id: id
+        value: 1.4658129805029452
+        shippingTargetRuleCodes:
+        - shippingTargetRuleCodes
+        - shippingTargetRuleCodes
+      properties:
+        id:
+          description: The system generated id for this rule
+          nullable: true
+          type: string
+        sequence:
+          description: The sequence in which this rule is preferred over others
+          format: int32
+          type: integer
+        shippingTargetRuleCodes:
+          description: "The shipping target rule codes associated with this rule\r\
+            \n<remarks>leave empty or null to denote all destinations</remarks>"
+          items:
+            type: string
+          nullable: true
+          type: array
+        productTargetRuleCodes:
+          description: "the product target rule codes associated with this rule\r\n\
+            <remarks>leave empty or null to denote all products</remarks>"
+          items:
+            type: string
+          nullable: true
+          type: array
+        serviceTypes:
+          description: "the servicetypes associated with this rule\r\n<remarks>leave\
+            \ empty or null to denote all carriers and subsequent service types</remarks>"
+          items:
+            $ref: '#/components/schemas/ServiceType'
+          nullable: true
+          type: array
+        valueType:
+          description: "The type of this handling fee\r\n<value>percentage</value><value>flatrate</value>"
+          nullable: true
+          type: string
+        appliesTo:
+          description: "The level at which this fee applies\r\n<value>shippingrate</value><value>order</value>"
+          nullable: true
+          type: string
+        value:
+          description: The value of this fee
+          format: double
+          type: number
+        auditInfo:
+          $ref: '#/components/schemas/AdminUserAuditInfo'
+      type: object
+    HandlingFeeRuleCollection:
+      additionalProperties: false
+      description: A collection of FeeGroups
+      example:
+        totalCount: 0
+        items:
+        - auditInfo:
+            updateDate: 2000-01-23T04:56:07.000+00:00
+            createBy: createBy
+            updateBy: updateBy
+            createDate: 2000-01-23T04:56:07.000+00:00
+          sequence: 6
+          productTargetRuleCodes:
+          - productTargetRuleCodes
+          - productTargetRuleCodes
+          valueType: valueType
+          serviceTypes:
+          - code: code
+            deliveryDuration: deliveryDuration
+            content:
+              localeCode: localeCode
+              name: name
+          - code: code
+            deliveryDuration: deliveryDuration
+            content:
+              localeCode: localeCode
+              name: name
+          appliesTo: appliesTo
+          id: id
+          value: 1.4658129805029452
+          shippingTargetRuleCodes:
+          - shippingTargetRuleCodes
+          - shippingTargetRuleCodes
+        - auditInfo:
+            updateDate: 2000-01-23T04:56:07.000+00:00
+            createBy: createBy
+            updateBy: updateBy
+            createDate: 2000-01-23T04:56:07.000+00:00
+          sequence: 6
+          productTargetRuleCodes:
+          - productTargetRuleCodes
+          - productTargetRuleCodes
+          valueType: valueType
+          serviceTypes:
+          - code: code
+            deliveryDuration: deliveryDuration
+            content:
+              localeCode: localeCode
+              name: name
+          - code: code
+            deliveryDuration: deliveryDuration
+            content:
+              localeCode: localeCode
+              name: name
+          appliesTo: appliesTo
+          id: id
+          value: 1.4658129805029452
+          shippingTargetRuleCodes:
+          - shippingTargetRuleCodes
+          - shippingTargetRuleCodes
+      properties:
+        totalCount:
+          format: int32
+          type: integer
+        items:
+          items:
+            $ref: '#/components/schemas/HandlingFeeRule'
+          nullable: true
+          type: array
+      type: object
+    StringStringIEnumerableKeyValuePair:
+      additionalProperties: false
+      example:
+        value:
+        - value
+        - value
+        key: key
+      properties:
+        key:
+          nullable: true
+          type: string
+        value:
+          items:
+            type: string
+          nullable: true
+          type: array
+      type: object
+    HttpMethod:
+      additionalProperties: false
+      example:
+        method: method
+      properties:
+        method:
+          nullable: true
+          type: string
+      type: object
+    ShippingInclusionRule:
+      additionalProperties: false
+      description: An object to bind service types to shipping target rules and/or
+        product target rules
+      example:
+        auditInfo:
+          updateDate: 2000-01-23T04:56:07.000+00:00
+          createBy: createBy
+          updateBy: updateBy
+          createDate: 2000-01-23T04:56:07.000+00:00
+        sequence: 6
+        productTargetRuleCodes:
+        - productTargetRuleCodes
+        - productTargetRuleCodes
+        serviceTypes:
+        - code: code
+          deliveryDuration: deliveryDuration
+          content:
+            localeCode: localeCode
+            name: name
+        - code: code
+          deliveryDuration: deliveryDuration
+          content:
+            localeCode: localeCode
+            name: name
+        id: id
+        shippingTargetRuleCodes:
+        - shippingTargetRuleCodes
+        - shippingTargetRuleCodes
+      properties:
+        id:
+          description: The system generated id of this shipping inclusion rule
+          nullable: true
+          type: string
+        sequence:
+          description: The sequence in which this rule is preferred over others
+          format: int32
+          type: integer
+        shippingTargetRuleCodes:
+          description: "The shipping target rule codes associated with this rule\r\
+            \n<remarks>leave empty or null to denote all destinations</remarks>"
+          items:
+            type: string
+          nullable: true
+          type: array
+        productTargetRuleCodes:
+          description: "the product target rule codes associated with this rule\r\n\
+            <remarks>leave empty or null to denote all products</remarks>"
+          items:
+            type: string
+          nullable: true
+          type: array
+        serviceTypes:
+          description: "the servicetypes associated with this rule\r\n<remarks>leave\
+            \ empty or null to denote all carriers and subsequent service types</remarks>"
+          items:
+            $ref: '#/components/schemas/ServiceType'
+          nullable: true
+          type: array
+        auditInfo:
+          $ref: '#/components/schemas/AdminUserAuditInfo'
+      type: object
+    ShippingInclusionRuleCollection:
+      additionalProperties: false
+      description: A collection of methodgroup
+      example:
+        totalCount: 0
+        items:
+        - auditInfo:
+            updateDate: 2000-01-23T04:56:07.000+00:00
+            createBy: createBy
+            updateBy: updateBy
+            createDate: 2000-01-23T04:56:07.000+00:00
+          sequence: 6
+          productTargetRuleCodes:
+          - productTargetRuleCodes
+          - productTargetRuleCodes
+          serviceTypes:
+          - code: code
+            deliveryDuration: deliveryDuration
+            content:
+              localeCode: localeCode
+              name: name
+          - code: code
+            deliveryDuration: deliveryDuration
+            content:
+              localeCode: localeCode
+              name: name
+          id: id
+          shippingTargetRuleCodes:
+          - shippingTargetRuleCodes
+          - shippingTargetRuleCodes
+        - auditInfo:
+            updateDate: 2000-01-23T04:56:07.000+00:00
+            createBy: createBy
+            updateBy: updateBy
+            createDate: 2000-01-23T04:56:07.000+00:00
+          sequence: 6
+          productTargetRuleCodes:
+          - productTargetRuleCodes
+          - productTargetRuleCodes
+          serviceTypes:
+          - code: code
+            deliveryDuration: deliveryDuration
+            content:
+              localeCode: localeCode
+              name: name
+          - code: code
+            deliveryDuration: deliveryDuration
+            content:
+              localeCode: localeCode
+              name: name
+          id: id
+          shippingTargetRuleCodes:
+          - shippingTargetRuleCodes
+          - shippingTargetRuleCodes
+      properties:
+        totalCount:
+          format: int32
+          type: integer
+        items:
+          items:
+            $ref: '#/components/schemas/ShippingInclusionRule'
+          nullable: true
+          type: array
+      type: object
+    ShippingProfile:
+      additionalProperties: false
+      description: ""
+      example:
+        auditInfo:
+          updateDate: 2000-01-23T04:56:07.000+00:00
+          createBy: createBy
+          updateBy: updateBy
+          createDate: 2000-01-23T04:56:07.000+00:00
+        code: code
+        targetedSiteIds:
+        - 6
+        - 6
+        shippingInclusionRules:
+        - auditInfo:
+            updateDate: 2000-01-23T04:56:07.000+00:00
+            createBy: createBy
+            updateBy: updateBy
+            createDate: 2000-01-23T04:56:07.000+00:00
+          sequence: 6
+          productTargetRuleCodes:
+          - productTargetRuleCodes
+          - productTargetRuleCodes
+          serviceTypes:
+          - code: code
+            deliveryDuration: deliveryDuration
+            content:
+              localeCode: localeCode
+              name: name
+          - code: code
+            deliveryDuration: deliveryDuration
+            content:
+              localeCode: localeCode
+              name: name
+          id: id
+          shippingTargetRuleCodes:
+          - shippingTargetRuleCodes
+          - shippingTargetRuleCodes
+        - auditInfo:
+            updateDate: 2000-01-23T04:56:07.000+00:00
+            createBy: createBy
+            updateBy: updateBy
+            createDate: 2000-01-23T04:56:07.000+00:00
+          sequence: 6
+          productTargetRuleCodes:
+          - productTargetRuleCodes
+          - productTargetRuleCodes
+          serviceTypes:
+          - code: code
+            deliveryDuration: deliveryDuration
+            content:
+              localeCode: localeCode
+              name: name
+          - code: code
+            deliveryDuration: deliveryDuration
+            content:
+              localeCode: localeCode
+              name: name
+          id: id
+          shippingTargetRuleCodes:
+          - shippingTargetRuleCodes
+          - shippingTargetRuleCodes
+        productHandlingFeeRules:
+        - auditInfo:
+            updateDate: 2000-01-23T04:56:07.000+00:00
+            createBy: createBy
+            updateBy: updateBy
+            createDate: 2000-01-23T04:56:07.000+00:00
+          sequence: 6
+          productTargetRuleCodes:
+          - productTargetRuleCodes
+          - productTargetRuleCodes
+          valueType: valueType
+          serviceTypes:
+          - code: code
+            deliveryDuration: deliveryDuration
+            content:
+              localeCode: localeCode
+              name: name
+          - code: code
+            deliveryDuration: deliveryDuration
+            content:
+              localeCode: localeCode
+              name: name
+          appliesTo: appliesTo
+          id: id
+          value: 1.4658129805029452
+          shippingTargetRuleCodes:
+          - shippingTargetRuleCodes
+          - shippingTargetRuleCodes
+        - auditInfo:
+            updateDate: 2000-01-23T04:56:07.000+00:00
+            createBy: createBy
+            updateBy: updateBy
+            createDate: 2000-01-23T04:56:07.000+00:00
+          sequence: 6
+          productTargetRuleCodes:
+          - productTargetRuleCodes
+          - productTargetRuleCodes
+          valueType: valueType
+          serviceTypes:
+          - code: code
+            deliveryDuration: deliveryDuration
+            content:
+              localeCode: localeCode
+              name: name
+          - code: code
+            deliveryDuration: deliveryDuration
+            content:
+              localeCode: localeCode
+              name: name
+          appliesTo: appliesTo
+          id: id
+          value: 1.4658129805029452
+          shippingTargetRuleCodes:
+          - shippingTargetRuleCodes
+          - shippingTargetRuleCodes
+        orderHandlingFeeRules:
+        - auditInfo:
+            updateDate: 2000-01-23T04:56:07.000+00:00
+            createBy: createBy
+            updateBy: updateBy
+            createDate: 2000-01-23T04:56:07.000+00:00
+          sequence: 6
+          productTargetRuleCodes:
+          - productTargetRuleCodes
+          - productTargetRuleCodes
+          valueType: valueType
+          serviceTypes:
+          - code: code
+            deliveryDuration: deliveryDuration
+            content:
+              localeCode: localeCode
+              name: name
+          - code: code
+            deliveryDuration: deliveryDuration
+            content:
+              localeCode: localeCode
+              name: name
+          appliesTo: appliesTo
+          id: id
+          value: 1.4658129805029452
+          shippingTargetRuleCodes:
+          - shippingTargetRuleCodes
+          - shippingTargetRuleCodes
+        - auditInfo:
+            updateDate: 2000-01-23T04:56:07.000+00:00
+            createBy: createBy
+            updateBy: updateBy
+            createDate: 2000-01-23T04:56:07.000+00:00
+          sequence: 6
+          productTargetRuleCodes:
+          - productTargetRuleCodes
+          - productTargetRuleCodes
+          valueType: valueType
+          serviceTypes:
+          - code: code
+            deliveryDuration: deliveryDuration
+            content:
+              localeCode: localeCode
+              name: name
+          - code: code
+            deliveryDuration: deliveryDuration
+            content:
+              localeCode: localeCode
+              name: name
+          appliesTo: appliesTo
+          id: id
+          value: 1.4658129805029452
+          shippingTargetRuleCodes:
+          - shippingTargetRuleCodes
+          - shippingTargetRuleCodes
+      properties:
+        code:
+          description: Merchant entered unique identifier for a ShippingProfile
+          nullable: true
+          type: string
+        targetedSiteIds:
+          description: "The siteid's for which this profile applies\r\n<remarks>for\
+            \ now there is a 1-1 relationship between this profile and site so only\
+            \ 1 siteid should be in this list</remarks>"
+          items:
+            format: int32
+            type: integer
+          nullable: true
+          type: array
+        shippingInclusionRules:
+          description: ""
+          items:
+            $ref: '#/components/schemas/ShippingInclusionRule'
+          nullable: true
+          type: array
+        productHandlingFeeRules:
+          description: ""
+          items:
+            $ref: '#/components/schemas/HandlingFeeRule'
+          nullable: true
+          type: array
+        orderHandlingFeeRules:
+          description: ""
+          items:
+            $ref: '#/components/schemas/HandlingFeeRule'
+          nullable: true
+          type: array
+        auditInfo:
+          $ref: '#/components/schemas/AdminUserAuditInfo'
+      type: object
+    ShippingProfileCollection:
+      additionalProperties: false
+      description: a collection of profiles
+      example:
+        totalCount: 0
+        items:
+        - auditInfo:
+            updateDate: 2000-01-23T04:56:07.000+00:00
+            createBy: createBy
+            updateBy: updateBy
+            createDate: 2000-01-23T04:56:07.000+00:00
+          code: code
+          targetedSiteIds:
+          - 6
+          - 6
+          shippingInclusionRules:
+          - auditInfo:
+              updateDate: 2000-01-23T04:56:07.000+00:00
+              createBy: createBy
+              updateBy: updateBy
+              createDate: 2000-01-23T04:56:07.000+00:00
+            sequence: 6
+            productTargetRuleCodes:
+            - productTargetRuleCodes
+            - productTargetRuleCodes
+            serviceTypes:
+            - code: code
+              deliveryDuration: deliveryDuration
+              content:
+                localeCode: localeCode
+                name: name
+            - code: code
+              deliveryDuration: deliveryDuration
+              content:
+                localeCode: localeCode
+                name: name
+            id: id
+            shippingTargetRuleCodes:
+            - shippingTargetRuleCodes
+            - shippingTargetRuleCodes
+          - auditInfo:
+              updateDate: 2000-01-23T04:56:07.000+00:00
+              createBy: createBy
+              updateBy: updateBy
+              createDate: 2000-01-23T04:56:07.000+00:00
+            sequence: 6
+            productTargetRuleCodes:
+            - productTargetRuleCodes
+            - productTargetRuleCodes
+            serviceTypes:
+            - code: code
+              deliveryDuration: deliveryDuration
+              content:
+                localeCode: localeCode
+                name: name
+            - code: code
+              deliveryDuration: deliveryDuration
+              content:
+                localeCode: localeCode
+                name: name
+            id: id
+            shippingTargetRuleCodes:
+            - shippingTargetRuleCodes
+            - shippingTargetRuleCodes
+          productHandlingFeeRules:
+          - auditInfo:
+              updateDate: 2000-01-23T04:56:07.000+00:00
+              createBy: createBy
+              updateBy: updateBy
+              createDate: 2000-01-23T04:56:07.000+00:00
+            sequence: 6
+            productTargetRuleCodes:
+            - productTargetRuleCodes
+            - productTargetRuleCodes
+            valueType: valueType
+            serviceTypes:
+            - code: code
+              deliveryDuration: deliveryDuration
+              content:
+                localeCode: localeCode
+                name: name
+            - code: code
+              deliveryDuration: deliveryDuration
+              content:
+                localeCode: localeCode
+                name: name
+            appliesTo: appliesTo
+            id: id
+            value: 1.4658129805029452
+            shippingTargetRuleCodes:
+            - shippingTargetRuleCodes
+            - shippingTargetRuleCodes
+          - auditInfo:
+              updateDate: 2000-01-23T04:56:07.000+00:00
+              createBy: createBy
+              updateBy: updateBy
+              createDate: 2000-01-23T04:56:07.000+00:00
+            sequence: 6
+            productTargetRuleCodes:
+            - productTargetRuleCodes
+            - productTargetRuleCodes
+            valueType: valueType
+            serviceTypes:
+            - code: code
+              deliveryDuration: deliveryDuration
+              content:
+                localeCode: localeCode
+                name: name
+            - code: code
+              deliveryDuration: deliveryDuration
+              content:
+                localeCode: localeCode
+                name: name
+            appliesTo: appliesTo
+            id: id
+            value: 1.4658129805029452
+            shippingTargetRuleCodes:
+            - shippingTargetRuleCodes
+            - shippingTargetRuleCodes
+          orderHandlingFeeRules:
+          - auditInfo:
+              updateDate: 2000-01-23T04:56:07.000+00:00
+              createBy: createBy
+              updateBy: updateBy
+              createDate: 2000-01-23T04:56:07.000+00:00
+            sequence: 6
+            productTargetRuleCodes:
+            - productTargetRuleCodes
+            - productTargetRuleCodes
+            valueType: valueType
+            serviceTypes:
+            - code: code
+              deliveryDuration: deliveryDuration
+              content:
+                localeCode: localeCode
+                name: name
+            - code: code
+              deliveryDuration: deliveryDuration
+              content:
+                localeCode: localeCode
+                name: name
+            appliesTo: appliesTo
+            id: id
+            value: 1.4658129805029452
+            shippingTargetRuleCodes:
+            - shippingTargetRuleCodes
+            - shippingTargetRuleCodes
+          - auditInfo:
+              updateDate: 2000-01-23T04:56:07.000+00:00
+              createBy: createBy
+              updateBy: updateBy
+              createDate: 2000-01-23T04:56:07.000+00:00
+            sequence: 6
+            productTargetRuleCodes:
+            - productTargetRuleCodes
+            - productTargetRuleCodes
+            valueType: valueType
+            serviceTypes:
+            - code: code
+              deliveryDuration: deliveryDuration
+              content:
+                localeCode: localeCode
+                name: name
+            - code: code
+              deliveryDuration: deliveryDuration
+              content:
+                localeCode: localeCode
+                name: name
+            appliesTo: appliesTo
+            id: id
+            value: 1.4658129805029452
+            shippingTargetRuleCodes:
+            - shippingTargetRuleCodes
+            - shippingTargetRuleCodes
+        - auditInfo:
+            updateDate: 2000-01-23T04:56:07.000+00:00
+            createBy: createBy
+            updateBy: updateBy
+            createDate: 2000-01-23T04:56:07.000+00:00
+          code: code
+          targetedSiteIds:
+          - 6
+          - 6
+          shippingInclusionRules:
+          - auditInfo:
+              updateDate: 2000-01-23T04:56:07.000+00:00
+              createBy: createBy
+              updateBy: updateBy
+              createDate: 2000-01-23T04:56:07.000+00:00
+            sequence: 6
+            productTargetRuleCodes:
+            - productTargetRuleCodes
+            - productTargetRuleCodes
+            serviceTypes:
+            - code: code
+              deliveryDuration: deliveryDuration
+              content:
+                localeCode: localeCode
+                name: name
+            - code: code
+              deliveryDuration: deliveryDuration
+              content:
+                localeCode: localeCode
+                name: name
+            id: id
+            shippingTargetRuleCodes:
+            - shippingTargetRuleCodes
+            - shippingTargetRuleCodes
+          - auditInfo:
+              updateDate: 2000-01-23T04:56:07.000+00:00
+              createBy: createBy
+              updateBy: updateBy
+              createDate: 2000-01-23T04:56:07.000+00:00
+            sequence: 6
+            productTargetRuleCodes:
+            - productTargetRuleCodes
+            - productTargetRuleCodes
+            serviceTypes:
+            - code: code
+              deliveryDuration: deliveryDuration
+              content:
+                localeCode: localeCode
+                name: name
+            - code: code
+              deliveryDuration: deliveryDuration
+              content:
+                localeCode: localeCode
+                name: name
+            id: id
+            shippingTargetRuleCodes:
+            - shippingTargetRuleCodes
+            - shippingTargetRuleCodes
+          productHandlingFeeRules:
+          - auditInfo:
+              updateDate: 2000-01-23T04:56:07.000+00:00
+              createBy: createBy
+              updateBy: updateBy
+              createDate: 2000-01-23T04:56:07.000+00:00
+            sequence: 6
+            productTargetRuleCodes:
+            - productTargetRuleCodes
+            - productTargetRuleCodes
+            valueType: valueType
+            serviceTypes:
+            - code: code
+              deliveryDuration: deliveryDuration
+              content:
+                localeCode: localeCode
+                name: name
+            - code: code
+              deliveryDuration: deliveryDuration
+              content:
+                localeCode: localeCode
+                name: name
+            appliesTo: appliesTo
+            id: id
+            value: 1.4658129805029452
+            shippingTargetRuleCodes:
+            - shippingTargetRuleCodes
+            - shippingTargetRuleCodes
+          - auditInfo:
+              updateDate: 2000-01-23T04:56:07.000+00:00
+              createBy: createBy
+              updateBy: updateBy
+              createDate: 2000-01-23T04:56:07.000+00:00
+            sequence: 6
+            productTargetRuleCodes:
+            - productTargetRuleCodes
+            - productTargetRuleCodes
+            valueType: valueType
+            serviceTypes:
+            - code: code
+              deliveryDuration: deliveryDuration
+              content:
+                localeCode: localeCode
+                name: name
+            - code: code
+              deliveryDuration: deliveryDuration
+              content:
+                localeCode: localeCode
+                name: name
+            appliesTo: appliesTo
+            id: id
+            value: 1.4658129805029452
+            shippingTargetRuleCodes:
+            - shippingTargetRuleCodes
+            - shippingTargetRuleCodes
+          orderHandlingFeeRules:
+          - auditInfo:
+              updateDate: 2000-01-23T04:56:07.000+00:00
+              createBy: createBy
+              updateBy: updateBy
+              createDate: 2000-01-23T04:56:07.000+00:00
+            sequence: 6
+            productTargetRuleCodes:
+            - productTargetRuleCodes
+            - productTargetRuleCodes
+            valueType: valueType
+            serviceTypes:
+            - code: code
+              deliveryDuration: deliveryDuration
+              content:
+                localeCode: localeCode
+                name: name
+            - code: code
+              deliveryDuration: deliveryDuration
+              content:
+                localeCode: localeCode
+                name: name
+            appliesTo: appliesTo
+            id: id
+            value: 1.4658129805029452
+            shippingTargetRuleCodes:
+            - shippingTargetRuleCodes
+            - shippingTargetRuleCodes
+          - auditInfo:
+              updateDate: 2000-01-23T04:56:07.000+00:00
+              createBy: createBy
+              updateBy: updateBy
+              createDate: 2000-01-23T04:56:07.000+00:00
+            sequence: 6
+            productTargetRuleCodes:
+            - productTargetRuleCodes
+            - productTargetRuleCodes
+            valueType: valueType
+            serviceTypes:
+            - code: code
+              deliveryDuration: deliveryDuration
+              content:
+                localeCode: localeCode
+                name: name
+            - code: code
+              deliveryDuration: deliveryDuration
+              content:
+                localeCode: localeCode
+                name: name
+            appliesTo: appliesTo
+            id: id
+            value: 1.4658129805029452
+            shippingTargetRuleCodes:
+            - shippingTargetRuleCodes
+            - shippingTargetRuleCodes
+      properties:
+        totalCount:
+          format: int32
+          type: integer
+        items:
+          items:
+            $ref: '#/components/schemas/ShippingProfile'
+          nullable: true
+          type: array
+      type: object
+    ShippingStates:
+      additionalProperties: false
+      example:
+        countryCode: countryCode
+        states:
+        - code: code
+          name: name
+        - code: code
+          name: name
+      properties:
+        countryCode:
+          nullable: true
+          type: string
+        states:
+          items:
+            $ref: '#/components/schemas/ShippingAdminState'
+          nullable: true
+          type: array
+          uniqueItems: true
+      type: object
+    TargetRule:
+      additionalProperties: false
+      description: An object used to define a bool expression against a particular
+        domain type
+      example:
+        code: code
+        expression: expression
+        domain: domain
+        description: description
+      properties:
+        code:
+          description: "The user defined code for this rule\r\n<remarks>must be unique</remarks>"
+          nullable: true
+          type: string
+        description:
+          description: The description of this rule
+          nullable: true
+          type: string
+        domain:
+          description: "The domain of this rule\r\n<value>Product</value><value>Order</value>"
+          nullable: true
+          type: string
+        expression:
+          description: the expression of this rule
+          nullable: true
+          type: string
+      type: object
+    TargetRuleCollection:
+      additionalProperties: false
+      description: A collection of zones
+      example:
+        totalCount: 0
+        items:
+        - code: code
+          expression: expression
+          domain: domain
+          description: description
+        - code: code
+          expression: expression
+          domain: domain
+          description: description
+      properties:
+        totalCount:
+          format: int32
+          type: integer
+        items:
+          items:
+            $ref: '#/components/schemas/TargetRule'
+          nullable: true
+          type: array
+      type: object
+    AdminUserAuditInfo:
+      additionalProperties: false
+      example:
+        updateDate: 2000-01-23T04:56:07.000+00:00
+        createBy: createBy
+        updateBy: updateBy
+        createDate: 2000-01-23T04:56:07.000+00:00
+      properties:
+        updateDate:
+          format: date-time
+          nullable: true
+          type: string
+        createDate:
+          format: date-time
+          nullable: true
+          type: string
+        updateBy:
+          nullable: true
+          type: string
+        createBy:
+          nullable: true
+          type: string
+      type: object
+    AppDevHttpContent:
+      additionalProperties: false
+      example:
+        headers:
+        - value:
+          - value
+          - value
+          key: key
+        - value:
+          - value
+          - value
+          key: key
+      properties:
+        headers:
+          items:
+            $ref: '#/components/schemas/StringStringIEnumerableKeyValuePair'
+          nullable: true
+          readOnly: true
+          type: array
+      type: object
+    ShippingAdminHttpStatusCode:
+      enum:
+      - Continue
+      - SwitchingProtocols
+      - Processing
+      - EarlyHints
+      - OK
+      - Created
+      - Accepted
+      - NonAuthoritativeInformation
+      - NoContent
+      - ResetContent
+      - PartialContent
+      - MultiStatus
+      - AlreadyReported
+      - IMUsed
+      - MultipleChoices
+      - Ambiguous
+      - MovedPermanently
+      - Moved
+      - Found
+      - Redirect
+      - SeeOther
+      - RedirectMethod
+      - NotModified
+      - UseProxy
+      - Unused
+      - TemporaryRedirect
+      - RedirectKeepVerb
+      - PermanentRedirect
+      - BadRequest
+      - Unauthorized
+      - PaymentRequired
+      - Forbidden
+      - NotFound
+      - MethodNotAllowed
+      - NotAcceptable
+      - ProxyAuthenticationRequired
+      - RequestTimeout
+      - Conflict
+      - Gone
+      - LengthRequired
+      - PreconditionFailed
+      - RequestEntityTooLarge
+      - RequestUriTooLong
+      - UnsupportedMediaType
+      - RequestedRangeNotSatisfiable
+      - ExpectationFailed
+      - MisdirectedRequest
+      - UnprocessableEntity
+      - Locked
+      - FailedDependency
+      - UpgradeRequired
+      - PreconditionRequired
+      - TooManyRequests
+      - RequestHeaderFieldsTooLarge
+      - UnavailableForLegalReasons
+      - InternalServerError
+      - NotImplemented
+      - BadGateway
+      - ServiceUnavailable
+      - GatewayTimeout
+      - HttpVersionNotSupported
+      - VariantAlsoNegotiates
+      - InsufficientStorage
+      - LoopDetected
+      - NotExtended
+      - NetworkAuthenticationRequired
+      format: ""
+      type: string
+    ShippingAdminHttpRequestMessage:
+      additionalProperties: false
+      example:
+        headers:
+        - value:
+          - value
+          - value
+          key: key
+        - value:
+          - value
+          - value
+          key: key
+        method:
+          method: method
+        options:
+          key: ""
+        requestUri: https://openapi-generator.tech
+        version: version
+        versionPolicy: null
+        content:
+          headers:
+          - value:
+            - value
+            - value
+            key: key
+          - value:
+            - value
+            - value
+            key: key
+        properties:
+          key: ""
+      properties:
+        version:
+          nullable: true
+          type: string
+        versionPolicy:
+          $ref: '#/components/schemas/ShippingAdminHttpVersionPolicy'
+        content:
+          $ref: '#/components/schemas/AppDevHttpContent'
+        method:
+          $ref: '#/components/schemas/HttpMethod'
+        requestUri:
+          format: uri
+          nullable: true
+          type: string
+        headers:
+          items:
+            $ref: '#/components/schemas/StringStringIEnumerableKeyValuePair'
+          nullable: true
+          readOnly: true
+          type: array
+        properties:
+          additionalProperties: {}
+          deprecated: true
+          nullable: true
+          readOnly: true
+          type: object
+        options:
+          additionalProperties: {}
+          nullable: true
+          readOnly: true
+          type: object
+      type: object
+    ShippingAdminHttpVersionPolicy:
+      enum:
+      - RequestVersionOrLower
+      - RequestVersionOrHigher
+      - RequestVersionExact
+      format: ""
+      type: string
+    ShippingAdminState:
+      additionalProperties: false
+      example:
+        code: code
+        name: name
+      properties:
+        code:
+          nullable: true
+          type: string
+        name:
+          nullable: true
+          type: string
+      type: object
+    ShippingAdminHttpResponseMessage:
+      additionalProperties: false
+      example:
+        requestMessage:
+          headers:
+          - value:
+            - value
+            - value
+            key: key
+          - value:
+            - value
+            - value
+            key: key
+          method:
+            method: method
+          options:
+            key: ""
+          requestUri: https://openapi-generator.tech
+          version: version
+          versionPolicy: null
+          content:
+            headers:
+            - value:
+              - value
+              - value
+              key: key
+            - value:
+              - value
+              - value
+              key: key
+          properties:
+            key: ""
+        headers:
+        - value:
+          - value
+          - value
+          key: key
+        - value:
+          - value
+          - value
+          key: key
+        reasonPhrase: reasonPhrase
+        trailingHeaders:
+        - value:
+          - value
+          - value
+          key: key
+        - value:
+          - value
+          - value
+          key: key
+        isSuccessStatusCode: true
+        version: version
+        content:
+          headers:
+          - value:
+            - value
+            - value
+            key: key
+          - value:
+            - value
+            - value
+            key: key
+        statusCode: null
+      properties:
+        version:
+          nullable: true
+          type: string
+        content:
+          $ref: '#/components/schemas/AppDevHttpContent'
+        statusCode:
+          $ref: '#/components/schemas/ShippingAdminHttpStatusCode'
+        reasonPhrase:
+          nullable: true
+          type: string
+        headers:
+          items:
+            $ref: '#/components/schemas/StringStringIEnumerableKeyValuePair'
+          nullable: true
+          readOnly: true
+          type: array
+        trailingHeaders:
+          items:
+            $ref: '#/components/schemas/StringStringIEnumerableKeyValuePair'
+          nullable: true
+          readOnly: true
+          type: array
+        requestMessage:
+          $ref: '#/components/schemas/ShippingAdminHttpRequestMessage'
+        isSuccessStatusCode:
+          readOnly: true
+          type: boolean
+      type: object
+  securitySchemes:
+    bearerAuth:
+      bearerFormat: JWT
+      description: JWT Authorization header using the Bearer scheme.
+      scheme: bearer
+      type: http
+    clientOauth2:
+      flows:
+        clientCredentials:
+          scopes: {}
+          tokenUrl: /api/platform/applications/authtickets/oauth
+      type: oauth2
+
