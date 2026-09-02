@@ -1,0 +1,133 @@
+# Regenerate the Java modules from the published API docs and open a PR.
+#
+# Runs on the same fortnightly cadence as the TypeScript SDK and from the same
+# specs, so the two stay in step. It never publishes: publishing goes through the
+# internal Jenkins pipeline (see Jenkinsfile), and this only opens a pull request
+# whose body is the surface report.
+#
+# Where the specs come from
+# -------------------------
+# unified-documentation owns the OpenAPI specs. Its openapi-pipeline/dist_sdk/
+# directory holds one spec per service plus a manifest listing the Java modules.
+#
+# This workflow does NOT run the spec download: those specs come from services on
+# Kibo's internal network, which a GitHub-hosted runner cannot reach. Refreshing
+# them stays a step someone runs on the VPN and commits to the docs repo.
+name: Refresh SDK from API docs
+
+on:
+  schedule:
+    # 07:00 UTC Mondays. GitHub cannot express "every second week", so the job
+    # runs weekly and the guard below exits on odd ISO weeks.
+    - cron: '0 7 * * 1'
+  workflow_dispatch:
+    inputs:
+      docs-ref:
+        description: 'unified-documentation ref to take specs from'
+        required: false
+        default: 'main'
+      version:
+        description: 'Version to stamp on every module (defaults to the parent pom)'
+        required: false
+
+permissions:
+  contents: write
+  pull-requests: write
+
+env:
+  DOCS_REPO: Kibo-UCP/unified-documentation
+
+jobs:
+  check-schedule:
+    runs-on: ubuntu-latest
+    outputs:
+      should-run: ${{ steps.week.outputs.should-run }}
+    steps:
+      - id: week
+        run: |
+          if [ "${{ github.event_name }}" != "schedule" ]; then
+            echo "should-run=true" >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
+          week=$(date -u +%V)
+          if [ $((10#$week % 2)) -eq 0 ]; then
+            echo "should-run=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "should-run=false" >> "$GITHUB_OUTPUT"
+            echo "ISO week $week is odd; skipping (refresh runs fortnightly)."
+          fi
+
+  refresh:
+    needs: check-schedule
+    if: needs.check-schedule.outputs.should-run == 'true'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout SDK
+        uses: actions/checkout@v4
+        with:
+          # Full history so the surface report can diff against HEAD.
+          fetch-depth: 0
+
+      - name: Checkout API docs
+        uses: actions/checkout@v4
+        with:
+          repository: ${{ env.DOCS_REPO }}
+          ref: ${{ github.event.inputs.docs-ref || 'main' }}
+          path: .docs-repo
+          # unified-documentation is private; needs a token with read access.
+          token: ${{ secrets.DOCS_REPO_TOKEN }}
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Setup Java
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '17'
+          cache: maven
+
+      - name: Rebuild the SDK specs from the docs pipeline
+        # dist_sdk/ is committed, but rebuilding proves the specs match the
+        # processed specs and overlays at this ref rather than trusting a
+        # possibly stale commit.
+        working-directory: .docs-repo
+        run: |
+          npm ci
+          npm run spec:sdk-build
+
+      - name: Generate modules
+        run: |
+          node generator/generate.mjs \
+            --specs .docs-repo/openapi-pipeline/dist_sdk \
+            ${{ github.event.inputs.version && format('--version {0}', github.event.inputs.version) || '' }}
+
+      - name: Remove the docs checkout before building and diffing
+        run: rm -rf .docs-repo
+
+      - name: Compile every module
+        # The whole reactor in one run: this is what would have caught
+        # `subscription` being left on a stale common:SNAPSHOT and dropped from
+        # the 2.0.0 release.
+        # gpg.skip because the parent pom binds maven-gpg-plugin to verify and
+        # this workflow does not publish, so it has no signing key.
+        run: mvn -B -f kibocommerce/pom.xml -DskipTests -Dgpg.skip=true verify
+
+      - name: Surface report
+        run: |
+          node generator/surface-report.mjs --markdown > surface.md
+          node generator/surface-report.mjs
+
+      - name: Open pull request
+        uses: peter-evans/create-pull-request@v6
+        with:
+          branch: chore/sdk-refresh
+          title: 'chore: refresh Java SDK from API docs'
+          commit-message: 'chore: regenerate Java modules from API docs'
+          body-path: surface.md
+          labels: sdk-refresh
+          delete-branch: true
+          add-paths: |
+            kibocommerce
