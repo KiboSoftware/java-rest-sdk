@@ -8,7 +8,7 @@
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
 |**backorderReleaseDate** | **OffsetDateTime** |  |  [optional] |
-|**lineId** | **Integer** |  |  |
+|**lineId** | **Integer** |  |  [optional] |
 
 
 ## Implemented Interfaces

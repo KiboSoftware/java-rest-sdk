@@ -1,8 +1,8 @@
 /*
  * Kibo Catalog Admin Services
- * OpenAPI Spec for Kibo Catalog Admin Services
+ * <div id=\"overview_CATALOG_ADMIN\">             <h2>CATALOG ADMINISTRATION</h2>             <p>The Catalog Administration APIs are a collection of resources for configuring the catalogs and products offered to your shoppers, including                 discounts and coupon sets, faceting, price lists, and different types or variations of products. See the                 <a href=\"/concept-guides/catalog\">Catalog user guides</a>                 for information about the related features in the Unified Commerce Admin.</p>             <p>Use the <strong>Attributes</strong> resource to manage localization and attribute configurations for your catalogs. This current version of the Attributes API includes localizedContent to                 support <a href=\"/pages/catalog-structure#multi-locale-catalogs\">multi-locale catalogs</a>, which was not present in the legacy API model. If                 you were a client prior to May 2024 and have upgraded your implementation to support this feature,                 you can still access attribute data that has not yet been rewritten to the new model by providing                 an x-api-version header set to \"1\". </p>             <p>Use the <strong>Categories</strong> resource to organize products and control where they appear on the storefront. Create                 and maintain a hierarchy of categories and subcategories where the site will store properties. This current version of the Categories API includes localizedContent to                 support <a href=\"/pages/catalog-structure#multi-locale-catalogs\">multi-locale catalogs</a>, which was not present in the legacy API model. If                 you were a client prior to May 2024 and have upgraded your implementation to support this feature,                 you can still access category data that has not yet been rewritten to the new model by providing                 an x-api-version header set to \"1\". </p>             <p>Use the <strong>Coupon Sets</strong> resource to view and create coupon sets. You can use coupon sets to group multiple                 coupon codes together and associate them with one or more discounts.</p>             <p>Use the <strong>Currency</strong> resource to manage the currency localization rules and exchange rates for any of the                 currencies that are supported for placing orders in.</p>             <p>Use the <strong>Discounts</strong> and <strong>Discount Settings</strong> resources to define and manage discounts to apply to products, product categories, or                 orders. This current version of the Discounts API includes localizedContent to                 support <a href=\"/pages/catalog-structure#multi-locale-catalogs\">multi-locale catalogs</a>, which was not present in the legacy Products API model. If                 you were a client prior to May 2024 and have upgraded your implementation to support this feature,                 you can still access discount data that has not yet been rewritten to the new model by providing                 an x-api-version header set to \"1\". </p>             <p>Use the <strong>Facets</strong> resource to manage the facets shoppers use to filter product display results on a                 storefront. Facets can include categories, product attributes, or prices, and use either a range of                 values or discrete values.</p>             <p>Use the <strong>Master Catalog</strong> resource to view details of the master catalogs associated with a tenant and to                 manage the product publishing mode for each master catalog.</p>             <p>Use the <strong>Price Lists</strong> resources to view and create price lists. You can use price lists to override the                 catalog pricing of products for specific customer segments and/or sites.</p>             <p>Use the <strong>Products</strong>, <strong>Product Types/Extras/Options/Properties</strong>, and <strong>Product Sort Definitions</strong> resources to create new product definitions in the master catalog and determine which                 catalogs will feature products. This current version of the Products API includes localizedContent to                 support <a href=\"/pages/catalog-structure#multi-locale-catalogs\">multi-locale catalogs</a>, which was not present in the legacy Products API model. If                 you were a client prior to May 2024 and have upgraded your implementation to support this feature,                 you can still access product data that has not yet been rewritten to the new model by providing                 an x-api-version header set to \"1\".</p>             <p>Use the <strong>Publishing</strong> resource to publish pending product updates together as part of a set.</p>             <p>Use the <strong>Search</strong> resource to manage all settings and options for providing product search on your site, as                 well as search tuning rules.</p>         </div>
  *
- * The version of the OpenAPI document: 1.0.0
+ * The version of the OpenAPI document: v1
  * 
  *
  * NOTE: This class is auto generated by OpenAPI Generator (https://openapi-generator.tech).
@@ -62,13 +62,97 @@ import com.kibocommerce.sdk.common.JSON;
 public class PriceListEntry implements Serializable {
   private static final long serialVersionUID = 1L;
 
+  public static final String SERIALIZED_NAME_AUDIT_INFO = "auditInfo";
+  @SerializedName(SERIALIZED_NAME_AUDIT_INFO)
+  private AdminUserAuditInfo auditInfo;
+
+  public static final String SERIALIZED_NAME_COST = "cost";
+  @SerializedName(SERIALIZED_NAME_COST)
+  private Double cost;
+
+  public static final String SERIALIZED_NAME_COST_MODE = "costMode";
+  @SerializedName(SERIALIZED_NAME_COST_MODE)
+  private String costMode;
+
+  public static final String SERIALIZED_NAME_CURRENCY_CODE = "currencyCode";
+  @SerializedName(SERIALIZED_NAME_CURRENCY_CODE)
+  private String currencyCode;
+
+  public static final String SERIALIZED_NAME_DISCOUNTS_RESTRICTED = "discountsRestricted";
+  @SerializedName(SERIALIZED_NAME_DISCOUNTS_RESTRICTED)
+  private Boolean discountsRestricted;
+
+  public static final String SERIALIZED_NAME_DISCOUNTS_RESTRICTED_END_DATE = "discountsRestrictedEndDate";
+  @SerializedName(SERIALIZED_NAME_DISCOUNTS_RESTRICTED_END_DATE)
+  private OffsetDateTime discountsRestrictedEndDate;
+
+  public static final String SERIALIZED_NAME_DISCOUNTS_RESTRICTED_MODE = "discountsRestrictedMode";
+  @SerializedName(SERIALIZED_NAME_DISCOUNTS_RESTRICTED_MODE)
+  private String discountsRestrictedMode;
+
+  public static final String SERIALIZED_NAME_DISCOUNTS_RESTRICTED_START_DATE = "discountsRestrictedStartDate";
+  @SerializedName(SERIALIZED_NAME_DISCOUNTS_RESTRICTED_START_DATE)
+  private OffsetDateTime discountsRestrictedStartDate;
+
+  public static final String SERIALIZED_NAME_END_DATE = "endDate";
+  @SerializedName(SERIALIZED_NAME_END_DATE)
+  private OffsetDateTime endDate;
+
+  public static final String SERIALIZED_NAME_EXTRA_ENTRIES = "extraEntries";
+  @SerializedName(SERIALIZED_NAME_EXTRA_ENTRIES)
+  private List<PriceListEntryExtra> extraEntries = null;
+
+  public static final String SERIALIZED_NAME_IS_VARIATION = "isVariation";
+  @SerializedName(SERIALIZED_NAME_IS_VARIATION)
+  private Boolean isVariation;
+
+  public static final String SERIALIZED_NAME_MAP = "map";
+  @SerializedName(SERIALIZED_NAME_MAP)
+  private Double map;
+
+  public static final String SERIALIZED_NAME_MAP_END_DATE = "mapEndDate";
+  @SerializedName(SERIALIZED_NAME_MAP_END_DATE)
+  private OffsetDateTime mapEndDate;
+
+  public static final String SERIALIZED_NAME_MAP_MODE = "mapMode";
+  @SerializedName(SERIALIZED_NAME_MAP_MODE)
+  private String mapMode;
+
+  public static final String SERIALIZED_NAME_MAP_START_DATE = "mapStartDate";
+  @SerializedName(SERIALIZED_NAME_MAP_START_DATE)
+  private OffsetDateTime mapStartDate;
+
+  public static final String SERIALIZED_NAME_MSRP = "msrp";
+  @SerializedName(SERIALIZED_NAME_MSRP)
+  private Double msrp;
+
+  public static final String SERIALIZED_NAME_MSRP_MODE = "msrpMode";
+  @SerializedName(SERIALIZED_NAME_MSRP_MODE)
+  private String msrpMode;
+
+  public static final String SERIALIZED_NAME_OPTIONS = "options";
+  @SerializedName(SERIALIZED_NAME_OPTIONS)
+  private List<CatalogAdminsProductOption> options = null;
+
+  public static final String SERIALIZED_NAME_PRICE_ENTRIES = "priceEntries";
+  @SerializedName(SERIALIZED_NAME_PRICE_ENTRIES)
+  private List<PriceListEntryPrice> priceEntries = null;
+
   public static final String SERIALIZED_NAME_PRICE_LIST_CODE = "priceListCode";
   @SerializedName(SERIALIZED_NAME_PRICE_LIST_CODE)
   private String priceListCode;
 
+  public static final String SERIALIZED_NAME_PRICE_LIST_ENTRY_MODE = "priceListEntryMode";
+  @SerializedName(SERIALIZED_NAME_PRICE_LIST_ENTRY_MODE)
+  private String priceListEntryMode;
+
   public static final String SERIALIZED_NAME_PRICE_LIST_ENTRY_SEQUENCE = "priceListEntrySequence";
   @SerializedName(SERIALIZED_NAME_PRICE_LIST_ENTRY_SEQUENCE)
   private Integer priceListEntrySequence;
+
+  public static final String SERIALIZED_NAME_PRICE_LIST_ENTRY_TYPE_CODE = "priceListEntryTypeCode";
+  @SerializedName(SERIALIZED_NAME_PRICE_LIST_ENTRY_TYPE_CODE)
+  private String priceListEntryTypeCode;
 
   public static final String SERIALIZED_NAME_PRODUCT_CODE = "productCode";
   @SerializedName(SERIALIZED_NAME_PRODUCT_CODE)
@@ -78,96 +162,473 @@ public class PriceListEntry implements Serializable {
   @SerializedName(SERIALIZED_NAME_PRODUCT_NAME)
   private String productName;
 
-  public static final String SERIALIZED_NAME_IS_VARIATION = "isVariation";
-  @SerializedName(SERIALIZED_NAME_IS_VARIATION)
-  private Boolean isVariation;
-
-  public static final String SERIALIZED_NAME_OPTIONS = "options";
-  @SerializedName(SERIALIZED_NAME_OPTIONS)
-  private List<CatalogAdminsProductOption> options = null;
-
-  public static final String SERIALIZED_NAME_CURRENCY_CODE = "currencyCode";
-  @SerializedName(SERIALIZED_NAME_CURRENCY_CODE)
-  private String currencyCode;
-
   public static final String SERIALIZED_NAME_START_DATE = "startDate";
   @SerializedName(SERIALIZED_NAME_START_DATE)
   private OffsetDateTime startDate;
 
-  public static final String SERIALIZED_NAME_END_DATE = "endDate";
-  @SerializedName(SERIALIZED_NAME_END_DATE)
-  private OffsetDateTime endDate;
-
-  public static final String SERIALIZED_NAME_PRICE_LIST_ENTRY_MODE = "priceListEntryMode";
-  @SerializedName(SERIALIZED_NAME_PRICE_LIST_ENTRY_MODE)
-  private String priceListEntryMode;
-
-  public static final String SERIALIZED_NAME_PRICE_LIST_ENTRY_TYPE_CODE = "priceListEntryTypeCode";
-  @SerializedName(SERIALIZED_NAME_PRICE_LIST_ENTRY_TYPE_CODE)
-  private String priceListEntryTypeCode;
-
-  public static final String SERIALIZED_NAME_DISCOUNTS_RESTRICTED_MODE = "discountsRestrictedMode";
-  @SerializedName(SERIALIZED_NAME_DISCOUNTS_RESTRICTED_MODE)
-  private String discountsRestrictedMode;
-
-  public static final String SERIALIZED_NAME_DISCOUNTS_RESTRICTED = "discountsRestricted";
-  @SerializedName(SERIALIZED_NAME_DISCOUNTS_RESTRICTED)
-  private Boolean discountsRestricted;
-
-  public static final String SERIALIZED_NAME_DISCOUNTS_RESTRICTED_START_DATE = "discountsRestrictedStartDate";
-  @SerializedName(SERIALIZED_NAME_DISCOUNTS_RESTRICTED_START_DATE)
-  private OffsetDateTime discountsRestrictedStartDate;
-
-  public static final String SERIALIZED_NAME_DISCOUNTS_RESTRICTED_END_DATE = "discountsRestrictedEndDate";
-  @SerializedName(SERIALIZED_NAME_DISCOUNTS_RESTRICTED_END_DATE)
-  private OffsetDateTime discountsRestrictedEndDate;
-
-  public static final String SERIALIZED_NAME_MSRP_MODE = "msrpMode";
-  @SerializedName(SERIALIZED_NAME_MSRP_MODE)
-  private String msrpMode;
-
-  public static final String SERIALIZED_NAME_MSRP = "msrp";
-  @SerializedName(SERIALIZED_NAME_MSRP)
-  private Double msrp;
-
-  public static final String SERIALIZED_NAME_MAP_MODE = "mapMode";
-  @SerializedName(SERIALIZED_NAME_MAP_MODE)
-  private String mapMode;
-
-  public static final String SERIALIZED_NAME_MAP = "map";
-  @SerializedName(SERIALIZED_NAME_MAP)
-  private Double map;
-
-  public static final String SERIALIZED_NAME_MAP_START_DATE = "mapStartDate";
-  @SerializedName(SERIALIZED_NAME_MAP_START_DATE)
-  private OffsetDateTime mapStartDate;
-
-  public static final String SERIALIZED_NAME_MAP_END_DATE = "mapEndDate";
-  @SerializedName(SERIALIZED_NAME_MAP_END_DATE)
-  private OffsetDateTime mapEndDate;
-
-  public static final String SERIALIZED_NAME_COST_MODE = "costMode";
-  @SerializedName(SERIALIZED_NAME_COST_MODE)
-  private String costMode;
-
-  public static final String SERIALIZED_NAME_COST = "cost";
-  @SerializedName(SERIALIZED_NAME_COST)
-  private Double cost;
-
-  public static final String SERIALIZED_NAME_PRICE_ENTRIES = "priceEntries";
-  @SerializedName(SERIALIZED_NAME_PRICE_ENTRIES)
-  private List<PriceListEntryPrice> priceEntries = null;
-
-  public static final String SERIALIZED_NAME_EXTRA_ENTRIES = "extraEntries";
-  @SerializedName(SERIALIZED_NAME_EXTRA_ENTRIES)
-  private List<PriceListEntryExtra> extraEntries = null;
-
-  public static final String SERIALIZED_NAME_AUDIT_INFO = "auditInfo";
-  @SerializedName(SERIALIZED_NAME_AUDIT_INFO)
-  private AdminUserAuditInfo auditInfo;
-
   public PriceListEntry() {
   }
+
+  public PriceListEntry auditInfo(AdminUserAuditInfo auditInfo) {
+    
+    this.auditInfo = auditInfo;
+    return this;
+  }
+
+   /**
+   * Get auditInfo
+   * @return auditInfo
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
+
+  public AdminUserAuditInfo getAuditInfo() {
+    return auditInfo;
+  }
+
+
+  public void setAuditInfo(AdminUserAuditInfo auditInfo) {
+    this.auditInfo = auditInfo;
+  }
+
+
+  public PriceListEntry cost(Double cost) {
+    
+    this.cost = cost;
+    return this;
+  }
+
+   /**
+   * Get cost
+   * @return cost
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
+
+  public Double getCost() {
+    return cost;
+  }
+
+
+  public void setCost(Double cost) {
+    this.cost = cost;
+  }
+
+
+  public PriceListEntry costMode(String costMode) {
+    
+    this.costMode = costMode;
+    return this;
+  }
+
+   /**
+   * Get costMode
+   * @return costMode
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
+
+  public String getCostMode() {
+    return costMode;
+  }
+
+
+  public void setCostMode(String costMode) {
+    this.costMode = costMode;
+  }
+
+
+  public PriceListEntry currencyCode(String currencyCode) {
+    
+    this.currencyCode = currencyCode;
+    return this;
+  }
+
+   /**
+   * Get currencyCode
+   * @return currencyCode
+  **/
+  @javax.annotation.Nonnull
+  @ApiModelProperty(required = true, value = "")
+
+  public String getCurrencyCode() {
+    return currencyCode;
+  }
+
+
+  public void setCurrencyCode(String currencyCode) {
+    this.currencyCode = currencyCode;
+  }
+
+
+  public PriceListEntry discountsRestricted(Boolean discountsRestricted) {
+    
+    this.discountsRestricted = discountsRestricted;
+    return this;
+  }
+
+   /**
+   * Get discountsRestricted
+   * @return discountsRestricted
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
+
+  public Boolean getDiscountsRestricted() {
+    return discountsRestricted;
+  }
+
+
+  public void setDiscountsRestricted(Boolean discountsRestricted) {
+    this.discountsRestricted = discountsRestricted;
+  }
+
+
+  public PriceListEntry discountsRestrictedEndDate(OffsetDateTime discountsRestrictedEndDate) {
+    
+    this.discountsRestrictedEndDate = discountsRestrictedEndDate;
+    return this;
+  }
+
+   /**
+   * Get discountsRestrictedEndDate
+   * @return discountsRestrictedEndDate
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
+
+  public OffsetDateTime getDiscountsRestrictedEndDate() {
+    return discountsRestrictedEndDate;
+  }
+
+
+  public void setDiscountsRestrictedEndDate(OffsetDateTime discountsRestrictedEndDate) {
+    this.discountsRestrictedEndDate = discountsRestrictedEndDate;
+  }
+
+
+  public PriceListEntry discountsRestrictedMode(String discountsRestrictedMode) {
+    
+    this.discountsRestrictedMode = discountsRestrictedMode;
+    return this;
+  }
+
+   /**
+   * Get discountsRestrictedMode
+   * @return discountsRestrictedMode
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
+
+  public String getDiscountsRestrictedMode() {
+    return discountsRestrictedMode;
+  }
+
+
+  public void setDiscountsRestrictedMode(String discountsRestrictedMode) {
+    this.discountsRestrictedMode = discountsRestrictedMode;
+  }
+
+
+  public PriceListEntry discountsRestrictedStartDate(OffsetDateTime discountsRestrictedStartDate) {
+    
+    this.discountsRestrictedStartDate = discountsRestrictedStartDate;
+    return this;
+  }
+
+   /**
+   * Get discountsRestrictedStartDate
+   * @return discountsRestrictedStartDate
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
+
+  public OffsetDateTime getDiscountsRestrictedStartDate() {
+    return discountsRestrictedStartDate;
+  }
+
+
+  public void setDiscountsRestrictedStartDate(OffsetDateTime discountsRestrictedStartDate) {
+    this.discountsRestrictedStartDate = discountsRestrictedStartDate;
+  }
+
+
+  public PriceListEntry endDate(OffsetDateTime endDate) {
+    
+    this.endDate = endDate;
+    return this;
+  }
+
+   /**
+   * Get endDate
+   * @return endDate
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
+
+  public OffsetDateTime getEndDate() {
+    return endDate;
+  }
+
+
+  public void setEndDate(OffsetDateTime endDate) {
+    this.endDate = endDate;
+  }
+
+
+  public PriceListEntry extraEntries(List<PriceListEntryExtra> extraEntries) {
+    
+    this.extraEntries = extraEntries;
+    return this;
+  }
+
+  public PriceListEntry addExtraEntriesItem(PriceListEntryExtra extraEntriesItem) {
+    if (this.extraEntries == null) {
+      this.extraEntries = new ArrayList<>();
+    }
+    this.extraEntries.add(extraEntriesItem);
+    return this;
+  }
+
+   /**
+   * Get extraEntries
+   * @return extraEntries
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
+
+  public List<PriceListEntryExtra> getExtraEntries() {
+    return extraEntries;
+  }
+
+
+  public void setExtraEntries(List<PriceListEntryExtra> extraEntries) {
+    this.extraEntries = extraEntries;
+  }
+
+
+  public PriceListEntry isVariation(Boolean isVariation) {
+    
+    this.isVariation = isVariation;
+    return this;
+  }
+
+   /**
+   * Get isVariation
+   * @return isVariation
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
+
+  public Boolean getIsVariation() {
+    return isVariation;
+  }
+
+
+  public void setIsVariation(Boolean isVariation) {
+    this.isVariation = isVariation;
+  }
+
+
+  public PriceListEntry map(Double map) {
+    
+    this.map = map;
+    return this;
+  }
+
+   /**
+   * Get map
+   * @return map
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
+
+  public Double getMap() {
+    return map;
+  }
+
+
+  public void setMap(Double map) {
+    this.map = map;
+  }
+
+
+  public PriceListEntry mapEndDate(OffsetDateTime mapEndDate) {
+    
+    this.mapEndDate = mapEndDate;
+    return this;
+  }
+
+   /**
+   * Get mapEndDate
+   * @return mapEndDate
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
+
+  public OffsetDateTime getMapEndDate() {
+    return mapEndDate;
+  }
+
+
+  public void setMapEndDate(OffsetDateTime mapEndDate) {
+    this.mapEndDate = mapEndDate;
+  }
+
+
+  public PriceListEntry mapMode(String mapMode) {
+    
+    this.mapMode = mapMode;
+    return this;
+  }
+
+   /**
+   * Get mapMode
+   * @return mapMode
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
+
+  public String getMapMode() {
+    return mapMode;
+  }
+
+
+  public void setMapMode(String mapMode) {
+    this.mapMode = mapMode;
+  }
+
+
+  public PriceListEntry mapStartDate(OffsetDateTime mapStartDate) {
+    
+    this.mapStartDate = mapStartDate;
+    return this;
+  }
+
+   /**
+   * Get mapStartDate
+   * @return mapStartDate
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
+
+  public OffsetDateTime getMapStartDate() {
+    return mapStartDate;
+  }
+
+
+  public void setMapStartDate(OffsetDateTime mapStartDate) {
+    this.mapStartDate = mapStartDate;
+  }
+
+
+  public PriceListEntry msrp(Double msrp) {
+    
+    this.msrp = msrp;
+    return this;
+  }
+
+   /**
+   * Get msrp
+   * @return msrp
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
+
+  public Double getMsrp() {
+    return msrp;
+  }
+
+
+  public void setMsrp(Double msrp) {
+    this.msrp = msrp;
+  }
+
+
+  public PriceListEntry msrpMode(String msrpMode) {
+    
+    this.msrpMode = msrpMode;
+    return this;
+  }
+
+   /**
+   * Get msrpMode
+   * @return msrpMode
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
+
+  public String getMsrpMode() {
+    return msrpMode;
+  }
+
+
+  public void setMsrpMode(String msrpMode) {
+    this.msrpMode = msrpMode;
+  }
+
+
+  public PriceListEntry options(List<CatalogAdminsProductOption> options) {
+    
+    this.options = options;
+    return this;
+  }
+
+  public PriceListEntry addOptionsItem(CatalogAdminsProductOption optionsItem) {
+    if (this.options == null) {
+      this.options = new ArrayList<>();
+    }
+    this.options.add(optionsItem);
+    return this;
+  }
+
+   /**
+   * Get options
+   * @return options
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
+
+  public List<CatalogAdminsProductOption> getOptions() {
+    return options;
+  }
+
+
+  public void setOptions(List<CatalogAdminsProductOption> options) {
+    this.options = options;
+  }
+
+
+  public PriceListEntry priceEntries(List<PriceListEntryPrice> priceEntries) {
+    
+    this.priceEntries = priceEntries;
+    return this;
+  }
+
+  public PriceListEntry addPriceEntriesItem(PriceListEntryPrice priceEntriesItem) {
+    if (this.priceEntries == null) {
+      this.priceEntries = new ArrayList<>();
+    }
+    this.priceEntries.add(priceEntriesItem);
+    return this;
+  }
+
+   /**
+   * Get priceEntries
+   * @return priceEntries
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
+
+  public List<PriceListEntryPrice> getPriceEntries() {
+    return priceEntries;
+  }
+
+
+  public void setPriceEntries(List<PriceListEntryPrice> priceEntries) {
+    this.priceEntries = priceEntries;
+  }
+
 
   public PriceListEntry priceListCode(String priceListCode) {
     
@@ -176,11 +637,11 @@ public class PriceListEntry implements Serializable {
   }
 
    /**
-   * External unique identifier of the PriceList. Must be unique an only contain url sanitized characters. Max length is  50
+   * External unique identifier of the PriceList. Must be unique an only contain url sanitized characters. Max length is 50
    * @return priceListCode
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "External unique identifier of the PriceList. Must be unique an only contain url sanitized characters. Max length is  50")
+  @ApiModelProperty(value = "External unique identifier of the PriceList. Must be unique an only contain url sanitized characters. Max length is 50")
 
   public String getPriceListCode() {
     return priceListCode;
@@ -189,6 +650,29 @@ public class PriceListEntry implements Serializable {
 
   public void setPriceListCode(String priceListCode) {
     this.priceListCode = priceListCode;
+  }
+
+
+  public PriceListEntry priceListEntryMode(String priceListEntryMode) {
+    
+    this.priceListEntryMode = priceListEntryMode;
+    return this;
+  }
+
+   /**
+   * Get priceListEntryMode
+   * @return priceListEntryMode
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
+
+  public String getPriceListEntryMode() {
+    return priceListEntryMode;
+  }
+
+
+  public void setPriceListEntryMode(String priceListEntryMode) {
+    this.priceListEntryMode = priceListEntryMode;
   }
 
 
@@ -212,6 +696,29 @@ public class PriceListEntry implements Serializable {
 
   public void setPriceListEntrySequence(Integer priceListEntrySequence) {
     this.priceListEntrySequence = priceListEntrySequence;
+  }
+
+
+  public PriceListEntry priceListEntryTypeCode(String priceListEntryTypeCode) {
+    
+    this.priceListEntryTypeCode = priceListEntryTypeCode;
+    return this;
+  }
+
+   /**
+   * Get priceListEntryTypeCode
+   * @return priceListEntryTypeCode
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
+
+  public String getPriceListEntryTypeCode() {
+    return priceListEntryTypeCode;
+  }
+
+
+  public void setPriceListEntryTypeCode(String priceListEntryTypeCode) {
+    this.priceListEntryTypeCode = priceListEntryTypeCode;
   }
 
 
@@ -261,83 +768,6 @@ public class PriceListEntry implements Serializable {
   }
 
 
-  public PriceListEntry isVariation(Boolean isVariation) {
-    
-    this.isVariation = isVariation;
-    return this;
-  }
-
-   /**
-   * Get isVariation
-   * @return isVariation
-  **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
-
-  public Boolean getIsVariation() {
-    return isVariation;
-  }
-
-
-  public void setIsVariation(Boolean isVariation) {
-    this.isVariation = isVariation;
-  }
-
-
-  public PriceListEntry options(List<CatalogAdminsProductOption> options) {
-    
-    this.options = options;
-    return this;
-  }
-
-  public PriceListEntry addOptionsItem(CatalogAdminsProductOption optionsItem) {
-    if (this.options == null) {
-      this.options = new ArrayList<>();
-    }
-    this.options.add(optionsItem);
-    return this;
-  }
-
-   /**
-   * Get options
-   * @return options
-  **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
-
-  public List<CatalogAdminsProductOption> getOptions() {
-    return options;
-  }
-
-
-  public void setOptions(List<CatalogAdminsProductOption> options) {
-    this.options = options;
-  }
-
-
-  public PriceListEntry currencyCode(String currencyCode) {
-    
-    this.currencyCode = currencyCode;
-    return this;
-  }
-
-   /**
-   * Get currencyCode
-   * @return currencyCode
-  **/
-  @javax.annotation.Nonnull
-  @ApiModelProperty(required = true, value = "")
-
-  public String getCurrencyCode() {
-    return currencyCode;
-  }
-
-
-  public void setCurrencyCode(String currencyCode) {
-    this.currencyCode = currencyCode;
-  }
-
-
   public PriceListEntry startDate(OffsetDateTime startDate) {
     
     this.startDate = startDate;
@@ -361,436 +791,6 @@ public class PriceListEntry implements Serializable {
   }
 
 
-  public PriceListEntry endDate(OffsetDateTime endDate) {
-    
-    this.endDate = endDate;
-    return this;
-  }
-
-   /**
-   * Get endDate
-   * @return endDate
-  **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
-
-  public OffsetDateTime getEndDate() {
-    return endDate;
-  }
-
-
-  public void setEndDate(OffsetDateTime endDate) {
-    this.endDate = endDate;
-  }
-
-
-  public PriceListEntry priceListEntryMode(String priceListEntryMode) {
-    
-    this.priceListEntryMode = priceListEntryMode;
-    return this;
-  }
-
-   /**
-   * Get priceListEntryMode
-   * @return priceListEntryMode
-  **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
-
-  public String getPriceListEntryMode() {
-    return priceListEntryMode;
-  }
-
-
-  public void setPriceListEntryMode(String priceListEntryMode) {
-    this.priceListEntryMode = priceListEntryMode;
-  }
-
-
-  public PriceListEntry priceListEntryTypeCode(String priceListEntryTypeCode) {
-    
-    this.priceListEntryTypeCode = priceListEntryTypeCode;
-    return this;
-  }
-
-   /**
-   * Get priceListEntryTypeCode
-   * @return priceListEntryTypeCode
-  **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
-
-  public String getPriceListEntryTypeCode() {
-    return priceListEntryTypeCode;
-  }
-
-
-  public void setPriceListEntryTypeCode(String priceListEntryTypeCode) {
-    this.priceListEntryTypeCode = priceListEntryTypeCode;
-  }
-
-
-  public PriceListEntry discountsRestrictedMode(String discountsRestrictedMode) {
-    
-    this.discountsRestrictedMode = discountsRestrictedMode;
-    return this;
-  }
-
-   /**
-   * Get discountsRestrictedMode
-   * @return discountsRestrictedMode
-  **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
-
-  public String getDiscountsRestrictedMode() {
-    return discountsRestrictedMode;
-  }
-
-
-  public void setDiscountsRestrictedMode(String discountsRestrictedMode) {
-    this.discountsRestrictedMode = discountsRestrictedMode;
-  }
-
-
-  public PriceListEntry discountsRestricted(Boolean discountsRestricted) {
-    
-    this.discountsRestricted = discountsRestricted;
-    return this;
-  }
-
-   /**
-   * Get discountsRestricted
-   * @return discountsRestricted
-  **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
-
-  public Boolean getDiscountsRestricted() {
-    return discountsRestricted;
-  }
-
-
-  public void setDiscountsRestricted(Boolean discountsRestricted) {
-    this.discountsRestricted = discountsRestricted;
-  }
-
-
-  public PriceListEntry discountsRestrictedStartDate(OffsetDateTime discountsRestrictedStartDate) {
-    
-    this.discountsRestrictedStartDate = discountsRestrictedStartDate;
-    return this;
-  }
-
-   /**
-   * Get discountsRestrictedStartDate
-   * @return discountsRestrictedStartDate
-  **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
-
-  public OffsetDateTime getDiscountsRestrictedStartDate() {
-    return discountsRestrictedStartDate;
-  }
-
-
-  public void setDiscountsRestrictedStartDate(OffsetDateTime discountsRestrictedStartDate) {
-    this.discountsRestrictedStartDate = discountsRestrictedStartDate;
-  }
-
-
-  public PriceListEntry discountsRestrictedEndDate(OffsetDateTime discountsRestrictedEndDate) {
-    
-    this.discountsRestrictedEndDate = discountsRestrictedEndDate;
-    return this;
-  }
-
-   /**
-   * Get discountsRestrictedEndDate
-   * @return discountsRestrictedEndDate
-  **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
-
-  public OffsetDateTime getDiscountsRestrictedEndDate() {
-    return discountsRestrictedEndDate;
-  }
-
-
-  public void setDiscountsRestrictedEndDate(OffsetDateTime discountsRestrictedEndDate) {
-    this.discountsRestrictedEndDate = discountsRestrictedEndDate;
-  }
-
-
-  public PriceListEntry msrpMode(String msrpMode) {
-    
-    this.msrpMode = msrpMode;
-    return this;
-  }
-
-   /**
-   * Get msrpMode
-   * @return msrpMode
-  **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
-
-  public String getMsrpMode() {
-    return msrpMode;
-  }
-
-
-  public void setMsrpMode(String msrpMode) {
-    this.msrpMode = msrpMode;
-  }
-
-
-  public PriceListEntry msrp(Double msrp) {
-    
-    this.msrp = msrp;
-    return this;
-  }
-
-   /**
-   * Get msrp
-   * @return msrp
-  **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
-
-  public Double getMsrp() {
-    return msrp;
-  }
-
-
-  public void setMsrp(Double msrp) {
-    this.msrp = msrp;
-  }
-
-
-  public PriceListEntry mapMode(String mapMode) {
-    
-    this.mapMode = mapMode;
-    return this;
-  }
-
-   /**
-   * Get mapMode
-   * @return mapMode
-  **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
-
-  public String getMapMode() {
-    return mapMode;
-  }
-
-
-  public void setMapMode(String mapMode) {
-    this.mapMode = mapMode;
-  }
-
-
-  public PriceListEntry map(Double map) {
-    
-    this.map = map;
-    return this;
-  }
-
-   /**
-   * Get map
-   * @return map
-  **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
-
-  public Double getMap() {
-    return map;
-  }
-
-
-  public void setMap(Double map) {
-    this.map = map;
-  }
-
-
-  public PriceListEntry mapStartDate(OffsetDateTime mapStartDate) {
-    
-    this.mapStartDate = mapStartDate;
-    return this;
-  }
-
-   /**
-   * Get mapStartDate
-   * @return mapStartDate
-  **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
-
-  public OffsetDateTime getMapStartDate() {
-    return mapStartDate;
-  }
-
-
-  public void setMapStartDate(OffsetDateTime mapStartDate) {
-    this.mapStartDate = mapStartDate;
-  }
-
-
-  public PriceListEntry mapEndDate(OffsetDateTime mapEndDate) {
-    
-    this.mapEndDate = mapEndDate;
-    return this;
-  }
-
-   /**
-   * Get mapEndDate
-   * @return mapEndDate
-  **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
-
-  public OffsetDateTime getMapEndDate() {
-    return mapEndDate;
-  }
-
-
-  public void setMapEndDate(OffsetDateTime mapEndDate) {
-    this.mapEndDate = mapEndDate;
-  }
-
-
-  public PriceListEntry costMode(String costMode) {
-    
-    this.costMode = costMode;
-    return this;
-  }
-
-   /**
-   * Get costMode
-   * @return costMode
-  **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
-
-  public String getCostMode() {
-    return costMode;
-  }
-
-
-  public void setCostMode(String costMode) {
-    this.costMode = costMode;
-  }
-
-
-  public PriceListEntry cost(Double cost) {
-    
-    this.cost = cost;
-    return this;
-  }
-
-   /**
-   * Get cost
-   * @return cost
-  **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
-
-  public Double getCost() {
-    return cost;
-  }
-
-
-  public void setCost(Double cost) {
-    this.cost = cost;
-  }
-
-
-  public PriceListEntry priceEntries(List<PriceListEntryPrice> priceEntries) {
-    
-    this.priceEntries = priceEntries;
-    return this;
-  }
-
-  public PriceListEntry addPriceEntriesItem(PriceListEntryPrice priceEntriesItem) {
-    if (this.priceEntries == null) {
-      this.priceEntries = new ArrayList<>();
-    }
-    this.priceEntries.add(priceEntriesItem);
-    return this;
-  }
-
-   /**
-   * Get priceEntries
-   * @return priceEntries
-  **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
-
-  public List<PriceListEntryPrice> getPriceEntries() {
-    return priceEntries;
-  }
-
-
-  public void setPriceEntries(List<PriceListEntryPrice> priceEntries) {
-    this.priceEntries = priceEntries;
-  }
-
-
-  public PriceListEntry extraEntries(List<PriceListEntryExtra> extraEntries) {
-    
-    this.extraEntries = extraEntries;
-    return this;
-  }
-
-  public PriceListEntry addExtraEntriesItem(PriceListEntryExtra extraEntriesItem) {
-    if (this.extraEntries == null) {
-      this.extraEntries = new ArrayList<>();
-    }
-    this.extraEntries.add(extraEntriesItem);
-    return this;
-  }
-
-   /**
-   * Get extraEntries
-   * @return extraEntries
-  **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
-
-  public List<PriceListEntryExtra> getExtraEntries() {
-    return extraEntries;
-  }
-
-
-  public void setExtraEntries(List<PriceListEntryExtra> extraEntries) {
-    this.extraEntries = extraEntries;
-  }
-
-
-  public PriceListEntry auditInfo(AdminUserAuditInfo auditInfo) {
-    
-    this.auditInfo = auditInfo;
-    return this;
-  }
-
-   /**
-   * Get auditInfo
-   * @return auditInfo
-  **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
-
-  public AdminUserAuditInfo getAuditInfo() {
-    return auditInfo;
-  }
-
-
-  public void setAuditInfo(AdminUserAuditInfo auditInfo) {
-    this.auditInfo = auditInfo;
-  }
-
-
 
   @Override
   public boolean equals(Object o) {
@@ -801,32 +801,32 @@ public class PriceListEntry implements Serializable {
       return false;
     }
     PriceListEntry priceListEntry = (PriceListEntry) o;
-    return Objects.equals(this.priceListCode, priceListEntry.priceListCode) &&
+    return Objects.equals(this.auditInfo, priceListEntry.auditInfo) &&
+        Objects.equals(this.cost, priceListEntry.cost) &&
+        Objects.equals(this.costMode, priceListEntry.costMode) &&
+        Objects.equals(this.currencyCode, priceListEntry.currencyCode) &&
+        Objects.equals(this.discountsRestricted, priceListEntry.discountsRestricted) &&
+        Objects.equals(this.discountsRestrictedEndDate, priceListEntry.discountsRestrictedEndDate) &&
+        Objects.equals(this.discountsRestrictedMode, priceListEntry.discountsRestrictedMode) &&
+        Objects.equals(this.discountsRestrictedStartDate, priceListEntry.discountsRestrictedStartDate) &&
+        Objects.equals(this.endDate, priceListEntry.endDate) &&
+        Objects.equals(this.extraEntries, priceListEntry.extraEntries) &&
+        Objects.equals(this.isVariation, priceListEntry.isVariation) &&
+        Objects.equals(this.map, priceListEntry.map) &&
+        Objects.equals(this.mapEndDate, priceListEntry.mapEndDate) &&
+        Objects.equals(this.mapMode, priceListEntry.mapMode) &&
+        Objects.equals(this.mapStartDate, priceListEntry.mapStartDate) &&
+        Objects.equals(this.msrp, priceListEntry.msrp) &&
+        Objects.equals(this.msrpMode, priceListEntry.msrpMode) &&
+        Objects.equals(this.options, priceListEntry.options) &&
+        Objects.equals(this.priceEntries, priceListEntry.priceEntries) &&
+        Objects.equals(this.priceListCode, priceListEntry.priceListCode) &&
+        Objects.equals(this.priceListEntryMode, priceListEntry.priceListEntryMode) &&
         Objects.equals(this.priceListEntrySequence, priceListEntry.priceListEntrySequence) &&
+        Objects.equals(this.priceListEntryTypeCode, priceListEntry.priceListEntryTypeCode) &&
         Objects.equals(this.productCode, priceListEntry.productCode) &&
         Objects.equals(this.productName, priceListEntry.productName) &&
-        Objects.equals(this.isVariation, priceListEntry.isVariation) &&
-        Objects.equals(this.options, priceListEntry.options) &&
-        Objects.equals(this.currencyCode, priceListEntry.currencyCode) &&
-        Objects.equals(this.startDate, priceListEntry.startDate) &&
-        Objects.equals(this.endDate, priceListEntry.endDate) &&
-        Objects.equals(this.priceListEntryMode, priceListEntry.priceListEntryMode) &&
-        Objects.equals(this.priceListEntryTypeCode, priceListEntry.priceListEntryTypeCode) &&
-        Objects.equals(this.discountsRestrictedMode, priceListEntry.discountsRestrictedMode) &&
-        Objects.equals(this.discountsRestricted, priceListEntry.discountsRestricted) &&
-        Objects.equals(this.discountsRestrictedStartDate, priceListEntry.discountsRestrictedStartDate) &&
-        Objects.equals(this.discountsRestrictedEndDate, priceListEntry.discountsRestrictedEndDate) &&
-        Objects.equals(this.msrpMode, priceListEntry.msrpMode) &&
-        Objects.equals(this.msrp, priceListEntry.msrp) &&
-        Objects.equals(this.mapMode, priceListEntry.mapMode) &&
-        Objects.equals(this.map, priceListEntry.map) &&
-        Objects.equals(this.mapStartDate, priceListEntry.mapStartDate) &&
-        Objects.equals(this.mapEndDate, priceListEntry.mapEndDate) &&
-        Objects.equals(this.costMode, priceListEntry.costMode) &&
-        Objects.equals(this.cost, priceListEntry.cost) &&
-        Objects.equals(this.priceEntries, priceListEntry.priceEntries) &&
-        Objects.equals(this.extraEntries, priceListEntry.extraEntries) &&
-        Objects.equals(this.auditInfo, priceListEntry.auditInfo);
+        Objects.equals(this.startDate, priceListEntry.startDate);
   }
 
   private static <T> boolean equalsNullable(JsonNullable<T> a, JsonNullable<T> b) {
@@ -835,7 +835,7 @@ public class PriceListEntry implements Serializable {
 
   @Override
   public int hashCode() {
-    return Objects.hash(priceListCode, priceListEntrySequence, productCode, productName, isVariation, options, currencyCode, startDate, endDate, priceListEntryMode, priceListEntryTypeCode, discountsRestrictedMode, discountsRestricted, discountsRestrictedStartDate, discountsRestrictedEndDate, msrpMode, msrp, mapMode, map, mapStartDate, mapEndDate, costMode, cost, priceEntries, extraEntries, auditInfo);
+    return Objects.hash(auditInfo, cost, costMode, currencyCode, discountsRestricted, discountsRestrictedEndDate, discountsRestrictedMode, discountsRestrictedStartDate, endDate, extraEntries, isVariation, map, mapEndDate, mapMode, mapStartDate, msrp, msrpMode, options, priceEntries, priceListCode, priceListEntryMode, priceListEntrySequence, priceListEntryTypeCode, productCode, productName, startDate);
   }
 
   private static <T> int hashCodeNullable(JsonNullable<T> a) {
@@ -849,32 +849,32 @@ public class PriceListEntry implements Serializable {
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class PriceListEntry {\n");
+    sb.append("    auditInfo: ").append(toIndentedString(auditInfo)).append("\n");
+    sb.append("    cost: ").append(toIndentedString(cost)).append("\n");
+    sb.append("    costMode: ").append(toIndentedString(costMode)).append("\n");
+    sb.append("    currencyCode: ").append(toIndentedString(currencyCode)).append("\n");
+    sb.append("    discountsRestricted: ").append(toIndentedString(discountsRestricted)).append("\n");
+    sb.append("    discountsRestrictedEndDate: ").append(toIndentedString(discountsRestrictedEndDate)).append("\n");
+    sb.append("    discountsRestrictedMode: ").append(toIndentedString(discountsRestrictedMode)).append("\n");
+    sb.append("    discountsRestrictedStartDate: ").append(toIndentedString(discountsRestrictedStartDate)).append("\n");
+    sb.append("    endDate: ").append(toIndentedString(endDate)).append("\n");
+    sb.append("    extraEntries: ").append(toIndentedString(extraEntries)).append("\n");
+    sb.append("    isVariation: ").append(toIndentedString(isVariation)).append("\n");
+    sb.append("    map: ").append(toIndentedString(map)).append("\n");
+    sb.append("    mapEndDate: ").append(toIndentedString(mapEndDate)).append("\n");
+    sb.append("    mapMode: ").append(toIndentedString(mapMode)).append("\n");
+    sb.append("    mapStartDate: ").append(toIndentedString(mapStartDate)).append("\n");
+    sb.append("    msrp: ").append(toIndentedString(msrp)).append("\n");
+    sb.append("    msrpMode: ").append(toIndentedString(msrpMode)).append("\n");
+    sb.append("    options: ").append(toIndentedString(options)).append("\n");
+    sb.append("    priceEntries: ").append(toIndentedString(priceEntries)).append("\n");
     sb.append("    priceListCode: ").append(toIndentedString(priceListCode)).append("\n");
+    sb.append("    priceListEntryMode: ").append(toIndentedString(priceListEntryMode)).append("\n");
     sb.append("    priceListEntrySequence: ").append(toIndentedString(priceListEntrySequence)).append("\n");
+    sb.append("    priceListEntryTypeCode: ").append(toIndentedString(priceListEntryTypeCode)).append("\n");
     sb.append("    productCode: ").append(toIndentedString(productCode)).append("\n");
     sb.append("    productName: ").append(toIndentedString(productName)).append("\n");
-    sb.append("    isVariation: ").append(toIndentedString(isVariation)).append("\n");
-    sb.append("    options: ").append(toIndentedString(options)).append("\n");
-    sb.append("    currencyCode: ").append(toIndentedString(currencyCode)).append("\n");
     sb.append("    startDate: ").append(toIndentedString(startDate)).append("\n");
-    sb.append("    endDate: ").append(toIndentedString(endDate)).append("\n");
-    sb.append("    priceListEntryMode: ").append(toIndentedString(priceListEntryMode)).append("\n");
-    sb.append("    priceListEntryTypeCode: ").append(toIndentedString(priceListEntryTypeCode)).append("\n");
-    sb.append("    discountsRestrictedMode: ").append(toIndentedString(discountsRestrictedMode)).append("\n");
-    sb.append("    discountsRestricted: ").append(toIndentedString(discountsRestricted)).append("\n");
-    sb.append("    discountsRestrictedStartDate: ").append(toIndentedString(discountsRestrictedStartDate)).append("\n");
-    sb.append("    discountsRestrictedEndDate: ").append(toIndentedString(discountsRestrictedEndDate)).append("\n");
-    sb.append("    msrpMode: ").append(toIndentedString(msrpMode)).append("\n");
-    sb.append("    msrp: ").append(toIndentedString(msrp)).append("\n");
-    sb.append("    mapMode: ").append(toIndentedString(mapMode)).append("\n");
-    sb.append("    map: ").append(toIndentedString(map)).append("\n");
-    sb.append("    mapStartDate: ").append(toIndentedString(mapStartDate)).append("\n");
-    sb.append("    mapEndDate: ").append(toIndentedString(mapEndDate)).append("\n");
-    sb.append("    costMode: ").append(toIndentedString(costMode)).append("\n");
-    sb.append("    cost: ").append(toIndentedString(cost)).append("\n");
-    sb.append("    priceEntries: ").append(toIndentedString(priceEntries)).append("\n");
-    sb.append("    extraEntries: ").append(toIndentedString(extraEntries)).append("\n");
-    sb.append("    auditInfo: ").append(toIndentedString(auditInfo)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -897,37 +897,37 @@ public class PriceListEntry implements Serializable {
   static {
     // a set of all properties/fields (JSON key names)
     openapiFields = new HashSet<String>();
+    openapiFields.add("auditInfo");
+    openapiFields.add("cost");
+    openapiFields.add("costMode");
+    openapiFields.add("currencyCode");
+    openapiFields.add("discountsRestricted");
+    openapiFields.add("discountsRestrictedEndDate");
+    openapiFields.add("discountsRestrictedMode");
+    openapiFields.add("discountsRestrictedStartDate");
+    openapiFields.add("endDate");
+    openapiFields.add("extraEntries");
+    openapiFields.add("isVariation");
+    openapiFields.add("map");
+    openapiFields.add("mapEndDate");
+    openapiFields.add("mapMode");
+    openapiFields.add("mapStartDate");
+    openapiFields.add("msrp");
+    openapiFields.add("msrpMode");
+    openapiFields.add("options");
+    openapiFields.add("priceEntries");
     openapiFields.add("priceListCode");
+    openapiFields.add("priceListEntryMode");
     openapiFields.add("priceListEntrySequence");
+    openapiFields.add("priceListEntryTypeCode");
     openapiFields.add("productCode");
     openapiFields.add("productName");
-    openapiFields.add("isVariation");
-    openapiFields.add("options");
-    openapiFields.add("currencyCode");
     openapiFields.add("startDate");
-    openapiFields.add("endDate");
-    openapiFields.add("priceListEntryMode");
-    openapiFields.add("priceListEntryTypeCode");
-    openapiFields.add("discountsRestrictedMode");
-    openapiFields.add("discountsRestricted");
-    openapiFields.add("discountsRestrictedStartDate");
-    openapiFields.add("discountsRestrictedEndDate");
-    openapiFields.add("msrpMode");
-    openapiFields.add("msrp");
-    openapiFields.add("mapMode");
-    openapiFields.add("map");
-    openapiFields.add("mapStartDate");
-    openapiFields.add("mapEndDate");
-    openapiFields.add("costMode");
-    openapiFields.add("cost");
-    openapiFields.add("priceEntries");
-    openapiFields.add("extraEntries");
-    openapiFields.add("auditInfo");
 
     // a set of required properties/fields (JSON key names)
     openapiRequiredFields = new HashSet<String>();
-    openapiRequiredFields.add("productCode");
     openapiRequiredFields.add("currencyCode");
+    openapiRequiredFields.add("productCode");
   }
 
  /**
@@ -958,63 +958,18 @@ public class PriceListEntry implements Serializable {
           throw new IllegalArgumentException(String.format("The required field `%s` is not found in the JSON string: %s", requiredField, jsonObj.toString()));
         }
       }
-      if ((jsonObj.get("priceListCode") != null && !jsonObj.get("priceListCode").isJsonNull()) && !jsonObj.get("priceListCode").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `priceListCode` to be a primitive type in the JSON string but got `%s`", jsonObj.get("priceListCode").toString()));
-      }
-      if (!jsonObj.get("productCode").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `productCode` to be a primitive type in the JSON string but got `%s`", jsonObj.get("productCode").toString()));
-      }
-      if ((jsonObj.get("productName") != null && !jsonObj.get("productName").isJsonNull()) && !jsonObj.get("productName").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `productName` to be a primitive type in the JSON string but got `%s`", jsonObj.get("productName").toString()));
-      }
-      if (jsonObj.get("options") != null && !jsonObj.get("options").isJsonNull()) {
-        JsonArray jsonArrayoptions = jsonObj.getAsJsonArray("options");
-        if (jsonArrayoptions != null) {
-          // ensure the json data is an array
-          if (!jsonObj.get("options").isJsonArray()) {
-            throw new IllegalArgumentException(String.format("Expected the field `options` to be an array in the JSON string but got `%s`", jsonObj.get("options").toString()));
-          }
-
-          // validate the optional field `options` (array)
-          for (int i = 0; i < jsonArrayoptions.size(); i++) {
-            CatalogAdminsProductOption.validateJsonObject(jsonArrayoptions.get(i).getAsJsonObject());
-          };
-        }
-      }
-      if (!jsonObj.get("currencyCode").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `currencyCode` to be a primitive type in the JSON string but got `%s`", jsonObj.get("currencyCode").toString()));
-      }
-      if ((jsonObj.get("priceListEntryMode") != null && !jsonObj.get("priceListEntryMode").isJsonNull()) && !jsonObj.get("priceListEntryMode").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `priceListEntryMode` to be a primitive type in the JSON string but got `%s`", jsonObj.get("priceListEntryMode").toString()));
-      }
-      if ((jsonObj.get("priceListEntryTypeCode") != null && !jsonObj.get("priceListEntryTypeCode").isJsonNull()) && !jsonObj.get("priceListEntryTypeCode").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `priceListEntryTypeCode` to be a primitive type in the JSON string but got `%s`", jsonObj.get("priceListEntryTypeCode").toString()));
-      }
-      if ((jsonObj.get("discountsRestrictedMode") != null && !jsonObj.get("discountsRestrictedMode").isJsonNull()) && !jsonObj.get("discountsRestrictedMode").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `discountsRestrictedMode` to be a primitive type in the JSON string but got `%s`", jsonObj.get("discountsRestrictedMode").toString()));
-      }
-      if ((jsonObj.get("msrpMode") != null && !jsonObj.get("msrpMode").isJsonNull()) && !jsonObj.get("msrpMode").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `msrpMode` to be a primitive type in the JSON string but got `%s`", jsonObj.get("msrpMode").toString()));
-      }
-      if ((jsonObj.get("mapMode") != null && !jsonObj.get("mapMode").isJsonNull()) && !jsonObj.get("mapMode").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `mapMode` to be a primitive type in the JSON string but got `%s`", jsonObj.get("mapMode").toString()));
+      // validate the optional field `auditInfo`
+      if (jsonObj.get("auditInfo") != null && !jsonObj.get("auditInfo").isJsonNull()) {
+        AdminUserAuditInfo.validateJsonObject(jsonObj.getAsJsonObject("auditInfo"));
       }
       if ((jsonObj.get("costMode") != null && !jsonObj.get("costMode").isJsonNull()) && !jsonObj.get("costMode").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format("Expected the field `costMode` to be a primitive type in the JSON string but got `%s`", jsonObj.get("costMode").toString()));
       }
-      if (jsonObj.get("priceEntries") != null && !jsonObj.get("priceEntries").isJsonNull()) {
-        JsonArray jsonArraypriceEntries = jsonObj.getAsJsonArray("priceEntries");
-        if (jsonArraypriceEntries != null) {
-          // ensure the json data is an array
-          if (!jsonObj.get("priceEntries").isJsonArray()) {
-            throw new IllegalArgumentException(String.format("Expected the field `priceEntries` to be an array in the JSON string but got `%s`", jsonObj.get("priceEntries").toString()));
-          }
-
-          // validate the optional field `priceEntries` (array)
-          for (int i = 0; i < jsonArraypriceEntries.size(); i++) {
-            PriceListEntryPrice.validateJsonObject(jsonArraypriceEntries.get(i).getAsJsonObject());
-          };
-        }
+      if (!jsonObj.get("currencyCode").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `currencyCode` to be a primitive type in the JSON string but got `%s`", jsonObj.get("currencyCode").toString()));
+      }
+      if ((jsonObj.get("discountsRestrictedMode") != null && !jsonObj.get("discountsRestrictedMode").isJsonNull()) && !jsonObj.get("discountsRestrictedMode").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `discountsRestrictedMode` to be a primitive type in the JSON string but got `%s`", jsonObj.get("discountsRestrictedMode").toString()));
       }
       if (jsonObj.get("extraEntries") != null && !jsonObj.get("extraEntries").isJsonNull()) {
         JsonArray jsonArrayextraEntries = jsonObj.getAsJsonArray("extraEntries");
@@ -1030,9 +985,54 @@ public class PriceListEntry implements Serializable {
           };
         }
       }
-      // validate the optional field `auditInfo`
-      if (jsonObj.get("auditInfo") != null && !jsonObj.get("auditInfo").isJsonNull()) {
-        AdminUserAuditInfo.validateJsonObject(jsonObj.getAsJsonObject("auditInfo"));
+      if ((jsonObj.get("mapMode") != null && !jsonObj.get("mapMode").isJsonNull()) && !jsonObj.get("mapMode").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `mapMode` to be a primitive type in the JSON string but got `%s`", jsonObj.get("mapMode").toString()));
+      }
+      if ((jsonObj.get("msrpMode") != null && !jsonObj.get("msrpMode").isJsonNull()) && !jsonObj.get("msrpMode").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `msrpMode` to be a primitive type in the JSON string but got `%s`", jsonObj.get("msrpMode").toString()));
+      }
+      if (jsonObj.get("options") != null && !jsonObj.get("options").isJsonNull()) {
+        JsonArray jsonArrayoptions = jsonObj.getAsJsonArray("options");
+        if (jsonArrayoptions != null) {
+          // ensure the json data is an array
+          if (!jsonObj.get("options").isJsonArray()) {
+            throw new IllegalArgumentException(String.format("Expected the field `options` to be an array in the JSON string but got `%s`", jsonObj.get("options").toString()));
+          }
+
+          // validate the optional field `options` (array)
+          for (int i = 0; i < jsonArrayoptions.size(); i++) {
+            CatalogAdminsProductOption.validateJsonObject(jsonArrayoptions.get(i).getAsJsonObject());
+          };
+        }
+      }
+      if (jsonObj.get("priceEntries") != null && !jsonObj.get("priceEntries").isJsonNull()) {
+        JsonArray jsonArraypriceEntries = jsonObj.getAsJsonArray("priceEntries");
+        if (jsonArraypriceEntries != null) {
+          // ensure the json data is an array
+          if (!jsonObj.get("priceEntries").isJsonArray()) {
+            throw new IllegalArgumentException(String.format("Expected the field `priceEntries` to be an array in the JSON string but got `%s`", jsonObj.get("priceEntries").toString()));
+          }
+
+          // validate the optional field `priceEntries` (array)
+          for (int i = 0; i < jsonArraypriceEntries.size(); i++) {
+            PriceListEntryPrice.validateJsonObject(jsonArraypriceEntries.get(i).getAsJsonObject());
+          };
+        }
+      }
+      if ((jsonObj.get("priceListCode") != null && !jsonObj.get("priceListCode").isJsonNull()) && !jsonObj.get("priceListCode").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `priceListCode` to be a primitive type in the JSON string but got `%s`", jsonObj.get("priceListCode").toString()));
+      }
+      if ((jsonObj.get("priceListEntryMode") != null && !jsonObj.get("priceListEntryMode").isJsonNull()) && !jsonObj.get("priceListEntryMode").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `priceListEntryMode` to be a primitive type in the JSON string but got `%s`", jsonObj.get("priceListEntryMode").toString()));
+      }
+      if ((jsonObj.get("priceListEntryTypeCode") != null && !jsonObj.get("priceListEntryTypeCode").isJsonNull()) && !jsonObj.get("priceListEntryTypeCode").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `priceListEntryTypeCode` to be a primitive type in the JSON string but got `%s`", jsonObj.get("priceListEntryTypeCode").toString()));
+      }
+      if (!jsonObj.get("productCode").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `productCode` to be a primitive type in the JSON string but got `%s`", jsonObj.get("productCode").toString()));
+      }
+      if ((jsonObj.get("productName") != null && !jsonObj.get("productName").isJsonNull()) && !jsonObj.get("productName").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `productName` to be a primitive type in the JSON string but got `%s`", jsonObj.get("productName").toString()));
       }
   }
 

@@ -7,12 +7,12 @@
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
-|**name** | **String** |  |  [optional] |
-|**value** | **Object** |  |  [optional] |
 |**createBy** | **String** |  |  [optional] |
 |**createDate** | **OffsetDateTime** |  |  [optional] |
+|**name** | **String** |  |  [optional] |
 |**updateBy** | **String** |  |  [optional] |
 |**updateDate** | **OffsetDateTime** |  |  [optional] |
+|**value** | **Object** |  |  [optional] |
 
 
 ## Implemented Interfaces

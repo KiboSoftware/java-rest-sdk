@@ -8,8 +8,9 @@ Contains settings specifying whether the auto-capture payment feature should con
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
-|**sthFlow** | [**FlexibleCaptureFlow**](FlexibleCaptureFlow.md) |  |  [optional] |
 |**bopisFlow** | [**FlexibleCaptureFlow**](FlexibleCaptureFlow.md) |  |  [optional] |
+|**deliveryFlow** | [**FlexibleCaptureFlow**](FlexibleCaptureFlow.md) |  |  [optional] |
+|**sthFlow** | [**FlexibleCaptureFlow**](FlexibleCaptureFlow.md) |  |  [optional] |
 
 
 ## Implemented Interfaces

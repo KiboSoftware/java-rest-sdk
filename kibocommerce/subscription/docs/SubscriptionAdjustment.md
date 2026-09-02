@@ -7,10 +7,10 @@
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
-|**reason** | [**SubscriptionReason**](SubscriptionReason.md) |  |  [optional] |
-|**itemAdjustment** | **Double** |  |  [optional] |
-|**shippingAdjustment** | **Double** |  |  [optional] |
 |**handlingAdjustment** | **Double** |  |  [optional] |
+|**itemAdjustment** | **Double** |  |  [optional] |
+|**reason** | [**SubscriptionReason**](SubscriptionReason.md) |  |  [optional] |
+|**shippingAdjustment** | **Double** |  |  [optional] |
 
 
 ## Implemented Interfaces

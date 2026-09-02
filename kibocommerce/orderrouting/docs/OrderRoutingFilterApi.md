@@ -4,22 +4,22 @@ All URIs are relative to *http://https:/api*
 
 | Method | HTTP request | Description |
 |------------- | ------------- | -------------|
-| [**deleteFilterUsingDELETE**](OrderRoutingFilterApi.md#deleteFilterUsingDELETE) | **DELETE** /commerce/orders/orderrouting/api/v1/filter/delete/{filterID} | deleteFilter |
-| [**getFilterUsingGET**](OrderRoutingFilterApi.md#getFilterUsingGET) | **GET** /commerce/orders/orderrouting/api/v1/filter/{filterID} | getFilter |
-| [**saveCriteriaSetFilterUsingPOST**](OrderRoutingFilterApi.md#saveCriteriaSetFilterUsingPOST) | **POST** /commerce/orders/orderrouting/api/v1/filter/criteriaSet | saveCriteriaSetFilter |
-| [**saveCustomDataListFilterUsingPOST**](OrderRoutingFilterApi.md#saveCustomDataListFilterUsingPOST) | **POST** /commerce/orders/orderrouting/api/v1/filter/customDataListFilter | saveCustomDataListFilter |
-| [**saveCustomDataValueFilterUsingPOST**](OrderRoutingFilterApi.md#saveCustomDataValueFilterUsingPOST) | **POST** /commerce/orders/orderrouting/api/v1/filter/customDataValueFilter | saveCustomDataValueFilter |
-| [**testFilterUsingGET**](OrderRoutingFilterApi.md#testFilterUsingGET) | **GET** /commerce/orders/orderrouting/api/v1/filter/testcriteria | testFilter |
-| [**testSetFilterUsingGET**](OrderRoutingFilterApi.md#testSetFilterUsingGET) | **GET** /commerce/orders/orderrouting/api/v1/filter/testset | testSetFilter |
+| [**deleteFilter2**](OrderRoutingFilterApi.md#deleteFilter2) | **DELETE** /commerce/orders/orderrouting/api/v1/filter/delete/{filterID} | Delete Filter |
+| [**getFilter**](OrderRoutingFilterApi.md#getFilter) | **GET** /commerce/orders/orderrouting/api/v1/filter/{filterID} | Get Filter |
+| [**saveCriteriaSetFilter**](OrderRoutingFilterApi.md#saveCriteriaSetFilter) | **POST** /commerce/orders/orderrouting/api/v1/filter/criteriaSet | Save Criteria Set Filter |
+| [**saveCustomDataListFilter**](OrderRoutingFilterApi.md#saveCustomDataListFilter) | **POST** /commerce/orders/orderrouting/api/v1/filter/customDataListFilter | Save Custom Data List Filter |
+| [**saveCustomDataValueFilter**](OrderRoutingFilterApi.md#saveCustomDataValueFilter) | **POST** /commerce/orders/orderrouting/api/v1/filter/customDataValueFilter | Save Custom Data Value Filter |
+| [**testFilter**](OrderRoutingFilterApi.md#testFilter) | **GET** /commerce/orders/orderrouting/api/v1/filter/testcriteria | Test Filter |
+| [**testSetFilter**](OrderRoutingFilterApi.md#testSetFilter) | **GET** /commerce/orders/orderrouting/api/v1/filter/testset | Test Set Filter |
 
 
-<a name="deleteFilterUsingDELETE"></a>
-# **deleteFilterUsingDELETE**
-> deleteFilterUsingDELETE(filterID, xVolSite, xVolTenant)
+<a name="deleteFilter2"></a>
+# **deleteFilter2**
+> deleteFilter2(filterID, xVolTenant, xVolSite)
 
-deleteFilter
+Delete Filter
 
-deleteFilter
+Deletes a filter
 
 ### Example
 ```java
@@ -40,18 +40,14 @@ public class Example {
     HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
     bearerAuth.setBearerToken("BEARER TOKEN");
 
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
-
     OrderRoutingFilterApi apiInstance = new OrderRoutingFilterApi(defaultClient);
-    Integer filterID = 56; // Integer | filterID
-    Integer xVolSite = 56; // Integer | 
-    Integer xVolTenant = 56; // Integer | 
+    Integer filterID = 56; // Integer | 
+    Integer xVolTenant = 56; // Integer | Tenant
+    Integer xVolSite = 56; // Integer | Site
     try {
-      apiInstance.deleteFilterUsingDELETE(filterID, xVolSite, xVolTenant);
+      apiInstance.deleteFilter2(filterID, xVolTenant, xVolSite);
     } catch (ApiException e) {
-      System.err.println("Exception when calling OrderRoutingFilterApi#deleteFilterUsingDELETE");
+      System.err.println("Exception when calling OrderRoutingFilterApi#deleteFilter2");
       System.err.println("Status code: " + e.getCode());
       System.err.println("Reason: " + e.getResponseBody());
       System.err.println("Response headers: " + e.getResponseHeaders());
@@ -65,9 +61,9 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **filterID** | **Integer**| filterID | |
-| **xVolSite** | **Integer**|  | |
-| **xVolTenant** | **Integer**|  | |
+| **filterID** | **Integer**|  | |
+| **xVolTenant** | **Integer**| Tenant | |
+| **xVolSite** | **Integer**| Site | |
 
 ### Return type
 
@@ -75,28 +71,30 @@ null (empty response body)
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth), [clientOauth2](../README.md#clientOauth2)
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: Not defined
+ - **Accept**: */*
 
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | OK |  -  |
-| **204** | No Content |  -  |
-| **401** | Unauthorized |  -  |
+| **400** | Bad Request |  -  |
 | **403** | Forbidden |  -  |
+| **409** | Conflict |  -  |
+| **410** | Gone |  -  |
+| **500** | Internal Server Error |  -  |
 
-<a name="getFilterUsingGET"></a>
-# **getFilterUsingGET**
-> AbstractFilter getFilterUsingGET(filterID, xVolSite, xVolTenant)
+<a name="getFilter"></a>
+# **getFilter**
+> AbstractFilter getFilter(filterID, xVolTenant, xVolSite)
 
-getFilter
+Get Filter
 
-getFilter
+Retrieves a filter by ID.
 
 ### Example
 ```java
@@ -117,19 +115,15 @@ public class Example {
     HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
     bearerAuth.setBearerToken("BEARER TOKEN");
 
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
-
     OrderRoutingFilterApi apiInstance = new OrderRoutingFilterApi(defaultClient);
-    Integer filterID = 56; // Integer | filterID
-    Integer xVolSite = 56; // Integer | 
-    Integer xVolTenant = 56; // Integer | 
+    Integer filterID = 56; // Integer | 
+    Integer xVolTenant = 56; // Integer | Tenant
+    Integer xVolSite = 56; // Integer | Site
     try {
-      AbstractFilter result = apiInstance.getFilterUsingGET(filterID, xVolSite, xVolTenant);
+      AbstractFilter result = apiInstance.getFilter(filterID, xVolTenant, xVolSite);
       System.out.println(result);
     } catch (ApiException e) {
-      System.err.println("Exception when calling OrderRoutingFilterApi#getFilterUsingGET");
+      System.err.println("Exception when calling OrderRoutingFilterApi#getFilter");
       System.err.println("Status code: " + e.getCode());
       System.err.println("Reason: " + e.getResponseBody());
       System.err.println("Response headers: " + e.getResponseHeaders());
@@ -143,9 +137,9 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **filterID** | **Integer**| filterID | |
-| **xVolSite** | **Integer**|  | |
-| **xVolTenant** | **Integer**|  | |
+| **filterID** | **Integer**|  | |
+| **xVolTenant** | **Integer**| Tenant | |
+| **xVolSite** | **Integer**| Site | |
 
 ### Return type
 
@@ -153,28 +147,30 @@ public class Example {
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth), [clientOauth2](../README.md#clientOauth2)
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: application/json
+ - **Accept**: application/json, */*
 
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | OK |  -  |
-| **401** | Unauthorized |  -  |
+| **400** | Bad Request |  -  |
 | **403** | Forbidden |  -  |
-| **404** | Not Found |  -  |
+| **409** | Conflict |  -  |
+| **410** | Gone |  -  |
+| **500** | Internal Server Error |  -  |
 
-<a name="saveCriteriaSetFilterUsingPOST"></a>
-# **saveCriteriaSetFilterUsingPOST**
-> AbstractFilter saveCriteriaSetFilterUsingPOST(xVolSite, xVolTenant, loc)
+<a name="saveCriteriaSetFilter"></a>
+# **saveCriteriaSetFilter**
+> AbstractFilter saveCriteriaSetFilter(xVolTenant, xVolSite, locationCriteriaSetFilter)
 
-saveCriteriaSetFilter
+Save Criteria Set Filter
 
-saveCriteriaSetFilter
+Saves a criteria set filter.
 
 ### Example
 ```java
@@ -195,19 +191,15 @@ public class Example {
     HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
     bearerAuth.setBearerToken("BEARER TOKEN");
 
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
-
     OrderRoutingFilterApi apiInstance = new OrderRoutingFilterApi(defaultClient);
-    Integer xVolSite = 56; // Integer | 
-    Integer xVolTenant = 56; // Integer | 
-    LocationCriteriaSetFilter loc = new LocationCriteriaSetFilter(); // LocationCriteriaSetFilter | loc
+    Integer xVolTenant = 56; // Integer | Tenant
+    Integer xVolSite = 56; // Integer | Site
+    LocationCriteriaSetFilter locationCriteriaSetFilter = new LocationCriteriaSetFilter(); // LocationCriteriaSetFilter | 
     try {
-      AbstractFilter result = apiInstance.saveCriteriaSetFilterUsingPOST(xVolSite, xVolTenant, loc);
+      AbstractFilter result = apiInstance.saveCriteriaSetFilter(xVolTenant, xVolSite, locationCriteriaSetFilter);
       System.out.println(result);
     } catch (ApiException e) {
-      System.err.println("Exception when calling OrderRoutingFilterApi#saveCriteriaSetFilterUsingPOST");
+      System.err.println("Exception when calling OrderRoutingFilterApi#saveCriteriaSetFilter");
       System.err.println("Status code: " + e.getCode());
       System.err.println("Reason: " + e.getResponseBody());
       System.err.println("Response headers: " + e.getResponseHeaders());
@@ -221,9 +213,9 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **xVolSite** | **Integer**|  | |
-| **xVolTenant** | **Integer**|  | |
-| **loc** | [**LocationCriteriaSetFilter**](LocationCriteriaSetFilter.md)| loc | |
+| **xVolTenant** | **Integer**| Tenant | |
+| **xVolSite** | **Integer**| Site | |
+| **locationCriteriaSetFilter** | [**LocationCriteriaSetFilter**](LocationCriteriaSetFilter.md)|  | |
 
 ### Return type
 
@@ -231,29 +223,30 @@ public class Example {
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth), [clientOauth2](../README.md#clientOauth2)
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
  - **Content-Type**: application/json
- - **Accept**: application/json
+ - **Accept**: application/json, */*
 
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | OK |  -  |
-| **201** | Created |  -  |
-| **401** | Unauthorized |  -  |
+| **400** | Bad Request |  -  |
 | **403** | Forbidden |  -  |
-| **404** | Not Found |  -  |
+| **409** | Conflict |  -  |
+| **410** | Gone |  -  |
+| **500** | Internal Server Error |  -  |
 
-<a name="saveCustomDataListFilterUsingPOST"></a>
-# **saveCustomDataListFilterUsingPOST**
-> AbstractFilter saveCustomDataListFilterUsingPOST(xVolSite, xVolTenant, filter)
+<a name="saveCustomDataListFilter"></a>
+# **saveCustomDataListFilter**
+> AbstractFilter saveCustomDataListFilter(customDataListFilter)
 
-saveCustomDataListFilter
+Save Custom Data List Filter
 
-saveCustomDataListFilter
+Saves a custom data list filter.
 
 ### Example
 ```java
@@ -274,19 +267,13 @@ public class Example {
     HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
     bearerAuth.setBearerToken("BEARER TOKEN");
 
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
-
     OrderRoutingFilterApi apiInstance = new OrderRoutingFilterApi(defaultClient);
-    Integer xVolSite = 56; // Integer | 
-    Integer xVolTenant = 56; // Integer | 
-    CustomDataListFilter filter = new CustomDataListFilter(); // CustomDataListFilter | filter
+    CustomDataListFilter customDataListFilter = new CustomDataListFilter(); // CustomDataListFilter | 
     try {
-      AbstractFilter result = apiInstance.saveCustomDataListFilterUsingPOST(xVolSite, xVolTenant, filter);
+      AbstractFilter result = apiInstance.saveCustomDataListFilter(customDataListFilter);
       System.out.println(result);
     } catch (ApiException e) {
-      System.err.println("Exception when calling OrderRoutingFilterApi#saveCustomDataListFilterUsingPOST");
+      System.err.println("Exception when calling OrderRoutingFilterApi#saveCustomDataListFilter");
       System.err.println("Status code: " + e.getCode());
       System.err.println("Reason: " + e.getResponseBody());
       System.err.println("Response headers: " + e.getResponseHeaders());
@@ -300,9 +287,7 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **xVolSite** | **Integer**|  | |
-| **xVolTenant** | **Integer**|  | |
-| **filter** | [**CustomDataListFilter**](CustomDataListFilter.md)| filter | |
+| **customDataListFilter** | [**CustomDataListFilter**](CustomDataListFilter.md)|  | |
 
 ### Return type
 
@@ -310,29 +295,30 @@ public class Example {
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth), [clientOauth2](../README.md#clientOauth2)
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
  - **Content-Type**: application/json
- - **Accept**: application/json
+ - **Accept**: application/json, */*
 
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | OK |  -  |
-| **201** | Created |  -  |
-| **401** | Unauthorized |  -  |
+| **400** | Bad Request |  -  |
 | **403** | Forbidden |  -  |
-| **404** | Not Found |  -  |
+| **409** | Conflict |  -  |
+| **410** | Gone |  -  |
+| **500** | Internal Server Error |  -  |
 
-<a name="saveCustomDataValueFilterUsingPOST"></a>
-# **saveCustomDataValueFilterUsingPOST**
-> AbstractFilter saveCustomDataValueFilterUsingPOST(xVolSite, xVolTenant, customDataValueFilter)
+<a name="saveCustomDataValueFilter"></a>
+# **saveCustomDataValueFilter**
+> AbstractFilter saveCustomDataValueFilter(customDataValueFilter)
 
-saveCustomDataValueFilter
+Save Custom Data Value Filter
 
-saveCustomDataValueFilter
+Saves a custom data value filter.
 
 ### Example
 ```java
@@ -353,19 +339,13 @@ public class Example {
     HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
     bearerAuth.setBearerToken("BEARER TOKEN");
 
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
-
     OrderRoutingFilterApi apiInstance = new OrderRoutingFilterApi(defaultClient);
-    Integer xVolSite = 56; // Integer | 
-    Integer xVolTenant = 56; // Integer | 
-    CustomDataValueFilter customDataValueFilter = new CustomDataValueFilter(); // CustomDataValueFilter | customDataValueFilter
+    CustomDataValueFilter customDataValueFilter = new CustomDataValueFilter(); // CustomDataValueFilter | 
     try {
-      AbstractFilter result = apiInstance.saveCustomDataValueFilterUsingPOST(xVolSite, xVolTenant, customDataValueFilter);
+      AbstractFilter result = apiInstance.saveCustomDataValueFilter(customDataValueFilter);
       System.out.println(result);
     } catch (ApiException e) {
-      System.err.println("Exception when calling OrderRoutingFilterApi#saveCustomDataValueFilterUsingPOST");
+      System.err.println("Exception when calling OrderRoutingFilterApi#saveCustomDataValueFilter");
       System.err.println("Status code: " + e.getCode());
       System.err.println("Reason: " + e.getResponseBody());
       System.err.println("Response headers: " + e.getResponseHeaders());
@@ -379,9 +359,7 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **xVolSite** | **Integer**|  | |
-| **xVolTenant** | **Integer**|  | |
-| **customDataValueFilter** | [**CustomDataValueFilter**](CustomDataValueFilter.md)| customDataValueFilter | |
+| **customDataValueFilter** | [**CustomDataValueFilter**](CustomDataValueFilter.md)|  | |
 
 ### Return type
 
@@ -389,29 +367,30 @@ public class Example {
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth), [clientOauth2](../README.md#clientOauth2)
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
  - **Content-Type**: application/json
- - **Accept**: application/json
+ - **Accept**: application/json, */*
 
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | OK |  -  |
-| **201** | Created |  -  |
-| **401** | Unauthorized |  -  |
+| **400** | Bad Request |  -  |
 | **403** | Forbidden |  -  |
-| **404** | Not Found |  -  |
+| **409** | Conflict |  -  |
+| **410** | Gone |  -  |
+| **500** | Internal Server Error |  -  |
 
-<a name="testFilterUsingGET"></a>
-# **testFilterUsingGET**
-> AbstractFilter testFilterUsingGET(xVolSite, xVolTenant)
+<a name="testFilter"></a>
+# **testFilter**
+> AbstractFilter testFilter()
 
-testFilter
+Test Filter
 
-testFilter
+Tests a filter.
 
 ### Example
 ```java
@@ -432,18 +411,12 @@ public class Example {
     HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
     bearerAuth.setBearerToken("BEARER TOKEN");
 
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
-
     OrderRoutingFilterApi apiInstance = new OrderRoutingFilterApi(defaultClient);
-    Integer xVolSite = 56; // Integer | 
-    Integer xVolTenant = 56; // Integer | 
     try {
-      AbstractFilter result = apiInstance.testFilterUsingGET(xVolSite, xVolTenant);
+      AbstractFilter result = apiInstance.testFilter();
       System.out.println(result);
     } catch (ApiException e) {
-      System.err.println("Exception when calling OrderRoutingFilterApi#testFilterUsingGET");
+      System.err.println("Exception when calling OrderRoutingFilterApi#testFilter");
       System.err.println("Status code: " + e.getCode());
       System.err.println("Reason: " + e.getResponseBody());
       System.err.println("Response headers: " + e.getResponseHeaders());
@@ -454,11 +427,7 @@ public class Example {
 ```
 
 ### Parameters
-
-| Name | Type | Description  | Notes |
-|------------- | ------------- | ------------- | -------------|
-| **xVolSite** | **Integer**|  | |
-| **xVolTenant** | **Integer**|  | |
+This endpoint does not need any parameter.
 
 ### Return type
 
@@ -466,28 +435,30 @@ public class Example {
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth), [clientOauth2](../README.md#clientOauth2)
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: application/json
+ - **Accept**: application/json, */*
 
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | OK |  -  |
-| **401** | Unauthorized |  -  |
+| **400** | Bad Request |  -  |
 | **403** | Forbidden |  -  |
-| **404** | Not Found |  -  |
+| **409** | Conflict |  -  |
+| **410** | Gone |  -  |
+| **500** | Internal Server Error |  -  |
 
-<a name="testSetFilterUsingGET"></a>
-# **testSetFilterUsingGET**
-> AbstractFilter testSetFilterUsingGET(xVolSite, xVolTenant)
+<a name="testSetFilter"></a>
+# **testSetFilter**
+> AbstractFilter testSetFilter()
 
-testSetFilter
+Test Set Filter
 
-testSetFilter
+Tests a set filter.
 
 ### Example
 ```java
@@ -508,18 +479,12 @@ public class Example {
     HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
     bearerAuth.setBearerToken("BEARER TOKEN");
 
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
-
     OrderRoutingFilterApi apiInstance = new OrderRoutingFilterApi(defaultClient);
-    Integer xVolSite = 56; // Integer | 
-    Integer xVolTenant = 56; // Integer | 
     try {
-      AbstractFilter result = apiInstance.testSetFilterUsingGET(xVolSite, xVolTenant);
+      AbstractFilter result = apiInstance.testSetFilter();
       System.out.println(result);
     } catch (ApiException e) {
-      System.err.println("Exception when calling OrderRoutingFilterApi#testSetFilterUsingGET");
+      System.err.println("Exception when calling OrderRoutingFilterApi#testSetFilter");
       System.err.println("Status code: " + e.getCode());
       System.err.println("Reason: " + e.getResponseBody());
       System.err.println("Response headers: " + e.getResponseHeaders());
@@ -530,11 +495,7 @@ public class Example {
 ```
 
 ### Parameters
-
-| Name | Type | Description  | Notes |
-|------------- | ------------- | ------------- | -------------|
-| **xVolSite** | **Integer**|  | |
-| **xVolTenant** | **Integer**|  | |
+This endpoint does not need any parameter.
 
 ### Return type
 
@@ -542,18 +503,20 @@ public class Example {
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth), [clientOauth2](../README.md#clientOauth2)
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: application/json
+ - **Accept**: application/json, */*
 
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | OK |  -  |
-| **401** | Unauthorized |  -  |
+| **400** | Bad Request |  -  |
 | **403** | Forbidden |  -  |
-| **404** | Not Found |  -  |
+| **409** | Conflict |  -  |
+| **410** | Gone |  -  |
+| **500** | Internal Server Error |  -  |
 

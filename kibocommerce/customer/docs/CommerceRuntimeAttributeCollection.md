@@ -7,11 +7,11 @@
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
-|**startIndex** | **Integer** |  |  [optional] |
-|**pageSize** | **Integer** |  |  [optional] |
+|**items** | [**List&lt;CustomerAttribute2&gt;**](CustomerAttribute2.md) |  |  [optional] |
 |**pageCount** | **Integer** |  |  [optional] |
+|**pageSize** | **Integer** |  |  [optional] |
+|**startIndex** | **Integer** |  |  [optional] |
 |**totalCount** | **Integer** |  |  [optional] |
-|**items** | [**List&lt;CommerceRuntimeAttribute&gt;**](CommerceRuntimeAttribute.md) |  |  [optional] |
 
 
 ## Implemented Interfaces

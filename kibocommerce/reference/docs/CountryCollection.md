@@ -7,8 +7,8 @@
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
-|**totalCount** | **Integer** |  |  [optional] |
 |**items** | [**List&lt;Country&gt;**](Country.md) |  |  [optional] |
+|**totalCount** | **Integer** |  |  [optional] |
 
 
 ## Implemented Interfaces

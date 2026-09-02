@@ -35,8 +35,8 @@ All URIs are relative to *http://https:/api*
 | [**getAccountNotes**](CustomerAccountApi.md#getAccountNotes) | **GET** /commerce/customer/accounts/{accountId}/notes | Get Account Notes |
 | [**getAccountSegments**](CustomerAccountApi.md#getAccountSegments) | **GET** /commerce/customer/accounts/{accountId}/segments | Get Account Segments |
 | [**getAccounts**](CustomerAccountApi.md#getAccounts) | **GET** /commerce/customer/accounts | Get Accounts |
-| [**getCurrentAccount**](CustomerAccountApi.md#getCurrentAccount) | **GET** /commerce/customer/accounts/current | Retrieves the details of a the current logged in customer account |
-| [**getCustomerPurchaseOrderAccount**](CustomerAccountApi.md#getCustomerPurchaseOrderAccount) | **GET** /commerce/customer/accounts/{accountId}/purchaseOrderAccount | Gets a customer&#39;s purchase order account. |
+| [**getCurrentAccount**](CustomerAccountApi.md#getCurrentAccount) | **GET** /commerce/customer/accounts/current | Retrieve Current Account |
+| [**getCustomerPurchaseOrderAccount**](CustomerAccountApi.md#getCustomerPurchaseOrderAccount) | **GET** /commerce/customer/accounts/{accountId}/purchaseOrderAccount | Get Customer Purchase Order Account |
 | [**getCustomerPurchaseOrderTransactions**](CustomerAccountApi.md#getCustomerPurchaseOrderTransactions) | **GET** /commerce/customer/accounts/{accountId}/PurchaseOrderTransaction | Get Customer Purchase Order Transactions |
 | [**getCustomersPurchaseOrderAccounts**](CustomerAccountApi.md#getCustomersPurchaseOrderAccounts) | **POST** /commerce/customer/accounts/purchaseOrderAccounts | Get Customers Purchase Order Accounts |
 | [**getLoginState**](CustomerAccountApi.md#getLoginState) | **GET** /commerce/customer/accounts/{accountId}/loginstate | Get Login State |
@@ -59,7 +59,7 @@ All URIs are relative to *http://https:/api*
 
 <a name="addAccount"></a>
 # **addAccount**
-> CustomerAccount addAccount(customerAccount)
+> CustomerAccount addAccount(responseFields, customerAccount)
 
 Add Account
 
@@ -84,14 +84,11 @@ public class Example {
     HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
     bearerAuth.setBearerToken("BEARER TOKEN");
 
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
-
     CustomerAccountApi apiInstance = new CustomerAccountApi(defaultClient);
+    String responseFields = "responseFields_example"; // String | limits which fields are returned in the response body
     CustomerAccount customerAccount = new CustomerAccount(); // CustomerAccount | Properties of the new customer account to create.
     try {
-      CustomerAccount result = apiInstance.addAccount(customerAccount);
+      CustomerAccount result = apiInstance.addAccount(responseFields, customerAccount);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling CustomerAccountApi#addAccount");
@@ -108,6 +105,7 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
+| **responseFields** | **String**| limits which fields are returned in the response body | [optional] |
 | **customerAccount** | [**CustomerAccount**](CustomerAccount.md)| Properties of the new customer account to create. | [optional] |
 
 ### Return type
@@ -116,7 +114,7 @@ public class Example {
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth), [clientOauth2](../README.md#clientOauth2)
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
@@ -126,11 +124,11 @@ public class Example {
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Success |  -  |
+| **200** | OK |  -  |
 
 <a name="addAccountAndLogin"></a>
 # **addAccountAndLogin**
-> CustomerAuthTicket addAccountAndLogin(customerAccountAndAuthInfo)
+> CustomerAuthTicket addAccountAndLogin(responseFields, customerAccountAndAuthInfo)
 
 Add Account And Login
 
@@ -155,14 +153,11 @@ public class Example {
     HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
     bearerAuth.setBearerToken("BEARER TOKEN");
 
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
-
     CustomerAccountApi apiInstance = new CustomerAccountApi(defaultClient);
+    String responseFields = "responseFields_example"; // String | limits which fields are returned in the response body
     CustomerAccountAndAuthInfo customerAccountAndAuthInfo = new CustomerAccountAndAuthInfo(); // CustomerAccountAndAuthInfo | 
     try {
-      CustomerAuthTicket result = apiInstance.addAccountAndLogin(customerAccountAndAuthInfo);
+      CustomerAuthTicket result = apiInstance.addAccountAndLogin(responseFields, customerAccountAndAuthInfo);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling CustomerAccountApi#addAccountAndLogin");
@@ -179,6 +174,7 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
+| **responseFields** | **String**| limits which fields are returned in the response body | [optional] |
 | **customerAccountAndAuthInfo** | [**CustomerAccountAndAuthInfo**](CustomerAccountAndAuthInfo.md)|  | [optional] |
 
 ### Return type
@@ -187,7 +183,7 @@ public class Example {
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth), [clientOauth2](../README.md#clientOauth2)
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
@@ -197,11 +193,11 @@ public class Example {
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Success |  -  |
+| **200** | OK |  -  |
 
 <a name="addAccountAttribute"></a>
 # **addAccountAttribute**
-> CustomerAttribute addAccountAttribute(accountId, userId, customerAttribute)
+> CustomerAttribute addAccountAttribute(accountId, userId, responseFields, customerAttribute)
 
 Add Account Attribute
 
@@ -226,16 +222,13 @@ public class Example {
     HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
     bearerAuth.setBearerToken("BEARER TOKEN");
 
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
-
     CustomerAccountApi apiInstance = new CustomerAccountApi(defaultClient);
     Integer accountId = 56; // Integer | 
     String userId = "userId_example"; // String | 
+    String responseFields = "responseFields_example"; // String | limits which fields are returned in the response body
     CustomerAttribute customerAttribute = new CustomerAttribute(); // CustomerAttribute | 
     try {
-      CustomerAttribute result = apiInstance.addAccountAttribute(accountId, userId, customerAttribute);
+      CustomerAttribute result = apiInstance.addAccountAttribute(accountId, userId, responseFields, customerAttribute);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling CustomerAccountApi#addAccountAttribute");
@@ -254,6 +247,7 @@ public class Example {
 |------------- | ------------- | ------------- | -------------|
 | **accountId** | **Integer**|  | |
 | **userId** | **String**|  | [optional] |
+| **responseFields** | **String**| limits which fields are returned in the response body | [optional] |
 | **customerAttribute** | [**CustomerAttribute**](CustomerAttribute.md)|  | [optional] |
 
 ### Return type
@@ -262,7 +256,7 @@ public class Example {
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth), [clientOauth2](../README.md#clientOauth2)
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
@@ -272,11 +266,11 @@ public class Example {
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Success |  -  |
+| **200** | OK |  -  |
 
 <a name="addAccountCard"></a>
 # **addAccountCard**
-> Card addAccountCard(accountId, card)
+> Card addAccountCard(accountId, responseFields, card)
 
 Add Account Card
 
@@ -301,15 +295,12 @@ public class Example {
     HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
     bearerAuth.setBearerToken("BEARER TOKEN");
 
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
-
     CustomerAccountApi apiInstance = new CustomerAccountApi(defaultClient);
     Integer accountId = 56; // Integer | 
+    String responseFields = "responseFields_example"; // String | limits which fields are returned in the response body
     Card card = new Card(); // Card | 
     try {
-      Card result = apiInstance.addAccountCard(accountId, card);
+      Card result = apiInstance.addAccountCard(accountId, responseFields, card);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling CustomerAccountApi#addAccountCard");
@@ -327,6 +318,7 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **accountId** | **Integer**|  | |
+| **responseFields** | **String**| limits which fields are returned in the response body | [optional] |
 | **card** | [**Card**](Card.md)|  | [optional] |
 
 ### Return type
@@ -335,7 +327,7 @@ public class Example {
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth), [clientOauth2](../README.md#clientOauth2)
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
@@ -345,11 +337,11 @@ public class Example {
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Success |  -  |
+| **200** | OK |  -  |
 
 <a name="addAccountContact"></a>
 # **addAccountContact**
-> CustomerContact addAccountContact(accountId, customerContact)
+> CustomerContact addAccountContact(accountId, responseFields, customerContact)
 
 Add Account Contact
 
@@ -374,15 +366,12 @@ public class Example {
     HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
     bearerAuth.setBearerToken("BEARER TOKEN");
 
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
-
     CustomerAccountApi apiInstance = new CustomerAccountApi(defaultClient);
     Integer accountId = 56; // Integer | Unique identifier of the customer account to contain the new CustomerContact.
+    String responseFields = "responseFields_example"; // String | limits which fields are returned in the response body
     CustomerContact customerContact = new CustomerContact(); // CustomerContact | Properties of the new CustomerContact. Required properties: CustomerContact.Email, ContactType.
     try {
-      CustomerContact result = apiInstance.addAccountContact(accountId, customerContact);
+      CustomerContact result = apiInstance.addAccountContact(accountId, responseFields, customerContact);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling CustomerAccountApi#addAccountContact");
@@ -400,6 +389,7 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **accountId** | **Integer**| Unique identifier of the customer account to contain the new CustomerContact. | |
+| **responseFields** | **String**| limits which fields are returned in the response body | [optional] |
 | **customerContact** | [**CustomerContact**](CustomerContact.md)| Properties of the new CustomerContact. Required properties: CustomerContact.Email, ContactType. | [optional] |
 
 ### Return type
@@ -408,7 +398,7 @@ public class Example {
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth), [clientOauth2](../README.md#clientOauth2)
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
@@ -418,11 +408,11 @@ public class Example {
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Success |  -  |
+| **200** | OK |  -  |
 
 <a name="addAccountContactList"></a>
 # **addAccountContactList**
-> CustomerContactCollection addAccountContactList(accountId, customerContact)
+> CustomerContactCollection addAccountContactList(accountId, responseFields, customerContact)
 
 Add Account Contact List
 
@@ -447,15 +437,12 @@ public class Example {
     HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
     bearerAuth.setBearerToken("BEARER TOKEN");
 
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
-
     CustomerAccountApi apiInstance = new CustomerAccountApi(defaultClient);
     Integer accountId = 56; // Integer | Unique identifier of the customer account to contain the new CustomerContact.
+    String responseFields = "responseFields_example"; // String | limits which fields are returned in the response body
     List<CustomerContact> customerContact = Arrays.asList(); // List<CustomerContact> | List of CustomerContact objects : Properties of each new CustomerContact. Required properties: CustomerContact.Email, ContactType.
     try {
-      CustomerContactCollection result = apiInstance.addAccountContactList(accountId, customerContact);
+      CustomerContactCollection result = apiInstance.addAccountContactList(accountId, responseFields, customerContact);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling CustomerAccountApi#addAccountContactList");
@@ -473,6 +460,7 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **accountId** | **Integer**| Unique identifier of the customer account to contain the new CustomerContact. | |
+| **responseFields** | **String**| limits which fields are returned in the response body | [optional] |
 | **customerContact** | [**List&lt;CustomerContact&gt;**](CustomerContact.md)| List of CustomerContact objects : Properties of each new CustomerContact. Required properties: CustomerContact.Email, ContactType. | [optional] |
 
 ### Return type
@@ -481,7 +469,7 @@ public class Example {
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth), [clientOauth2](../README.md#clientOauth2)
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
@@ -491,11 +479,11 @@ public class Example {
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Success |  -  |
+| **200** | OK |  -  |
 
 <a name="addAccountNote"></a>
 # **addAccountNote**
-> CustomerNote addAccountNote(accountId, customerNote)
+> CustomerNote addAccountNote(accountId, responseFields, customerNote)
 
 Add Account Note
 
@@ -520,15 +508,12 @@ public class Example {
     HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
     bearerAuth.setBearerToken("BEARER TOKEN");
 
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
-
     CustomerAccountApi apiInstance = new CustomerAccountApi(defaultClient);
     Integer accountId = 56; // Integer | Unique identifier of the customer account for which to create the note.
+    String responseFields = "responseFields_example"; // String | limits which fields are returned in the response body
     CustomerNote customerNote = new CustomerNote(); // CustomerNote | Contents of the new note.
     try {
-      CustomerNote result = apiInstance.addAccountNote(accountId, customerNote);
+      CustomerNote result = apiInstance.addAccountNote(accountId, responseFields, customerNote);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling CustomerAccountApi#addAccountNote");
@@ -546,6 +531,7 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **accountId** | **Integer**| Unique identifier of the customer account for which to create the note. | |
+| **responseFields** | **String**| limits which fields are returned in the response body | [optional] |
 | **customerNote** | [**CustomerNote**](CustomerNote.md)| Contents of the new note. | [optional] |
 
 ### Return type
@@ -554,7 +540,7 @@ public class Example {
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth), [clientOauth2](../README.md#clientOauth2)
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
@@ -564,11 +550,11 @@ public class Example {
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Success |  -  |
+| **200** | OK |  -  |
 
 <a name="addAccounts"></a>
 # **addAccounts**
-> CustomerAccountCollection addAccounts(customerAccountAndAuthInfo)
+> CustomerAccountCollection addAccounts(responseFields, customerAccountAndAuthInfo)
 
 Add Accounts
 
@@ -593,14 +579,11 @@ public class Example {
     HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
     bearerAuth.setBearerToken("BEARER TOKEN");
 
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
-
     CustomerAccountApi apiInstance = new CustomerAccountApi(defaultClient);
+    String responseFields = "responseFields_example"; // String | limits which fields are returned in the response body
     List<CustomerAccountAndAuthInfo> customerAccountAndAuthInfo = Arrays.asList(); // List<CustomerAccountAndAuthInfo> | 
     try {
-      CustomerAccountCollection result = apiInstance.addAccounts(customerAccountAndAuthInfo);
+      CustomerAccountCollection result = apiInstance.addAccounts(responseFields, customerAccountAndAuthInfo);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling CustomerAccountApi#addAccounts");
@@ -617,6 +600,7 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
+| **responseFields** | **String**| limits which fields are returned in the response body | [optional] |
 | **customerAccountAndAuthInfo** | [**List&lt;CustomerAccountAndAuthInfo&gt;**](CustomerAccountAndAuthInfo.md)|  | [optional] |
 
 ### Return type
@@ -625,7 +609,7 @@ public class Example {
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth), [clientOauth2](../README.md#clientOauth2)
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
@@ -635,11 +619,11 @@ public class Example {
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Success |  -  |
+| **200** | OK |  -  |
 
 <a name="addLoginToExistingCustomer"></a>
 # **addLoginToExistingCustomer**
-> CustomerAuthTicket addLoginToExistingCustomer(accountId, customerLoginInfo)
+> CustomerAuthTicket addLoginToExistingCustomer(accountId, responseFields, customerLoginInfo)
 
 Add Login To Existing Customer
 
@@ -664,15 +648,12 @@ public class Example {
     HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
     bearerAuth.setBearerToken("BEARER TOKEN");
 
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
-
     CustomerAccountApi apiInstance = new CustomerAccountApi(defaultClient);
     Integer accountId = 56; // Integer | 
+    String responseFields = "responseFields_example"; // String | limits which fields are returned in the response body
     CustomerLoginInfo customerLoginInfo = new CustomerLoginInfo(); // CustomerLoginInfo | 
     try {
-      CustomerAuthTicket result = apiInstance.addLoginToExistingCustomer(accountId, customerLoginInfo);
+      CustomerAuthTicket result = apiInstance.addLoginToExistingCustomer(accountId, responseFields, customerLoginInfo);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling CustomerAccountApi#addLoginToExistingCustomer");
@@ -690,6 +671,7 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **accountId** | **Integer**|  | |
+| **responseFields** | **String**| limits which fields are returned in the response body | [optional] |
 | **customerLoginInfo** | [**CustomerLoginInfo**](CustomerLoginInfo.md)|  | [optional] |
 
 ### Return type
@@ -698,7 +680,7 @@ public class Example {
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth), [clientOauth2](../README.md#clientOauth2)
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
@@ -708,11 +690,11 @@ public class Example {
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Success |  -  |
+| **200** | OK |  -  |
 
 <a name="addTransaction"></a>
 # **addTransaction**
-> Transaction addTransaction(accountId, transaction)
+> Transaction addTransaction(accountId, responseFields, transaction)
 
 Add Transaction
 
@@ -737,15 +719,12 @@ public class Example {
     HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
     bearerAuth.setBearerToken("BEARER TOKEN");
 
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
-
     CustomerAccountApi apiInstance = new CustomerAccountApi(defaultClient);
     Integer accountId = 56; // Integer | 
+    String responseFields = "responseFields_example"; // String | limits which fields are returned in the response body
     Transaction transaction = new Transaction(); // Transaction | 
     try {
-      Transaction result = apiInstance.addTransaction(accountId, transaction);
+      Transaction result = apiInstance.addTransaction(accountId, responseFields, transaction);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling CustomerAccountApi#addTransaction");
@@ -763,6 +742,7 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **accountId** | **Integer**|  | |
+| **responseFields** | **String**| limits which fields are returned in the response body | [optional] |
 | **transaction** | [**Transaction**](Transaction.md)|  | [optional] |
 
 ### Return type
@@ -771,7 +751,7 @@ public class Example {
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth), [clientOauth2](../README.md#clientOauth2)
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
@@ -781,11 +761,11 @@ public class Example {
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Success |  -  |
+| **200** | OK |  -  |
 
 <a name="changePassword"></a>
 # **changePassword**
-> changePassword(accountId, unlockAccount, userId, customerPasswordInfo)
+> changePassword(accountId, unlockAccount, userId, responseFields, customerPasswordInfo)
 
 Change Password
 
@@ -810,17 +790,14 @@ public class Example {
     HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
     bearerAuth.setBearerToken("BEARER TOKEN");
 
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
-
     CustomerAccountApi apiInstance = new CustomerAccountApi(defaultClient);
     Integer accountId = 56; // Integer | Unique identifier of the shopper for whom to change the password.
     Boolean unlockAccount = false; // Boolean | inidicates that the account should be unlocked on a successful password change.
     String userId = "userId_example"; // String | 
+    String responseFields = "responseFields_example"; // String | limits which fields are returned in the response body
     CustomerPasswordInfo customerPasswordInfo = new CustomerPasswordInfo(); // CustomerPasswordInfo | Old password and new password.
     try {
-      apiInstance.changePassword(accountId, unlockAccount, userId, customerPasswordInfo);
+      apiInstance.changePassword(accountId, unlockAccount, userId, responseFields, customerPasswordInfo);
     } catch (ApiException e) {
       System.err.println("Exception when calling CustomerAccountApi#changePassword");
       System.err.println("Status code: " + e.getCode());
@@ -839,6 +816,7 @@ public class Example {
 | **accountId** | **Integer**| Unique identifier of the shopper for whom to change the password. | |
 | **unlockAccount** | **Boolean**| inidicates that the account should be unlocked on a successful password change. | [optional] [default to false] |
 | **userId** | **String**|  | [optional] |
+| **responseFields** | **String**| limits which fields are returned in the response body | [optional] |
 | **customerPasswordInfo** | [**CustomerPasswordInfo**](CustomerPasswordInfo.md)| Old password and new password. | [optional] |
 
 ### Return type
@@ -847,7 +825,7 @@ null (empty response body)
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth), [clientOauth2](../README.md#clientOauth2)
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
@@ -857,11 +835,11 @@ null (empty response body)
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Success |  -  |
+| **200** | OK |  -  |
 
 <a name="changePasswords"></a>
 # **changePasswords**
-> ChangePasswordResultCollection changePasswords(accountPasswordInfoCollection)
+> ChangePasswordResultCollection changePasswords(responseFields, accountPasswordInfoCollection)
 
 Change Passwords
 
@@ -886,14 +864,11 @@ public class Example {
     HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
     bearerAuth.setBearerToken("BEARER TOKEN");
 
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
-
     CustomerAccountApi apiInstance = new CustomerAccountApi(defaultClient);
+    String responseFields = "responseFields_example"; // String | limits which fields are returned in the response body
     AccountPasswordInfoCollection accountPasswordInfoCollection = new AccountPasswordInfoCollection(); // AccountPasswordInfoCollection | The collection of AccountPasswordInfo which are to be processed
     try {
-      ChangePasswordResultCollection result = apiInstance.changePasswords(accountPasswordInfoCollection);
+      ChangePasswordResultCollection result = apiInstance.changePasswords(responseFields, accountPasswordInfoCollection);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling CustomerAccountApi#changePasswords");
@@ -910,6 +885,7 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
+| **responseFields** | **String**| limits which fields are returned in the response body | [optional] |
 | **accountPasswordInfoCollection** | [**AccountPasswordInfoCollection**](AccountPasswordInfoCollection.md)| The collection of AccountPasswordInfo which are to be processed | [optional] |
 
 ### Return type
@@ -918,7 +894,7 @@ public class Example {
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth), [clientOauth2](../README.md#clientOauth2)
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
@@ -928,11 +904,11 @@ public class Example {
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Success |  -  |
+| **200** | OK |  -  |
 
 <a name="createCustomerPurchaseOrderAccount"></a>
 # **createCustomerPurchaseOrderAccount**
-> CustomerPurchaseOrderAccount createCustomerPurchaseOrderAccount(accountId, customerPurchaseOrderAccount)
+> CustomerPurchaseOrderAccount createCustomerPurchaseOrderAccount(accountId, responseFields, customerPurchaseOrderAccount)
 
 Create Customer Purchase Order Account
 
@@ -957,15 +933,12 @@ public class Example {
     HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
     bearerAuth.setBearerToken("BEARER TOKEN");
 
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
-
     CustomerAccountApi apiInstance = new CustomerAccountApi(defaultClient);
     Integer accountId = 56; // Integer | Unique identifier of the account.
+    String responseFields = "responseFields_example"; // String | limits which fields are returned in the response body
     CustomerPurchaseOrderAccount customerPurchaseOrderAccount = new CustomerPurchaseOrderAccount(); // CustomerPurchaseOrderAccount | 
     try {
-      CustomerPurchaseOrderAccount result = apiInstance.createCustomerPurchaseOrderAccount(accountId, customerPurchaseOrderAccount);
+      CustomerPurchaseOrderAccount result = apiInstance.createCustomerPurchaseOrderAccount(accountId, responseFields, customerPurchaseOrderAccount);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling CustomerAccountApi#createCustomerPurchaseOrderAccount");
@@ -983,6 +956,7 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **accountId** | **Integer**| Unique identifier of the account. | |
+| **responseFields** | **String**| limits which fields are returned in the response body | [optional] |
 | **customerPurchaseOrderAccount** | [**CustomerPurchaseOrderAccount**](CustomerPurchaseOrderAccount.md)|  | [optional] |
 
 ### Return type
@@ -991,7 +965,7 @@ public class Example {
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth), [clientOauth2](../README.md#clientOauth2)
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
@@ -1001,11 +975,11 @@ public class Example {
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Success |  -  |
+| **200** | OK |  -  |
 
 <a name="createPurchaseOrderTransaction"></a>
 # **createPurchaseOrderTransaction**
-> PurchaseOrderTransaction createPurchaseOrderTransaction(accountId, purchaseOrderTransaction)
+> PurchaseOrderTransaction createPurchaseOrderTransaction(accountId, responseFields, purchaseOrderTransaction)
 
 Create Purchase Order Transaction
 
@@ -1030,15 +1004,12 @@ public class Example {
     HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
     bearerAuth.setBearerToken("BEARER TOKEN");
 
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
-
     CustomerAccountApi apiInstance = new CustomerAccountApi(defaultClient);
     Integer accountId = 56; // Integer | Unique identifier of the customer account.
+    String responseFields = "responseFields_example"; // String | limits which fields are returned in the response body
     PurchaseOrderTransaction purchaseOrderTransaction = new PurchaseOrderTransaction(); // PurchaseOrderTransaction | transaction log that needs to be created
     try {
-      PurchaseOrderTransaction result = apiInstance.createPurchaseOrderTransaction(accountId, purchaseOrderTransaction);
+      PurchaseOrderTransaction result = apiInstance.createPurchaseOrderTransaction(accountId, responseFields, purchaseOrderTransaction);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling CustomerAccountApi#createPurchaseOrderTransaction");
@@ -1056,6 +1027,7 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **accountId** | **Integer**| Unique identifier of the customer account. | |
+| **responseFields** | **String**| limits which fields are returned in the response body | [optional] |
 | **purchaseOrderTransaction** | [**PurchaseOrderTransaction**](PurchaseOrderTransaction.md)| transaction log that needs to be created | [optional] |
 
 ### Return type
@@ -1064,7 +1036,7 @@ public class Example {
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth), [clientOauth2](../README.md#clientOauth2)
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
@@ -1074,7 +1046,7 @@ public class Example {
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Success |  -  |
+| **200** | OK |  -  |
 
 <a name="deleteAccount"></a>
 # **deleteAccount**
@@ -1082,7 +1054,7 @@ public class Example {
 
 Delete Account
 
-Deletes a customer account. A customer account cannot be deleted if any orders exist, past or present.
+Deletes a customer account. A customer account cannot be deleted if any orders exist, past or present. To erase a customer&#39;s personal data for a data subject erasure or right-to-deletion request under GDPR, CCPA, and other privacy regulations — including PII attached to existing orders, payments, and shipments — use the &lt;a href&#x3D;\&quot;/developer-guides/redaction-services\&quot;&gt;Redaction Services&lt;/a&gt; two-phase workflow instead.
 
 ### Example
 ```java
@@ -1102,10 +1074,6 @@ public class Example {
     // Configure HTTP bearer authorization: bearerAuth
     HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
     bearerAuth.setBearerToken("BEARER TOKEN");
-
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
 
     CustomerAccountApi apiInstance = new CustomerAccountApi(defaultClient);
     Integer accountId = 56; // Integer | Unique identifier of the customer account to delete.
@@ -1134,7 +1102,7 @@ null (empty response body)
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth), [clientOauth2](../README.md#clientOauth2)
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
@@ -1144,7 +1112,7 @@ null (empty response body)
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Success |  -  |
+| **200** | OK |  -  |
 
 <a name="deleteAccountAttribute"></a>
 # **deleteAccountAttribute**
@@ -1172,10 +1140,6 @@ public class Example {
     // Configure HTTP bearer authorization: bearerAuth
     HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
     bearerAuth.setBearerToken("BEARER TOKEN");
-
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
 
     CustomerAccountApi apiInstance = new CustomerAccountApi(defaultClient);
     Integer accountId = 56; // Integer | 
@@ -1208,7 +1172,7 @@ null (empty response body)
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth), [clientOauth2](../README.md#clientOauth2)
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
@@ -1218,7 +1182,7 @@ null (empty response body)
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Success |  -  |
+| **200** | OK |  -  |
 
 <a name="deleteAccountCard"></a>
 # **deleteAccountCard**
@@ -1246,10 +1210,6 @@ public class Example {
     // Configure HTTP bearer authorization: bearerAuth
     HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
     bearerAuth.setBearerToken("BEARER TOKEN");
-
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
 
     CustomerAccountApi apiInstance = new CustomerAccountApi(defaultClient);
     Integer accountId = 56; // Integer | 
@@ -1280,7 +1240,7 @@ null (empty response body)
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth), [clientOauth2](../README.md#clientOauth2)
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
@@ -1290,7 +1250,7 @@ null (empty response body)
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Success |  -  |
+| **200** | OK |  -  |
 
 <a name="deleteAccountContact"></a>
 # **deleteAccountContact**
@@ -1318,10 +1278,6 @@ public class Example {
     // Configure HTTP bearer authorization: bearerAuth
     HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
     bearerAuth.setBearerToken("BEARER TOKEN");
-
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
 
     CustomerAccountApi apiInstance = new CustomerAccountApi(defaultClient);
     Integer accountId = 56; // Integer | Unique identifier of the customer account whose CustomerContact you want to delete.
@@ -1352,7 +1308,7 @@ null (empty response body)
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth), [clientOauth2](../README.md#clientOauth2)
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
@@ -1362,7 +1318,7 @@ null (empty response body)
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Success |  -  |
+| **200** | OK |  -  |
 
 <a name="deleteAccountNote"></a>
 # **deleteAccountNote**
@@ -1390,10 +1346,6 @@ public class Example {
     // Configure HTTP bearer authorization: bearerAuth
     HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
     bearerAuth.setBearerToken("BEARER TOKEN");
-
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
 
     CustomerAccountApi apiInstance = new CustomerAccountApi(defaultClient);
     Integer accountId = 56; // Integer | Unique identifier of the customer account that contains the note you want to delete.
@@ -1424,7 +1376,7 @@ null (empty response body)
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth), [clientOauth2](../README.md#clientOauth2)
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
@@ -1434,11 +1386,11 @@ null (empty response body)
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Success |  -  |
+| **200** | OK |  -  |
 
 <a name="getAccount"></a>
 # **getAccount**
-> CustomerAccount getAccount(accountId, responseGroups, userId)
+> CustomerAccount getAccount(accountId, responseGroups, userId, responseFields)
 
 Get Account
 
@@ -1463,16 +1415,13 @@ public class Example {
     HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
     bearerAuth.setBearerToken("BEARER TOKEN");
 
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
-
     CustomerAccountApi apiInstance = new CustomerAccountApi(defaultClient);
     Integer accountId = 56; // Integer | Unique identifier of the customer account whose details you want to retrieve.
     String responseGroups = "responseGroups_example"; // String | 
     String userId = "userId_example"; // String | 
+    String responseFields = "responseFields_example"; // String | limits which fields are returned in the response body
     try {
-      CustomerAccount result = apiInstance.getAccount(accountId, responseGroups, userId);
+      CustomerAccount result = apiInstance.getAccount(accountId, responseGroups, userId, responseFields);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling CustomerAccountApi#getAccount");
@@ -1492,6 +1441,7 @@ public class Example {
 | **accountId** | **Integer**| Unique identifier of the customer account whose details you want to retrieve. | |
 | **responseGroups** | **String**|  | [optional] |
 | **userId** | **String**|  | [optional] |
+| **responseFields** | **String**| limits which fields are returned in the response body | [optional] |
 
 ### Return type
 
@@ -1499,7 +1449,7 @@ public class Example {
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth), [clientOauth2](../README.md#clientOauth2)
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
@@ -1509,11 +1459,11 @@ public class Example {
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Success |  -  |
+| **200** | OK |  -  |
 
 <a name="getAccountAttribute"></a>
 # **getAccountAttribute**
-> CustomerAttribute getAccountAttribute(accountId, attributeFQN, userId)
+> CustomerAttribute getAccountAttribute(accountId, attributeFQN, userId, responseFields)
 
 Get Account Attribute
 
@@ -1538,16 +1488,13 @@ public class Example {
     HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
     bearerAuth.setBearerToken("BEARER TOKEN");
 
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
-
     CustomerAccountApi apiInstance = new CustomerAccountApi(defaultClient);
     Integer accountId = 56; // Integer | Unique identifier of the account that contains the attribute to retrieve.
     String attributeFQN = "attributeFQN_example"; // String | Fully qualified name of the attribute that you want to retrieve.
     String userId = "userId_example"; // String | 
+    String responseFields = "responseFields_example"; // String | limits which fields are returned in the response body
     try {
-      CustomerAttribute result = apiInstance.getAccountAttribute(accountId, attributeFQN, userId);
+      CustomerAttribute result = apiInstance.getAccountAttribute(accountId, attributeFQN, userId, responseFields);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling CustomerAccountApi#getAccountAttribute");
@@ -1567,6 +1514,7 @@ public class Example {
 | **accountId** | **Integer**| Unique identifier of the account that contains the attribute to retrieve. | |
 | **attributeFQN** | **String**| Fully qualified name of the attribute that you want to retrieve. | |
 | **userId** | **String**|  | [optional] |
+| **responseFields** | **String**| limits which fields are returned in the response body | [optional] |
 
 ### Return type
 
@@ -1574,7 +1522,7 @@ public class Example {
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth), [clientOauth2](../README.md#clientOauth2)
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
@@ -1584,11 +1532,11 @@ public class Example {
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Success |  -  |
+| **200** | OK |  -  |
 
 <a name="getAccountAttributes"></a>
 # **getAccountAttributes**
-> CustomerAttributeCollection getAccountAttributes(accountId, startIndex, pageSize, sortBy, filter, userId)
+> CustomerAttributeCollection getAccountAttributes(accountId, startIndex, pageSize, sortBy, filter, userId, responseFields)
 
 Get Account Attributes
 
@@ -1613,10 +1561,6 @@ public class Example {
     HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
     bearerAuth.setBearerToken("BEARER TOKEN");
 
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
-
     CustomerAccountApi apiInstance = new CustomerAccountApi(defaultClient);
     Integer accountId = 56; // Integer | Unique identifier of the customer account whose notes you want to retrieve.
     Integer startIndex = 0; // Integer | Used to page results from a query. Indicates the zero-based offset in the complete result set where the returned entities begin. For example, with a PageSize of 25, to get the 51st through the 75th items, startIndex=3. The default value is 0. Optional.
@@ -1624,8 +1568,9 @@ public class Example {
     String sortBy = ""; // String | The element to sort the results by and the order in which the results appear. Either ascending (a-z) or descending (z-a) order. Optional.
     String filter = ""; // String | A set of filter expressions representing the search parameters for a query: eq=equals, ne=not equals, gt=greater than, lt = less than or equals, gt = greater than or equals, lt = less than or equals, sw = starts with, or cont = contains. Optional.
     String userId = "userId_example"; // String | 
+    String responseFields = "responseFields_example"; // String | limits which fields are returned in the response body
     try {
-      CustomerAttributeCollection result = apiInstance.getAccountAttributes(accountId, startIndex, pageSize, sortBy, filter, userId);
+      CustomerAttributeCollection result = apiInstance.getAccountAttributes(accountId, startIndex, pageSize, sortBy, filter, userId, responseFields);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling CustomerAccountApi#getAccountAttributes");
@@ -1648,6 +1593,7 @@ public class Example {
 | **sortBy** | **String**| The element to sort the results by and the order in which the results appear. Either ascending (a-z) or descending (z-a) order. Optional. | [optional] [default to ] |
 | **filter** | **String**| A set of filter expressions representing the search parameters for a query: eq&#x3D;equals, ne&#x3D;not equals, gt&#x3D;greater than, lt &#x3D; less than or equals, gt &#x3D; greater than or equals, lt &#x3D; less than or equals, sw &#x3D; starts with, or cont &#x3D; contains. Optional. | [optional] [default to ] |
 | **userId** | **String**|  | [optional] |
+| **responseFields** | **String**| limits which fields are returned in the response body | [optional] |
 
 ### Return type
 
@@ -1655,7 +1601,7 @@ public class Example {
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth), [clientOauth2](../README.md#clientOauth2)
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
@@ -1665,11 +1611,11 @@ public class Example {
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Success |  -  |
+| **200** | OK |  -  |
 
 <a name="getAccountAuditLog"></a>
 # **getAccountAuditLog**
-> CustomerAuditEntryCollection getAccountAuditLog(accountId, startIndex, pageSize, sortBy, filter)
+> CustomerAuditEntryCollection getAccountAuditLog(accountId, startIndex, pageSize, sortBy, filter, responseFields)
 
 Get Account Audit Log
 
@@ -1694,18 +1640,15 @@ public class Example {
     HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
     bearerAuth.setBearerToken("BEARER TOKEN");
 
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
-
     CustomerAccountApi apiInstance = new CustomerAccountApi(defaultClient);
     Integer accountId = 56; // Integer | 
     Integer startIndex = 56; // Integer | 
     Integer pageSize = 56; // Integer | 
     String sortBy = "sortBy_example"; // String | 
     String filter = "filter_example"; // String | 
+    String responseFields = "responseFields_example"; // String | limits which fields are returned in the response body
     try {
-      CustomerAuditEntryCollection result = apiInstance.getAccountAuditLog(accountId, startIndex, pageSize, sortBy, filter);
+      CustomerAuditEntryCollection result = apiInstance.getAccountAuditLog(accountId, startIndex, pageSize, sortBy, filter, responseFields);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling CustomerAccountApi#getAccountAuditLog");
@@ -1727,6 +1670,7 @@ public class Example {
 | **pageSize** | **Integer**|  | [optional] |
 | **sortBy** | **String**|  | [optional] |
 | **filter** | **String**|  | [optional] |
+| **responseFields** | **String**| limits which fields are returned in the response body | [optional] |
 
 ### Return type
 
@@ -1734,7 +1678,7 @@ public class Example {
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth), [clientOauth2](../README.md#clientOauth2)
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
@@ -1744,11 +1688,11 @@ public class Example {
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Success |  -  |
+| **200** | OK |  -  |
 
 <a name="getAccountCard"></a>
 # **getAccountCard**
-> Card getAccountCard(accountId, cardId)
+> Card getAccountCard(accountId, cardId, responseFields)
 
 Get Account Card
 
@@ -1773,15 +1717,12 @@ public class Example {
     HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
     bearerAuth.setBearerToken("BEARER TOKEN");
 
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
-
     CustomerAccountApi apiInstance = new CustomerAccountApi(defaultClient);
     Integer accountId = 56; // Integer | 
     String cardId = "cardId_example"; // String | 
+    String responseFields = "responseFields_example"; // String | limits which fields are returned in the response body
     try {
-      Card result = apiInstance.getAccountCard(accountId, cardId);
+      Card result = apiInstance.getAccountCard(accountId, cardId, responseFields);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling CustomerAccountApi#getAccountCard");
@@ -1800,6 +1741,7 @@ public class Example {
 |------------- | ------------- | ------------- | -------------|
 | **accountId** | **Integer**|  | |
 | **cardId** | **String**|  | |
+| **responseFields** | **String**| limits which fields are returned in the response body | [optional] |
 
 ### Return type
 
@@ -1807,7 +1749,7 @@ public class Example {
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth), [clientOauth2](../README.md#clientOauth2)
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
@@ -1817,11 +1759,11 @@ public class Example {
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Success |  -  |
+| **200** | OK |  -  |
 
 <a name="getAccountCards"></a>
 # **getAccountCards**
-> CardCollection getAccountCards(accountId)
+> CardCollection getAccountCards(accountId, responseFields)
 
 Get Account Cards
 
@@ -1846,14 +1788,11 @@ public class Example {
     HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
     bearerAuth.setBearerToken("BEARER TOKEN");
 
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
-
     CustomerAccountApi apiInstance = new CustomerAccountApi(defaultClient);
     Integer accountId = 56; // Integer | 
+    String responseFields = "responseFields_example"; // String | limits which fields are returned in the response body
     try {
-      CardCollection result = apiInstance.getAccountCards(accountId);
+      CardCollection result = apiInstance.getAccountCards(accountId, responseFields);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling CustomerAccountApi#getAccountCards");
@@ -1871,6 +1810,7 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **accountId** | **Integer**|  | |
+| **responseFields** | **String**| limits which fields are returned in the response body | [optional] |
 
 ### Return type
 
@@ -1878,7 +1818,7 @@ public class Example {
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth), [clientOauth2](../README.md#clientOauth2)
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
@@ -1888,11 +1828,11 @@ public class Example {
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Success |  -  |
+| **200** | OK |  -  |
 
 <a name="getAccountContact"></a>
 # **getAccountContact**
-> CustomerContact getAccountContact(accountId, contactId, userId)
+> CustomerContact getAccountContact(accountId, contactId, userId, responseFields)
 
 Get Account Contact
 
@@ -1917,16 +1857,13 @@ public class Example {
     HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
     bearerAuth.setBearerToken("BEARER TOKEN");
 
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
-
     CustomerAccountApi apiInstance = new CustomerAccountApi(defaultClient);
     Integer accountId = 56; // Integer | Unique identifier of the customer account whose CustomerContact information you want to retrieve.
     Integer contactId = 56; // Integer | Unique identifier of the CustomerContact whose details you want to retrieve.
     String userId = "userId_example"; // String | If provided, the primary markings on the contact will be based on the user's preferred primary overrides
+    String responseFields = "responseFields_example"; // String | limits which fields are returned in the response body
     try {
-      CustomerContact result = apiInstance.getAccountContact(accountId, contactId, userId);
+      CustomerContact result = apiInstance.getAccountContact(accountId, contactId, userId, responseFields);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling CustomerAccountApi#getAccountContact");
@@ -1946,6 +1883,7 @@ public class Example {
 | **accountId** | **Integer**| Unique identifier of the customer account whose CustomerContact information you want to retrieve. | |
 | **contactId** | **Integer**| Unique identifier of the CustomerContact whose details you want to retrieve. | |
 | **userId** | **String**| If provided, the primary markings on the contact will be based on the user&#39;s preferred primary overrides | [optional] |
+| **responseFields** | **String**| limits which fields are returned in the response body | [optional] |
 
 ### Return type
 
@@ -1953,7 +1891,7 @@ public class Example {
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth), [clientOauth2](../README.md#clientOauth2)
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
@@ -1963,11 +1901,11 @@ public class Example {
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Success |  -  |
+| **200** | OK |  -  |
 
 <a name="getAccountContacts"></a>
 # **getAccountContacts**
-> CustomerContactCollection getAccountContacts(accountId, startIndex, pageSize, sortBy, filter, userId)
+> CustomerContactCollection getAccountContacts(accountId, startIndex, pageSize, sortBy, filter, userId, responseFields)
 
 Get Account Contacts
 
@@ -1992,10 +1930,6 @@ public class Example {
     HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
     bearerAuth.setBearerToken("BEARER TOKEN");
 
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
-
     CustomerAccountApi apiInstance = new CustomerAccountApi(defaultClient);
     Integer accountId = 56; // Integer | Unique identifier of the customer account whose CustomerContact information you want to retrieve.
     Integer startIndex = 56; // Integer | Used to page results from a query. Indicates the zero-based offset in the complete result set where the returned entities begin. For example, with a PageSize of 25, to get the 51st through the 75th items, startIndex=3. The default value is 0. Optional.
@@ -2003,8 +1937,9 @@ public class Example {
     String sortBy = "sortBy_example"; // String | The element to sort the results by and the order in which the results appear. Either ascending (a-z) or descending (z-a) order. Optional.
     String filter = "filter_example"; // String | A set of filter expressions representing the search parameters for a query: eq=equals, ne=not equals, gt=greater than, lt = less than or equals, gt = greater than or equals, lt = less than or equals, sw = starts with, or cont = contains. Optional.
     String userId = "userId_example"; // String | If provided, the primary markings on the contacts will be based on the user's preferred primary overrides
+    String responseFields = "responseFields_example"; // String | limits which fields are returned in the response body
     try {
-      CustomerContactCollection result = apiInstance.getAccountContacts(accountId, startIndex, pageSize, sortBy, filter, userId);
+      CustomerContactCollection result = apiInstance.getAccountContacts(accountId, startIndex, pageSize, sortBy, filter, userId, responseFields);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling CustomerAccountApi#getAccountContacts");
@@ -2027,6 +1962,7 @@ public class Example {
 | **sortBy** | **String**| The element to sort the results by and the order in which the results appear. Either ascending (a-z) or descending (z-a) order. Optional. | [optional] |
 | **filter** | **String**| A set of filter expressions representing the search parameters for a query: eq&#x3D;equals, ne&#x3D;not equals, gt&#x3D;greater than, lt &#x3D; less than or equals, gt &#x3D; greater than or equals, lt &#x3D; less than or equals, sw &#x3D; starts with, or cont &#x3D; contains. Optional. | [optional] |
 | **userId** | **String**| If provided, the primary markings on the contacts will be based on the user&#39;s preferred primary overrides | [optional] |
+| **responseFields** | **String**| limits which fields are returned in the response body | [optional] |
 
 ### Return type
 
@@ -2034,7 +1970,7 @@ public class Example {
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth), [clientOauth2](../README.md#clientOauth2)
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
@@ -2044,11 +1980,11 @@ public class Example {
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Success |  -  |
+| **200** | OK |  -  |
 
 <a name="getAccountNote"></a>
 # **getAccountNote**
-> CustomerNote getAccountNote(accountId, noteId)
+> CustomerNote getAccountNote(accountId, noteId, responseFields)
 
 Get Account Note
 
@@ -2073,15 +2009,12 @@ public class Example {
     HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
     bearerAuth.setBearerToken("BEARER TOKEN");
 
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
-
     CustomerAccountApi apiInstance = new CustomerAccountApi(defaultClient);
     Integer accountId = 56; // Integer | Unique identifier of the customer account that contains the note to retrieve.
     Integer noteId = 56; // Integer | Unique identifier of a particular note that you want to retrieve.
+    String responseFields = "responseFields_example"; // String | limits which fields are returned in the response body
     try {
-      CustomerNote result = apiInstance.getAccountNote(accountId, noteId);
+      CustomerNote result = apiInstance.getAccountNote(accountId, noteId, responseFields);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling CustomerAccountApi#getAccountNote");
@@ -2100,6 +2033,7 @@ public class Example {
 |------------- | ------------- | ------------- | -------------|
 | **accountId** | **Integer**| Unique identifier of the customer account that contains the note to retrieve. | |
 | **noteId** | **Integer**| Unique identifier of a particular note that you want to retrieve. | |
+| **responseFields** | **String**| limits which fields are returned in the response body | [optional] |
 
 ### Return type
 
@@ -2107,7 +2041,7 @@ public class Example {
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth), [clientOauth2](../README.md#clientOauth2)
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
@@ -2117,11 +2051,11 @@ public class Example {
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Success |  -  |
+| **200** | OK |  -  |
 
 <a name="getAccountNotes"></a>
 # **getAccountNotes**
-> CustomerNoteCollection getAccountNotes(accountId, startIndex, pageSize, sortBy, filter)
+> CustomerNoteCollection getAccountNotes(accountId, startIndex, pageSize, sortBy, filter, responseFields)
 
 Get Account Notes
 
@@ -2146,18 +2080,15 @@ public class Example {
     HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
     bearerAuth.setBearerToken("BEARER TOKEN");
 
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
-
     CustomerAccountApi apiInstance = new CustomerAccountApi(defaultClient);
     Integer accountId = 56; // Integer | Unique identifier of the customer account whose notes you want to retrieve.
     Integer startIndex = 0; // Integer | Used to page results from a query. Indicates the zero-based offset in the complete result set where the returned entities begin. For example, with a PageSize of 25, to get the 51st through the 75th items, startIndex=3. The default value is 0. Optional.
     Integer pageSize = 20; // Integer | Used to page results from a query. Indicates the maximum number of entities to return from a query. The default value is 20 and the maximum value is 200. Optional.
     String sortBy = ""; // String | The element to sort the results by and the order in which the results appear. Either ascending (a-z) or descending (z-a) order. Optional.
     String filter = ""; // String | A set of filter expressions representing the search parameters for a query: eq=equals, ne=not equals, gt=greater than, lt = less than or equals, gt = greater than or equals, lt = less than or equals, sw = starts with, or cont = contains. Optional.
+    String responseFields = "responseFields_example"; // String | limits which fields are returned in the response body
     try {
-      CustomerNoteCollection result = apiInstance.getAccountNotes(accountId, startIndex, pageSize, sortBy, filter);
+      CustomerNoteCollection result = apiInstance.getAccountNotes(accountId, startIndex, pageSize, sortBy, filter, responseFields);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling CustomerAccountApi#getAccountNotes");
@@ -2179,6 +2110,7 @@ public class Example {
 | **pageSize** | **Integer**| Used to page results from a query. Indicates the maximum number of entities to return from a query. The default value is 20 and the maximum value is 200. Optional. | [optional] [default to 20] |
 | **sortBy** | **String**| The element to sort the results by and the order in which the results appear. Either ascending (a-z) or descending (z-a) order. Optional. | [optional] [default to ] |
 | **filter** | **String**| A set of filter expressions representing the search parameters for a query: eq&#x3D;equals, ne&#x3D;not equals, gt&#x3D;greater than, lt &#x3D; less than or equals, gt &#x3D; greater than or equals, lt &#x3D; less than or equals, sw &#x3D; starts with, or cont &#x3D; contains. Optional. | [optional] [default to ] |
+| **responseFields** | **String**| limits which fields are returned in the response body | [optional] |
 
 ### Return type
 
@@ -2186,7 +2118,7 @@ public class Example {
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth), [clientOauth2](../README.md#clientOauth2)
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
@@ -2196,11 +2128,11 @@ public class Example {
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Success |  -  |
+| **200** | OK |  -  |
 
 <a name="getAccountSegments"></a>
 # **getAccountSegments**
-> CustomerSegmentCollection getAccountSegments(accountId, startIndex, pageSize, sortBy, filter)
+> CustomerSegmentCollection getAccountSegments(accountId, startIndex, pageSize, sortBy, filter, responseFields)
 
 Get Account Segments
 
@@ -2225,18 +2157,15 @@ public class Example {
     HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
     bearerAuth.setBearerToken("BEARER TOKEN");
 
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
-
     CustomerAccountApi apiInstance = new CustomerAccountApi(defaultClient);
     Integer accountId = 56; // Integer | Unique identifier of the account for which you want the list of groups.
     Integer startIndex = 0; // Integer | Used to page results from a query. Indicates the zero-based offset in the complete result set where the returned entities begin. For example, with a PageSize of 25, to get the 51st through the 75th items, startIndex=3. The default value is 0. Optional.
     Integer pageSize = 20; // Integer | Used to page results from a query. Indicates the maximum number of entities to return from a query. The default value is 20 and the maximum value is 200. Optional.
-    String sortBy = ""; // String | The element to sort the results by and the order in which the results appear. Either ascending (a-z) or descending (z-a) order.               Optional.
+    String sortBy = ""; // String | The element to sort the results by and the order in which the results appear. Either ascending (a-z) or descending (z-a) order.              Optional.
     String filter = ""; // String | A set of filter expressions representing the search parameters for a query: eq=equals, ne=not equals, gt=greater than, lt = less than or equals, gt = greater than or equals, lt = less than or equals, sw = starts with, or cont = contains. Optional.
+    String responseFields = "responseFields_example"; // String | limits which fields are returned in the response body
     try {
-      CustomerSegmentCollection result = apiInstance.getAccountSegments(accountId, startIndex, pageSize, sortBy, filter);
+      CustomerSegmentCollection result = apiInstance.getAccountSegments(accountId, startIndex, pageSize, sortBy, filter, responseFields);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling CustomerAccountApi#getAccountSegments");
@@ -2256,8 +2185,9 @@ public class Example {
 | **accountId** | **Integer**| Unique identifier of the account for which you want the list of groups. | |
 | **startIndex** | **Integer**| Used to page results from a query. Indicates the zero-based offset in the complete result set where the returned entities begin. For example, with a PageSize of 25, to get the 51st through the 75th items, startIndex&#x3D;3. The default value is 0. Optional. | [optional] [default to 0] |
 | **pageSize** | **Integer**| Used to page results from a query. Indicates the maximum number of entities to return from a query. The default value is 20 and the maximum value is 200. Optional. | [optional] [default to 20] |
-| **sortBy** | **String**| The element to sort the results by and the order in which the results appear. Either ascending (a-z) or descending (z-a) order.               Optional. | [optional] [default to ] |
+| **sortBy** | **String**| The element to sort the results by and the order in which the results appear. Either ascending (a-z) or descending (z-a) order.              Optional. | [optional] [default to ] |
 | **filter** | **String**| A set of filter expressions representing the search parameters for a query: eq&#x3D;equals, ne&#x3D;not equals, gt&#x3D;greater than, lt &#x3D; less than or equals, gt &#x3D; greater than or equals, lt &#x3D; less than or equals, sw &#x3D; starts with, or cont &#x3D; contains. Optional. | [optional] [default to ] |
+| **responseFields** | **String**| limits which fields are returned in the response body | [optional] |
 
 ### Return type
 
@@ -2265,7 +2195,7 @@ public class Example {
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth), [clientOauth2](../README.md#clientOauth2)
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
@@ -2275,11 +2205,11 @@ public class Example {
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Success |  -  |
+| **200** | OK |  -  |
 
 <a name="getAccounts"></a>
 # **getAccounts**
-> CustomerAccountCollection getAccounts(startIndex, pageSize, sortBy, filter, fields, q, qLimit, isAnonymous, responseGroups)
+> CustomerAccountCollection getAccounts(startIndex, pageSize, sortBy, filter, fields, q, qLimit, isAnonymous, responseGroups, responseFields)
 
 Get Accounts
 
@@ -2304,12 +2234,8 @@ public class Example {
     HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
     bearerAuth.setBearerToken("BEARER TOKEN");
 
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
-
     CustomerAccountApi apiInstance = new CustomerAccountApi(defaultClient);
-    Integer startIndex = 0; // Integer | Used to page results from a query. Indicates the zero-based offset in the complete result set where the returned entities begin. For example, with a PageSize of 25, to get the 51st through the 75th items, startIndex=3. The default value is 0. Optional.                            For example, applications can filter on UserId to get the single record of the current customer.
+    Integer startIndex = 0; // Integer | Used to page results from a query. Indicates the zero-based offset in the complete result set where the returned entities begin. For example, with a PageSize of 25, to get the 51st through the 75th items, startIndex=3. The default value is 0. Optional.                          For example, applications can filter on UserId to get the single record of the current customer.
     Integer pageSize = 0; // Integer | We added this test to demo new publishing @test@. Used to page results from a query. Indicates the maximum number of entities to return from a query. The default value is 20 and the maximum value is 200. Optional.
     String sortBy = "sortBy_example"; // String | The element to sort the results by and the order in which the results appear. Either ascending (a-z) or descending (z-a) order. Optional.
     String filter = "filter_example"; // String | A set of filter expressions representing the search parameters for a query: eq=equals, ne=not equals, gt=greater than, lt = less than or equals, gt = greater than or equals, lt = less than or equals, sw = starts with, or cont = contains. Optional.
@@ -2318,8 +2244,9 @@ public class Example {
     Integer qLimit = 56; // Integer | 
     Boolean isAnonymous = true; // Boolean | 
     String responseGroups = "responseGroups_example"; // String | Used to refine the default information returned from a request. To reduce amount of customer account information returned, use the valid response groups: Contacts, CustomerAccountNotes, and OrderSummary. Optional.
+    String responseFields = "responseFields_example"; // String | limits which fields are returned in the response body
     try {
-      CustomerAccountCollection result = apiInstance.getAccounts(startIndex, pageSize, sortBy, filter, fields, q, qLimit, isAnonymous, responseGroups);
+      CustomerAccountCollection result = apiInstance.getAccounts(startIndex, pageSize, sortBy, filter, fields, q, qLimit, isAnonymous, responseGroups, responseFields);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling CustomerAccountApi#getAccounts");
@@ -2336,7 +2263,7 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **startIndex** | **Integer**| Used to page results from a query. Indicates the zero-based offset in the complete result set where the returned entities begin. For example, with a PageSize of 25, to get the 51st through the 75th items, startIndex&#x3D;3. The default value is 0. Optional.                            For example, applications can filter on UserId to get the single record of the current customer. | [optional] [default to 0] |
+| **startIndex** | **Integer**| Used to page results from a query. Indicates the zero-based offset in the complete result set where the returned entities begin. For example, with a PageSize of 25, to get the 51st through the 75th items, startIndex&#x3D;3. The default value is 0. Optional.                          For example, applications can filter on UserId to get the single record of the current customer. | [optional] [default to 0] |
 | **pageSize** | **Integer**| We added this test to demo new publishing @test@. Used to page results from a query. Indicates the maximum number of entities to return from a query. The default value is 20 and the maximum value is 200. Optional. | [optional] [default to 0] |
 | **sortBy** | **String**| The element to sort the results by and the order in which the results appear. Either ascending (a-z) or descending (z-a) order. Optional. | [optional] |
 | **filter** | **String**| A set of filter expressions representing the search parameters for a query: eq&#x3D;equals, ne&#x3D;not equals, gt&#x3D;greater than, lt &#x3D; less than or equals, gt &#x3D; greater than or equals, lt &#x3D; less than or equals, sw &#x3D; starts with, or cont &#x3D; contains. Optional. | [optional] |
@@ -2345,6 +2272,7 @@ public class Example {
 | **qLimit** | **Integer**|  | [optional] |
 | **isAnonymous** | **Boolean**|  | [optional] |
 | **responseGroups** | **String**| Used to refine the default information returned from a request. To reduce amount of customer account information returned, use the valid response groups: Contacts, CustomerAccountNotes, and OrderSummary. Optional. | [optional] |
+| **responseFields** | **String**| limits which fields are returned in the response body | [optional] |
 
 ### Return type
 
@@ -2352,7 +2280,7 @@ public class Example {
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth), [clientOauth2](../README.md#clientOauth2)
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
@@ -2362,13 +2290,13 @@ public class Example {
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Success |  -  |
+| **200** | OK |  -  |
 
 <a name="getCurrentAccount"></a>
 # **getCurrentAccount**
-> CustomerAccount getCurrentAccount(responseGroups)
+> CustomerAccount getCurrentAccount(responseGroups, responseFields)
 
-Retrieves the details of a the current logged in customer account
+Retrieve Current Account
 
 Retrieves the details of a the current logged in customer account
 
@@ -2391,14 +2319,11 @@ public class Example {
     HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
     bearerAuth.setBearerToken("BEARER TOKEN");
 
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
-
     CustomerAccountApi apiInstance = new CustomerAccountApi(defaultClient);
     String responseGroups = "responseGroups_example"; // String | 
+    String responseFields = "responseFields_example"; // String | limits which fields are returned in the response body
     try {
-      CustomerAccount result = apiInstance.getCurrentAccount(responseGroups);
+      CustomerAccount result = apiInstance.getCurrentAccount(responseGroups, responseFields);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling CustomerAccountApi#getCurrentAccount");
@@ -2416,6 +2341,7 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **responseGroups** | **String**|  | [optional] |
+| **responseFields** | **String**| limits which fields are returned in the response body | [optional] |
 
 ### Return type
 
@@ -2423,7 +2349,7 @@ public class Example {
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth), [clientOauth2](../README.md#clientOauth2)
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
@@ -2433,13 +2359,13 @@ public class Example {
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Success |  -  |
+| **200** | OK |  -  |
 
 <a name="getCustomerPurchaseOrderAccount"></a>
 # **getCustomerPurchaseOrderAccount**
-> CustomerPurchaseOrderAccount getCustomerPurchaseOrderAccount(accountId)
+> CustomerPurchaseOrderAccount getCustomerPurchaseOrderAccount(accountId, responseFields)
 
-Gets a customer&#39;s purchase order account.
+Get Customer Purchase Order Account
 
 Gets a customer&#39;s purchase order account.
 
@@ -2462,14 +2388,11 @@ public class Example {
     HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
     bearerAuth.setBearerToken("BEARER TOKEN");
 
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
-
     CustomerAccountApi apiInstance = new CustomerAccountApi(defaultClient);
     Integer accountId = 56; // Integer | Unique identifier of the account.
+    String responseFields = "responseFields_example"; // String | limits which fields are returned in the response body
     try {
-      CustomerPurchaseOrderAccount result = apiInstance.getCustomerPurchaseOrderAccount(accountId);
+      CustomerPurchaseOrderAccount result = apiInstance.getCustomerPurchaseOrderAccount(accountId, responseFields);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling CustomerAccountApi#getCustomerPurchaseOrderAccount");
@@ -2487,6 +2410,7 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **accountId** | **Integer**| Unique identifier of the account. | |
+| **responseFields** | **String**| limits which fields are returned in the response body | [optional] |
 
 ### Return type
 
@@ -2494,7 +2418,7 @@ public class Example {
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth), [clientOauth2](../README.md#clientOauth2)
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
@@ -2504,11 +2428,11 @@ public class Example {
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Success |  -  |
+| **200** | OK |  -  |
 
 <a name="getCustomerPurchaseOrderTransactions"></a>
 # **getCustomerPurchaseOrderTransactions**
-> PurchaseOrderTransactionCollection getCustomerPurchaseOrderTransactions(accountId, startIndex, pageSize, sortBy, filter)
+> PurchaseOrderTransactionCollection getCustomerPurchaseOrderTransactions(accountId, startIndex, pageSize, sortBy, filter, responseFields)
 
 Get Customer Purchase Order Transactions
 
@@ -2533,18 +2457,15 @@ public class Example {
     HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
     bearerAuth.setBearerToken("BEARER TOKEN");
 
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
-
     CustomerAccountApi apiInstance = new CustomerAccountApi(defaultClient);
     Integer accountId = 56; // Integer | Customer Account Id for which transaction logs need to be retreived
-    Integer startIndex = 0; // Integer | Used to page results from a query. Indicates the zero-based offset in the complete result set where the returned entities begin.               For example, with a PageSize of 25, to get the 51st through the 75th items, startIndex=3. The default value is 0. Optional.
-    Integer pageSize = 20; // Integer | Used to page results from a query.               Indicates the maximum number of entities to return from a query. The default value is 20 and the maximum value is 200. Optional.
+    Integer startIndex = 0; // Integer | Used to page results from a query. Indicates the zero-based offset in the complete result set where the returned entities begin.              For example, with a PageSize of 25, to get the 51st through the 75th items, startIndex=3. The default value is 0. Optional.
+    Integer pageSize = 20; // Integer | Used to page results from a query.              Indicates the maximum number of entities to return from a query. The default value is 20 and the maximum value is 200. Optional.
     String sortBy = ""; // String | The element to sort the results by and the order in which the results appear. Either ascending (a-z) or descending (z-a) order. Optional.
     String filter = "filter_example"; // String | 
+    String responseFields = "responseFields_example"; // String | limits which fields are returned in the response body
     try {
-      PurchaseOrderTransactionCollection result = apiInstance.getCustomerPurchaseOrderTransactions(accountId, startIndex, pageSize, sortBy, filter);
+      PurchaseOrderTransactionCollection result = apiInstance.getCustomerPurchaseOrderTransactions(accountId, startIndex, pageSize, sortBy, filter, responseFields);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling CustomerAccountApi#getCustomerPurchaseOrderTransactions");
@@ -2562,10 +2483,11 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **accountId** | **Integer**| Customer Account Id for which transaction logs need to be retreived | |
-| **startIndex** | **Integer**| Used to page results from a query. Indicates the zero-based offset in the complete result set where the returned entities begin.               For example, with a PageSize of 25, to get the 51st through the 75th items, startIndex&#x3D;3. The default value is 0. Optional. | [optional] [default to 0] |
-| **pageSize** | **Integer**| Used to page results from a query.               Indicates the maximum number of entities to return from a query. The default value is 20 and the maximum value is 200. Optional. | [optional] [default to 20] |
+| **startIndex** | **Integer**| Used to page results from a query. Indicates the zero-based offset in the complete result set where the returned entities begin.              For example, with a PageSize of 25, to get the 51st through the 75th items, startIndex&#x3D;3. The default value is 0. Optional. | [optional] [default to 0] |
+| **pageSize** | **Integer**| Used to page results from a query.              Indicates the maximum number of entities to return from a query. The default value is 20 and the maximum value is 200. Optional. | [optional] [default to 20] |
 | **sortBy** | **String**| The element to sort the results by and the order in which the results appear. Either ascending (a-z) or descending (z-a) order. Optional. | [optional] [default to ] |
 | **filter** | **String**|  | [optional] |
+| **responseFields** | **String**| limits which fields are returned in the response body | [optional] |
 
 ### Return type
 
@@ -2573,7 +2495,7 @@ public class Example {
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth), [clientOauth2](../README.md#clientOauth2)
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
@@ -2583,11 +2505,11 @@ public class Example {
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Success |  -  |
+| **200** | OK |  -  |
 
 <a name="getCustomersPurchaseOrderAccounts"></a>
 # **getCustomersPurchaseOrderAccounts**
-> CustomerPurchaseOrderAccountCollection getCustomersPurchaseOrderAccounts(startIndex, pageSize, sortBy, accountType)
+> CustomerPurchaseOrderAccountCollection getCustomersPurchaseOrderAccounts(startIndex, pageSize, sortBy, accountType, responseFields)
 
 Get Customers Purchase Order Accounts
 
@@ -2612,17 +2534,14 @@ public class Example {
     HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
     bearerAuth.setBearerToken("BEARER TOKEN");
 
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
-
     CustomerAccountApi apiInstance = new CustomerAccountApi(defaultClient);
     Integer startIndex = 0; // Integer | 
     Integer pageSize = 20; // Integer | 
     String sortBy = ""; // String | 
     String accountType = "B2C"; // String | 
+    String responseFields = "responseFields_example"; // String | limits which fields are returned in the response body
     try {
-      CustomerPurchaseOrderAccountCollection result = apiInstance.getCustomersPurchaseOrderAccounts(startIndex, pageSize, sortBy, accountType);
+      CustomerPurchaseOrderAccountCollection result = apiInstance.getCustomersPurchaseOrderAccounts(startIndex, pageSize, sortBy, accountType, responseFields);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling CustomerAccountApi#getCustomersPurchaseOrderAccounts");
@@ -2643,6 +2562,7 @@ public class Example {
 | **pageSize** | **Integer**|  | [optional] [default to 20] |
 | **sortBy** | **String**|  | [optional] [default to ] |
 | **accountType** | **String**|  | [optional] [default to B2C] |
+| **responseFields** | **String**| limits which fields are returned in the response body | [optional] |
 
 ### Return type
 
@@ -2650,7 +2570,7 @@ public class Example {
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth), [clientOauth2](../README.md#clientOauth2)
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
@@ -2660,11 +2580,11 @@ public class Example {
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Success |  -  |
+| **200** | OK |  -  |
 
 <a name="getLoginState"></a>
 # **getLoginState**
-> LoginState getLoginState(accountId, userId)
+> LoginState getLoginState(accountId, userId, responseFields)
 
 Get Login State
 
@@ -2689,15 +2609,12 @@ public class Example {
     HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
     bearerAuth.setBearerToken("BEARER TOKEN");
 
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
-
     CustomerAccountApi apiInstance = new CustomerAccountApi(defaultClient);
     Integer accountId = 56; // Integer | 
     String userId = "userId_example"; // String | EmailAddress of the customer whose details you want to view.
+    String responseFields = "responseFields_example"; // String | limits which fields are returned in the response body
     try {
-      LoginState result = apiInstance.getLoginState(accountId, userId);
+      LoginState result = apiInstance.getLoginState(accountId, userId, responseFields);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling CustomerAccountApi#getLoginState");
@@ -2716,6 +2633,7 @@ public class Example {
 |------------- | ------------- | ------------- | -------------|
 | **accountId** | **Integer**|  | |
 | **userId** | **String**| EmailAddress of the customer whose details you want to view. | [optional] |
+| **responseFields** | **String**| limits which fields are returned in the response body | [optional] |
 
 ### Return type
 
@@ -2723,7 +2641,7 @@ public class Example {
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth), [clientOauth2](../README.md#clientOauth2)
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
@@ -2733,11 +2651,11 @@ public class Example {
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Success |  -  |
+| **200** | OK |  -  |
 
 <a name="getLoginStateByEmailAddress"></a>
 # **getLoginStateByEmailAddress**
-> LoginState getLoginStateByEmailAddress(emailAddress, customerSetCode)
+> LoginState getLoginStateByEmailAddress(emailAddress, customerSetCode, responseFields)
 
 Get Login State By Email Address
 
@@ -2762,15 +2680,12 @@ public class Example {
     HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
     bearerAuth.setBearerToken("BEARER TOKEN");
 
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
-
     CustomerAccountApi apiInstance = new CustomerAccountApi(defaultClient);
     String emailAddress = "emailAddress_example"; // String | 
     String customerSetCode = "customerSetCode_example"; // String | 
+    String responseFields = "responseFields_example"; // String | limits which fields are returned in the response body
     try {
-      LoginState result = apiInstance.getLoginStateByEmailAddress(emailAddress, customerSetCode);
+      LoginState result = apiInstance.getLoginStateByEmailAddress(emailAddress, customerSetCode, responseFields);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling CustomerAccountApi#getLoginStateByEmailAddress");
@@ -2789,6 +2704,7 @@ public class Example {
 |------------- | ------------- | ------------- | -------------|
 | **emailAddress** | **String**|  | [optional] |
 | **customerSetCode** | **String**|  | [optional] |
+| **responseFields** | **String**| limits which fields are returned in the response body | [optional] |
 
 ### Return type
 
@@ -2796,7 +2712,7 @@ public class Example {
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth), [clientOauth2](../README.md#clientOauth2)
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
@@ -2806,11 +2722,11 @@ public class Example {
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Success |  -  |
+| **200** | OK |  -  |
 
 <a name="getLoginStateByUserName"></a>
 # **getLoginStateByUserName**
-> LoginState getLoginStateByUserName(userName, customerSetCode)
+> LoginState getLoginStateByUserName(userName, customerSetCode, responseFields)
 
 Get Login State By UserName
 
@@ -2835,15 +2751,12 @@ public class Example {
     HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
     bearerAuth.setBearerToken("BEARER TOKEN");
 
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
-
     CustomerAccountApi apiInstance = new CustomerAccountApi(defaultClient);
     String userName = "userName_example"; // String | Unique userName of the customer whose details you want to view.
     String customerSetCode = "customerSetCode_example"; // String | 
+    String responseFields = "responseFields_example"; // String | limits which fields are returned in the response body
     try {
-      LoginState result = apiInstance.getLoginStateByUserName(userName, customerSetCode);
+      LoginState result = apiInstance.getLoginStateByUserName(userName, customerSetCode, responseFields);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling CustomerAccountApi#getLoginStateByUserName");
@@ -2862,6 +2775,7 @@ public class Example {
 |------------- | ------------- | ------------- | -------------|
 | **userName** | **String**| Unique userName of the customer whose details you want to view. | [optional] |
 | **customerSetCode** | **String**|  | [optional] |
+| **responseFields** | **String**| limits which fields are returned in the response body | [optional] |
 
 ### Return type
 
@@ -2869,7 +2783,7 @@ public class Example {
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth), [clientOauth2](../README.md#clientOauth2)
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
@@ -2879,11 +2793,11 @@ public class Example {
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Success |  -  |
+| **200** | OK |  -  |
 
 <a name="getTransactions"></a>
 # **getTransactions**
-> List&lt;Transaction&gt; getTransactions(accountId)
+> List&lt;Transaction&gt; getTransactions(accountId, responseFields)
 
 Get Transactions
 
@@ -2908,14 +2822,11 @@ public class Example {
     HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
     bearerAuth.setBearerToken("BEARER TOKEN");
 
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
-
     CustomerAccountApi apiInstance = new CustomerAccountApi(defaultClient);
     Integer accountId = 56; // Integer | 
+    String responseFields = "responseFields_example"; // String | limits which fields are returned in the response body
     try {
-      List<Transaction> result = apiInstance.getTransactions(accountId);
+      List<Transaction> result = apiInstance.getTransactions(accountId, responseFields);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling CustomerAccountApi#getTransactions");
@@ -2933,6 +2844,7 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **accountId** | **Integer**|  | |
+| **responseFields** | **String**| limits which fields are returned in the response body | [optional] |
 
 ### Return type
 
@@ -2940,7 +2852,7 @@ public class Example {
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth), [clientOauth2](../README.md#clientOauth2)
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
@@ -2950,11 +2862,11 @@ public class Example {
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Success |  -  |
+| **200** | OK |  -  |
 
 <a name="recomputeCustomerLifetimeValue"></a>
 # **recomputeCustomerLifetimeValue**
-> recomputeCustomerLifetimeValue(accountId)
+> recomputeCustomerLifetimeValue(accountId, responseFields)
 
 Recompute Customer Lifetime Value
 
@@ -2979,14 +2891,11 @@ public class Example {
     HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
     bearerAuth.setBearerToken("BEARER TOKEN");
 
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
-
     CustomerAccountApi apiInstance = new CustomerAccountApi(defaultClient);
     Integer accountId = 56; // Integer | 
+    String responseFields = "responseFields_example"; // String | limits which fields are returned in the response body
     try {
-      apiInstance.recomputeCustomerLifetimeValue(accountId);
+      apiInstance.recomputeCustomerLifetimeValue(accountId, responseFields);
     } catch (ApiException e) {
       System.err.println("Exception when calling CustomerAccountApi#recomputeCustomerLifetimeValue");
       System.err.println("Status code: " + e.getCode());
@@ -3003,6 +2912,7 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **accountId** | **Integer**|  | |
+| **responseFields** | **String**| limits which fields are returned in the response body | [optional] |
 
 ### Return type
 
@@ -3010,7 +2920,7 @@ null (empty response body)
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth), [clientOauth2](../README.md#clientOauth2)
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
@@ -3020,7 +2930,7 @@ null (empty response body)
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Success |  -  |
+| **200** | OK |  -  |
 
 <a name="removeTransaction"></a>
 # **removeTransaction**
@@ -3048,10 +2958,6 @@ public class Example {
     // Configure HTTP bearer authorization: bearerAuth
     HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
     bearerAuth.setBearerToken("BEARER TOKEN");
-
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
 
     CustomerAccountApi apiInstance = new CustomerAccountApi(defaultClient);
     Integer accountId = 56; // Integer | 
@@ -3082,7 +2988,7 @@ null (empty response body)
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth), [clientOauth2](../README.md#clientOauth2)
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
@@ -3092,11 +2998,11 @@ null (empty response body)
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Success |  -  |
+| **200** | OK |  -  |
 
 <a name="resetPassword"></a>
 # **resetPassword**
-> resetPassword(customerResetPasswordInfo)
+> resetPassword(responseFields, customerResetPasswordInfo)
 
 Reset Password
 
@@ -3121,14 +3027,11 @@ public class Example {
     HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
     bearerAuth.setBearerToken("BEARER TOKEN");
 
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
-
     CustomerAccountApi apiInstance = new CustomerAccountApi(defaultClient);
+    String responseFields = "responseFields_example"; // String | limits which fields are returned in the response body
     CustomerResetPasswordInfo customerResetPasswordInfo = new CustomerResetPasswordInfo(); // CustomerResetPasswordInfo | Username or EmailAddress of the shopper who has requested a password reset.
     try {
-      apiInstance.resetPassword(customerResetPasswordInfo);
+      apiInstance.resetPassword(responseFields, customerResetPasswordInfo);
     } catch (ApiException e) {
       System.err.println("Exception when calling CustomerAccountApi#resetPassword");
       System.err.println("Status code: " + e.getCode());
@@ -3144,6 +3047,7 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
+| **responseFields** | **String**| limits which fields are returned in the response body | [optional] |
 | **customerResetPasswordInfo** | [**CustomerResetPasswordInfo**](CustomerResetPasswordInfo.md)| Username or EmailAddress of the shopper who has requested a password reset. | [optional] |
 
 ### Return type
@@ -3152,7 +3056,7 @@ null (empty response body)
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth), [clientOauth2](../README.md#clientOauth2)
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
@@ -3162,11 +3066,11 @@ null (empty response body)
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Success |  -  |
+| **200** | OK |  -  |
 
 <a name="setLoginLocked"></a>
 # **setLoginLocked**
-> setLoginLocked(accountId, userId, body)
+> setLoginLocked(accountId, userId, responseFields, body)
 
 Set Login Locked
 
@@ -3191,16 +3095,13 @@ public class Example {
     HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
     bearerAuth.setBearerToken("BEARER TOKEN");
 
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
-
     CustomerAccountApi apiInstance = new CustomerAccountApi(defaultClient);
     Integer accountId = 56; // Integer | The customer account id to operate on.
     String userId = "userId_example"; // String | 
+    String responseFields = "responseFields_example"; // String | limits which fields are returned in the response body
     Boolean body = true; // Boolean | True for locking the login. False for unlocking the login (default).
     try {
-      apiInstance.setLoginLocked(accountId, userId, body);
+      apiInstance.setLoginLocked(accountId, userId, responseFields, body);
     } catch (ApiException e) {
       System.err.println("Exception when calling CustomerAccountApi#setLoginLocked");
       System.err.println("Status code: " + e.getCode());
@@ -3218,6 +3119,7 @@ public class Example {
 |------------- | ------------- | ------------- | -------------|
 | **accountId** | **Integer**| The customer account id to operate on. | |
 | **userId** | **String**|  | [optional] |
+| **responseFields** | **String**| limits which fields are returned in the response body | [optional] |
 | **body** | **Boolean**| True for locking the login. False for unlocking the login (default). | [optional] |
 
 ### Return type
@@ -3226,7 +3128,7 @@ null (empty response body)
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth), [clientOauth2](../README.md#clientOauth2)
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
@@ -3236,11 +3138,11 @@ null (empty response body)
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Success |  -  |
+| **200** | OK |  -  |
 
 <a name="setPasswordChangeRequired"></a>
 # **setPasswordChangeRequired**
-> setPasswordChangeRequired(accountId, userId, body)
+> setPasswordChangeRequired(accountId, userId, responseFields, body)
 
 Set Password Change Required
 
@@ -3265,16 +3167,13 @@ public class Example {
     HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
     bearerAuth.setBearerToken("BEARER TOKEN");
 
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
-
     CustomerAccountApi apiInstance = new CustomerAccountApi(defaultClient);
     Integer accountId = 56; // Integer | The customer account id to operate on.
     String userId = "userId_example"; // String | 
+    String responseFields = "responseFields_example"; // String | limits which fields are returned in the response body
     Boolean body = true; // Boolean | 
     try {
-      apiInstance.setPasswordChangeRequired(accountId, userId, body);
+      apiInstance.setPasswordChangeRequired(accountId, userId, responseFields, body);
     } catch (ApiException e) {
       System.err.println("Exception when calling CustomerAccountApi#setPasswordChangeRequired");
       System.err.println("Status code: " + e.getCode());
@@ -3292,6 +3191,7 @@ public class Example {
 |------------- | ------------- | ------------- | -------------|
 | **accountId** | **Integer**| The customer account id to operate on. | |
 | **userId** | **String**|  | [optional] |
+| **responseFields** | **String**| limits which fields are returned in the response body | [optional] |
 | **body** | **Boolean**|  | [optional] |
 
 ### Return type
@@ -3300,7 +3200,7 @@ null (empty response body)
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth), [clientOauth2](../README.md#clientOauth2)
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
@@ -3310,15 +3210,15 @@ null (empty response body)
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Success |  -  |
+| **200** | OK |  -  |
 
 <a name="updateAccount"></a>
 # **updateAccount**
-> CustomerAccount updateAccount(accountId, customerAccount)
+> CustomerAccount updateAccount(accountId, responseFields, customerAccount)
 
 Update Account
 
-Modifies an existing customer account, for example, to change the primary billing contact or change whether to accept marketing material.
+Modifies an existing customer account, for example, to change the primary billing contact or change whether to accept marketing material. ote that attempting to disable an account by using the below PUT call to change the isActive parameter is unsupported, and attempts to do so will be ignored by the API. Instead, make a POST call to api/commerce/customer/accounts/{accountId}/action and provide only { \&quot;actionName\&quot;: \&quot;DisableAccount\&quot; } in the request body. This will successfully disable the account and the isActive flag will be automatically set as false.
 
 ### Example
 ```java
@@ -3339,15 +3239,12 @@ public class Example {
     HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
     bearerAuth.setBearerToken("BEARER TOKEN");
 
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
-
     CustomerAccountApi apiInstance = new CustomerAccountApi(defaultClient);
     Integer accountId = 56; // Integer | Unique identifier of the customer account.
+    String responseFields = "responseFields_example"; // String | limits which fields are returned in the response body
     CustomerAccount customerAccount = new CustomerAccount(); // CustomerAccount | Properties of the customer account to update.
     try {
-      CustomerAccount result = apiInstance.updateAccount(accountId, customerAccount);
+      CustomerAccount result = apiInstance.updateAccount(accountId, responseFields, customerAccount);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling CustomerAccountApi#updateAccount");
@@ -3365,6 +3262,7 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **accountId** | **Integer**| Unique identifier of the customer account. | |
+| **responseFields** | **String**| limits which fields are returned in the response body | [optional] |
 | **customerAccount** | [**CustomerAccount**](CustomerAccount.md)| Properties of the customer account to update. | [optional] |
 
 ### Return type
@@ -3373,7 +3271,7 @@ public class Example {
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth), [clientOauth2](../README.md#clientOauth2)
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
@@ -3383,11 +3281,11 @@ public class Example {
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Success |  -  |
+| **200** | OK |  -  |
 
 <a name="updateAccountAttribute"></a>
 # **updateAccountAttribute**
-> CustomerAttribute updateAccountAttribute(accountId, attributeFQN, userId, customerAttribute)
+> CustomerAttribute updateAccountAttribute(accountId, attributeFQN, userId, responseFields, customerAttribute)
 
 Update Account Attribute
 
@@ -3412,17 +3310,14 @@ public class Example {
     HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
     bearerAuth.setBearerToken("BEARER TOKEN");
 
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
-
     CustomerAccountApi apiInstance = new CustomerAccountApi(defaultClient);
     Integer accountId = 56; // Integer | Unique identifier of the account whose attribute you want to modify.
     String attributeFQN = "attributeFQN_example"; // String | 
     String userId = "userId_example"; // String | 
+    String responseFields = "responseFields_example"; // String | limits which fields are returned in the response body
     CustomerAttribute customerAttribute = new CustomerAttribute(); // CustomerAttribute | The new content to replace the existing attribute.
     try {
-      CustomerAttribute result = apiInstance.updateAccountAttribute(accountId, attributeFQN, userId, customerAttribute);
+      CustomerAttribute result = apiInstance.updateAccountAttribute(accountId, attributeFQN, userId, responseFields, customerAttribute);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling CustomerAccountApi#updateAccountAttribute");
@@ -3442,6 +3337,7 @@ public class Example {
 | **accountId** | **Integer**| Unique identifier of the account whose attribute you want to modify. | |
 | **attributeFQN** | **String**|  | |
 | **userId** | **String**|  | [optional] |
+| **responseFields** | **String**| limits which fields are returned in the response body | [optional] |
 | **customerAttribute** | [**CustomerAttribute**](CustomerAttribute.md)| The new content to replace the existing attribute. | [optional] |
 
 ### Return type
@@ -3450,7 +3346,7 @@ public class Example {
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth), [clientOauth2](../README.md#clientOauth2)
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
@@ -3460,11 +3356,11 @@ public class Example {
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Success |  -  |
+| **200** | OK |  -  |
 
 <a name="updateAccountCard"></a>
 # **updateAccountCard**
-> Card updateAccountCard(accountId, cardId, card)
+> Card updateAccountCard(accountId, cardId, responseFields, card)
 
 Update Account Card
 
@@ -3489,16 +3385,13 @@ public class Example {
     HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
     bearerAuth.setBearerToken("BEARER TOKEN");
 
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
-
     CustomerAccountApi apiInstance = new CustomerAccountApi(defaultClient);
     Integer accountId = 56; // Integer | 
     String cardId = "cardId_example"; // String | 
+    String responseFields = "responseFields_example"; // String | limits which fields are returned in the response body
     Card card = new Card(); // Card | 
     try {
-      Card result = apiInstance.updateAccountCard(accountId, cardId, card);
+      Card result = apiInstance.updateAccountCard(accountId, cardId, responseFields, card);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling CustomerAccountApi#updateAccountCard");
@@ -3517,6 +3410,7 @@ public class Example {
 |------------- | ------------- | ------------- | -------------|
 | **accountId** | **Integer**|  | |
 | **cardId** | **String**|  | |
+| **responseFields** | **String**| limits which fields are returned in the response body | [optional] |
 | **card** | [**Card**](Card.md)|  | [optional] |
 
 ### Return type
@@ -3525,7 +3419,7 @@ public class Example {
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth), [clientOauth2](../README.md#clientOauth2)
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
@@ -3535,11 +3429,11 @@ public class Example {
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Success |  -  |
+| **200** | OK |  -  |
 
 <a name="updateAccountContact"></a>
 # **updateAccountContact**
-> CustomerContact updateAccountContact(accountId, contactId, userId, customerContact)
+> CustomerContact updateAccountContact(accountId, contactId, userId, responseFields, customerContact)
 
 Update Account Contact
 
@@ -3564,17 +3458,14 @@ public class Example {
     HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
     bearerAuth.setBearerToken("BEARER TOKEN");
 
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
-
     CustomerAccountApi apiInstance = new CustomerAccountApi(defaultClient);
     Integer accountId = 56; // Integer | Unique identifier of the customer account whose CustomerContact information you want to update.
     Integer contactId = 56; // Integer | 
     String userId = "userId_example"; // String | If provided, the primary markings on the contact will be stored as the user's preferred primary override
+    String responseFields = "responseFields_example"; // String | limits which fields are returned in the response body
     CustomerContact customerContact = new CustomerContact(); // CustomerContact | 
     try {
-      CustomerContact result = apiInstance.updateAccountContact(accountId, contactId, userId, customerContact);
+      CustomerContact result = apiInstance.updateAccountContact(accountId, contactId, userId, responseFields, customerContact);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling CustomerAccountApi#updateAccountContact");
@@ -3594,6 +3485,7 @@ public class Example {
 | **accountId** | **Integer**| Unique identifier of the customer account whose CustomerContact information you want to update. | |
 | **contactId** | **Integer**|  | |
 | **userId** | **String**| If provided, the primary markings on the contact will be stored as the user&#39;s preferred primary override | [optional] |
+| **responseFields** | **String**| limits which fields are returned in the response body | [optional] |
 | **customerContact** | [**CustomerContact**](CustomerContact.md)|  | [optional] |
 
 ### Return type
@@ -3602,7 +3494,7 @@ public class Example {
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth), [clientOauth2](../README.md#clientOauth2)
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
@@ -3612,11 +3504,11 @@ public class Example {
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Success |  -  |
+| **200** | OK |  -  |
 
 <a name="updateAccountNote"></a>
 # **updateAccountNote**
-> CustomerNote updateAccountNote(accountId, noteId, customerNote)
+> CustomerNote updateAccountNote(accountId, noteId, responseFields, customerNote)
 
 Update Account Note
 
@@ -3641,16 +3533,13 @@ public class Example {
     HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
     bearerAuth.setBearerToken("BEARER TOKEN");
 
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
-
     CustomerAccountApi apiInstance = new CustomerAccountApi(defaultClient);
     Integer accountId = 56; // Integer | Unique identifier of the customer account whose note you want to modify.
     Integer noteId = 56; // Integer | Unique identifier of the note to update.
+    String responseFields = "responseFields_example"; // String | limits which fields are returned in the response body
     CustomerNote customerNote = new CustomerNote(); // CustomerNote | The new content to replace the existing note.
     try {
-      CustomerNote result = apiInstance.updateAccountNote(accountId, noteId, customerNote);
+      CustomerNote result = apiInstance.updateAccountNote(accountId, noteId, responseFields, customerNote);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling CustomerAccountApi#updateAccountNote");
@@ -3669,6 +3558,7 @@ public class Example {
 |------------- | ------------- | ------------- | -------------|
 | **accountId** | **Integer**| Unique identifier of the customer account whose note you want to modify. | |
 | **noteId** | **Integer**| Unique identifier of the note to update. | |
+| **responseFields** | **String**| limits which fields are returned in the response body | [optional] |
 | **customerNote** | [**CustomerNote**](CustomerNote.md)| The new content to replace the existing note. | [optional] |
 
 ### Return type
@@ -3677,7 +3567,7 @@ public class Example {
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth), [clientOauth2](../README.md#clientOauth2)
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
@@ -3687,11 +3577,11 @@ public class Example {
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Success |  -  |
+| **200** | OK |  -  |
 
 <a name="updateCustomerPurchaseOrderAccount"></a>
 # **updateCustomerPurchaseOrderAccount**
-> CustomerPurchaseOrderAccount updateCustomerPurchaseOrderAccount(accountId, customerPurchaseOrderAccount)
+> CustomerPurchaseOrderAccount updateCustomerPurchaseOrderAccount(accountId, responseFields, customerPurchaseOrderAccount)
 
 Update Customer Purchase Order Account
 
@@ -3716,15 +3606,12 @@ public class Example {
     HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
     bearerAuth.setBearerToken("BEARER TOKEN");
 
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
-
     CustomerAccountApi apiInstance = new CustomerAccountApi(defaultClient);
     Integer accountId = 56; // Integer | Unique identifier of the account.
+    String responseFields = "responseFields_example"; // String | limits which fields are returned in the response body
     CustomerPurchaseOrderAccount customerPurchaseOrderAccount = new CustomerPurchaseOrderAccount(); // CustomerPurchaseOrderAccount | 
     try {
-      CustomerPurchaseOrderAccount result = apiInstance.updateCustomerPurchaseOrderAccount(accountId, customerPurchaseOrderAccount);
+      CustomerPurchaseOrderAccount result = apiInstance.updateCustomerPurchaseOrderAccount(accountId, responseFields, customerPurchaseOrderAccount);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling CustomerAccountApi#updateCustomerPurchaseOrderAccount");
@@ -3742,6 +3629,7 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **accountId** | **Integer**| Unique identifier of the account. | |
+| **responseFields** | **String**| limits which fields are returned in the response body | [optional] |
 | **customerPurchaseOrderAccount** | [**CustomerPurchaseOrderAccount**](CustomerPurchaseOrderAccount.md)|  | [optional] |
 
 ### Return type
@@ -3750,7 +3638,7 @@ public class Example {
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth), [clientOauth2](../README.md#clientOauth2)
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
@@ -3760,11 +3648,11 @@ public class Example {
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Success |  -  |
+| **200** | OK |  -  |
 
 <a name="updateForgottenPassword"></a>
 # **updateForgottenPassword**
-> updateForgottenPassword(confirmationInfo)
+> updateForgottenPassword(responseFields, confirmationInfo)
 
 Update Forgotten Password
 
@@ -3789,14 +3677,11 @@ public class Example {
     HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
     bearerAuth.setBearerToken("BEARER TOKEN");
 
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
-
     CustomerAccountApi apiInstance = new CustomerAccountApi(defaultClient);
+    String responseFields = "responseFields_example"; // String | limits which fields are returned in the response body
     ConfirmationInfo confirmationInfo = new ConfirmationInfo(); // ConfirmationInfo | Properties of the confirmation code. Required properties: UserName, NewPassword, and ConfirmationCode.
     try {
-      apiInstance.updateForgottenPassword(confirmationInfo);
+      apiInstance.updateForgottenPassword(responseFields, confirmationInfo);
     } catch (ApiException e) {
       System.err.println("Exception when calling CustomerAccountApi#updateForgottenPassword");
       System.err.println("Status code: " + e.getCode());
@@ -3812,6 +3697,7 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
+| **responseFields** | **String**| limits which fields are returned in the response body | [optional] |
 | **confirmationInfo** | [**ConfirmationInfo**](ConfirmationInfo.md)| Properties of the confirmation code. Required properties: UserName, NewPassword, and ConfirmationCode. | [optional] |
 
 ### Return type
@@ -3820,7 +3706,7 @@ null (empty response body)
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth), [clientOauth2](../README.md#clientOauth2)
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
@@ -3830,5 +3716,5 @@ null (empty response body)
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Success |  -  |
+| **200** | OK |  -  |
 

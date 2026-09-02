@@ -7,15 +7,15 @@
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
-|**type** | **String** |  |  [optional] |
 |**beforeRouting** | **Boolean** |  |  [optional] |
-|**listFqn** | **String** |  |  [optional] |
 |**docId** | **String** |  |  [optional] |
-|**mapTo** | **String** |  |  [optional] |
 |**facetId** | **String** |  |  [optional] |
+|**listFqn** | **String** |  |  [optional] |
+|**mapTo** | **String** |  |  [optional] |
+|**mappings** | **Map&lt;String, Object&gt;** |  |  [optional] |
 |**pattern** | **String** |  |  [optional] |
 |**replacement** | **String** |  |  [optional] |
-|**mappings** | **Map&lt;String, Object&gt;** |  |  [optional] |
+|**type** | **String** |  |  [optional] |
 
 
 ## Implemented Interfaces

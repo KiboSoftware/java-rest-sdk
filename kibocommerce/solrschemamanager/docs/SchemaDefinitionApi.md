@@ -13,7 +13,7 @@ All URIs are relative to *http://https:/api*
 
 <a name="getSchemaDefinition"></a>
 # **getSchemaDefinition**
-> SchemaDefinition getSchemaDefinition(language, published)
+> SchemaDefinition getSchemaDefinition(language, published, responseFields)
 
 Get Schema Definition
 
@@ -38,15 +38,12 @@ public class Example {
     HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
     bearerAuth.setBearerToken("BEARER TOKEN");
 
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
-
     SchemaDefinitionApi apiInstance = new SchemaDefinitionApi(defaultClient);
     String language = "language_example"; // String | 
     Boolean published = true; // Boolean | 
+    String responseFields = "responseFields_example"; // String | limits which fields are returned in the response body
     try {
-      SchemaDefinition result = apiInstance.getSchemaDefinition(language, published);
+      SchemaDefinition result = apiInstance.getSchemaDefinition(language, published, responseFields);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling SchemaDefinitionApi#getSchemaDefinition");
@@ -65,6 +62,7 @@ public class Example {
 |------------- | ------------- | ------------- | -------------|
 | **language** | **String**|  | |
 | **published** | **Boolean**|  | [optional] |
+| **responseFields** | **String**| limits which fields are returned in the response body | [optional] |
 
 ### Return type
 
@@ -72,7 +70,7 @@ public class Example {
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth), [clientOauth2](../README.md#clientOauth2)
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
@@ -82,11 +80,11 @@ public class Example {
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Success |  -  |
+| **200** | OK |  -  |
 
 <a name="listSchemaDefinitions"></a>
 # **listSchemaDefinitions**
-> List&lt;SchemaDefinition&gt; listSchemaDefinitions()
+> List&lt;SchemaDefinition&gt; listSchemaDefinitions(responseFields)
 
 List Schema Definitions
 
@@ -111,13 +109,10 @@ public class Example {
     HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
     bearerAuth.setBearerToken("BEARER TOKEN");
 
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
-
     SchemaDefinitionApi apiInstance = new SchemaDefinitionApi(defaultClient);
+    String responseFields = "responseFields_example"; // String | limits which fields are returned in the response body
     try {
-      List<SchemaDefinition> result = apiInstance.listSchemaDefinitions();
+      List<SchemaDefinition> result = apiInstance.listSchemaDefinitions(responseFields);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling SchemaDefinitionApi#listSchemaDefinitions");
@@ -131,7 +126,10 @@ public class Example {
 ```
 
 ### Parameters
-This endpoint does not need any parameter.
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **responseFields** | **String**| limits which fields are returned in the response body | [optional] |
 
 ### Return type
 
@@ -139,7 +137,7 @@ This endpoint does not need any parameter.
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth), [clientOauth2](../README.md#clientOauth2)
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
@@ -149,11 +147,11 @@ This endpoint does not need any parameter.
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Success |  -  |
+| **200** | OK |  -  |
 
 <a name="publish"></a>
 # **publish**
-> Boolean publish(language, reindex)
+> Boolean publish(language, reindex, responseFields)
 
 Publish
 
@@ -178,15 +176,12 @@ public class Example {
     HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
     bearerAuth.setBearerToken("BEARER TOKEN");
 
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
-
     SchemaDefinitionApi apiInstance = new SchemaDefinitionApi(defaultClient);
     String language = "language_example"; // String | 
     Boolean reindex = false; // Boolean | 
+    String responseFields = "responseFields_example"; // String | limits which fields are returned in the response body
     try {
-      Boolean result = apiInstance.publish(language, reindex);
+      Boolean result = apiInstance.publish(language, reindex, responseFields);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling SchemaDefinitionApi#publish");
@@ -205,6 +200,7 @@ public class Example {
 |------------- | ------------- | ------------- | -------------|
 | **language** | **String**|  | |
 | **reindex** | **Boolean**|  | [optional] [default to false] |
+| **responseFields** | **String**| limits which fields are returned in the response body | [optional] |
 
 ### Return type
 
@@ -212,7 +208,7 @@ public class Example {
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth), [clientOauth2](../README.md#clientOauth2)
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
@@ -222,11 +218,11 @@ public class Example {
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Success |  -  |
+| **200** | OK |  -  |
 
 <a name="revert"></a>
 # **revert**
-> Boolean revert(language)
+> Boolean revert(language, responseFields)
 
 Revert
 
@@ -251,14 +247,11 @@ public class Example {
     HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
     bearerAuth.setBearerToken("BEARER TOKEN");
 
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
-
     SchemaDefinitionApi apiInstance = new SchemaDefinitionApi(defaultClient);
     String language = "language_example"; // String | 
+    String responseFields = "responseFields_example"; // String | limits which fields are returned in the response body
     try {
-      Boolean result = apiInstance.revert(language);
+      Boolean result = apiInstance.revert(language, responseFields);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling SchemaDefinitionApi#revert");
@@ -276,6 +269,7 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **language** | **String**|  | |
+| **responseFields** | **String**| limits which fields are returned in the response body | [optional] |
 
 ### Return type
 
@@ -283,7 +277,7 @@ public class Example {
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth), [clientOauth2](../README.md#clientOauth2)
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
@@ -293,11 +287,11 @@ public class Example {
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Success |  -  |
+| **200** | OK |  -  |
 
 <a name="updateSchemaDefinition"></a>
 # **updateSchemaDefinition**
-> SchemaDefinition updateSchemaDefinition(language, schemaDefinition)
+> SchemaDefinition updateSchemaDefinition(language, responseFields, schemaDefinition)
 
 Update Schema Definition
 
@@ -322,15 +316,12 @@ public class Example {
     HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
     bearerAuth.setBearerToken("BEARER TOKEN");
 
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
-
     SchemaDefinitionApi apiInstance = new SchemaDefinitionApi(defaultClient);
     String language = "language_example"; // String | 
+    String responseFields = "responseFields_example"; // String | limits which fields are returned in the response body
     SchemaDefinition schemaDefinition = new SchemaDefinition(); // SchemaDefinition | 
     try {
-      SchemaDefinition result = apiInstance.updateSchemaDefinition(language, schemaDefinition);
+      SchemaDefinition result = apiInstance.updateSchemaDefinition(language, responseFields, schemaDefinition);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling SchemaDefinitionApi#updateSchemaDefinition");
@@ -348,6 +339,7 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **language** | **String**|  | |
+| **responseFields** | **String**| limits which fields are returned in the response body | [optional] |
 | **schemaDefinition** | [**SchemaDefinition**](SchemaDefinition.md)|  | [optional] |
 
 ### Return type
@@ -356,15 +348,15 @@ public class Example {
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth), [clientOauth2](../README.md#clientOauth2)
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
- - **Content-Type**: text/plain, application/octet-stream, application/zip, application/json
+ - **Content-Type**: application/json, application/octet-stream, application/zip, text/plain
  - **Accept**: application/json, text/json, text/plain
 
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Success |  -  |
+| **200** | OK |  -  |
 

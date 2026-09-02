@@ -1,8 +1,8 @@
 /*
  * Kibo Catalog Admin Services
- * OpenAPI Spec for Kibo Catalog Admin Services
+ * <div id=\"overview_CATALOG_ADMIN\">             <h2>CATALOG ADMINISTRATION</h2>             <p>The Catalog Administration APIs are a collection of resources for configuring the catalogs and products offered to your shoppers, including                 discounts and coupon sets, faceting, price lists, and different types or variations of products. See the                 <a href=\"/concept-guides/catalog\">Catalog user guides</a>                 for information about the related features in the Unified Commerce Admin.</p>             <p>Use the <strong>Attributes</strong> resource to manage localization and attribute configurations for your catalogs. This current version of the Attributes API includes localizedContent to                 support <a href=\"/pages/catalog-structure#multi-locale-catalogs\">multi-locale catalogs</a>, which was not present in the legacy API model. If                 you were a client prior to May 2024 and have upgraded your implementation to support this feature,                 you can still access attribute data that has not yet been rewritten to the new model by providing                 an x-api-version header set to \"1\". </p>             <p>Use the <strong>Categories</strong> resource to organize products and control where they appear on the storefront. Create                 and maintain a hierarchy of categories and subcategories where the site will store properties. This current version of the Categories API includes localizedContent to                 support <a href=\"/pages/catalog-structure#multi-locale-catalogs\">multi-locale catalogs</a>, which was not present in the legacy API model. If                 you were a client prior to May 2024 and have upgraded your implementation to support this feature,                 you can still access category data that has not yet been rewritten to the new model by providing                 an x-api-version header set to \"1\". </p>             <p>Use the <strong>Coupon Sets</strong> resource to view and create coupon sets. You can use coupon sets to group multiple                 coupon codes together and associate them with one or more discounts.</p>             <p>Use the <strong>Currency</strong> resource to manage the currency localization rules and exchange rates for any of the                 currencies that are supported for placing orders in.</p>             <p>Use the <strong>Discounts</strong> and <strong>Discount Settings</strong> resources to define and manage discounts to apply to products, product categories, or                 orders. This current version of the Discounts API includes localizedContent to                 support <a href=\"/pages/catalog-structure#multi-locale-catalogs\">multi-locale catalogs</a>, which was not present in the legacy Products API model. If                 you were a client prior to May 2024 and have upgraded your implementation to support this feature,                 you can still access discount data that has not yet been rewritten to the new model by providing                 an x-api-version header set to \"1\". </p>             <p>Use the <strong>Facets</strong> resource to manage the facets shoppers use to filter product display results on a                 storefront. Facets can include categories, product attributes, or prices, and use either a range of                 values or discrete values.</p>             <p>Use the <strong>Master Catalog</strong> resource to view details of the master catalogs associated with a tenant and to                 manage the product publishing mode for each master catalog.</p>             <p>Use the <strong>Price Lists</strong> resources to view and create price lists. You can use price lists to override the                 catalog pricing of products for specific customer segments and/or sites.</p>             <p>Use the <strong>Products</strong>, <strong>Product Types/Extras/Options/Properties</strong>, and <strong>Product Sort Definitions</strong> resources to create new product definitions in the master catalog and determine which                 catalogs will feature products. This current version of the Products API includes localizedContent to                 support <a href=\"/pages/catalog-structure#multi-locale-catalogs\">multi-locale catalogs</a>, which was not present in the legacy Products API model. If                 you were a client prior to May 2024 and have upgraded your implementation to support this feature,                 you can still access product data that has not yet been rewritten to the new model by providing                 an x-api-version header set to \"1\".</p>             <p>Use the <strong>Publishing</strong> resource to publish pending product updates together as part of a set.</p>             <p>Use the <strong>Search</strong> resource to manage all settings and options for providing product search on your site, as                 well as search tuning rules.</p>         </div>
  *
- * The version of the OpenAPI document: 1.0.0
+ * The version of the OpenAPI document: v1
  * 
  *
  * NOTE: This class is auto generated by OpenAPI Generator (https://openapi-generator.tech).
@@ -56,32 +56,55 @@ import com.kibocommerce.sdk.common.JSON;
 public class CatalogAdminsCurrencyExchangeRate implements Serializable {
   private static final long serialVersionUID = 1L;
 
+  public static final String SERIALIZED_NAME_AUDIT_INFO = "auditInfo";
+  @SerializedName(SERIALIZED_NAME_AUDIT_INFO)
+  private AdminUserAuditInfo auditInfo;
+
   public static final String SERIALIZED_NAME_FROM_CURRENCY_CODE = "fromCurrencyCode";
   @SerializedName(SERIALIZED_NAME_FROM_CURRENCY_CODE)
   private String fromCurrencyCode;
-
-  public static final String SERIALIZED_NAME_TO_CURRENCY_CODE = "toCurrencyCode";
-  @SerializedName(SERIALIZED_NAME_TO_CURRENCY_CODE)
-  private String toCurrencyCode;
-
-  public static final String SERIALIZED_NAME_RATE = "rate";
-  @SerializedName(SERIALIZED_NAME_RATE)
-  private Double rate;
 
   public static final String SERIALIZED_NAME_MULTIPLIER = "multiplier";
   @SerializedName(SERIALIZED_NAME_MULTIPLIER)
   private Double multiplier;
 
+  public static final String SERIALIZED_NAME_RATE = "rate";
+  @SerializedName(SERIALIZED_NAME_RATE)
+  private Double rate;
+
   public static final String SERIALIZED_NAME_REFERENCE_DATA = "referenceData";
   @SerializedName(SERIALIZED_NAME_REFERENCE_DATA)
   private String referenceData;
 
-  public static final String SERIALIZED_NAME_AUDIT_INFO = "auditInfo";
-  @SerializedName(SERIALIZED_NAME_AUDIT_INFO)
-  private AdminUserAuditInfo auditInfo;
+  public static final String SERIALIZED_NAME_TO_CURRENCY_CODE = "toCurrencyCode";
+  @SerializedName(SERIALIZED_NAME_TO_CURRENCY_CODE)
+  private String toCurrencyCode;
 
   public CatalogAdminsCurrencyExchangeRate() {
   }
+
+  public CatalogAdminsCurrencyExchangeRate auditInfo(AdminUserAuditInfo auditInfo) {
+    
+    this.auditInfo = auditInfo;
+    return this;
+  }
+
+   /**
+   * Get auditInfo
+   * @return auditInfo
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
+
+  public AdminUserAuditInfo getAuditInfo() {
+    return auditInfo;
+  }
+
+
+  public void setAuditInfo(AdminUserAuditInfo auditInfo) {
+    this.auditInfo = auditInfo;
+  }
+
 
   public CatalogAdminsCurrencyExchangeRate fromCurrencyCode(String fromCurrencyCode) {
     
@@ -103,52 +126,6 @@ public class CatalogAdminsCurrencyExchangeRate implements Serializable {
 
   public void setFromCurrencyCode(String fromCurrencyCode) {
     this.fromCurrencyCode = fromCurrencyCode;
-  }
-
-
-  public CatalogAdminsCurrencyExchangeRate toCurrencyCode(String toCurrencyCode) {
-    
-    this.toCurrencyCode = toCurrencyCode;
-    return this;
-  }
-
-   /**
-   * The target currency code
-   * @return toCurrencyCode
-  **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(value = "The target currency code")
-
-  public String getToCurrencyCode() {
-    return toCurrencyCode;
-  }
-
-
-  public void setToCurrencyCode(String toCurrencyCode) {
-    this.toCurrencyCode = toCurrencyCode;
-  }
-
-
-  public CatalogAdminsCurrencyExchangeRate rate(Double rate) {
-    
-    this.rate = rate;
-    return this;
-  }
-
-   /**
-   * The exchange rate
-   * @return rate
-  **/
-  @javax.annotation.Nonnull
-  @ApiModelProperty(required = true, value = "The exchange rate")
-
-  public Double getRate() {
-    return rate;
-  }
-
-
-  public void setRate(Double rate) {
-    this.rate = rate;
   }
 
 
@@ -175,6 +152,29 @@ public class CatalogAdminsCurrencyExchangeRate implements Serializable {
   }
 
 
+  public CatalogAdminsCurrencyExchangeRate rate(Double rate) {
+    
+    this.rate = rate;
+    return this;
+  }
+
+   /**
+   * The exchange rate
+   * @return rate
+  **/
+  @javax.annotation.Nonnull
+  @ApiModelProperty(required = true, value = "The exchange rate")
+
+  public Double getRate() {
+    return rate;
+  }
+
+
+  public void setRate(Double rate) {
+    this.rate = rate;
+  }
+
+
   public CatalogAdminsCurrencyExchangeRate referenceData(String referenceData) {
     
     this.referenceData = referenceData;
@@ -198,26 +198,26 @@ public class CatalogAdminsCurrencyExchangeRate implements Serializable {
   }
 
 
-  public CatalogAdminsCurrencyExchangeRate auditInfo(AdminUserAuditInfo auditInfo) {
+  public CatalogAdminsCurrencyExchangeRate toCurrencyCode(String toCurrencyCode) {
     
-    this.auditInfo = auditInfo;
+    this.toCurrencyCode = toCurrencyCode;
     return this;
   }
 
    /**
-   * Get auditInfo
-   * @return auditInfo
+   * The target currency code
+   * @return toCurrencyCode
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
+  @ApiModelProperty(value = "The target currency code")
 
-  public AdminUserAuditInfo getAuditInfo() {
-    return auditInfo;
+  public String getToCurrencyCode() {
+    return toCurrencyCode;
   }
 
 
-  public void setAuditInfo(AdminUserAuditInfo auditInfo) {
-    this.auditInfo = auditInfo;
+  public void setToCurrencyCode(String toCurrencyCode) {
+    this.toCurrencyCode = toCurrencyCode;
   }
 
 
@@ -231,12 +231,12 @@ public class CatalogAdminsCurrencyExchangeRate implements Serializable {
       return false;
     }
     CatalogAdminsCurrencyExchangeRate catalogAdminsCurrencyExchangeRate = (CatalogAdminsCurrencyExchangeRate) o;
-    return Objects.equals(this.fromCurrencyCode, catalogAdminsCurrencyExchangeRate.fromCurrencyCode) &&
-        Objects.equals(this.toCurrencyCode, catalogAdminsCurrencyExchangeRate.toCurrencyCode) &&
-        Objects.equals(this.rate, catalogAdminsCurrencyExchangeRate.rate) &&
+    return Objects.equals(this.auditInfo, catalogAdminsCurrencyExchangeRate.auditInfo) &&
+        Objects.equals(this.fromCurrencyCode, catalogAdminsCurrencyExchangeRate.fromCurrencyCode) &&
         Objects.equals(this.multiplier, catalogAdminsCurrencyExchangeRate.multiplier) &&
+        Objects.equals(this.rate, catalogAdminsCurrencyExchangeRate.rate) &&
         Objects.equals(this.referenceData, catalogAdminsCurrencyExchangeRate.referenceData) &&
-        Objects.equals(this.auditInfo, catalogAdminsCurrencyExchangeRate.auditInfo);
+        Objects.equals(this.toCurrencyCode, catalogAdminsCurrencyExchangeRate.toCurrencyCode);
   }
 
   private static <T> boolean equalsNullable(JsonNullable<T> a, JsonNullable<T> b) {
@@ -245,7 +245,7 @@ public class CatalogAdminsCurrencyExchangeRate implements Serializable {
 
   @Override
   public int hashCode() {
-    return Objects.hash(fromCurrencyCode, toCurrencyCode, rate, multiplier, referenceData, auditInfo);
+    return Objects.hash(auditInfo, fromCurrencyCode, multiplier, rate, referenceData, toCurrencyCode);
   }
 
   private static <T> int hashCodeNullable(JsonNullable<T> a) {
@@ -259,12 +259,12 @@ public class CatalogAdminsCurrencyExchangeRate implements Serializable {
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class CatalogAdminsCurrencyExchangeRate {\n");
-    sb.append("    fromCurrencyCode: ").append(toIndentedString(fromCurrencyCode)).append("\n");
-    sb.append("    toCurrencyCode: ").append(toIndentedString(toCurrencyCode)).append("\n");
-    sb.append("    rate: ").append(toIndentedString(rate)).append("\n");
-    sb.append("    multiplier: ").append(toIndentedString(multiplier)).append("\n");
-    sb.append("    referenceData: ").append(toIndentedString(referenceData)).append("\n");
     sb.append("    auditInfo: ").append(toIndentedString(auditInfo)).append("\n");
+    sb.append("    fromCurrencyCode: ").append(toIndentedString(fromCurrencyCode)).append("\n");
+    sb.append("    multiplier: ").append(toIndentedString(multiplier)).append("\n");
+    sb.append("    rate: ").append(toIndentedString(rate)).append("\n");
+    sb.append("    referenceData: ").append(toIndentedString(referenceData)).append("\n");
+    sb.append("    toCurrencyCode: ").append(toIndentedString(toCurrencyCode)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -287,12 +287,12 @@ public class CatalogAdminsCurrencyExchangeRate implements Serializable {
   static {
     // a set of all properties/fields (JSON key names)
     openapiFields = new HashSet<String>();
-    openapiFields.add("fromCurrencyCode");
-    openapiFields.add("toCurrencyCode");
-    openapiFields.add("rate");
-    openapiFields.add("multiplier");
-    openapiFields.add("referenceData");
     openapiFields.add("auditInfo");
+    openapiFields.add("fromCurrencyCode");
+    openapiFields.add("multiplier");
+    openapiFields.add("rate");
+    openapiFields.add("referenceData");
+    openapiFields.add("toCurrencyCode");
 
     // a set of required properties/fields (JSON key names)
     openapiRequiredFields = new HashSet<String>();
@@ -327,18 +327,18 @@ public class CatalogAdminsCurrencyExchangeRate implements Serializable {
           throw new IllegalArgumentException(String.format("The required field `%s` is not found in the JSON string: %s", requiredField, jsonObj.toString()));
         }
       }
+      // validate the optional field `auditInfo`
+      if (jsonObj.get("auditInfo") != null && !jsonObj.get("auditInfo").isJsonNull()) {
+        AdminUserAuditInfo.validateJsonObject(jsonObj.getAsJsonObject("auditInfo"));
+      }
       if ((jsonObj.get("fromCurrencyCode") != null && !jsonObj.get("fromCurrencyCode").isJsonNull()) && !jsonObj.get("fromCurrencyCode").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format("Expected the field `fromCurrencyCode` to be a primitive type in the JSON string but got `%s`", jsonObj.get("fromCurrencyCode").toString()));
-      }
-      if ((jsonObj.get("toCurrencyCode") != null && !jsonObj.get("toCurrencyCode").isJsonNull()) && !jsonObj.get("toCurrencyCode").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `toCurrencyCode` to be a primitive type in the JSON string but got `%s`", jsonObj.get("toCurrencyCode").toString()));
       }
       if ((jsonObj.get("referenceData") != null && !jsonObj.get("referenceData").isJsonNull()) && !jsonObj.get("referenceData").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format("Expected the field `referenceData` to be a primitive type in the JSON string but got `%s`", jsonObj.get("referenceData").toString()));
       }
-      // validate the optional field `auditInfo`
-      if (jsonObj.get("auditInfo") != null && !jsonObj.get("auditInfo").isJsonNull()) {
-        AdminUserAuditInfo.validateJsonObject(jsonObj.getAsJsonObject("auditInfo"));
+      if ((jsonObj.get("toCurrencyCode") != null && !jsonObj.get("toCurrencyCode").isJsonNull()) && !jsonObj.get("toCurrencyCode").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `toCurrencyCode` to be a primitive type in the JSON string but got `%s`", jsonObj.get("toCurrencyCode").toString()));
       }
   }
 

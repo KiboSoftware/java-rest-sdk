@@ -7,8 +7,8 @@
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
-|**embedded** | **Map&lt;String, List&lt;FulfillmentShipment&gt;&gt;** |  |  [optional] |
-|**links** | [**Map&lt;String, FulfillmentLink&gt;**](FulfillmentLink.md) |  |  [optional] |
+|**embedded** | **Map&lt;String, List&lt;FulfillmentAPIShipment&gt;&gt;** |  |  [optional] |
+|**links** | [**Map&lt;String, FulfillmentAPILink&gt;**](FulfillmentAPILink.md) |  |  [optional] |
 
 
 ## Implemented Interfaces

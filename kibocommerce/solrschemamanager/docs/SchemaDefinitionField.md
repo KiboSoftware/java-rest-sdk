@@ -7,11 +7,11 @@
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
-|**fieldName** | **String** |  |  |
 |**fieldDefinition** | **String** |  |  |
+|**fieldName** | **String** |  |  |
 |**friendlyName** | **String** |  |  [optional] |
-|**searchFieldName** | **String** |  |  [optional] |
-|**ingestFieldName** | **String** |  |  [optional] |
+|**ingestFieldName** | **String** |  |  [optional] [readonly] |
+|**searchFieldName** | **String** |  |  [optional] [readonly] |
 
 
 ## Implemented Interfaces

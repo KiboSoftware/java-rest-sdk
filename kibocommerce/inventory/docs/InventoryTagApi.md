@@ -4,15 +4,15 @@ All URIs are relative to *http://https:/api*
 
 | Method | HTTP request | Description |
 |------------- | ------------- | -------------|
-| [**createTag**](InventoryTagApi.md#createTag) | **POST** /commerce/inventory/v1/tagCategory/{tag_category_name}/tag | Create Tag |
-| [**deleteTag**](InventoryTagApi.md#deleteTag) | **DELETE** /commerce/inventory/v1/tagCategory/{tag_category_name}/tag/{tag_value} | Delete Tag |
-| [**getTag**](InventoryTagApi.md#getTag) | **GET** /commerce/inventory/v1/tagCategory/{tag_category_name}/tag/{tag_value} | Get Tag |
-| [**updateTag**](InventoryTagApi.md#updateTag) | **PUT** /commerce/inventory/v1/tagCategory/{tag_category_name}/tag/{tag_value} | Update Tag |
+| [**createTag**](InventoryTagApi.md#createTag) | **POST** /commerce/inventory/v1/tagCategory/{tagCategoryName}/tag | Create Tag |
+| [**deleteTag**](InventoryTagApi.md#deleteTag) | **DELETE** /commerce/inventory/v1/tagCategory/{tagCategoryName}/tag/{tagValue} | Delete Tag |
+| [**getTag**](InventoryTagApi.md#getTag) | **GET** /commerce/inventory/v1/tagCategory/{tagCategoryName}/tag/{tagValue} | Get Tag |
+| [**updateTag**](InventoryTagApi.md#updateTag) | **PUT** /commerce/inventory/v1/tagCategory/{tagCategoryName}/tag/{tagValue} | Update Tag |
 
 
 <a name="createTag"></a>
 # **createTag**
-> InventoryTag createTag(xVolTenant, tagCategoryName, inventoryTag)
+> InventoryTag createTag(tagCategoryName, inventoryTag)
 
 Create Tag
 
@@ -24,7 +24,6 @@ Create a tag
 import com.kibocommerce.sdk.inventory.ApiClient;
 import com.kibocommerce.sdk.inventory.ApiException;
 import com.kibocommerce.sdk.inventory.Configuration;
-import com.kibocommerce.sdk.inventory.auth.*;
 import com.kibocommerce.sdk.inventory.models.*;
 import com.kibocommerce.sdk.inventory.api.InventoryTagApi;
 
@@ -32,21 +31,12 @@ public class Example {
   public static void main(String[] args) {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
     defaultClient.setBasePath("http://https:/api");
-    
-    // Configure HTTP bearer authorization: bearerAuth
-    HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
-    bearerAuth.setBearerToken("BEARER TOKEN");
-
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
 
     InventoryTagApi apiInstance = new InventoryTagApi(defaultClient);
-    Integer xVolTenant = 56; // Integer | Tenant ID
     String tagCategoryName = "tagCategoryName_example"; // String | Tag Category Name
     InventoryTag inventoryTag = new InventoryTag(); // InventoryTag | Request create or modify Tag
     try {
-      InventoryTag result = apiInstance.createTag(xVolTenant, tagCategoryName, inventoryTag);
+      InventoryTag result = apiInstance.createTag(tagCategoryName, inventoryTag);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling InventoryTagApi#createTag");
@@ -63,7 +53,6 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **xVolTenant** | **Integer**| Tenant ID | |
 | **tagCategoryName** | **String**| Tag Category Name | |
 | **inventoryTag** | [**InventoryTag**](InventoryTag.md)| Request create or modify Tag | |
 
@@ -73,7 +62,7 @@ public class Example {
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth), [clientOauth2](../README.md#clientOauth2)
+No authorization required
 
 ### HTTP request headers
 
@@ -88,7 +77,7 @@ public class Example {
 
 <a name="deleteTag"></a>
 # **deleteTag**
-> DeletedCountResponse deleteTag(xVolTenant, tagCategoryName, tagValue)
+> DeletedCountResponse deleteTag(tagCategoryName, tagValue)
 
 Delete Tag
 
@@ -100,7 +89,6 @@ Delete a Tag
 import com.kibocommerce.sdk.inventory.ApiClient;
 import com.kibocommerce.sdk.inventory.ApiException;
 import com.kibocommerce.sdk.inventory.Configuration;
-import com.kibocommerce.sdk.inventory.auth.*;
 import com.kibocommerce.sdk.inventory.models.*;
 import com.kibocommerce.sdk.inventory.api.InventoryTagApi;
 
@@ -108,21 +96,12 @@ public class Example {
   public static void main(String[] args) {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
     defaultClient.setBasePath("http://https:/api");
-    
-    // Configure HTTP bearer authorization: bearerAuth
-    HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
-    bearerAuth.setBearerToken("BEARER TOKEN");
-
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
 
     InventoryTagApi apiInstance = new InventoryTagApi(defaultClient);
-    Integer xVolTenant = 56; // Integer | Tenant ID
     String tagCategoryName = "tagCategoryName_example"; // String | Tag Category Name
     String tagValue = "tagValue_example"; // String | Tag Value
     try {
-      DeletedCountResponse result = apiInstance.deleteTag(xVolTenant, tagCategoryName, tagValue);
+      DeletedCountResponse result = apiInstance.deleteTag(tagCategoryName, tagValue);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling InventoryTagApi#deleteTag");
@@ -139,7 +118,6 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **xVolTenant** | **Integer**| Tenant ID | |
 | **tagCategoryName** | **String**| Tag Category Name | |
 | **tagValue** | **String**| Tag Value | |
 
@@ -149,7 +127,7 @@ public class Example {
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth), [clientOauth2](../README.md#clientOauth2)
+No authorization required
 
 ### HTTP request headers
 
@@ -165,7 +143,7 @@ public class Example {
 
 <a name="getTag"></a>
 # **getTag**
-> InventoryTag getTag(xVolTenant, tagCategoryName, tagValue)
+> InventoryTag getTag(tagCategoryName, tagValue)
 
 Get Tag
 
@@ -177,7 +155,6 @@ Get a tag
 import com.kibocommerce.sdk.inventory.ApiClient;
 import com.kibocommerce.sdk.inventory.ApiException;
 import com.kibocommerce.sdk.inventory.Configuration;
-import com.kibocommerce.sdk.inventory.auth.*;
 import com.kibocommerce.sdk.inventory.models.*;
 import com.kibocommerce.sdk.inventory.api.InventoryTagApi;
 
@@ -185,21 +162,12 @@ public class Example {
   public static void main(String[] args) {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
     defaultClient.setBasePath("http://https:/api");
-    
-    // Configure HTTP bearer authorization: bearerAuth
-    HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
-    bearerAuth.setBearerToken("BEARER TOKEN");
-
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
 
     InventoryTagApi apiInstance = new InventoryTagApi(defaultClient);
-    Integer xVolTenant = 56; // Integer | Tenant ID
     String tagCategoryName = "tagCategoryName_example"; // String | Tag Category Name
     String tagValue = "tagValue_example"; // String | Tag Value
     try {
-      InventoryTag result = apiInstance.getTag(xVolTenant, tagCategoryName, tagValue);
+      InventoryTag result = apiInstance.getTag(tagCategoryName, tagValue);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling InventoryTagApi#getTag");
@@ -216,7 +184,6 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **xVolTenant** | **Integer**| Tenant ID | |
 | **tagCategoryName** | **String**| Tag Category Name | |
 | **tagValue** | **String**| Tag Value | |
 
@@ -226,7 +193,7 @@ public class Example {
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth), [clientOauth2](../README.md#clientOauth2)
+No authorization required
 
 ### HTTP request headers
 
@@ -241,7 +208,7 @@ public class Example {
 
 <a name="updateTag"></a>
 # **updateTag**
-> InventoryTag updateTag(xVolTenant, tagCategoryName, tagValue, inventoryTag)
+> InventoryTag updateTag(tagCategoryName, tagValue, inventoryTag)
 
 Update Tag
 
@@ -253,7 +220,6 @@ Update the designated tag
 import com.kibocommerce.sdk.inventory.ApiClient;
 import com.kibocommerce.sdk.inventory.ApiException;
 import com.kibocommerce.sdk.inventory.Configuration;
-import com.kibocommerce.sdk.inventory.auth.*;
 import com.kibocommerce.sdk.inventory.models.*;
 import com.kibocommerce.sdk.inventory.api.InventoryTagApi;
 
@@ -261,22 +227,13 @@ public class Example {
   public static void main(String[] args) {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
     defaultClient.setBasePath("http://https:/api");
-    
-    // Configure HTTP bearer authorization: bearerAuth
-    HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
-    bearerAuth.setBearerToken("BEARER TOKEN");
-
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
 
     InventoryTagApi apiInstance = new InventoryTagApi(defaultClient);
-    Integer xVolTenant = 56; // Integer | Tenant ID
     String tagCategoryName = "tagCategoryName_example"; // String | Tag Category Name
     String tagValue = "tagValue_example"; // String | Tag Value
     InventoryTag inventoryTag = new InventoryTag(); // InventoryTag | Request create or modify Tag
     try {
-      InventoryTag result = apiInstance.updateTag(xVolTenant, tagCategoryName, tagValue, inventoryTag);
+      InventoryTag result = apiInstance.updateTag(tagCategoryName, tagValue, inventoryTag);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling InventoryTagApi#updateTag");
@@ -293,7 +250,6 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **xVolTenant** | **Integer**| Tenant ID | |
 | **tagCategoryName** | **String**| Tag Category Name | |
 | **tagValue** | **String**| Tag Value | |
 | **inventoryTag** | [**InventoryTag**](InventoryTag.md)| Request create or modify Tag | |
@@ -304,7 +260,7 @@ public class Example {
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth), [clientOauth2](../README.md#clientOauth2)
+No authorization required
 
 ### HTTP request headers
 

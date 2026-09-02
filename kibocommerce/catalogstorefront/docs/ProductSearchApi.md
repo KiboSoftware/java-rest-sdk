@@ -4,23 +4,23 @@ All URIs are relative to *http://https:/api*
 
 | Method | HTTP request | Description |
 |------------- | ------------- | -------------|
-| [**searchDebug**](ProductSearchApi.md#searchDebug) | **GET** /commerce/catalog/storefront/productsearch/searchDebug | Searches the items displayed on the storefront. Used for debugging explain plans from solr |
-| [**storefrontGetRandomAccessCursor**](ProductSearchApi.md#storefrontGetRandomAccessCursor) | **GET** /commerce/catalog/storefront/productsearch/randomAccessCursor | Gets list of cursors for search results |
-| [**storefrontSearch**](ProductSearchApi.md#storefrontSearch) | **GET** /commerce/catalog/storefront/productsearch/search | Search for products. |
-| [**storefrontSiteSearch**](ProductSearchApi.md#storefrontSiteSearch) | **GET** /commerce/catalog/storefront/productsearch/siteSearch | Site Search - Searches the items displayed on the storefront. |
-| [**storefrontSuggest**](ProductSearchApi.md#storefrontSuggest) | **GET** /commerce/catalog/storefront/productsearch/suggest | Gets suggested search terms |
-| [**storefrontSuggest2**](ProductSearchApi.md#storefrontSuggest2) | **GET** /commerce/catalog/storefront/productsearch/suggest2 | Gets suggested search terms |
-| [**storefrontVisualSearch**](ProductSearchApi.md#storefrontVisualSearch) | **GET** /commerce/catalog/storefront/productsearch/visualsearch | Type ahead - Searches the items displayed on the storefront. |
-| [**suggestDebug**](ProductSearchApi.md#suggestDebug) | **GET** /commerce/catalog/storefront/productsearch/suggestdebug | Debugging relevancy for the Suggest endpoint |
+| [**searchDebug**](ProductSearchApi.md#searchDebug) | **GET** /commerce/catalog/storefront/productsearch/searchDebug | Search Debug |
+| [**storefrontGetRandomAccessCursor**](ProductSearchApi.md#storefrontGetRandomAccessCursor) | **GET** /commerce/catalog/storefront/productsearch/randomAccessCursor | Gets Random Access Cursors |
+| [**storefrontSearch**](ProductSearchApi.md#storefrontSearch) | **GET** /commerce/catalog/storefront/productsearch/search | Search Products |
+| [**storefrontSiteSearch**](ProductSearchApi.md#storefrontSiteSearch) | **GET** /commerce/catalog/storefront/productsearch/siteSearch | Site Search |
+| [**storefrontSuggest**](ProductSearchApi.md#storefrontSuggest) | **GET** /commerce/catalog/storefront/productsearch/suggest | Get Suggested Search Terms |
+| [**storefrontSuggest2**](ProductSearchApi.md#storefrontSuggest2) | **GET** /commerce/catalog/storefront/productsearch/suggest2 | Gets Suggested Search Terms 2 |
+| [**storefrontVisualSearch**](ProductSearchApi.md#storefrontVisualSearch) | **GET** /commerce/catalog/storefront/productsearch/visualsearch | Type Ahead Search |
+| [**suggestDebug**](ProductSearchApi.md#suggestDebug) | **GET** /commerce/catalog/storefront/productsearch/suggestdebug | Search Suggestion Debug |
 
 
 <a name="searchDebug"></a>
 # **searchDebug**
-> searchDebug(query, filter, facetTemplate, facetTemplateSubset, facet, facetFieldRangeQuery, facetHierPrefix, facetHierValue, facetHierDepth, facetStartIndex, facetPageSize, facetSettings, facetValueFilter, sortBy, sliceSearchResults, pageSize, startIndex, searchSettings, enableSearchTuningRules, searchTuningRuleContext, searchTuningRuleCode, responseGroups, facetTemplateExclude, facetPrefix, responseOptions, cursorMark, facetValueSort, returnUrl, mid, omitNamespace, campaignId, merchandizingRuleCode, responseFields, rows, start, q)
+> searchDebug(query, filter, facetTemplate, facetTemplateSubset, facet, facetFieldRangeQuery, facetHierPrefix, facetHierValue, facetHierDepth, facetStartIndex, facetPageSize, facetSettings, facetValueFilter, sortBy, sliceSearchResults, pageSize, startIndex, searchSettings, enableSearchTuningRules, searchTuningRuleContext, searchTuningRuleCode, responseGroups, facetTemplateExclude, facetPrefix, responseOptions, cursorMark, facetValueSort, returnUrl, mid, omitNamespace, campaignId, merchandizingRuleCode, responseFields, rows, start, q, collapse)
 
-Searches the items displayed on the storefront. Used for debugging explain plans from solr
+Search Debug
 
-Searches the items displayed on the storefront for products or product options that the shopper types in a search query. Used for debugging explain plans from solr
+Searches the items displayed on the storefront for products or product options that the shopper types in a search query. Used for debugging.
 
 ### Example
 ```java
@@ -40,10 +40,6 @@ public class Example {
     // Configure HTTP bearer authorization: bearerAuth
     HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
     bearerAuth.setBearerToken("BEARER TOKEN");
-
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
 
     ProductSearchApi apiInstance = new ProductSearchApi(defaultClient);
     String query = "query_example"; // String | The terms to search on.
@@ -82,8 +78,9 @@ public class Example {
     Integer rows = 56; // Integer | 
     Integer start = 56; // Integer | 
     String q = "q_example"; // String | optional alternative to query for debugging tools
+    Boolean collapse = true; // Boolean | 
     try {
-      apiInstance.searchDebug(query, filter, facetTemplate, facetTemplateSubset, facet, facetFieldRangeQuery, facetHierPrefix, facetHierValue, facetHierDepth, facetStartIndex, facetPageSize, facetSettings, facetValueFilter, sortBy, sliceSearchResults, pageSize, startIndex, searchSettings, enableSearchTuningRules, searchTuningRuleContext, searchTuningRuleCode, responseGroups, facetTemplateExclude, facetPrefix, responseOptions, cursorMark, facetValueSort, returnUrl, mid, omitNamespace, campaignId, merchandizingRuleCode, responseFields, rows, start, q);
+      apiInstance.searchDebug(query, filter, facetTemplate, facetTemplateSubset, facet, facetFieldRangeQuery, facetHierPrefix, facetHierValue, facetHierDepth, facetStartIndex, facetPageSize, facetSettings, facetValueFilter, sortBy, sliceSearchResults, pageSize, startIndex, searchSettings, enableSearchTuningRules, searchTuningRuleContext, searchTuningRuleCode, responseGroups, facetTemplateExclude, facetPrefix, responseOptions, cursorMark, facetValueSort, returnUrl, mid, omitNamespace, campaignId, merchandizingRuleCode, responseFields, rows, start, q, collapse);
     } catch (ApiException e) {
       System.err.println("Exception when calling ProductSearchApi#searchDebug");
       System.err.println("Status code: " + e.getCode());
@@ -135,6 +132,7 @@ public class Example {
 | **rows** | **Integer**|  | [optional] |
 | **start** | **Integer**|  | [optional] |
 | **q** | **String**| optional alternative to query for debugging tools | [optional] |
+| **collapse** | **Boolean**|  | [optional] [default to true] |
 
 ### Return type
 
@@ -142,7 +140,7 @@ null (empty response body)
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth), [clientOauth2](../README.md#clientOauth2)
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
@@ -152,15 +150,15 @@ null (empty response body)
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Success |  -  |
+| **200** | OK |  -  |
 
 <a name="storefrontGetRandomAccessCursor"></a>
 # **storefrontGetRandomAccessCursor**
-> ProductSearchRandomAccessCursor storefrontGetRandomAccessCursor(query, filter, pageSize)
+> ProductSearchRandomAccessCursor storefrontGetRandomAccessCursor(query, filter, pageSize, responseFields)
 
-Gets list of cursors for search results
+Gets Random Access Cursors
 
-Generate a list of cursors that then allows you to retrieve all products with efficient deep paging.     Optionally provide a query and/or filter to generate a cursor for a subset of products.     After retrieving the cursor, provide a cursorMark to the cursorMark argument of the /search or /getProducts operations.     You may provide cursorMarks in any order or even in parallel operations.
+Generate a list of cursors that then allows you to retrieve all products with efficient deep paging.\\r\\n\\t\\t\\tOptionally provide a query and/or filter to generate a cursor for a subset of products.\\r\\n\\t\\t\\tAfter retrieving the cursor, provide a cursorMark to the cursorMark argument of the /search or /getProducts operations.\\r\\n\\t\\t\\tYou may provide cursorMarks in any order or even in parallel operations.
 
 ### Example
 ```java
@@ -181,16 +179,13 @@ public class Example {
     HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
     bearerAuth.setBearerToken("BEARER TOKEN");
 
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
-
     ProductSearchApi apiInstance = new ProductSearchApi(defaultClient);
     String query = "query_example"; // String | Optional terms to search on. Only matching products will be included in the cursor.
     String filter = "filter_example"; // String | Optional set of filter expressions to filter on. Only matching products will be included in the cursor.
     Integer pageSize = 56; // Integer | 
+    String responseFields = "responseFields_example"; // String | limits which fields are returned in the response body
     try {
-      ProductSearchRandomAccessCursor result = apiInstance.storefrontGetRandomAccessCursor(query, filter, pageSize);
+      ProductSearchRandomAccessCursor result = apiInstance.storefrontGetRandomAccessCursor(query, filter, pageSize, responseFields);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling ProductSearchApi#storefrontGetRandomAccessCursor");
@@ -210,6 +205,7 @@ public class Example {
 | **query** | **String**| Optional terms to search on. Only matching products will be included in the cursor. | [optional] |
 | **filter** | **String**| Optional set of filter expressions to filter on. Only matching products will be included in the cursor. | [optional] |
 | **pageSize** | **Integer**|  | [optional] |
+| **responseFields** | **String**| limits which fields are returned in the response body | [optional] |
 
 ### Return type
 
@@ -217,7 +213,7 @@ public class Example {
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth), [clientOauth2](../README.md#clientOauth2)
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
@@ -227,13 +223,13 @@ public class Example {
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Success |  -  |
+| **200** | OK |  -  |
 
 <a name="storefrontSearch"></a>
 # **storefrontSearch**
-> ProductSearchResult storefrontSearch(query, filter, facetTemplate, facetTemplateSubset, facet, facetFieldRangeQuery, facetHierPrefix, facetHierValue, facetHierDepth, facetStartIndex, facetPageSize, facetSettings, facetValueFilter, sortBy, pageSize, startIndex, searchSettings, enableSearchTuningRules, searchTuningRuleContext, searchTuningRuleCode, responseGroups, facetTemplateExclude, facetPrefix, responseOptions, cursorMark, facetValueSort, defaultSort, shouldSlice, mid, omitNamespace, includeAllImages, spellcorrectOverride, useSubscriptionPricing, merchandizingRuleCode)
+> ProductSearchResult storefrontSearch(query, collapse, filter, facetTemplate, facetTemplateSubset, facet, facetFieldRangeQuery, facetHierPrefix, facetHierValue, facetHierDepth, facetStartIndex, facetPageSize, facetSettings, facetValueFilter, sortBy, pageSize, startIndex, searchSettings, enableSearchTuningRules, searchTuningRuleContext, searchTuningRuleCode, responseGroups, facetTemplateExclude, facetPrefix, responseOptions, cursorMark, facetValueSort, defaultSort, shouldSlice, mid, omitNamespace, includeAllImages, spellcorrectOverride, useSubscriptionPricing, merchandizingRuleCode, customerSegments, responseFields)
 
-Search for products.
+Search Products
 
 Searches the categories displayed on the storefront for products or product options that the shopper types in a search query.
 
@@ -256,12 +252,9 @@ public class Example {
     HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
     bearerAuth.setBearerToken("BEARER TOKEN");
 
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
-
     ProductSearchApi apiInstance = new ProductSearchApi(defaultClient);
     String query = "query_example"; // String | The terms to search on.
+    Boolean collapse = true; // Boolean | 
     String filter = "filter_example"; // String | A set of filter expressions representing the search parameters for a query: eq=equals, ne=not equals, gt=greater than, lt = less than or equals, gt = greater than or equals, lt = less than or equals, sw = starts with, or cont = contains. Optional.
     String facetTemplate = "facetTemplate_example"; // String | 
     String facetTemplateSubset = "facetTemplateSubset_example"; // String | 
@@ -295,8 +288,10 @@ public class Example {
     String spellcorrectOverride = "Default"; // String | 
     Boolean useSubscriptionPricing = false; // Boolean | 
     String merchandizingRuleCode = "merchandizingRuleCode_example"; // String | Optional. Use a specific search-merchandizing-rule code if provided.
+    String customerSegments = "customerSegments_example"; // String | 
+    String responseFields = "responseFields_example"; // String | limits which fields are returned in the response body
     try {
-      ProductSearchResult result = apiInstance.storefrontSearch(query, filter, facetTemplate, facetTemplateSubset, facet, facetFieldRangeQuery, facetHierPrefix, facetHierValue, facetHierDepth, facetStartIndex, facetPageSize, facetSettings, facetValueFilter, sortBy, pageSize, startIndex, searchSettings, enableSearchTuningRules, searchTuningRuleContext, searchTuningRuleCode, responseGroups, facetTemplateExclude, facetPrefix, responseOptions, cursorMark, facetValueSort, defaultSort, shouldSlice, mid, omitNamespace, includeAllImages, spellcorrectOverride, useSubscriptionPricing, merchandizingRuleCode);
+      ProductSearchResult result = apiInstance.storefrontSearch(query, collapse, filter, facetTemplate, facetTemplateSubset, facet, facetFieldRangeQuery, facetHierPrefix, facetHierValue, facetHierDepth, facetStartIndex, facetPageSize, facetSettings, facetValueFilter, sortBy, pageSize, startIndex, searchSettings, enableSearchTuningRules, searchTuningRuleContext, searchTuningRuleCode, responseGroups, facetTemplateExclude, facetPrefix, responseOptions, cursorMark, facetValueSort, defaultSort, shouldSlice, mid, omitNamespace, includeAllImages, spellcorrectOverride, useSubscriptionPricing, merchandizingRuleCode, customerSegments, responseFields);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling ProductSearchApi#storefrontSearch");
@@ -314,6 +309,7 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **query** | **String**| The terms to search on. | [optional] |
+| **collapse** | **Boolean**|  | [optional] [default to true] |
 | **filter** | **String**| A set of filter expressions representing the search parameters for a query: eq&#x3D;equals, ne&#x3D;not equals, gt&#x3D;greater than, lt &#x3D; less than or equals, gt &#x3D; greater than or equals, lt &#x3D; less than or equals, sw &#x3D; starts with, or cont &#x3D; contains. Optional. | [optional] |
 | **facetTemplate** | **String**|  | [optional] |
 | **facetTemplateSubset** | **String**|  | [optional] |
@@ -347,6 +343,8 @@ public class Example {
 | **spellcorrectOverride** | **String**|  | [optional] [default to Default] |
 | **useSubscriptionPricing** | **Boolean**|  | [optional] [default to false] |
 | **merchandizingRuleCode** | **String**| Optional. Use a specific search-merchandizing-rule code if provided. | [optional] |
+| **customerSegments** | **String**|  | [optional] |
+| **responseFields** | **String**| limits which fields are returned in the response body | [optional] |
 
 ### Return type
 
@@ -354,7 +352,7 @@ public class Example {
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth), [clientOauth2](../README.md#clientOauth2)
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
@@ -364,15 +362,15 @@ public class Example {
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Success |  -  |
+| **200** | OK |  -  |
 
 <a name="storefrontSiteSearch"></a>
 # **storefrontSiteSearch**
-> ProductSearchResult storefrontSiteSearch(query, filter, facetTemplate, facetTemplateSubset, facet, facetFieldRangeQuery, facetHierPrefix, facetHierValue, facetHierDepth, facetStartIndex, facetPageSize, facetSettings, facetValueFilter, sortBy, pageSize, startIndex, searchSettings, enableSearchTuningRules, searchTuningRuleContext, searchTuningRuleCode, responseGroups, facetTemplateExclude, facetPrefix, responseOptions, cursorMark, facetValueSort, defaultSort, shouldSlice, mid, fieldList, omitNamespace, includeAllImages, spellcorrectOverride, useSubscriptionPricing, merchandizingRuleCode)
+> ProductSearchResult storefrontSiteSearch(query, collapse, filter, facetTemplate, facetTemplateSubset, facet, facetFieldRangeQuery, facetHierPrefix, facetHierValue, facetHierDepth, facetStartIndex, facetPageSize, facetSettings, facetValueFilter, sortBy, pageSize, startIndex, searchSettings, enableSearchTuningRules, searchTuningRuleContext, searchTuningRuleCode, responseGroups, facetTemplateExclude, facetPrefix, responseOptions, cursorMark, facetValueSort, defaultSort, shouldSlice, mid, fieldList, omitNamespace, includeAllImages, spellcorrectOverride, useSubscriptionPricing, merchandizingRuleCode, responseFields)
 
-Site Search - Searches the items displayed on the storefront.
+Site Search
 
-Site Search - Searches the items displayed on the storefront.
+Searches the items displayed on the storefront.
 
 ### Example
 ```java
@@ -393,48 +391,46 @@ public class Example {
     HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
     bearerAuth.setBearerToken("BEARER TOKEN");
 
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
-
     ProductSearchApi apiInstance = new ProductSearchApi(defaultClient);
     String query = "query_example"; // String | The terms to search on.
+    Boolean collapse = true; // Boolean | 
     String filter = "filter_example"; // String | A set of filter expressions representing the search parameters for a query: eq=equals, ne=not equals, gt=greater than, lt = less than or equals, gt = greater than or equals, lt = less than or equals, sw = starts with, or cont = contains. Optional.
-    String facetTemplate = "facetTemplate_example"; // String | 
-    String facetTemplateSubset = "facetTemplateSubset_example"; // String | 
-    String facet = "facet_example"; // String | 
+    String facetTemplate = "facetTemplate_example"; // String | Identifier of the current category, in the format of either categoryCode:{categoryCode}  or categoryId:{categoryId}. In the example of no category being selected, the root will be used instead. Refer to the corresponding <a href=\"api-reference/facets/get-facet-category-list\">Catalog Admin</a> call.
+    String facetTemplateSubset = "facetTemplateSubset_example"; // String | Use if you only want to return a subset of the facets defined in the template such has category, price, rating.
+    String facet = "facet_example"; // String | The additional facets to use (comma delimited) that are not already defined in the facet template  in the Product Admin API.
     String facetFieldRangeQuery = "facetFieldRangeQuery_example"; // String | 
-    String facetHierPrefix = "facetHierPrefix_example"; // String | 
-    String facetHierValue = "facetHierValue_example"; // String | 
-    String facetHierDepth = "facetHierDepth_example"; // String | 
+    String facetHierPrefix = "facetHierPrefix_example"; // String | Allows you to skip these levels on a hierarchical facet.
+    String facetHierValue = "facetHierValue_example"; // String | The current level to pull categories from, in the format of categoryId:{categoryId}.
+    String facetHierDepth = "facetHierDepth_example"; // String | The number of levels to return such as category:1.
     String facetStartIndex = "facetStartIndex_example"; // String | 
     String facetPageSize = "facetPageSize_example"; // String | 
-    String facetSettings = "facetSettings_example"; // String | 
-    String facetValueFilter = "facetValueFilter_example"; // String | 
+    String facetSettings = "facetSettings_example"; // String | May be deprecated.
+    String facetValueFilter = "facetValueFilter_example"; // String | A comma delimited list of applied facetsValues (such as tenant~brand-name-attribute%3abroil+king).  If the facet is part of the search results facet template as a “range” display style, then you can  specify a min and max that doesn't have to match the predefined ranges (such as &facetValueFilter=price:[38 to 105]).
     String sortBy = "sortBy_example"; // String | The element to sort the results by and the order in which the results appear. Either ascending (a-z) or descending (z-a) order. Optional.
     Integer pageSize = 56; // Integer | Used to page results from a query. Indicates the maximum number of entities to return from a query. The default value is 12 and the maximum value is 200. Optional.
     Integer startIndex = 0; // Integer | Used to page results from a query. Indicates the zero-based offset in the complete result set where the returned entities begin. The default value is 0. Optional.
-    String searchSettings = "searchSettings_example"; // String | 
-    Boolean enableSearchTuningRules = true; // Boolean | 
-    String searchTuningRuleContext = "searchTuningRuleContext_example"; // String | 
-    String searchTuningRuleCode = "searchTuningRuleCode_example"; // String | 
-    String responseGroups = "responseGroups_example"; // String | 
+    String searchSettings = "searchSettings_example"; // String | Use this to override search settings for testing purposes in the format of &searchSettings=testConfig1.
+    Boolean enableSearchTuningRules = true; // Boolean | Whether or not to enable search tuning rules.
+    String searchTuningRuleContext = "searchTuningRuleContext_example"; // String | Deprecated or internal-only, do not use.
+    String searchTuningRuleCode = "searchTuningRuleCode_example"; // String | Deprecated or internal-only, do not use.
+    String responseGroups = "responseGroups_example"; // String | Deprecated or internal-only, do not use.
     String facetTemplateExclude = "facetTemplateExclude_example"; // String | 
     String facetPrefix = "facetPrefix_example"; // String | 
-    String responseOptions = "responseOptions_example"; // String | 
+    String responseOptions = "responseOptions_example"; // String | Deprecated or internal-only, do not use.
     String cursorMark = "cursorMark_example"; // String | Pass in * to begin a deep page operation. The response will include a nextCursorMark value. Pass this into the next call. Continue with this pattern until nextCursorMark is null.
-    String facetValueSort = "facetValueSort_example"; // String | 
-    String defaultSort = "defaultSort_example"; // String | 
-    Boolean shouldSlice = true; // Boolean | 
-    String mid = "mid_example"; // String | 
-    String fieldList = "fieldList_example"; // String | 
-    Boolean omitNamespace = true; // Boolean | 
+    String facetValueSort = "facetValueSort_example"; // String | Sorts the values array in a facet. Valid values are Count,Index, CountAscending, CountDescending,  ValuesAscending, ValuesDescending, AttributeDefinition, and AttributeDefinitionDescending.
+    String defaultSort = "defaultSort_example"; // String | Deprecated or internal-only, do not use.
+    Boolean shouldSlice = true; // Boolean | Whether or not to slice products.
+    String mid = "mid_example"; // String | This is the customer identifier for personalization. This value can be found in the Monetate  cookie (mt.v) that is uniquely set for each visitor so that personalization of the search results  can use all Monetate functionality.
+    String fieldList = "fieldList_example"; // String | Explicitly request any field or attribute you want in the response.  Only product codes are returned by default. Some common values include productName, priceL (price low), priceH (price high),  product attribute by name, product image URLs, product category names, category IDs and codes,  product short/long descriptions, and score (the relevancy score). 
+    Boolean omitNamespace = true; // Boolean | Allows you to drop the tenant~ or similar prefix.
     Boolean includeAllImages = false; // Boolean | Optional. If true return all images instead of default images.
-    String spellcorrectOverride = "Default"; // String | 
-    Boolean useSubscriptionPricing = false; // Boolean | 
+    String spellcorrectOverride = "Default"; // String | Valid values are Default, SkipAutocorrect, SkipDidyoumean, and SkipAll.
+    Boolean useSubscriptionPricing = false; // Boolean | Whether or not to use subscription pricing instead of the default product pricing.
     String merchandizingRuleCode = "merchandizingRuleCode_example"; // String | Optional. Use a specific search-merchandizing-rule code if provided.
+    String responseFields = "responseFields_example"; // String | limits which fields are returned in the response body
     try {
-      ProductSearchResult result = apiInstance.storefrontSiteSearch(query, filter, facetTemplate, facetTemplateSubset, facet, facetFieldRangeQuery, facetHierPrefix, facetHierValue, facetHierDepth, facetStartIndex, facetPageSize, facetSettings, facetValueFilter, sortBy, pageSize, startIndex, searchSettings, enableSearchTuningRules, searchTuningRuleContext, searchTuningRuleCode, responseGroups, facetTemplateExclude, facetPrefix, responseOptions, cursorMark, facetValueSort, defaultSort, shouldSlice, mid, fieldList, omitNamespace, includeAllImages, spellcorrectOverride, useSubscriptionPricing, merchandizingRuleCode);
+      ProductSearchResult result = apiInstance.storefrontSiteSearch(query, collapse, filter, facetTemplate, facetTemplateSubset, facet, facetFieldRangeQuery, facetHierPrefix, facetHierValue, facetHierDepth, facetStartIndex, facetPageSize, facetSettings, facetValueFilter, sortBy, pageSize, startIndex, searchSettings, enableSearchTuningRules, searchTuningRuleContext, searchTuningRuleCode, responseGroups, facetTemplateExclude, facetPrefix, responseOptions, cursorMark, facetValueSort, defaultSort, shouldSlice, mid, fieldList, omitNamespace, includeAllImages, spellcorrectOverride, useSubscriptionPricing, merchandizingRuleCode, responseFields);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling ProductSearchApi#storefrontSiteSearch");
@@ -452,40 +448,42 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **query** | **String**| The terms to search on. | [optional] |
+| **collapse** | **Boolean**|  | [optional] [default to true] |
 | **filter** | **String**| A set of filter expressions representing the search parameters for a query: eq&#x3D;equals, ne&#x3D;not equals, gt&#x3D;greater than, lt &#x3D; less than or equals, gt &#x3D; greater than or equals, lt &#x3D; less than or equals, sw &#x3D; starts with, or cont &#x3D; contains. Optional. | [optional] |
-| **facetTemplate** | **String**|  | [optional] |
-| **facetTemplateSubset** | **String**|  | [optional] |
-| **facet** | **String**|  | [optional] |
+| **facetTemplate** | **String**| Identifier of the current category, in the format of either categoryCode:{categoryCode}  or categoryId:{categoryId}. In the example of no category being selected, the root will be used instead. Refer to the corresponding &lt;a href&#x3D;\&quot;api-reference/facets/get-facet-category-list\&quot;&gt;Catalog Admin&lt;/a&gt; call. | [optional] |
+| **facetTemplateSubset** | **String**| Use if you only want to return a subset of the facets defined in the template such has category, price, rating. | [optional] |
+| **facet** | **String**| The additional facets to use (comma delimited) that are not already defined in the facet template  in the Product Admin API. | [optional] |
 | **facetFieldRangeQuery** | **String**|  | [optional] |
-| **facetHierPrefix** | **String**|  | [optional] |
-| **facetHierValue** | **String**|  | [optional] |
-| **facetHierDepth** | **String**|  | [optional] |
+| **facetHierPrefix** | **String**| Allows you to skip these levels on a hierarchical facet. | [optional] |
+| **facetHierValue** | **String**| The current level to pull categories from, in the format of categoryId:{categoryId}. | [optional] |
+| **facetHierDepth** | **String**| The number of levels to return such as category:1. | [optional] |
 | **facetStartIndex** | **String**|  | [optional] |
 | **facetPageSize** | **String**|  | [optional] |
-| **facetSettings** | **String**|  | [optional] |
-| **facetValueFilter** | **String**|  | [optional] |
+| **facetSettings** | **String**| May be deprecated. | [optional] |
+| **facetValueFilter** | **String**| A comma delimited list of applied facetsValues (such as tenant~brand-name-attribute%3abroil+king).  If the facet is part of the search results facet template as a “range” display style, then you can  specify a min and max that doesn&#39;t have to match the predefined ranges (such as &amp;facetValueFilter&#x3D;price:[38 to 105]). | [optional] |
 | **sortBy** | **String**| The element to sort the results by and the order in which the results appear. Either ascending (a-z) or descending (z-a) order. Optional. | [optional] |
 | **pageSize** | **Integer**| Used to page results from a query. Indicates the maximum number of entities to return from a query. The default value is 12 and the maximum value is 200. Optional. | [optional] |
 | **startIndex** | **Integer**| Used to page results from a query. Indicates the zero-based offset in the complete result set where the returned entities begin. The default value is 0. Optional. | [optional] [default to 0] |
-| **searchSettings** | **String**|  | [optional] |
-| **enableSearchTuningRules** | **Boolean**|  | [optional] [default to true] |
-| **searchTuningRuleContext** | **String**|  | [optional] |
-| **searchTuningRuleCode** | **String**|  | [optional] |
-| **responseGroups** | **String**|  | [optional] |
+| **searchSettings** | **String**| Use this to override search settings for testing purposes in the format of &amp;searchSettings&#x3D;testConfig1. | [optional] |
+| **enableSearchTuningRules** | **Boolean**| Whether or not to enable search tuning rules. | [optional] [default to true] |
+| **searchTuningRuleContext** | **String**| Deprecated or internal-only, do not use. | [optional] |
+| **searchTuningRuleCode** | **String**| Deprecated or internal-only, do not use. | [optional] |
+| **responseGroups** | **String**| Deprecated or internal-only, do not use. | [optional] |
 | **facetTemplateExclude** | **String**|  | [optional] |
 | **facetPrefix** | **String**|  | [optional] |
-| **responseOptions** | **String**|  | [optional] |
+| **responseOptions** | **String**| Deprecated or internal-only, do not use. | [optional] |
 | **cursorMark** | **String**| Pass in * to begin a deep page operation. The response will include a nextCursorMark value. Pass this into the next call. Continue with this pattern until nextCursorMark is null. | [optional] |
-| **facetValueSort** | **String**|  | [optional] |
-| **defaultSort** | **String**|  | [optional] |
-| **shouldSlice** | **Boolean**|  | [optional] |
-| **mid** | **String**|  | [optional] |
-| **fieldList** | **String**|  | [optional] |
-| **omitNamespace** | **Boolean**|  | [optional] |
+| **facetValueSort** | **String**| Sorts the values array in a facet. Valid values are Count,Index, CountAscending, CountDescending,  ValuesAscending, ValuesDescending, AttributeDefinition, and AttributeDefinitionDescending. | [optional] |
+| **defaultSort** | **String**| Deprecated or internal-only, do not use. | [optional] |
+| **shouldSlice** | **Boolean**| Whether or not to slice products. | [optional] |
+| **mid** | **String**| This is the customer identifier for personalization. This value can be found in the Monetate  cookie (mt.v) that is uniquely set for each visitor so that personalization of the search results  can use all Monetate functionality. | [optional] |
+| **fieldList** | **String**| Explicitly request any field or attribute you want in the response.  Only product codes are returned by default. Some common values include productName, priceL (price low), priceH (price high),  product attribute by name, product image URLs, product category names, category IDs and codes,  product short/long descriptions, and score (the relevancy score).  | [optional] |
+| **omitNamespace** | **Boolean**| Allows you to drop the tenant~ or similar prefix. | [optional] |
 | **includeAllImages** | **Boolean**| Optional. If true return all images instead of default images. | [optional] [default to false] |
-| **spellcorrectOverride** | **String**|  | [optional] [default to Default] |
-| **useSubscriptionPricing** | **Boolean**|  | [optional] [default to false] |
+| **spellcorrectOverride** | **String**| Valid values are Default, SkipAutocorrect, SkipDidyoumean, and SkipAll. | [optional] [default to Default] |
+| **useSubscriptionPricing** | **Boolean**| Whether or not to use subscription pricing instead of the default product pricing. | [optional] [default to false] |
 | **merchandizingRuleCode** | **String**| Optional. Use a specific search-merchandizing-rule code if provided. | [optional] |
+| **responseFields** | **String**| limits which fields are returned in the response body | [optional] |
 
 ### Return type
 
@@ -493,7 +491,7 @@ public class Example {
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth), [clientOauth2](../README.md#clientOauth2)
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
@@ -503,15 +501,15 @@ public class Example {
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Success |  -  |
+| **200** | OK |  -  |
 
 <a name="storefrontSuggest"></a>
 # **storefrontSuggest**
-> SearchSuggestionResult storefrontSuggest(query, groups, pageSize, mid, filter)
+> SearchSuggestionResult storefrontSuggest(query, groups, pageSize, mid, filter, responseFields)
 
-Gets suggested search terms
+Get Suggested Search Terms
 
-Suggests possible search terms as the shopper enters search text.
+Suggests possible search terms as the shopper enters search text. In Unified Commerce, a Suggest2 API exists that returns results based on the returnFields option defined in the search settings. The same request structure and response as documented here is supported by both the /suggest and /suggest2 API endpoints, so either one can be used for this purpose with the same data.
 
 ### Example
 ```java
@@ -532,18 +530,15 @@ public class Example {
     HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
     bearerAuth.setBearerToken("BEARER TOKEN");
 
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
-
     ProductSearchApi apiInstance = new ProductSearchApi(defaultClient);
     String query = "query_example"; // String | Comma delimited list of suggestion groups that should be returned. The default is everything
     String groups = "groups_example"; // String | 
     Integer pageSize = 56; // Integer | Indicates the maximum number of entities to return from a query. The default value is 10 and the maximum value is 200. Optional.
     String mid = "mid_example"; // String | 
     String filter = "filter_example"; // String | 
+    String responseFields = "responseFields_example"; // String | limits which fields are returned in the response body
     try {
-      SearchSuggestionResult result = apiInstance.storefrontSuggest(query, groups, pageSize, mid, filter);
+      SearchSuggestionResult result = apiInstance.storefrontSuggest(query, groups, pageSize, mid, filter, responseFields);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling ProductSearchApi#storefrontSuggest");
@@ -565,6 +560,7 @@ public class Example {
 | **pageSize** | **Integer**| Indicates the maximum number of entities to return from a query. The default value is 10 and the maximum value is 200. Optional. | [optional] |
 | **mid** | **String**|  | [optional] |
 | **filter** | **String**|  | [optional] |
+| **responseFields** | **String**| limits which fields are returned in the response body | [optional] |
 
 ### Return type
 
@@ -572,7 +568,7 @@ public class Example {
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth), [clientOauth2](../README.md#clientOauth2)
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
@@ -582,15 +578,15 @@ public class Example {
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Success |  -  |
+| **200** | OK |  -  |
 
 <a name="storefrontSuggest2"></a>
 # **storefrontSuggest2**
-> SearchSuggestionResult storefrontSuggest2(query, groups, pageSize, searchSettingsName, mid, filter)
+> SearchSuggestionResult storefrontSuggest2(query, groups, pageSize, searchSettingsName, mid, filter, responseFields)
 
-Gets suggested search terms
+Gets Suggested Search Terms 2
 
-Suggests possible search terms as the shopper enters search text.
+Suggests possible search terms as the shopper enters search text. In Unified Commerce, a Suggest2 API exists that returns results based on the returnFields option defined in the search settings. The same request structure and response as documented here is supported by both the /suggest and /suggest2 API endpoints, so either one can be used for this purpose with the same data.
 
 ### Example
 ```java
@@ -611,10 +607,6 @@ public class Example {
     HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
     bearerAuth.setBearerToken("BEARER TOKEN");
 
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
-
     ProductSearchApi apiInstance = new ProductSearchApi(defaultClient);
     String query = "query_example"; // String | Comma delimited list of suggestion groups that should be returned. The default is everything
     String groups = "groups_example"; // String | 
@@ -622,8 +614,9 @@ public class Example {
     String searchSettingsName = "searchSettingsName_example"; // String | 
     String mid = "mid_example"; // String | 
     String filter = "filter_example"; // String | 
+    String responseFields = "responseFields_example"; // String | limits which fields are returned in the response body
     try {
-      SearchSuggestionResult result = apiInstance.storefrontSuggest2(query, groups, pageSize, searchSettingsName, mid, filter);
+      SearchSuggestionResult result = apiInstance.storefrontSuggest2(query, groups, pageSize, searchSettingsName, mid, filter, responseFields);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling ProductSearchApi#storefrontSuggest2");
@@ -646,6 +639,7 @@ public class Example {
 | **searchSettingsName** | **String**|  | [optional] |
 | **mid** | **String**|  | [optional] |
 | **filter** | **String**|  | [optional] |
+| **responseFields** | **String**| limits which fields are returned in the response body | [optional] |
 
 ### Return type
 
@@ -653,7 +647,7 @@ public class Example {
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth), [clientOauth2](../README.md#clientOauth2)
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
@@ -663,15 +657,15 @@ public class Example {
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Success |  -  |
+| **200** | OK |  -  |
 
 <a name="storefrontVisualSearch"></a>
 # **storefrontVisualSearch**
-> VisualSearchResult storefrontVisualSearch(searchTerm, filters, returnfields, searchfields, ignoregrouping, numResults, pageNumber, applicationId, catalogId, sessionId, trackingId, apiKey, revision, cip, displayDebug)
+> VisualSearchResult storefrontVisualSearch(searchTerm, filters, returnfields, searchfields, ignoregrouping, numResults, pageNumber, applicationId, catalogId, sessionId, trackingId, apiKey, revision, cip, displayDebug, responseFields)
 
-Type ahead - Searches the items displayed on the storefront.
+Type Ahead Search
 
-Type ahead - Searches the items displayed on the storefront.
+Searches the items displayed on the storefront.
 
 ### Example
 ```java
@@ -692,10 +686,6 @@ public class Example {
     HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
     bearerAuth.setBearerToken("BEARER TOKEN");
 
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
-
     ProductSearchApi apiInstance = new ProductSearchApi(defaultClient);
     String searchTerm = "searchTerm_example"; // String | 
     List<RequestFilter> filters = Arrays.asList(); // List<RequestFilter> | 
@@ -712,8 +702,9 @@ public class Example {
     String revision = "revision_example"; // String | 
     String cip = "cip_example"; // String | 
     Boolean displayDebug = true; // Boolean | 
+    String responseFields = "responseFields_example"; // String | limits which fields are returned in the response body
     try {
-      VisualSearchResult result = apiInstance.storefrontVisualSearch(searchTerm, filters, returnfields, searchfields, ignoregrouping, numResults, pageNumber, applicationId, catalogId, sessionId, trackingId, apiKey, revision, cip, displayDebug);
+      VisualSearchResult result = apiInstance.storefrontVisualSearch(searchTerm, filters, returnfields, searchfields, ignoregrouping, numResults, pageNumber, applicationId, catalogId, sessionId, trackingId, apiKey, revision, cip, displayDebug, responseFields);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling ProductSearchApi#storefrontVisualSearch");
@@ -745,6 +736,7 @@ public class Example {
 | **revision** | **String**|  | [optional] |
 | **cip** | **String**|  | [optional] |
 | **displayDebug** | **Boolean**|  | [optional] |
+| **responseFields** | **String**| limits which fields are returned in the response body | [optional] |
 
 ### Return type
 
@@ -752,7 +744,7 @@ public class Example {
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth), [clientOauth2](../README.md#clientOauth2)
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
@@ -762,13 +754,13 @@ public class Example {
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Success |  -  |
+| **200** | OK |  -  |
 
 <a name="suggestDebug"></a>
 # **suggestDebug**
-> suggestDebug(groups, query, pageSize, searchSettingsName, mid, filter, campaignId, returnUrl)
+> suggestDebug(groups, query, pageSize, searchSettingsName, mid, filter, campaignId, returnUrl, responseFields)
 
-Debugging relevancy for the Suggest endpoint
+Search Suggestion Debug
 
 Comma delimited list of suggestion groups that should be returned. The default is everything. e.g. categories, products.
 
@@ -791,10 +783,6 @@ public class Example {
     HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
     bearerAuth.setBearerToken("BEARER TOKEN");
 
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
-
     ProductSearchApi apiInstance = new ProductSearchApi(defaultClient);
     String groups = "groups_example"; // String | Comma delimited list of suggestion groups that should be returned. The default is everything. e.g. categories, products
     String query = "query_example"; // String | The terms to search on.
@@ -804,8 +792,9 @@ public class Example {
     String filter = "filter_example"; // String | 
     String campaignId = "campaignId_example"; // String | Used to debug with a specific campaign. Optional parameter
     Boolean returnUrl = false; // Boolean | Only respond with the request made to the search-engine, for one \"groups\" parameter value. Default is false. Optional parameter.
+    String responseFields = "responseFields_example"; // String | limits which fields are returned in the response body
     try {
-      apiInstance.suggestDebug(groups, query, pageSize, searchSettingsName, mid, filter, campaignId, returnUrl);
+      apiInstance.suggestDebug(groups, query, pageSize, searchSettingsName, mid, filter, campaignId, returnUrl, responseFields);
     } catch (ApiException e) {
       System.err.println("Exception when calling ProductSearchApi#suggestDebug");
       System.err.println("Status code: " + e.getCode());
@@ -829,6 +818,7 @@ public class Example {
 | **filter** | **String**|  | [optional] |
 | **campaignId** | **String**| Used to debug with a specific campaign. Optional parameter | [optional] |
 | **returnUrl** | **Boolean**| Only respond with the request made to the search-engine, for one \&quot;groups\&quot; parameter value. Default is false. Optional parameter. | [optional] [default to false] |
+| **responseFields** | **String**| limits which fields are returned in the response body | [optional] |
 
 ### Return type
 
@@ -836,7 +826,7 @@ null (empty response body)
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth), [clientOauth2](../README.md#clientOauth2)
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
@@ -846,5 +836,5 @@ null (empty response body)
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Success |  -  |
+| **200** | OK |  -  |
 

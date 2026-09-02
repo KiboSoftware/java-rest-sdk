@@ -7,10 +7,10 @@
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
-|**reasonCode** | **String** |  |  [optional] |
+|**actionName** | **String** |  |  [optional] |
 |**description** | **String** |  |  [optional] |
 |**moreInfo** | **String** |  |  [optional] |
-|**actionName** | **String** |  |  [optional] |
+|**reasonCode** | **String** |  |  [optional] |
 
 
 ## Implemented Interfaces

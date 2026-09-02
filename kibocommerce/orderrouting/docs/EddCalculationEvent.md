@@ -1,0 +1,42 @@
+
+
+# EddCalculationEvent
+
+
+## Properties
+
+| Name | Type | Description | Notes |
+|------------ | ------------- | ------------- | -------------|
+|**causeID** | **Integer** |  |  [optional] |
+|**errors** | **List&lt;String&gt;** |  |  [optional] |
+|**type** | [**TypeEnum**](#TypeEnum) |  |  |
+
+
+
+## Enum: TypeEnum
+
+| Name | Value |
+|---- | -----|
+| NEW_EDD_CALCULATION_REQUEST | &quot;NEW_EDD_CALCULATION_REQUEST&quot; |
+| ROUTING_SUGGESTION_RECEIVED | &quot;ROUTING_SUGGESTION_RECEIVED&quot; |
+| PREASSIGNMENTS_PROCESSING_INITIATED | &quot;PREASSIGNMENTS_PROCESSING_INITIATED&quot; |
+| EDD_RESPONSE_COMPLETE | &quot;EDD_RESPONSE_COMPLETE&quot; |
+| LOCATION_DETAILS_FETCHED | &quot;LOCATION_DETAILS_FETCHED&quot; |
+| REMORSE_PERIOD_APPLIED | &quot;REMORSE_PERIOD_APPLIED&quot; |
+| FULFILLMENT_DATE_CALCULATED | &quot;FULFILLMENT_DATE_CALCULATED&quot; |
+| CUTOFF_TIME_CALCULATED | &quot;CUTOFF_TIME_CALCULATED&quot; |
+| DAY_SKIPPED_FOR_ASSIGNMENT | &quot;DAY_SKIPPED_FOR_ASSIGNMENT&quot; |
+| NO_VALID_DAY_FOUND_FOR_ASSIGNMENT | &quot;NO_VALID_DAY_FOUND_FOR_ASSIGNMENT&quot; |
+| PROCESSING_HOURS_ROLLOVER | &quot;PROCESSING_HOURS_ROLLOVER&quot; |
+| TRANSIT_TIME_RESPONSE | &quot;TRANSIT_TIME_RESPONSE&quot; |
+| ASSIGNMENT_EDD_CALCULATED | &quot;ASSIGNMENT_EDD_CALCULATED&quot; |
+| TRANSIT_TIME_ERROR | &quot;TRANSIT_TIME_ERROR&quot; |
+| TRANSFER_EDD_CALCULATED | &quot;TRANSFER_EDD_CALCULATED&quot; |
+| CONSOLIDATION_LATEST_TRANSFER_SELECTED | &quot;CONSOLIDATION_LATEST_TRANSFER_SELECTED&quot; |
+
+
+## Implemented Interfaces
+
+* Serializable
+
+

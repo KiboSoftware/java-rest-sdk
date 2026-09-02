@@ -9,7 +9,7 @@ All URIs are relative to *http://https:/api*
 
 <a name="getLocationGroups"></a>
 # **getLocationGroups**
-> List&lt;LocationGroupResponse&gt; getLocationGroups(xVolTenant)
+> List&lt;LocationGroupResponse&gt; getLocationGroups()
 
 Get Location Groups
 
@@ -21,7 +21,6 @@ Get LocationGroups
 import com.kibocommerce.sdk.inventory.ApiClient;
 import com.kibocommerce.sdk.inventory.ApiException;
 import com.kibocommerce.sdk.inventory.Configuration;
-import com.kibocommerce.sdk.inventory.auth.*;
 import com.kibocommerce.sdk.inventory.models.*;
 import com.kibocommerce.sdk.inventory.api.InventoryLocationGroupApi;
 
@@ -29,19 +28,10 @@ public class Example {
   public static void main(String[] args) {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
     defaultClient.setBasePath("http://https:/api");
-    
-    // Configure HTTP bearer authorization: bearerAuth
-    HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
-    bearerAuth.setBearerToken("BEARER TOKEN");
-
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
 
     InventoryLocationGroupApi apiInstance = new InventoryLocationGroupApi(defaultClient);
-    Integer xVolTenant = 56; // Integer | Tenant ID
     try {
-      List<LocationGroupResponse> result = apiInstance.getLocationGroups(xVolTenant);
+      List<LocationGroupResponse> result = apiInstance.getLocationGroups();
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling InventoryLocationGroupApi#getLocationGroups");
@@ -55,10 +45,7 @@ public class Example {
 ```
 
 ### Parameters
-
-| Name | Type | Description  | Notes |
-|------------- | ------------- | ------------- | -------------|
-| **xVolTenant** | **Integer**| Tenant ID | |
+This endpoint does not need any parameter.
 
 ### Return type
 
@@ -66,7 +53,7 @@ public class Example {
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth), [clientOauth2](../README.md#clientOauth2)
+No authorization required
 
 ### HTTP request headers
 

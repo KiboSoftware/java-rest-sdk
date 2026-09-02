@@ -4,60 +4,74 @@ All URIs are relative to *http://https:/api*
 
 | Method | HTTP request | Description |
 |------------- | ------------- | -------------|
-| [**backorderItemsUpdateUsingPUT**](ShipmentApi.md#backorderItemsUpdateUsingPUT) | **PUT** /commerce/shipments/{shipmentNumber}/backorderedItems | Backorder Items Update |
-| [**backorderItemsUsingPOST**](ShipmentApi.md#backorderItemsUsingPOST) | **POST** /commerce/shipments/{shipmentNumber}/backorderedItems | Backorder Items |
-| [**backorderShipmentUsingPOST**](ShipmentApi.md#backorderShipmentUsingPOST) | **POST** /commerce/shipments/{shipmentNumber}/backordered | Backorder Shipment |
-| [**cancelItemsUsingPUT**](ShipmentApi.md#cancelItemsUsingPUT) | **PUT** /commerce/shipments/{shipmentNumber}/canceledItems | Cancel Items |
-| [**cancelShipmentUsingPUT**](ShipmentApi.md#cancelShipmentUsingPUT) | **PUT** /commerce/shipments/{shipmentNumber}/canceled | Cancel Shipment |
-| [**cancelShipmentsUsingPUT**](ShipmentApi.md#cancelShipmentsUsingPUT) | **PUT** /commerce/shipments/order/{orderId}/canceled | Cancel Shipments |
-| [**customerAtCurbsideUsingPUT**](ShipmentApi.md#customerAtCurbsideUsingPUT) | **PUT** /commerce/shipments/{shipmentNumber}/customerAtCurbside | Customer At Curbside |
-| [**customerAtStoreUsingPUT**](ShipmentApi.md#customerAtStoreUsingPUT) | **PUT** /commerce/shipments/{shipmentNumber}/customerAtStore | Customer At Store |
-| [**customerCareItemsUsingPOST**](ShipmentApi.md#customerCareItemsUsingPOST) | **POST** /commerce/shipments/{shipmentNumber}/customerCaredItems | Customer Care Items |
-| [**customerCareShipmentUsingPUT**](ShipmentApi.md#customerCareShipmentUsingPUT) | **PUT** /commerce/shipments/{shipmentNumber}/customerCared | Customer Care Shipment |
-| [**customerInTransitUsingPUT**](ShipmentApi.md#customerInTransitUsingPUT) | **PUT** /commerce/shipments/{shipmentNumber}/customerInTransit | Customer In Transit |
-| [**deleteShipmentUsingDELETE**](ShipmentApi.md#deleteShipmentUsingDELETE) | **DELETE** /commerce/shipments/{shipmentNumber} | Delete Shipment |
-| [**deleteShipmentsOfOrderUsingDELETE**](ShipmentApi.md#deleteShipmentsOfOrderUsingDELETE) | **DELETE** /commerce/shipments/order/{orderId} | Delete Shipments from Order |
-| [**destinationUpdateUsingPUT**](ShipmentApi.md#destinationUpdateUsingPUT) | **PUT** /commerce/shipments/{shipmentNumber}/destination | Update Destination |
-| [**executeUsingPUT**](ShipmentApi.md#executeUsingPUT) | **PUT** /commerce/shipments/{shipmentNumber}/tasks/{taskName}/completed | Complete Workflow Task |
-| [**fulfillShipmentUsingPUT**](ShipmentApi.md#fulfillShipmentUsingPUT) | **PUT** /commerce/shipments/{shipmentNumber}/fulfilled | Fulfill Shipment |
-| [**getLocationSummaryReportUsingGET**](ShipmentApi.md#getLocationSummaryReportUsingGET) | **GET** /commerce/shipments/locationSummaryReport | Get Location Summary Report |
-| [**getShipmentStepCountByShipmentTypeUsingGET**](ShipmentApi.md#getShipmentStepCountByShipmentTypeUsingGET) | **GET** /commerce/shipments/countsByStep | Get Workflow Task Counts |
-| [**getShipmentUsingGET**](ShipmentApi.md#getShipmentUsingGET) | **GET** /commerce/shipments/{shipmentNumber} | Get Shipment |
-| [**getShipmentsUsingGET**](ShipmentApi.md#getShipmentsUsingGET) | **GET** /commerce/shipments | Get Shipments |
-| [**getTasksUsingGET**](ShipmentApi.md#getTasksUsingGET) | **GET** /commerce/shipments/{shipmentNumber}/tasks | Get Workflow Tasks |
-| [**newShipmentUsingPOST**](ShipmentApi.md#newShipmentUsingPOST) | **POST** /commerce/shipments | Create Shipment |
-| [**newShipmentsUsingPOST**](ShipmentApi.md#newShipmentsUsingPOST) | **POST** /commerce/shipments/bulk | Bulk Create Shipments |
-| [**pickupItemsUsingPOST**](ShipmentApi.md#pickupItemsUsingPOST) | **POST** /commerce/shipments/{shipmentNumber}/pickedUpItems | Pickup Items |
-| [**reassignItemsUsingPUT**](ShipmentApi.md#reassignItemsUsingPUT) | **PUT** /commerce/shipments/{shipmentNumber}/reassignedItems | Reassign Items |
-| [**reassignShipmentUsingPUT**](ShipmentApi.md#reassignShipmentUsingPUT) | **PUT** /commerce/shipments/{shipmentNumber}/reassigned | Reassign Shipment |
-| [**receiveTransferUsingPUT**](ShipmentApi.md#receiveTransferUsingPUT) | **PUT** /commerce/shipments/{shipmentNumber}/received | Receive Transfer |
-| [**refreshShipmentUsingPUT**](ShipmentApi.md#refreshShipmentUsingPUT) | **PUT** /commerce/shipments/{shipmentNumber}/refresh | Refresh Shipment |
-| [**rejectItemsUsingPUT**](ShipmentApi.md#rejectItemsUsingPUT) | **PUT** /commerce/shipments/{shipmentNumber}/rejectedItems | Reject Items |
-| [**rejectShipmentUsingPUT**](ShipmentApi.md#rejectShipmentUsingPUT) | **PUT** /commerce/shipments/{shipmentNumber}/rejected | Reject Shipment |
-| [**renderOrderSummaryUsingGET1**](ShipmentApi.md#renderOrderSummaryUsingGET1) | **GET** /commerce/shipments/{shipmentNumber}/order-summary/html | Render Order Summary by Shipment Number |
-| [**renderPackingSlipUsingGET**](ShipmentApi.md#renderPackingSlipUsingGET) | **GET** /commerce/shipments/{shipmentNumber}/rendition/html | Render Shipment Packing Slip |
-| [**replaceShipmentUsingPUT**](ShipmentApi.md#replaceShipmentUsingPUT) | **PUT** /commerce/shipments/{shipmentNumber} | Update Shipment |
-| [**resendItemEmailUsingPUT**](ShipmentApi.md#resendItemEmailUsingPUT) | **PUT** /commerce/shipments/{shipmentNumber}/items/{lineId}/email/resend | Resend Item Email |
-| [**resendShipmentEmailUsingPUT**](ShipmentApi.md#resendShipmentEmailUsingPUT) | **PUT** /commerce/shipments/{shipmentNumber}/email/resend | Resend Shipment Email |
-| [**retryFulfillingShipmentUsingPUT**](ShipmentApi.md#retryFulfillingShipmentUsingPUT) | **PUT** /commerce/shipments/{shipmentNumber}/retried | Retry Fulfilling Shipment |
-| [**revertUsingPUT**](ShipmentApi.md#revertUsingPUT) | **PUT** /commerce/shipments/{shipmentNumber}/tasks/{taskName}/reverted | Revert Workflow Task |
-| [**searchAndReceiveTransferUsingPUT**](ShipmentApi.md#searchAndReceiveTransferUsingPUT) | **PUT** /commerce/shipments/received/{search} | Find and Receive Transfer |
-| [**skipTaskUsingPUT**](ShipmentApi.md#skipTaskUsingPUT) | **PUT** /commerce/shipments/{shipmentNumber}/tasks/{taskName}/skipped | Skip Workflow Task |
-| [**transferItemsUsingPUT**](ShipmentApi.md#transferItemsUsingPUT) | **PUT** /commerce/shipments/{shipmentNumber}/transferredItems | Transfer Items |
-| [**transferShipmentUsingPUT**](ShipmentApi.md#transferShipmentUsingPUT) | **PUT** /commerce/shipments/{shipmentNumber}/transferred | Transfer Shipment |
-| [**updateFulfillmentFieldsUsingPUT**](ShipmentApi.md#updateFulfillmentFieldsUsingPUT) | **PUT** /commerce/shipments/{shipmentNumber}/fulfillmentFields | Update Fulfillment Fields |
-| [**updateGiftCardInfoUsingPUT**](ShipmentApi.md#updateGiftCardInfoUsingPUT) | **PUT** /commerce/shipments/{shipmentNumber}/giftCardInfo | Update Gift Card Info |
-| [**workflowDefinitionImageUsingGET**](ShipmentApi.md#workflowDefinitionImageUsingGET) | **GET** /commerce/shipments/{shipmentNumber}/workflow-definition-image | Get Workflow Definition Image |
-| [**workflowInstanceImageUsingGET**](ShipmentApi.md#workflowInstanceImageUsingGET) | **GET** /commerce/shipments/{shipmentNumber}/workflow-instance-image | Get Workflow Instance Image |
+| [**backorderItems**](ShipmentApi.md#backorderItems) | **POST** /commerce/shipments/{shipmentNumber}/backorderedItems | backorderItems |
+| [**backorderItemsUpdate**](ShipmentApi.md#backorderItemsUpdate) | **PUT** /commerce/shipments/{shipmentNumber}/backorderedItems | Update Backorder Items |
+| [**backorderShipment**](ShipmentApi.md#backorderShipment) | **POST** /commerce/shipments/{shipmentNumber}/backordered | backorderShipment |
+| [**cancelItems**](ShipmentApi.md#cancelItems) | **PUT** /commerce/shipments/{shipmentNumber}/canceledItems | cancelItems |
+| [**cancelShipment**](ShipmentApi.md#cancelShipment) | **PUT** /commerce/shipments/{shipmentNumber}/canceled | cancelShipment |
+| [**cancelShipments**](ShipmentApi.md#cancelShipments) | **PUT** /commerce/shipments/order/{orderId}/canceled | Cancel Order Shipments |
+| [**customerAtCurbside**](ShipmentApi.md#customerAtCurbside) | **PUT** /commerce/shipments/{shipmentNumber}/customerAtCurbside | customerAtCurbside |
+| [**customerAtStore**](ShipmentApi.md#customerAtStore) | **PUT** /commerce/shipments/{shipmentNumber}/customerAtStore | customerAtStore |
+| [**customerCareItems**](ShipmentApi.md#customerCareItems) | **POST** /commerce/shipments/{shipmentNumber}/customerCaredItems | customerCareItems |
+| [**customerCareShipment**](ShipmentApi.md#customerCareShipment) | **PUT** /commerce/shipments/{shipmentNumber}/customerCared | customerCareShipment |
+| [**customerInTransit**](ShipmentApi.md#customerInTransit) | **PUT** /commerce/shipments/{shipmentNumber}/customerInTransit | Customer in Transit |
+| [**deleteShipment**](ShipmentApi.md#deleteShipment) | **DELETE** /commerce/shipments/{shipmentNumber} | deleteShipment |
+| [**deleteShipmentsOfOrder**](ShipmentApi.md#deleteShipmentsOfOrder) | **DELETE** /commerce/shipments/order/{orderId} | Delete Order Shipments |
+| [**destinationUpdate**](ShipmentApi.md#destinationUpdate) | **PUT** /commerce/shipments/{shipmentNumber}/destination | Destination Update |
+| [**estimatedDeliveryDateClear**](ShipmentApi.md#estimatedDeliveryDateClear) | **DELETE** /commerce/shipments/{shipmentNumber}/estimatedDeliveryDate | estimatedDeliveryDateClear |
+| [**estimatedDeliveryDateUpdate**](ShipmentApi.md#estimatedDeliveryDateUpdate) | **PUT** /commerce/shipments/{shipmentNumber}/estimatedDeliveryDateUpdate | estimatedDeliveryDateUpdate |
+| [**execute**](ShipmentApi.md#execute) | **PUT** /commerce/shipments/{shipmentNumber}/tasks/{taskName}/completed | Execute Task |
+| [**fulfillShipment**](ShipmentApi.md#fulfillShipment) | **PUT** /commerce/shipments/{shipmentNumber}/fulfilled | fulfillShipment |
+| [**getLocationShipmentCount**](ShipmentApi.md#getLocationShipmentCount) | **GET** /commerce/shipments/locationShipmentCount | getLocationShipmentCount |
+| [**getLocationSummaryReport**](ShipmentApi.md#getLocationSummaryReport) | **GET** /commerce/shipments/locationSummaryReport | getLocationSummaryReport |
+| [**getShipment**](ShipmentApi.md#getShipment) | **GET** /commerce/shipments/{shipmentNumber} | getShipment |
+| [**getShipmentStepCountByShipmentType**](ShipmentApi.md#getShipmentStepCountByShipmentType) | **GET** /commerce/shipments/countsByStep | Get Shipment Step Count by Shipment Type |
+| [**getShipments**](ShipmentApi.md#getShipments) | **GET** /commerce/shipments | getShipments |
+| [**getTasks**](ShipmentApi.md#getTasks) | **GET** /commerce/shipments/{shipmentNumber}/tasks | Get Tasks |
+| [**getWorkflowVariable**](ShipmentApi.md#getWorkflowVariable) | **GET** /commerce/shipments/{shipmentNumber}/workflow/variables/{variableName} | getWorkflowVariable |
+| [**getWorkflowVariables**](ShipmentApi.md#getWorkflowVariables) | **GET** /commerce/shipments/{shipmentNumber}/workflow/variables | getWorkflowVariables |
+| [**itemsReadyForPack**](ShipmentApi.md#itemsReadyForPack) | **POST** /commerce/shipments/{shipmentNumber}/itemsReadyForPack | itemsReadyForPack |
+| [**itemsReadyForPrep**](ShipmentApi.md#itemsReadyForPrep) | **POST** /commerce/shipments/{shipmentNumber}/itemsReadyForPrep | itemsReadyForPrep |
+| [**newShipment**](ShipmentApi.md#newShipment) | **POST** /commerce/shipments | newShipment |
+| [**newShipmentViaProxy**](ShipmentApi.md#newShipmentViaProxy) | **POST** /commerce/shipments/newShipmentViaProxy | newShipmentViaProxy |
+| [**newShipments**](ShipmentApi.md#newShipments) | **POST** /commerce/shipments/bulk | Create Shipments |
+| [**pickupItems**](ShipmentApi.md#pickupItems) | **POST** /commerce/shipments/{shipmentNumber}/pickedUpItems | Picked Up Items |
+| [**reassignItems**](ShipmentApi.md#reassignItems) | **PUT** /commerce/shipments/{shipmentNumber}/reassignedItems | reassignItems |
+| [**reassignShipment**](ShipmentApi.md#reassignShipment) | **PUT** /commerce/shipments/{shipmentNumber}/reassigned | Reassign Shipments |
+| [**receiveTransfer**](ShipmentApi.md#receiveTransfer) | **PUT** /commerce/shipments/{shipmentNumber}/received | receiveTransfer |
+| [**refreshShipment**](ShipmentApi.md#refreshShipment) | **PUT** /commerce/shipments/{shipmentNumber}/refresh | refreshShipment |
+| [**rejectItems**](ShipmentApi.md#rejectItems) | **PUT** /commerce/shipments/{shipmentNumber}/rejectedItems | rejectItems |
+| [**rejectShipment**](ShipmentApi.md#rejectShipment) | **PUT** /commerce/shipments/{shipmentNumber}/rejected | rejectShipment |
+| [**renderOrderSummary**](ShipmentApi.md#renderOrderSummary) | **GET** /commerce/shipments/{shipmentNumber}/order-summary/html | Render Order Summary |
+| [**renderPackingSlip**](ShipmentApi.md#renderPackingSlip) | **GET** /commerce/shipments/{shipmentNumber}/rendition/html | Render Packing Slip |
+| [**replaceShipment**](ShipmentApi.md#replaceShipment) | **PUT** /commerce/shipments/{shipmentNumber} | Replace Shipment |
+| [**resendItemEmail**](ShipmentApi.md#resendItemEmail) | **PUT** /commerce/shipments/{shipmentNumber}/items/{lineId}/email/resend | resendItemEmail |
+| [**resendShipmentEmail**](ShipmentApi.md#resendShipmentEmail) | **PUT** /commerce/shipments/{shipmentNumber}/email/resend | resendShipmentEmail |
+| [**resetStockValidation**](ShipmentApi.md#resetStockValidation) | **DELETE** /commerce/shipments/{shipmentNumber}/items/{lineId}/validateStock | resetStockValidation |
+| [**retryFulfillingShipment**](ShipmentApi.md#retryFulfillingShipment) | **PUT** /commerce/shipments/{shipmentNumber}/retried | retryFulfillingShipment |
+| [**revert**](ShipmentApi.md#revert) | **PUT** /commerce/shipments/{shipmentNumber}/tasks/{taskName}/reverted | Revert Task |
+| [**searchAndReceiveTransfer**](ShipmentApi.md#searchAndReceiveTransfer) | **PUT** /commerce/shipments/received/{search} | Search and Receive Transfer |
+| [**searchReceivableShipment**](ShipmentApi.md#searchReceivableShipment) | **GET** /commerce/shipments/receivable/{search} | searchReceivableShipment |
+| [**searchShipments**](ShipmentApi.md#searchShipments) | **POST** /commerce/shipments/search | searchShipments |
+| [**setWorkflowVariable**](ShipmentApi.md#setWorkflowVariable) | **POST** /commerce/shipments/{shipmentNumber}/workflow/variables | setWorkflowVariable |
+| [**skipTask**](ShipmentApi.md#skipTask) | **PUT** /commerce/shipments/{shipmentNumber}/tasks/{taskName}/skipped | Skip Task |
+| [**transferItems**](ShipmentApi.md#transferItems) | **PUT** /commerce/shipments/{shipmentNumber}/transferredItems | transferItems |
+| [**transferShipment**](ShipmentApi.md#transferShipment) | **PUT** /commerce/shipments/{shipmentNumber}/transferred | transferShipment |
+| [**updateFulfillmentFields**](ShipmentApi.md#updateFulfillmentFields) | **PUT** /commerce/shipments/{shipmentNumber}/fulfillmentFields | updateFulfillmentFields |
+| [**updateGiftCardInfo**](ShipmentApi.md#updateGiftCardInfo) | **PUT** /commerce/shipments/{shipmentNumber}/giftCardInfo | updateGiftCardInfo |
+| [**updateLastCancellationDate**](ShipmentApi.md#updateLastCancellationDate) | **PUT** /commerce/shipments/{shipmentNumber}/lastCancellationDate | updateLastCancellationDate |
+| [**validateStockItem**](ShipmentApi.md#validateStockItem) | **PUT** /commerce/shipments/{shipmentNumber}/items/{lineId}/validateStock | validateStockItem |
+| [**workflowDefinitionImage**](ShipmentApi.md#workflowDefinitionImage) | **GET** /commerce/shipments/{shipmentNumber}/workflow-definition-image | Workflow Definition Image |
+| [**workflowInstanceImage**](ShipmentApi.md#workflowInstanceImage) | **GET** /commerce/shipments/{shipmentNumber}/workflow-instance-image | workflowInstanceImage |
 
 
-<a name="backorderItemsUpdateUsingPUT"></a>
-# **backorderItemsUpdateUsingPUT**
-> EntityModelOfShipment backorderItemsUpdateUsingPUT(shipmentNumber, ifMatch, backorderItemsUpdateRequest)
+<a name="backorderItems"></a>
+# **backorderItems**
+> EntityModelOfShipment backorderItems(shipmentNumber, backorderItemsRequestDto, ifMatch)
 
-Backorder Items Update
+backorderItems
 
-When an item is in backorder, its expected release date can be modified to reflect any changes in inventory levels or manufacturing estimates. This should be kept up-to-date so that customer communications such as notification emails can accurately inform the customer about when their item is expected to be available or shipped.
+Backorder items from a shipment.
 
 ### Example
 ```java
@@ -65,7 +79,6 @@ When an item is in backorder, its expected release date can be modified to refle
 import com.kibocommerce.sdk.fulfillment.ApiClient;
 import com.kibocommerce.sdk.fulfillment.ApiException;
 import com.kibocommerce.sdk.fulfillment.Configuration;
-import com.kibocommerce.sdk.fulfillment.auth.*;
 import com.kibocommerce.sdk.fulfillment.models.*;
 import com.kibocommerce.sdk.fulfillment.api.ShipmentApi;
 
@@ -73,24 +86,16 @@ public class Example {
   public static void main(String[] args) {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
     defaultClient.setBasePath("http://https:/api");
-    
-    // Configure HTTP bearer authorization: bearerAuth
-    HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
-    bearerAuth.setBearerToken("BEARER TOKEN");
-
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
 
     ShipmentApi apiInstance = new ShipmentApi(defaultClient);
     Integer shipmentNumber = 56; // Integer | shipmentNumber
+    BackorderItemsRequest backorderItemsRequestDto = new BackorderItemsRequest(); // BackorderItemsRequest | backorderItemsRequestDto
     String ifMatch = "ifMatch_example"; // String | If-Match
-    BackorderItemsUpdateRequest backorderItemsUpdateRequest = new BackorderItemsUpdateRequest(); // BackorderItemsUpdateRequest | 
     try {
-      EntityModelOfShipment result = apiInstance.backorderItemsUpdateUsingPUT(shipmentNumber, ifMatch, backorderItemsUpdateRequest);
+      EntityModelOfShipment result = apiInstance.backorderItems(shipmentNumber, backorderItemsRequestDto, ifMatch);
       System.out.println(result);
     } catch (ApiException e) {
-      System.err.println("Exception when calling ShipmentApi#backorderItemsUpdateUsingPUT");
+      System.err.println("Exception when calling ShipmentApi#backorderItems");
       System.err.println("Status code: " + e.getCode());
       System.err.println("Reason: " + e.getResponseBody());
       System.err.println("Response headers: " + e.getResponseHeaders());
@@ -105,8 +110,8 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **shipmentNumber** | **Integer**| shipmentNumber | |
+| **backorderItemsRequestDto** | [**BackorderItemsRequest**](BackorderItemsRequest.md)| backorderItemsRequestDto | |
 | **ifMatch** | **String**| If-Match | [optional] |
-| **backorderItemsUpdateRequest** | [**BackorderItemsUpdateRequest**](BackorderItemsUpdateRequest.md)|  | [optional] |
 
 ### Return type
 
@@ -114,12 +119,12 @@ public class Example {
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth), [clientOauth2](../README.md#clientOauth2)
+No authorization required
 
 ### HTTP request headers
 
  - **Content-Type**: application/json
- - **Accept**: application/json, application/xml, application/hal+json
+ - **Accept**: application/hal+json, application/json, application/xml
 
 ### HTTP response details
 | Status code | Description | Response headers |
@@ -130,13 +135,13 @@ public class Example {
 | **403** | Forbidden |  -  |
 | **404** | Not Found |  -  |
 
-<a name="backorderItemsUsingPOST"></a>
-# **backorderItemsUsingPOST**
-> EntityModelOfShipment backorderItemsUsingPOST(shipmentNumber, ifMatch, backorderItemsRequest)
+<a name="backorderItemsUpdate"></a>
+# **backorderItemsUpdate**
+> EntityModelOfShipment backorderItemsUpdate(shipmentNumber, backorderItemsUpdateRequestDto, ifMatch)
 
-Backorder Items
+Update Backorder Items
 
-If a shipment is accepted by a location but some items of the shipment are temporarily out of stock, those particular items can be placed on backorder. These items will be placed into a pending Backorder state until inventory is in stock, at which point they are “released” from backorder to continue with the fulfillment process. This will not backorder the entire shipment, only the particular items waiting for inventory.
+Update a shipment&#39;s backordered items.
 
 ### Example
 ```java
@@ -144,7 +149,6 @@ If a shipment is accepted by a location but some items of the shipment are tempo
 import com.kibocommerce.sdk.fulfillment.ApiClient;
 import com.kibocommerce.sdk.fulfillment.ApiException;
 import com.kibocommerce.sdk.fulfillment.Configuration;
-import com.kibocommerce.sdk.fulfillment.auth.*;
 import com.kibocommerce.sdk.fulfillment.models.*;
 import com.kibocommerce.sdk.fulfillment.api.ShipmentApi;
 
@@ -152,24 +156,16 @@ public class Example {
   public static void main(String[] args) {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
     defaultClient.setBasePath("http://https:/api");
-    
-    // Configure HTTP bearer authorization: bearerAuth
-    HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
-    bearerAuth.setBearerToken("BEARER TOKEN");
-
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
 
     ShipmentApi apiInstance = new ShipmentApi(defaultClient);
     Integer shipmentNumber = 56; // Integer | shipmentNumber
+    BackorderItemsUpdateRequest backorderItemsUpdateRequestDto = new BackorderItemsUpdateRequest(); // BackorderItemsUpdateRequest | backorderItemsUpdateRequestDto
     String ifMatch = "ifMatch_example"; // String | If-Match
-    BackorderItemsRequest backorderItemsRequest = new BackorderItemsRequest(); // BackorderItemsRequest | 
     try {
-      EntityModelOfShipment result = apiInstance.backorderItemsUsingPOST(shipmentNumber, ifMatch, backorderItemsRequest);
+      EntityModelOfShipment result = apiInstance.backorderItemsUpdate(shipmentNumber, backorderItemsUpdateRequestDto, ifMatch);
       System.out.println(result);
     } catch (ApiException e) {
-      System.err.println("Exception when calling ShipmentApi#backorderItemsUsingPOST");
+      System.err.println("Exception when calling ShipmentApi#backorderItemsUpdate");
       System.err.println("Status code: " + e.getCode());
       System.err.println("Reason: " + e.getResponseBody());
       System.err.println("Response headers: " + e.getResponseHeaders());
@@ -184,8 +180,8 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **shipmentNumber** | **Integer**| shipmentNumber | |
+| **backorderItemsUpdateRequestDto** | [**BackorderItemsUpdateRequest**](BackorderItemsUpdateRequest.md)| backorderItemsUpdateRequestDto | |
 | **ifMatch** | **String**| If-Match | [optional] |
-| **backorderItemsRequest** | [**BackorderItemsRequest**](BackorderItemsRequest.md)|  | [optional] |
 
 ### Return type
 
@@ -193,12 +189,12 @@ public class Example {
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth), [clientOauth2](../README.md#clientOauth2)
+No authorization required
 
 ### HTTP request headers
 
  - **Content-Type**: application/json
- - **Accept**: application/json, application/xml, application/hal+json
+ - **Accept**: application/hal+json, application/json, application/xml
 
 ### HTTP response details
 | Status code | Description | Response headers |
@@ -209,13 +205,13 @@ public class Example {
 | **403** | Forbidden |  -  |
 | **404** | Not Found |  -  |
 
-<a name="backorderShipmentUsingPOST"></a>
-# **backorderShipmentUsingPOST**
-> EntityModelOfShipment backorderShipmentUsingPOST(shipmentNumber, ifMatch, backorderShipmentRequest)
+<a name="backorderShipment"></a>
+# **backorderShipment**
+> EntityModelOfShipment backorderShipment(shipmentNumber, backorderShipmentRequestDto, ifMatch)
 
-Backorder Shipment
+backorderShipment
 
-If a shipment is accepted by a location but the contents of the shipment are temporarily out of stock, the shipment can be placed on backorder. This means that the shipment will remain in the pending Backorder state while it waits for the inventory to be in stock, at which point it is “released” from backorder to continue with the fulfillment process.
+Backorder a shipment.
 
 ### Example
 ```java
@@ -223,7 +219,6 @@ If a shipment is accepted by a location but the contents of the shipment are tem
 import com.kibocommerce.sdk.fulfillment.ApiClient;
 import com.kibocommerce.sdk.fulfillment.ApiException;
 import com.kibocommerce.sdk.fulfillment.Configuration;
-import com.kibocommerce.sdk.fulfillment.auth.*;
 import com.kibocommerce.sdk.fulfillment.models.*;
 import com.kibocommerce.sdk.fulfillment.api.ShipmentApi;
 
@@ -231,24 +226,16 @@ public class Example {
   public static void main(String[] args) {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
     defaultClient.setBasePath("http://https:/api");
-    
-    // Configure HTTP bearer authorization: bearerAuth
-    HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
-    bearerAuth.setBearerToken("BEARER TOKEN");
-
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
 
     ShipmentApi apiInstance = new ShipmentApi(defaultClient);
     Integer shipmentNumber = 56; // Integer | shipmentNumber
+    BackorderShipmentRequest backorderShipmentRequestDto = new BackorderShipmentRequest(); // BackorderShipmentRequest | backorderShipmentRequestDto
     String ifMatch = "ifMatch_example"; // String | If-Match
-    BackorderShipmentRequest backorderShipmentRequest = new BackorderShipmentRequest(); // BackorderShipmentRequest | 
     try {
-      EntityModelOfShipment result = apiInstance.backorderShipmentUsingPOST(shipmentNumber, ifMatch, backorderShipmentRequest);
+      EntityModelOfShipment result = apiInstance.backorderShipment(shipmentNumber, backorderShipmentRequestDto, ifMatch);
       System.out.println(result);
     } catch (ApiException e) {
-      System.err.println("Exception when calling ShipmentApi#backorderShipmentUsingPOST");
+      System.err.println("Exception when calling ShipmentApi#backorderShipment");
       System.err.println("Status code: " + e.getCode());
       System.err.println("Reason: " + e.getResponseBody());
       System.err.println("Response headers: " + e.getResponseHeaders());
@@ -263,8 +250,8 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **shipmentNumber** | **Integer**| shipmentNumber | |
+| **backorderShipmentRequestDto** | [**BackorderShipmentRequest**](BackorderShipmentRequest.md)| backorderShipmentRequestDto | |
 | **ifMatch** | **String**| If-Match | [optional] |
-| **backorderShipmentRequest** | [**BackorderShipmentRequest**](BackorderShipmentRequest.md)|  | [optional] |
 
 ### Return type
 
@@ -272,12 +259,12 @@ public class Example {
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth), [clientOauth2](../README.md#clientOauth2)
+No authorization required
 
 ### HTTP request headers
 
  - **Content-Type**: application/json
- - **Accept**: application/json, application/xml, application/hal+json
+ - **Accept**: application/hal+json, application/json, application/xml
 
 ### HTTP response details
 | Status code | Description | Response headers |
@@ -288,13 +275,13 @@ public class Example {
 | **403** | Forbidden |  -  |
 | **404** | Not Found |  -  |
 
-<a name="cancelItemsUsingPUT"></a>
-# **cancelItemsUsingPUT**
-> EntityModelOfShipment cancelItemsUsingPUT(shipmentNumber, ifMatch, cancelItemsRequest)
+<a name="cancelItems"></a>
+# **cancelItems**
+> EntityModelOfShipment cancelItems(shipmentNumber, cancelItemsRequestDto, ifMatch)
 
-Cancel Items
+cancelItems
 
-Cancel Items
+Cancel items from a shipment.
 
 ### Example
 ```java
@@ -302,7 +289,6 @@ Cancel Items
 import com.kibocommerce.sdk.fulfillment.ApiClient;
 import com.kibocommerce.sdk.fulfillment.ApiException;
 import com.kibocommerce.sdk.fulfillment.Configuration;
-import com.kibocommerce.sdk.fulfillment.auth.*;
 import com.kibocommerce.sdk.fulfillment.models.*;
 import com.kibocommerce.sdk.fulfillment.api.ShipmentApi;
 
@@ -310,24 +296,16 @@ public class Example {
   public static void main(String[] args) {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
     defaultClient.setBasePath("http://https:/api");
-    
-    // Configure HTTP bearer authorization: bearerAuth
-    HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
-    bearerAuth.setBearerToken("BEARER TOKEN");
-
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
 
     ShipmentApi apiInstance = new ShipmentApi(defaultClient);
     Integer shipmentNumber = 56; // Integer | shipmentNumber
+    CancelItemsRequest cancelItemsRequestDto = new CancelItemsRequest(); // CancelItemsRequest | cancelItemsRequestDto
     String ifMatch = "ifMatch_example"; // String | If-Match
-    CancelItemsRequest cancelItemsRequest = new CancelItemsRequest(); // CancelItemsRequest | 
     try {
-      EntityModelOfShipment result = apiInstance.cancelItemsUsingPUT(shipmentNumber, ifMatch, cancelItemsRequest);
+      EntityModelOfShipment result = apiInstance.cancelItems(shipmentNumber, cancelItemsRequestDto, ifMatch);
       System.out.println(result);
     } catch (ApiException e) {
-      System.err.println("Exception when calling ShipmentApi#cancelItemsUsingPUT");
+      System.err.println("Exception when calling ShipmentApi#cancelItems");
       System.err.println("Status code: " + e.getCode());
       System.err.println("Reason: " + e.getResponseBody());
       System.err.println("Response headers: " + e.getResponseHeaders());
@@ -342,8 +320,8 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **shipmentNumber** | **Integer**| shipmentNumber | |
+| **cancelItemsRequestDto** | [**CancelItemsRequest**](CancelItemsRequest.md)| cancelItemsRequestDto | |
 | **ifMatch** | **String**| If-Match | [optional] |
-| **cancelItemsRequest** | [**CancelItemsRequest**](CancelItemsRequest.md)|  | [optional] |
 
 ### Return type
 
@@ -351,12 +329,12 @@ public class Example {
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth), [clientOauth2](../README.md#clientOauth2)
+No authorization required
 
 ### HTTP request headers
 
  - **Content-Type**: application/json
- - **Accept**: application/json, application/xml, application/hal+json
+ - **Accept**: application/hal+json, application/json, application/xml
 
 ### HTTP response details
 | Status code | Description | Response headers |
@@ -367,13 +345,13 @@ public class Example {
 | **403** | Forbidden |  -  |
 | **404** | Not Found |  -  |
 
-<a name="cancelShipmentUsingPUT"></a>
-# **cancelShipmentUsingPUT**
-> EntityModelOfShipment cancelShipmentUsingPUT(shipmentNumber, ifMatch, cancelShipment)
+<a name="cancelShipment"></a>
+# **cancelShipment**
+> EntityModelOfShipment cancelShipment(shipmentNumber, cancelShipmentRequestDto, ifMatch)
 
-Cancel Shipment
+cancelShipment
 
-Cancel Shipment
+Cancel a specific shipment.
 
 ### Example
 ```java
@@ -381,7 +359,6 @@ Cancel Shipment
 import com.kibocommerce.sdk.fulfillment.ApiClient;
 import com.kibocommerce.sdk.fulfillment.ApiException;
 import com.kibocommerce.sdk.fulfillment.Configuration;
-import com.kibocommerce.sdk.fulfillment.auth.*;
 import com.kibocommerce.sdk.fulfillment.models.*;
 import com.kibocommerce.sdk.fulfillment.api.ShipmentApi;
 
@@ -389,24 +366,16 @@ public class Example {
   public static void main(String[] args) {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
     defaultClient.setBasePath("http://https:/api");
-    
-    // Configure HTTP bearer authorization: bearerAuth
-    HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
-    bearerAuth.setBearerToken("BEARER TOKEN");
-
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
 
     ShipmentApi apiInstance = new ShipmentApi(defaultClient);
     Integer shipmentNumber = 56; // Integer | shipmentNumber
+    CancelShipment cancelShipmentRequestDto = new CancelShipment(); // CancelShipment | cancelShipmentRequestDto
     String ifMatch = "ifMatch_example"; // String | If-Match
-    CancelShipment cancelShipment = new CancelShipment(); // CancelShipment | 
     try {
-      EntityModelOfShipment result = apiInstance.cancelShipmentUsingPUT(shipmentNumber, ifMatch, cancelShipment);
+      EntityModelOfShipment result = apiInstance.cancelShipment(shipmentNumber, cancelShipmentRequestDto, ifMatch);
       System.out.println(result);
     } catch (ApiException e) {
-      System.err.println("Exception when calling ShipmentApi#cancelShipmentUsingPUT");
+      System.err.println("Exception when calling ShipmentApi#cancelShipment");
       System.err.println("Status code: " + e.getCode());
       System.err.println("Reason: " + e.getResponseBody());
       System.err.println("Response headers: " + e.getResponseHeaders());
@@ -421,8 +390,8 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **shipmentNumber** | **Integer**| shipmentNumber | |
+| **cancelShipmentRequestDto** | [**CancelShipment**](CancelShipment.md)| cancelShipmentRequestDto | |
 | **ifMatch** | **String**| If-Match | [optional] |
-| **cancelShipment** | [**CancelShipment**](CancelShipment.md)|  | [optional] |
 
 ### Return type
 
@@ -430,12 +399,12 @@ public class Example {
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth), [clientOauth2](../README.md#clientOauth2)
+No authorization required
 
 ### HTTP request headers
 
  - **Content-Type**: application/json
- - **Accept**: application/json, application/xml, application/hal+json
+ - **Accept**: application/hal+json, application/json, application/xml
 
 ### HTTP response details
 | Status code | Description | Response headers |
@@ -446,13 +415,13 @@ public class Example {
 | **403** | Forbidden |  -  |
 | **404** | Not Found |  -  |
 
-<a name="cancelShipmentsUsingPUT"></a>
-# **cancelShipmentsUsingPUT**
-> CollectionModelOfShipment cancelShipmentsUsingPUT(orderId, cancelShipment)
+<a name="cancelShipments"></a>
+# **cancelShipments**
+> CollectionModelOfShipment cancelShipments(orderId, cancelShipmentRequestDto)
 
-Cancel Shipments
+Cancel Order Shipments
 
-Cancel Shipments
+Cancel an order&#39;s shipments.
 
 ### Example
 ```java
@@ -460,7 +429,6 @@ Cancel Shipments
 import com.kibocommerce.sdk.fulfillment.ApiClient;
 import com.kibocommerce.sdk.fulfillment.ApiException;
 import com.kibocommerce.sdk.fulfillment.Configuration;
-import com.kibocommerce.sdk.fulfillment.auth.*;
 import com.kibocommerce.sdk.fulfillment.models.*;
 import com.kibocommerce.sdk.fulfillment.api.ShipmentApi;
 
@@ -468,23 +436,15 @@ public class Example {
   public static void main(String[] args) {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
     defaultClient.setBasePath("http://https:/api");
-    
-    // Configure HTTP bearer authorization: bearerAuth
-    HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
-    bearerAuth.setBearerToken("BEARER TOKEN");
-
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
 
     ShipmentApi apiInstance = new ShipmentApi(defaultClient);
     String orderId = "orderId_example"; // String | orderId
-    CancelShipment cancelShipment = new CancelShipment(); // CancelShipment | 
+    CancelShipment cancelShipmentRequestDto = new CancelShipment(); // CancelShipment | cancelShipmentRequestDto
     try {
-      CollectionModelOfShipment result = apiInstance.cancelShipmentsUsingPUT(orderId, cancelShipment);
+      CollectionModelOfShipment result = apiInstance.cancelShipments(orderId, cancelShipmentRequestDto);
       System.out.println(result);
     } catch (ApiException e) {
-      System.err.println("Exception when calling ShipmentApi#cancelShipmentsUsingPUT");
+      System.err.println("Exception when calling ShipmentApi#cancelShipments");
       System.err.println("Status code: " + e.getCode());
       System.err.println("Reason: " + e.getResponseBody());
       System.err.println("Response headers: " + e.getResponseHeaders());
@@ -499,7 +459,7 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **orderId** | **String**| orderId | |
-| **cancelShipment** | [**CancelShipment**](CancelShipment.md)|  | [optional] |
+| **cancelShipmentRequestDto** | [**CancelShipment**](CancelShipment.md)| cancelShipmentRequestDto | |
 
 ### Return type
 
@@ -507,12 +467,12 @@ public class Example {
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth), [clientOauth2](../README.md#clientOauth2)
+No authorization required
 
 ### HTTP request headers
 
  - **Content-Type**: application/json
- - **Accept**: application/json, application/xml, application/hal+json
+ - **Accept**: application/hal+json, application/json, application/xml
 
 ### HTTP response details
 | Status code | Description | Response headers |
@@ -523,13 +483,13 @@ public class Example {
 | **403** | Forbidden |  -  |
 | **404** | Not Found |  -  |
 
-<a name="customerAtCurbsideUsingPUT"></a>
-# **customerAtCurbsideUsingPUT**
-> EntityModelOfShipment customerAtCurbsideUsingPUT(shipmentNumber, ifMatch, requestBody)
+<a name="customerAtCurbside"></a>
+# **customerAtCurbside**
+> EntityModelOfShipment customerAtCurbside(shipmentNumber, pickupInfo, ifMatch)
 
-Customer At Curbside
+customerAtCurbside
 
-Indicate that a customer has arrived for curbside pickup of this shipment.
+Indicates that the customer is ready for curbside pickup.
 
 ### Example
 ```java
@@ -537,7 +497,6 @@ Indicate that a customer has arrived for curbside pickup of this shipment.
 import com.kibocommerce.sdk.fulfillment.ApiClient;
 import com.kibocommerce.sdk.fulfillment.ApiException;
 import com.kibocommerce.sdk.fulfillment.Configuration;
-import com.kibocommerce.sdk.fulfillment.auth.*;
 import com.kibocommerce.sdk.fulfillment.models.*;
 import com.kibocommerce.sdk.fulfillment.api.ShipmentApi;
 
@@ -545,24 +504,16 @@ public class Example {
   public static void main(String[] args) {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
     defaultClient.setBasePath("http://https:/api");
-    
-    // Configure HTTP bearer authorization: bearerAuth
-    HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
-    bearerAuth.setBearerToken("BEARER TOKEN");
-
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
 
     ShipmentApi apiInstance = new ShipmentApi(defaultClient);
     Integer shipmentNumber = 56; // Integer | shipmentNumber
+    Map<String, Object> pickupInfo = null; // Map<String, Object> | pickupInfo
     String ifMatch = "ifMatch_example"; // String | If-Match
-    Map<String, Object> requestBody = null; // Map<String, Object> | 
     try {
-      EntityModelOfShipment result = apiInstance.customerAtCurbsideUsingPUT(shipmentNumber, ifMatch, requestBody);
+      EntityModelOfShipment result = apiInstance.customerAtCurbside(shipmentNumber, pickupInfo, ifMatch);
       System.out.println(result);
     } catch (ApiException e) {
-      System.err.println("Exception when calling ShipmentApi#customerAtCurbsideUsingPUT");
+      System.err.println("Exception when calling ShipmentApi#customerAtCurbside");
       System.err.println("Status code: " + e.getCode());
       System.err.println("Reason: " + e.getResponseBody());
       System.err.println("Response headers: " + e.getResponseHeaders());
@@ -577,8 +528,8 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **shipmentNumber** | **Integer**| shipmentNumber | |
+| **pickupInfo** | [**Map&lt;String, Object&gt;**](Object.md)| pickupInfo | |
 | **ifMatch** | **String**| If-Match | [optional] |
-| **requestBody** | [**Map&lt;String, Object&gt;**](Object.md)|  | [optional] |
 
 ### Return type
 
@@ -586,12 +537,12 @@ public class Example {
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth), [clientOauth2](../README.md#clientOauth2)
+No authorization required
 
 ### HTTP request headers
 
  - **Content-Type**: application/json
- - **Accept**: application/json, application/xml, application/hal+json
+ - **Accept**: application/hal+json, application/json, application/xml
 
 ### HTTP response details
 | Status code | Description | Response headers |
@@ -602,13 +553,13 @@ public class Example {
 | **403** | Forbidden |  -  |
 | **404** | Not Found |  -  |
 
-<a name="customerAtStoreUsingPUT"></a>
-# **customerAtStoreUsingPUT**
-> EntityModelOfShipment customerAtStoreUsingPUT(shipmentNumber, ifMatch)
+<a name="customerAtStore"></a>
+# **customerAtStore**
+> EntityModelOfShipment customerAtStore(shipmentNumber, ifMatch)
 
-Customer At Store
+customerAtStore
 
-Indicate that the customer has arrived for store pickup of this shipment.
+Indicates that a customer is ready for in-store pickup.
 
 ### Example
 ```java
@@ -616,7 +567,6 @@ Indicate that the customer has arrived for store pickup of this shipment.
 import com.kibocommerce.sdk.fulfillment.ApiClient;
 import com.kibocommerce.sdk.fulfillment.ApiException;
 import com.kibocommerce.sdk.fulfillment.Configuration;
-import com.kibocommerce.sdk.fulfillment.auth.*;
 import com.kibocommerce.sdk.fulfillment.models.*;
 import com.kibocommerce.sdk.fulfillment.api.ShipmentApi;
 
@@ -624,23 +574,15 @@ public class Example {
   public static void main(String[] args) {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
     defaultClient.setBasePath("http://https:/api");
-    
-    // Configure HTTP bearer authorization: bearerAuth
-    HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
-    bearerAuth.setBearerToken("BEARER TOKEN");
-
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
 
     ShipmentApi apiInstance = new ShipmentApi(defaultClient);
     Integer shipmentNumber = 56; // Integer | shipmentNumber
     String ifMatch = "ifMatch_example"; // String | If-Match
     try {
-      EntityModelOfShipment result = apiInstance.customerAtStoreUsingPUT(shipmentNumber, ifMatch);
+      EntityModelOfShipment result = apiInstance.customerAtStore(shipmentNumber, ifMatch);
       System.out.println(result);
     } catch (ApiException e) {
-      System.err.println("Exception when calling ShipmentApi#customerAtStoreUsingPUT");
+      System.err.println("Exception when calling ShipmentApi#customerAtStore");
       System.err.println("Status code: " + e.getCode());
       System.err.println("Reason: " + e.getResponseBody());
       System.err.println("Response headers: " + e.getResponseHeaders());
@@ -663,12 +605,12 @@ public class Example {
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth), [clientOauth2](../README.md#clientOauth2)
+No authorization required
 
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: application/json, application/xml, application/hal+json
+ - **Accept**: application/hal+json, application/json, application/xml
 
 ### HTTP response details
 | Status code | Description | Response headers |
@@ -679,13 +621,13 @@ public class Example {
 | **403** | Forbidden |  -  |
 | **404** | Not Found |  -  |
 
-<a name="customerCareItemsUsingPOST"></a>
-# **customerCareItemsUsingPOST**
-> EntityModelOfShipment customerCareItemsUsingPOST(shipmentNumber, ifMatch, rejectItemsRequest)
+<a name="customerCareItems"></a>
+# **customerCareItems**
+> EntityModelOfShipment customerCareItems(shipmentNumber, rejectItemsRequestDto, ifMatch)
 
-Customer Care Items
+customerCareItems
 
-Send items to Customer Care
+Places shipment items into Customer Care.
 
 ### Example
 ```java
@@ -693,7 +635,6 @@ Send items to Customer Care
 import com.kibocommerce.sdk.fulfillment.ApiClient;
 import com.kibocommerce.sdk.fulfillment.ApiException;
 import com.kibocommerce.sdk.fulfillment.Configuration;
-import com.kibocommerce.sdk.fulfillment.auth.*;
 import com.kibocommerce.sdk.fulfillment.models.*;
 import com.kibocommerce.sdk.fulfillment.api.ShipmentApi;
 
@@ -701,24 +642,16 @@ public class Example {
   public static void main(String[] args) {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
     defaultClient.setBasePath("http://https:/api");
-    
-    // Configure HTTP bearer authorization: bearerAuth
-    HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
-    bearerAuth.setBearerToken("BEARER TOKEN");
-
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
 
     ShipmentApi apiInstance = new ShipmentApi(defaultClient);
     Integer shipmentNumber = 56; // Integer | shipmentNumber
+    RejectItemsRequest rejectItemsRequestDto = new RejectItemsRequest(); // RejectItemsRequest | rejectItemsRequestDto
     String ifMatch = "ifMatch_example"; // String | If-Match
-    RejectItemsRequest rejectItemsRequest = new RejectItemsRequest(); // RejectItemsRequest | 
     try {
-      EntityModelOfShipment result = apiInstance.customerCareItemsUsingPOST(shipmentNumber, ifMatch, rejectItemsRequest);
+      EntityModelOfShipment result = apiInstance.customerCareItems(shipmentNumber, rejectItemsRequestDto, ifMatch);
       System.out.println(result);
     } catch (ApiException e) {
-      System.err.println("Exception when calling ShipmentApi#customerCareItemsUsingPOST");
+      System.err.println("Exception when calling ShipmentApi#customerCareItems");
       System.err.println("Status code: " + e.getCode());
       System.err.println("Reason: " + e.getResponseBody());
       System.err.println("Response headers: " + e.getResponseHeaders());
@@ -733,8 +666,8 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **shipmentNumber** | **Integer**| shipmentNumber | |
+| **rejectItemsRequestDto** | [**RejectItemsRequest**](RejectItemsRequest.md)| rejectItemsRequestDto | |
 | **ifMatch** | **String**| If-Match | [optional] |
-| **rejectItemsRequest** | [**RejectItemsRequest**](RejectItemsRequest.md)|  | [optional] |
 
 ### Return type
 
@@ -742,12 +675,12 @@ public class Example {
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth), [clientOauth2](../README.md#clientOauth2)
+No authorization required
 
 ### HTTP request headers
 
  - **Content-Type**: application/json
- - **Accept**: application/json, application/xml, application/hal+json
+ - **Accept**: application/hal+json, application/json, application/xml
 
 ### HTTP response details
 | Status code | Description | Response headers |
@@ -758,13 +691,13 @@ public class Example {
 | **403** | Forbidden |  -  |
 | **404** | Not Found |  -  |
 
-<a name="customerCareShipmentUsingPUT"></a>
-# **customerCareShipmentUsingPUT**
-> EntityModelOfShipment customerCareShipmentUsingPUT(shipmentNumber, ifMatch, rejectShipment)
+<a name="customerCareShipment"></a>
+# **customerCareShipment**
+> EntityModelOfShipment customerCareShipment(shipmentNumber, rejectShipmentRequestDto, ifMatch)
 
-Customer Care Shipment
+customerCareShipment
 
-Send a shipment to Customer Care
+Places a shipment into Customer Care.
 
 ### Example
 ```java
@@ -772,7 +705,6 @@ Send a shipment to Customer Care
 import com.kibocommerce.sdk.fulfillment.ApiClient;
 import com.kibocommerce.sdk.fulfillment.ApiException;
 import com.kibocommerce.sdk.fulfillment.Configuration;
-import com.kibocommerce.sdk.fulfillment.auth.*;
 import com.kibocommerce.sdk.fulfillment.models.*;
 import com.kibocommerce.sdk.fulfillment.api.ShipmentApi;
 
@@ -780,24 +712,16 @@ public class Example {
   public static void main(String[] args) {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
     defaultClient.setBasePath("http://https:/api");
-    
-    // Configure HTTP bearer authorization: bearerAuth
-    HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
-    bearerAuth.setBearerToken("BEARER TOKEN");
-
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
 
     ShipmentApi apiInstance = new ShipmentApi(defaultClient);
     Integer shipmentNumber = 56; // Integer | shipmentNumber
+    RejectShipment rejectShipmentRequestDto = new RejectShipment(); // RejectShipment | rejectShipmentRequestDto
     String ifMatch = "ifMatch_example"; // String | If-Match
-    RejectShipment rejectShipment = new RejectShipment(); // RejectShipment | 
     try {
-      EntityModelOfShipment result = apiInstance.customerCareShipmentUsingPUT(shipmentNumber, ifMatch, rejectShipment);
+      EntityModelOfShipment result = apiInstance.customerCareShipment(shipmentNumber, rejectShipmentRequestDto, ifMatch);
       System.out.println(result);
     } catch (ApiException e) {
-      System.err.println("Exception when calling ShipmentApi#customerCareShipmentUsingPUT");
+      System.err.println("Exception when calling ShipmentApi#customerCareShipment");
       System.err.println("Status code: " + e.getCode());
       System.err.println("Reason: " + e.getResponseBody());
       System.err.println("Response headers: " + e.getResponseHeaders());
@@ -812,8 +736,8 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **shipmentNumber** | **Integer**| shipmentNumber | |
+| **rejectShipmentRequestDto** | [**RejectShipment**](RejectShipment.md)| rejectShipmentRequestDto | |
 | **ifMatch** | **String**| If-Match | [optional] |
-| **rejectShipment** | [**RejectShipment**](RejectShipment.md)|  | [optional] |
 
 ### Return type
 
@@ -821,12 +745,12 @@ public class Example {
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth), [clientOauth2](../README.md#clientOauth2)
+No authorization required
 
 ### HTTP request headers
 
  - **Content-Type**: application/json
- - **Accept**: application/json, application/xml, application/hal+json
+ - **Accept**: application/hal+json, application/json, application/xml
 
 ### HTTP response details
 | Status code | Description | Response headers |
@@ -837,13 +761,13 @@ public class Example {
 | **403** | Forbidden |  -  |
 | **404** | Not Found |  -  |
 
-<a name="customerInTransitUsingPUT"></a>
-# **customerInTransitUsingPUT**
-> EntityModelOfShipment customerInTransitUsingPUT(shipmentNumber, ifMatch)
+<a name="customerInTransit"></a>
+# **customerInTransit**
+> EntityModelOfShipment customerInTransit(shipmentNumber, ifMatch)
 
-Customer In Transit
+Customer in Transit
 
-Indicate that a customer is on their way to the store for curbside delivery.
+Indicates that the customer is in transit for pickup.
 
 ### Example
 ```java
@@ -851,7 +775,6 @@ Indicate that a customer is on their way to the store for curbside delivery.
 import com.kibocommerce.sdk.fulfillment.ApiClient;
 import com.kibocommerce.sdk.fulfillment.ApiException;
 import com.kibocommerce.sdk.fulfillment.Configuration;
-import com.kibocommerce.sdk.fulfillment.auth.*;
 import com.kibocommerce.sdk.fulfillment.models.*;
 import com.kibocommerce.sdk.fulfillment.api.ShipmentApi;
 
@@ -859,23 +782,15 @@ public class Example {
   public static void main(String[] args) {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
     defaultClient.setBasePath("http://https:/api");
-    
-    // Configure HTTP bearer authorization: bearerAuth
-    HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
-    bearerAuth.setBearerToken("BEARER TOKEN");
-
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
 
     ShipmentApi apiInstance = new ShipmentApi(defaultClient);
     Integer shipmentNumber = 56; // Integer | shipmentNumber
     String ifMatch = "ifMatch_example"; // String | If-Match
     try {
-      EntityModelOfShipment result = apiInstance.customerInTransitUsingPUT(shipmentNumber, ifMatch);
+      EntityModelOfShipment result = apiInstance.customerInTransit(shipmentNumber, ifMatch);
       System.out.println(result);
     } catch (ApiException e) {
-      System.err.println("Exception when calling ShipmentApi#customerInTransitUsingPUT");
+      System.err.println("Exception when calling ShipmentApi#customerInTransit");
       System.err.println("Status code: " + e.getCode());
       System.err.println("Reason: " + e.getResponseBody());
       System.err.println("Response headers: " + e.getResponseHeaders());
@@ -898,12 +813,12 @@ public class Example {
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth), [clientOauth2](../README.md#clientOauth2)
+No authorization required
 
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: application/json, application/xml, application/hal+json
+ - **Accept**: application/hal+json, application/json, application/xml
 
 ### HTTP response details
 | Status code | Description | Response headers |
@@ -914,13 +829,13 @@ public class Example {
 | **403** | Forbidden |  -  |
 | **404** | Not Found |  -  |
 
-<a name="deleteShipmentUsingDELETE"></a>
-# **deleteShipmentUsingDELETE**
-> deleteShipmentUsingDELETE(shipmentNumber, ifMatch)
+<a name="deleteShipment"></a>
+# **deleteShipment**
+> deleteShipment(shipmentNumber, ifMatch)
 
-Delete Shipment
+deleteShipment
 
-Delete Shipment
+Delete a shipment.
 
 ### Example
 ```java
@@ -928,7 +843,6 @@ Delete Shipment
 import com.kibocommerce.sdk.fulfillment.ApiClient;
 import com.kibocommerce.sdk.fulfillment.ApiException;
 import com.kibocommerce.sdk.fulfillment.Configuration;
-import com.kibocommerce.sdk.fulfillment.auth.*;
 import com.kibocommerce.sdk.fulfillment.models.*;
 import com.kibocommerce.sdk.fulfillment.api.ShipmentApi;
 
@@ -936,22 +850,14 @@ public class Example {
   public static void main(String[] args) {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
     defaultClient.setBasePath("http://https:/api");
-    
-    // Configure HTTP bearer authorization: bearerAuth
-    HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
-    bearerAuth.setBearerToken("BEARER TOKEN");
-
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
 
     ShipmentApi apiInstance = new ShipmentApi(defaultClient);
-    Integer shipmentNumber = 56; // Integer | Number of the shipment to be deleted. Cannot be empty.
+    Integer shipmentNumber = 56; // Integer | shipmentNumber
     String ifMatch = "ifMatch_example"; // String | If-Match
     try {
-      apiInstance.deleteShipmentUsingDELETE(shipmentNumber, ifMatch);
+      apiInstance.deleteShipment(shipmentNumber, ifMatch);
     } catch (ApiException e) {
-      System.err.println("Exception when calling ShipmentApi#deleteShipmentUsingDELETE");
+      System.err.println("Exception when calling ShipmentApi#deleteShipment");
       System.err.println("Status code: " + e.getCode());
       System.err.println("Reason: " + e.getResponseBody());
       System.err.println("Response headers: " + e.getResponseHeaders());
@@ -965,7 +871,7 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **shipmentNumber** | **Integer**| Number of the shipment to be deleted. Cannot be empty. | |
+| **shipmentNumber** | **Integer**| shipmentNumber | |
 | **ifMatch** | **String**| If-Match | [optional] |
 
 ### Return type
@@ -974,7 +880,7 @@ null (empty response body)
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth), [clientOauth2](../README.md#clientOauth2)
+No authorization required
 
 ### HTTP request headers
 
@@ -984,18 +890,17 @@ null (empty response body)
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **204** | Success |  -  |
+| **204** | No Content |  -  |
 | **401** | Unauthorized |  -  |
 | **403** | Forbidden |  -  |
-| **404** | Not Found |  -  |
 
-<a name="deleteShipmentsOfOrderUsingDELETE"></a>
-# **deleteShipmentsOfOrderUsingDELETE**
-> deleteShipmentsOfOrderUsingDELETE(orderId)
+<a name="deleteShipmentsOfOrder"></a>
+# **deleteShipmentsOfOrder**
+> deleteShipmentsOfOrder(orderId)
 
-Delete Shipments from Order
+Delete Order Shipments
 
-Delete Shipments from Order
+Delete the shipments of an order.
 
 ### Example
 ```java
@@ -1003,7 +908,6 @@ Delete Shipments from Order
 import com.kibocommerce.sdk.fulfillment.ApiClient;
 import com.kibocommerce.sdk.fulfillment.ApiException;
 import com.kibocommerce.sdk.fulfillment.Configuration;
-import com.kibocommerce.sdk.fulfillment.auth.*;
 import com.kibocommerce.sdk.fulfillment.models.*;
 import com.kibocommerce.sdk.fulfillment.api.ShipmentApi;
 
@@ -1011,21 +915,13 @@ public class Example {
   public static void main(String[] args) {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
     defaultClient.setBasePath("http://https:/api");
-    
-    // Configure HTTP bearer authorization: bearerAuth
-    HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
-    bearerAuth.setBearerToken("BEARER TOKEN");
-
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
 
     ShipmentApi apiInstance = new ShipmentApi(defaultClient);
-    String orderId = "orderId_example"; // String | Unique identifier of the order to delete shipments from. Cannot be empty.
+    String orderId = "orderId_example"; // String | orderId
     try {
-      apiInstance.deleteShipmentsOfOrderUsingDELETE(orderId);
+      apiInstance.deleteShipmentsOfOrder(orderId);
     } catch (ApiException e) {
-      System.err.println("Exception when calling ShipmentApi#deleteShipmentsOfOrderUsingDELETE");
+      System.err.println("Exception when calling ShipmentApi#deleteShipmentsOfOrder");
       System.err.println("Status code: " + e.getCode());
       System.err.println("Reason: " + e.getResponseBody());
       System.err.println("Response headers: " + e.getResponseHeaders());
@@ -1039,7 +935,7 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **orderId** | **String**| Unique identifier of the order to delete shipments from. Cannot be empty. | |
+| **orderId** | **String**| orderId | |
 
 ### Return type
 
@@ -1047,7 +943,7 @@ null (empty response body)
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth), [clientOauth2](../README.md#clientOauth2)
+No authorization required
 
 ### HTTP request headers
 
@@ -1057,18 +953,17 @@ null (empty response body)
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **204** | Success |  -  |
+| **204** | No Content |  -  |
 | **401** | Unauthorized |  -  |
 | **403** | Forbidden |  -  |
-| **404** | Not Found |  -  |
 
-<a name="destinationUpdateUsingPUT"></a>
-# **destinationUpdateUsingPUT**
-> EntityModelOfShipment destinationUpdateUsingPUT(shipmentNumber, ifMatch, fulfillmentDestination)
+<a name="destinationUpdate"></a>
+# **destinationUpdate**
+> EntityModelOfShipment destinationUpdate(shipmentNumber, destinationDto, ifMatch)
 
-Update Destination
+Destination Update
 
-Update Destination
+Update a shipment&#39;s destination.
 
 ### Example
 ```java
@@ -1076,7 +971,6 @@ Update Destination
 import com.kibocommerce.sdk.fulfillment.ApiClient;
 import com.kibocommerce.sdk.fulfillment.ApiException;
 import com.kibocommerce.sdk.fulfillment.Configuration;
-import com.kibocommerce.sdk.fulfillment.auth.*;
 import com.kibocommerce.sdk.fulfillment.models.*;
 import com.kibocommerce.sdk.fulfillment.api.ShipmentApi;
 
@@ -1084,24 +978,16 @@ public class Example {
   public static void main(String[] args) {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
     defaultClient.setBasePath("http://https:/api");
-    
-    // Configure HTTP bearer authorization: bearerAuth
-    HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
-    bearerAuth.setBearerToken("BEARER TOKEN");
-
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
 
     ShipmentApi apiInstance = new ShipmentApi(defaultClient);
     Integer shipmentNumber = 56; // Integer | shipmentNumber
+    FulfillmentAPIDestination destinationDto = new FulfillmentAPIDestination(); // FulfillmentAPIDestination | destinationDto
     String ifMatch = "ifMatch_example"; // String | If-Match
-    FulfillmentDestination fulfillmentDestination = new FulfillmentDestination(); // FulfillmentDestination | 
     try {
-      EntityModelOfShipment result = apiInstance.destinationUpdateUsingPUT(shipmentNumber, ifMatch, fulfillmentDestination);
+      EntityModelOfShipment result = apiInstance.destinationUpdate(shipmentNumber, destinationDto, ifMatch);
       System.out.println(result);
     } catch (ApiException e) {
-      System.err.println("Exception when calling ShipmentApi#destinationUpdateUsingPUT");
+      System.err.println("Exception when calling ShipmentApi#destinationUpdate");
       System.err.println("Status code: " + e.getCode());
       System.err.println("Reason: " + e.getResponseBody());
       System.err.println("Response headers: " + e.getResponseHeaders());
@@ -1116,8 +1002,8 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **shipmentNumber** | **Integer**| shipmentNumber | |
+| **destinationDto** | [**FulfillmentAPIDestination**](FulfillmentAPIDestination.md)| destinationDto | |
 | **ifMatch** | **String**| If-Match | [optional] |
-| **fulfillmentDestination** | [**FulfillmentDestination**](FulfillmentDestination.md)|  | [optional] |
 
 ### Return type
 
@@ -1125,12 +1011,12 @@ public class Example {
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth), [clientOauth2](../README.md#clientOauth2)
+No authorization required
 
 ### HTTP request headers
 
  - **Content-Type**: application/json
- - **Accept**: application/json, application/xml, application/hal+json
+ - **Accept**: application/hal+json, application/json, application/xml
 
 ### HTTP response details
 | Status code | Description | Response headers |
@@ -1141,13 +1027,13 @@ public class Example {
 | **403** | Forbidden |  -  |
 | **404** | Not Found |  -  |
 
-<a name="executeUsingPUT"></a>
-# **executeUsingPUT**
-> EntityModelOfShipment executeUsingPUT(shipmentNumber, taskName, ifMatch, taskComplete)
+<a name="estimatedDeliveryDateClear"></a>
+# **estimatedDeliveryDateClear**
+> EntityModelOfShipment estimatedDeliveryDateClear(shipmentNumber, xVolTenant, ifMatch, xVolSite)
 
-Complete Workflow Task
+estimatedDeliveryDateClear
 
-Complete Workflow Task
+estimatedDeliveryDateClear
 
 ### Example
 ```java
@@ -1155,7 +1041,6 @@ Complete Workflow Task
 import com.kibocommerce.sdk.fulfillment.ApiClient;
 import com.kibocommerce.sdk.fulfillment.ApiException;
 import com.kibocommerce.sdk.fulfillment.Configuration;
-import com.kibocommerce.sdk.fulfillment.auth.*;
 import com.kibocommerce.sdk.fulfillment.models.*;
 import com.kibocommerce.sdk.fulfillment.api.ShipmentApi;
 
@@ -1163,25 +1048,162 @@ public class Example {
   public static void main(String[] args) {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
     defaultClient.setBasePath("http://https:/api");
-    
-    // Configure HTTP bearer authorization: bearerAuth
-    HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
-    bearerAuth.setBearerToken("BEARER TOKEN");
 
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
+    ShipmentApi apiInstance = new ShipmentApi(defaultClient);
+    Integer shipmentNumber = 56; // Integer | shipmentNumber
+    Integer xVolTenant = 56; // Integer | 
+    String ifMatch = "ifMatch_example"; // String | If-Match
+    Integer xVolSite = 56; // Integer | 
+    try {
+      EntityModelOfShipment result = apiInstance.estimatedDeliveryDateClear(shipmentNumber, xVolTenant, ifMatch, xVolSite);
+      System.out.println(result);
+    } catch (ApiException e) {
+      System.err.println("Exception when calling ShipmentApi#estimatedDeliveryDateClear");
+      System.err.println("Status code: " + e.getCode());
+      System.err.println("Reason: " + e.getResponseBody());
+      System.err.println("Response headers: " + e.getResponseHeaders());
+      e.printStackTrace();
+    }
+  }
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **shipmentNumber** | **Integer**| shipmentNumber | |
+| **xVolTenant** | **Integer**|  | |
+| **ifMatch** | **String**| If-Match | [optional] |
+| **xVolSite** | **Integer**|  | [optional] |
+
+### Return type
+
+[**EntityModelOfShipment**](EntityModelOfShipment.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/hal+json, application/json, application/xml
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | OK |  -  |
+| **204** | No Content |  -  |
+| **401** | Unauthorized |  -  |
+| **403** | Forbidden |  -  |
+
+<a name="estimatedDeliveryDateUpdate"></a>
+# **estimatedDeliveryDateUpdate**
+> EntityModelOfShipment estimatedDeliveryDateUpdate(shipmentNumber, xVolTenant, estimatedDeliveryDateUpdateRequest, ifMatch, xVolSite)
+
+estimatedDeliveryDateUpdate
+
+estimatedDeliveryDateUpdate
+
+### Example
+```java
+// Import classes:
+import com.kibocommerce.sdk.fulfillment.ApiClient;
+import com.kibocommerce.sdk.fulfillment.ApiException;
+import com.kibocommerce.sdk.fulfillment.Configuration;
+import com.kibocommerce.sdk.fulfillment.models.*;
+import com.kibocommerce.sdk.fulfillment.api.ShipmentApi;
+
+public class Example {
+  public static void main(String[] args) {
+    ApiClient defaultClient = Configuration.getDefaultApiClient();
+    defaultClient.setBasePath("http://https:/api");
+
+    ShipmentApi apiInstance = new ShipmentApi(defaultClient);
+    Integer shipmentNumber = 56; // Integer | shipmentNumber
+    Integer xVolTenant = 56; // Integer | 
+    EstimatedDeliveryDateUpdateRequest estimatedDeliveryDateUpdateRequest = new EstimatedDeliveryDateUpdateRequest(); // EstimatedDeliveryDateUpdateRequest | estimatedDeliveryDateUpdateRequestDto
+    String ifMatch = "ifMatch_example"; // String | If-Match
+    Integer xVolSite = 56; // Integer | 
+    try {
+      EntityModelOfShipment result = apiInstance.estimatedDeliveryDateUpdate(shipmentNumber, xVolTenant, estimatedDeliveryDateUpdateRequest, ifMatch, xVolSite);
+      System.out.println(result);
+    } catch (ApiException e) {
+      System.err.println("Exception when calling ShipmentApi#estimatedDeliveryDateUpdate");
+      System.err.println("Status code: " + e.getCode());
+      System.err.println("Reason: " + e.getResponseBody());
+      System.err.println("Response headers: " + e.getResponseHeaders());
+      e.printStackTrace();
+    }
+  }
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **shipmentNumber** | **Integer**| shipmentNumber | |
+| **xVolTenant** | **Integer**|  | |
+| **estimatedDeliveryDateUpdateRequest** | [**EstimatedDeliveryDateUpdateRequest**](EstimatedDeliveryDateUpdateRequest.md)| estimatedDeliveryDateUpdateRequestDto | |
+| **ifMatch** | **String**| If-Match | [optional] |
+| **xVolSite** | **Integer**|  | [optional] |
+
+### Return type
+
+[**EntityModelOfShipment**](EntityModelOfShipment.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/hal+json, application/json, application/xml
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | OK |  -  |
+| **201** | Created |  -  |
+| **401** | Unauthorized |  -  |
+| **403** | Forbidden |  -  |
+| **404** | Not Found |  -  |
+
+<a name="execute"></a>
+# **execute**
+> EntityModelOfShipment execute(shipmentNumber, taskName, taskCompleteDto, ifMatch)
+
+Execute Task
+
+Complete a shipment task.
+
+### Example
+```java
+// Import classes:
+import com.kibocommerce.sdk.fulfillment.ApiClient;
+import com.kibocommerce.sdk.fulfillment.ApiException;
+import com.kibocommerce.sdk.fulfillment.Configuration;
+import com.kibocommerce.sdk.fulfillment.models.*;
+import com.kibocommerce.sdk.fulfillment.api.ShipmentApi;
+
+public class Example {
+  public static void main(String[] args) {
+    ApiClient defaultClient = Configuration.getDefaultApiClient();
+    defaultClient.setBasePath("http://https:/api");
 
     ShipmentApi apiInstance = new ShipmentApi(defaultClient);
     Integer shipmentNumber = 56; // Integer | shipmentNumber
     String taskName = "taskName_example"; // String | taskName
+    TaskComplete taskCompleteDto = new TaskComplete(); // TaskComplete | taskCompleteDto
     String ifMatch = "ifMatch_example"; // String | If-Match
-    TaskComplete taskComplete = new TaskComplete(); // TaskComplete | 
     try {
-      EntityModelOfShipment result = apiInstance.executeUsingPUT(shipmentNumber, taskName, ifMatch, taskComplete);
+      EntityModelOfShipment result = apiInstance.execute(shipmentNumber, taskName, taskCompleteDto, ifMatch);
       System.out.println(result);
     } catch (ApiException e) {
-      System.err.println("Exception when calling ShipmentApi#executeUsingPUT");
+      System.err.println("Exception when calling ShipmentApi#execute");
       System.err.println("Status code: " + e.getCode());
       System.err.println("Reason: " + e.getResponseBody());
       System.err.println("Response headers: " + e.getResponseHeaders());
@@ -1197,8 +1219,8 @@ public class Example {
 |------------- | ------------- | ------------- | -------------|
 | **shipmentNumber** | **Integer**| shipmentNumber | |
 | **taskName** | **String**| taskName | |
+| **taskCompleteDto** | [**TaskComplete**](TaskComplete.md)| taskCompleteDto | |
 | **ifMatch** | **String**| If-Match | [optional] |
-| **taskComplete** | [**TaskComplete**](TaskComplete.md)|  | [optional] |
 
 ### Return type
 
@@ -1206,12 +1228,12 @@ public class Example {
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth), [clientOauth2](../README.md#clientOauth2)
+No authorization required
 
 ### HTTP request headers
 
  - **Content-Type**: application/json
- - **Accept**: application/json, application/xml, application/hal+json
+ - **Accept**: application/hal+json, application/json, application/xml
 
 ### HTTP response details
 | Status code | Description | Response headers |
@@ -1222,13 +1244,13 @@ public class Example {
 | **403** | Forbidden |  -  |
 | **404** | Not Found |  -  |
 
-<a name="fulfillShipmentUsingPUT"></a>
-# **fulfillShipmentUsingPUT**
-> EntityModelOfShipment fulfillShipmentUsingPUT(shipmentNumber, ifMatch)
+<a name="fulfillShipment"></a>
+# **fulfillShipment**
+> EntityModelOfShipment fulfillShipment(shipmentNumber, ifMatch)
 
-Fulfill Shipment
+fulfillShipment
 
-Fulfill Shipment
+Mark a shipment as fulfilled.
 
 ### Example
 ```java
@@ -1236,7 +1258,6 @@ Fulfill Shipment
 import com.kibocommerce.sdk.fulfillment.ApiClient;
 import com.kibocommerce.sdk.fulfillment.ApiException;
 import com.kibocommerce.sdk.fulfillment.Configuration;
-import com.kibocommerce.sdk.fulfillment.auth.*;
 import com.kibocommerce.sdk.fulfillment.models.*;
 import com.kibocommerce.sdk.fulfillment.api.ShipmentApi;
 
@@ -1244,23 +1265,15 @@ public class Example {
   public static void main(String[] args) {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
     defaultClient.setBasePath("http://https:/api");
-    
-    // Configure HTTP bearer authorization: bearerAuth
-    HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
-    bearerAuth.setBearerToken("BEARER TOKEN");
-
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
 
     ShipmentApi apiInstance = new ShipmentApi(defaultClient);
     Integer shipmentNumber = 56; // Integer | shipmentNumber
     String ifMatch = "ifMatch_example"; // String | If-Match
     try {
-      EntityModelOfShipment result = apiInstance.fulfillShipmentUsingPUT(shipmentNumber, ifMatch);
+      EntityModelOfShipment result = apiInstance.fulfillShipment(shipmentNumber, ifMatch);
       System.out.println(result);
     } catch (ApiException e) {
-      System.err.println("Exception when calling ShipmentApi#fulfillShipmentUsingPUT");
+      System.err.println("Exception when calling ShipmentApi#fulfillShipment");
       System.err.println("Status code: " + e.getCode());
       System.err.println("Reason: " + e.getResponseBody());
       System.err.println("Response headers: " + e.getResponseHeaders());
@@ -1283,29 +1296,29 @@ public class Example {
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth), [clientOauth2](../README.md#clientOauth2)
+No authorization required
 
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: application/json, application/xml, application/hal+json
+ - **Accept**: application/hal+json, application/json, application/xml
 
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Success |  -  |
+| **200** | OK |  -  |
 | **201** | Created |  -  |
 | **401** | Unauthorized |  -  |
 | **403** | Forbidden |  -  |
-| **404** | Shipment not found |  -  |
+| **404** | Not Found |  -  |
 
-<a name="getLocationSummaryReportUsingGET"></a>
-# **getLocationSummaryReportUsingGET**
-> CollectionModelOfLocationSummary getLocationSummaryReportUsingGET(locationCodes, startDateTime, bypassSearchIndex)
+<a name="getLocationShipmentCount"></a>
+# **getLocationShipmentCount**
+> CollectionModelOfLocationShipmentCount getLocationShipmentCount(locationCodes, startDateTime, xVolTenant, bypassSearchIndex, xVolSite)
 
-Get Location Summary Report
+getLocationShipmentCount
 
-Get Location Summary Report
+getLocationShipmentCount
 
 ### Example
 ```java
@@ -1313,7 +1326,6 @@ Get Location Summary Report
 import com.kibocommerce.sdk.fulfillment.ApiClient;
 import com.kibocommerce.sdk.fulfillment.ApiException;
 import com.kibocommerce.sdk.fulfillment.Configuration;
-import com.kibocommerce.sdk.fulfillment.auth.*;
 import com.kibocommerce.sdk.fulfillment.models.*;
 import com.kibocommerce.sdk.fulfillment.api.ShipmentApi;
 
@@ -1321,24 +1333,18 @@ public class Example {
   public static void main(String[] args) {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
     defaultClient.setBasePath("http://https:/api");
-    
-    // Configure HTTP bearer authorization: bearerAuth
-    HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
-    bearerAuth.setBearerToken("BEARER TOKEN");
-
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
 
     ShipmentApi apiInstance = new ShipmentApi(defaultClient);
-    String locationCodes = "locationCodes_example"; // String | locationCodes
+    List<String> locationCodes = Arrays.asList(); // List<String> | locationCodes
     OffsetDateTime startDateTime = OffsetDateTime.now(); // OffsetDateTime | startDateTime
+    Integer xVolTenant = 56; // Integer | 
     Boolean bypassSearchIndex = true; // Boolean | bypassSearchIndex
+    Integer xVolSite = 56; // Integer | 
     try {
-      CollectionModelOfLocationSummary result = apiInstance.getLocationSummaryReportUsingGET(locationCodes, startDateTime, bypassSearchIndex);
+      CollectionModelOfLocationShipmentCount result = apiInstance.getLocationShipmentCount(locationCodes, startDateTime, xVolTenant, bypassSearchIndex, xVolSite);
       System.out.println(result);
     } catch (ApiException e) {
-      System.err.println("Exception when calling ShipmentApi#getLocationSummaryReportUsingGET");
+      System.err.println("Exception when calling ShipmentApi#getLocationShipmentCount");
       System.err.println("Status code: " + e.getCode());
       System.err.println("Reason: " + e.getResponseBody());
       System.err.println("Response headers: " + e.getResponseHeaders());
@@ -1352,22 +1358,24 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **locationCodes** | **String**| locationCodes | |
+| **locationCodes** | [**List&lt;String&gt;**](String.md)| locationCodes | |
 | **startDateTime** | **OffsetDateTime**| startDateTime | |
+| **xVolTenant** | **Integer**|  | |
 | **bypassSearchIndex** | **Boolean**| bypassSearchIndex | [optional] |
+| **xVolSite** | **Integer**|  | [optional] |
 
 ### Return type
 
-[**CollectionModelOfLocationSummary**](CollectionModelOfLocationSummary.md)
+[**CollectionModelOfLocationShipmentCount**](CollectionModelOfLocationShipmentCount.md)
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth), [clientOauth2](../README.md#clientOauth2)
+No authorization required
 
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: application/json, application/xml, application/hal+json
+ - **Accept**: application/hal+json, application/json, application/xml
 
 ### HTTP response details
 | Status code | Description | Response headers |
@@ -1377,13 +1385,13 @@ public class Example {
 | **403** | Forbidden |  -  |
 | **404** | Not Found |  -  |
 
-<a name="getShipmentStepCountByShipmentTypeUsingGET"></a>
-# **getShipmentStepCountByShipmentTypeUsingGET**
-> EntityModelOfDashboardResponse getShipmentStepCountByShipmentTypeUsingGET(shipmentType, assignedLocations)
+<a name="getLocationSummaryReport"></a>
+# **getLocationSummaryReport**
+> CollectionModelOfLocationSummary getLocationSummaryReport(locationCodes, startDateTime, bypassSearchIndex)
 
-Get Workflow Task Counts
+getLocationSummaryReport
 
-Get Workflow Task Counts
+Get a location summary report.
 
 ### Example
 ```java
@@ -1391,7 +1399,6 @@ Get Workflow Task Counts
 import com.kibocommerce.sdk.fulfillment.ApiClient;
 import com.kibocommerce.sdk.fulfillment.ApiException;
 import com.kibocommerce.sdk.fulfillment.Configuration;
-import com.kibocommerce.sdk.fulfillment.auth.*;
 import com.kibocommerce.sdk.fulfillment.models.*;
 import com.kibocommerce.sdk.fulfillment.api.ShipmentApi;
 
@@ -1399,23 +1406,149 @@ public class Example {
   public static void main(String[] args) {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
     defaultClient.setBasePath("http://https:/api");
-    
-    // Configure HTTP bearer authorization: bearerAuth
-    HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
-    bearerAuth.setBearerToken("BEARER TOKEN");
 
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
+    ShipmentApi apiInstance = new ShipmentApi(defaultClient);
+    List<String> locationCodes = Arrays.asList(); // List<String> | locationCodes
+    OffsetDateTime startDateTime = OffsetDateTime.now(); // OffsetDateTime | startDateTime
+    Boolean bypassSearchIndex = true; // Boolean | bypassSearchIndex
+    try {
+      CollectionModelOfLocationSummary result = apiInstance.getLocationSummaryReport(locationCodes, startDateTime, bypassSearchIndex);
+      System.out.println(result);
+    } catch (ApiException e) {
+      System.err.println("Exception when calling ShipmentApi#getLocationSummaryReport");
+      System.err.println("Status code: " + e.getCode());
+      System.err.println("Reason: " + e.getResponseBody());
+      System.err.println("Response headers: " + e.getResponseHeaders());
+      e.printStackTrace();
+    }
+  }
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **locationCodes** | [**List&lt;String&gt;**](String.md)| locationCodes | |
+| **startDateTime** | **OffsetDateTime**| startDateTime | |
+| **bypassSearchIndex** | **Boolean**| bypassSearchIndex | [optional] |
+
+### Return type
+
+[**CollectionModelOfLocationSummary**](CollectionModelOfLocationSummary.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/hal+json, application/json, application/xml
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | OK |  -  |
+| **401** | Unauthorized |  -  |
+| **403** | Forbidden |  -  |
+| **404** | Not Found |  -  |
+
+<a name="getShipment"></a>
+# **getShipment**
+> EntityModelOfShipment getShipment(shipmentNumber)
+
+getShipment
+
+Get a specific shipment by its number.
+
+### Example
+```java
+// Import classes:
+import com.kibocommerce.sdk.fulfillment.ApiClient;
+import com.kibocommerce.sdk.fulfillment.ApiException;
+import com.kibocommerce.sdk.fulfillment.Configuration;
+import com.kibocommerce.sdk.fulfillment.models.*;
+import com.kibocommerce.sdk.fulfillment.api.ShipmentApi;
+
+public class Example {
+  public static void main(String[] args) {
+    ApiClient defaultClient = Configuration.getDefaultApiClient();
+    defaultClient.setBasePath("http://https:/api");
+
+    ShipmentApi apiInstance = new ShipmentApi(defaultClient);
+    Integer shipmentNumber = 56; // Integer | shipmentNumber
+    try {
+      EntityModelOfShipment result = apiInstance.getShipment(shipmentNumber);
+      System.out.println(result);
+    } catch (ApiException e) {
+      System.err.println("Exception when calling ShipmentApi#getShipment");
+      System.err.println("Status code: " + e.getCode());
+      System.err.println("Reason: " + e.getResponseBody());
+      System.err.println("Response headers: " + e.getResponseHeaders());
+      e.printStackTrace();
+    }
+  }
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **shipmentNumber** | **Integer**| shipmentNumber | |
+
+### Return type
+
+[**EntityModelOfShipment**](EntityModelOfShipment.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/hal+json, application/json, application/xml
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | OK |  -  |
+| **401** | Unauthorized |  -  |
+| **403** | Forbidden |  -  |
+| **404** | Not Found |  -  |
+
+<a name="getShipmentStepCountByShipmentType"></a>
+# **getShipmentStepCountByShipmentType**
+> EntityModelOfDashboardResponse getShipmentStepCountByShipmentType(shipmentType, assignedLocations)
+
+Get Shipment Step Count by Shipment Type
+
+Get the step counts of shipment types.
+
+### Example
+```java
+// Import classes:
+import com.kibocommerce.sdk.fulfillment.ApiClient;
+import com.kibocommerce.sdk.fulfillment.ApiException;
+import com.kibocommerce.sdk.fulfillment.Configuration;
+import com.kibocommerce.sdk.fulfillment.models.*;
+import com.kibocommerce.sdk.fulfillment.api.ShipmentApi;
+
+public class Example {
+  public static void main(String[] args) {
+    ApiClient defaultClient = Configuration.getDefaultApiClient();
+    defaultClient.setBasePath("http://https:/api");
 
     ShipmentApi apiInstance = new ShipmentApi(defaultClient);
     String shipmentType = "shipmentType_example"; // String | shipmentType
-    String assignedLocations = "assignedLocations_example"; // String | assignedLocations
+    List<String> assignedLocations = Arrays.asList(); // List<String> | assignedLocations
     try {
-      EntityModelOfDashboardResponse result = apiInstance.getShipmentStepCountByShipmentTypeUsingGET(shipmentType, assignedLocations);
+      EntityModelOfDashboardResponse result = apiInstance.getShipmentStepCountByShipmentType(shipmentType, assignedLocations);
       System.out.println(result);
     } catch (ApiException e) {
-      System.err.println("Exception when calling ShipmentApi#getShipmentStepCountByShipmentTypeUsingGET");
+      System.err.println("Exception when calling ShipmentApi#getShipmentStepCountByShipmentType");
       System.err.println("Status code: " + e.getCode());
       System.err.println("Reason: " + e.getResponseBody());
       System.err.println("Response headers: " + e.getResponseHeaders());
@@ -1430,7 +1563,7 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **shipmentType** | **String**| shipmentType | |
-| **assignedLocations** | **String**| assignedLocations | [optional] |
+| **assignedLocations** | [**List&lt;String&gt;**](String.md)| assignedLocations | [optional] |
 
 ### Return type
 
@@ -1438,12 +1571,12 @@ public class Example {
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth), [clientOauth2](../README.md#clientOauth2)
+No authorization required
 
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: application/json, application/xml, application/hal+json
+ - **Accept**: application/hal+json, application/json, application/xml
 
 ### HTTP response details
 | Status code | Description | Response headers |
@@ -1453,87 +1586,13 @@ public class Example {
 | **403** | Forbidden |  -  |
 | **404** | Not Found |  -  |
 
-<a name="getShipmentUsingGET"></a>
-# **getShipmentUsingGET**
-> EntityModelOfShipment getShipmentUsingGET(shipmentNumber)
+<a name="getShipments"></a>
+# **getShipments**
+> PagedModelOfEntityModelOfShipment getShipments(bypassSearchIndex, filter, isLate, page, pageSize, quickSearch, sort, workflowTaskName)
 
-Get Shipment
+getShipments
 
-Get shipment information. Note that the schema supports both assignedLocationCode and fulfillmentLocationCode fields at the shipment level. These fields are usually be the same, except when assignedLocationCode becomes the receiving location code after a transfer shipment is shipped.
-
-### Example
-```java
-// Import classes:
-import com.kibocommerce.sdk.fulfillment.ApiClient;
-import com.kibocommerce.sdk.fulfillment.ApiException;
-import com.kibocommerce.sdk.fulfillment.Configuration;
-import com.kibocommerce.sdk.fulfillment.auth.*;
-import com.kibocommerce.sdk.fulfillment.models.*;
-import com.kibocommerce.sdk.fulfillment.api.ShipmentApi;
-
-public class Example {
-  public static void main(String[] args) {
-    ApiClient defaultClient = Configuration.getDefaultApiClient();
-    defaultClient.setBasePath("http://https:/api");
-    
-    // Configure HTTP bearer authorization: bearerAuth
-    HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
-    bearerAuth.setBearerToken("BEARER TOKEN");
-
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
-
-    ShipmentApi apiInstance = new ShipmentApi(defaultClient);
-    Integer shipmentNumber = 56; // Integer | shipmentNumber
-    try {
-      EntityModelOfShipment result = apiInstance.getShipmentUsingGET(shipmentNumber);
-      System.out.println(result);
-    } catch (ApiException e) {
-      System.err.println("Exception when calling ShipmentApi#getShipmentUsingGET");
-      System.err.println("Status code: " + e.getCode());
-      System.err.println("Reason: " + e.getResponseBody());
-      System.err.println("Response headers: " + e.getResponseHeaders());
-      e.printStackTrace();
-    }
-  }
-}
-```
-
-### Parameters
-
-| Name | Type | Description  | Notes |
-|------------- | ------------- | ------------- | -------------|
-| **shipmentNumber** | **Integer**| shipmentNumber | |
-
-### Return type
-
-[**EntityModelOfShipment**](EntityModelOfShipment.md)
-
-### Authorization
-
-[bearerAuth](../README.md#bearerAuth), [clientOauth2](../README.md#clientOauth2)
-
-### HTTP request headers
-
- - **Content-Type**: Not defined
- - **Accept**: application/json, application/xml, application/hal+json
-
-### HTTP response details
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-| **200** | OK |  -  |
-| **401** | Unauthorized |  -  |
-| **403** | Forbidden |  -  |
-| **404** | Not Found |  -  |
-
-<a name="getShipmentsUsingGET"></a>
-# **getShipmentsUsingGET**
-> PagedModelOfEntityModelOfShipment getShipmentsUsingGET(bypassSearchIndex, filter, isLate, page, pageSize, quickSearch, sort, workflowTaskName)
-
-Get Shipments
-
-A paged list of shipments is returned according to any specified filter criteria and sort options
+A paged list of shipments is returned according to any specified filter criteria and sort options. These Fulfillment APIs use a different paging  and filtering scheme than most other APIs in the system. For more information,  see the &lt;a href&#x3D;\&quot;/pages/sorting-and-filtering-apis\&quot;&gt;Sorting &amp; Filtering APIs guide&lt;/a&gt;  in the knowledge base.
 
 ### Example
 ```java
@@ -1541,7 +1600,6 @@ A paged list of shipments is returned according to any specified filter criteria
 import com.kibocommerce.sdk.fulfillment.ApiClient;
 import com.kibocommerce.sdk.fulfillment.ApiException;
 import com.kibocommerce.sdk.fulfillment.Configuration;
-import com.kibocommerce.sdk.fulfillment.auth.*;
 import com.kibocommerce.sdk.fulfillment.models.*;
 import com.kibocommerce.sdk.fulfillment.api.ShipmentApi;
 
@@ -1549,14 +1607,6 @@ public class Example {
   public static void main(String[] args) {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
     defaultClient.setBasePath("http://https:/api");
-    
-    // Configure HTTP bearer authorization: bearerAuth
-    HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
-    bearerAuth.setBearerToken("BEARER TOKEN");
-
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
 
     ShipmentApi apiInstance = new ShipmentApi(defaultClient);
     Boolean bypassSearchIndex = true; // Boolean | 
@@ -1568,10 +1618,10 @@ public class Example {
     String sort = "sort_example"; // String | 
     String workflowTaskName = "workflowTaskName_example"; // String | 
     try {
-      PagedModelOfEntityModelOfShipment result = apiInstance.getShipmentsUsingGET(bypassSearchIndex, filter, isLate, page, pageSize, quickSearch, sort, workflowTaskName);
+      PagedModelOfEntityModelOfShipment result = apiInstance.getShipments(bypassSearchIndex, filter, isLate, page, pageSize, quickSearch, sort, workflowTaskName);
       System.out.println(result);
     } catch (ApiException e) {
-      System.err.println("Exception when calling ShipmentApi#getShipmentsUsingGET");
+      System.err.println("Exception when calling ShipmentApi#getShipments");
       System.err.println("Status code: " + e.getCode());
       System.err.println("Reason: " + e.getResponseBody());
       System.err.println("Response headers: " + e.getResponseHeaders());
@@ -1600,30 +1650,28 @@ public class Example {
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth), [clientOauth2](../README.md#clientOauth2)
+No authorization required
 
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: application/json, application/xml, application/hal+json
+ - **Accept**: application/hal+json, application/json, application/xml
 
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Success |  -  |
-| **400** | Invalid Input |  -  |
+| **200** | OK |  -  |
 | **401** | Unauthorized |  -  |
 | **403** | Forbidden |  -  |
 | **404** | Not Found |  -  |
-| **0** |  |  -  |
 
-<a name="getTasksUsingGET"></a>
-# **getTasksUsingGET**
-> CollectionModelOfTask getTasksUsingGET(shipmentNumber)
+<a name="getTasks"></a>
+# **getTasks**
+> CollectionModelOfTask getTasks(shipmentNumber)
 
-Get Workflow Tasks
+Get Tasks
 
-Get Workflow Tasks
+Get all shipment tasks.
 
 ### Example
 ```java
@@ -1631,7 +1679,6 @@ Get Workflow Tasks
 import com.kibocommerce.sdk.fulfillment.ApiClient;
 import com.kibocommerce.sdk.fulfillment.ApiException;
 import com.kibocommerce.sdk.fulfillment.Configuration;
-import com.kibocommerce.sdk.fulfillment.auth.*;
 import com.kibocommerce.sdk.fulfillment.models.*;
 import com.kibocommerce.sdk.fulfillment.api.ShipmentApi;
 
@@ -1639,22 +1686,14 @@ public class Example {
   public static void main(String[] args) {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
     defaultClient.setBasePath("http://https:/api");
-    
-    // Configure HTTP bearer authorization: bearerAuth
-    HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
-    bearerAuth.setBearerToken("BEARER TOKEN");
-
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
 
     ShipmentApi apiInstance = new ShipmentApi(defaultClient);
-    Integer shipmentNumber = 56; // Integer | Number of the shipment to be searched. Cannot be empty.
+    Integer shipmentNumber = 56; // Integer | shipmentNumber
     try {
-      CollectionModelOfTask result = apiInstance.getTasksUsingGET(shipmentNumber);
+      CollectionModelOfTask result = apiInstance.getTasks(shipmentNumber);
       System.out.println(result);
     } catch (ApiException e) {
-      System.err.println("Exception when calling ShipmentApi#getTasksUsingGET");
+      System.err.println("Exception when calling ShipmentApi#getTasks");
       System.err.println("Status code: " + e.getCode());
       System.err.println("Reason: " + e.getResponseBody());
       System.err.println("Response headers: " + e.getResponseHeaders());
@@ -1668,7 +1707,7 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **shipmentNumber** | **Integer**| Number of the shipment to be searched. Cannot be empty. | |
+| **shipmentNumber** | **Integer**| shipmentNumber | |
 
 ### Return type
 
@@ -1676,28 +1715,28 @@ public class Example {
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth), [clientOauth2](../README.md#clientOauth2)
+No authorization required
 
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: application/json, application/xml, application/hal+json
+ - **Accept**: application/hal+json, application/json, application/xml
 
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Success |  -  |
+| **200** | OK |  -  |
 | **401** | Unauthorized |  -  |
 | **403** | Forbidden |  -  |
 | **404** | Not Found |  -  |
 
-<a name="newShipmentUsingPOST"></a>
-# **newShipmentUsingPOST**
-> EntityModelOfShipment newShipmentUsingPOST(fulfillmentShipment)
+<a name="getWorkflowVariable"></a>
+# **getWorkflowVariable**
+> BpmVariable getWorkflowVariable(shipmentNumber, variableName, xVolTenant, xVolSite)
 
-Create Shipment
+getWorkflowVariable
 
-Create Shipment
+getWorkflowVariable
 
 ### Example
 ```java
@@ -1705,7 +1744,6 @@ Create Shipment
 import com.kibocommerce.sdk.fulfillment.ApiClient;
 import com.kibocommerce.sdk.fulfillment.ApiException;
 import com.kibocommerce.sdk.fulfillment.Configuration;
-import com.kibocommerce.sdk.fulfillment.auth.*;
 import com.kibocommerce.sdk.fulfillment.models.*;
 import com.kibocommerce.sdk.fulfillment.api.ShipmentApi;
 
@@ -1713,22 +1751,17 @@ public class Example {
   public static void main(String[] args) {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
     defaultClient.setBasePath("http://https:/api");
-    
-    // Configure HTTP bearer authorization: bearerAuth
-    HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
-    bearerAuth.setBearerToken("BEARER TOKEN");
-
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
 
     ShipmentApi apiInstance = new ShipmentApi(defaultClient);
-    FulfillmentShipment fulfillmentShipment = new FulfillmentShipment(); // FulfillmentShipment | 
+    Integer shipmentNumber = 56; // Integer | shipmentNumber
+    String variableName = "variableName_example"; // String | variableName
+    Integer xVolTenant = 56; // Integer | 
+    Integer xVolSite = 56; // Integer | 
     try {
-      EntityModelOfShipment result = apiInstance.newShipmentUsingPOST(fulfillmentShipment);
+      BpmVariable result = apiInstance.getWorkflowVariable(shipmentNumber, variableName, xVolTenant, xVolSite);
       System.out.println(result);
     } catch (ApiException e) {
-      System.err.println("Exception when calling ShipmentApi#newShipmentUsingPOST");
+      System.err.println("Exception when calling ShipmentApi#getWorkflowVariable");
       System.err.println("Status code: " + e.getCode());
       System.err.println("Reason: " + e.getResponseBody());
       System.err.println("Response headers: " + e.getResponseHeaders());
@@ -1742,7 +1775,152 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **fulfillmentShipment** | [**FulfillmentShipment**](FulfillmentShipment.md)|  | [optional] |
+| **shipmentNumber** | **Integer**| shipmentNumber | |
+| **variableName** | **String**| variableName | |
+| **xVolTenant** | **Integer**|  | |
+| **xVolSite** | **Integer**|  | [optional] |
+
+### Return type
+
+[**BpmVariable**](BpmVariable.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/hal+json, application/json, application/xml
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | OK |  -  |
+| **401** | Unauthorized |  -  |
+| **403** | Forbidden |  -  |
+| **404** | Not Found |  -  |
+
+<a name="getWorkflowVariables"></a>
+# **getWorkflowVariables**
+> List&lt;BpmVariable&gt; getWorkflowVariables(shipmentNumber, xVolTenant, xVolSite)
+
+getWorkflowVariables
+
+getWorkflowVariables
+
+### Example
+```java
+// Import classes:
+import com.kibocommerce.sdk.fulfillment.ApiClient;
+import com.kibocommerce.sdk.fulfillment.ApiException;
+import com.kibocommerce.sdk.fulfillment.Configuration;
+import com.kibocommerce.sdk.fulfillment.models.*;
+import com.kibocommerce.sdk.fulfillment.api.ShipmentApi;
+
+public class Example {
+  public static void main(String[] args) {
+    ApiClient defaultClient = Configuration.getDefaultApiClient();
+    defaultClient.setBasePath("http://https:/api");
+
+    ShipmentApi apiInstance = new ShipmentApi(defaultClient);
+    Integer shipmentNumber = 56; // Integer | shipmentNumber
+    Integer xVolTenant = 56; // Integer | 
+    Integer xVolSite = 56; // Integer | 
+    try {
+      List<BpmVariable> result = apiInstance.getWorkflowVariables(shipmentNumber, xVolTenant, xVolSite);
+      System.out.println(result);
+    } catch (ApiException e) {
+      System.err.println("Exception when calling ShipmentApi#getWorkflowVariables");
+      System.err.println("Status code: " + e.getCode());
+      System.err.println("Reason: " + e.getResponseBody());
+      System.err.println("Response headers: " + e.getResponseHeaders());
+      e.printStackTrace();
+    }
+  }
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **shipmentNumber** | **Integer**| shipmentNumber | |
+| **xVolTenant** | **Integer**|  | |
+| **xVolSite** | **Integer**|  | [optional] |
+
+### Return type
+
+[**List&lt;BpmVariable&gt;**](BpmVariable.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/hal+json, application/json, application/xml
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | OK |  -  |
+| **401** | Unauthorized |  -  |
+| **403** | Forbidden |  -  |
+| **404** | Not Found |  -  |
+
+<a name="itemsReadyForPack"></a>
+# **itemsReadyForPack**
+> EntityModelOfShipment itemsReadyForPack(shipmentNumber, xVolTenant, readyForPackItemsRequest, ifMatch, xVolSite)
+
+itemsReadyForPack
+
+itemsReadyForPack
+
+### Example
+```java
+// Import classes:
+import com.kibocommerce.sdk.fulfillment.ApiClient;
+import com.kibocommerce.sdk.fulfillment.ApiException;
+import com.kibocommerce.sdk.fulfillment.Configuration;
+import com.kibocommerce.sdk.fulfillment.models.*;
+import com.kibocommerce.sdk.fulfillment.api.ShipmentApi;
+
+public class Example {
+  public static void main(String[] args) {
+    ApiClient defaultClient = Configuration.getDefaultApiClient();
+    defaultClient.setBasePath("http://https:/api");
+
+    ShipmentApi apiInstance = new ShipmentApi(defaultClient);
+    Integer shipmentNumber = 56; // Integer | shipmentNumber
+    Integer xVolTenant = 56; // Integer | 
+    ReadyForPackItemsRequest readyForPackItemsRequest = new ReadyForPackItemsRequest(); // ReadyForPackItemsRequest | readyForPackItemsRequestDto
+    String ifMatch = "ifMatch_example"; // String | If-Match
+    Integer xVolSite = 56; // Integer | 
+    try {
+      EntityModelOfShipment result = apiInstance.itemsReadyForPack(shipmentNumber, xVolTenant, readyForPackItemsRequest, ifMatch, xVolSite);
+      System.out.println(result);
+    } catch (ApiException e) {
+      System.err.println("Exception when calling ShipmentApi#itemsReadyForPack");
+      System.err.println("Status code: " + e.getCode());
+      System.err.println("Reason: " + e.getResponseBody());
+      System.err.println("Response headers: " + e.getResponseHeaders());
+      e.printStackTrace();
+    }
+  }
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **shipmentNumber** | **Integer**| shipmentNumber | |
+| **xVolTenant** | **Integer**|  | |
+| **readyForPackItemsRequest** | [**ReadyForPackItemsRequest**](ReadyForPackItemsRequest.md)| readyForPackItemsRequestDto | |
+| **ifMatch** | **String**| If-Match | [optional] |
+| **xVolSite** | **Integer**|  | [optional] |
 
 ### Return type
 
@@ -1750,30 +1928,29 @@ public class Example {
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth), [clientOauth2](../README.md#clientOauth2)
+No authorization required
 
 ### HTTP request headers
 
  - **Content-Type**: application/json
- - **Accept**: application/json, application/xml, application/hal+json, */*
+ - **Accept**: application/hal+json, application/json, application/xml
 
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | OK |  -  |
-| **201** | Shipment created |  -  |
-| **400** | Invalid Input |  -  |
+| **201** | Created |  -  |
 | **401** | Unauthorized |  -  |
 | **403** | Forbidden |  -  |
 | **404** | Not Found |  -  |
 
-<a name="newShipmentsUsingPOST"></a>
-# **newShipmentsUsingPOST**
-> CollectionModelOfEntityModelOfShipment newShipmentsUsingPOST(fulfillmentShipment)
+<a name="itemsReadyForPrep"></a>
+# **itemsReadyForPrep**
+> EntityModelOfShipment itemsReadyForPrep(shipmentNumber, xVolTenant, readyForPrepItemsRequest, ifMatch, xVolSite)
 
-Bulk Create Shipments
+itemsReadyForPrep
 
-Bulk Create Shipments
+itemsReadyForPrep
 
 ### Example
 ```java
@@ -1781,7 +1958,6 @@ Bulk Create Shipments
 import com.kibocommerce.sdk.fulfillment.ApiClient;
 import com.kibocommerce.sdk.fulfillment.ApiException;
 import com.kibocommerce.sdk.fulfillment.Configuration;
-import com.kibocommerce.sdk.fulfillment.auth.*;
 import com.kibocommerce.sdk.fulfillment.models.*;
 import com.kibocommerce.sdk.fulfillment.api.ShipmentApi;
 
@@ -1789,22 +1965,18 @@ public class Example {
   public static void main(String[] args) {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
     defaultClient.setBasePath("http://https:/api");
-    
-    // Configure HTTP bearer authorization: bearerAuth
-    HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
-    bearerAuth.setBearerToken("BEARER TOKEN");
-
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
 
     ShipmentApi apiInstance = new ShipmentApi(defaultClient);
-    List<FulfillmentShipment> fulfillmentShipment = Arrays.asList(); // List<FulfillmentShipment> | 
+    Integer shipmentNumber = 56; // Integer | shipmentNumber
+    Integer xVolTenant = 56; // Integer | 
+    ReadyForPrepItemsRequest readyForPrepItemsRequest = new ReadyForPrepItemsRequest(); // ReadyForPrepItemsRequest | readyForPrepItemsRequestDto
+    String ifMatch = "ifMatch_example"; // String | If-Match
+    Integer xVolSite = 56; // Integer | 
     try {
-      CollectionModelOfEntityModelOfShipment result = apiInstance.newShipmentsUsingPOST(fulfillmentShipment);
+      EntityModelOfShipment result = apiInstance.itemsReadyForPrep(shipmentNumber, xVolTenant, readyForPrepItemsRequest, ifMatch, xVolSite);
       System.out.println(result);
     } catch (ApiException e) {
-      System.err.println("Exception when calling ShipmentApi#newShipmentsUsingPOST");
+      System.err.println("Exception when calling ShipmentApi#itemsReadyForPrep");
       System.err.println("Status code: " + e.getCode());
       System.err.println("Reason: " + e.getResponseBody());
       System.err.println("Response headers: " + e.getResponseHeaders());
@@ -1818,7 +1990,221 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **fulfillmentShipment** | [**List&lt;FulfillmentShipment&gt;**](FulfillmentShipment.md)|  | [optional] |
+| **shipmentNumber** | **Integer**| shipmentNumber | |
+| **xVolTenant** | **Integer**|  | |
+| **readyForPrepItemsRequest** | [**ReadyForPrepItemsRequest**](ReadyForPrepItemsRequest.md)| readyForPrepItemsRequestDto | |
+| **ifMatch** | **String**| If-Match | [optional] |
+| **xVolSite** | **Integer**|  | [optional] |
+
+### Return type
+
+[**EntityModelOfShipment**](EntityModelOfShipment.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/hal+json, application/json, application/xml
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | OK |  -  |
+| **201** | Created |  -  |
+| **401** | Unauthorized |  -  |
+| **403** | Forbidden |  -  |
+| **404** | Not Found |  -  |
+
+<a name="newShipment"></a>
+# **newShipment**
+> EntityModelOfShipment newShipment(xVolTenant, newShipment, xVolSite)
+
+newShipment
+
+Create a new shipment.
+
+### Example
+```java
+// Import classes:
+import com.kibocommerce.sdk.fulfillment.ApiClient;
+import com.kibocommerce.sdk.fulfillment.ApiException;
+import com.kibocommerce.sdk.fulfillment.Configuration;
+import com.kibocommerce.sdk.fulfillment.models.*;
+import com.kibocommerce.sdk.fulfillment.api.ShipmentApi;
+
+public class Example {
+  public static void main(String[] args) {
+    ApiClient defaultClient = Configuration.getDefaultApiClient();
+    defaultClient.setBasePath("http://https:/api");
+
+    ShipmentApi apiInstance = new ShipmentApi(defaultClient);
+    Integer xVolTenant = 56; // Integer | 
+    FulfillmentAPIShipment newShipment = new FulfillmentAPIShipment(); // FulfillmentAPIShipment | newShipment
+    Integer xVolSite = 56; // Integer | 
+    try {
+      EntityModelOfShipment result = apiInstance.newShipment(xVolTenant, newShipment, xVolSite);
+      System.out.println(result);
+    } catch (ApiException e) {
+      System.err.println("Exception when calling ShipmentApi#newShipment");
+      System.err.println("Status code: " + e.getCode());
+      System.err.println("Reason: " + e.getResponseBody());
+      System.err.println("Response headers: " + e.getResponseHeaders());
+      e.printStackTrace();
+    }
+  }
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **xVolTenant** | **Integer**|  | |
+| **newShipment** | [**FulfillmentAPIShipment**](FulfillmentAPIShipment.md)| newShipment | |
+| **xVolSite** | **Integer**|  | [optional] |
+
+### Return type
+
+[**EntityModelOfShipment**](EntityModelOfShipment.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/hal+json, application/json, application/xml
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | OK |  -  |
+| **201** | Created |  -  |
+| **401** | Unauthorized |  -  |
+| **403** | Forbidden |  -  |
+| **404** | Not Found |  -  |
+
+<a name="newShipmentViaProxy"></a>
+# **newShipmentViaProxy**
+> EntityModelOfShipment newShipmentViaProxy(xVolTenant, fulfillmentAPIShipment, xVolSite)
+
+newShipmentViaProxy
+
+newShipmentViaProxy
+
+### Example
+```java
+// Import classes:
+import com.kibocommerce.sdk.fulfillment.ApiClient;
+import com.kibocommerce.sdk.fulfillment.ApiException;
+import com.kibocommerce.sdk.fulfillment.Configuration;
+import com.kibocommerce.sdk.fulfillment.models.*;
+import com.kibocommerce.sdk.fulfillment.api.ShipmentApi;
+
+public class Example {
+  public static void main(String[] args) {
+    ApiClient defaultClient = Configuration.getDefaultApiClient();
+    defaultClient.setBasePath("http://https:/api");
+
+    ShipmentApi apiInstance = new ShipmentApi(defaultClient);
+    Integer xVolTenant = 56; // Integer | 
+    FulfillmentAPIShipment fulfillmentAPIShipment = new FulfillmentAPIShipment(); // FulfillmentAPIShipment | newShipment
+    Integer xVolSite = 56; // Integer | 
+    try {
+      EntityModelOfShipment result = apiInstance.newShipmentViaProxy(xVolTenant, fulfillmentAPIShipment, xVolSite);
+      System.out.println(result);
+    } catch (ApiException e) {
+      System.err.println("Exception when calling ShipmentApi#newShipmentViaProxy");
+      System.err.println("Status code: " + e.getCode());
+      System.err.println("Reason: " + e.getResponseBody());
+      System.err.println("Response headers: " + e.getResponseHeaders());
+      e.printStackTrace();
+    }
+  }
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **xVolTenant** | **Integer**|  | |
+| **fulfillmentAPIShipment** | [**FulfillmentAPIShipment**](FulfillmentAPIShipment.md)| newShipment | |
+| **xVolSite** | **Integer**|  | [optional] |
+
+### Return type
+
+[**EntityModelOfShipment**](EntityModelOfShipment.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/hal+json, application/json, application/xml
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | OK |  -  |
+| **201** | Created |  -  |
+| **401** | Unauthorized |  -  |
+| **403** | Forbidden |  -  |
+| **404** | Not Found |  -  |
+
+<a name="newShipments"></a>
+# **newShipments**
+> CollectionModelOfEntityModelOfShipment newShipments(xVolTenant, newShipments, xVolSite)
+
+Create Shipments
+
+Create new shipments in bulk.
+
+### Example
+```java
+// Import classes:
+import com.kibocommerce.sdk.fulfillment.ApiClient;
+import com.kibocommerce.sdk.fulfillment.ApiException;
+import com.kibocommerce.sdk.fulfillment.Configuration;
+import com.kibocommerce.sdk.fulfillment.models.*;
+import com.kibocommerce.sdk.fulfillment.api.ShipmentApi;
+
+public class Example {
+  public static void main(String[] args) {
+    ApiClient defaultClient = Configuration.getDefaultApiClient();
+    defaultClient.setBasePath("http://https:/api");
+
+    ShipmentApi apiInstance = new ShipmentApi(defaultClient);
+    Integer xVolTenant = 56; // Integer | 
+    List<FulfillmentAPIShipment> newShipments = Arrays.asList(); // List<FulfillmentAPIShipment> | newShipments
+    Integer xVolSite = 56; // Integer | 
+    try {
+      CollectionModelOfEntityModelOfShipment result = apiInstance.newShipments(xVolTenant, newShipments, xVolSite);
+      System.out.println(result);
+    } catch (ApiException e) {
+      System.err.println("Exception when calling ShipmentApi#newShipments");
+      System.err.println("Status code: " + e.getCode());
+      System.err.println("Reason: " + e.getResponseBody());
+      System.err.println("Response headers: " + e.getResponseHeaders());
+      e.printStackTrace();
+    }
+  }
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **xVolTenant** | **Integer**|  | |
+| **newShipments** | [**List&lt;FulfillmentAPIShipment&gt;**](FulfillmentAPIShipment.md)| newShipments | |
+| **xVolSite** | **Integer**|  | [optional] |
 
 ### Return type
 
@@ -1826,12 +2212,12 @@ public class Example {
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth), [clientOauth2](../README.md#clientOauth2)
+No authorization required
 
 ### HTTP request headers
 
  - **Content-Type**: application/json
- - **Accept**: application/json, application/xml, application/hal+json
+ - **Accept**: application/hal+json, application/json, application/xml
 
 ### HTTP response details
 | Status code | Description | Response headers |
@@ -1842,13 +2228,13 @@ public class Example {
 | **403** | Forbidden |  -  |
 | **404** | Not Found |  -  |
 
-<a name="pickupItemsUsingPOST"></a>
-# **pickupItemsUsingPOST**
-> EntityModelOfShipment pickupItemsUsingPOST(shipmentNumber, ifMatch, pickupItemsRequest)
+<a name="pickupItems"></a>
+# **pickupItems**
+> EntityModelOfShipment pickupItems(shipmentNumber, pickupItemsRequestDto, ifMatch)
 
-Pickup Items
+Picked Up Items
 
-Individual items within a shipment can be marked as picked up in BOPIS (Buy Online Pickup in Store) shipments. This is particularly useful in cases such as partial pickup, in which the pickup location requested a transfer for some items that they did not have in stock but they allow the customer to pick up the items they have ready. In this event, the pickup shipment cannot go straight to the Fulfilled (“Complete”) step because it is still waiting on other items to be received. That partial quantity of items that are picked up early can be called out through this API.
+Mark shipment items as picked up.
 
 ### Example
 ```java
@@ -1856,7 +2242,6 @@ Individual items within a shipment can be marked as picked up in BOPIS (Buy Onli
 import com.kibocommerce.sdk.fulfillment.ApiClient;
 import com.kibocommerce.sdk.fulfillment.ApiException;
 import com.kibocommerce.sdk.fulfillment.Configuration;
-import com.kibocommerce.sdk.fulfillment.auth.*;
 import com.kibocommerce.sdk.fulfillment.models.*;
 import com.kibocommerce.sdk.fulfillment.api.ShipmentApi;
 
@@ -1864,24 +2249,16 @@ public class Example {
   public static void main(String[] args) {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
     defaultClient.setBasePath("http://https:/api");
-    
-    // Configure HTTP bearer authorization: bearerAuth
-    HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
-    bearerAuth.setBearerToken("BEARER TOKEN");
-
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
 
     ShipmentApi apiInstance = new ShipmentApi(defaultClient);
     Integer shipmentNumber = 56; // Integer | shipmentNumber
+    PickupItemsRequest pickupItemsRequestDto = new PickupItemsRequest(); // PickupItemsRequest | pickupItemsRequestDto
     String ifMatch = "ifMatch_example"; // String | If-Match
-    PickupItemsRequest pickupItemsRequest = new PickupItemsRequest(); // PickupItemsRequest | 
     try {
-      EntityModelOfShipment result = apiInstance.pickupItemsUsingPOST(shipmentNumber, ifMatch, pickupItemsRequest);
+      EntityModelOfShipment result = apiInstance.pickupItems(shipmentNumber, pickupItemsRequestDto, ifMatch);
       System.out.println(result);
     } catch (ApiException e) {
-      System.err.println("Exception when calling ShipmentApi#pickupItemsUsingPOST");
+      System.err.println("Exception when calling ShipmentApi#pickupItems");
       System.err.println("Status code: " + e.getCode());
       System.err.println("Reason: " + e.getResponseBody());
       System.err.println("Response headers: " + e.getResponseHeaders());
@@ -1896,8 +2273,8 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **shipmentNumber** | **Integer**| shipmentNumber | |
+| **pickupItemsRequestDto** | [**PickupItemsRequest**](PickupItemsRequest.md)| pickupItemsRequestDto | |
 | **ifMatch** | **String**| If-Match | [optional] |
-| **pickupItemsRequest** | [**PickupItemsRequest**](PickupItemsRequest.md)|  | [optional] |
 
 ### Return type
 
@@ -1905,12 +2282,12 @@ public class Example {
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth), [clientOauth2](../README.md#clientOauth2)
+No authorization required
 
 ### HTTP request headers
 
  - **Content-Type**: application/json
- - **Accept**: application/json, application/xml, application/hal+json
+ - **Accept**: application/hal+json, application/json, application/xml
 
 ### HTTP response details
 | Status code | Description | Response headers |
@@ -1921,13 +2298,13 @@ public class Example {
 | **403** | Forbidden |  -  |
 | **404** | Not Found |  -  |
 
-<a name="reassignItemsUsingPUT"></a>
-# **reassignItemsUsingPUT**
-> EntityModelOfShipment reassignItemsUsingPUT(shipmentNumber, ifMatch, reassignItemsRequest)
+<a name="reassignItems"></a>
+# **reassignItems**
+> EntityModelOfShipment reassignItems(shipmentNumber, reassignItemsRequestDto, ifMatch)
 
-Reassign Items
+reassignItems
 
-Reassign particular items from a shipment while leaving the rest of the items at the original location. This is often referred to as “splitting the shipment.
+Reassign shipment items.
 
 ### Example
 ```java
@@ -1935,7 +2312,6 @@ Reassign particular items from a shipment while leaving the rest of the items at
 import com.kibocommerce.sdk.fulfillment.ApiClient;
 import com.kibocommerce.sdk.fulfillment.ApiException;
 import com.kibocommerce.sdk.fulfillment.Configuration;
-import com.kibocommerce.sdk.fulfillment.auth.*;
 import com.kibocommerce.sdk.fulfillment.models.*;
 import com.kibocommerce.sdk.fulfillment.api.ShipmentApi;
 
@@ -1943,24 +2319,16 @@ public class Example {
   public static void main(String[] args) {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
     defaultClient.setBasePath("http://https:/api");
-    
-    // Configure HTTP bearer authorization: bearerAuth
-    HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
-    bearerAuth.setBearerToken("BEARER TOKEN");
-
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
 
     ShipmentApi apiInstance = new ShipmentApi(defaultClient);
     Integer shipmentNumber = 56; // Integer | shipmentNumber
+    ReassignItemsRequest reassignItemsRequestDto = new ReassignItemsRequest(); // ReassignItemsRequest | reassignItemsRequestDto
     String ifMatch = "ifMatch_example"; // String | If-Match
-    ReassignItemsRequest reassignItemsRequest = new ReassignItemsRequest(); // ReassignItemsRequest | 
     try {
-      EntityModelOfShipment result = apiInstance.reassignItemsUsingPUT(shipmentNumber, ifMatch, reassignItemsRequest);
+      EntityModelOfShipment result = apiInstance.reassignItems(shipmentNumber, reassignItemsRequestDto, ifMatch);
       System.out.println(result);
     } catch (ApiException e) {
-      System.err.println("Exception when calling ShipmentApi#reassignItemsUsingPUT");
+      System.err.println("Exception when calling ShipmentApi#reassignItems");
       System.err.println("Status code: " + e.getCode());
       System.err.println("Reason: " + e.getResponseBody());
       System.err.println("Response headers: " + e.getResponseHeaders());
@@ -1975,8 +2343,8 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **shipmentNumber** | **Integer**| shipmentNumber | |
+| **reassignItemsRequestDto** | [**ReassignItemsRequest**](ReassignItemsRequest.md)| reassignItemsRequestDto | |
 | **ifMatch** | **String**| If-Match | [optional] |
-| **reassignItemsRequest** | [**ReassignItemsRequest**](ReassignItemsRequest.md)|  | [optional] |
 
 ### Return type
 
@@ -1984,12 +2352,12 @@ public class Example {
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth), [clientOauth2](../README.md#clientOauth2)
+No authorization required
 
 ### HTTP request headers
 
  - **Content-Type**: application/json
- - **Accept**: application/json, application/xml, application/hal+json
+ - **Accept**: application/hal+json, application/json, application/xml
 
 ### HTTP response details
 | Status code | Description | Response headers |
@@ -2000,13 +2368,13 @@ public class Example {
 | **403** | Forbidden |  -  |
 | **404** | Not Found |  -  |
 
-<a name="reassignShipmentUsingPUT"></a>
-# **reassignShipmentUsingPUT**
-> EntityModelOfShipment reassignShipmentUsingPUT(shipmentNumber, ifMatch, reassignShipment)
+<a name="reassignShipment"></a>
+# **reassignShipment**
+> EntityModelOfShipment reassignShipment(shipmentNumber, reassignShipmentRequestDto, ifMatch)
 
-Reassign Shipment
+Reassign Shipments
 
-Reassign an entire shipment to a new fulfillment location, including all packages and items within it. Note that the blockAssignment field is not always necessary to provide in the request, as OMS defaults to “false” if it is not provided in the request. However, it must be provided in order to enable the assignment blocking when desired, such as if the reassignment was due to lack of inventory and similar shipments should not be assigned to this location until it has inventory back in stock.
+Reassign a shipment.
 
 ### Example
 ```java
@@ -2014,7 +2382,6 @@ Reassign an entire shipment to a new fulfillment location, including all package
 import com.kibocommerce.sdk.fulfillment.ApiClient;
 import com.kibocommerce.sdk.fulfillment.ApiException;
 import com.kibocommerce.sdk.fulfillment.Configuration;
-import com.kibocommerce.sdk.fulfillment.auth.*;
 import com.kibocommerce.sdk.fulfillment.models.*;
 import com.kibocommerce.sdk.fulfillment.api.ShipmentApi;
 
@@ -2022,24 +2389,16 @@ public class Example {
   public static void main(String[] args) {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
     defaultClient.setBasePath("http://https:/api");
-    
-    // Configure HTTP bearer authorization: bearerAuth
-    HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
-    bearerAuth.setBearerToken("BEARER TOKEN");
-
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
 
     ShipmentApi apiInstance = new ShipmentApi(defaultClient);
     Integer shipmentNumber = 56; // Integer | shipmentNumber
+    ReassignShipment reassignShipmentRequestDto = new ReassignShipment(); // ReassignShipment | reassignShipmentRequestDto
     String ifMatch = "ifMatch_example"; // String | If-Match
-    ReassignShipment reassignShipment = new ReassignShipment(); // ReassignShipment | 
     try {
-      EntityModelOfShipment result = apiInstance.reassignShipmentUsingPUT(shipmentNumber, ifMatch, reassignShipment);
+      EntityModelOfShipment result = apiInstance.reassignShipment(shipmentNumber, reassignShipmentRequestDto, ifMatch);
       System.out.println(result);
     } catch (ApiException e) {
-      System.err.println("Exception when calling ShipmentApi#reassignShipmentUsingPUT");
+      System.err.println("Exception when calling ShipmentApi#reassignShipment");
       System.err.println("Status code: " + e.getCode());
       System.err.println("Reason: " + e.getResponseBody());
       System.err.println("Response headers: " + e.getResponseHeaders());
@@ -2054,8 +2413,8 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **shipmentNumber** | **Integer**| shipmentNumber | |
+| **reassignShipmentRequestDto** | [**ReassignShipment**](ReassignShipment.md)| reassignShipmentRequestDto | |
 | **ifMatch** | **String**| If-Match | [optional] |
-| **reassignShipment** | [**ReassignShipment**](ReassignShipment.md)|  | [optional] |
 
 ### Return type
 
@@ -2063,12 +2422,12 @@ public class Example {
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth), [clientOauth2](../README.md#clientOauth2)
+No authorization required
 
 ### HTTP request headers
 
  - **Content-Type**: application/json
- - **Accept**: application/json, application/xml, application/hal+json
+ - **Accept**: application/hal+json, application/json, application/xml
 
 ### HTTP response details
 | Status code | Description | Response headers |
@@ -2079,13 +2438,13 @@ public class Example {
 | **403** | Forbidden |  -  |
 | **404** | Not Found |  -  |
 
-<a name="receiveTransferUsingPUT"></a>
-# **receiveTransferUsingPUT**
-> EntityModelOfShipment receiveTransferUsingPUT(shipmentNumber, ifMatch)
+<a name="receiveTransfer"></a>
+# **receiveTransfer**
+> EntityModelOfShipment receiveTransfer(shipmentNumber, ifMatch)
 
-Receive Transfer
+receiveTransfer
 
-After a transfer shipment has been created and fulfilled by the second location, the original pickup location that requested those transfer items must indicate that they have received everything before they can progress in the BOPIS fulfillment flow. Once the location validates that they have received their transfers with this call, the shipment will leave the Wait For Transfer state and continue to Customer Pickup.
+Mark a transfer shipment as received.
 
 ### Example
 ```java
@@ -2093,7 +2452,6 @@ After a transfer shipment has been created and fulfilled by the second location,
 import com.kibocommerce.sdk.fulfillment.ApiClient;
 import com.kibocommerce.sdk.fulfillment.ApiException;
 import com.kibocommerce.sdk.fulfillment.Configuration;
-import com.kibocommerce.sdk.fulfillment.auth.*;
 import com.kibocommerce.sdk.fulfillment.models.*;
 import com.kibocommerce.sdk.fulfillment.api.ShipmentApi;
 
@@ -2101,23 +2459,15 @@ public class Example {
   public static void main(String[] args) {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
     defaultClient.setBasePath("http://https:/api");
-    
-    // Configure HTTP bearer authorization: bearerAuth
-    HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
-    bearerAuth.setBearerToken("BEARER TOKEN");
-
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
 
     ShipmentApi apiInstance = new ShipmentApi(defaultClient);
     Integer shipmentNumber = 56; // Integer | shipmentNumber
     String ifMatch = "ifMatch_example"; // String | If-Match
     try {
-      EntityModelOfShipment result = apiInstance.receiveTransferUsingPUT(shipmentNumber, ifMatch);
+      EntityModelOfShipment result = apiInstance.receiveTransfer(shipmentNumber, ifMatch);
       System.out.println(result);
     } catch (ApiException e) {
-      System.err.println("Exception when calling ShipmentApi#receiveTransferUsingPUT");
+      System.err.println("Exception when calling ShipmentApi#receiveTransfer");
       System.err.println("Status code: " + e.getCode());
       System.err.println("Reason: " + e.getResponseBody());
       System.err.println("Response headers: " + e.getResponseHeaders());
@@ -2140,12 +2490,12 @@ public class Example {
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth), [clientOauth2](../README.md#clientOauth2)
+No authorization required
 
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: application/json, application/xml, application/hal+json
+ - **Accept**: application/hal+json, application/json, application/xml
 
 ### HTTP response details
 | Status code | Description | Response headers |
@@ -2156,13 +2506,13 @@ public class Example {
 | **403** | Forbidden |  -  |
 | **404** | Not Found |  -  |
 
-<a name="refreshShipmentUsingPUT"></a>
-# **refreshShipmentUsingPUT**
-> EntityModelOfShipment refreshShipmentUsingPUT(shipmentNumber, shouldLog, ifMatch)
+<a name="refreshShipment"></a>
+# **refreshShipment**
+> EntityModelOfShipment refreshShipment(shipmentNumber, ifMatch, shouldLog)
 
-Refresh Shipment
+refreshShipment
 
-Refresh Shipment
+Refresh a shipment.
 
 ### Example
 ```java
@@ -2170,7 +2520,6 @@ Refresh Shipment
 import com.kibocommerce.sdk.fulfillment.ApiClient;
 import com.kibocommerce.sdk.fulfillment.ApiException;
 import com.kibocommerce.sdk.fulfillment.Configuration;
-import com.kibocommerce.sdk.fulfillment.auth.*;
 import com.kibocommerce.sdk.fulfillment.models.*;
 import com.kibocommerce.sdk.fulfillment.api.ShipmentApi;
 
@@ -2178,24 +2527,16 @@ public class Example {
   public static void main(String[] args) {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
     defaultClient.setBasePath("http://https:/api");
-    
-    // Configure HTTP bearer authorization: bearerAuth
-    HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
-    bearerAuth.setBearerToken("BEARER TOKEN");
-
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
 
     ShipmentApi apiInstance = new ShipmentApi(defaultClient);
     Integer shipmentNumber = 56; // Integer | shipmentNumber
+    String ifMatch = "ifMatch_example"; // String | If-Match
     Boolean shouldLog = true; // Boolean | shouldLog
-    String ifMatch = "ifMatch_example"; // String | If-Match
     try {
-      EntityModelOfShipment result = apiInstance.refreshShipmentUsingPUT(shipmentNumber, shouldLog, ifMatch);
+      EntityModelOfShipment result = apiInstance.refreshShipment(shipmentNumber, ifMatch, shouldLog);
       System.out.println(result);
     } catch (ApiException e) {
-      System.err.println("Exception when calling ShipmentApi#refreshShipmentUsingPUT");
+      System.err.println("Exception when calling ShipmentApi#refreshShipment");
       System.err.println("Status code: " + e.getCode());
       System.err.println("Reason: " + e.getResponseBody());
       System.err.println("Response headers: " + e.getResponseHeaders());
@@ -2210,8 +2551,8 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **shipmentNumber** | **Integer**| shipmentNumber | |
+| **ifMatch** | **String**| If-Match | [optional] |
 | **shouldLog** | **Boolean**| shouldLog | [optional] |
-| **ifMatch** | **String**| If-Match | [optional] |
 
 ### Return type
 
@@ -2219,12 +2560,12 @@ public class Example {
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth), [clientOauth2](../README.md#clientOauth2)
+No authorization required
 
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: application/json, application/xml, application/hal+json
+ - **Accept**: application/hal+json, application/json, application/xml
 
 ### HTTP response details
 | Status code | Description | Response headers |
@@ -2235,13 +2576,13 @@ public class Example {
 | **403** | Forbidden |  -  |
 | **404** | Not Found |  -  |
 
-<a name="rejectItemsUsingPUT"></a>
-# **rejectItemsUsingPUT**
-> EntityModelOfShipment rejectItemsUsingPUT(shipmentNumber, ifMatch, rejectItemsRequest)
+<a name="rejectItems"></a>
+# **rejectItems**
+> EntityModelOfShipment rejectItems(shipmentNumber, rejectItemsRequestDto, ifMatch)
 
-Reject Items
+rejectItems
 
-Reject items in the shipment that are not available for fulfillment at this location. This will assign a new transfer shipment to an eligible location based on order routing rules.
+Reject shipment items.
 
 ### Example
 ```java
@@ -2249,7 +2590,6 @@ Reject items in the shipment that are not available for fulfillment at this loca
 import com.kibocommerce.sdk.fulfillment.ApiClient;
 import com.kibocommerce.sdk.fulfillment.ApiException;
 import com.kibocommerce.sdk.fulfillment.Configuration;
-import com.kibocommerce.sdk.fulfillment.auth.*;
 import com.kibocommerce.sdk.fulfillment.models.*;
 import com.kibocommerce.sdk.fulfillment.api.ShipmentApi;
 
@@ -2257,24 +2597,16 @@ public class Example {
   public static void main(String[] args) {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
     defaultClient.setBasePath("http://https:/api");
-    
-    // Configure HTTP bearer authorization: bearerAuth
-    HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
-    bearerAuth.setBearerToken("BEARER TOKEN");
-
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
 
     ShipmentApi apiInstance = new ShipmentApi(defaultClient);
     Integer shipmentNumber = 56; // Integer | shipmentNumber
+    RejectItemsRequest rejectItemsRequestDto = new RejectItemsRequest(); // RejectItemsRequest | rejectItemsRequestDto
     String ifMatch = "ifMatch_example"; // String | If-Match
-    RejectItemsRequest rejectItemsRequest = new RejectItemsRequest(); // RejectItemsRequest | 
     try {
-      EntityModelOfShipment result = apiInstance.rejectItemsUsingPUT(shipmentNumber, ifMatch, rejectItemsRequest);
+      EntityModelOfShipment result = apiInstance.rejectItems(shipmentNumber, rejectItemsRequestDto, ifMatch);
       System.out.println(result);
     } catch (ApiException e) {
-      System.err.println("Exception when calling ShipmentApi#rejectItemsUsingPUT");
+      System.err.println("Exception when calling ShipmentApi#rejectItems");
       System.err.println("Status code: " + e.getCode());
       System.err.println("Reason: " + e.getResponseBody());
       System.err.println("Response headers: " + e.getResponseHeaders());
@@ -2289,8 +2621,8 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **shipmentNumber** | **Integer**| shipmentNumber | |
+| **rejectItemsRequestDto** | [**RejectItemsRequest**](RejectItemsRequest.md)| rejectItemsRequestDto | |
 | **ifMatch** | **String**| If-Match | [optional] |
-| **rejectItemsRequest** | [**RejectItemsRequest**](RejectItemsRequest.md)|  | [optional] |
 
 ### Return type
 
@@ -2298,12 +2630,12 @@ public class Example {
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth), [clientOauth2](../README.md#clientOauth2)
+No authorization required
 
 ### HTTP request headers
 
  - **Content-Type**: application/json
- - **Accept**: application/json, application/xml, application/hal+json
+ - **Accept**: application/hal+json, application/json, application/xml
 
 ### HTTP response details
 | Status code | Description | Response headers |
@@ -2314,13 +2646,13 @@ public class Example {
 | **403** | Forbidden |  -  |
 | **404** | Not Found |  -  |
 
-<a name="rejectShipmentUsingPUT"></a>
-# **rejectShipmentUsingPUT**
-> EntityModelOfShipment rejectShipmentUsingPUT(shipmentNumber, ifMatch, rejectShipment)
+<a name="rejectShipment"></a>
+# **rejectShipment**
+> EntityModelOfShipment rejectShipment(shipmentNumber, rejectShipmentRequestDto, ifMatch)
 
-Reject Shipment
+rejectShipment
 
-Reject an entire shipment whose items are not available for fulfillment at this location. This will reassign the shipment to an eligible location based on order routing rules.
+Reject a shipment.
 
 ### Example
 ```java
@@ -2328,7 +2660,6 @@ Reject an entire shipment whose items are not available for fulfillment at this 
 import com.kibocommerce.sdk.fulfillment.ApiClient;
 import com.kibocommerce.sdk.fulfillment.ApiException;
 import com.kibocommerce.sdk.fulfillment.Configuration;
-import com.kibocommerce.sdk.fulfillment.auth.*;
 import com.kibocommerce.sdk.fulfillment.models.*;
 import com.kibocommerce.sdk.fulfillment.api.ShipmentApi;
 
@@ -2336,24 +2667,16 @@ public class Example {
   public static void main(String[] args) {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
     defaultClient.setBasePath("http://https:/api");
-    
-    // Configure HTTP bearer authorization: bearerAuth
-    HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
-    bearerAuth.setBearerToken("BEARER TOKEN");
-
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
 
     ShipmentApi apiInstance = new ShipmentApi(defaultClient);
     Integer shipmentNumber = 56; // Integer | shipmentNumber
+    RejectShipment rejectShipmentRequestDto = new RejectShipment(); // RejectShipment | rejectShipmentRequestDto
     String ifMatch = "ifMatch_example"; // String | If-Match
-    RejectShipment rejectShipment = new RejectShipment(); // RejectShipment | 
     try {
-      EntityModelOfShipment result = apiInstance.rejectShipmentUsingPUT(shipmentNumber, ifMatch, rejectShipment);
+      EntityModelOfShipment result = apiInstance.rejectShipment(shipmentNumber, rejectShipmentRequestDto, ifMatch);
       System.out.println(result);
     } catch (ApiException e) {
-      System.err.println("Exception when calling ShipmentApi#rejectShipmentUsingPUT");
+      System.err.println("Exception when calling ShipmentApi#rejectShipment");
       System.err.println("Status code: " + e.getCode());
       System.err.println("Reason: " + e.getResponseBody());
       System.err.println("Response headers: " + e.getResponseHeaders());
@@ -2368,8 +2691,8 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **shipmentNumber** | **Integer**| shipmentNumber | |
+| **rejectShipmentRequestDto** | [**RejectShipment**](RejectShipment.md)| rejectShipmentRequestDto | |
 | **ifMatch** | **String**| If-Match | [optional] |
-| **rejectShipment** | [**RejectShipment**](RejectShipment.md)|  | [optional] |
 
 ### Return type
 
@@ -2377,12 +2700,12 @@ public class Example {
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth), [clientOauth2](../README.md#clientOauth2)
+No authorization required
 
 ### HTTP request headers
 
  - **Content-Type**: application/json
- - **Accept**: application/json, application/xml, application/hal+json
+ - **Accept**: application/hal+json, application/json, application/xml
 
 ### HTTP response details
 | Status code | Description | Response headers |
@@ -2393,13 +2716,13 @@ public class Example {
 | **403** | Forbidden |  -  |
 | **404** | Not Found |  -  |
 
-<a name="renderOrderSummaryUsingGET1"></a>
-# **renderOrderSummaryUsingGET1**
-> EntityModelOfstring renderOrderSummaryUsingGET1(shipmentNumber)
+<a name="renderOrderSummary"></a>
+# **renderOrderSummary**
+> EntityModelOfRenderedContent renderOrderSummary(shipmentNumber)
 
-Render Order Summary by Shipment Number
+Render Order Summary
 
-Render order summary by shipment number in HTML format for printing
+Render an order summary in HTML.
 
 ### Example
 ```java
@@ -2407,7 +2730,6 @@ Render order summary by shipment number in HTML format for printing
 import com.kibocommerce.sdk.fulfillment.ApiClient;
 import com.kibocommerce.sdk.fulfillment.ApiException;
 import com.kibocommerce.sdk.fulfillment.Configuration;
-import com.kibocommerce.sdk.fulfillment.auth.*;
 import com.kibocommerce.sdk.fulfillment.models.*;
 import com.kibocommerce.sdk.fulfillment.api.ShipmentApi;
 
@@ -2415,22 +2737,14 @@ public class Example {
   public static void main(String[] args) {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
     defaultClient.setBasePath("http://https:/api");
-    
-    // Configure HTTP bearer authorization: bearerAuth
-    HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
-    bearerAuth.setBearerToken("BEARER TOKEN");
-
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
 
     ShipmentApi apiInstance = new ShipmentApi(defaultClient);
     Integer shipmentNumber = 56; // Integer | shipmentNumber
     try {
-      EntityModelOfstring result = apiInstance.renderOrderSummaryUsingGET1(shipmentNumber);
+      EntityModelOfRenderedContent result = apiInstance.renderOrderSummary(shipmentNumber);
       System.out.println(result);
     } catch (ApiException e) {
-      System.err.println("Exception when calling ShipmentApi#renderOrderSummaryUsingGET1");
+      System.err.println("Exception when calling ShipmentApi#renderOrderSummary");
       System.err.println("Status code: " + e.getCode());
       System.err.println("Reason: " + e.getResponseBody());
       System.err.println("Response headers: " + e.getResponseHeaders());
@@ -2448,16 +2762,16 @@ public class Example {
 
 ### Return type
 
-[**EntityModelOfstring**](EntityModelOfstring.md)
+[**EntityModelOfRenderedContent**](EntityModelOfRenderedContent.md)
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth), [clientOauth2](../README.md#clientOauth2)
+No authorization required
 
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: application/json, application/xml, application/hal+json
+ - **Accept**: application/hal+json, application/json, application/xml
 
 ### HTTP response details
 | Status code | Description | Response headers |
@@ -2467,13 +2781,13 @@ public class Example {
 | **403** | Forbidden |  -  |
 | **404** | Not Found |  -  |
 
-<a name="renderPackingSlipUsingGET"></a>
-# **renderPackingSlipUsingGET**
-> EntityModelOfstring renderPackingSlipUsingGET(shipmentNumber)
+<a name="renderPackingSlip"></a>
+# **renderPackingSlip**
+> EntityModelOfRenderedContent renderPackingSlip(shipmentNumber)
 
-Render Shipment Packing Slip
+Render Packing Slip
 
-Render shipment packing slip in HTML format for printing
+Render a packing slip in HTML.
 
 ### Example
 ```java
@@ -2481,7 +2795,6 @@ Render shipment packing slip in HTML format for printing
 import com.kibocommerce.sdk.fulfillment.ApiClient;
 import com.kibocommerce.sdk.fulfillment.ApiException;
 import com.kibocommerce.sdk.fulfillment.Configuration;
-import com.kibocommerce.sdk.fulfillment.auth.*;
 import com.kibocommerce.sdk.fulfillment.models.*;
 import com.kibocommerce.sdk.fulfillment.api.ShipmentApi;
 
@@ -2489,22 +2802,14 @@ public class Example {
   public static void main(String[] args) {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
     defaultClient.setBasePath("http://https:/api");
-    
-    // Configure HTTP bearer authorization: bearerAuth
-    HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
-    bearerAuth.setBearerToken("BEARER TOKEN");
-
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
 
     ShipmentApi apiInstance = new ShipmentApi(defaultClient);
     Integer shipmentNumber = 56; // Integer | shipmentNumber
     try {
-      EntityModelOfstring result = apiInstance.renderPackingSlipUsingGET(shipmentNumber);
+      EntityModelOfRenderedContent result = apiInstance.renderPackingSlip(shipmentNumber);
       System.out.println(result);
     } catch (ApiException e) {
-      System.err.println("Exception when calling ShipmentApi#renderPackingSlipUsingGET");
+      System.err.println("Exception when calling ShipmentApi#renderPackingSlip");
       System.err.println("Status code: " + e.getCode());
       System.err.println("Reason: " + e.getResponseBody());
       System.err.println("Response headers: " + e.getResponseHeaders());
@@ -2522,16 +2827,16 @@ public class Example {
 
 ### Return type
 
-[**EntityModelOfstring**](EntityModelOfstring.md)
+[**EntityModelOfRenderedContent**](EntityModelOfRenderedContent.md)
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth), [clientOauth2](../README.md#clientOauth2)
+No authorization required
 
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: application/json, application/xml, application/hal+json
+ - **Accept**: application/hal+json, application/json, application/xml
 
 ### HTTP response details
 | Status code | Description | Response headers |
@@ -2541,13 +2846,13 @@ public class Example {
 | **403** | Forbidden |  -  |
 | **404** | Not Found |  -  |
 
-<a name="replaceShipmentUsingPUT"></a>
-# **replaceShipmentUsingPUT**
-> EntityModelOfShipment replaceShipmentUsingPUT(shipmentNumber, updateFields, ifMatch, fulfillmentShipment)
+<a name="replaceShipment"></a>
+# **replaceShipment**
+> EntityModelOfShipment replaceShipment(shipmentNumber, newShipment, ifMatch, updateFields)
 
-Update Shipment
+Replace Shipment
 
-Update Shipment
+Update and replace an existing shipment.
 
 ### Example
 ```java
@@ -2555,7 +2860,6 @@ Update Shipment
 import com.kibocommerce.sdk.fulfillment.ApiClient;
 import com.kibocommerce.sdk.fulfillment.ApiException;
 import com.kibocommerce.sdk.fulfillment.Configuration;
-import com.kibocommerce.sdk.fulfillment.auth.*;
 import com.kibocommerce.sdk.fulfillment.models.*;
 import com.kibocommerce.sdk.fulfillment.api.ShipmentApi;
 
@@ -2563,25 +2867,17 @@ public class Example {
   public static void main(String[] args) {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
     defaultClient.setBasePath("http://https:/api");
-    
-    // Configure HTTP bearer authorization: bearerAuth
-    HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
-    bearerAuth.setBearerToken("BEARER TOKEN");
-
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
 
     ShipmentApi apiInstance = new ShipmentApi(defaultClient);
-    Integer shipmentNumber = 56; // Integer | Number of the shipment to update. Cannot be empty.
-    String updateFields = "updateFields_example"; // String | List of shipment fields to update.
+    Integer shipmentNumber = 56; // Integer | shipmentNumber
+    FulfillmentAPIShipment newShipment = new FulfillmentAPIShipment(); // FulfillmentAPIShipment | newShipment
     String ifMatch = "ifMatch_example"; // String | If-Match
-    FulfillmentShipment fulfillmentShipment = new FulfillmentShipment(); // FulfillmentShipment | 
+    List<String> updateFields = Arrays.asList(); // List<String> | updateFields
     try {
-      EntityModelOfShipment result = apiInstance.replaceShipmentUsingPUT(shipmentNumber, updateFields, ifMatch, fulfillmentShipment);
+      EntityModelOfShipment result = apiInstance.replaceShipment(shipmentNumber, newShipment, ifMatch, updateFields);
       System.out.println(result);
     } catch (ApiException e) {
-      System.err.println("Exception when calling ShipmentApi#replaceShipmentUsingPUT");
+      System.err.println("Exception when calling ShipmentApi#replaceShipment");
       System.err.println("Status code: " + e.getCode());
       System.err.println("Reason: " + e.getResponseBody());
       System.err.println("Response headers: " + e.getResponseHeaders());
@@ -2595,10 +2891,10 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **shipmentNumber** | **Integer**| Number of the shipment to update. Cannot be empty. | |
-| **updateFields** | **String**| List of shipment fields to update. | [optional] |
+| **shipmentNumber** | **Integer**| shipmentNumber | |
+| **newShipment** | [**FulfillmentAPIShipment**](FulfillmentAPIShipment.md)| newShipment | |
 | **ifMatch** | **String**| If-Match | [optional] |
-| **fulfillmentShipment** | [**FulfillmentShipment**](FulfillmentShipment.md)|  | [optional] |
+| **updateFields** | [**List&lt;String&gt;**](String.md)| updateFields | [optional] |
 
 ### Return type
 
@@ -2606,31 +2902,29 @@ public class Example {
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth), [clientOauth2](../README.md#clientOauth2)
+No authorization required
 
 ### HTTP request headers
 
  - **Content-Type**: application/json
- - **Accept**: application/json, application/xml, application/hal+json
+ - **Accept**: application/hal+json, application/json, application/xml
 
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Success |  -  |
+| **200** | OK |  -  |
 | **201** | Created |  -  |
-| **400** | Invalid shipment number supplied |  -  |
 | **401** | Unauthorized |  -  |
 | **403** | Forbidden |  -  |
-| **404** | Shipment not found |  -  |
-| **405** | Validation exception |  -  |
+| **404** | Not Found |  -  |
 
-<a name="resendItemEmailUsingPUT"></a>
-# **resendItemEmailUsingPUT**
-> resendItemEmailUsingPUT(shipmentNumber, lineId, ifMatch)
+<a name="resendItemEmail"></a>
+# **resendItemEmail**
+> resendItemEmail(lineId, shipmentNumber, ifMatch)
 
-Resend Item Email
+resendItemEmail
 
-Resend Item Email
+Resend an item email notification.
 
 ### Example
 ```java
@@ -2638,7 +2932,6 @@ Resend Item Email
 import com.kibocommerce.sdk.fulfillment.ApiClient;
 import com.kibocommerce.sdk.fulfillment.ApiException;
 import com.kibocommerce.sdk.fulfillment.Configuration;
-import com.kibocommerce.sdk.fulfillment.auth.*;
 import com.kibocommerce.sdk.fulfillment.models.*;
 import com.kibocommerce.sdk.fulfillment.api.ShipmentApi;
 
@@ -2646,23 +2939,15 @@ public class Example {
   public static void main(String[] args) {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
     defaultClient.setBasePath("http://https:/api");
-    
-    // Configure HTTP bearer authorization: bearerAuth
-    HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
-    bearerAuth.setBearerToken("BEARER TOKEN");
-
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
 
     ShipmentApi apiInstance = new ShipmentApi(defaultClient);
-    Integer shipmentNumber = 56; // Integer | shipmentNumber
     Integer lineId = 56; // Integer | lineId
+    Integer shipmentNumber = 56; // Integer | shipmentNumber
     String ifMatch = "ifMatch_example"; // String | If-Match
     try {
-      apiInstance.resendItemEmailUsingPUT(shipmentNumber, lineId, ifMatch);
+      apiInstance.resendItemEmail(lineId, shipmentNumber, ifMatch);
     } catch (ApiException e) {
-      System.err.println("Exception when calling ShipmentApi#resendItemEmailUsingPUT");
+      System.err.println("Exception when calling ShipmentApi#resendItemEmail");
       System.err.println("Status code: " + e.getCode());
       System.err.println("Reason: " + e.getResponseBody());
       System.err.println("Response headers: " + e.getResponseHeaders());
@@ -2676,8 +2961,8 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **shipmentNumber** | **Integer**| shipmentNumber | |
 | **lineId** | **Integer**| lineId | |
+| **shipmentNumber** | **Integer**| shipmentNumber | |
 | **ifMatch** | **String**| If-Match | [optional] |
 
 ### Return type
@@ -2686,7 +2971,7 @@ null (empty response body)
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth), [clientOauth2](../README.md#clientOauth2)
+No authorization required
 
 ### HTTP request headers
 
@@ -2702,13 +2987,13 @@ null (empty response body)
 | **403** | Forbidden |  -  |
 | **404** | Not Found |  -  |
 
-<a name="resendShipmentEmailUsingPUT"></a>
-# **resendShipmentEmailUsingPUT**
-> resendShipmentEmailUsingPUT(shipmentNumber, ifMatch)
+<a name="resendShipmentEmail"></a>
+# **resendShipmentEmail**
+> resendShipmentEmail(shipmentNumber, ifMatch)
 
-Resend Shipment Email
+resendShipmentEmail
 
-Resend Shipment Email
+Resend a shipment confirmation email.
 
 ### Example
 ```java
@@ -2716,7 +3001,6 @@ Resend Shipment Email
 import com.kibocommerce.sdk.fulfillment.ApiClient;
 import com.kibocommerce.sdk.fulfillment.ApiException;
 import com.kibocommerce.sdk.fulfillment.Configuration;
-import com.kibocommerce.sdk.fulfillment.auth.*;
 import com.kibocommerce.sdk.fulfillment.models.*;
 import com.kibocommerce.sdk.fulfillment.api.ShipmentApi;
 
@@ -2724,22 +3008,14 @@ public class Example {
   public static void main(String[] args) {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
     defaultClient.setBasePath("http://https:/api");
-    
-    // Configure HTTP bearer authorization: bearerAuth
-    HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
-    bearerAuth.setBearerToken("BEARER TOKEN");
-
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
 
     ShipmentApi apiInstance = new ShipmentApi(defaultClient);
     Integer shipmentNumber = 56; // Integer | shipmentNumber
     String ifMatch = "ifMatch_example"; // String | If-Match
     try {
-      apiInstance.resendShipmentEmailUsingPUT(shipmentNumber, ifMatch);
+      apiInstance.resendShipmentEmail(shipmentNumber, ifMatch);
     } catch (ApiException e) {
-      System.err.println("Exception when calling ShipmentApi#resendShipmentEmailUsingPUT");
+      System.err.println("Exception when calling ShipmentApi#resendShipmentEmail");
       System.err.println("Status code: " + e.getCode());
       System.err.println("Reason: " + e.getResponseBody());
       System.err.println("Response headers: " + e.getResponseHeaders());
@@ -2762,7 +3038,7 @@ null (empty response body)
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth), [clientOauth2](../README.md#clientOauth2)
+No authorization required
 
 ### HTTP request headers
 
@@ -2778,13 +3054,13 @@ null (empty response body)
 | **403** | Forbidden |  -  |
 | **404** | Not Found |  -  |
 
-<a name="retryFulfillingShipmentUsingPUT"></a>
-# **retryFulfillingShipmentUsingPUT**
-> EntityModelOfShipment retryFulfillingShipmentUsingPUT(shipmentNumber, ifMatch)
+<a name="resetStockValidation"></a>
+# **resetStockValidation**
+> EntityModelOfShipment resetStockValidation(lineId, shipmentNumber, xVolTenant, ifMatch, xVolSite)
 
-Retry Fulfilling Shipment
+resetStockValidation
 
-Retry Fulfilling Shipment
+resetStockValidation
 
 ### Example
 ```java
@@ -2792,7 +3068,6 @@ Retry Fulfilling Shipment
 import com.kibocommerce.sdk.fulfillment.ApiClient;
 import com.kibocommerce.sdk.fulfillment.ApiException;
 import com.kibocommerce.sdk.fulfillment.Configuration;
-import com.kibocommerce.sdk.fulfillment.auth.*;
 import com.kibocommerce.sdk.fulfillment.models.*;
 import com.kibocommerce.sdk.fulfillment.api.ShipmentApi;
 
@@ -2800,23 +3075,88 @@ public class Example {
   public static void main(String[] args) {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
     defaultClient.setBasePath("http://https:/api");
-    
-    // Configure HTTP bearer authorization: bearerAuth
-    HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
-    bearerAuth.setBearerToken("BEARER TOKEN");
-
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
 
     ShipmentApi apiInstance = new ShipmentApi(defaultClient);
+    Integer lineId = 56; // Integer | lineId
     Integer shipmentNumber = 56; // Integer | shipmentNumber
+    Integer xVolTenant = 56; // Integer | 
     String ifMatch = "ifMatch_example"; // String | If-Match
+    Integer xVolSite = 56; // Integer | 
     try {
-      EntityModelOfShipment result = apiInstance.retryFulfillingShipmentUsingPUT(shipmentNumber, ifMatch);
+      EntityModelOfShipment result = apiInstance.resetStockValidation(lineId, shipmentNumber, xVolTenant, ifMatch, xVolSite);
       System.out.println(result);
     } catch (ApiException e) {
-      System.err.println("Exception when calling ShipmentApi#retryFulfillingShipmentUsingPUT");
+      System.err.println("Exception when calling ShipmentApi#resetStockValidation");
+      System.err.println("Status code: " + e.getCode());
+      System.err.println("Reason: " + e.getResponseBody());
+      System.err.println("Response headers: " + e.getResponseHeaders());
+      e.printStackTrace();
+    }
+  }
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **lineId** | **Integer**| lineId | |
+| **shipmentNumber** | **Integer**| shipmentNumber | |
+| **xVolTenant** | **Integer**|  | |
+| **ifMatch** | **String**| If-Match | [optional] |
+| **xVolSite** | **Integer**|  | [optional] |
+
+### Return type
+
+[**EntityModelOfShipment**](EntityModelOfShipment.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/hal+json, application/json, application/xml
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | OK |  -  |
+| **204** | No Content |  -  |
+| **401** | Unauthorized |  -  |
+| **403** | Forbidden |  -  |
+
+<a name="retryFulfillingShipment"></a>
+# **retryFulfillingShipment**
+> EntityModelOfShipment retryFulfillingShipment(shipmentNumber, ifMatch)
+
+retryFulfillingShipment
+
+Attempt to fulfill a shipment again.
+
+### Example
+```java
+// Import classes:
+import com.kibocommerce.sdk.fulfillment.ApiClient;
+import com.kibocommerce.sdk.fulfillment.ApiException;
+import com.kibocommerce.sdk.fulfillment.Configuration;
+import com.kibocommerce.sdk.fulfillment.models.*;
+import com.kibocommerce.sdk.fulfillment.api.ShipmentApi;
+
+public class Example {
+  public static void main(String[] args) {
+    ApiClient defaultClient = Configuration.getDefaultApiClient();
+    defaultClient.setBasePath("http://https:/api");
+
+    ShipmentApi apiInstance = new ShipmentApi(defaultClient);
+    Integer shipmentNumber = 56; // Integer | shipmentNumber
+    String ifMatch = "ifMatch_example"; // String | If-Match
+    try {
+      EntityModelOfShipment result = apiInstance.retryFulfillingShipment(shipmentNumber, ifMatch);
+      System.out.println(result);
+    } catch (ApiException e) {
+      System.err.println("Exception when calling ShipmentApi#retryFulfillingShipment");
       System.err.println("Status code: " + e.getCode());
       System.err.println("Reason: " + e.getResponseBody());
       System.err.println("Response headers: " + e.getResponseHeaders());
@@ -2839,12 +3179,12 @@ public class Example {
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth), [clientOauth2](../README.md#clientOauth2)
+No authorization required
 
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: application/json, application/xml, application/hal+json
+ - **Accept**: application/hal+json, application/json, application/xml
 
 ### HTTP response details
 | Status code | Description | Response headers |
@@ -2855,13 +3195,13 @@ public class Example {
 | **403** | Forbidden |  -  |
 | **404** | Not Found |  -  |
 
-<a name="revertUsingPUT"></a>
-# **revertUsingPUT**
-> EntityModelOfShipment revertUsingPUT(shipmentNumber, taskName, ifMatch)
+<a name="revert"></a>
+# **revert**
+> EntityModelOfShipment revert(shipmentNumber, taskName, ifMatch)
 
-Revert Workflow Task
+Revert Task
 
-Revert Workflow Task
+Revert a shipment task.
 
 ### Example
 ```java
@@ -2869,7 +3209,6 @@ Revert Workflow Task
 import com.kibocommerce.sdk.fulfillment.ApiClient;
 import com.kibocommerce.sdk.fulfillment.ApiException;
 import com.kibocommerce.sdk.fulfillment.Configuration;
-import com.kibocommerce.sdk.fulfillment.auth.*;
 import com.kibocommerce.sdk.fulfillment.models.*;
 import com.kibocommerce.sdk.fulfillment.api.ShipmentApi;
 
@@ -2877,24 +3216,16 @@ public class Example {
   public static void main(String[] args) {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
     defaultClient.setBasePath("http://https:/api");
-    
-    // Configure HTTP bearer authorization: bearerAuth
-    HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
-    bearerAuth.setBearerToken("BEARER TOKEN");
-
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
 
     ShipmentApi apiInstance = new ShipmentApi(defaultClient);
     Integer shipmentNumber = 56; // Integer | shipmentNumber
     String taskName = "taskName_example"; // String | taskName
     String ifMatch = "ifMatch_example"; // String | If-Match
     try {
-      EntityModelOfShipment result = apiInstance.revertUsingPUT(shipmentNumber, taskName, ifMatch);
+      EntityModelOfShipment result = apiInstance.revert(shipmentNumber, taskName, ifMatch);
       System.out.println(result);
     } catch (ApiException e) {
-      System.err.println("Exception when calling ShipmentApi#revertUsingPUT");
+      System.err.println("Exception when calling ShipmentApi#revert");
       System.err.println("Status code: " + e.getCode());
       System.err.println("Reason: " + e.getResponseBody());
       System.err.println("Response headers: " + e.getResponseHeaders());
@@ -2918,12 +3249,12 @@ public class Example {
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth), [clientOauth2](../README.md#clientOauth2)
+No authorization required
 
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: application/json, application/xml, application/hal+json
+ - **Accept**: application/hal+json, application/json, application/xml
 
 ### HTTP response details
 | Status code | Description | Response headers |
@@ -2934,13 +3265,13 @@ public class Example {
 | **403** | Forbidden |  -  |
 | **404** | Not Found |  -  |
 
-<a name="searchAndReceiveTransferUsingPUT"></a>
-# **searchAndReceiveTransferUsingPUT**
-> EntityModelOfShipment searchAndReceiveTransferUsingPUT(search, ifMatch)
+<a name="searchAndReceiveTransfer"></a>
+# **searchAndReceiveTransfer**
+> EntityModelOfShipment searchAndReceiveTransfer(search, ifMatch)
 
-Find and Receive Transfer
+Search and Receive Transfer
 
-Find and Receive Transfer
+Search for and receive a transfer shipment.
 
 ### Example
 ```java
@@ -2948,7 +3279,6 @@ Find and Receive Transfer
 import com.kibocommerce.sdk.fulfillment.ApiClient;
 import com.kibocommerce.sdk.fulfillment.ApiException;
 import com.kibocommerce.sdk.fulfillment.Configuration;
-import com.kibocommerce.sdk.fulfillment.auth.*;
 import com.kibocommerce.sdk.fulfillment.models.*;
 import com.kibocommerce.sdk.fulfillment.api.ShipmentApi;
 
@@ -2956,23 +3286,15 @@ public class Example {
   public static void main(String[] args) {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
     defaultClient.setBasePath("http://https:/api");
-    
-    // Configure HTTP bearer authorization: bearerAuth
-    HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
-    bearerAuth.setBearerToken("BEARER TOKEN");
-
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
 
     ShipmentApi apiInstance = new ShipmentApi(defaultClient);
     String search = "search_example"; // String | search
     String ifMatch = "ifMatch_example"; // String | If-Match
     try {
-      EntityModelOfShipment result = apiInstance.searchAndReceiveTransferUsingPUT(search, ifMatch);
+      EntityModelOfShipment result = apiInstance.searchAndReceiveTransfer(search, ifMatch);
       System.out.println(result);
     } catch (ApiException e) {
-      System.err.println("Exception when calling ShipmentApi#searchAndReceiveTransferUsingPUT");
+      System.err.println("Exception when calling ShipmentApi#searchAndReceiveTransfer");
       System.err.println("Status code: " + e.getCode());
       System.err.println("Reason: " + e.getResponseBody());
       System.err.println("Response headers: " + e.getResponseHeaders());
@@ -2995,12 +3317,12 @@ public class Example {
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth), [clientOauth2](../README.md#clientOauth2)
+No authorization required
 
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: application/json, application/xml, application/hal+json
+ - **Accept**: application/hal+json, application/json, application/xml
 
 ### HTTP response details
 | Status code | Description | Response headers |
@@ -3011,13 +3333,13 @@ public class Example {
 | **403** | Forbidden |  -  |
 | **404** | Not Found |  -  |
 
-<a name="skipTaskUsingPUT"></a>
-# **skipTaskUsingPUT**
-> EntityModelOfShipment skipTaskUsingPUT(shipmentNumber, taskName, ifMatch)
+<a name="searchReceivableShipment"></a>
+# **searchReceivableShipment**
+> EntityModelOfShipment searchReceivableShipment(search, xVolTenant, xVolSite)
 
-Skip Workflow Task
+searchReceivableShipment
 
-Skip Workflow Task
+searchReceivableShipment
 
 ### Example
 ```java
@@ -3025,7 +3347,6 @@ Skip Workflow Task
 import com.kibocommerce.sdk.fulfillment.ApiClient;
 import com.kibocommerce.sdk.fulfillment.ApiException;
 import com.kibocommerce.sdk.fulfillment.Configuration;
-import com.kibocommerce.sdk.fulfillment.auth.*;
 import com.kibocommerce.sdk.fulfillment.models.*;
 import com.kibocommerce.sdk.fulfillment.api.ShipmentApi;
 
@@ -3033,24 +3354,228 @@ public class Example {
   public static void main(String[] args) {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
     defaultClient.setBasePath("http://https:/api");
-    
-    // Configure HTTP bearer authorization: bearerAuth
-    HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
-    bearerAuth.setBearerToken("BEARER TOKEN");
 
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
+    ShipmentApi apiInstance = new ShipmentApi(defaultClient);
+    String search = "search_example"; // String | search
+    Integer xVolTenant = 56; // Integer | 
+    Integer xVolSite = 56; // Integer | 
+    try {
+      EntityModelOfShipment result = apiInstance.searchReceivableShipment(search, xVolTenant, xVolSite);
+      System.out.println(result);
+    } catch (ApiException e) {
+      System.err.println("Exception when calling ShipmentApi#searchReceivableShipment");
+      System.err.println("Status code: " + e.getCode());
+      System.err.println("Reason: " + e.getResponseBody());
+      System.err.println("Response headers: " + e.getResponseHeaders());
+      e.printStackTrace();
+    }
+  }
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **search** | **String**| search | |
+| **xVolTenant** | **Integer**|  | |
+| **xVolSite** | **Integer**|  | [optional] |
+
+### Return type
+
+[**EntityModelOfShipment**](EntityModelOfShipment.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/hal+json, application/json, application/xml
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | OK |  -  |
+| **401** | Unauthorized |  -  |
+| **403** | Forbidden |  -  |
+| **404** | Not Found |  -  |
+
+<a name="searchShipments"></a>
+# **searchShipments**
+> PagedModelOfEntityModelOfShipment searchShipments(xVolTenant, getShipmentsRequest, xVolSite)
+
+searchShipments
+
+searchShipments
+
+### Example
+```java
+// Import classes:
+import com.kibocommerce.sdk.fulfillment.ApiClient;
+import com.kibocommerce.sdk.fulfillment.ApiException;
+import com.kibocommerce.sdk.fulfillment.Configuration;
+import com.kibocommerce.sdk.fulfillment.models.*;
+import com.kibocommerce.sdk.fulfillment.api.ShipmentApi;
+
+public class Example {
+  public static void main(String[] args) {
+    ApiClient defaultClient = Configuration.getDefaultApiClient();
+    defaultClient.setBasePath("http://https:/api");
+
+    ShipmentApi apiInstance = new ShipmentApi(defaultClient);
+    Integer xVolTenant = 56; // Integer | 
+    GetShipmentsRequest getShipmentsRequest = new GetShipmentsRequest(); // GetShipmentsRequest | request
+    Integer xVolSite = 56; // Integer | 
+    try {
+      PagedModelOfEntityModelOfShipment result = apiInstance.searchShipments(xVolTenant, getShipmentsRequest, xVolSite);
+      System.out.println(result);
+    } catch (ApiException e) {
+      System.err.println("Exception when calling ShipmentApi#searchShipments");
+      System.err.println("Status code: " + e.getCode());
+      System.err.println("Reason: " + e.getResponseBody());
+      System.err.println("Response headers: " + e.getResponseHeaders());
+      e.printStackTrace();
+    }
+  }
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **xVolTenant** | **Integer**|  | |
+| **getShipmentsRequest** | [**GetShipmentsRequest**](GetShipmentsRequest.md)| request | |
+| **xVolSite** | **Integer**|  | [optional] |
+
+### Return type
+
+[**PagedModelOfEntityModelOfShipment**](PagedModelOfEntityModelOfShipment.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/hal+json, application/json, application/xml
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | OK |  -  |
+| **201** | Created |  -  |
+| **401** | Unauthorized |  -  |
+| **403** | Forbidden |  -  |
+| **404** | Not Found |  -  |
+
+<a name="setWorkflowVariable"></a>
+# **setWorkflowVariable**
+> setWorkflowVariable(shipmentNumber, xVolTenant, bpmVariable, ifMatch, xVolSite)
+
+setWorkflowVariable
+
+setWorkflowVariable
+
+### Example
+```java
+// Import classes:
+import com.kibocommerce.sdk.fulfillment.ApiClient;
+import com.kibocommerce.sdk.fulfillment.ApiException;
+import com.kibocommerce.sdk.fulfillment.Configuration;
+import com.kibocommerce.sdk.fulfillment.models.*;
+import com.kibocommerce.sdk.fulfillment.api.ShipmentApi;
+
+public class Example {
+  public static void main(String[] args) {
+    ApiClient defaultClient = Configuration.getDefaultApiClient();
+    defaultClient.setBasePath("http://https:/api");
+
+    ShipmentApi apiInstance = new ShipmentApi(defaultClient);
+    Integer shipmentNumber = 56; // Integer | shipmentNumber
+    Integer xVolTenant = 56; // Integer | 
+    BpmVariable bpmVariable = new BpmVariable(); // BpmVariable | variableDto
+    String ifMatch = "ifMatch_example"; // String | If-Match
+    Integer xVolSite = 56; // Integer | 
+    try {
+      apiInstance.setWorkflowVariable(shipmentNumber, xVolTenant, bpmVariable, ifMatch, xVolSite);
+    } catch (ApiException e) {
+      System.err.println("Exception when calling ShipmentApi#setWorkflowVariable");
+      System.err.println("Status code: " + e.getCode());
+      System.err.println("Reason: " + e.getResponseBody());
+      System.err.println("Response headers: " + e.getResponseHeaders());
+      e.printStackTrace();
+    }
+  }
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **shipmentNumber** | **Integer**| shipmentNumber | |
+| **xVolTenant** | **Integer**|  | |
+| **bpmVariable** | [**BpmVariable**](BpmVariable.md)| variableDto | |
+| **ifMatch** | **String**| If-Match | [optional] |
+| **xVolSite** | **Integer**|  | [optional] |
+
+### Return type
+
+null (empty response body)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: Not defined
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | OK |  -  |
+| **201** | Created |  -  |
+| **401** | Unauthorized |  -  |
+| **403** | Forbidden |  -  |
+| **404** | Not Found |  -  |
+
+<a name="skipTask"></a>
+# **skipTask**
+> EntityModelOfShipment skipTask(shipmentNumber, taskName, ifMatch)
+
+Skip Task
+
+Skip a shipment task.
+
+### Example
+```java
+// Import classes:
+import com.kibocommerce.sdk.fulfillment.ApiClient;
+import com.kibocommerce.sdk.fulfillment.ApiException;
+import com.kibocommerce.sdk.fulfillment.Configuration;
+import com.kibocommerce.sdk.fulfillment.models.*;
+import com.kibocommerce.sdk.fulfillment.api.ShipmentApi;
+
+public class Example {
+  public static void main(String[] args) {
+    ApiClient defaultClient = Configuration.getDefaultApiClient();
+    defaultClient.setBasePath("http://https:/api");
 
     ShipmentApi apiInstance = new ShipmentApi(defaultClient);
     Integer shipmentNumber = 56; // Integer | shipmentNumber
     String taskName = "taskName_example"; // String | taskName
     String ifMatch = "ifMatch_example"; // String | If-Match
     try {
-      EntityModelOfShipment result = apiInstance.skipTaskUsingPUT(shipmentNumber, taskName, ifMatch);
+      EntityModelOfShipment result = apiInstance.skipTask(shipmentNumber, taskName, ifMatch);
       System.out.println(result);
     } catch (ApiException e) {
-      System.err.println("Exception when calling ShipmentApi#skipTaskUsingPUT");
+      System.err.println("Exception when calling ShipmentApi#skipTask");
       System.err.println("Status code: " + e.getCode());
       System.err.println("Reason: " + e.getResponseBody());
       System.err.println("Response headers: " + e.getResponseHeaders());
@@ -3074,12 +3599,12 @@ public class Example {
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth), [clientOauth2](../README.md#clientOauth2)
+No authorization required
 
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: application/xml, application/json, application/hal+json
+ - **Accept**: application/hal+json, application/json, application/xml
 
 ### HTTP response details
 | Status code | Description | Response headers |
@@ -3090,13 +3615,13 @@ public class Example {
 | **403** | Forbidden |  -  |
 | **404** | Not Found |  -  |
 
-<a name="transferItemsUsingPUT"></a>
-# **transferItemsUsingPUT**
-> EntityModelOfShipment transferItemsUsingPUT(shipmentNumber, ifMatch, transferItemsRequest)
+<a name="transferItems"></a>
+# **transferItems**
+> EntityModelOfShipment transferItems(shipmentNumber, transferItemsRequestDto, ifMatch)
 
-Transfer Items
+transferItems
 
-If a pickup location for a BOPIS (Buy Online Pickup in Store) shipment does not have all items available in stock, then they can request a transfer from another location. Submitting this transfer request will send the information about the unavailable items to a second location, who will then ship the items to the fulfiller so that the customer can pick them up at the original store location they selected when submitting their order. It is possible for only some items in the shipment to be needed as a transfer, as opposed to the entire shipment, so this API facilitates creating a transfer for those specific items and quantities.
+Transfer items from a shipment.
 
 ### Example
 ```java
@@ -3104,7 +3629,6 @@ If a pickup location for a BOPIS (Buy Online Pickup in Store) shipment does not 
 import com.kibocommerce.sdk.fulfillment.ApiClient;
 import com.kibocommerce.sdk.fulfillment.ApiException;
 import com.kibocommerce.sdk.fulfillment.Configuration;
-import com.kibocommerce.sdk.fulfillment.auth.*;
 import com.kibocommerce.sdk.fulfillment.models.*;
 import com.kibocommerce.sdk.fulfillment.api.ShipmentApi;
 
@@ -3112,24 +3636,16 @@ public class Example {
   public static void main(String[] args) {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
     defaultClient.setBasePath("http://https:/api");
-    
-    // Configure HTTP bearer authorization: bearerAuth
-    HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
-    bearerAuth.setBearerToken("BEARER TOKEN");
-
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
 
     ShipmentApi apiInstance = new ShipmentApi(defaultClient);
     Integer shipmentNumber = 56; // Integer | shipmentNumber
+    TransferItemsRequest transferItemsRequestDto = new TransferItemsRequest(); // TransferItemsRequest | transferItemsRequestDto
     String ifMatch = "ifMatch_example"; // String | If-Match
-    TransferItemsRequest transferItemsRequest = new TransferItemsRequest(); // TransferItemsRequest | 
     try {
-      EntityModelOfShipment result = apiInstance.transferItemsUsingPUT(shipmentNumber, ifMatch, transferItemsRequest);
+      EntityModelOfShipment result = apiInstance.transferItems(shipmentNumber, transferItemsRequestDto, ifMatch);
       System.out.println(result);
     } catch (ApiException e) {
-      System.err.println("Exception when calling ShipmentApi#transferItemsUsingPUT");
+      System.err.println("Exception when calling ShipmentApi#transferItems");
       System.err.println("Status code: " + e.getCode());
       System.err.println("Reason: " + e.getResponseBody());
       System.err.println("Response headers: " + e.getResponseHeaders());
@@ -3144,8 +3660,8 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **shipmentNumber** | **Integer**| shipmentNumber | |
+| **transferItemsRequestDto** | [**TransferItemsRequest**](TransferItemsRequest.md)| transferItemsRequestDto | |
 | **ifMatch** | **String**| If-Match | [optional] |
-| **transferItemsRequest** | [**TransferItemsRequest**](TransferItemsRequest.md)|  | [optional] |
 
 ### Return type
 
@@ -3153,12 +3669,12 @@ public class Example {
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth), [clientOauth2](../README.md#clientOauth2)
+No authorization required
 
 ### HTTP request headers
 
  - **Content-Type**: application/json
- - **Accept**: application/xml, application/json, application/hal+json
+ - **Accept**: application/hal+json, application/json, application/xml
 
 ### HTTP response details
 | Status code | Description | Response headers |
@@ -3169,13 +3685,13 @@ public class Example {
 | **403** | Forbidden |  -  |
 | **404** | Not Found |  -  |
 
-<a name="transferShipmentUsingPUT"></a>
-# **transferShipmentUsingPUT**
-> EntityModelOfShipment transferShipmentUsingPUT(shipmentNumber, ifMatch, transferShipment)
+<a name="transferShipment"></a>
+# **transferShipment**
+> EntityModelOfShipment transferShipment(shipmentNumber, transferShipmentRequestDto, ifMatch)
 
-Transfer Shipment
+transferShipment
 
-If a pickup location for a BOPIS (Buy Online Pickup in Store) shipment does not have all items available in stock, then they can request a transfer from another location. Submitting this transfer request will send the information about the shipment to a second location, who will then ship the items to the fulfiller so that the customer can pick them up at the original store location they selected when submitting their order.
+Transfer a shipment.
 
 ### Example
 ```java
@@ -3183,7 +3699,6 @@ If a pickup location for a BOPIS (Buy Online Pickup in Store) shipment does not 
 import com.kibocommerce.sdk.fulfillment.ApiClient;
 import com.kibocommerce.sdk.fulfillment.ApiException;
 import com.kibocommerce.sdk.fulfillment.Configuration;
-import com.kibocommerce.sdk.fulfillment.auth.*;
 import com.kibocommerce.sdk.fulfillment.models.*;
 import com.kibocommerce.sdk.fulfillment.api.ShipmentApi;
 
@@ -3191,24 +3706,16 @@ public class Example {
   public static void main(String[] args) {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
     defaultClient.setBasePath("http://https:/api");
-    
-    // Configure HTTP bearer authorization: bearerAuth
-    HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
-    bearerAuth.setBearerToken("BEARER TOKEN");
-
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
 
     ShipmentApi apiInstance = new ShipmentApi(defaultClient);
     Integer shipmentNumber = 56; // Integer | shipmentNumber
+    TransferShipment transferShipmentRequestDto = new TransferShipment(); // TransferShipment | transferShipmentRequestDto
     String ifMatch = "ifMatch_example"; // String | If-Match
-    TransferShipment transferShipment = new TransferShipment(); // TransferShipment | 
     try {
-      EntityModelOfShipment result = apiInstance.transferShipmentUsingPUT(shipmentNumber, ifMatch, transferShipment);
+      EntityModelOfShipment result = apiInstance.transferShipment(shipmentNumber, transferShipmentRequestDto, ifMatch);
       System.out.println(result);
     } catch (ApiException e) {
-      System.err.println("Exception when calling ShipmentApi#transferShipmentUsingPUT");
+      System.err.println("Exception when calling ShipmentApi#transferShipment");
       System.err.println("Status code: " + e.getCode());
       System.err.println("Reason: " + e.getResponseBody());
       System.err.println("Response headers: " + e.getResponseHeaders());
@@ -3223,8 +3730,8 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **shipmentNumber** | **Integer**| shipmentNumber | |
+| **transferShipmentRequestDto** | [**TransferShipment**](TransferShipment.md)| transferShipmentRequestDto | |
 | **ifMatch** | **String**| If-Match | [optional] |
-| **transferShipment** | [**TransferShipment**](TransferShipment.md)|  | [optional] |
 
 ### Return type
 
@@ -3232,12 +3739,12 @@ public class Example {
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth), [clientOauth2](../README.md#clientOauth2)
+No authorization required
 
 ### HTTP request headers
 
  - **Content-Type**: application/json
- - **Accept**: application/xml, application/json, application/hal+json
+ - **Accept**: application/hal+json, application/json, application/xml
 
 ### HTTP response details
 | Status code | Description | Response headers |
@@ -3248,13 +3755,13 @@ public class Example {
 | **403** | Forbidden |  -  |
 | **404** | Not Found |  -  |
 
-<a name="updateFulfillmentFieldsUsingPUT"></a>
-# **updateFulfillmentFieldsUsingPUT**
-> EntityModelOfShipment updateFulfillmentFieldsUsingPUT(shipmentNumber, ifMatch, fulfillmentItem)
+<a name="updateFulfillmentFields"></a>
+# **updateFulfillmentFields**
+> EntityModelOfShipment updateFulfillmentFields(shipmentNumber, items, ifMatch)
 
-Update Fulfillment Fields
+updateFulfillmentFields
 
-Update Fulfillment Fields
+Update a shipment&#39;s fulfillment fields.
 
 ### Example
 ```java
@@ -3262,7 +3769,6 @@ Update Fulfillment Fields
 import com.kibocommerce.sdk.fulfillment.ApiClient;
 import com.kibocommerce.sdk.fulfillment.ApiException;
 import com.kibocommerce.sdk.fulfillment.Configuration;
-import com.kibocommerce.sdk.fulfillment.auth.*;
 import com.kibocommerce.sdk.fulfillment.models.*;
 import com.kibocommerce.sdk.fulfillment.api.ShipmentApi;
 
@@ -3270,24 +3776,16 @@ public class Example {
   public static void main(String[] args) {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
     defaultClient.setBasePath("http://https:/api");
-    
-    // Configure HTTP bearer authorization: bearerAuth
-    HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
-    bearerAuth.setBearerToken("BEARER TOKEN");
-
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
 
     ShipmentApi apiInstance = new ShipmentApi(defaultClient);
     Integer shipmentNumber = 56; // Integer | shipmentNumber
+    List<FilterOptionDtoResultItem> items = Arrays.asList(); // List<FilterOptionDtoResultItem> | items
     String ifMatch = "ifMatch_example"; // String | If-Match
-    List<FulfillmentItem> fulfillmentItem = Arrays.asList(); // List<FulfillmentItem> | 
     try {
-      EntityModelOfShipment result = apiInstance.updateFulfillmentFieldsUsingPUT(shipmentNumber, ifMatch, fulfillmentItem);
+      EntityModelOfShipment result = apiInstance.updateFulfillmentFields(shipmentNumber, items, ifMatch);
       System.out.println(result);
     } catch (ApiException e) {
-      System.err.println("Exception when calling ShipmentApi#updateFulfillmentFieldsUsingPUT");
+      System.err.println("Exception when calling ShipmentApi#updateFulfillmentFields");
       System.err.println("Status code: " + e.getCode());
       System.err.println("Reason: " + e.getResponseBody());
       System.err.println("Response headers: " + e.getResponseHeaders());
@@ -3302,8 +3800,8 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **shipmentNumber** | **Integer**| shipmentNumber | |
+| **items** | [**List&lt;FilterOptionDtoResultItem&gt;**](FilterOptionDtoResultItem.md)| items | |
 | **ifMatch** | **String**| If-Match | [optional] |
-| **fulfillmentItem** | [**List&lt;FulfillmentItem&gt;**](FulfillmentItem.md)|  | [optional] |
 
 ### Return type
 
@@ -3311,12 +3809,12 @@ public class Example {
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth), [clientOauth2](../README.md#clientOauth2)
+No authorization required
 
 ### HTTP request headers
 
  - **Content-Type**: application/json
- - **Accept**: application/json, application/xml, application/hal+json
+ - **Accept**: application/hal+json, application/json, application/xml
 
 ### HTTP response details
 | Status code | Description | Response headers |
@@ -3327,13 +3825,13 @@ public class Example {
 | **403** | Forbidden |  -  |
 | **404** | Not Found |  -  |
 
-<a name="updateGiftCardInfoUsingPUT"></a>
-# **updateGiftCardInfoUsingPUT**
-> EntityModelOfShipment updateGiftCardInfoUsingPUT(shipmentNumber, ifMatch, giftCardInfoRequest)
+<a name="updateGiftCardInfo"></a>
+# **updateGiftCardInfo**
+> EntityModelOfShipment updateGiftCardInfo(shipmentNumber, giftCardInfoRequestDto, ifMatch)
 
-Update Gift Card Info
+updateGiftCardInfo
 
-Update Gift Card Info
+Update the gift card information of a shipment.
 
 ### Example
 ```java
@@ -3341,7 +3839,6 @@ Update Gift Card Info
 import com.kibocommerce.sdk.fulfillment.ApiClient;
 import com.kibocommerce.sdk.fulfillment.ApiException;
 import com.kibocommerce.sdk.fulfillment.Configuration;
-import com.kibocommerce.sdk.fulfillment.auth.*;
 import com.kibocommerce.sdk.fulfillment.models.*;
 import com.kibocommerce.sdk.fulfillment.api.ShipmentApi;
 
@@ -3349,24 +3846,16 @@ public class Example {
   public static void main(String[] args) {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
     defaultClient.setBasePath("http://https:/api");
-    
-    // Configure HTTP bearer authorization: bearerAuth
-    HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
-    bearerAuth.setBearerToken("BEARER TOKEN");
-
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
 
     ShipmentApi apiInstance = new ShipmentApi(defaultClient);
     Integer shipmentNumber = 56; // Integer | shipmentNumber
+    GiftCardInfoRequest giftCardInfoRequestDto = new GiftCardInfoRequest(); // GiftCardInfoRequest | giftCardInfoRequestDto
     String ifMatch = "ifMatch_example"; // String | If-Match
-    GiftCardInfoRequest giftCardInfoRequest = new GiftCardInfoRequest(); // GiftCardInfoRequest | 
     try {
-      EntityModelOfShipment result = apiInstance.updateGiftCardInfoUsingPUT(shipmentNumber, ifMatch, giftCardInfoRequest);
+      EntityModelOfShipment result = apiInstance.updateGiftCardInfo(shipmentNumber, giftCardInfoRequestDto, ifMatch);
       System.out.println(result);
     } catch (ApiException e) {
-      System.err.println("Exception when calling ShipmentApi#updateGiftCardInfoUsingPUT");
+      System.err.println("Exception when calling ShipmentApi#updateGiftCardInfo");
       System.err.println("Status code: " + e.getCode());
       System.err.println("Reason: " + e.getResponseBody());
       System.err.println("Response headers: " + e.getResponseHeaders());
@@ -3381,8 +3870,8 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **shipmentNumber** | **Integer**| shipmentNumber | |
+| **giftCardInfoRequestDto** | [**GiftCardInfoRequest**](GiftCardInfoRequest.md)| giftCardInfoRequestDto | |
 | **ifMatch** | **String**| If-Match | [optional] |
-| **giftCardInfoRequest** | [**GiftCardInfoRequest**](GiftCardInfoRequest.md)|  | [optional] |
 
 ### Return type
 
@@ -3390,12 +3879,12 @@ public class Example {
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth), [clientOauth2](../README.md#clientOauth2)
+No authorization required
 
 ### HTTP request headers
 
  - **Content-Type**: application/json
- - **Accept**: application/json, application/xml, application/hal+json
+ - **Accept**: application/hal+json, application/json, application/xml
 
 ### HTTP response details
 | Status code | Description | Response headers |
@@ -3406,13 +3895,13 @@ public class Example {
 | **403** | Forbidden |  -  |
 | **404** | Not Found |  -  |
 
-<a name="workflowDefinitionImageUsingGET"></a>
-# **workflowDefinitionImageUsingGET**
-> String workflowDefinitionImageUsingGET(shipmentNumber)
+<a name="updateLastCancellationDate"></a>
+# **updateLastCancellationDate**
+> EntityModelOfShipment updateLastCancellationDate(shipmentNumber, xVolTenant, lastCancellationDateDto, ifMatch, xVolSite)
 
-Get Workflow Definition Image
+updateLastCancellationDate
 
-Get Workflow Definition Image
+updateLastCancellationDate
 
 ### Example
 ```java
@@ -3420,7 +3909,6 @@ Get Workflow Definition Image
 import com.kibocommerce.sdk.fulfillment.ApiClient;
 import com.kibocommerce.sdk.fulfillment.ApiException;
 import com.kibocommerce.sdk.fulfillment.Configuration;
-import com.kibocommerce.sdk.fulfillment.auth.*;
 import com.kibocommerce.sdk.fulfillment.models.*;
 import com.kibocommerce.sdk.fulfillment.api.ShipmentApi;
 
@@ -3428,22 +3916,164 @@ public class Example {
   public static void main(String[] args) {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
     defaultClient.setBasePath("http://https:/api");
-    
-    // Configure HTTP bearer authorization: bearerAuth
-    HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
-    bearerAuth.setBearerToken("BEARER TOKEN");
 
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
+    ShipmentApi apiInstance = new ShipmentApi(defaultClient);
+    Integer shipmentNumber = 56; // Integer | shipmentNumber
+    Integer xVolTenant = 56; // Integer | 
+    LastCancellationDateDto lastCancellationDateDto = new LastCancellationDateDto(); // LastCancellationDateDto | lastCancellationDateDto
+    String ifMatch = "ifMatch_example"; // String | If-Match
+    Integer xVolSite = 56; // Integer | 
+    try {
+      EntityModelOfShipment result = apiInstance.updateLastCancellationDate(shipmentNumber, xVolTenant, lastCancellationDateDto, ifMatch, xVolSite);
+      System.out.println(result);
+    } catch (ApiException e) {
+      System.err.println("Exception when calling ShipmentApi#updateLastCancellationDate");
+      System.err.println("Status code: " + e.getCode());
+      System.err.println("Reason: " + e.getResponseBody());
+      System.err.println("Response headers: " + e.getResponseHeaders());
+      e.printStackTrace();
+    }
+  }
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **shipmentNumber** | **Integer**| shipmentNumber | |
+| **xVolTenant** | **Integer**|  | |
+| **lastCancellationDateDto** | [**LastCancellationDateDto**](LastCancellationDateDto.md)| lastCancellationDateDto | |
+| **ifMatch** | **String**| If-Match | [optional] |
+| **xVolSite** | **Integer**|  | [optional] |
+
+### Return type
+
+[**EntityModelOfShipment**](EntityModelOfShipment.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/hal+json, application/json, application/xml
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | OK |  -  |
+| **201** | Created |  -  |
+| **401** | Unauthorized |  -  |
+| **403** | Forbidden |  -  |
+| **404** | Not Found |  -  |
+
+<a name="validateStockItem"></a>
+# **validateStockItem**
+> EntityModelOfShipment validateStockItem(lineId, shipmentNumber, xVolTenant, validateStockItem, ifMatch, xVolSite)
+
+validateStockItem
+
+validateStockItem
+
+### Example
+```java
+// Import classes:
+import com.kibocommerce.sdk.fulfillment.ApiClient;
+import com.kibocommerce.sdk.fulfillment.ApiException;
+import com.kibocommerce.sdk.fulfillment.Configuration;
+import com.kibocommerce.sdk.fulfillment.models.*;
+import com.kibocommerce.sdk.fulfillment.api.ShipmentApi;
+
+public class Example {
+  public static void main(String[] args) {
+    ApiClient defaultClient = Configuration.getDefaultApiClient();
+    defaultClient.setBasePath("http://https:/api");
+
+    ShipmentApi apiInstance = new ShipmentApi(defaultClient);
+    Integer lineId = 56; // Integer | lineId
+    Integer shipmentNumber = 56; // Integer | shipmentNumber
+    Integer xVolTenant = 56; // Integer | 
+    ValidateStockItem validateStockItem = new ValidateStockItem(); // ValidateStockItem | request
+    String ifMatch = "ifMatch_example"; // String | If-Match
+    Integer xVolSite = 56; // Integer | 
+    try {
+      EntityModelOfShipment result = apiInstance.validateStockItem(lineId, shipmentNumber, xVolTenant, validateStockItem, ifMatch, xVolSite);
+      System.out.println(result);
+    } catch (ApiException e) {
+      System.err.println("Exception when calling ShipmentApi#validateStockItem");
+      System.err.println("Status code: " + e.getCode());
+      System.err.println("Reason: " + e.getResponseBody());
+      System.err.println("Response headers: " + e.getResponseHeaders());
+      e.printStackTrace();
+    }
+  }
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **lineId** | **Integer**| lineId | |
+| **shipmentNumber** | **Integer**| shipmentNumber | |
+| **xVolTenant** | **Integer**|  | |
+| **validateStockItem** | [**ValidateStockItem**](ValidateStockItem.md)| request | |
+| **ifMatch** | **String**| If-Match | [optional] |
+| **xVolSite** | **Integer**|  | [optional] |
+
+### Return type
+
+[**EntityModelOfShipment**](EntityModelOfShipment.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/hal+json, application/json, application/xml
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | OK |  -  |
+| **201** | Created |  -  |
+| **401** | Unauthorized |  -  |
+| **403** | Forbidden |  -  |
+| **404** | Not Found |  -  |
+
+<a name="workflowDefinitionImage"></a>
+# **workflowDefinitionImage**
+> String workflowDefinitionImage(shipmentNumber)
+
+Workflow Definition Image
+
+Get the workflow definition image of a shipment.
+
+### Example
+```java
+// Import classes:
+import com.kibocommerce.sdk.fulfillment.ApiClient;
+import com.kibocommerce.sdk.fulfillment.ApiException;
+import com.kibocommerce.sdk.fulfillment.Configuration;
+import com.kibocommerce.sdk.fulfillment.models.*;
+import com.kibocommerce.sdk.fulfillment.api.ShipmentApi;
+
+public class Example {
+  public static void main(String[] args) {
+    ApiClient defaultClient = Configuration.getDefaultApiClient();
+    defaultClient.setBasePath("http://https:/api");
 
     ShipmentApi apiInstance = new ShipmentApi(defaultClient);
     Integer shipmentNumber = 56; // Integer | shipmentNumber
     try {
-      String result = apiInstance.workflowDefinitionImageUsingGET(shipmentNumber);
+      String result = apiInstance.workflowDefinitionImage(shipmentNumber);
       System.out.println(result);
     } catch (ApiException e) {
-      System.err.println("Exception when calling ShipmentApi#workflowDefinitionImageUsingGET");
+      System.err.println("Exception when calling ShipmentApi#workflowDefinitionImage");
       System.err.println("Status code: " + e.getCode());
       System.err.println("Reason: " + e.getResponseBody());
       System.err.println("Response headers: " + e.getResponseHeaders());
@@ -3465,7 +4095,7 @@ public class Example {
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth), [clientOauth2](../README.md#clientOauth2)
+No authorization required
 
 ### HTTP request headers
 
@@ -3480,13 +4110,13 @@ public class Example {
 | **403** | Forbidden |  -  |
 | **404** | Not Found |  -  |
 
-<a name="workflowInstanceImageUsingGET"></a>
-# **workflowInstanceImageUsingGET**
-> String workflowInstanceImageUsingGET(shipmentNumber)
+<a name="workflowInstanceImage"></a>
+# **workflowInstanceImage**
+> String workflowInstanceImage(shipmentNumber)
 
-Get Workflow Instance Image
+workflowInstanceImage
 
-Get Workflow Instance Image
+Get a workflow instance image for a shipment.
 
 ### Example
 ```java
@@ -3494,7 +4124,6 @@ Get Workflow Instance Image
 import com.kibocommerce.sdk.fulfillment.ApiClient;
 import com.kibocommerce.sdk.fulfillment.ApiException;
 import com.kibocommerce.sdk.fulfillment.Configuration;
-import com.kibocommerce.sdk.fulfillment.auth.*;
 import com.kibocommerce.sdk.fulfillment.models.*;
 import com.kibocommerce.sdk.fulfillment.api.ShipmentApi;
 
@@ -3502,22 +4131,14 @@ public class Example {
   public static void main(String[] args) {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
     defaultClient.setBasePath("http://https:/api");
-    
-    // Configure HTTP bearer authorization: bearerAuth
-    HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
-    bearerAuth.setBearerToken("BEARER TOKEN");
-
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
 
     ShipmentApi apiInstance = new ShipmentApi(defaultClient);
     Integer shipmentNumber = 56; // Integer | shipmentNumber
     try {
-      String result = apiInstance.workflowInstanceImageUsingGET(shipmentNumber);
+      String result = apiInstance.workflowInstanceImage(shipmentNumber);
       System.out.println(result);
     } catch (ApiException e) {
-      System.err.println("Exception when calling ShipmentApi#workflowInstanceImageUsingGET");
+      System.err.println("Exception when calling ShipmentApi#workflowInstanceImage");
       System.err.println("Status code: " + e.getCode());
       System.err.println("Reason: " + e.getResponseBody());
       System.err.println("Response headers: " + e.getResponseHeaders());
@@ -3539,7 +4160,7 @@ public class Example {
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth), [clientOauth2](../README.md#clientOauth2)
+No authorization required
 
 ### HTTP request headers
 

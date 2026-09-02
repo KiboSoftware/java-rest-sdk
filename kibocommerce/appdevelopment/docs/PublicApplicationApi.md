@@ -19,7 +19,7 @@ All URIs are relative to *http://https:/api*
 
 Delete Package File
 
-
+Delete an existing package file.
 
 ### Example
 ```java
@@ -39,10 +39,6 @@ public class Example {
     // Configure HTTP bearer authorization: bearerAuth
     HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
     bearerAuth.setBearerToken("BEARER TOKEN");
-
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
 
     PublicApplicationApi apiInstance = new PublicApplicationApi(defaultClient);
     String applicationKey = "applicationKey_example"; // String | 
@@ -73,7 +69,7 @@ null (empty response body)
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth), [clientOauth2](../README.md#clientOauth2)
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
@@ -83,15 +79,15 @@ null (empty response body)
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Success |  -  |
+| **200** | OK |  -  |
 
 <a name="getAppPackageNames"></a>
 # **getAppPackageNames**
-> PackageNamesCollection getAppPackageNames(applicationKey)
+> PackageNamesCollection getAppPackageNames(applicationKey, responseFields)
 
 Get App Package Names
 
-
+Retrieve a list of application package names.
 
 ### Example
 ```java
@@ -112,14 +108,11 @@ public class Example {
     HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
     bearerAuth.setBearerToken("BEARER TOKEN");
 
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
-
     PublicApplicationApi apiInstance = new PublicApplicationApi(defaultClient);
     String applicationKey = "applicationKey_example"; // String | 
+    String responseFields = "responseFields_example"; // String | limits which fields are returned in the response body
     try {
-      PackageNamesCollection result = apiInstance.getAppPackageNames(applicationKey);
+      PackageNamesCollection result = apiInstance.getAppPackageNames(applicationKey, responseFields);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling PublicApplicationApi#getAppPackageNames");
@@ -137,6 +130,7 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **applicationKey** | **String**|  | |
+| **responseFields** | **String**| limits which fields are returned in the response body | [optional] |
 
 ### Return type
 
@@ -144,25 +138,25 @@ public class Example {
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth), [clientOauth2](../README.md#clientOauth2)
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: text/plain, application/json, text/json
+ - **Accept**: application/json, text/json, text/plain
 
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Success |  -  |
+| **200** | OK |  -  |
 
 <a name="getAppVersions"></a>
 # **getAppVersions**
-> ApplicationVersionsCollection getAppVersions(nsAndAppId)
+> ApplicationVersionsCollection getAppVersions(nsAndAppId, responseFields)
 
 Get App Versions
 
-
+Retrieve a list of application versions.
 
 ### Example
 ```java
@@ -183,14 +177,11 @@ public class Example {
     HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
     bearerAuth.setBearerToken("BEARER TOKEN");
 
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
-
     PublicApplicationApi apiInstance = new PublicApplicationApi(defaultClient);
     String nsAndAppId = "nsAndAppId_example"; // String | 
+    String responseFields = "responseFields_example"; // String | limits which fields are returned in the response body
     try {
-      ApplicationVersionsCollection result = apiInstance.getAppVersions(nsAndAppId);
+      ApplicationVersionsCollection result = apiInstance.getAppVersions(nsAndAppId, responseFields);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling PublicApplicationApi#getAppVersions");
@@ -208,6 +199,7 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **nsAndAppId** | **String**|  | |
+| **responseFields** | **String**| limits which fields are returned in the response body | [optional] |
 
 ### Return type
 
@@ -215,25 +207,25 @@ public class Example {
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth), [clientOauth2](../README.md#clientOauth2)
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: text/plain, application/json, text/json
+ - **Accept**: application/json, text/json, text/plain
 
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Success |  -  |
+| **200** | OK |  -  |
 
 <a name="getPackageFileMetadata"></a>
 # **getPackageFileMetadata**
-> FileMetadata getPackageFileMetadata(applicationKey, filepath)
+> FileMetadata getPackageFileMetadata(applicationKey, filepath, responseFields)
 
 Get Package File Metadata
 
-
+Retrieve all package file metadata.
 
 ### Example
 ```java
@@ -254,15 +246,12 @@ public class Example {
     HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
     bearerAuth.setBearerToken("BEARER TOKEN");
 
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
-
     PublicApplicationApi apiInstance = new PublicApplicationApi(defaultClient);
     String applicationKey = "applicationKey_example"; // String | 
     String filepath = "filepath_example"; // String | 
+    String responseFields = "responseFields_example"; // String | limits which fields are returned in the response body
     try {
-      FileMetadata result = apiInstance.getPackageFileMetadata(applicationKey, filepath);
+      FileMetadata result = apiInstance.getPackageFileMetadata(applicationKey, filepath, responseFields);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling PublicApplicationApi#getPackageFileMetadata");
@@ -281,6 +270,7 @@ public class Example {
 |------------- | ------------- | ------------- | -------------|
 | **applicationKey** | **String**|  | |
 | **filepath** | **String**|  | |
+| **responseFields** | **String**| limits which fields are returned in the response body | [optional] |
 
 ### Return type
 
@@ -288,25 +278,25 @@ public class Example {
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth), [clientOauth2](../README.md#clientOauth2)
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: text/plain, application/json, text/json
+ - **Accept**: application/json, text/json, text/plain
 
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Success |  -  |
+| **200** | OK |  -  |
 
 <a name="getPackageMetadata"></a>
 # **getPackageMetadata**
-> FolderMetadata getPackageMetadata(applicationKey)
+> FolderMetadata getPackageMetadata(applicationKey, responseFields)
 
 Get Package Metadata
 
-
+Retrieve application package metadata.
 
 ### Example
 ```java
@@ -327,14 +317,11 @@ public class Example {
     HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
     bearerAuth.setBearerToken("BEARER TOKEN");
 
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
-
     PublicApplicationApi apiInstance = new PublicApplicationApi(defaultClient);
     String applicationKey = "applicationKey_example"; // String | 
+    String responseFields = "responseFields_example"; // String | limits which fields are returned in the response body
     try {
-      FolderMetadata result = apiInstance.getPackageMetadata(applicationKey);
+      FolderMetadata result = apiInstance.getPackageMetadata(applicationKey, responseFields);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling PublicApplicationApi#getPackageMetadata");
@@ -352,6 +339,7 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **applicationKey** | **String**|  | |
+| **responseFields** | **String**| limits which fields are returned in the response body | [optional] |
 
 ### Return type
 
@@ -359,25 +347,25 @@ public class Example {
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth), [clientOauth2](../README.md#clientOauth2)
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: text/plain, application/json, text/json
+ - **Accept**: application/json, text/json, text/plain
 
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Success |  -  |
+| **200** | OK |  -  |
 
 <a name="renamePackageFile"></a>
 # **renamePackageFile**
-> FileMetadata renamePackageFile(applicationKey, renameInfo)
+> FileMetadata renamePackageFile(applicationKey, responseFields, renameInfo)
 
 Rename Package File
 
-
+Rename a package file.
 
 ### Example
 ```java
@@ -398,15 +386,12 @@ public class Example {
     HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
     bearerAuth.setBearerToken("BEARER TOKEN");
 
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
-
     PublicApplicationApi apiInstance = new PublicApplicationApi(defaultClient);
     String applicationKey = "applicationKey_example"; // String | 
+    String responseFields = "responseFields_example"; // String | limits which fields are returned in the response body
     RenameInfo renameInfo = new RenameInfo(); // RenameInfo | 
     try {
-      FileMetadata result = apiInstance.renamePackageFile(applicationKey, renameInfo);
+      FileMetadata result = apiInstance.renamePackageFile(applicationKey, responseFields, renameInfo);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling PublicApplicationApi#renamePackageFile");
@@ -424,6 +409,7 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **applicationKey** | **String**|  | |
+| **responseFields** | **String**| limits which fields are returned in the response body | [optional] |
 | **renameInfo** | [**RenameInfo**](RenameInfo.md)|  | [optional] |
 
 ### Return type
@@ -432,25 +418,25 @@ public class Example {
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth), [clientOauth2](../README.md#clientOauth2)
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
  - **Content-Type**: application/json
- - **Accept**: text/plain, application/json, text/json
+ - **Accept**: application/json, text/json, text/plain
 
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Success |  -  |
+| **200** | OK |  -  |
 
 <a name="upsertPackageFile"></a>
 # **upsertPackageFile**
-> FileMetadata upsertPackageFile(applicationKey, filepath, lastModifiedTime)
+> FileMetadata upsertPackageFile(applicationKey, filepath, lastModifiedTime, responseFields)
 
 Upsert Package File
 
-
+Update and replace a package file.
 
 ### Example
 ```java
@@ -471,16 +457,13 @@ public class Example {
     HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
     bearerAuth.setBearerToken("BEARER TOKEN");
 
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
-
     PublicApplicationApi apiInstance = new PublicApplicationApi(defaultClient);
     String applicationKey = "applicationKey_example"; // String | 
     String filepath = "filepath_example"; // String | 
     String lastModifiedTime = "lastModifiedTime_example"; // String | 
+    String responseFields = "responseFields_example"; // String | limits which fields are returned in the response body
     try {
-      FileMetadata result = apiInstance.upsertPackageFile(applicationKey, filepath, lastModifiedTime);
+      FileMetadata result = apiInstance.upsertPackageFile(applicationKey, filepath, lastModifiedTime, responseFields);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling PublicApplicationApi#upsertPackageFile");
@@ -500,6 +483,7 @@ public class Example {
 | **applicationKey** | **String**|  | |
 | **filepath** | **String**|  | |
 | **lastModifiedTime** | **String**|  | [optional] |
+| **responseFields** | **String**| limits which fields are returned in the response body | [optional] |
 
 ### Return type
 
@@ -507,15 +491,15 @@ public class Example {
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth), [clientOauth2](../README.md#clientOauth2)
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: text/plain, application/json, text/json
+ - **Accept**: application/json, text/json, text/plain
 
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Success |  -  |
+| **200** | OK |  -  |
 

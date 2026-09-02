@@ -8,7 +8,7 @@
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
 |**attributes** | **Map&lt;String, Object&gt;** |  |  [optional] |
-|**auditInfo** | [**AdminUserAuditInfo**](AdminUserAuditInfo.md) |  |  [optional] |
+|**auditInfo** | [**CoreApiContractsAuditInfo**](CoreApiContractsAuditInfo.md) |  |  [optional] |
 |**completedDate** | **OffsetDateTime** |  |  [optional] |
 |**processInstanceId** | **String** |  |  [optional] |
 |**shipmentState** | **String** |  |  [optional] |

@@ -1,8 +1,8 @@
 /*
  * Kibo Catalog Admin Services
- * OpenAPI Spec for Kibo Catalog Admin Services
+ * <div id=\"overview_CATALOG_ADMIN\">             <h2>CATALOG ADMINISTRATION</h2>             <p>The Catalog Administration APIs are a collection of resources for configuring the catalogs and products offered to your shoppers, including                 discounts and coupon sets, faceting, price lists, and different types or variations of products. See the                 <a href=\"/concept-guides/catalog\">Catalog user guides</a>                 for information about the related features in the Unified Commerce Admin.</p>             <p>Use the <strong>Attributes</strong> resource to manage localization and attribute configurations for your catalogs. This current version of the Attributes API includes localizedContent to                 support <a href=\"/pages/catalog-structure#multi-locale-catalogs\">multi-locale catalogs</a>, which was not present in the legacy API model. If                 you were a client prior to May 2024 and have upgraded your implementation to support this feature,                 you can still access attribute data that has not yet been rewritten to the new model by providing                 an x-api-version header set to \"1\". </p>             <p>Use the <strong>Categories</strong> resource to organize products and control where they appear on the storefront. Create                 and maintain a hierarchy of categories and subcategories where the site will store properties. This current version of the Categories API includes localizedContent to                 support <a href=\"/pages/catalog-structure#multi-locale-catalogs\">multi-locale catalogs</a>, which was not present in the legacy API model. If                 you were a client prior to May 2024 and have upgraded your implementation to support this feature,                 you can still access category data that has not yet been rewritten to the new model by providing                 an x-api-version header set to \"1\". </p>             <p>Use the <strong>Coupon Sets</strong> resource to view and create coupon sets. You can use coupon sets to group multiple                 coupon codes together and associate them with one or more discounts.</p>             <p>Use the <strong>Currency</strong> resource to manage the currency localization rules and exchange rates for any of the                 currencies that are supported for placing orders in.</p>             <p>Use the <strong>Discounts</strong> and <strong>Discount Settings</strong> resources to define and manage discounts to apply to products, product categories, or                 orders. This current version of the Discounts API includes localizedContent to                 support <a href=\"/pages/catalog-structure#multi-locale-catalogs\">multi-locale catalogs</a>, which was not present in the legacy Products API model. If                 you were a client prior to May 2024 and have upgraded your implementation to support this feature,                 you can still access discount data that has not yet been rewritten to the new model by providing                 an x-api-version header set to \"1\". </p>             <p>Use the <strong>Facets</strong> resource to manage the facets shoppers use to filter product display results on a                 storefront. Facets can include categories, product attributes, or prices, and use either a range of                 values or discrete values.</p>             <p>Use the <strong>Master Catalog</strong> resource to view details of the master catalogs associated with a tenant and to                 manage the product publishing mode for each master catalog.</p>             <p>Use the <strong>Price Lists</strong> resources to view and create price lists. You can use price lists to override the                 catalog pricing of products for specific customer segments and/or sites.</p>             <p>Use the <strong>Products</strong>, <strong>Product Types/Extras/Options/Properties</strong>, and <strong>Product Sort Definitions</strong> resources to create new product definitions in the master catalog and determine which                 catalogs will feature products. This current version of the Products API includes localizedContent to                 support <a href=\"/pages/catalog-structure#multi-locale-catalogs\">multi-locale catalogs</a>, which was not present in the legacy Products API model. If                 you were a client prior to May 2024 and have upgraded your implementation to support this feature,                 you can still access product data that has not yet been rewritten to the new model by providing                 an x-api-version header set to \"1\".</p>             <p>Use the <strong>Publishing</strong> resource to publish pending product updates together as part of a set.</p>             <p>Use the <strong>Search</strong> resource to manage all settings and options for providing product search on your site, as                 well as search tuning rules.</p>         </div>
  *
- * The version of the OpenAPI document: 1.0.0
+ * The version of the OpenAPI document: v1
  * 
  *
  * NOTE: This class is auto generated by OpenAPI Generator (https://openapi-generator.tech).
@@ -61,169 +61,77 @@ import com.kibocommerce.sdk.common.JSON;
 public class CatalogAdminsFacet implements Serializable {
   private static final long serialVersionUID = 1L;
 
-  public static final String SERIALIZED_NAME_FACET_ID = "facetId";
-  @SerializedName(SERIALIZED_NAME_FACET_ID)
-  private Integer facetId;
-
-  public static final String SERIALIZED_NAME_SOURCE = "source";
-  @SerializedName(SERIALIZED_NAME_SOURCE)
-  private FacetSource source;
-
-  public static final String SERIALIZED_NAME_FACET_TYPE = "facetType";
-  @SerializedName(SERIALIZED_NAME_FACET_TYPE)
-  private String facetType;
-
-  public static final String SERIALIZED_NAME_ORDER = "order";
-  @SerializedName(SERIALIZED_NAME_ORDER)
-  private Integer order;
-
-  public static final String SERIALIZED_NAME_CATEGORY_ID = "categoryId";
-  @SerializedName(SERIALIZED_NAME_CATEGORY_ID)
-  private Integer categoryId;
+  public static final String SERIALIZED_NAME_AUDIT_INFO = "auditInfo";
+  @SerializedName(SERIALIZED_NAME_AUDIT_INFO)
+  private AdminUserAuditInfo auditInfo;
 
   public static final String SERIALIZED_NAME_CATEGORY_CODE = "categoryCode";
   @SerializedName(SERIALIZED_NAME_CATEGORY_CODE)
   private String categoryCode;
 
-  public static final String SERIALIZED_NAME_VALUE_SORT_TYPE = "valueSortType";
-  @SerializedName(SERIALIZED_NAME_VALUE_SORT_TYPE)
-  private String valueSortType;
+  public static final String SERIALIZED_NAME_CATEGORY_ID = "categoryId";
+  @SerializedName(SERIALIZED_NAME_CATEGORY_ID)
+  private Integer categoryId;
 
-  public static final String SERIALIZED_NAME_OVERRIDE_FACET_ID = "overrideFacetId";
-  @SerializedName(SERIALIZED_NAME_OVERRIDE_FACET_ID)
-  private Integer overrideFacetId;
+  public static final String SERIALIZED_NAME_FACET_ID = "facetId";
+  @SerializedName(SERIALIZED_NAME_FACET_ID)
+  private Integer facetId;
+
+  public static final String SERIALIZED_NAME_FACET_TYPE = "facetType";
+  @SerializedName(SERIALIZED_NAME_FACET_TYPE)
+  private String facetType;
 
   public static final String SERIALIZED_NAME_IS_HIDDEN = "isHidden";
   @SerializedName(SERIALIZED_NAME_IS_HIDDEN)
   private Boolean isHidden;
 
-  public static final String SERIALIZED_NAME_VALIDITY = "validity";
-  @SerializedName(SERIALIZED_NAME_VALIDITY)
-  private FacetValidity validity;
+  public static final String SERIALIZED_NAME_ORDER = "order";
+  @SerializedName(SERIALIZED_NAME_ORDER)
+  private Integer order;
+
+  public static final String SERIALIZED_NAME_OVERRIDE_FACET_ID = "overrideFacetId";
+  @SerializedName(SERIALIZED_NAME_OVERRIDE_FACET_ID)
+  private Integer overrideFacetId;
 
   public static final String SERIALIZED_NAME_RANGE_QUERIES = "rangeQueries";
   @SerializedName(SERIALIZED_NAME_RANGE_QUERIES)
   private List<FacetRangeQuery> rangeQueries = null;
 
-  public static final String SERIALIZED_NAME_AUDIT_INFO = "auditInfo";
-  @SerializedName(SERIALIZED_NAME_AUDIT_INFO)
-  private AdminUserAuditInfo auditInfo;
+  public static final String SERIALIZED_NAME_SOURCE = "source";
+  @SerializedName(SERIALIZED_NAME_SOURCE)
+  private FacetSource source;
+
+  public static final String SERIALIZED_NAME_VALIDITY = "validity";
+  @SerializedName(SERIALIZED_NAME_VALIDITY)
+  private FacetValidity validity;
+
+  public static final String SERIALIZED_NAME_VALUE_SORT_TYPE = "valueSortType";
+  @SerializedName(SERIALIZED_NAME_VALUE_SORT_TYPE)
+  private String valueSortType;
 
   public CatalogAdminsFacet() {
   }
 
-  public CatalogAdminsFacet facetId(Integer facetId) {
+  public CatalogAdminsFacet auditInfo(AdminUserAuditInfo auditInfo) {
     
-    this.facetId = facetId;
+    this.auditInfo = auditInfo;
     return this;
   }
 
    /**
-   * The unique identifier for the facet definition
-   * @return facetId
-  **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(value = "The unique identifier for the facet definition")
-
-  public Integer getFacetId() {
-    return facetId;
-  }
-
-
-  public void setFacetId(Integer facetId) {
-    this.facetId = facetId;
-  }
-
-
-  public CatalogAdminsFacet source(FacetSource source) {
-    
-    this.source = source;
-    return this;
-  }
-
-   /**
-   * Get source
-   * @return source
+   * Get auditInfo
+   * @return auditInfo
   **/
   @javax.annotation.Nullable
   @ApiModelProperty(value = "")
 
-  public FacetSource getSource() {
-    return source;
+  public AdminUserAuditInfo getAuditInfo() {
+    return auditInfo;
   }
 
 
-  public void setSource(FacetSource source) {
-    this.source = source;
-  }
-
-
-  public CatalogAdminsFacet facetType(String facetType) {
-    
-    this.facetType = facetType;
-    return this;
-  }
-
-   /**
-   * The type of facet. Allowable values are: Value, RangeQuery   Must be a valid value for DataType defined in FacetTypeConst.
-   * @return facetType
-  **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(value = "The type of facet. Allowable values are: Value, RangeQuery   Must be a valid value for DataType defined in FacetTypeConst.")
-
-  public String getFacetType() {
-    return facetType;
-  }
-
-
-  public void setFacetType(String facetType) {
-    this.facetType = facetType;
-  }
-
-
-  public CatalogAdminsFacet order(Integer order) {
-    
-    this.order = order;
-    return this;
-  }
-
-   /**
-   * Used to order the display of the facets within a section
-   * @return order
-  **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(value = "Used to order the display of the facets within a section")
-
-  public Integer getOrder() {
-    return order;
-  }
-
-
-  public void setOrder(Integer order) {
-    this.order = order;
-  }
-
-
-  public CatalogAdminsFacet categoryId(Integer categoryId) {
-    
-    this.categoryId = categoryId;
-    return this;
-  }
-
-   /**
-   * The category that the facet is being configured at
-   * @return categoryId
-  **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(value = "The category that the facet is being configured at")
-
-  public Integer getCategoryId() {
-    return categoryId;
-  }
-
-
-  public void setCategoryId(Integer categoryId) {
-    this.categoryId = categoryId;
+  public void setAuditInfo(AdminUserAuditInfo auditInfo) {
+    this.auditInfo = auditInfo;
   }
 
 
@@ -250,49 +158,72 @@ public class CatalogAdminsFacet implements Serializable {
   }
 
 
-  public CatalogAdminsFacet valueSortType(String valueSortType) {
+  public CatalogAdminsFacet categoryId(Integer categoryId) {
     
-    this.valueSortType = valueSortType;
+    this.categoryId = categoryId;
     return this;
   }
 
    /**
-   * Determines how the facet values will be sorted in the store.   Must be a valid value for DataType defined in FacetValueSortTypeConst.   Allowable values are: CountAscending, CountDescending, ValuesAscending, ValuesDescending, AttributeDefinition, AttributeDefinitionDescending.  The default if no value is specified will be CountDescending.
-   * @return valueSortType
+   * The category that the facet is being configured at
+   * @return categoryId
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "Determines how the facet values will be sorted in the store.   Must be a valid value for DataType defined in FacetValueSortTypeConst.   Allowable values are: CountAscending, CountDescending, ValuesAscending, ValuesDescending, AttributeDefinition, AttributeDefinitionDescending.  The default if no value is specified will be CountDescending.")
+  @ApiModelProperty(value = "The category that the facet is being configured at")
 
-  public String getValueSortType() {
-    return valueSortType;
+  public Integer getCategoryId() {
+    return categoryId;
   }
 
 
-  public void setValueSortType(String valueSortType) {
-    this.valueSortType = valueSortType;
+  public void setCategoryId(Integer categoryId) {
+    this.categoryId = categoryId;
   }
 
 
-  public CatalogAdminsFacet overrideFacetId(Integer overrideFacetId) {
+  public CatalogAdminsFacet facetId(Integer facetId) {
     
-    this.overrideFacetId = overrideFacetId;
+    this.facetId = facetId;
     return this;
   }
 
    /**
-   * The ID of a parent category&#39;s facet being overriden
-   * @return overrideFacetId
+   * The unique identifier for the facet definition
+   * @return facetId
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "The ID of a parent category's facet being overriden")
+  @ApiModelProperty(value = "The unique identifier for the facet definition")
 
-  public Integer getOverrideFacetId() {
-    return overrideFacetId;
+  public Integer getFacetId() {
+    return facetId;
   }
 
 
-  public void setOverrideFacetId(Integer overrideFacetId) {
-    this.overrideFacetId = overrideFacetId;
+  public void setFacetId(Integer facetId) {
+    this.facetId = facetId;
+  }
+
+
+  public CatalogAdminsFacet facetType(String facetType) {
+    
+    this.facetType = facetType;
+    return this;
+  }
+
+   /**
+   * The type of facet. Allowable values are: Value, RangeQuery  Must be a valid value for DataType defined in FacetTypeConst.
+   * @return facetType
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "The type of facet. Allowable values are: Value, RangeQuery  Must be a valid value for DataType defined in FacetTypeConst.")
+
+  public String getFacetType() {
+    return facetType;
+  }
+
+
+  public void setFacetType(String facetType) {
+    this.facetType = facetType;
   }
 
 
@@ -319,26 +250,49 @@ public class CatalogAdminsFacet implements Serializable {
   }
 
 
-  public CatalogAdminsFacet validity(FacetValidity validity) {
+  public CatalogAdminsFacet order(Integer order) {
     
-    this.validity = validity;
+    this.order = order;
     return this;
   }
 
    /**
-   * Get validity
-   * @return validity
+   * Used to order the display of the facets within a section
+   * @return order
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
+  @ApiModelProperty(value = "Used to order the display of the facets within a section")
 
-  public FacetValidity getValidity() {
-    return validity;
+  public Integer getOrder() {
+    return order;
   }
 
 
-  public void setValidity(FacetValidity validity) {
-    this.validity = validity;
+  public void setOrder(Integer order) {
+    this.order = order;
+  }
+
+
+  public CatalogAdminsFacet overrideFacetId(Integer overrideFacetId) {
+    
+    this.overrideFacetId = overrideFacetId;
+    return this;
+  }
+
+   /**
+   * The ID of a parent category&#39;s facet being overriden
+   * @return overrideFacetId
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "The ID of a parent category's facet being overriden")
+
+  public Integer getOverrideFacetId() {
+    return overrideFacetId;
+  }
+
+
+  public void setOverrideFacetId(Integer overrideFacetId) {
+    this.overrideFacetId = overrideFacetId;
   }
 
 
@@ -373,26 +327,72 @@ public class CatalogAdminsFacet implements Serializable {
   }
 
 
-  public CatalogAdminsFacet auditInfo(AdminUserAuditInfo auditInfo) {
+  public CatalogAdminsFacet source(FacetSource source) {
     
-    this.auditInfo = auditInfo;
+    this.source = source;
     return this;
   }
 
    /**
-   * Get auditInfo
-   * @return auditInfo
+   * Get source
+   * @return source
   **/
   @javax.annotation.Nullable
   @ApiModelProperty(value = "")
 
-  public AdminUserAuditInfo getAuditInfo() {
-    return auditInfo;
+  public FacetSource getSource() {
+    return source;
   }
 
 
-  public void setAuditInfo(AdminUserAuditInfo auditInfo) {
-    this.auditInfo = auditInfo;
+  public void setSource(FacetSource source) {
+    this.source = source;
+  }
+
+
+  public CatalogAdminsFacet validity(FacetValidity validity) {
+    
+    this.validity = validity;
+    return this;
+  }
+
+   /**
+   * Get validity
+   * @return validity
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
+
+  public FacetValidity getValidity() {
+    return validity;
+  }
+
+
+  public void setValidity(FacetValidity validity) {
+    this.validity = validity;
+  }
+
+
+  public CatalogAdminsFacet valueSortType(String valueSortType) {
+    
+    this.valueSortType = valueSortType;
+    return this;
+  }
+
+   /**
+   * Determines how the facet values will be sorted in the store.  Must be a valid value for DataType defined in FacetValueSortTypeConst.  Allowable values are: CountAscending, CountDescending, ValuesAscending, ValuesDescending, AttributeDefinition, AttributeDefinitionDescending. The default if no value is specified will be CountDescending.
+   * @return valueSortType
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "Determines how the facet values will be sorted in the store.  Must be a valid value for DataType defined in FacetValueSortTypeConst.  Allowable values are: CountAscending, CountDescending, ValuesAscending, ValuesDescending, AttributeDefinition, AttributeDefinitionDescending. The default if no value is specified will be CountDescending.")
+
+  public String getValueSortType() {
+    return valueSortType;
+  }
+
+
+  public void setValueSortType(String valueSortType) {
+    this.valueSortType = valueSortType;
   }
 
 
@@ -406,18 +406,18 @@ public class CatalogAdminsFacet implements Serializable {
       return false;
     }
     CatalogAdminsFacet catalogAdminsFacet = (CatalogAdminsFacet) o;
-    return Objects.equals(this.facetId, catalogAdminsFacet.facetId) &&
-        Objects.equals(this.source, catalogAdminsFacet.source) &&
-        Objects.equals(this.facetType, catalogAdminsFacet.facetType) &&
-        Objects.equals(this.order, catalogAdminsFacet.order) &&
-        Objects.equals(this.categoryId, catalogAdminsFacet.categoryId) &&
+    return Objects.equals(this.auditInfo, catalogAdminsFacet.auditInfo) &&
         Objects.equals(this.categoryCode, catalogAdminsFacet.categoryCode) &&
-        Objects.equals(this.valueSortType, catalogAdminsFacet.valueSortType) &&
-        Objects.equals(this.overrideFacetId, catalogAdminsFacet.overrideFacetId) &&
+        Objects.equals(this.categoryId, catalogAdminsFacet.categoryId) &&
+        Objects.equals(this.facetId, catalogAdminsFacet.facetId) &&
+        Objects.equals(this.facetType, catalogAdminsFacet.facetType) &&
         Objects.equals(this.isHidden, catalogAdminsFacet.isHidden) &&
-        Objects.equals(this.validity, catalogAdminsFacet.validity) &&
+        Objects.equals(this.order, catalogAdminsFacet.order) &&
+        Objects.equals(this.overrideFacetId, catalogAdminsFacet.overrideFacetId) &&
         Objects.equals(this.rangeQueries, catalogAdminsFacet.rangeQueries) &&
-        Objects.equals(this.auditInfo, catalogAdminsFacet.auditInfo);
+        Objects.equals(this.source, catalogAdminsFacet.source) &&
+        Objects.equals(this.validity, catalogAdminsFacet.validity) &&
+        Objects.equals(this.valueSortType, catalogAdminsFacet.valueSortType);
   }
 
   private static <T> boolean equalsNullable(JsonNullable<T> a, JsonNullable<T> b) {
@@ -426,7 +426,7 @@ public class CatalogAdminsFacet implements Serializable {
 
   @Override
   public int hashCode() {
-    return Objects.hash(facetId, source, facetType, order, categoryId, categoryCode, valueSortType, overrideFacetId, isHidden, validity, rangeQueries, auditInfo);
+    return Objects.hash(auditInfo, categoryCode, categoryId, facetId, facetType, isHidden, order, overrideFacetId, rangeQueries, source, validity, valueSortType);
   }
 
   private static <T> int hashCodeNullable(JsonNullable<T> a) {
@@ -440,18 +440,18 @@ public class CatalogAdminsFacet implements Serializable {
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class CatalogAdminsFacet {\n");
-    sb.append("    facetId: ").append(toIndentedString(facetId)).append("\n");
-    sb.append("    source: ").append(toIndentedString(source)).append("\n");
-    sb.append("    facetType: ").append(toIndentedString(facetType)).append("\n");
-    sb.append("    order: ").append(toIndentedString(order)).append("\n");
-    sb.append("    categoryId: ").append(toIndentedString(categoryId)).append("\n");
-    sb.append("    categoryCode: ").append(toIndentedString(categoryCode)).append("\n");
-    sb.append("    valueSortType: ").append(toIndentedString(valueSortType)).append("\n");
-    sb.append("    overrideFacetId: ").append(toIndentedString(overrideFacetId)).append("\n");
-    sb.append("    isHidden: ").append(toIndentedString(isHidden)).append("\n");
-    sb.append("    validity: ").append(toIndentedString(validity)).append("\n");
-    sb.append("    rangeQueries: ").append(toIndentedString(rangeQueries)).append("\n");
     sb.append("    auditInfo: ").append(toIndentedString(auditInfo)).append("\n");
+    sb.append("    categoryCode: ").append(toIndentedString(categoryCode)).append("\n");
+    sb.append("    categoryId: ").append(toIndentedString(categoryId)).append("\n");
+    sb.append("    facetId: ").append(toIndentedString(facetId)).append("\n");
+    sb.append("    facetType: ").append(toIndentedString(facetType)).append("\n");
+    sb.append("    isHidden: ").append(toIndentedString(isHidden)).append("\n");
+    sb.append("    order: ").append(toIndentedString(order)).append("\n");
+    sb.append("    overrideFacetId: ").append(toIndentedString(overrideFacetId)).append("\n");
+    sb.append("    rangeQueries: ").append(toIndentedString(rangeQueries)).append("\n");
+    sb.append("    source: ").append(toIndentedString(source)).append("\n");
+    sb.append("    validity: ").append(toIndentedString(validity)).append("\n");
+    sb.append("    valueSortType: ").append(toIndentedString(valueSortType)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -474,18 +474,18 @@ public class CatalogAdminsFacet implements Serializable {
   static {
     // a set of all properties/fields (JSON key names)
     openapiFields = new HashSet<String>();
-    openapiFields.add("facetId");
-    openapiFields.add("source");
-    openapiFields.add("facetType");
-    openapiFields.add("order");
-    openapiFields.add("categoryId");
-    openapiFields.add("categoryCode");
-    openapiFields.add("valueSortType");
-    openapiFields.add("overrideFacetId");
-    openapiFields.add("isHidden");
-    openapiFields.add("validity");
-    openapiFields.add("rangeQueries");
     openapiFields.add("auditInfo");
+    openapiFields.add("categoryCode");
+    openapiFields.add("categoryId");
+    openapiFields.add("facetId");
+    openapiFields.add("facetType");
+    openapiFields.add("isHidden");
+    openapiFields.add("order");
+    openapiFields.add("overrideFacetId");
+    openapiFields.add("rangeQueries");
+    openapiFields.add("source");
+    openapiFields.add("validity");
+    openapiFields.add("valueSortType");
 
     // a set of required properties/fields (JSON key names)
     openapiRequiredFields = new HashSet<String>();
@@ -512,22 +512,15 @@ public class CatalogAdminsFacet implements Serializable {
       //    }
       //  }
       
-      // validate the optional field `source`
-      if (jsonObj.get("source") != null && !jsonObj.get("source").isJsonNull()) {
-        FacetSource.validateJsonObject(jsonObj.getAsJsonObject("source"));
-      }
-      if ((jsonObj.get("facetType") != null && !jsonObj.get("facetType").isJsonNull()) && !jsonObj.get("facetType").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `facetType` to be a primitive type in the JSON string but got `%s`", jsonObj.get("facetType").toString()));
+      // validate the optional field `auditInfo`
+      if (jsonObj.get("auditInfo") != null && !jsonObj.get("auditInfo").isJsonNull()) {
+        AdminUserAuditInfo.validateJsonObject(jsonObj.getAsJsonObject("auditInfo"));
       }
       if ((jsonObj.get("categoryCode") != null && !jsonObj.get("categoryCode").isJsonNull()) && !jsonObj.get("categoryCode").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format("Expected the field `categoryCode` to be a primitive type in the JSON string but got `%s`", jsonObj.get("categoryCode").toString()));
       }
-      if ((jsonObj.get("valueSortType") != null && !jsonObj.get("valueSortType").isJsonNull()) && !jsonObj.get("valueSortType").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `valueSortType` to be a primitive type in the JSON string but got `%s`", jsonObj.get("valueSortType").toString()));
-      }
-      // validate the optional field `validity`
-      if (jsonObj.get("validity") != null && !jsonObj.get("validity").isJsonNull()) {
-        FacetValidity.validateJsonObject(jsonObj.getAsJsonObject("validity"));
+      if ((jsonObj.get("facetType") != null && !jsonObj.get("facetType").isJsonNull()) && !jsonObj.get("facetType").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `facetType` to be a primitive type in the JSON string but got `%s`", jsonObj.get("facetType").toString()));
       }
       if (jsonObj.get("rangeQueries") != null && !jsonObj.get("rangeQueries").isJsonNull()) {
         JsonArray jsonArrayrangeQueries = jsonObj.getAsJsonArray("rangeQueries");
@@ -543,9 +536,16 @@ public class CatalogAdminsFacet implements Serializable {
           };
         }
       }
-      // validate the optional field `auditInfo`
-      if (jsonObj.get("auditInfo") != null && !jsonObj.get("auditInfo").isJsonNull()) {
-        AdminUserAuditInfo.validateJsonObject(jsonObj.getAsJsonObject("auditInfo"));
+      // validate the optional field `source`
+      if (jsonObj.get("source") != null && !jsonObj.get("source").isJsonNull()) {
+        FacetSource.validateJsonObject(jsonObj.getAsJsonObject("source"));
+      }
+      // validate the optional field `validity`
+      if (jsonObj.get("validity") != null && !jsonObj.get("validity").isJsonNull()) {
+        FacetValidity.validateJsonObject(jsonObj.getAsJsonObject("validity"));
+      }
+      if ((jsonObj.get("valueSortType") != null && !jsonObj.get("valueSortType").isJsonNull()) && !jsonObj.get("valueSortType").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `valueSortType` to be a primitive type in the JSON string but got `%s`", jsonObj.get("valueSortType").toString()));
       }
   }
 

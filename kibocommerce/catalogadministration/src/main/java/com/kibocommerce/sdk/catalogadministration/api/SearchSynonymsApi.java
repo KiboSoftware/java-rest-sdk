@@ -1,8 +1,8 @@
 /*
  * Kibo Catalog Admin Services
- * OpenAPI Spec for Kibo Catalog Admin Services
+ * <div id=\"overview_CATALOG_ADMIN\">             <h2>CATALOG ADMINISTRATION</h2>             <p>The Catalog Administration APIs are a collection of resources for configuring the catalogs and products offered to your shoppers, including                 discounts and coupon sets, faceting, price lists, and different types or variations of products. See the                 <a href=\"/concept-guides/catalog\">Catalog user guides</a>                 for information about the related features in the Unified Commerce Admin.</p>             <p>Use the <strong>Attributes</strong> resource to manage localization and attribute configurations for your catalogs. This current version of the Attributes API includes localizedContent to                 support <a href=\"/pages/catalog-structure#multi-locale-catalogs\">multi-locale catalogs</a>, which was not present in the legacy API model. If                 you were a client prior to May 2024 and have upgraded your implementation to support this feature,                 you can still access attribute data that has not yet been rewritten to the new model by providing                 an x-api-version header set to \"1\". </p>             <p>Use the <strong>Categories</strong> resource to organize products and control where they appear on the storefront. Create                 and maintain a hierarchy of categories and subcategories where the site will store properties. This current version of the Categories API includes localizedContent to                 support <a href=\"/pages/catalog-structure#multi-locale-catalogs\">multi-locale catalogs</a>, which was not present in the legacy API model. If                 you were a client prior to May 2024 and have upgraded your implementation to support this feature,                 you can still access category data that has not yet been rewritten to the new model by providing                 an x-api-version header set to \"1\". </p>             <p>Use the <strong>Coupon Sets</strong> resource to view and create coupon sets. You can use coupon sets to group multiple                 coupon codes together and associate them with one or more discounts.</p>             <p>Use the <strong>Currency</strong> resource to manage the currency localization rules and exchange rates for any of the                 currencies that are supported for placing orders in.</p>             <p>Use the <strong>Discounts</strong> and <strong>Discount Settings</strong> resources to define and manage discounts to apply to products, product categories, or                 orders. This current version of the Discounts API includes localizedContent to                 support <a href=\"/pages/catalog-structure#multi-locale-catalogs\">multi-locale catalogs</a>, which was not present in the legacy Products API model. If                 you were a client prior to May 2024 and have upgraded your implementation to support this feature,                 you can still access discount data that has not yet been rewritten to the new model by providing                 an x-api-version header set to \"1\". </p>             <p>Use the <strong>Facets</strong> resource to manage the facets shoppers use to filter product display results on a                 storefront. Facets can include categories, product attributes, or prices, and use either a range of                 values or discrete values.</p>             <p>Use the <strong>Master Catalog</strong> resource to view details of the master catalogs associated with a tenant and to                 manage the product publishing mode for each master catalog.</p>             <p>Use the <strong>Price Lists</strong> resources to view and create price lists. You can use price lists to override the                 catalog pricing of products for specific customer segments and/or sites.</p>             <p>Use the <strong>Products</strong>, <strong>Product Types/Extras/Options/Properties</strong>, and <strong>Product Sort Definitions</strong> resources to create new product definitions in the master catalog and determine which                 catalogs will feature products. This current version of the Products API includes localizedContent to                 support <a href=\"/pages/catalog-structure#multi-locale-catalogs\">multi-locale catalogs</a>, which was not present in the legacy Products API model. If                 you were a client prior to May 2024 and have upgraded your implementation to support this feature,                 you can still access product data that has not yet been rewritten to the new model by providing                 an x-api-version header set to \"1\".</p>             <p>Use the <strong>Publishing</strong> resource to publish pending product updates together as part of a set.</p>             <p>Use the <strong>Search</strong> resource to manage all settings and options for providing product search on your site, as                 well as search tuning rules.</p>         </div>
  *
- * The version of the OpenAPI document: 1.0.0
+ * The version of the OpenAPI document: v1
  * 
  *
  * NOTE: This class is auto generated by OpenAPI Generator (https://openapi-generator.tech).
@@ -96,6 +96,7 @@ public class SearchSynonymsApi {
 
     /**
      * Build call for addSynonymDefinition
+     * @param responseFields limits which fields are returned in the response body (optional)
      * @param synonymDefinition  (optional)
      * @param _callback Callback for upload/download progress
      * @return Call to execute
@@ -103,10 +104,10 @@ public class SearchSynonymsApi {
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call addSynonymDefinitionCall(SynonymDefinition synonymDefinition, final ApiCallback _callback) throws ApiException {
+    public okhttp3.Call addSynonymDefinitionCall(String responseFields, SynonymDefinition synonymDefinition, final ApiCallback _callback) throws ApiException {
         String basePath = null;
         // Operation Servers
         String[] localBasePaths = new String[] {  };
@@ -131,6 +132,10 @@ public class SearchSynonymsApi {
         Map<String, String> localVarCookieParams = new HashMap<String, String>();
         Map<String, Object> localVarFormParams = new HashMap<String, Object>();
 
+        if (responseFields != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("responseFields", responseFields));
+        }
+
         final String[] localVarAccepts = {
             "application/json", "text/json", "text/plain"
         };
@@ -147,57 +152,60 @@ public class SearchSynonymsApi {
             localVarHeaderParams.put("Content-Type", localVarContentType);
         }
 
-        String[] localVarAuthNames = new String[] { "bearerAuth", "clientOauth2" };
+        String[] localVarAuthNames = new String[] { "bearerAuth" };
         return localVarApiClient.buildCall(basePath, localVarPath, "POST", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call addSynonymDefinitionValidateBeforeCall(SynonymDefinition synonymDefinition, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call addSynonymDefinitionValidateBeforeCall(String responseFields, SynonymDefinition synonymDefinition, final ApiCallback _callback) throws ApiException {
         
 
-        okhttp3.Call localVarCall = addSynonymDefinitionCall(synonymDefinition, _callback);
+        okhttp3.Call localVarCall = addSynonymDefinitionCall(responseFields, synonymDefinition, _callback);
         return localVarCall;
 
     }
 
     /**
+     * Add Synonym Definition
      * Add synonym definition
-     * Add synonym definition
+     * @param responseFields limits which fields are returned in the response body (optional)
      * @param synonymDefinition  (optional)
      * @return SynonymDefinition
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
      </table>
      */
-    public SynonymDefinition addSynonymDefinition(SynonymDefinition synonymDefinition) throws ApiException {
-        ApiResponse<SynonymDefinition> localVarResp = addSynonymDefinitionWithHttpInfo(synonymDefinition);
+    public SynonymDefinition addSynonymDefinition(String responseFields, SynonymDefinition synonymDefinition) throws ApiException {
+        ApiResponse<SynonymDefinition> localVarResp = addSynonymDefinitionWithHttpInfo(responseFields, synonymDefinition);
         return localVarResp.getData();
     }
 
     /**
+     * Add Synonym Definition
      * Add synonym definition
-     * Add synonym definition
+     * @param responseFields limits which fields are returned in the response body (optional)
      * @param synonymDefinition  (optional)
      * @return ApiResponse&lt;SynonymDefinition&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<SynonymDefinition> addSynonymDefinitionWithHttpInfo(SynonymDefinition synonymDefinition) throws ApiException {
-        okhttp3.Call localVarCall = addSynonymDefinitionValidateBeforeCall(synonymDefinition, null);
+    public ApiResponse<SynonymDefinition> addSynonymDefinitionWithHttpInfo(String responseFields, SynonymDefinition synonymDefinition) throws ApiException {
+        okhttp3.Call localVarCall = addSynonymDefinitionValidateBeforeCall(responseFields, synonymDefinition, null);
         Type localVarReturnType = new TypeToken<SynonymDefinition>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
 
     /**
-     * Add synonym definition (asynchronously)
+     * Add Synonym Definition (asynchronously)
      * Add synonym definition
+     * @param responseFields limits which fields are returned in the response body (optional)
      * @param synonymDefinition  (optional)
      * @param _callback The callback to be executed when the API call finishes
      * @return The request call
@@ -205,12 +213,12 @@ public class SearchSynonymsApi {
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call addSynonymDefinitionAsync(SynonymDefinition synonymDefinition, final ApiCallback<SynonymDefinition> _callback) throws ApiException {
+    public okhttp3.Call addSynonymDefinitionAsync(String responseFields, SynonymDefinition synonymDefinition, final ApiCallback<SynonymDefinition> _callback) throws ApiException {
 
-        okhttp3.Call localVarCall = addSynonymDefinitionValidateBeforeCall(synonymDefinition, _callback);
+        okhttp3.Call localVarCall = addSynonymDefinitionValidateBeforeCall(responseFields, synonymDefinition, _callback);
         Type localVarReturnType = new TypeToken<SynonymDefinition>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
@@ -224,7 +232,7 @@ public class SearchSynonymsApi {
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
      </table>
      */
     public okhttp3.Call deleteSynonymDefinitionCall(Integer synonymId, final ApiCallback _callback) throws ApiException {
@@ -269,7 +277,7 @@ public class SearchSynonymsApi {
             localVarHeaderParams.put("Content-Type", localVarContentType);
         }
 
-        String[] localVarAuthNames = new String[] { "bearerAuth", "clientOauth2" };
+        String[] localVarAuthNames = new String[] { "bearerAuth" };
         return localVarApiClient.buildCall(basePath, localVarPath, "DELETE", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
     }
 
@@ -288,14 +296,14 @@ public class SearchSynonymsApi {
     }
 
     /**
-     * Delete synonym definition
-     * Delete synonym definition
+     * Delete Synonym Definition
+     * Delete a specific synonym definition by ID.
      * @param synonymId  (required)
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
      </table>
      */
     public void deleteSynonymDefinition(Integer synonymId) throws ApiException {
@@ -303,15 +311,15 @@ public class SearchSynonymsApi {
     }
 
     /**
-     * Delete synonym definition
-     * Delete synonym definition
+     * Delete Synonym Definition
+     * Delete a specific synonym definition by ID.
      * @param synonymId  (required)
      * @return ApiResponse&lt;Void&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
      </table>
      */
     public ApiResponse<Void> deleteSynonymDefinitionWithHttpInfo(Integer synonymId) throws ApiException {
@@ -320,8 +328,8 @@ public class SearchSynonymsApi {
     }
 
     /**
-     * Delete synonym definition (asynchronously)
-     * Delete synonym definition
+     * Delete Synonym Definition (asynchronously)
+     * Delete a specific synonym definition by ID.
      * @param synonymId  (required)
      * @param _callback The callback to be executed when the API call finishes
      * @return The request call
@@ -329,7 +337,7 @@ public class SearchSynonymsApi {
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
      </table>
      */
     public okhttp3.Call deleteSynonymDefinitionAsync(Integer synonymId, final ApiCallback<Void> _callback) throws ApiException {
@@ -341,16 +349,17 @@ public class SearchSynonymsApi {
     /**
      * Build call for getAllSynonymDefinitionCollectionsForMasterCatalog
      * @param languageCode  (required)
+     * @param responseFields limits which fields are returned in the response body (optional)
      * @param _callback Callback for upload/download progress
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call getAllSynonymDefinitionCollectionsForMasterCatalogCall(String languageCode, final ApiCallback _callback) throws ApiException {
+    public okhttp3.Call getAllSynonymDefinitionCollectionsForMasterCatalogCall(String languageCode, String responseFields, final ApiCallback _callback) throws ApiException {
         String basePath = null;
         // Operation Servers
         String[] localBasePaths = new String[] {  };
@@ -376,6 +385,10 @@ public class SearchSynonymsApi {
         Map<String, String> localVarCookieParams = new HashMap<String, String>();
         Map<String, Object> localVarFormParams = new HashMap<String, Object>();
 
+        if (responseFields != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("responseFields", responseFields));
+        }
+
         final String[] localVarAccepts = {
             "application/json", "text/json", "text/plain"
         };
@@ -392,12 +405,12 @@ public class SearchSynonymsApi {
             localVarHeaderParams.put("Content-Type", localVarContentType);
         }
 
-        String[] localVarAuthNames = new String[] { "bearerAuth", "clientOauth2" };
+        String[] localVarAuthNames = new String[] { "bearerAuth" };
         return localVarApiClient.buildCall(basePath, localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call getAllSynonymDefinitionCollectionsForMasterCatalogValidateBeforeCall(String languageCode, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call getAllSynonymDefinitionCollectionsForMasterCatalogValidateBeforeCall(String languageCode, String responseFields, final ApiCallback _callback) throws ApiException {
         
         // verify the required parameter 'languageCode' is set
         if (languageCode == null) {
@@ -405,62 +418,65 @@ public class SearchSynonymsApi {
         }
         
 
-        okhttp3.Call localVarCall = getAllSynonymDefinitionCollectionsForMasterCatalogCall(languageCode, _callback);
+        okhttp3.Call localVarCall = getAllSynonymDefinitionCollectionsForMasterCatalogCall(languageCode, responseFields, _callback);
         return localVarCall;
 
     }
 
     /**
-     * Get synonym definition collections
-     * Get synonym definition collections
+     * Get Synonym Definition Collections
+     * Get synonym definition collections.
      * @param languageCode  (required)
+     * @param responseFields limits which fields are returned in the response body (optional)
      * @return SynonymDefinitionCollection
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
      </table>
      */
-    public SynonymDefinitionCollection getAllSynonymDefinitionCollectionsForMasterCatalog(String languageCode) throws ApiException {
-        ApiResponse<SynonymDefinitionCollection> localVarResp = getAllSynonymDefinitionCollectionsForMasterCatalogWithHttpInfo(languageCode);
+    public SynonymDefinitionCollection getAllSynonymDefinitionCollectionsForMasterCatalog(String languageCode, String responseFields) throws ApiException {
+        ApiResponse<SynonymDefinitionCollection> localVarResp = getAllSynonymDefinitionCollectionsForMasterCatalogWithHttpInfo(languageCode, responseFields);
         return localVarResp.getData();
     }
 
     /**
-     * Get synonym definition collections
-     * Get synonym definition collections
+     * Get Synonym Definition Collections
+     * Get synonym definition collections.
      * @param languageCode  (required)
+     * @param responseFields limits which fields are returned in the response body (optional)
      * @return ApiResponse&lt;SynonymDefinitionCollection&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<SynonymDefinitionCollection> getAllSynonymDefinitionCollectionsForMasterCatalogWithHttpInfo(String languageCode) throws ApiException {
-        okhttp3.Call localVarCall = getAllSynonymDefinitionCollectionsForMasterCatalogValidateBeforeCall(languageCode, null);
+    public ApiResponse<SynonymDefinitionCollection> getAllSynonymDefinitionCollectionsForMasterCatalogWithHttpInfo(String languageCode, String responseFields) throws ApiException {
+        okhttp3.Call localVarCall = getAllSynonymDefinitionCollectionsForMasterCatalogValidateBeforeCall(languageCode, responseFields, null);
         Type localVarReturnType = new TypeToken<SynonymDefinitionCollection>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
 
     /**
-     * Get synonym definition collections (asynchronously)
-     * Get synonym definition collections
+     * Get Synonym Definition Collections (asynchronously)
+     * Get synonym definition collections.
      * @param languageCode  (required)
+     * @param responseFields limits which fields are returned in the response body (optional)
      * @param _callback The callback to be executed when the API call finishes
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call getAllSynonymDefinitionCollectionsForMasterCatalogAsync(String languageCode, final ApiCallback<SynonymDefinitionCollection> _callback) throws ApiException {
+    public okhttp3.Call getAllSynonymDefinitionCollectionsForMasterCatalogAsync(String languageCode, String responseFields, final ApiCallback<SynonymDefinitionCollection> _callback) throws ApiException {
 
-        okhttp3.Call localVarCall = getAllSynonymDefinitionCollectionsForMasterCatalogValidateBeforeCall(languageCode, _callback);
+        okhttp3.Call localVarCall = getAllSynonymDefinitionCollectionsForMasterCatalogValidateBeforeCall(languageCode, responseFields, _callback);
         Type localVarReturnType = new TypeToken<SynonymDefinitionCollection>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
@@ -468,16 +484,17 @@ public class SearchSynonymsApi {
     /**
      * Build call for getSynonymDefinition
      * @param synonymId  (required)
+     * @param responseFields limits which fields are returned in the response body (optional)
      * @param _callback Callback for upload/download progress
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call getSynonymDefinitionCall(Integer synonymId, final ApiCallback _callback) throws ApiException {
+    public okhttp3.Call getSynonymDefinitionCall(Integer synonymId, String responseFields, final ApiCallback _callback) throws ApiException {
         String basePath = null;
         // Operation Servers
         String[] localBasePaths = new String[] {  };
@@ -503,6 +520,10 @@ public class SearchSynonymsApi {
         Map<String, String> localVarCookieParams = new HashMap<String, String>();
         Map<String, Object> localVarFormParams = new HashMap<String, Object>();
 
+        if (responseFields != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("responseFields", responseFields));
+        }
+
         final String[] localVarAccepts = {
             "application/json", "text/json", "text/plain"
         };
@@ -519,12 +540,12 @@ public class SearchSynonymsApi {
             localVarHeaderParams.put("Content-Type", localVarContentType);
         }
 
-        String[] localVarAuthNames = new String[] { "bearerAuth", "clientOauth2" };
+        String[] localVarAuthNames = new String[] { "bearerAuth" };
         return localVarApiClient.buildCall(basePath, localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call getSynonymDefinitionValidateBeforeCall(Integer synonymId, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call getSynonymDefinitionValidateBeforeCall(Integer synonymId, String responseFields, final ApiCallback _callback) throws ApiException {
         
         // verify the required parameter 'synonymId' is set
         if (synonymId == null) {
@@ -532,62 +553,65 @@ public class SearchSynonymsApi {
         }
         
 
-        okhttp3.Call localVarCall = getSynonymDefinitionCall(synonymId, _callback);
+        okhttp3.Call localVarCall = getSynonymDefinitionCall(synonymId, responseFields, _callback);
         return localVarCall;
 
     }
 
     /**
-     * Get synonym definition
-     * Get synonym definition
+     * Get Synonym Definition
+     * Get a specific synonym definition by ID.
      * @param synonymId  (required)
+     * @param responseFields limits which fields are returned in the response body (optional)
      * @return SynonymDefinition
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
      </table>
      */
-    public SynonymDefinition getSynonymDefinition(Integer synonymId) throws ApiException {
-        ApiResponse<SynonymDefinition> localVarResp = getSynonymDefinitionWithHttpInfo(synonymId);
+    public SynonymDefinition getSynonymDefinition(Integer synonymId, String responseFields) throws ApiException {
+        ApiResponse<SynonymDefinition> localVarResp = getSynonymDefinitionWithHttpInfo(synonymId, responseFields);
         return localVarResp.getData();
     }
 
     /**
-     * Get synonym definition
-     * Get synonym definition
+     * Get Synonym Definition
+     * Get a specific synonym definition by ID.
      * @param synonymId  (required)
+     * @param responseFields limits which fields are returned in the response body (optional)
      * @return ApiResponse&lt;SynonymDefinition&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<SynonymDefinition> getSynonymDefinitionWithHttpInfo(Integer synonymId) throws ApiException {
-        okhttp3.Call localVarCall = getSynonymDefinitionValidateBeforeCall(synonymId, null);
+    public ApiResponse<SynonymDefinition> getSynonymDefinitionWithHttpInfo(Integer synonymId, String responseFields) throws ApiException {
+        okhttp3.Call localVarCall = getSynonymDefinitionValidateBeforeCall(synonymId, responseFields, null);
         Type localVarReturnType = new TypeToken<SynonymDefinition>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
 
     /**
-     * Get synonym definition (asynchronously)
-     * Get synonym definition
+     * Get Synonym Definition (asynchronously)
+     * Get a specific synonym definition by ID.
      * @param synonymId  (required)
+     * @param responseFields limits which fields are returned in the response body (optional)
      * @param _callback The callback to be executed when the API call finishes
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call getSynonymDefinitionAsync(Integer synonymId, final ApiCallback<SynonymDefinition> _callback) throws ApiException {
+    public okhttp3.Call getSynonymDefinitionAsync(Integer synonymId, String responseFields, final ApiCallback<SynonymDefinition> _callback) throws ApiException {
 
-        okhttp3.Call localVarCall = getSynonymDefinitionValidateBeforeCall(synonymId, _callback);
+        okhttp3.Call localVarCall = getSynonymDefinitionValidateBeforeCall(synonymId, responseFields, _callback);
         Type localVarReturnType = new TypeToken<SynonymDefinition>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
@@ -595,16 +619,17 @@ public class SearchSynonymsApi {
     /**
      * Build call for getSynonymDefinitionCollection
      * @param localeCode  (required)
+     * @param responseFields limits which fields are returned in the response body (optional)
      * @param _callback Callback for upload/download progress
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call getSynonymDefinitionCollectionCall(String localeCode, final ApiCallback _callback) throws ApiException {
+    public okhttp3.Call getSynonymDefinitionCollectionCall(String localeCode, String responseFields, final ApiCallback _callback) throws ApiException {
         String basePath = null;
         // Operation Servers
         String[] localBasePaths = new String[] {  };
@@ -630,6 +655,10 @@ public class SearchSynonymsApi {
         Map<String, String> localVarCookieParams = new HashMap<String, String>();
         Map<String, Object> localVarFormParams = new HashMap<String, Object>();
 
+        if (responseFields != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("responseFields", responseFields));
+        }
+
         final String[] localVarAccepts = {
             "application/json", "text/json", "text/plain"
         };
@@ -646,12 +675,12 @@ public class SearchSynonymsApi {
             localVarHeaderParams.put("Content-Type", localVarContentType);
         }
 
-        String[] localVarAuthNames = new String[] { "bearerAuth", "clientOauth2" };
+        String[] localVarAuthNames = new String[] { "bearerAuth" };
         return localVarApiClient.buildCall(basePath, localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call getSynonymDefinitionCollectionValidateBeforeCall(String localeCode, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call getSynonymDefinitionCollectionValidateBeforeCall(String localeCode, String responseFields, final ApiCallback _callback) throws ApiException {
         
         // verify the required parameter 'localeCode' is set
         if (localeCode == null) {
@@ -659,62 +688,65 @@ public class SearchSynonymsApi {
         }
         
 
-        okhttp3.Call localVarCall = getSynonymDefinitionCollectionCall(localeCode, _callback);
+        okhttp3.Call localVarCall = getSynonymDefinitionCollectionCall(localeCode, responseFields, _callback);
         return localVarCall;
 
     }
 
     /**
-     * Get synonym definition collection
-     * Get synonym definition collection
+     * Get Synonym Definition Collection
+     * Get synonym definition collection.
      * @param localeCode  (required)
+     * @param responseFields limits which fields are returned in the response body (optional)
      * @return SynonymDefinitionCollection
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
      </table>
      */
-    public SynonymDefinitionCollection getSynonymDefinitionCollection(String localeCode) throws ApiException {
-        ApiResponse<SynonymDefinitionCollection> localVarResp = getSynonymDefinitionCollectionWithHttpInfo(localeCode);
+    public SynonymDefinitionCollection getSynonymDefinitionCollection(String localeCode, String responseFields) throws ApiException {
+        ApiResponse<SynonymDefinitionCollection> localVarResp = getSynonymDefinitionCollectionWithHttpInfo(localeCode, responseFields);
         return localVarResp.getData();
     }
 
     /**
-     * Get synonym definition collection
-     * Get synonym definition collection
+     * Get Synonym Definition Collection
+     * Get synonym definition collection.
      * @param localeCode  (required)
+     * @param responseFields limits which fields are returned in the response body (optional)
      * @return ApiResponse&lt;SynonymDefinitionCollection&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<SynonymDefinitionCollection> getSynonymDefinitionCollectionWithHttpInfo(String localeCode) throws ApiException {
-        okhttp3.Call localVarCall = getSynonymDefinitionCollectionValidateBeforeCall(localeCode, null);
+    public ApiResponse<SynonymDefinitionCollection> getSynonymDefinitionCollectionWithHttpInfo(String localeCode, String responseFields) throws ApiException {
+        okhttp3.Call localVarCall = getSynonymDefinitionCollectionValidateBeforeCall(localeCode, responseFields, null);
         Type localVarReturnType = new TypeToken<SynonymDefinitionCollection>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
 
     /**
-     * Get synonym definition collection (asynchronously)
-     * Get synonym definition collection
+     * Get Synonym Definition Collection (asynchronously)
+     * Get synonym definition collection.
      * @param localeCode  (required)
+     * @param responseFields limits which fields are returned in the response body (optional)
      * @param _callback The callback to be executed when the API call finishes
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call getSynonymDefinitionCollectionAsync(String localeCode, final ApiCallback<SynonymDefinitionCollection> _callback) throws ApiException {
+    public okhttp3.Call getSynonymDefinitionCollectionAsync(String localeCode, String responseFields, final ApiCallback<SynonymDefinitionCollection> _callback) throws ApiException {
 
-        okhttp3.Call localVarCall = getSynonymDefinitionCollectionValidateBeforeCall(localeCode, _callback);
+        okhttp3.Call localVarCall = getSynonymDefinitionCollectionValidateBeforeCall(localeCode, responseFields, _callback);
         Type localVarReturnType = new TypeToken<SynonymDefinitionCollection>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
@@ -725,16 +757,17 @@ public class SearchSynonymsApi {
      * @param pageSize  (optional, default to 0)
      * @param sortBy  (optional)
      * @param filter  (optional)
+     * @param responseFields limits which fields are returned in the response body (optional)
      * @param _callback Callback for upload/download progress
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call getSynonymDefinitionsCall(Integer startIndex, Integer pageSize, String sortBy, String filter, final ApiCallback _callback) throws ApiException {
+    public okhttp3.Call getSynonymDefinitionsCall(Integer startIndex, Integer pageSize, String sortBy, String filter, String responseFields, final ApiCallback _callback) throws ApiException {
         String basePath = null;
         // Operation Servers
         String[] localBasePaths = new String[] {  };
@@ -775,6 +808,10 @@ public class SearchSynonymsApi {
             localVarQueryParams.addAll(localVarApiClient.parameterToPair("filter", filter));
         }
 
+        if (responseFields != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("responseFields", responseFields));
+        }
+
         final String[] localVarAccepts = {
             "application/json", "text/json", "text/plain"
         };
@@ -791,79 +828,82 @@ public class SearchSynonymsApi {
             localVarHeaderParams.put("Content-Type", localVarContentType);
         }
 
-        String[] localVarAuthNames = new String[] { "bearerAuth", "clientOauth2" };
+        String[] localVarAuthNames = new String[] { "bearerAuth" };
         return localVarApiClient.buildCall(basePath, localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call getSynonymDefinitionsValidateBeforeCall(Integer startIndex, Integer pageSize, String sortBy, String filter, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call getSynonymDefinitionsValidateBeforeCall(Integer startIndex, Integer pageSize, String sortBy, String filter, String responseFields, final ApiCallback _callback) throws ApiException {
         
 
-        okhttp3.Call localVarCall = getSynonymDefinitionsCall(startIndex, pageSize, sortBy, filter, _callback);
+        okhttp3.Call localVarCall = getSynonymDefinitionsCall(startIndex, pageSize, sortBy, filter, responseFields, _callback);
         return localVarCall;
 
     }
 
     /**
-     * Get synonym definitions
-     * Get synonym definitions
+     * Get Synonym Definitions
+     * Get synonym definitions.
      * @param startIndex  (optional, default to 0)
      * @param pageSize  (optional, default to 0)
      * @param sortBy  (optional)
      * @param filter  (optional)
+     * @param responseFields limits which fields are returned in the response body (optional)
      * @return SynonymDefinitionPagedCollection
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
      </table>
      */
-    public SynonymDefinitionPagedCollection getSynonymDefinitions(Integer startIndex, Integer pageSize, String sortBy, String filter) throws ApiException {
-        ApiResponse<SynonymDefinitionPagedCollection> localVarResp = getSynonymDefinitionsWithHttpInfo(startIndex, pageSize, sortBy, filter);
+    public SynonymDefinitionPagedCollection getSynonymDefinitions(Integer startIndex, Integer pageSize, String sortBy, String filter, String responseFields) throws ApiException {
+        ApiResponse<SynonymDefinitionPagedCollection> localVarResp = getSynonymDefinitionsWithHttpInfo(startIndex, pageSize, sortBy, filter, responseFields);
         return localVarResp.getData();
     }
 
     /**
-     * Get synonym definitions
-     * Get synonym definitions
+     * Get Synonym Definitions
+     * Get synonym definitions.
      * @param startIndex  (optional, default to 0)
      * @param pageSize  (optional, default to 0)
      * @param sortBy  (optional)
      * @param filter  (optional)
+     * @param responseFields limits which fields are returned in the response body (optional)
      * @return ApiResponse&lt;SynonymDefinitionPagedCollection&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<SynonymDefinitionPagedCollection> getSynonymDefinitionsWithHttpInfo(Integer startIndex, Integer pageSize, String sortBy, String filter) throws ApiException {
-        okhttp3.Call localVarCall = getSynonymDefinitionsValidateBeforeCall(startIndex, pageSize, sortBy, filter, null);
+    public ApiResponse<SynonymDefinitionPagedCollection> getSynonymDefinitionsWithHttpInfo(Integer startIndex, Integer pageSize, String sortBy, String filter, String responseFields) throws ApiException {
+        okhttp3.Call localVarCall = getSynonymDefinitionsValidateBeforeCall(startIndex, pageSize, sortBy, filter, responseFields, null);
         Type localVarReturnType = new TypeToken<SynonymDefinitionPagedCollection>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
 
     /**
-     * Get synonym definitions (asynchronously)
-     * Get synonym definitions
+     * Get Synonym Definitions (asynchronously)
+     * Get synonym definitions.
      * @param startIndex  (optional, default to 0)
      * @param pageSize  (optional, default to 0)
      * @param sortBy  (optional)
      * @param filter  (optional)
+     * @param responseFields limits which fields are returned in the response body (optional)
      * @param _callback The callback to be executed when the API call finishes
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call getSynonymDefinitionsAsync(Integer startIndex, Integer pageSize, String sortBy, String filter, final ApiCallback<SynonymDefinitionPagedCollection> _callback) throws ApiException {
+    public okhttp3.Call getSynonymDefinitionsAsync(Integer startIndex, Integer pageSize, String sortBy, String filter, String responseFields, final ApiCallback<SynonymDefinitionPagedCollection> _callback) throws ApiException {
 
-        okhttp3.Call localVarCall = getSynonymDefinitionsValidateBeforeCall(startIndex, pageSize, sortBy, filter, _callback);
+        okhttp3.Call localVarCall = getSynonymDefinitionsValidateBeforeCall(startIndex, pageSize, sortBy, filter, responseFields, _callback);
         Type localVarReturnType = new TypeToken<SynonymDefinitionPagedCollection>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
@@ -871,6 +911,7 @@ public class SearchSynonymsApi {
     /**
      * Build call for updateSynonymDefinition
      * @param synonymId  (required)
+     * @param responseFields limits which fields are returned in the response body (optional)
      * @param synonymDefinition  (optional)
      * @param _callback Callback for upload/download progress
      * @return Call to execute
@@ -878,10 +919,10 @@ public class SearchSynonymsApi {
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call updateSynonymDefinitionCall(Integer synonymId, SynonymDefinition synonymDefinition, final ApiCallback _callback) throws ApiException {
+    public okhttp3.Call updateSynonymDefinitionCall(Integer synonymId, String responseFields, SynonymDefinition synonymDefinition, final ApiCallback _callback) throws ApiException {
         String basePath = null;
         // Operation Servers
         String[] localBasePaths = new String[] {  };
@@ -907,6 +948,10 @@ public class SearchSynonymsApi {
         Map<String, String> localVarCookieParams = new HashMap<String, String>();
         Map<String, Object> localVarFormParams = new HashMap<String, Object>();
 
+        if (responseFields != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("responseFields", responseFields));
+        }
+
         final String[] localVarAccepts = {
             "application/json", "text/json", "text/plain"
         };
@@ -923,12 +968,12 @@ public class SearchSynonymsApi {
             localVarHeaderParams.put("Content-Type", localVarContentType);
         }
 
-        String[] localVarAuthNames = new String[] { "bearerAuth", "clientOauth2" };
+        String[] localVarAuthNames = new String[] { "bearerAuth" };
         return localVarApiClient.buildCall(basePath, localVarPath, "PUT", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call updateSynonymDefinitionValidateBeforeCall(Integer synonymId, SynonymDefinition synonymDefinition, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call updateSynonymDefinitionValidateBeforeCall(Integer synonymId, String responseFields, SynonymDefinition synonymDefinition, final ApiCallback _callback) throws ApiException {
         
         // verify the required parameter 'synonymId' is set
         if (synonymId == null) {
@@ -936,52 +981,55 @@ public class SearchSynonymsApi {
         }
         
 
-        okhttp3.Call localVarCall = updateSynonymDefinitionCall(synonymId, synonymDefinition, _callback);
+        okhttp3.Call localVarCall = updateSynonymDefinitionCall(synonymId, responseFields, synonymDefinition, _callback);
         return localVarCall;
 
     }
 
     /**
-     * Update synonym definition
-     * Update synonym definition
+     * Update Synonym Definition
+     * Update a specific synonym definition by ID.
      * @param synonymId  (required)
+     * @param responseFields limits which fields are returned in the response body (optional)
      * @param synonymDefinition  (optional)
      * @return SynonymDefinition
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
      </table>
      */
-    public SynonymDefinition updateSynonymDefinition(Integer synonymId, SynonymDefinition synonymDefinition) throws ApiException {
-        ApiResponse<SynonymDefinition> localVarResp = updateSynonymDefinitionWithHttpInfo(synonymId, synonymDefinition);
+    public SynonymDefinition updateSynonymDefinition(Integer synonymId, String responseFields, SynonymDefinition synonymDefinition) throws ApiException {
+        ApiResponse<SynonymDefinition> localVarResp = updateSynonymDefinitionWithHttpInfo(synonymId, responseFields, synonymDefinition);
         return localVarResp.getData();
     }
 
     /**
-     * Update synonym definition
-     * Update synonym definition
+     * Update Synonym Definition
+     * Update a specific synonym definition by ID.
      * @param synonymId  (required)
+     * @param responseFields limits which fields are returned in the response body (optional)
      * @param synonymDefinition  (optional)
      * @return ApiResponse&lt;SynonymDefinition&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<SynonymDefinition> updateSynonymDefinitionWithHttpInfo(Integer synonymId, SynonymDefinition synonymDefinition) throws ApiException {
-        okhttp3.Call localVarCall = updateSynonymDefinitionValidateBeforeCall(synonymId, synonymDefinition, null);
+    public ApiResponse<SynonymDefinition> updateSynonymDefinitionWithHttpInfo(Integer synonymId, String responseFields, SynonymDefinition synonymDefinition) throws ApiException {
+        okhttp3.Call localVarCall = updateSynonymDefinitionValidateBeforeCall(synonymId, responseFields, synonymDefinition, null);
         Type localVarReturnType = new TypeToken<SynonymDefinition>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
 
     /**
-     * Update synonym definition (asynchronously)
-     * Update synonym definition
+     * Update Synonym Definition (asynchronously)
+     * Update a specific synonym definition by ID.
      * @param synonymId  (required)
+     * @param responseFields limits which fields are returned in the response body (optional)
      * @param synonymDefinition  (optional)
      * @param _callback The callback to be executed when the API call finishes
      * @return The request call
@@ -989,12 +1037,12 @@ public class SearchSynonymsApi {
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call updateSynonymDefinitionAsync(Integer synonymId, SynonymDefinition synonymDefinition, final ApiCallback<SynonymDefinition> _callback) throws ApiException {
+    public okhttp3.Call updateSynonymDefinitionAsync(Integer synonymId, String responseFields, SynonymDefinition synonymDefinition, final ApiCallback<SynonymDefinition> _callback) throws ApiException {
 
-        okhttp3.Call localVarCall = updateSynonymDefinitionValidateBeforeCall(synonymId, synonymDefinition, _callback);
+        okhttp3.Call localVarCall = updateSynonymDefinitionValidateBeforeCall(synonymId, responseFields, synonymDefinition, _callback);
         Type localVarReturnType = new TypeToken<SynonymDefinition>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
@@ -1002,6 +1050,7 @@ public class SearchSynonymsApi {
     /**
      * Build call for updateSynonymDefinitionCollection
      * @param localeCode  (required)
+     * @param responseFields limits which fields are returned in the response body (optional)
      * @param synonymDefinitionCollection  (optional)
      * @param _callback Callback for upload/download progress
      * @return Call to execute
@@ -1009,10 +1058,10 @@ public class SearchSynonymsApi {
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call updateSynonymDefinitionCollectionCall(String localeCode, SynonymDefinitionCollection synonymDefinitionCollection, final ApiCallback _callback) throws ApiException {
+    public okhttp3.Call updateSynonymDefinitionCollectionCall(String localeCode, String responseFields, SynonymDefinitionCollection synonymDefinitionCollection, final ApiCallback _callback) throws ApiException {
         String basePath = null;
         // Operation Servers
         String[] localBasePaths = new String[] {  };
@@ -1038,6 +1087,10 @@ public class SearchSynonymsApi {
         Map<String, String> localVarCookieParams = new HashMap<String, String>();
         Map<String, Object> localVarFormParams = new HashMap<String, Object>();
 
+        if (responseFields != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("responseFields", responseFields));
+        }
+
         final String[] localVarAccepts = {
             "application/json", "text/json", "text/plain"
         };
@@ -1054,12 +1107,12 @@ public class SearchSynonymsApi {
             localVarHeaderParams.put("Content-Type", localVarContentType);
         }
 
-        String[] localVarAuthNames = new String[] { "bearerAuth", "clientOauth2" };
+        String[] localVarAuthNames = new String[] { "bearerAuth" };
         return localVarApiClient.buildCall(basePath, localVarPath, "POST", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call updateSynonymDefinitionCollectionValidateBeforeCall(String localeCode, SynonymDefinitionCollection synonymDefinitionCollection, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call updateSynonymDefinitionCollectionValidateBeforeCall(String localeCode, String responseFields, SynonymDefinitionCollection synonymDefinitionCollection, final ApiCallback _callback) throws ApiException {
         
         // verify the required parameter 'localeCode' is set
         if (localeCode == null) {
@@ -1067,52 +1120,55 @@ public class SearchSynonymsApi {
         }
         
 
-        okhttp3.Call localVarCall = updateSynonymDefinitionCollectionCall(localeCode, synonymDefinitionCollection, _callback);
+        okhttp3.Call localVarCall = updateSynonymDefinitionCollectionCall(localeCode, responseFields, synonymDefinitionCollection, _callback);
         return localVarCall;
 
     }
 
     /**
-     * Add/Update synonym definition collection
-     * Upsert synonym definition collection
+     * Add Synonym Definition Collection
+     * Add or update a synonym definition collection.
      * @param localeCode  (required)
+     * @param responseFields limits which fields are returned in the response body (optional)
      * @param synonymDefinitionCollection  (optional)
      * @return SynonymDefinitionCollection
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
      </table>
      */
-    public SynonymDefinitionCollection updateSynonymDefinitionCollection(String localeCode, SynonymDefinitionCollection synonymDefinitionCollection) throws ApiException {
-        ApiResponse<SynonymDefinitionCollection> localVarResp = updateSynonymDefinitionCollectionWithHttpInfo(localeCode, synonymDefinitionCollection);
+    public SynonymDefinitionCollection updateSynonymDefinitionCollection(String localeCode, String responseFields, SynonymDefinitionCollection synonymDefinitionCollection) throws ApiException {
+        ApiResponse<SynonymDefinitionCollection> localVarResp = updateSynonymDefinitionCollectionWithHttpInfo(localeCode, responseFields, synonymDefinitionCollection);
         return localVarResp.getData();
     }
 
     /**
-     * Add/Update synonym definition collection
-     * Upsert synonym definition collection
+     * Add Synonym Definition Collection
+     * Add or update a synonym definition collection.
      * @param localeCode  (required)
+     * @param responseFields limits which fields are returned in the response body (optional)
      * @param synonymDefinitionCollection  (optional)
      * @return ApiResponse&lt;SynonymDefinitionCollection&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<SynonymDefinitionCollection> updateSynonymDefinitionCollectionWithHttpInfo(String localeCode, SynonymDefinitionCollection synonymDefinitionCollection) throws ApiException {
-        okhttp3.Call localVarCall = updateSynonymDefinitionCollectionValidateBeforeCall(localeCode, synonymDefinitionCollection, null);
+    public ApiResponse<SynonymDefinitionCollection> updateSynonymDefinitionCollectionWithHttpInfo(String localeCode, String responseFields, SynonymDefinitionCollection synonymDefinitionCollection) throws ApiException {
+        okhttp3.Call localVarCall = updateSynonymDefinitionCollectionValidateBeforeCall(localeCode, responseFields, synonymDefinitionCollection, null);
         Type localVarReturnType = new TypeToken<SynonymDefinitionCollection>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
 
     /**
-     * Add/Update synonym definition collection (asynchronously)
-     * Upsert synonym definition collection
+     * Add Synonym Definition Collection (asynchronously)
+     * Add or update a synonym definition collection.
      * @param localeCode  (required)
+     * @param responseFields limits which fields are returned in the response body (optional)
      * @param synonymDefinitionCollection  (optional)
      * @param _callback The callback to be executed when the API call finishes
      * @return The request call
@@ -1120,12 +1176,12 @@ public class SearchSynonymsApi {
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call updateSynonymDefinitionCollectionAsync(String localeCode, SynonymDefinitionCollection synonymDefinitionCollection, final ApiCallback<SynonymDefinitionCollection> _callback) throws ApiException {
+    public okhttp3.Call updateSynonymDefinitionCollectionAsync(String localeCode, String responseFields, SynonymDefinitionCollection synonymDefinitionCollection, final ApiCallback<SynonymDefinitionCollection> _callback) throws ApiException {
 
-        okhttp3.Call localVarCall = updateSynonymDefinitionCollectionValidateBeforeCall(localeCode, synonymDefinitionCollection, _callback);
+        okhttp3.Call localVarCall = updateSynonymDefinitionCollectionValidateBeforeCall(localeCode, responseFields, synonymDefinitionCollection, _callback);
         Type localVarReturnType = new TypeToken<SynonymDefinitionCollection>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;

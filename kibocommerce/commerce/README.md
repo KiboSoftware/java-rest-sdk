@@ -1,7 +1,7 @@
 # commerce
 
 Kibo CommerceRuntime Service
-- API version: 1.0.0
+- API version: v1
 
 OpenAPI Spec for Kibo CommerceRuntime Service
 
@@ -39,7 +39,7 @@ Add this dependency to your project's POM:
 <dependency>
   <groupId>com.kibocommerce</groupId>
   <artifactId>commerce</artifactId>
-  <version>1.0.0</version>
+  <version>3.0.0</version>
   <scope>compile</scope>
 </dependency>
 ```
@@ -55,7 +55,7 @@ Add this dependency to your project's build file:
   }
 
   dependencies {
-     implementation "com.kibocommerce:commerce:1.0.0"
+     implementation "com.kibocommerce:commerce:3.0.0"
   }
 ```
 
@@ -69,7 +69,7 @@ mvn clean package
 
 Then manually install the following JARs:
 
-* `target/commerce-1.0.0.jar`
+* `target/commerce-3.0.0.jar`
 * `target/lib/*.jar`
 
 ## Getting Started
@@ -84,7 +84,7 @@ import com.kibocommerce.sdk.commerce.ApiException;
 import com.kibocommerce.sdk.commerce.Configuration;
 import com.kibocommerce.sdk.commerce.auth.*;
 import com.kibocommerce.sdk.commerce.models.*;
-import com.kibocommerce.sdk.commerce.api.CartApi;
+import com.kibocommerce.sdk.commerce.api.BlanketOrderApi;
 
 public class Example {
   public static void main(String[] args) {
@@ -95,17 +95,15 @@ public class Example {
     HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
     bearerAuth.setBearerToken("BEARER TOKEN");
 
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
-
-    CartApi apiInstance = new CartApi(defaultClient);
-    List<ExtendedProperty> extendedProperty = Arrays.asList(); // List<ExtendedProperty> | Extended properties
+    BlanketOrderApi apiInstance = new BlanketOrderApi(defaultClient);
+    String blanketOrderId = "blanketOrderId_example"; // String | 
+    String responseFields = "responseFields_example"; // String | limits which fields are returned in the response body
+    BlanketOrderItem blanketOrderItem = new BlanketOrderItem(); // BlanketOrderItem | 
     try {
-      List<ExtendedProperty> result = apiInstance.addExtendedProperties(extendedProperty);
+      BlanketOrderItem result = apiInstance.addBlanketOrderItem(blanketOrderId, responseFields, blanketOrderItem);
       System.out.println(result);
     } catch (ApiException e) {
-      System.err.println("Exception when calling CartApi#addExtendedProperties");
+      System.err.println("Exception when calling BlanketOrderApi#addBlanketOrderItem");
       System.err.println("Status code: " + e.getCode());
       System.err.println("Reason: " + e.getResponseBody());
       System.err.println("Response headers: " + e.getResponseHeaders());
@@ -122,19 +120,81 @@ All URIs are relative to *http://https:/api*
 
 Class | Method | HTTP request | Description
 ------------ | ------------- | ------------- | -------------
-*CartApi* | [**addExtendedProperties**](docs/CartApi.md#addExtendedProperties) | **POST** /commerce/carts/current/extendedproperties | Adds extended properties
+*BlanketOrderApi* | [**addBlanketOrderItem**](docs/BlanketOrderApi.md#addBlanketOrderItem) | **POST** /commerce/blanketorders/{blanketOrderId}/items | Add an item to a Blanket Order
+*BlanketOrderApi* | [**bulkCancelBlanketOrders**](docs/BlanketOrderApi.md#bulkCancelBlanketOrders) | **POST** /commerce/blanketorders/actions/bulk-cancel | Bulk cancel Blanket Orders
+*BlanketOrderApi* | [**cancelBlanketOrder**](docs/BlanketOrderApi.md#cancelBlanketOrder) | **POST** /commerce/blanketorders/{blanketOrderId}/cancel | Cancel a Blanket Order
+*BlanketOrderApi* | [**cancelBlanketOrderItem**](docs/BlanketOrderApi.md#cancelBlanketOrderItem) | **POST** /commerce/blanketorders/{blanketOrderId}/items/{itemId}/cancel | Cancel an item on a Blanket Order
+*BlanketOrderApi* | [**createBlanketOrder**](docs/BlanketOrderApi.md#createBlanketOrder) | **POST** /commerce/blanketorders | Create a new Blanket Order
+*BlanketOrderApi* | [**createBlanketOrderAttributes**](docs/BlanketOrderApi.md#createBlanketOrderAttributes) | **POST** /commerce/blanketorders/{blanketOrderId}/attributes | Create header-level attributes on a blanket order
+*BlanketOrderApi* | [**createBlanketOrderItemAttributes**](docs/BlanketOrderApi.md#createBlanketOrderItemAttributes) | **POST** /commerce/blanketorders/{blanketOrderId}/items/{itemId}/attributes | Create line-level attributes on a blanket order item; skips FQNs that already exist
+*BlanketOrderApi* | [**deleteBlanketOrder**](docs/BlanketOrderApi.md#deleteBlanketOrder) | **DELETE** /commerce/blanketorders/{blanketOrderId} | Delete a Blanket Order
+*BlanketOrderApi* | [**deleteBlanketOrderAttribute**](docs/BlanketOrderApi.md#deleteBlanketOrderAttribute) | **DELETE** /commerce/blanketorders/{blanketOrderId}/attributes/{attributeFqn} | Delete a single header-level attribute from a blanket order by FQN
+*BlanketOrderApi* | [**deleteBlanketOrderItem**](docs/BlanketOrderApi.md#deleteBlanketOrderItem) | **DELETE** /commerce/blanketorders/{blanketOrderId}/items/{itemId} | Delete an item from a Blanket Order
+*BlanketOrderApi* | [**deleteBlanketOrderItemAttribute**](docs/BlanketOrderApi.md#deleteBlanketOrderItemAttribute) | **DELETE** /commerce/blanketorders/{blanketOrderId}/items/{itemId}/attributes/{attributeFqn} | Delete a single line-level attribute from a blanket order item by FQN
+*BlanketOrderApi* | [**deleteChangeMessage**](docs/BlanketOrderApi.md#deleteChangeMessage) | **DELETE** /commerce/blanketorders/{blanketOrderId}/changemessages/{changeMessageId} | Deletes a change message for a Blanket Order
+*BlanketOrderApi* | [**getBlanketOrder**](docs/BlanketOrderApi.md#getBlanketOrder) | **GET** /commerce/blanketorders/{blanketOrderId} | Get a Blanket Order by ID
+*BlanketOrderApi* | [**getBlanketOrderAggregate**](docs/BlanketOrderApi.md#getBlanketOrderAggregate) | **GET** /commerce/blanketorders/aggregate | Aggregate remaining quantity across blanket orders scoped to the current tenant and site.
+*BlanketOrderApi* | [**getBlanketOrderAttributes**](docs/BlanketOrderApi.md#getBlanketOrderAttributes) | **GET** /commerce/blanketorders/{blanketOrderId}/attributes | Get all header-level attributes for a blanket order
+*BlanketOrderApi* | [**getBlanketOrderItemAttributes**](docs/BlanketOrderApi.md#getBlanketOrderItemAttributes) | **GET** /commerce/blanketorders/{blanketOrderId}/items/{itemId}/attributes | Get all line-level attributes for a blanket order item
+*BlanketOrderApi* | [**getBlanketOrders**](docs/BlanketOrderApi.md#getBlanketOrders) | **GET** /commerce/blanketorders | Get a paged collection of Blanket Orders
+*BlanketOrderApi* | [**getChangeMessage**](docs/BlanketOrderApi.md#getChangeMessage) | **GET** /commerce/blanketorders/{blanketOrderId}/changemessages/{changeMessageId} | Gets a single change message for a Blanket Order
+*BlanketOrderApi* | [**getChangeMessages**](docs/BlanketOrderApi.md#getChangeMessages) | **GET** /commerce/blanketorders/{blanketOrderId}/changemessages | Gets change messages for a Blanket Order
+*BlanketOrderApi* | [**getConsumptionRecord**](docs/BlanketOrderApi.md#getConsumptionRecord) | **GET** /commerce/blanketorders/{blanketOrderId}/consumptionrecords/{consumptionRecordId} | Get a single consumption record for a Blanket Order
+*BlanketOrderApi* | [**getConsumptionRecords**](docs/BlanketOrderApi.md#getConsumptionRecords) | **GET** /commerce/blanketorders/{blanketOrderId}/consumptionrecords | Get consumption records for a Blanket Order
+*BlanketOrderApi* | [**rollOverBlanketOrder**](docs/BlanketOrderApi.md#rollOverBlanketOrder) | **POST** /commerce/blanketorders/{sourceBlanketOrderId}/rollover | Roll over an expired Blanket Order to create a new order with selected items.
+*BlanketOrderApi* | [**updateBlanketOrder**](docs/BlanketOrderApi.md#updateBlanketOrder) | **PUT** /commerce/blanketorders/{blanketOrderId} | Update an existing Blanket Order
+*BlanketOrderApi* | [**updateBlanketOrderAttributes**](docs/BlanketOrderApi.md#updateBlanketOrderAttributes) | **PUT** /commerce/blanketorders/{blanketOrderId}/attributes | Update (upsert) header-level attributes on a blanket order
+*BlanketOrderApi* | [**updateBlanketOrderItem**](docs/BlanketOrderApi.md#updateBlanketOrderItem) | **PUT** /commerce/blanketorders/{blanketOrderId}/items/{itemId} | Update an item on a Blanket Order
+*BlanketOrderApi* | [**updateBlanketOrderItemAttributes**](docs/BlanketOrderApi.md#updateBlanketOrderItemAttributes) | **PUT** /commerce/blanketorders/{blanketOrderId}/items/{itemId}/attributes | Upsert line-level attributes on a blanket order item
+*CallOffOrderApi* | [**addItem**](docs/CallOffOrderApi.md#addItem) | **POST** /commerce/callofforders/{callOffOrderId}/items | Add Item
+*CallOffOrderApi* | [**bulkCancelCallOffOrders**](docs/CallOffOrderApi.md#bulkCancelCallOffOrders) | **POST** /commerce/callofforders/actions/bulk-cancel | Bulk cancel call-off orders
+*CallOffOrderApi* | [**cancelItem**](docs/CallOffOrderApi.md#cancelItem) | **POST** /commerce/callofforders/{callOffOrderId}/items/{itemId}/cancel | Cancel Item
+*CallOffOrderApi* | [**createCallOffOrder**](docs/CallOffOrderApi.md#createCallOffOrder) | **POST** /commerce/callofforders | Create Call Off Order
+*CallOffOrderApi* | [**createCallOffOrderAttributes**](docs/CallOffOrderApi.md#createCallOffOrderAttributes) | **POST** /commerce/callofforders/{callOffOrderId}/attributes | Create header-level attributes on a call-off order
+*CallOffOrderApi* | [**createCallOffOrderItemAttributes**](docs/CallOffOrderApi.md#createCallOffOrderItemAttributes) | **POST** /commerce/callofforders/{callOffOrderId}/items/{itemId}/attributes | Create line-level attributes on a call-off order item; skips FQNs that already exist
+*CallOffOrderApi* | [**deleteCallOffOrderAttribute**](docs/CallOffOrderApi.md#deleteCallOffOrderAttribute) | **DELETE** /commerce/callofforders/{callOffOrderId}/attributes/{attributeFqn} | Delete a single header-level attribute from a call-off order by FQN
+*CallOffOrderApi* | [**deleteCallOffOrderItemAttribute**](docs/CallOffOrderApi.md#deleteCallOffOrderItemAttribute) | **DELETE** /commerce/callofforders/{callOffOrderId}/items/{itemId}/attributes/{attributeFqn} | Delete a single line-level attribute from a call-off order item by FQN
+*CallOffOrderApi* | [**getAvailableActions**](docs/CallOffOrderApi.md#getAvailableActions) | **GET** /commerce/callofforders/{callOffOrderId}/actions | Get Available Actions
+*CallOffOrderApi* | [**getCallOffOrder**](docs/CallOffOrderApi.md#getCallOffOrder) | **GET** /commerce/callofforders/{callOffOrderId} | Get Call Off Order
+*CallOffOrderApi* | [**getCallOffOrderAggregate**](docs/CallOffOrderApi.md#getCallOffOrderAggregate) | **GET** /commerce/callofforders/aggregate | Aggregate requested quantity across call-off orders spanning every site in the current tenant.
+*CallOffOrderApi* | [**getCallOffOrderAttributes**](docs/CallOffOrderApi.md#getCallOffOrderAttributes) | **GET** /commerce/callofforders/{callOffOrderId}/attributes | Get all header-level attributes for a call-off order
+*CallOffOrderApi* | [**getCallOffOrderItemAttributes**](docs/CallOffOrderApi.md#getCallOffOrderItemAttributes) | **GET** /commerce/callofforders/{callOffOrderId}/items/{itemId}/attributes | Get all line-level attributes for a call-off order item
+*CallOffOrderApi* | [**getCallOffOrders**](docs/CallOffOrderApi.md#getCallOffOrders) | **GET** /commerce/callofforders | Get Call Off Orders
+*CallOffOrderApi* | [**getChangeMessages**](docs/CallOffOrderApi.md#getChangeMessages) | **GET** /commerce/callofforders/{callOffOrderId}/changemessages | Get Change Messages
+*CallOffOrderApi* | [**getCreditHoldReasons**](docs/CallOffOrderApi.md#getCreditHoldReasons) | **GET** /commerce/callofforders/credithold/reasons | Returns the list of available credit hold reasons for Call-Off Orders
+*CallOffOrderApi* | [**performAction**](docs/CallOffOrderApi.md#performAction) | **POST** /commerce/callofforders/{callOffOrderId}/actions | Perform Action
+*CallOffOrderApi* | [**releaseCallOffOrder**](docs/CallOffOrderApi.md#releaseCallOffOrder) | **POST** /commerce/callofforders/{callOffOrderId}/release | Release Call Off Order
+*CallOffOrderApi* | [**updateCallOffOrder**](docs/CallOffOrderApi.md#updateCallOffOrder) | **PUT** /commerce/callofforders/{callOffOrderId} | Update Call Off Order
+*CallOffOrderApi* | [**updateCallOffOrderAttributes**](docs/CallOffOrderApi.md#updateCallOffOrderAttributes) | **PUT** /commerce/callofforders/{callOffOrderId}/attributes | Update (upsert) header-level attributes on a call-off order
+*CallOffOrderApi* | [**updateCallOffOrderItemAttributes**](docs/CallOffOrderApi.md#updateCallOffOrderItemAttributes) | **PUT** /commerce/callofforders/{callOffOrderId}/items/{itemId}/attributes | Upsert line-level attributes on a call-off order item
+*CallOffOrderApi* | [**updateItemDestination**](docs/CallOffOrderApi.md#updateItemDestination) | **PUT** /commerce/callofforders/{callOffOrderId}/items/{itemId}/destination | Update Item Destination
+*CallOffOrderApi* | [**updateItemDestinationById**](docs/CallOffOrderApi.md#updateItemDestinationById) | **PUT** /commerce/callofforders/{callOffOrderId}/items/{itemId}/destination/{destinationId} | Update Item Destination By Id
+*CallOffOrderApi* | [**updateItemPrice**](docs/CallOffOrderApi.md#updateItemPrice) | **PUT** /commerce/callofforders/{callOffOrderId}/items/{itemId}/price/{unitPrice} | Update Item Price
+*CallOffOrderApi* | [**updateItemQuantity**](docs/CallOffOrderApi.md#updateItemQuantity) | **PUT** /commerce/callofforders/{callOffOrderId}/items/{itemId}/quantity/{quantity} | Update Item Quantity
+*CallOffOrderApi* | [**updateItemRequestedShipDate**](docs/CallOffOrderApi.md#updateItemRequestedShipDate) | **PUT** /commerce/callofforders/{callOffOrderId}/items/{itemId}/shipdate | Update Item Requested Ship Date
+*CallOffOrderRuleApi* | [**createRule**](docs/CallOffOrderRuleApi.md#createRule) | **POST** /commerce/rules/callOffOrder | Creates a Call-Off Order Rule. The expression is validated and canonicalized
+*CallOffOrderRuleApi* | [**deleteRule**](docs/CallOffOrderRuleApi.md#deleteRule) | **DELETE** /commerce/rules/callOffOrder/{code} | Hard-deletes a rule by code. v1 has no usage guard —
+*CallOffOrderRuleApi* | [**evaluateRule**](docs/CallOffOrderRuleApi.md#evaluateRule) | **POST** /commerce/rules/callOffOrder/{code}/evaluate | Evaluates an enabled rule and returns the paged list of matching
+*CallOffOrderRuleApi* | [**getRule**](docs/CallOffOrderRuleApi.md#getRule) | **GET** /commerce/rules/callOffOrder/{code} | Returns a single Call-Off Order Rule by its tenant-unique code
+*CallOffOrderRuleApi* | [**getSchema**](docs/CallOffOrderRuleApi.md#getSchema) | **GET** /commerce/rules/callOffOrder/schema | Returns the authoring schema for Call-Off Order Rules: the complete set of
+*CallOffOrderRuleApi* | [**listRules**](docs/CallOffOrderRuleApi.md#listRules) | **GET** /commerce/rules/callOffOrder | Lists Call-Off Order Rules for the current tenant with offset paging.
+*CallOffOrderRuleApi* | [**updateRule**](docs/CallOffOrderRuleApi.md#updateRule) | **PUT** /commerce/rules/callOffOrder/{code} | Updates an existing rule. &#x60;code&#x60; is immutable — a body &#x60;code&#x60; that
+*CancelReasonsApi* | [**getReasons**](docs/CancelReasonsApi.md#getReasons) | **GET** /cancel/reasons | Get Cancel Reasons
+*CartApi* | [**addExtendedProperties**](docs/CartApi.md#addExtendedProperties) | **POST** /commerce/carts/current/extendedproperties | Adds Extended Properties
 *CartApi* | [**addItemToCart**](docs/CartApi.md#addItemToCart) | **POST** /commerce/carts/current/items | Add Item To Cart
 *CartApi* | [**addItemToCartByCartId**](docs/CartApi.md#addItemToCartByCartId) | **POST** /commerce/carts/{cartId}/items | Add Item To Cart By CartId
 *CartApi* | [**addItemsToCart**](docs/CartApi.md#addItemsToCart) | **POST** /commerce/carts/current/bulkitems | Add Items To Cart
 *CartApi* | [**addItemsToCartByCartId**](docs/CartApi.md#addItemsToCartByCartId) | **POST** /commerce/carts/{cartId}/bulkitems | Add Items To Cart By CartId
 *CartApi* | [**applyCoupon**](docs/CartApi.md#applyCoupon) | **PUT** /commerce/carts/{cartId}/coupons/{couponCode} | Apply Coupon
-*CartApi* | [**deleteCart**](docs/CartApi.md#deleteCart) | **DELETE** /commerce/carts/{cartId} | Delete cart
+*CartApi* | [**deleteCart**](docs/CartApi.md#deleteCart) | **DELETE** /commerce/carts/{cartId} | Delete Cart
 *CartApi* | [**deleteCartItem**](docs/CartApi.md#deleteCartItem) | **DELETE** /commerce/carts/current/items/{cartItemId} | Delete Cart Item
 *CartApi* | [**deleteCartItemByCartId**](docs/CartApi.md#deleteCartItemByCartId) | **DELETE** /commerce/carts/{cartId}/items/{cartItemId} | Delete Cart Item By CartId
+*CartApi* | [**deleteCartItems**](docs/CartApi.md#deleteCartItems) | **PUT** /commerce/carts/current/bulkitems/delete | Delete Multiple Cart Items
+*CartApi* | [**deleteCartItemsByCartId**](docs/CartApi.md#deleteCartItemsByCartId) | **PUT** /commerce/carts/{cartId}/bulkitems/delete | Delete Multiple Cart Items By CartId
 *CartApi* | [**deleteCurrentCart**](docs/CartApi.md#deleteCurrentCart) | **DELETE** /commerce/carts/current | Delete Current Cart
-*CartApi* | [**deleteExtendedProperties**](docs/CartApi.md#deleteExtendedProperties) | **DELETE** /commerce/carts/current/extendedproperties | Delete extended properties.
+*CartApi* | [**deleteExtendedProperties**](docs/CartApi.md#deleteExtendedProperties) | **DELETE** /commerce/carts/current/extendedproperties | Delete Extended Properties.
 *CartApi* | [**deleteExtendedProperty**](docs/CartApi.md#deleteExtendedProperty) | **DELETE** /commerce/carts/current/extendedproperties/{key} | Delete Extended Property
-*CartApi* | [**deleteUserCart**](docs/CartApi.md#deleteUserCart) | **DELETE** /commerce/carts/{userId} | Delete User Cart
+*CartApi* | [**deleteUserCart**](docs/CartApi.md#deleteUserCart) | **DELETE** /commerce/carts/user/{userId} | Delete User Cart
 *CartApi* | [**getCart**](docs/CartApi.md#getCart) | **GET** /commerce/carts/{cartId} | Get Cart
 *CartApi* | [**getCartItem**](docs/CartApi.md#getCartItem) | **GET** /commerce/carts/current/items/{cartItemId} | Get Cart Item
 *CartApi* | [**getCartItemByCartId**](docs/CartApi.md#getCartItemByCartId) | **GET** /commerce/carts/{cartId}/items/{cartItemId} | Get Cart Item By CartId
@@ -161,25 +221,27 @@ Class | Method | HTTP request | Description
 *CartApi* | [**updateCartItemByCartId**](docs/CartApi.md#updateCartItemByCartId) | **PUT** /commerce/carts/{cartId}/items/{cartItemId} | Update Cart Item By CartId
 *CartApi* | [**updateCartItemQuantity**](docs/CartApi.md#updateCartItemQuantity) | **PUT** /commerce/carts/current/items/{cartItemId}/{quantity} | Update Cart Item Quantity
 *CartApi* | [**updateCartItemQuantityByCartId**](docs/CartApi.md#updateCartItemQuantityByCartId) | **PUT** /commerce/carts/{cartId}/items/{cartItemId}/{quantity} | Update Cart Item Quantity By CartId
+*CartApi* | [**updateCartItems**](docs/CartApi.md#updateCartItems) | **PUT** /commerce/carts/current/bulkitems | Update Cart Items
+*CartApi* | [**updateCartItemsByCartId**](docs/CartApi.md#updateCartItemsByCartId) | **PUT** /commerce/carts/{cartId}/bulkitems | Update Cart Items By CartId
 *CartApi* | [**updateExtendedProperties**](docs/CartApi.md#updateExtendedProperties) | **PUT** /commerce/carts/current/extendedproperties | Update Extended Properties
-*CartApi* | [**updateExtendedProperty**](docs/CartApi.md#updateExtendedProperty) | **PUT** /commerce/carts/current/extendedproperties/{key} | Update extended property
+*CartApi* | [**updateExtendedProperty**](docs/CartApi.md#updateExtendedProperty) | **PUT** /commerce/carts/current/extendedproperties/{key} | Update Extended Property
 *CartApi* | [**updateUserCart**](docs/CartApi.md#updateUserCart) | **PUT** /commerce/carts/user/{userId} | Update User Cart
-*ChannelApi* | [**createChannel**](docs/ChannelApi.md#createChannel) | **POST** /commerce/channels | Creates channel.
+*ChannelApi* | [**createChannel**](docs/ChannelApi.md#createChannel) | **POST** /commerce/channels | Creates Channel
 *ChannelApi* | [**deleteChannel**](docs/ChannelApi.md#deleteChannel) | **DELETE** /commerce/channels/{code} | Delete Channel
 *ChannelApi* | [**getChannel**](docs/ChannelApi.md#getChannel) | **GET** /commerce/channels/{code} | Get Channel
 *ChannelApi* | [**getChannels**](docs/ChannelApi.md#getChannels) | **GET** /commerce/channels | Get Channels
-*ChannelApi* | [**updateChannel**](docs/ChannelApi.md#updateChannel) | **PUT** /commerce/channels/{code} | Update channel.
+*ChannelApi* | [**updateChannel**](docs/ChannelApi.md#updateChannel) | **PUT** /commerce/channels/{code} | Update Channel
 *ChannelGroupApi* | [**createChannelGroup**](docs/ChannelGroupApi.md#createChannelGroup) | **POST** /commerce/channelgroups | Creates Channel Group.
 *ChannelGroupApi* | [**deleteChannelGroup**](docs/ChannelGroupApi.md#deleteChannelGroup) | **DELETE** /commerce/channelgroups/{code} | Delete Channel Group
 *ChannelGroupApi* | [**getChannelGroup**](docs/ChannelGroupApi.md#getChannelGroup) | **GET** /commerce/channelgroups/{code} | Get Channel Group
 *ChannelGroupApi* | [**getChannelGroups**](docs/ChannelGroupApi.md#getChannelGroups) | **GET** /commerce/channelgroups | Get Channel Groups
-*ChannelGroupApi* | [**updateChannelGroup**](docs/ChannelGroupApi.md#updateChannelGroup) | **PUT** /commerce/channelgroups/{code} | Updates Channel Group.
+*ChannelGroupApi* | [**updateChannelGroup**](docs/ChannelGroupApi.md#updateChannelGroup) | **PUT** /commerce/channelgroups/{code} | Updates Channel Group
 *CheckoutApi* | [**addCheckoutItem**](docs/CheckoutApi.md#addCheckoutItem) | **POST** /commerce/checkouts/{checkoutId}/items | Add Checkout Item
 *CheckoutApi* | [**addDestination**](docs/CheckoutApi.md#addDestination) | **POST** /commerce/checkouts/{checkoutId}/destinations | Add Destination
 *CheckoutApi* | [**applyCoupon**](docs/CheckoutApi.md#applyCoupon) | **PUT** /commerce/checkouts/{checkoutId}/coupons/{couponCode} | Apply Coupon
 *CheckoutApi* | [**bulkUpdateDeliveryDates**](docs/CheckoutApi.md#bulkUpdateDeliveryDates) | **POST** /commerce/checkouts/{checkoutId}/items/deliverydates | Update Delivery Dates of Items in bulk
 *CheckoutApi* | [**bulkUpdateItemDestinations**](docs/CheckoutApi.md#bulkUpdateItemDestinations) | **POST** /commerce/checkouts/{checkoutId}/items/destinations | Bulk Update Item Destinations
-*CheckoutApi* | [**changeCheckoutPriceList**](docs/CheckoutApi.md#changeCheckoutPriceList) | **PUT** /commerce/checkouts/{checkoutId}/priceList | Change Checkout PriceList
+*CheckoutApi* | [**changeCheckoutPriceList**](docs/CheckoutApi.md#changeCheckoutPriceList) | **PUT** /commerce/checkouts/{checkoutId}/priceList | Change Checkout Price List
 *CheckoutApi* | [**createCheckoutAttributes**](docs/CheckoutApi.md#createCheckoutAttributes) | **POST** /commerce/checkouts/{checkoutId}/attributes | Create Checkout Attributes
 *CheckoutApi* | [**createCheckoutFromCart**](docs/CheckoutApi.md#createCheckoutFromCart) | **POST** /commerce/checkouts | Create Checkout From Cart
 *CheckoutApi* | [**createPaymentAction**](docs/CheckoutApi.md#createPaymentAction) | **POST** /commerce/checkouts/{checkoutId}/payments/actions | Create Payment Action
@@ -203,10 +265,13 @@ Class | Method | HTTP request | Description
 *CheckoutApi* | [**updateCheckout**](docs/CheckoutApi.md#updateCheckout) | **POST** /commerce/checkouts/{checkoutId} | Update Checkout
 *CheckoutApi* | [**updateCheckoutAttribute**](docs/CheckoutApi.md#updateCheckoutAttribute) | **PUT** /commerce/checkouts/{checkoutId}/attributes | Update Checkout Attribute
 *CheckoutApi* | [**updateDestination**](docs/CheckoutApi.md#updateDestination) | **PUT** /commerce/checkouts/{checkoutId}/destinations/{destinationId} | Update Destination
+*CheckoutApi* | [**updateGiftInfo**](docs/CheckoutApi.md#updateGiftInfo) | **PUT** /commerce/checkouts/{checkoutId}/items/{itemId}/updateGiftInfo | Update Checkout Item Gift Information
 *CheckoutApi* | [**updateItemDeliveryDate**](docs/CheckoutApi.md#updateItemDeliveryDate) | **PUT** /commerce/checkouts/{checkoutId}/items/{itemId}/deliverydate | Update the Delivery Date of the Item
 *CheckoutApi* | [**updateItemDestination**](docs/CheckoutApi.md#updateItemDestination) | **PUT** /commerce/checkouts/{checkoutId}/items/{itemId}/destination/{destinationId} | Update Item Destination
 *CheckoutApi* | [**updateSubscriptionInfo**](docs/CheckoutApi.md#updateSubscriptionInfo) | **PUT** /commerce/checkouts/{checkoutId}/items/{itemId}/subscriptionInfo | Update Item Subscription Info
 *CheckoutApi* | [**upsertInventoryTags**](docs/CheckoutApi.md#upsertInventoryTags) | **PUT** /commerce/checkouts/{checkoutId}/items/{itemId}/upsert-inventory-tags | Upsert Inventory Tags
+*CheckoutApi* | [**upsertSubstituteInfo**](docs/CheckoutApi.md#upsertSubstituteInfo) | **PUT** /commerce/checkouts/{checkoutId}/items/{itemId}/upsertSubstituteInfo | Update SubstituteInfo on CheckoutItem
+*JobApi* | [**b2BOrderRelease**](docs/JobApi.md#b2BOrderRelease) | **POST** /commerce/jobs/b2bOrderRelease | B2B Order Release
 *OrderApi* | [**addExtendedProperties**](docs/OrderApi.md#addExtendedProperties) | **POST** /commerce/orders/{orderId}/extendedproperties | Adds Extended Properties
 *OrderApi* | [**addValidationResult**](docs/OrderApi.md#addValidationResult) | **PUT** /commerce/orders/{orderId}/validationresults | Add Validation Result
 *OrderApi* | [**applyAdjustment**](docs/OrderApi.md#applyAdjustment) | **PUT** /commerce/orders/{orderId}/adjustment | Apply Adjustment
@@ -221,25 +286,31 @@ Class | Method | HTTP request | Description
 *OrderApi* | [**createOrder**](docs/OrderApi.md#createOrder) | **POST** /commerce/orders | Create Order
 *OrderApi* | [**createOrderAttributes**](docs/OrderApi.md#createOrderAttributes) | **POST** /commerce/orders/{orderId}/attributes | Create Order Attributes
 *OrderApi* | [**createOrderItem**](docs/OrderApi.md#createOrderItem) | **POST** /commerce/orders/{orderId}/items | Create Order Item
+*OrderApi* | [**createOrderLineAttributes**](docs/OrderApi.md#createOrderLineAttributes) | **POST** /commerce/orders/{orderId}/items/{orderItemId}/attributes | Create line-level attributes on an order item; skips FQNs that already exist
 *OrderApi* | [**createOrderNote**](docs/OrderApi.md#createOrderNote) | **POST** /commerce/orders/{orderId}/notes | Create Order Note
-*OrderApi* | [**createPackage**](docs/OrderApi.md#createPackage) | **POST** /commerce/orders/{orderId}/packages | Apply a package to the order
-*OrderApi* | [**createPackageShipments**](docs/OrderApi.md#createPackageShipments) | **POST** /commerce/orders/{orderId}/shipments | Creates a shipment by grouping together multiple packages into logical shipments
+*OrderApi* | [**createPackage**](docs/OrderApi.md#createPackage) | **POST** /commerce/orders/{orderId}/packages | Apply Package to Order
+*OrderApi* | [**createPackageShipments**](docs/OrderApi.md#createPackageShipments) | **POST** /commerce/orders/{orderId}/shipments | Create A Shipment
 *OrderApi* | [**createPaymentAction**](docs/OrderApi.md#createPaymentAction) | **POST** /commerce/orders/{orderId}/payments/actions | Create Payment Action
 *OrderApi* | [**createPickup**](docs/OrderApi.md#createPickup) | **POST** /commerce/orders/{orderId}/pickups | Create Pickup
 *OrderApi* | [**createRefund**](docs/OrderApi.md#createRefund) | **POST** /commerce/orders/{orderId}/refunds | Create Refund
+*OrderApi* | [**createShipmentAttributes**](docs/OrderApi.md#createShipmentAttributes) | **POST** /commerce/orders/{orderId}/shipments/{shipmentNumber}/attributes | Creates attributes on a shipment
 *OrderApi* | [**deleteDigitalPackage**](docs/OrderApi.md#deleteDigitalPackage) | **DELETE** /commerce/orders/{orderId}/digitalpackages/{digitalPackageId} | Delete Digital Package
 *OrderApi* | [**deleteExtendedProperties**](docs/OrderApi.md#deleteExtendedProperties) | **DELETE** /commerce/orders/{orderId}/extendedproperties | Delete Extended Properties
 *OrderApi* | [**deleteExtendedProperty**](docs/OrderApi.md#deleteExtendedProperty) | **DELETE** /commerce/orders/{orderId}/extendedproperties/{key} | Delete Extended Property
+*OrderApi* | [**deleteOrderData**](docs/OrderApi.md#deleteOrderData) | **DELETE** /commerce/orders/{orderId}/data/{orderDataId} | Delete Order Data
 *OrderApi* | [**deleteOrderDraft**](docs/OrderApi.md#deleteOrderDraft) | **PUT** /commerce/orders/{orderId}/draft | Delete Order Draft
 *OrderApi* | [**deleteOrderItem**](docs/OrderApi.md#deleteOrderItem) | **DELETE** /commerce/orders/{orderId}/items/{orderItemId} | Delete Order Item
+*OrderApi* | [**deleteOrderItemData**](docs/OrderApi.md#deleteOrderItemData) | **DELETE** /commerce/orders/{orderId}/item/{orderItemId}/data/{orderItemDataId} | Delete Order Item Data
+*OrderApi* | [**deleteOrderLineAttribute**](docs/OrderApi.md#deleteOrderLineAttribute) | **DELETE** /commerce/orders/{orderId}/items/{orderItemId}/attributes/{attributeFqn} | Delete a single line-level attribute from an order item by FQN
 *OrderApi* | [**deleteOrderNote**](docs/OrderApi.md#deleteOrderNote) | **DELETE** /commerce/orders/{orderId}/notes/{noteId} | Delete Order Note
-*OrderApi* | [**deletePackage**](docs/OrderApi.md#deletePackage) | **DELETE** /commerce/orders/{orderId}/packages/{packageId} | Delete an order package
+*OrderApi* | [**deletePackage**](docs/OrderApi.md#deletePackage) | **DELETE** /commerce/orders/{orderId}/packages/{packageId} | Delete Order Package
 *OrderApi* | [**deletePickup**](docs/OrderApi.md#deletePickup) | **DELETE** /commerce/orders/{orderId}/pickups/{pickupId} | Delete Pickup
-*OrderApi* | [**deleteShipment**](docs/OrderApi.md#deleteShipment) | **DELETE** /commerce/orders/{orderId}/shipments/{shipmentId} | Deletes an existing order shipment
+*OrderApi* | [**deleteShipment**](docs/OrderApi.md#deleteShipment) | **DELETE** /commerce/orders/{orderId}/shipments/{shipmentId} | Delete An Existing Order Shipment
+*OrderApi* | [**deleteShipmentAttributes**](docs/OrderApi.md#deleteShipmentAttributes) | **DELETE** /commerce/orders/{orderId}/shipments/{shipmentNumber}/attributes | Deletes attributes from a shipment
 *OrderApi* | [**evaluateOrderRollupStatus**](docs/OrderApi.md#evaluateOrderRollupStatus) | **PUT** /commerce/orders/{orderId}/evaluaterollupstatus | Evaluate Order Rollup Status
 *OrderApi* | [**getAvailableActions**](docs/OrderApi.md#getAvailableActions) | **GET** /commerce/orders/{orderId}/actions | Get Available Actions
 *OrderApi* | [**getAvailableDigitalPackageFulfillmentActions**](docs/OrderApi.md#getAvailableDigitalPackageFulfillmentActions) | **GET** /commerce/orders/{orderId}/digitalpackages/{digitalPackageId}/actions | Get Available Digital Package Fulfillment Actions
-*OrderApi* | [**getAvailablePackageFulfillmentActions**](docs/OrderApi.md#getAvailablePackageFulfillmentActions) | **GET** /commerce/orders/{orderId}/packages/{packageId}/actions | Retrieves available fulfillment actions
+*OrderApi* | [**getAvailablePackageFulfillmentActions**](docs/OrderApi.md#getAvailablePackageFulfillmentActions) | **GET** /commerce/orders/{orderId}/packages/{packageId}/actions | Retrieves Available Fulfillment Actions
 *OrderApi* | [**getAvailablePaymentActions**](docs/OrderApi.md#getAvailablePaymentActions) | **GET** /commerce/orders/{orderId}/payments/{paymentId}/actions | Get Available Payment Actions
 *OrderApi* | [**getAvailablePickupFulfillmentActions**](docs/OrderApi.md#getAvailablePickupFulfillmentActions) | **GET** /commerce/orders/{orderId}/pickups/{pickupId}/actions | Get Available Pickup Fulfillment Actions
 *OrderApi* | [**getAvailableShipmentMethods**](docs/OrderApi.md#getAvailableShipmentMethods) | **GET** /commerce/orders/{orderId}/shipments/methods | Get Available Shipment Methods
@@ -249,21 +320,29 @@ Class | Method | HTTP request | Description
 *OrderApi* | [**getFulfillmentInfo**](docs/OrderApi.md#getFulfillmentInfo) | **GET** /commerce/orders/{orderId}/fulfillmentinfo | Get Fulfillment Info
 *OrderApi* | [**getOrder**](docs/OrderApi.md#getOrder) | **GET** /commerce/orders/{orderId} | Get Order
 *OrderApi* | [**getOrderAttributes**](docs/OrderApi.md#getOrderAttributes) | **GET** /commerce/orders/{orderId}/attributes | Get Order Attributes
+*OrderApi* | [**getOrderData**](docs/OrderApi.md#getOrderData) | **GET** /commerce/orders/{orderId}/data | Get Order Data
 *OrderApi* | [**getOrderItem**](docs/OrderApi.md#getOrderItem) | **GET** /commerce/orders/{orderId}/items/{orderItemId} | Get Order Item
+*OrderApi* | [**getOrderItemData**](docs/OrderApi.md#getOrderItemData) | **GET** /commerce/orders/{orderId}/item/{orderItemId}/data | Get Order Item Data
 *OrderApi* | [**getOrderItemViaLineId**](docs/OrderApi.md#getOrderItemViaLineId) | **GET** /commerce/orders/{orderId}/items/{lineId} | Get Order Item Via LineId
 *OrderApi* | [**getOrderItems**](docs/OrderApi.md#getOrderItems) | **GET** /commerce/orders/{orderId}/items | Get Order Items
+*OrderApi* | [**getOrderLineAttributes**](docs/OrderApi.md#getOrderLineAttributes) | **GET** /commerce/orders/{orderId}/items/{orderItemId}/attributes | Get all line-level attributes for an order item
 *OrderApi* | [**getOrderNote**](docs/OrderApi.md#getOrderNote) | **GET** /commerce/orders/{orderId}/notes/{noteId} | Get Order Note
 *OrderApi* | [**getOrderNotes**](docs/OrderApi.md#getOrderNotes) | **GET** /commerce/orders/{orderId}/notes | Get Order Notes
 *OrderApi* | [**getOrderReturnableItems**](docs/OrderApi.md#getOrderReturnableItems) | **GET** /commerce/orders/{orderId}/returnableitems | Get Order Returnable Items
 *OrderApi* | [**getOrders**](docs/OrderApi.md#getOrders) | **GET** /commerce/orders | Get Orders
-*OrderApi* | [**getPackage**](docs/OrderApi.md#getPackage) | **GET** /commerce/orders/{orderId}/packages/{packageId} | Get an order package
-*OrderApi* | [**getPackageLabel**](docs/OrderApi.md#getPackageLabel) | **GET** /commerce/orders/{orderId}/packages/{packageId}/label | Get an order package label
+*OrderApi* | [**getPackage**](docs/OrderApi.md#getPackage) | **GET** /commerce/orders/{orderId}/packages/{packageId} | Get Order Package
+*OrderApi* | [**getPackageLabel**](docs/OrderApi.md#getPackageLabel) | **GET** /commerce/orders/{orderId}/packages/{packageId}/label | Get Order Package Label
 *OrderApi* | [**getPayment**](docs/OrderApi.md#getPayment) | **GET** /commerce/orders/{orderId}/payments/{paymentId} | Get Payment
 *OrderApi* | [**getPayments**](docs/OrderApi.md#getPayments) | **GET** /commerce/orders/{orderId}/payments | Get Payments
 *OrderApi* | [**getPickup**](docs/OrderApi.md#getPickup) | **GET** /commerce/orders/{orderId}/pickups/{pickupId} | Get Pickup
+*OrderApi* | [**getQueuedHistoricalOrder**](docs/OrderApi.md#getQueuedHistoricalOrder) | **GET** /commerce/orders/queuedorders/historical/{orderId} | Get Queued Historical Order
+*OrderApi* | [**getQueuedHistoricalOrders**](docs/OrderApi.md#getQueuedHistoricalOrders) | **GET** /commerce/orders/queuedorders/historical | Get Queued Historical Orders
+*OrderApi* | [**getQueuedOrder**](docs/OrderApi.md#getQueuedOrder) | **GET** /commerce/orders/queuedorders/{orderId} | Get Queued Order
+*OrderApi* | [**getQueuedOrders**](docs/OrderApi.md#getQueuedOrders) | **GET** /commerce/orders/queuedorders | Get Queued Orders
 *OrderApi* | [**getReasons**](docs/OrderApi.md#getReasons) | **GET** /commerce/orders/cancel/reasons | Get Order Cancel Reasons
 *OrderApi* | [**getRefundReasons**](docs/OrderApi.md#getRefundReasons) | **GET** /commerce/orders/refunds/refundreasons | Get Refund Reasons
 *OrderApi* | [**getShipment**](docs/OrderApi.md#getShipment) | **GET** /commerce/orders/{orderId}/shipments/{shipmentId} | Get Shipment
+*OrderApi* | [**getShipmentAttributes**](docs/OrderApi.md#getShipmentAttributes) | **GET** /commerce/orders/{orderId}/shipments/{shipmentNumber}/attributes | Gets all attributes for a shipment
 *OrderApi* | [**getTaxableOrders**](docs/OrderApi.md#getTaxableOrders) | **GET** /commerce/orders/{orderId}/taxableorders | Get Taxable Orders
 *OrderApi* | [**getValidationResults**](docs/OrderApi.md#getValidationResults) | **GET** /commerce/orders/{orderId}/validationresults | Get Validation Results
 *OrderApi* | [**performFulfillmentAction**](docs/OrderApi.md#performFulfillmentAction) | **POST** /commerce/orders/{orderId}/fulfillment/actions | Perform Fulfillment Action
@@ -271,13 +350,16 @@ Class | Method | HTTP request | Description
 *OrderApi* | [**performPaymentAction**](docs/OrderApi.md#performPaymentAction) | **POST** /commerce/orders/{orderId}/payments/{paymentId}/actions | Perform Payment Action
 *OrderApi* | [**priceOrder**](docs/OrderApi.md#priceOrder) | **POST** /commerce/orders/price | Price Order
 *OrderApi* | [**processDigitalWallet**](docs/OrderApi.md#processDigitalWallet) | **PUT** /commerce/orders/{orderId}/digitalWallet/{digitalWalletType} | Process Digital Wallet
+*OrderApi* | [**processReturnRules**](docs/OrderApi.md#processReturnRules) | **POST** /commerce/orders/{orderId}/processreturnrules | Process Return Rules
 *OrderApi* | [**removeAdjustment**](docs/OrderApi.md#removeAdjustment) | **DELETE** /commerce/orders/{orderId}/adjustment | Remove Adjustment
-*OrderApi* | [**removeAlternateContact**](docs/OrderApi.md#removeAlternateContact) | **PUT** /commerce/orders/{orderId}/removealternatecontact | Endpoint to remove alternate conatact from order and shipments.
+*OrderApi* | [**removeAlternateContact**](docs/OrderApi.md#removeAlternateContact) | **PUT** /commerce/orders/{orderId}/removealternatecontact | Remove Alternate Contact
 *OrderApi* | [**removeCoupon**](docs/OrderApi.md#removeCoupon) | **DELETE** /commerce/orders/{orderId}/coupons/{couponCode} | Remove Coupon
 *OrderApi* | [**removeCoupons**](docs/OrderApi.md#removeCoupons) | **DELETE** /commerce/orders/{orderId}/coupons | Remove Coupons
 *OrderApi* | [**removeHandlingAdjustment**](docs/OrderApi.md#removeHandlingAdjustment) | **DELETE** /commerce/orders/{orderId}/adjustment/handling | Remove Handling Adjustment
 *OrderApi* | [**removeShippingAdjustment**](docs/OrderApi.md#removeShippingAdjustment) | **DELETE** /commerce/orders/{orderId}/adjustment/shipping | Remove Shipping Adjustment
+*OrderApi* | [**repriceCanceledShipment**](docs/OrderApi.md#repriceCanceledShipment) | **POST** /commerce/orders/{orderId}/shipments/repricecanceledshipment | Reprice Canceled Shipment
 *OrderApi* | [**repriceShipment**](docs/OrderApi.md#repriceShipment) | **POST** /commerce/orders/{orderId}/shipments/{shipmentNumber}/reprice | Reprice Shipment
+*OrderApi* | [**repriceSubstitutes**](docs/OrderApi.md#repriceSubstitutes) | **POST** /commerce/orders/{orderId}/shipments/{shipmentNumber}/repricesubstitutes | Reprice Substitutes
 *OrderApi* | [**resendGatewayGiftCardEmail**](docs/OrderApi.md#resendGatewayGiftCardEmail) | **PUT** /commerce/orders/{orderId}/giftcard/{giftcardId}/resend | Resend Gateway Gift Card Email
 *OrderApi* | [**resendOrderConfirmationEmail**](docs/OrderApi.md#resendOrderConfirmationEmail) | **PUT** /commerce/orders/{orderId}/email/resend | Resend Order Confirmation Email
 *OrderApi* | [**resendPackageFulfillmentEmail**](docs/OrderApi.md#resendPackageFulfillmentEmail) | **POST** /commerce/orders/{orderId}/fulfillment/email/resend | Resend Package Fulfillment Email
@@ -285,33 +367,48 @@ Class | Method | HTTP request | Description
 *OrderApi* | [**setBillingInfo**](docs/OrderApi.md#setBillingInfo) | **PUT** /commerce/orders/{orderId}/billinginfo | Set Billing Info
 *OrderApi* | [**setFulFillmentInfo**](docs/OrderApi.md#setFulFillmentInfo) | **PUT** /commerce/orders/{orderId}/fulfillmentinfo | Set Fulfillment Info
 *OrderApi* | [**smsOptOut**](docs/OrderApi.md#smsOptOut) | **PUT** /commerce/orders/sms/optout/{siteId} | Sms Opt Out
+*OrderApi* | [**splitOrderIntoShipment**](docs/OrderApi.md#splitOrderIntoShipment) | **GET** /commerce/orders/{orderId}/converttoship | Split Order Into Shipment
 *OrderApi* | [**splitShipments**](docs/OrderApi.md#splitShipments) | **POST** /commerce/orders/{orderId}/shipments/{shipmentNumber}/split | Split Shipments
 *OrderApi* | [**updateDigitalPackage**](docs/OrderApi.md#updateDigitalPackage) | **PUT** /commerce/orders/{orderId}/digitalpackages/{digitalPackageId} | Update Digital Package
-*OrderApi* | [**updateExtendedProperties**](docs/OrderApi.md#updateExtendedProperties) | **PUT** /commerce/orders/{orderId}/extendedproperties | Updated extended properties
+*OrderApi* | [**updateExtendedProperties**](docs/OrderApi.md#updateExtendedProperties) | **PUT** /commerce/orders/{orderId}/extendedproperties | Updated Extended Properties
 *OrderApi* | [**updateExtendedProperty**](docs/OrderApi.md#updateExtendedProperty) | **PUT** /commerce/orders/{orderId}/extendedproperties/{key} | Update Extended Property
-*OrderApi* | [**updateItemDeliveryDate**](docs/OrderApi.md#updateItemDeliveryDate) | **PUT** /commerce/orders/{orderId}/items/{orderItemId}/deliverydate | Updates the Delivery Date of a particular Order Item
+*OrderApi* | [**updateGiftInfo**](docs/OrderApi.md#updateGiftInfo) | **PUT** /commerce/orders/{orderId}/items/{orderItemId}/updateGiftInfo | Update Order Item Gift Information
+*OrderApi* | [**updateItemDeliveryDate**](docs/OrderApi.md#updateItemDeliveryDate) | **PUT** /commerce/orders/{orderId}/items/{orderItemId}/deliverydate | Update the Delivery Date of Order Item
 *OrderApi* | [**updateItemDuty**](docs/OrderApi.md#updateItemDuty) | **PUT** /commerce/orders/{orderId}/items/{orderItemId}/dutyAmount/{dutyAmount} | Update Item Duty
 *OrderApi* | [**updateItemFulfillment**](docs/OrderApi.md#updateItemFulfillment) | **PUT** /commerce/orders/{orderId}/items/{orderItemId}/fulfillment | Update Item Fulfillment
 *OrderApi* | [**updateItemProductPrice**](docs/OrderApi.md#updateItemProductPrice) | **PUT** /commerce/orders/{orderId}/items/{orderItemId}/price/{price} | Update Item Product Price
 *OrderApi* | [**updateItemQuantity**](docs/OrderApi.md#updateItemQuantity) | **PUT** /commerce/orders/{orderId}/items/{orderItemId}/quantity/{quantity} | Update Item Quantity
 *OrderApi* | [**updateOrder**](docs/OrderApi.md#updateOrder) | **PUT** /commerce/orders/{orderId} | Update Order
 *OrderApi* | [**updateOrderAttributes**](docs/OrderApi.md#updateOrderAttributes) | **PUT** /commerce/orders/{orderId}/attributes | Update Order Attributes
+*OrderApi* | [**updateOrderData**](docs/OrderApi.md#updateOrderData) | **PUT** /commerce/orders/{orderId}/data/{orderDataId} | Update Order Data
 *OrderApi* | [**updateOrderDiscount**](docs/OrderApi.md#updateOrderDiscount) | **PUT** /commerce/orders/{orderId}/discounts/{discountId} | Update Order Discount
+*OrderApi* | [**updateOrderItemData**](docs/OrderApi.md#updateOrderItemData) | **PUT** /commerce/orders/{orderId}/item/{orderItemId}/data/{orderItemDataId} | Update Order Item Data
 *OrderApi* | [**updateOrderItemDiscount**](docs/OrderApi.md#updateOrderItemDiscount) | **PUT** /commerce/orders/{orderId}/items/{orderItemId}/discounts/{discountId} | Update Order Item Discount
+*OrderApi* | [**updateOrderLineAttributes**](docs/OrderApi.md#updateOrderLineAttributes) | **PUT** /commerce/orders/{orderId}/items/{orderItemId}/attributes | Upsert line-level attributes on an order item
 *OrderApi* | [**updateOrderNote**](docs/OrderApi.md#updateOrderNote) | **PUT** /commerce/orders/{orderId}/notes/{noteId} | Update Order Note
 *OrderApi* | [**updateOrderRestrictions**](docs/OrderApi.md#updateOrderRestrictions) | **PUT** /commerce/orders/{orderId}/updateorderrestrictions | Update Order Restrictions
-*OrderApi* | [**updatePackage**](docs/OrderApi.md#updatePackage) | **PUT** /commerce/orders/{orderId}/packages/{packageId} | Delete an order package
+*OrderApi* | [**updatePackage**](docs/OrderApi.md#updatePackage) | **PUT** /commerce/orders/{orderId}/packages/{packageId} | Update Order Package
 *OrderApi* | [**updatePickup**](docs/OrderApi.md#updatePickup) | **PUT** /commerce/orders/{orderId}/pickups/{pickupId} | Update Pickup
 *OrderApi* | [**updateShipmentAdjustments**](docs/OrderApi.md#updateShipmentAdjustments) | **POST** /commerce/orders/{orderId}/shipments/{shipmentNumber}/adjustments | Update Shipment Adjustments
+*OrderApi* | [**updateShipmentAndItemsAdjustment**](docs/OrderApi.md#updateShipmentAndItemsAdjustment) | **POST** /commerce/orders/{orderId}/shipments/{shipmentNumber}/adjustments/bulk | Update Shipment and Multiple Shipment Items Adjustment
+*OrderApi* | [**updateShipmentAttributes**](docs/OrderApi.md#updateShipmentAttributes) | **PUT** /commerce/orders/{orderId}/shipments/{shipmentNumber}/attributes | Updates attributes on a shipment
 *OrderApi* | [**updateShipmentItem**](docs/OrderApi.md#updateShipmentItem) | **POST** /commerce/orders/{orderId}/shipments/{shipmentNumber}/item/{itemId}/adjustments | Update Shipment Item
-*OrderApi* | [**updateSubscriptionInfo**](docs/OrderApi.md#updateSubscriptionInfo) | **PUT** /commerce/orders/{orderId}/items/{orderItemId}/subscriptionInfo | Update Order Item Subscription Info, applies only to Draft Order
-*OrderApi* | [**upsertAlternateContact**](docs/OrderApi.md#upsertAlternateContact) | **PUT** /commerce/orders/{orderId}/upsertalternatecontact | Endpoint to add/update alternate contact
+*OrderApi* | [**updateShippingAndSuggestions**](docs/OrderApi.md#updateShippingAndSuggestions) | **PUT** /commerce/orders/{orderId}/items/{orderItemId}/UpdateShippingAndSuggestions | Update Shipping and Suggestions
+*OrderApi* | [**updateSubscriptionInfo**](docs/OrderApi.md#updateSubscriptionInfo) | **PUT** /commerce/orders/{orderId}/items/{orderItemId}/subscriptionInfo | Update Order Item Subscription Info
+*OrderApi* | [**upsertAlternateContact**](docs/OrderApi.md#upsertAlternateContact) | **PUT** /commerce/orders/{orderId}/upsertalternatecontact | Add/Update Alternate Contact
+*OrderApi* | [**upsertGiftMessage**](docs/OrderApi.md#upsertGiftMessage) | **POST** /commerce/orders/{orderId}/shipments/upsertgiftmessage | Upsert Gift Message
 *OrderApi* | [**upsertInventoryTags**](docs/OrderApi.md#upsertInventoryTags) | **PUT** /commerce/orders/{orderId}/items/{orderItemId}/upsertInventoryTags | Upsert Inventory Tags on OrderItem
+*OrderApi* | [**upsertSubstituteInfo**](docs/OrderApi.md#upsertSubstituteInfo) | **PUT** /commerce/orders/{orderId}/items/{orderItemId}/upsertSubstituteInfo | Updates SubstituteInfo on OrderItem
 *OrderAttributeDefinitionsApi* | [**createAttribute**](docs/OrderAttributeDefinitionsApi.md#createAttribute) | **POST** /commerce/orders/attributedefinition/attributes | Create Attribute
 *OrderAttributeDefinitionsApi* | [**getAttribute**](docs/OrderAttributeDefinitionsApi.md#getAttribute) | **GET** /commerce/orders/attributedefinition/attributes/{attributeFQN} | Get Attribute
 *OrderAttributeDefinitionsApi* | [**getAttributeVocabularyValues**](docs/OrderAttributeDefinitionsApi.md#getAttributeVocabularyValues) | **GET** /commerce/orders/attributedefinition/attributes/{attributeFQN}/VocabularyValues | Get Attribute Vocabulary Values
 *OrderAttributeDefinitionsApi* | [**getAttributes**](docs/OrderAttributeDefinitionsApi.md#getAttributes) | **GET** /commerce/orders/attributedefinition/attributes | Get Attributes
 *OrderAttributeDefinitionsApi* | [**updateAttribute**](docs/OrderAttributeDefinitionsApi.md#updateAttribute) | **PUT** /commerce/orders/attributedefinition/attributes/{attributeFQN} | Update Attribute
+*OrderLineAttributeDefinitionApi* | [**createAttribute**](docs/OrderLineAttributeDefinitionApi.md#createAttribute) | **POST** /commerce/orders/lineitems/attributedefinition/attributes | Create Attribute
+*OrderLineAttributeDefinitionApi* | [**getAttribute**](docs/OrderLineAttributeDefinitionApi.md#getAttribute) | **GET** /commerce/orders/lineitems/attributedefinition/attributes/{attributeFQN} | Get Attribute
+*OrderLineAttributeDefinitionApi* | [**getAttributeVocabularyValues**](docs/OrderLineAttributeDefinitionApi.md#getAttributeVocabularyValues) | **GET** /commerce/orders/lineitems/attributedefinition/attributes/{attributeFQN}/VocabularyValues | Get Attribute Vocabulary Values
+*OrderLineAttributeDefinitionApi* | [**getAttributes**](docs/OrderLineAttributeDefinitionApi.md#getAttributes) | **GET** /commerce/orders/lineitems/attributedefinition/attributes | Get Attributes
+*OrderLineAttributeDefinitionApi* | [**updateAttribute**](docs/OrderLineAttributeDefinitionApi.md#updateAttribute) | **PUT** /commerce/orders/lineitems/attributedefinition/attributes/{attributeFQN} | Update Attribute
 *QuoteApi* | [**addItemToQuote**](docs/QuoteApi.md#addItemToQuote) | **POST** /commerce/quotes/{quoteId}/items | Add Item To Quote
 *QuoteApi* | [**applyCoupon**](docs/QuoteApi.md#applyCoupon) | **PUT** /commerce/quotes/{quoteId}/coupons/{couponCode} | Apply Coupon
 *QuoteApi* | [**copyQuote**](docs/QuoteApi.md#copyQuote) | **POST** /commerce/quotes/{quoteId}/copy | Copy quote
@@ -338,41 +435,64 @@ Class | Method | HTTP request | Description
 *QuoteApi* | [**updateItemQuantity**](docs/QuoteApi.md#updateItemQuantity) | **PUT** /commerce/quotes/{quoteId}/items/{quoteItemId}/quantity/{quantity} | Update Item Quantity
 *QuoteApi* | [**updateQuote**](docs/QuoteApi.md#updateQuote) | **PUT** /commerce/quotes/{quoteId} | Update Quote
 *QuoteApi* | [**updateQuoteAdjustments**](docs/QuoteApi.md#updateQuoteAdjustments) | **POST** /commerce/quotes/{quoteId}/adjustments | Update Quote Adjustments
-*ReturnApi* | [**autoRefund**](docs/ReturnApi.md#autoRefund) | **POST** /commerce/returns/{returnId}/autorefund | Attempt to automatically refund the return
-*ReturnApi* | [**createPackage**](docs/ReturnApi.md#createPackage) | **POST** /commerce/returns/{returnId}/packages | Apply a package to the return
-*ReturnApi* | [**createPackageShipments**](docs/ReturnApi.md#createPackageShipments) | **POST** /commerce/returns/{returnId}/shipments | Creates a shipment by grouping together multiple packages into logical shipments
+*ReleaseRulesApi* | [**getRecordsByCallOffOrder**](docs/ReleaseRulesApi.md#getRecordsByCallOffOrder) | **GET** /commerce/jobs/release-rules/call-offs/{callOffOrderId}/runs | GET /call-offs/{callOffOrderId}/runs — every audit record that touched
+*ReleaseRulesApi* | [**getRecordsByRuleIdRecent**](docs/ReleaseRulesApi.md#getRecordsByRuleIdRecent) | **GET** /commerce/jobs/release-rules/rules/{ruleId}/recent | GET /rules/{ruleId}/recent — records for one rule within an optional
+*ReleaseRulesApi* | [**getRecordsByRunId**](docs/ReleaseRulesApi.md#getRecordsByRunId) | **GET** /commerce/jobs/release-rules/runs/{runId} | GET /runs/{runId} — every audit record produced by a single run, in
+*ReleaseRulesApi* | [**getRunSummaries**](docs/ReleaseRulesApi.md#getRunSummaries) | **GET** /commerce/jobs/release-rules/runs | GET /runs — per-run summaries (aggregated outcome counts) within an
+*ReleaseRulesApi* | [**run**](docs/ReleaseRulesApi.md#run) | **POST** /commerce/jobs/release-rules/run | Triggers an on-demand Release Rules Engine run for the caller&#39;s
+*ReservationRulesApi* | [**getRecordsByCallOffOrder**](docs/ReservationRulesApi.md#getRecordsByCallOffOrder) | **GET** /commerce/jobs/reservation-rules/call-offs/{callOffOrderId}/runs | GET /call-offs/{callOffOrderId}/runs — every audit record that touched
+*ReservationRulesApi* | [**getRecordsByRuleIdRecent**](docs/ReservationRulesApi.md#getRecordsByRuleIdRecent) | **GET** /commerce/jobs/reservation-rules/rules/{ruleId}/recent | GET /rules/{ruleId}/recent — records for one rule within an optional
+*ReservationRulesApi* | [**getRecordsByRunId**](docs/ReservationRulesApi.md#getRecordsByRunId) | **GET** /commerce/jobs/reservation-rules/runs/{runId} | GET /runs/{runId} — every audit record produced by a single run, in
+*ReservationRulesApi* | [**getRunSummaries**](docs/ReservationRulesApi.md#getRunSummaries) | **GET** /commerce/jobs/reservation-rules/runs | GET /runs — per-run summaries (aggregated counts by outcome) within an
+*ReservationRulesApi* | [**run**](docs/ReservationRulesApi.md#run) | **POST** /commerce/jobs/reservation-rules/run | Triggers an on-demand Reservation Rules Engine run for the caller&#39;s
+*ReturnApi* | [**autoRefund**](docs/ReturnApi.md#autoRefund) | **POST** /commerce/returns/{returnId}/autorefund | Auto Refund Return
+*ReturnApi* | [**createPackage**](docs/ReturnApi.md#createPackage) | **POST** /commerce/returns/{returnId}/packages | Add Package to Return
+*ReturnApi* | [**createPackageShipments**](docs/ReturnApi.md#createPackageShipments) | **POST** /commerce/returns/{returnId}/shipments | Create Return Shipment
 *ReturnApi* | [**createPaymentActionForReturn**](docs/ReturnApi.md#createPaymentActionForReturn) | **POST** /commerce/returns/{returnId}/payments/actions | Create Payment Action For Return
 *ReturnApi* | [**createReturn**](docs/ReturnApi.md#createReturn) | **POST** /commerce/returns | Create Returns
+*ReturnApi* | [**createReturnAttributes**](docs/ReturnApi.md#createReturnAttributes) | **POST** /commerce/returns/{returnId}/attributes | Create Return Attributes
 *ReturnApi* | [**createReturnItem**](docs/ReturnApi.md#createReturnItem) | **POST** /commerce/returns/{returnId}/items | Create Return Item
+*ReturnApi* | [**createReturnItemAttributes**](docs/ReturnApi.md#createReturnItemAttributes) | **POST** /commerce/returns/{returnId}/items/{returnItemId}/attributes | Create Return Item Attributes
 *ReturnApi* | [**createReturnNote**](docs/ReturnApi.md#createReturnNote) | **POST** /commerce/returns/{returnId}/notes | Create Return Note
 *ReturnApi* | [**createReturnShippingOrder**](docs/ReturnApi.md#createReturnShippingOrder) | **POST** /commerce/returns/{returnId}/ship | Create Return Shipping Order
 *ReturnApi* | [**deleteOrderItem**](docs/ReturnApi.md#deleteOrderItem) | **DELETE** /commerce/returns/{orderId}/items/{orderItemId} | Delete Order Item
-*ReturnApi* | [**deletePackage**](docs/ReturnApi.md#deletePackage) | **DELETE** /commerce/returns/{returnId}/packages/{packageId} | Delete an order package
+*ReturnApi* | [**deletePackage**](docs/ReturnApi.md#deletePackage) | **DELETE** /commerce/returns/{returnId}/packages/{packageId} | Delete Return Package
 *ReturnApi* | [**deleteReturn**](docs/ReturnApi.md#deleteReturn) | **DELETE** /commerce/returns/{returnId} | Delete Return
 *ReturnApi* | [**deleteReturnNote**](docs/ReturnApi.md#deleteReturnNote) | **DELETE** /commerce/returns/{returnId}/notes/{noteId} | Delete Return Note
-*ReturnApi* | [**deleteShipment**](docs/ReturnApi.md#deleteShipment) | **DELETE** /commerce/returns/{returnId}/shipments/{shipmentId} | Deletes an existing return shipment
+*ReturnApi* | [**deleteShipment**](docs/ReturnApi.md#deleteShipment) | **DELETE** /commerce/returns/{returnId}/shipments/{shipmentId} | Delete Return Shipment
+*ReturnApi* | [**disposeReturnItems**](docs/ReturnApi.md#disposeReturnItems) | **POST** /commerce/returns/{returnId}/disposition | Dispose Return Items
 *ReturnApi* | [**getAvailableReturnActions**](docs/ReturnApi.md#getAvailableReturnActions) | **GET** /commerce/returns/{returnId}/actions | Get Available Return Actions
-*ReturnApi* | [**getPackage**](docs/ReturnApi.md#getPackage) | **GET** /commerce/returns/{returnId}/packages/{packageId} | Get an order package
-*ReturnApi* | [**getPackageLabel**](docs/ReturnApi.md#getPackageLabel) | **GET** /commerce/returns/{returnId}/packages/{packageId}/label | Get an order package
+*ReturnApi* | [**getPackage**](docs/ReturnApi.md#getPackage) | **GET** /commerce/returns/{returnId}/packages/{packageId} | Get Return Package
+*ReturnApi* | [**getPackageLabel**](docs/ReturnApi.md#getPackageLabel) | **GET** /commerce/returns/{returnId}/packages/{packageId}/label | Get Return Package Label
 *ReturnApi* | [**getPayment**](docs/ReturnApi.md#getPayment) | **GET** /commerce/returns/{returnId}/payments/{paymentId} | Get Payment
 *ReturnApi* | [**getPaymentDistribution**](docs/ReturnApi.md#getPaymentDistribution) | **GET** /commerce/returns/{returnId}/paymentDistribution | Get Payment Distribution
 *ReturnApi* | [**getPayments**](docs/ReturnApi.md#getPayments) | **GET** /commerce/returns/{returnId}/payments | Get Payments
 *ReturnApi* | [**getReasons**](docs/ReturnApi.md#getReasons) | **GET** /commerce/returns/reasons | Get Reasons
 *ReturnApi* | [**getReturn**](docs/ReturnApi.md#getReturn) | **GET** /commerce/returns/{returnId} | Get Return
+*ReturnApi* | [**getReturnAttributes**](docs/ReturnApi.md#getReturnAttributes) | **GET** /commerce/returns/{returnId}/attributes | Get Return Attributes
 *ReturnApi* | [**getReturnItem**](docs/ReturnApi.md#getReturnItem) | **GET** /commerce/returns/{returnId}/items/{returnItemId} | Get Return Item
+*ReturnApi* | [**getReturnItemAttributes**](docs/ReturnApi.md#getReturnItemAttributes) | **GET** /commerce/returns/{returnId}/items/{returnItemId}/attributes | Get Return Item Attributes
 *ReturnApi* | [**getReturnItems**](docs/ReturnApi.md#getReturnItems) | **GET** /commerce/returns/{returnId}/items | Get Return Items
 *ReturnApi* | [**getReturnLabel**](docs/ReturnApi.md#getReturnLabel) | **GET** /commerce/returns/{returnId}/shipping/label | Get Return Label
 *ReturnApi* | [**getReturnNote**](docs/ReturnApi.md#getReturnNote) | **GET** /commerce/returns/{returnId}/notes/{noteId} | Get Return Note
 *ReturnApi* | [**getReturnNotes**](docs/ReturnApi.md#getReturnNotes) | **GET** /commerce/returns/{returnId}/notes | Get Return Notes
+*ReturnApi* | [**getReturnedItemConditions**](docs/ReturnApi.md#getReturnedItemConditions) | **GET** /commerce/returns/restock/conditions | Get Item Conditions
 *ReturnApi* | [**getReturns**](docs/ReturnApi.md#getReturns) | **GET** /commerce/returns | Get Returns
-*ReturnApi* | [**getShipment**](docs/ReturnApi.md#getShipment) | **GET** /commerce/returns/{returnId}/shipments/{shipmentId} | Allows a shipment to be retrieved for the order
+*ReturnApi* | [**getShipment**](docs/ReturnApi.md#getShipment) | **GET** /commerce/returns/{returnId}/shipments/{shipmentId} | Get Return Shipment
 *ReturnApi* | [**performPaymentActionForReturn**](docs/ReturnApi.md#performPaymentActionForReturn) | **POST** /commerce/returns/{returnId}/payments/{paymentId}/actions | Perform Payment Action For Return
-*ReturnApi* | [**performReturnActions**](docs/ReturnApi.md#performReturnActions) | **POST** /commerce/returns/actions | Delete Return
+*ReturnApi* | [**performReturnActions**](docs/ReturnApi.md#performReturnActions) | **POST** /commerce/returns/actions | Perform Return Action
 *ReturnApi* | [**resendReturnEmail**](docs/ReturnApi.md#resendReturnEmail) | **PUT** /commerce/returns/email/resend | Resend Return Email
 *ReturnApi* | [**restockReturnItems**](docs/ReturnApi.md#restockReturnItems) | **POST** /commerce/returns/{returnId}/restock | Restock Return Items
-*ReturnApi* | [**updatePackage**](docs/ReturnApi.md#updatePackage) | **PUT** /commerce/returns/{returnId}/packages/{packageId} | Delete an order package
-*ReturnApi* | [**updateReturn**](docs/ReturnApi.md#updateReturn) | **PUT** /commerce/returns/{returnId} | Get Reasons
+*ReturnApi* | [**updatePackage**](docs/ReturnApi.md#updatePackage) | **PUT** /commerce/returns/{returnId}/packages/{packageId} | Update Return Package
+*ReturnApi* | [**updateReturn**](docs/ReturnApi.md#updateReturn) | **PUT** /commerce/returns/{returnId} | Update Return
+*ReturnApi* | [**updateReturnAttributes**](docs/ReturnApi.md#updateReturnAttributes) | **PUT** /commerce/returns/{returnId}/attributes | Update Return Attributes
+*ReturnApi* | [**updateReturnItemAttributes**](docs/ReturnApi.md#updateReturnItemAttributes) | **PUT** /commerce/returns/{returnId}/items/{returnItemId}/attributes | Update Return Item Attributes
 *ReturnApi* | [**updateReturnNote**](docs/ReturnApi.md#updateReturnNote) | **PUT** /commerce/returns/{returnId}/notes/{noteId} | Update Return Note
+*ReturnAttributeDefinitionsApi* | [**createAttribute**](docs/ReturnAttributeDefinitionsApi.md#createAttribute) | **POST** /commerce/returns/attributedefinition/attributes | Create Attribute
+*ReturnAttributeDefinitionsApi* | [**getAttribute**](docs/ReturnAttributeDefinitionsApi.md#getAttribute) | **GET** /commerce/returns/attributedefinition/attributes/{attributeFQN} | Get Attribute
+*ReturnAttributeDefinitionsApi* | [**getAttributeVocabularyValues**](docs/ReturnAttributeDefinitionsApi.md#getAttributeVocabularyValues) | **GET** /commerce/returns/attributedefinition/attributes/{attributeFQN}/VocabularyValues | Get Attribute Vocabulary Values
+*ReturnAttributeDefinitionsApi* | [**getAttributes**](docs/ReturnAttributeDefinitionsApi.md#getAttributes) | **GET** /commerce/returns/attributedefinition/attributes | Get Attributes
+*ReturnAttributeDefinitionsApi* | [**updateAttribute**](docs/ReturnAttributeDefinitionsApi.md#updateAttribute) | **PUT** /commerce/returns/attributedefinition/attributes/{attributeFQN} | Update Attribute
 *WishlistApi* | [**addItemToWishlist**](docs/WishlistApi.md#addItemToWishlist) | **POST** /commerce/wishlists/{wishlistId}/items | Add Item To Wishlist
 *WishlistApi* | [**createWishlist**](docs/WishlistApi.md#createWishlist) | **POST** /commerce/wishlists | Create Wishlist
 *WishlistApi* | [**deleteWishlist**](docs/WishlistApi.md#deleteWishlist) | **DELETE** /commerce/wishlists/{wishlistId} | Deletes Wishlist
@@ -392,26 +512,70 @@ Class | Method | HTTP request | Description
 ## Documentation for Models
 
  - [AbstractFulfillmentItem](docs/AbstractFulfillmentItem.md)
+ - [Address](docs/Address.md)
  - [Adjustment](docs/Adjustment.md)
- - [AdminUserAuditInfo](docs/AdminUserAuditInfo.md)
  - [AlternateContact](docs/AlternateContact.md)
+ - [AppliedLineItemProductDiscount](docs/AppliedLineItemProductDiscount.md)
+ - [AppliedLineItemProductDiscountAllOf](docs/AppliedLineItemProductDiscountAllOf.md)
+ - [AppliedLineItemShippingDiscount](docs/AppliedLineItemShippingDiscount.md)
+ - [AppliedLineItemShippingDiscountAllOf](docs/AppliedLineItemShippingDiscountAllOf.md)
  - [AppliedProductDiscount](docs/AppliedProductDiscount.md)
+ - [AppliedProductDiscountAllOf](docs/AppliedProductDiscountAllOf.md)
+ - [AppliedReturnRuleInfo](docs/AppliedReturnRuleInfo.md)
+ - [AttributeEntityConfig](docs/AttributeEntityConfig.md)
+ - [AttributeInheritanceRule](docs/AttributeInheritanceRule.md)
  - [AttributeValueLocalizedContent](docs/AttributeValueLocalizedContent.md)
  - [AuditRecord](docs/AuditRecord.md)
  - [AuditRecordChange](docs/AuditRecordChange.md)
  - [AuditRecordChangeField](docs/AuditRecordChangeField.md)
  - [AutoRefundRequest](docs/AutoRefundRequest.md)
  - [BillingInfo](docs/BillingInfo.md)
+ - [BlanketOrder](docs/BlanketOrder.md)
+ - [BlanketOrderAggregateResult](docs/BlanketOrderAggregateResult.md)
+ - [BlanketOrderAttribute](docs/BlanketOrderAttribute.md)
+ - [BlanketOrderCollection](docs/BlanketOrderCollection.md)
+ - [BlanketOrderDemandEntry](docs/BlanketOrderDemandEntry.md)
+ - [BlanketOrderItem](docs/BlanketOrderItem.md)
+ - [BlanketOrderItemAttribute](docs/BlanketOrderItemAttribute.md)
+ - [BlanketOrderProductReference](docs/BlanketOrderProductReference.md)
+ - [BulkCancelError](docs/BulkCancelError.md)
+ - [BulkCancelRequest](docs/BulkCancelRequest.md)
+ - [BulkCancelResult](docs/BulkCancelResult.md)
+ - [BulkCancelResultItem](docs/BulkCancelResultItem.md)
+ - [BulkShipmentItemAdjustment](docs/BulkShipmentItemAdjustment.md)
+ - [BulkShipmentItemAdjustmentAllOf](docs/BulkShipmentItemAdjustmentAllOf.md)
+ - [BundleInfo](docs/BundleInfo.md)
+ - [BundledProduct](docs/BundledProduct.md)
+ - [BundledProductAllOf](docs/BundledProductAllOf.md)
+ - [CallOffOrder](docs/CallOffOrder.md)
+ - [CallOffOrderAction](docs/CallOffOrderAction.md)
+ - [CallOffOrderAggregateResult](docs/CallOffOrderAggregateResult.md)
+ - [CallOffOrderAttribute](docs/CallOffOrderAttribute.md)
+ - [CallOffOrderChangeMessage](docs/CallOffOrderChangeMessage.md)
+ - [CallOffOrderChangeMessageCollection](docs/CallOffOrderChangeMessageCollection.md)
+ - [CallOffOrderCollection](docs/CallOffOrderCollection.md)
+ - [CallOffOrderDemandEntry](docs/CallOffOrderDemandEntry.md)
+ - [CallOffOrderItem](docs/CallOffOrderItem.md)
+ - [CallOffOrderItemAttribute](docs/CallOffOrderItemAttribute.md)
+ - [CallOffOrderProductReference](docs/CallOffOrderProductReference.md)
+ - [CallOffOrderRule](docs/CallOffOrderRule.md)
+ - [CallOffOrderRuleCollection](docs/CallOffOrderRuleCollection.md)
+ - [CallOffOrderRuleEvalRequest](docs/CallOffOrderRuleEvalRequest.md)
+ - [CallOffOrderRuleEvalResponse](docs/CallOffOrderRuleEvalResponse.md)
+ - [CallOffOrderRuleSchema](docs/CallOffOrderRuleSchema.md)
+ - [CallOffPayment](docs/CallOffPayment.md)
  - [CancelReasonCollection](docs/CancelReasonCollection.md)
  - [CancelReasonItem](docs/CancelReasonItem.md)
  - [CapturableShipmentSummary](docs/CapturableShipmentSummary.md)
- - [CarrierServiceGenerateLabelResponse](docs/CarrierServiceGenerateLabelResponse.md)
  - [Cart](docs/Cart.md)
+ - [CartAllOf](docs/CartAllOf.md)
  - [CartChangeMessageCollection](docs/CartChangeMessageCollection.md)
  - [CartItem](docs/CartItem.md)
+ - [CartItemAllOf](docs/CartItemAllOf.md)
  - [CartItemCollection](docs/CartItemCollection.md)
  - [CartMessage](docs/CartMessage.md)
  - [CartSummary](docs/CartSummary.md)
+ - [ChangeMessageCollection](docs/ChangeMessageCollection.md)
  - [Channel](docs/Channel.md)
  - [ChannelCollection](docs/ChannelCollection.md)
  - [ChannelGroup](docs/ChannelGroup.md)
@@ -439,71 +603,132 @@ Class | Method | HTTP request | Description
  - [CommerceRuntimeAttributeMetadataItem](docs/CommerceRuntimeAttributeMetadataItem.md)
  - [CommerceRuntimeAttributeValidation](docs/CommerceRuntimeAttributeValidation.md)
  - [CommerceRuntimeAttributeVocabularyValue](docs/CommerceRuntimeAttributeVocabularyValue.md)
+ - [CommerceRuntimeBillingInfo](docs/CommerceRuntimeBillingInfo.md)
  - [CommerceRuntimeBundledProduct](docs/CommerceRuntimeBundledProduct.md)
- - [CommerceRuntimeCanceledItem](docs/CommerceRuntimeCanceledItem.md)
  - [CommerceRuntimeCanceledReason](docs/CommerceRuntimeCanceledReason.md)
  - [CommerceRuntimeCategory](docs/CommerceRuntimeCategory.md)
  - [CommerceRuntimeChangeMessage](docs/CommerceRuntimeChangeMessage.md)
+ - [CommerceRuntimeCommerceItem](docs/CommerceRuntimeCommerceItem.md)
  - [CommerceRuntimeContact](docs/CommerceRuntimeContact.md)
  - [CommerceRuntimeCredit](docs/CommerceRuntimeCredit.md)
  - [CommerceRuntimeCustomer](docs/CommerceRuntimeCustomer.md)
+ - [CommerceRuntimeDeliveryWindow](docs/CommerceRuntimeDeliveryWindow.md)
  - [CommerceRuntimeDestination](docs/CommerceRuntimeDestination.md)
  - [CommerceRuntimeDiscount](docs/CommerceRuntimeDiscount.md)
  - [CommerceRuntimeFulfillmentField](docs/CommerceRuntimeFulfillmentField.md)
- - [CommerceRuntimeFulfillmentShopperNotes](docs/CommerceRuntimeFulfillmentShopperNotes.md)
  - [CommerceRuntimeFutureInventory](docs/CommerceRuntimeFutureInventory.md)
  - [CommerceRuntimeGiftCard](docs/CommerceRuntimeGiftCard.md)
  - [CommerceRuntimeLink](docs/CommerceRuntimeLink.md)
  - [CommerceRuntimeMeasurement](docs/CommerceRuntimeMeasurement.md)
+ - [CommerceRuntimeOrder](docs/CommerceRuntimeOrder.md)
  - [CommerceRuntimeOrderAttribute](docs/CommerceRuntimeOrderAttribute.md)
+ - [CommerceRuntimeOrderCanceledItem](docs/CommerceRuntimeOrderCanceledItem.md)
  - [CommerceRuntimeOrderItem](docs/CommerceRuntimeOrderItem.md)
  - [CommerceRuntimePackage](docs/CommerceRuntimePackage.md)
+ - [CommerceRuntimePackageAllOf](docs/CommerceRuntimePackageAllOf.md)
  - [CommerceRuntimePackageMeasurements](docs/CommerceRuntimePackageMeasurements.md)
+ - [CommerceRuntimePackageResponse](docs/CommerceRuntimePackageResponse.md)
+ - [CommerceRuntimePayment](docs/CommerceRuntimePayment.md)
+ - [CommerceRuntimePaymentCard](docs/CommerceRuntimePaymentCard.md)
  - [CommerceRuntimePhone](docs/CommerceRuntimePhone.md)
  - [CommerceRuntimePickupItem](docs/CommerceRuntimePickupItem.md)
  - [CommerceRuntimeProduct](docs/CommerceRuntimeProduct.md)
+ - [CommerceRuntimeProductAllOf](docs/CommerceRuntimeProductAllOf.md)
  - [CommerceRuntimeProductOption](docs/CommerceRuntimeProductOption.md)
  - [CommerceRuntimeProductPrice](docs/CommerceRuntimeProductPrice.md)
  - [CommerceRuntimeProductProperty](docs/CommerceRuntimeProductProperty.md)
  - [CommerceRuntimeProductPropertyValue](docs/CommerceRuntimeProductPropertyValue.md)
  - [CommerceRuntimePurchaseOrderCustomField](docs/CommerceRuntimePurchaseOrderCustomField.md)
  - [CommerceRuntimePurchaseOrderPaymentTerm](docs/CommerceRuntimePurchaseOrderPaymentTerm.md)
+ - [CommerceRuntimeRefund](docs/CommerceRuntimeRefund.md)
  - [CommerceRuntimeShipment](docs/CommerceRuntimeShipment.md)
+ - [CommerceRuntimeShipmentItem](docs/CommerceRuntimeShipmentItem.md)
  - [CommerceRuntimeShipmentNote](docs/CommerceRuntimeShipmentNote.md)
+ - [CommerceRuntimeShipmentResponse](docs/CommerceRuntimeShipmentResponse.md)
  - [CommerceRuntimeShipmentStatusReason](docs/CommerceRuntimeShipmentStatusReason.md)
+ - [CommerceRuntimeShippingGrouping](docs/CommerceRuntimeShippingGrouping.md)
+ - [CommerceRuntimeShippingItemRate](docs/CommerceRuntimeShippingItemRate.md)
  - [CommerceRuntimeShippingRate](docs/CommerceRuntimeShippingRate.md)
+ - [CommerceRuntimeShippingRateAllOf](docs/CommerceRuntimeShippingRateAllOf.md)
  - [CommerceRuntimeShopperNotes](docs/CommerceRuntimeShopperNotes.md)
+ - [CommerceRuntimeSubstitutedItem](docs/CommerceRuntimeSubstitutedItem.md)
  - [CommerceRuntimeTaskInput](docs/CommerceRuntimeTaskInput.md)
  - [CommerceRuntimeThresholdMessage](docs/CommerceRuntimeThresholdMessage.md)
  - [CommerceRuntimeTracking](docs/CommerceRuntimeTracking.md)
  - [CommerceRuntimeWorkflowState](docs/CommerceRuntimeWorkflowState.md)
  - [CommerceUnitPrice](docs/CommerceUnitPrice.md)
+ - [ConsumptionRecord](docs/ConsumptionRecord.md)
+ - [ConsumptionRecordCollection](docs/ConsumptionRecordCollection.md)
+ - [Contact](docs/Contact.md)
+ - [CoreApiContractsAuditInfo](docs/CoreApiContractsAuditInfo.md)
+ - [CoreAuditInfo](docs/CoreAuditInfo.md)
+ - [Credit](docs/Credit.md)
+ - [CreditHoldReason](docs/CreditHoldReason.md)
+ - [CreditHoldReasonCollection](docs/CreditHoldReasonCollection.md)
+ - [CreditHoldReasonItem](docs/CreditHoldReasonItem.md)
+ - [CreditHoldStatus](docs/CreditHoldStatus.md)
+ - [CustomAttribute](docs/CustomAttribute.md)
+ - [DeliveryWindow](docs/DeliveryWindow.md)
  - [DigitalPackage](docs/DigitalPackage.md)
  - [DigitalPackageItem](docs/DigitalPackageItem.md)
+ - [DigitalPackageItemAllOf](docs/DigitalPackageItemAllOf.md)
  - [DigitalWallet](docs/DigitalWallet.md)
+ - [Discount](docs/Discount.md)
+ - [DisposeItemInfo](docs/DisposeItemInfo.md)
+ - [DisposeReturnItem](docs/DisposeReturnItem.md)
+ - [DisposeReturnItemAllOf](docs/DisposeReturnItemAllOf.md)
+ - [DynamicExpression](docs/DynamicExpression.md)
+ - [DynamicFieldSlot](docs/DynamicFieldSlot.md)
+ - [EmailGatewayGiftCard](docs/EmailGatewayGiftCard.md)
+ - [EmailGatewayGiftCardAllOf](docs/EmailGatewayGiftCardAllOf.md)
+ - [Expression](docs/Expression.md)
  - [ExtendedProperty](docs/ExtendedProperty.md)
+ - [ExternalPaymentToken](docs/ExternalPaymentToken.md)
  - [Frequency](docs/Frequency.md)
  - [FulfillmentAction](docs/FulfillmentAction.md)
  - [FulfillmentAlternateContact](docs/FulfillmentAlternateContact.md)
+ - [FulfillmentCanceledItem](docs/FulfillmentCanceledItem.md)
+ - [FulfillmentCanceledItemAllOf](docs/FulfillmentCanceledItemAllOf.md)
+ - [FulfillmentField](docs/FulfillmentField.md)
  - [FulfillmentInfo](docs/FulfillmentInfo.md)
  - [FulfillmentServiceAppeasementReason](docs/FulfillmentServiceAppeasementReason.md)
  - [FulfillmentServiceAuditInfo](docs/FulfillmentServiceAuditInfo.md)
+ - [FulfillmentServiceBundleInfo](docs/FulfillmentServiceBundleInfo.md)
  - [FulfillmentServiceFulfillmentField](docs/FulfillmentServiceFulfillmentField.md)
  - [FulfillmentServiceGiftCard](docs/FulfillmentServiceGiftCard.md)
+ - [FulfillmentServiceInventoryAllocation](docs/FulfillmentServiceInventoryAllocation.md)
  - [FulfillmentServiceInventoryTag](docs/FulfillmentServiceInventoryTag.md)
  - [FulfillmentServiceProductOption](docs/FulfillmentServiceProductOption.md)
+ - [FulfillmentServiceReturnRuleInfo](docs/FulfillmentServiceReturnRuleInfo.md)
+ - [FulfillmentServiceShipmentItemAttribute](docs/FulfillmentServiceShipmentItemAttribute.md)
+ - [FulfillmentServiceSubstituteInfo](docs/FulfillmentServiceSubstituteInfo.md)
  - [FulfillmentServiceSubstituteReason](docs/FulfillmentServiceSubstituteReason.md)
+ - [FulfillmentShopperNotes](docs/FulfillmentShopperNotes.md)
  - [FulfillmentTask](docs/FulfillmentTask.md)
  - [GatewayGiftCard](docs/GatewayGiftCard.md)
+ - [GiftInfo](docs/GiftInfo.md)
+ - [GiftMessage](docs/GiftMessage.md)
  - [InvalidCoupon](docs/InvalidCoupon.md)
  - [InventoryTags](docs/InventoryTags.md)
+ - [ItemConsumption](docs/ItemConsumption.md)
+ - [ItemFulfillmentInfo](docs/ItemFulfillmentInfo.md)
+ - [ItemQuantityUpdate](docs/ItemQuantityUpdate.md)
  - [ItemsAndDeliveryDates](docs/ItemsAndDeliveryDates.md)
  - [ItemsForDestination](docs/ItemsForDestination.md)
+ - [JobKey](docs/JobKey.md)
  - [ModelReturn](docs/ModelReturn.md)
+ - [Money](docs/Money.md)
+ - [Notification](docs/Notification.md)
  - [Order](docs/Order.md)
  - [OrderAction](docs/OrderAction.md)
+ - [OrderAllOf](docs/OrderAllOf.md)
+ - [OrderCanceledItem](docs/OrderCanceledItem.md)
+ - [OrderCanceledItemAllOf](docs/OrderCanceledItemAllOf.md)
  - [OrderCollection](docs/OrderCollection.md)
+ - [OrderItem](docs/OrderItem.md)
+ - [OrderItemAllOf](docs/OrderItemAllOf.md)
  - [OrderItemCollection](docs/OrderItemCollection.md)
+ - [OrderLineAttribute](docs/OrderLineAttribute.md)
  - [OrderNote](docs/OrderNote.md)
  - [OrderReturnableItem](docs/OrderReturnableItem.md)
  - [OrderReturnableItemCollection](docs/OrderReturnableItemCollection.md)
@@ -515,6 +740,7 @@ Class | Method | HTTP request | Description
  - [PaymentAction](docs/PaymentAction.md)
  - [PaymentActionTarget](docs/PaymentActionTarget.md)
  - [PaymentCard](docs/PaymentCard.md)
+ - [PaymentCardAllOf](docs/PaymentCardAllOf.md)
  - [PaymentCardReference](docs/PaymentCardReference.md)
  - [PaymentCollection](docs/PaymentCollection.md)
  - [PaymentGatewayInteraction](docs/PaymentGatewayInteraction.md)
@@ -524,9 +750,14 @@ Class | Method | HTTP request | Description
  - [Pickup](docs/Pickup.md)
  - [PricingAppliedDiscount](docs/PricingAppliedDiscount.md)
  - [PricingAppliedLineItemDiscount](docs/PricingAppliedLineItemDiscount.md)
+ - [PricingAppliedLineItemDiscountAllOf](docs/PricingAppliedLineItemDiscountAllOf.md)
  - [PricingAppliedLineItemProductDiscount](docs/PricingAppliedLineItemProductDiscount.md)
+ - [PricingAppliedLineItemProductDiscountAllOf](docs/PricingAppliedLineItemProductDiscountAllOf.md)
  - [PricingAppliedLineItemShippingDiscount](docs/PricingAppliedLineItemShippingDiscount.md)
+ - [PricingAppliedLineItemShippingDiscountAllOf](docs/PricingAppliedLineItemShippingDiscountAllOf.md)
  - [PricingAppliedOrderShippingDiscount](docs/PricingAppliedOrderShippingDiscount.md)
+ - [PricingAppliedProductDiscount](docs/PricingAppliedProductDiscount.md)
+ - [PricingAppliedProductDiscountAllOf](docs/PricingAppliedProductDiscountAllOf.md)
  - [PricingDiscount](docs/PricingDiscount.md)
  - [PricingDiscountCondition](docs/PricingDiscountCondition.md)
  - [PricingDiscountTarget](docs/PricingDiscountTarget.md)
@@ -537,22 +768,47 @@ Class | Method | HTTP request | Description
  - [PricingTaxContext](docs/PricingTaxContext.md)
  - [PricingTaxableLineItem](docs/PricingTaxableLineItem.md)
  - [PricingTaxableOrder](docs/PricingTaxableOrder.md)
+ - [ProcessReturnRuleItem](docs/ProcessReturnRuleItem.md)
+ - [ProcessReturnRuleItemCollection](docs/ProcessReturnRuleItemCollection.md)
+ - [ProcessReturnRuleItemResponse](docs/ProcessReturnRuleItemResponse.md)
  - [ProductBase](docs/ProductBase.md)
+ - [ProductProperty](docs/ProductProperty.md)
  - [ProductStock](docs/ProductStock.md)
  - [PurchaseOrderPayment](docs/PurchaseOrderPayment.md)
+ - [QueuedOrder](docs/QueuedOrder.md)
+ - [QueuedOrderCollection](docs/QueuedOrderCollection.md)
  - [Quote](docs/Quote.md)
  - [QuoteAdjustment](docs/QuoteAdjustment.md)
  - [QuoteCollection](docs/QuoteCollection.md)
  - [QuoteComment](docs/QuoteComment.md)
+ - [QuoteEmailMessage](docs/QuoteEmailMessage.md)
+ - [QuoteEmailMessageAllOf](docs/QuoteEmailMessageAllOf.md)
+ - [Reason](docs/Reason.md)
  - [ReasonCollection](docs/ReasonCollection.md)
  - [ReasonItemBase](docs/ReasonItemBase.md)
  - [Refund](docs/Refund.md)
  - [RefundPaymentAction](docs/RefundPaymentAction.md)
  - [RefundReasonCollection](docs/RefundReasonCollection.md)
  - [RefundReasonItem](docs/RefundReasonItem.md)
+ - [ReleaseCallOffOrderRequest](docs/ReleaseCallOffOrderRequest.md)
+ - [ReleaseLineOutcome](docs/ReleaseLineOutcome.md)
+ - [ReleaseRunFailureDetail](docs/ReleaseRunFailureDetail.md)
+ - [ReleaseRunHistoryRecord](docs/ReleaseRunHistoryRecord.md)
+ - [ReleaseRunHistoryRecordCollection](docs/ReleaseRunHistoryRecordCollection.md)
+ - [ReleaseRunSummary](docs/ReleaseRunSummary.md)
+ - [ReleaseRunSummaryCollection](docs/ReleaseRunSummaryCollection.md)
+ - [RepriceCanceledShipmentRequest](docs/RepriceCanceledShipmentRequest.md)
+ - [RepriceCanceledShipmentResponse](docs/RepriceCanceledShipmentResponse.md)
  - [RepriceShipmentObject](docs/RepriceShipmentObject.md)
+ - [ReservationLineOutcome](docs/ReservationLineOutcome.md)
+ - [ReservationRunFailureDetail](docs/ReservationRunFailureDetail.md)
+ - [ReservationRunHistoryRecord](docs/ReservationRunHistoryRecord.md)
+ - [ReservationRunHistoryRecordCollection](docs/ReservationRunHistoryRecordCollection.md)
+ - [ReservationRunSummary](docs/ReservationRunSummary.md)
+ - [ReservationRunSummaryCollection](docs/ReservationRunSummaryCollection.md)
  - [RestockableReturnItem](docs/RestockableReturnItem.md)
  - [ReturnAction](docs/ReturnAction.md)
+ - [ReturnAttribute](docs/ReturnAttribute.md)
  - [ReturnBundle](docs/ReturnBundle.md)
  - [ReturnCollection](docs/ReturnCollection.md)
  - [ReturnItem](docs/ReturnItem.md)
@@ -560,20 +816,40 @@ Class | Method | HTTP request | Description
  - [ReturnItemSpecifier](docs/ReturnItemSpecifier.md)
  - [ReturnReason](docs/ReturnReason.md)
  - [ReturnRefundDetails](docs/ReturnRefundDetails.md)
+ - [ReturnRuleInfo](docs/ReturnRuleInfo.md)
+ - [RolloverBlanketOrderRequest](docs/RolloverBlanketOrderRequest.md)
+ - [Shipment](docs/Shipment.md)
  - [ShipmentAdjustment](docs/ShipmentAdjustment.md)
+ - [ShipmentAndItemsAdjustment](docs/ShipmentAndItemsAdjustment.md)
+ - [ShipmentAttribute](docs/ShipmentAttribute.md)
  - [ShipmentItem](docs/ShipmentItem.md)
  - [ShipmentItemAdjustment](docs/ShipmentItemAdjustment.md)
+ - [ShipmentLineAttribute](docs/ShipmentLineAttribute.md)
  - [ShippingDiscount](docs/ShippingDiscount.md)
+ - [ShippingGrouping](docs/ShippingGrouping.md)
+ - [ShippingLabel](docs/ShippingLabel.md)
  - [ShippingPrice](docs/ShippingPrice.md)
+ - [ShopperNotes](docs/ShopperNotes.md)
  - [SplitShipmentsObject](docs/SplitShipmentsObject.md)
+ - [StaticField](docs/StaticField.md)
  - [SubPayment](docs/SubPayment.md)
+ - [SubscriptionAttribute](docs/SubscriptionAttribute.md)
  - [SubscriptionInfo](docs/SubscriptionInfo.md)
- - [SubstitutedItem](docs/SubstitutedItem.md)
+ - [SubscriptionItem](docs/SubscriptionItem.md)
+ - [SubscriptionItemAllOf](docs/SubscriptionItemAllOf.md)
+ - [SubscriptionLineAttribute](docs/SubscriptionLineAttribute.md)
+ - [SubstituteInfo](docs/SubstituteInfo.md)
  - [SuggestedDiscount](docs/SuggestedDiscount.md)
+ - [Suggestion](docs/Suggestion.md)
+ - [TaskInput](docs/TaskInput.md)
+ - [ThresholdMessage](docs/ThresholdMessage.md)
  - [Trial](docs/Trial.md)
+ - [ValidityPeriod](docs/ValidityPeriod.md)
  - [Wishlist](docs/Wishlist.md)
+ - [WishlistAllOf](docs/WishlistAllOf.md)
  - [WishlistCollection](docs/WishlistCollection.md)
  - [WishlistItem](docs/WishlistItem.md)
+ - [WishlistItemAllOf](docs/WishlistItemAllOf.md)
  - [WishlistItemCollection](docs/WishlistItemCollection.md)
 
 
@@ -583,13 +859,6 @@ Authentication schemes defined for the API:
 ### bearerAuth
 
 - **Type**: HTTP basic authentication
-
-### clientOauth2
-
-- **Type**: OAuth
-- **Flow**: application
-- **Authorization URL**: 
-- **Scopes**: N/A
 
 
 ## Recommendation

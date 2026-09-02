@@ -7,12 +7,16 @@
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
-|**itemId** | **String** |  |  [optional] |
-|**quantity** | **Integer** |  |  [optional] |
+|**allocationHistory** | [**List&lt;AllocationEve&gt;**](AllocationEve.md) |  |  [optional] |
+|**allocationId** | **Integer** |  |  [optional] |
+|**estimatedDeliveryDate** | **OffsetDateTime** |  |  [optional] |
 |**fulfillmentLocationCode** | **String** |  |  [optional] |
-|**transferLocationCode** | **String** |  |  [optional] |
-|**productCode** | **String** |  |  [optional] |
+|**futureDate** | **OffsetDateTime** |  |  [optional] |
 |**isStateChange** | **Boolean** |  |  [optional] |
+|**itemId** | **String** |  |  [optional] |
+|**productCode** | **String** |  |  [optional] |
+|**quantity** | **Integer** |  |  [optional] |
+|**transferLocationCode** | **String** |  |  [optional] |
 
 
 ## Implemented Interfaces

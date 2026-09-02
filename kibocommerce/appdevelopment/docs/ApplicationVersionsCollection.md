@@ -7,8 +7,8 @@
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
-|**totalCount** | **Integer** |  |  [optional] |
 |**items** | **List&lt;String&gt;** |  |  [optional] |
+|**totalCount** | **Integer** |  |  [optional] |
 
 
 ## Implemented Interfaces

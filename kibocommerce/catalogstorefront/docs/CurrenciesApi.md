@@ -4,14 +4,14 @@ All URIs are relative to *http://https:/api*
 
 | Method | HTTP request | Description |
 |------------- | ------------- | -------------|
-| [**storefrontGetCurrencyExchangeRates**](CurrenciesApi.md#storefrontGetCurrencyExchangeRates) | **GET** /commerce/catalog/storefront/currencies/exchangerates | Get exchange rates |
+| [**storefrontGetCurrencyExchangeRates**](CurrenciesApi.md#storefrontGetCurrencyExchangeRates) | **GET** /commerce/catalog/storefront/currencies/exchangerates | Get Exchange Rates |
 
 
 <a name="storefrontGetCurrencyExchangeRates"></a>
 # **storefrontGetCurrencyExchangeRates**
-> List&lt;CatalogRuntimesCurrencyExchangeRate&gt; storefrontGetCurrencyExchangeRates()
+> List&lt;CatalogRuntimesCurrencyExchangeRate&gt; storefrontGetCurrencyExchangeRates(responseFields)
 
-Get exchange rates
+Get Exchange Rates
 
 Retrieves a list of currency exchange rates based on the context&#39;s currency code.
 
@@ -34,13 +34,10 @@ public class Example {
     HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
     bearerAuth.setBearerToken("BEARER TOKEN");
 
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
-
     CurrenciesApi apiInstance = new CurrenciesApi(defaultClient);
+    String responseFields = "responseFields_example"; // String | limits which fields are returned in the response body
     try {
-      List<CatalogRuntimesCurrencyExchangeRate> result = apiInstance.storefrontGetCurrencyExchangeRates();
+      List<CatalogRuntimesCurrencyExchangeRate> result = apiInstance.storefrontGetCurrencyExchangeRates(responseFields);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling CurrenciesApi#storefrontGetCurrencyExchangeRates");
@@ -54,7 +51,10 @@ public class Example {
 ```
 
 ### Parameters
-This endpoint does not need any parameter.
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **responseFields** | **String**| limits which fields are returned in the response body | [optional] |
 
 ### Return type
 
@@ -62,7 +62,7 @@ This endpoint does not need any parameter.
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth), [clientOauth2](../README.md#clientOauth2)
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
@@ -72,5 +72,5 @@ This endpoint does not need any parameter.
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Success |  -  |
+| **200** | OK |  -  |
 

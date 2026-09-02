@@ -1,8 +1,8 @@
 /*
  * Kibo Catalog Admin Services
- * OpenAPI Spec for Kibo Catalog Admin Services
+ * <div id=\"overview_CATALOG_ADMIN\">             <h2>CATALOG ADMINISTRATION</h2>             <p>The Catalog Administration APIs are a collection of resources for configuring the catalogs and products offered to your shoppers, including                 discounts and coupon sets, faceting, price lists, and different types or variations of products. See the                 <a href=\"/concept-guides/catalog\">Catalog user guides</a>                 for information about the related features in the Unified Commerce Admin.</p>             <p>Use the <strong>Attributes</strong> resource to manage localization and attribute configurations for your catalogs. This current version of the Attributes API includes localizedContent to                 support <a href=\"/pages/catalog-structure#multi-locale-catalogs\">multi-locale catalogs</a>, which was not present in the legacy API model. If                 you were a client prior to May 2024 and have upgraded your implementation to support this feature,                 you can still access attribute data that has not yet been rewritten to the new model by providing                 an x-api-version header set to \"1\". </p>             <p>Use the <strong>Categories</strong> resource to organize products and control where they appear on the storefront. Create                 and maintain a hierarchy of categories and subcategories where the site will store properties. This current version of the Categories API includes localizedContent to                 support <a href=\"/pages/catalog-structure#multi-locale-catalogs\">multi-locale catalogs</a>, which was not present in the legacy API model. If                 you were a client prior to May 2024 and have upgraded your implementation to support this feature,                 you can still access category data that has not yet been rewritten to the new model by providing                 an x-api-version header set to \"1\". </p>             <p>Use the <strong>Coupon Sets</strong> resource to view and create coupon sets. You can use coupon sets to group multiple                 coupon codes together and associate them with one or more discounts.</p>             <p>Use the <strong>Currency</strong> resource to manage the currency localization rules and exchange rates for any of the                 currencies that are supported for placing orders in.</p>             <p>Use the <strong>Discounts</strong> and <strong>Discount Settings</strong> resources to define and manage discounts to apply to products, product categories, or                 orders. This current version of the Discounts API includes localizedContent to                 support <a href=\"/pages/catalog-structure#multi-locale-catalogs\">multi-locale catalogs</a>, which was not present in the legacy Products API model. If                 you were a client prior to May 2024 and have upgraded your implementation to support this feature,                 you can still access discount data that has not yet been rewritten to the new model by providing                 an x-api-version header set to \"1\". </p>             <p>Use the <strong>Facets</strong> resource to manage the facets shoppers use to filter product display results on a                 storefront. Facets can include categories, product attributes, or prices, and use either a range of                 values or discrete values.</p>             <p>Use the <strong>Master Catalog</strong> resource to view details of the master catalogs associated with a tenant and to                 manage the product publishing mode for each master catalog.</p>             <p>Use the <strong>Price Lists</strong> resources to view and create price lists. You can use price lists to override the                 catalog pricing of products for specific customer segments and/or sites.</p>             <p>Use the <strong>Products</strong>, <strong>Product Types/Extras/Options/Properties</strong>, and <strong>Product Sort Definitions</strong> resources to create new product definitions in the master catalog and determine which                 catalogs will feature products. This current version of the Products API includes localizedContent to                 support <a href=\"/pages/catalog-structure#multi-locale-catalogs\">multi-locale catalogs</a>, which was not present in the legacy Products API model. If                 you were a client prior to May 2024 and have upgraded your implementation to support this feature,                 you can still access product data that has not yet been rewritten to the new model by providing                 an x-api-version header set to \"1\".</p>             <p>Use the <strong>Publishing</strong> resource to publish pending product updates together as part of a set.</p>             <p>Use the <strong>Search</strong> resource to manage all settings and options for providing product search on your site, as                 well as search tuning rules.</p>         </div>
  *
- * The version of the OpenAPI document: 1.0.0
+ * The version of the OpenAPI document: v1
  * 
  *
  * NOTE: This class is auto generated by OpenAPI Generator (https://openapi-generator.tech).
@@ -53,41 +53,41 @@ import com.kibocommerce.sdk.common.JSON;
 public class StackingConfiguration implements Serializable {
   private static final long serialVersionUID = 1L;
 
-  public static final String SERIALIZED_NAME_STACKING_ENABLED = "stackingEnabled";
-  @SerializedName(SERIALIZED_NAME_STACKING_ENABLED)
-  private Boolean stackingEnabled;
+  public static final String SERIALIZED_NAME_PRODUCT_LINE_ITEM_LAYERS = "productLineItemLayers";
+  @SerializedName(SERIALIZED_NAME_PRODUCT_LINE_ITEM_LAYERS)
+  private Integer productLineItemLayers;
 
   public static final String SERIALIZED_NAME_PRODUCT_ORDER_LAYERS = "productOrderLayers";
   @SerializedName(SERIALIZED_NAME_PRODUCT_ORDER_LAYERS)
   private Integer productOrderLayers;
 
-  public static final String SERIALIZED_NAME_PRODUCT_LINE_ITEM_LAYERS = "productLineItemLayers";
-  @SerializedName(SERIALIZED_NAME_PRODUCT_LINE_ITEM_LAYERS)
-  private Integer productLineItemLayers;
+  public static final String SERIALIZED_NAME_STACKING_ENABLED = "stackingEnabled";
+  @SerializedName(SERIALIZED_NAME_STACKING_ENABLED)
+  private Boolean stackingEnabled;
 
   public StackingConfiguration() {
   }
 
-  public StackingConfiguration stackingEnabled(Boolean stackingEnabled) {
+  public StackingConfiguration productLineItemLayers(Integer productLineItemLayers) {
     
-    this.stackingEnabled = stackingEnabled;
+    this.productLineItemLayers = productLineItemLayers;
     return this;
   }
 
    /**
-   * Indicates if discount stacking is enabled for discounts in this catalog
-   * @return stackingEnabled
+   * Number of Product Line Item discount layers
+   * @return productLineItemLayers
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "Indicates if discount stacking is enabled for discounts in this catalog")
+  @ApiModelProperty(value = "Number of Product Line Item discount layers")
 
-  public Boolean getStackingEnabled() {
-    return stackingEnabled;
+  public Integer getProductLineItemLayers() {
+    return productLineItemLayers;
   }
 
 
-  public void setStackingEnabled(Boolean stackingEnabled) {
-    this.stackingEnabled = stackingEnabled;
+  public void setProductLineItemLayers(Integer productLineItemLayers) {
+    this.productLineItemLayers = productLineItemLayers;
   }
 
 
@@ -114,26 +114,26 @@ public class StackingConfiguration implements Serializable {
   }
 
 
-  public StackingConfiguration productLineItemLayers(Integer productLineItemLayers) {
+  public StackingConfiguration stackingEnabled(Boolean stackingEnabled) {
     
-    this.productLineItemLayers = productLineItemLayers;
+    this.stackingEnabled = stackingEnabled;
     return this;
   }
 
    /**
-   * Number of Product Line Item discount layers
-   * @return productLineItemLayers
+   * Indicates if discount stacking is enabled for discounts in this catalog
+   * @return stackingEnabled
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "Number of Product Line Item discount layers")
+  @ApiModelProperty(value = "Indicates if discount stacking is enabled for discounts in this catalog")
 
-  public Integer getProductLineItemLayers() {
-    return productLineItemLayers;
+  public Boolean getStackingEnabled() {
+    return stackingEnabled;
   }
 
 
-  public void setProductLineItemLayers(Integer productLineItemLayers) {
-    this.productLineItemLayers = productLineItemLayers;
+  public void setStackingEnabled(Boolean stackingEnabled) {
+    this.stackingEnabled = stackingEnabled;
   }
 
 
@@ -147,23 +147,23 @@ public class StackingConfiguration implements Serializable {
       return false;
     }
     StackingConfiguration stackingConfiguration = (StackingConfiguration) o;
-    return Objects.equals(this.stackingEnabled, stackingConfiguration.stackingEnabled) &&
+    return Objects.equals(this.productLineItemLayers, stackingConfiguration.productLineItemLayers) &&
         Objects.equals(this.productOrderLayers, stackingConfiguration.productOrderLayers) &&
-        Objects.equals(this.productLineItemLayers, stackingConfiguration.productLineItemLayers);
+        Objects.equals(this.stackingEnabled, stackingConfiguration.stackingEnabled);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(stackingEnabled, productOrderLayers, productLineItemLayers);
+    return Objects.hash(productLineItemLayers, productOrderLayers, stackingEnabled);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class StackingConfiguration {\n");
-    sb.append("    stackingEnabled: ").append(toIndentedString(stackingEnabled)).append("\n");
-    sb.append("    productOrderLayers: ").append(toIndentedString(productOrderLayers)).append("\n");
     sb.append("    productLineItemLayers: ").append(toIndentedString(productLineItemLayers)).append("\n");
+    sb.append("    productOrderLayers: ").append(toIndentedString(productOrderLayers)).append("\n");
+    sb.append("    stackingEnabled: ").append(toIndentedString(stackingEnabled)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -186,9 +186,9 @@ public class StackingConfiguration implements Serializable {
   static {
     // a set of all properties/fields (JSON key names)
     openapiFields = new HashSet<String>();
-    openapiFields.add("stackingEnabled");
-    openapiFields.add("productOrderLayers");
     openapiFields.add("productLineItemLayers");
+    openapiFields.add("productOrderLayers");
+    openapiFields.add("stackingEnabled");
 
     // a set of required properties/fields (JSON key names)
     openapiRequiredFields = new HashSet<String>();

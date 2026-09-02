@@ -4,15 +4,15 @@ All URIs are relative to *http://https:/api*
 
 | Method | HTTP request | Description |
 |------------- | ------------- | -------------|
-| [**getCampaign**](CampaignsApi.md#getCampaign) | **GET** /commerce/catalog/storefront/campaigns/{campaignId} | Get a search campaign |
-| [**getCampaigns**](CampaignsApi.md#getCampaigns) | **GET** /commerce/catalog/storefront/campaigns/all | Get search campaigns |
+| [**getCampaign**](CampaignsApi.md#getCampaign) | **GET** /commerce/catalog/storefront/campaigns/{campaignId} | Get Search Campaign |
+| [**getCampaigns**](CampaignsApi.md#getCampaigns) | **GET** /commerce/catalog/storefront/campaigns/all | Get Search Campaigns |
 
 
 <a name="getCampaign"></a>
 # **getCampaign**
-> CampaignResult getCampaign(campaignId)
+> CampaignResult getCampaign(campaignId, responseFields)
 
-Get a search campaign
+Get Search Campaign
 
 Get a specific campaign by campaign id.
 
@@ -35,14 +35,11 @@ public class Example {
     HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
     bearerAuth.setBearerToken("BEARER TOKEN");
 
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
-
     CampaignsApi apiInstance = new CampaignsApi(defaultClient);
     String campaignId = "campaignId_example"; // String | 
+    String responseFields = "responseFields_example"; // String | limits which fields are returned in the response body
     try {
-      CampaignResult result = apiInstance.getCampaign(campaignId);
+      CampaignResult result = apiInstance.getCampaign(campaignId, responseFields);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling CampaignsApi#getCampaign");
@@ -60,6 +57,7 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **campaignId** | **String**|  | |
+| **responseFields** | **String**| limits which fields are returned in the response body | [optional] |
 
 ### Return type
 
@@ -67,7 +65,7 @@ public class Example {
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth), [clientOauth2](../README.md#clientOauth2)
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
@@ -77,13 +75,13 @@ public class Example {
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Success |  -  |
+| **200** | OK |  -  |
 
 <a name="getCampaigns"></a>
 # **getCampaigns**
-> List&lt;CampaignResult&gt; getCampaigns()
+> List&lt;CampaignResult&gt; getCampaigns(responseFields)
 
-Get search campaigns
+Get Search Campaigns
 
 Get list of Search campaigns.
 
@@ -106,13 +104,10 @@ public class Example {
     HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
     bearerAuth.setBearerToken("BEARER TOKEN");
 
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
-
     CampaignsApi apiInstance = new CampaignsApi(defaultClient);
+    String responseFields = "responseFields_example"; // String | limits which fields are returned in the response body
     try {
-      List<CampaignResult> result = apiInstance.getCampaigns();
+      List<CampaignResult> result = apiInstance.getCampaigns(responseFields);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling CampaignsApi#getCampaigns");
@@ -126,7 +121,10 @@ public class Example {
 ```
 
 ### Parameters
-This endpoint does not need any parameter.
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **responseFields** | **String**| limits which fields are returned in the response body | [optional] |
 
 ### Return type
 
@@ -134,7 +132,7 @@ This endpoint does not need any parameter.
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth), [clientOauth2](../README.md#clientOauth2)
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
@@ -144,5 +142,5 @@ This endpoint does not need any parameter.
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Success |  -  |
+| **200** | OK |  -  |
 

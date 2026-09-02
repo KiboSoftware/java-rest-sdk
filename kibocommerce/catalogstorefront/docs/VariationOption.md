@@ -7,9 +7,9 @@
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
-|**valueSequence** | **Integer** |  |  [optional] |
 |**attributeFQN** | **String** |  |  [optional] |
 |**value** | **Object** |  |  [optional] |
+|**valueSequence** | **Integer** |  |  [optional] |
 
 
 ## Implemented Interfaces

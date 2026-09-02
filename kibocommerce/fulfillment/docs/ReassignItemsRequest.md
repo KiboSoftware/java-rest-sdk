@@ -9,6 +9,7 @@
 |------------ | ------------- | ------------- | -------------|
 |**isUserAction** | **Boolean** |  |  [optional] |
 |**items** | [**List&lt;ReassignItem&gt;**](ReassignItem.md) |  |  [optional] |
+|**runId** | **String** |  |  [optional] |
 
 
 ## Implemented Interfaces

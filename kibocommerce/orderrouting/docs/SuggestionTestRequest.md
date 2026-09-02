@@ -8,7 +8,7 @@
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
 |**suggestionRequest** | [**SuggestionRequest**](SuggestionRequest.md) |  |  [optional] |
-|**testInventoryResponses** | [**List&lt;ApiDocumentationInventoryResponse&gt;**](ApiDocumentationInventoryResponse.md) |  |  [optional] |
+|**testInventoryResponses** | [**List&lt;GetInventoryResponseItem&gt;**](GetInventoryResponseItem.md) |  |  [optional] |
 
 
 ## Implemented Interfaces

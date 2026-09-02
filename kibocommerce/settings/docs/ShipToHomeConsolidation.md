@@ -7,9 +7,12 @@
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
-|**isEnabled** | **Boolean** |  |  [optional] |
-|**shippingMethodSTHC** | [**ShippingMethod**](ShippingMethod.md) |  |  [optional] |
+|**allowPartialFulfillment** | **Boolean** | AllowPartialFulfillment |  [optional] |
 |**cancellationSTHC** | [**Cancellation**](Cancellation.md) |  |  [optional] |
+|**forceSTHConsolidationOnSplitShipments** | [**ForceSTHConsolidationOnSplitShipments**](ForceSTHConsolidationOnSplitShipments.md) |  |  [optional] |
+|**isEnabled** | **Boolean** |  |  [optional] |
+|**multipleConsolidation** | [**MultipleConsolidation**](MultipleConsolidation.md) |  |  [optional] |
+|**shippingMethodSTHC** | [**ShippingMethod**](ShippingMethod.md) |  |  [optional] |
 
 
 ## Implemented Interfaces

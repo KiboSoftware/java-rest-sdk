@@ -7,8 +7,8 @@
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
-|**returnItemId** | **String** |  |  [optional] |
 |**quantity** | **Integer** |  |  [optional] |
+|**returnItemId** | **String** |  |  [optional] |
 
 
 ## Implemented Interfaces

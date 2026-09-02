@@ -7,10 +7,10 @@
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
-|**gatewayAccountId** | **String** |  |  [optional] |
-|**processingGatewayAccountId** | **String** |  |  [optional] |
 |**cardTypeId** | **String** |  |  [optional] |
+|**gatewayAccountId** | **String** |  |  [optional] |
 |**paymentType** | **String** |  |  [optional] |
+|**processingGatewayAccountId** | **String** |  |  [optional] |
 
 
 ## Implemented Interfaces

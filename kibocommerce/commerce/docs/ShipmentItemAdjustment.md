@@ -7,8 +7,8 @@
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
-|**overridePrice** | **Double** | Unit price override |  [optional] |
 |**appeasementReason** | [**CommerceRuntimeAppeasementReason**](CommerceRuntimeAppeasementReason.md) |  |  [optional] |
+|**overridePrice** | **Double** | Unit price override |  [optional] |
 
 
 ## Implemented Interfaces

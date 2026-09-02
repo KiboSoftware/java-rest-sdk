@@ -7,8 +7,8 @@
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
-|**searchTermAssociations** | **List&lt;String&gt;** |  |  [optional] |
 |**fieldValueBoost** | [**FieldValueBoost**](FieldValueBoost.md) |  |  [optional] |
+|**searchTermAssociations** | **List&lt;String&gt;** |  |  [optional] |
 
 
 ## Implemented Interfaces

@@ -4,23 +4,25 @@ All URIs are relative to *http://https:/api*
 
 | Method | HTTP request | Description |
 |------------- | ------------- | -------------|
-| [**closePickWaveUsingPUT**](PickWaveApi.md#closePickWaveUsingPUT) | **PUT** /commerce/pickwaves/{pickWaveNumber}/closed | Close Pick Wave |
-| [**createPickWaveUsingPOST**](PickWaveApi.md#createPickWaveUsingPOST) | **POST** /commerce/pickwaves | Create Pick Wave |
-| [**getOpenPickWavesUsingGET**](PickWaveApi.md#getOpenPickWavesUsingGET) | **GET** /commerce/pickwaves/open/{fulfillmentLocationCode} | Get Open Pick Waves |
-| [**getPickWaveDetailsUsingGET**](PickWaveApi.md#getPickWaveDetailsUsingGET) | **GET** /commerce/pickwaves/{pickWaveNumber}/pickWaveDetails | Get Pick Wave Details |
-| [**getPickWaveUsingGET**](PickWaveApi.md#getPickWaveUsingGET) | **GET** /commerce/pickwaves/{pickWaveNumber} | Get Pick Wave |
-| [**getShipmentsInPickWaveUsingGET**](PickWaveApi.md#getShipmentsInPickWaveUsingGET) | **GET** /commerce/pickwaves/{pickWaveNumber}/shipments | Get Shipments in Pick Wave |
-| [**renderOrderPickSheetsUsingGET**](PickWaveApi.md#renderOrderPickSheetsUsingGET) | **GET** /commerce/pickwaves/{pickWaveNumber}/order-pick-sheets/html | Render Pick Wave Order Sheets |
-| [**renderPickWaveUsingGET**](PickWaveApi.md#renderPickWaveUsingGET) | **GET** /commerce/pickwaves/{pickWaveNumber}/rendition/html | Render Pick Wave |
+| [**closePickWave**](PickWaveApi.md#closePickWave) | **PUT** /commerce/pickwaves/{pickWaveNumber}/closed | closePickWave |
+| [**createPickWave**](PickWaveApi.md#createPickWave) | **POST** /commerce/pickwaves | createPickWave |
+| [**createRuleBasedPickWave**](PickWaveApi.md#createRuleBasedPickWave) | **POST** /commerce/pickwaves/rule-based | createRuleBasedPickWave |
+| [**getOpenPickWaves**](PickWaveApi.md#getOpenPickWaves) | **GET** /commerce/pickwaves/open/{fulfillmentLocationCode} | getOpenPickWaves |
+| [**getPickWave**](PickWaveApi.md#getPickWave) | **GET** /commerce/pickwaves/{pickWaveNumber} | getPickWave |
+| [**getPickWaveDetails**](PickWaveApi.md#getPickWaveDetails) | **GET** /commerce/pickwaves/{pickWaveNumber}/pickWaveDetails | getPickWaveDetails |
+| [**getShipmentsInPickWave**](PickWaveApi.md#getShipmentsInPickWave) | **GET** /commerce/pickwaves/{pickWaveNumber}/shipments | getShipmentsInPickWave |
+| [**isPickWaveEnabled**](PickWaveApi.md#isPickWaveEnabled) | **GET** /commerce/pickwaves/enabled/{locationCode} | isPickWaveEnabled |
+| [**renderOrderPickSheets**](PickWaveApi.md#renderOrderPickSheets) | **GET** /commerce/pickwaves/{pickWaveNumber}/order-pick-sheets/html | Render Order Pick Sheets |
+| [**renderPickWave**](PickWaveApi.md#renderPickWave) | **GET** /commerce/pickwaves/{pickWaveNumber}/rendition/html | renderPickWave |
 
 
-<a name="closePickWaveUsingPUT"></a>
-# **closePickWaveUsingPUT**
-> EntityModelOfPickWave closePickWaveUsingPUT(pickWaveNumber, closePickWave)
+<a name="closePickWave"></a>
+# **closePickWave**
+> EntityModelOfPickWave closePickWave(pickWaveNumber, closePickWaveDto)
 
-Close Pick Wave
+closePickWave
 
-Close Pick Wave
+Close an existing pick wave.
 
 ### Example
 ```java
@@ -28,7 +30,6 @@ Close Pick Wave
 import com.kibocommerce.sdk.fulfillment.ApiClient;
 import com.kibocommerce.sdk.fulfillment.ApiException;
 import com.kibocommerce.sdk.fulfillment.Configuration;
-import com.kibocommerce.sdk.fulfillment.auth.*;
 import com.kibocommerce.sdk.fulfillment.models.*;
 import com.kibocommerce.sdk.fulfillment.api.PickWaveApi;
 
@@ -36,23 +37,15 @@ public class Example {
   public static void main(String[] args) {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
     defaultClient.setBasePath("http://https:/api");
-    
-    // Configure HTTP bearer authorization: bearerAuth
-    HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
-    bearerAuth.setBearerToken("BEARER TOKEN");
-
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
 
     PickWaveApi apiInstance = new PickWaveApi(defaultClient);
     Integer pickWaveNumber = 56; // Integer | pickWaveNumber
-    ClosePickWave closePickWave = new ClosePickWave(); // ClosePickWave | 
+    ClosePickWave closePickWaveDto = new ClosePickWave(); // ClosePickWave | closePickWaveDto
     try {
-      EntityModelOfPickWave result = apiInstance.closePickWaveUsingPUT(pickWaveNumber, closePickWave);
+      EntityModelOfPickWave result = apiInstance.closePickWave(pickWaveNumber, closePickWaveDto);
       System.out.println(result);
     } catch (ApiException e) {
-      System.err.println("Exception when calling PickWaveApi#closePickWaveUsingPUT");
+      System.err.println("Exception when calling PickWaveApi#closePickWave");
       System.err.println("Status code: " + e.getCode());
       System.err.println("Reason: " + e.getResponseBody());
       System.err.println("Response headers: " + e.getResponseHeaders());
@@ -67,7 +60,7 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **pickWaveNumber** | **Integer**| pickWaveNumber | |
-| **closePickWave** | [**ClosePickWave**](ClosePickWave.md)|  | [optional] |
+| **closePickWaveDto** | [**ClosePickWave**](ClosePickWave.md)| closePickWaveDto | |
 
 ### Return type
 
@@ -75,12 +68,12 @@ public class Example {
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth), [clientOauth2](../README.md#clientOauth2)
+No authorization required
 
 ### HTTP request headers
 
  - **Content-Type**: application/json
- - **Accept**: application/json, application/xml, application/hal+json
+ - **Accept**: application/hal+json, application/json, application/xml
 
 ### HTTP response details
 | Status code | Description | Response headers |
@@ -91,13 +84,13 @@ public class Example {
 | **403** | Forbidden |  -  |
 | **404** | Not Found |  -  |
 
-<a name="createPickWaveUsingPOST"></a>
-# **createPickWaveUsingPOST**
-> EntityModelOfPickWave createPickWaveUsingPOST(createPickWave)
+<a name="createPickWave"></a>
+# **createPickWave**
+> EntityModelOfPickWave createPickWave(xVolTenant, createPickWaveDto, xVolSite)
 
-Create Pick Wave
+createPickWave
 
-Create Pick Wave
+Create a new pick wave.
 
 ### Example
 ```java
@@ -105,7 +98,6 @@ Create Pick Wave
 import com.kibocommerce.sdk.fulfillment.ApiClient;
 import com.kibocommerce.sdk.fulfillment.ApiException;
 import com.kibocommerce.sdk.fulfillment.Configuration;
-import com.kibocommerce.sdk.fulfillment.auth.*;
 import com.kibocommerce.sdk.fulfillment.models.*;
 import com.kibocommerce.sdk.fulfillment.api.PickWaveApi;
 
@@ -113,22 +105,16 @@ public class Example {
   public static void main(String[] args) {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
     defaultClient.setBasePath("http://https:/api");
-    
-    // Configure HTTP bearer authorization: bearerAuth
-    HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
-    bearerAuth.setBearerToken("BEARER TOKEN");
-
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
 
     PickWaveApi apiInstance = new PickWaveApi(defaultClient);
-    CreatePickWave createPickWave = new CreatePickWave(); // CreatePickWave | 
+    Integer xVolTenant = 56; // Integer | 
+    CreatePickWave createPickWaveDto = new CreatePickWave(); // CreatePickWave | createPickWaveDto
+    Integer xVolSite = 56; // Integer | 
     try {
-      EntityModelOfPickWave result = apiInstance.createPickWaveUsingPOST(createPickWave);
+      EntityModelOfPickWave result = apiInstance.createPickWave(xVolTenant, createPickWaveDto, xVolSite);
       System.out.println(result);
     } catch (ApiException e) {
-      System.err.println("Exception when calling PickWaveApi#createPickWaveUsingPOST");
+      System.err.println("Exception when calling PickWaveApi#createPickWave");
       System.err.println("Status code: " + e.getCode());
       System.err.println("Reason: " + e.getResponseBody());
       System.err.println("Response headers: " + e.getResponseHeaders());
@@ -142,7 +128,9 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **createPickWave** | [**CreatePickWave**](CreatePickWave.md)|  | [optional] |
+| **xVolTenant** | **Integer**|  | |
+| **createPickWaveDto** | [**CreatePickWave**](CreatePickWave.md)| createPickWaveDto | |
+| **xVolSite** | **Integer**|  | [optional] |
 
 ### Return type
 
@@ -150,12 +138,12 @@ public class Example {
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth), [clientOauth2](../README.md#clientOauth2)
+No authorization required
 
 ### HTTP request headers
 
  - **Content-Type**: application/json
- - **Accept**: application/json, application/xml, application/hal+json
+ - **Accept**: application/hal+json, application/json, application/xml
 
 ### HTTP response details
 | Status code | Description | Response headers |
@@ -166,13 +154,13 @@ public class Example {
 | **403** | Forbidden |  -  |
 | **404** | Not Found |  -  |
 
-<a name="getOpenPickWavesUsingGET"></a>
-# **getOpenPickWavesUsingGET**
-> CollectionModelOfPickWave getOpenPickWavesUsingGET(fulfillmentLocationCode, shipmentType, userId, userDisplayName)
+<a name="createRuleBasedPickWave"></a>
+# **createRuleBasedPickWave**
+> EntityModelOfPickWave createRuleBasedPickWave(xVolTenant, createRuleBasedPickWave, xVolSite)
 
-Get Open Pick Waves
+createRuleBasedPickWave
 
-Get Open Pick Waves
+createRuleBasedPickWave
 
 ### Example
 ```java
@@ -180,7 +168,6 @@ Get Open Pick Waves
 import com.kibocommerce.sdk.fulfillment.ApiClient;
 import com.kibocommerce.sdk.fulfillment.ApiException;
 import com.kibocommerce.sdk.fulfillment.Configuration;
-import com.kibocommerce.sdk.fulfillment.auth.*;
 import com.kibocommerce.sdk.fulfillment.models.*;
 import com.kibocommerce.sdk.fulfillment.api.PickWaveApi;
 
@@ -188,25 +175,87 @@ public class Example {
   public static void main(String[] args) {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
     defaultClient.setBasePath("http://https:/api");
-    
-    // Configure HTTP bearer authorization: bearerAuth
-    HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
-    bearerAuth.setBearerToken("BEARER TOKEN");
 
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
+    PickWaveApi apiInstance = new PickWaveApi(defaultClient);
+    Integer xVolTenant = 56; // Integer | 
+    CreateRuleBasedPickWave createRuleBasedPickWave = new CreateRuleBasedPickWave(); // CreateRuleBasedPickWave | createRuleBasedPickWaveDto
+    Integer xVolSite = 56; // Integer | 
+    try {
+      EntityModelOfPickWave result = apiInstance.createRuleBasedPickWave(xVolTenant, createRuleBasedPickWave, xVolSite);
+      System.out.println(result);
+    } catch (ApiException e) {
+      System.err.println("Exception when calling PickWaveApi#createRuleBasedPickWave");
+      System.err.println("Status code: " + e.getCode());
+      System.err.println("Reason: " + e.getResponseBody());
+      System.err.println("Response headers: " + e.getResponseHeaders());
+      e.printStackTrace();
+    }
+  }
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **xVolTenant** | **Integer**|  | |
+| **createRuleBasedPickWave** | [**CreateRuleBasedPickWave**](CreateRuleBasedPickWave.md)| createRuleBasedPickWaveDto | |
+| **xVolSite** | **Integer**|  | [optional] |
+
+### Return type
+
+[**EntityModelOfPickWave**](EntityModelOfPickWave.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/hal+json, application/json, application/xml
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | OK |  -  |
+| **201** | Created |  -  |
+| **401** | Unauthorized |  -  |
+| **403** | Forbidden |  -  |
+| **404** | Not Found |  -  |
+
+<a name="getOpenPickWaves"></a>
+# **getOpenPickWaves**
+> CollectionModelOfPickWave getOpenPickWaves(fulfillmentLocationCode, shipmentType, userDisplayName, userId)
+
+getOpenPickWaves
+
+Get a list of open pick waves at a specific location.
+
+### Example
+```java
+// Import classes:
+import com.kibocommerce.sdk.fulfillment.ApiClient;
+import com.kibocommerce.sdk.fulfillment.ApiException;
+import com.kibocommerce.sdk.fulfillment.Configuration;
+import com.kibocommerce.sdk.fulfillment.models.*;
+import com.kibocommerce.sdk.fulfillment.api.PickWaveApi;
+
+public class Example {
+  public static void main(String[] args) {
+    ApiClient defaultClient = Configuration.getDefaultApiClient();
+    defaultClient.setBasePath("http://https:/api");
 
     PickWaveApi apiInstance = new PickWaveApi(defaultClient);
     String fulfillmentLocationCode = "fulfillmentLocationCode_example"; // String | fulfillmentLocationCode
     String shipmentType = "shipmentType_example"; // String | shipmentType
-    String userId = "userId_example"; // String | userId
     String userDisplayName = "userDisplayName_example"; // String | userDisplayName
+    String userId = "userId_example"; // String | userId
     try {
-      CollectionModelOfPickWave result = apiInstance.getOpenPickWavesUsingGET(fulfillmentLocationCode, shipmentType, userId, userDisplayName);
+      CollectionModelOfPickWave result = apiInstance.getOpenPickWaves(fulfillmentLocationCode, shipmentType, userDisplayName, userId);
       System.out.println(result);
     } catch (ApiException e) {
-      System.err.println("Exception when calling PickWaveApi#getOpenPickWavesUsingGET");
+      System.err.println("Exception when calling PickWaveApi#getOpenPickWaves");
       System.err.println("Status code: " + e.getCode());
       System.err.println("Reason: " + e.getResponseBody());
       System.err.println("Response headers: " + e.getResponseHeaders());
@@ -222,8 +271,8 @@ public class Example {
 |------------- | ------------- | ------------- | -------------|
 | **fulfillmentLocationCode** | **String**| fulfillmentLocationCode | |
 | **shipmentType** | **String**| shipmentType | [optional] |
-| **userId** | **String**| userId | [optional] |
 | **userDisplayName** | **String**| userDisplayName | [optional] |
+| **userId** | **String**| userId | [optional] |
 
 ### Return type
 
@@ -231,12 +280,12 @@ public class Example {
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth), [clientOauth2](../README.md#clientOauth2)
+No authorization required
 
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: application/json, application/xml, application/hal+json
+ - **Accept**: application/hal+json, application/json, application/xml
 
 ### HTTP response details
 | Status code | Description | Response headers |
@@ -246,89 +295,13 @@ public class Example {
 | **403** | Forbidden |  -  |
 | **404** | Not Found |  -  |
 
-<a name="getPickWaveDetailsUsingGET"></a>
-# **getPickWaveDetailsUsingGET**
-> EntityModelOfPickWaveDetail getPickWaveDetailsUsingGET(pickWaveNumber, sortContentsByLocator)
+<a name="getPickWave"></a>
+# **getPickWave**
+> EntityModelOfPickWave getPickWave(pickWaveNumber, sortContents)
 
-Get Pick Wave Details
+getPickWave
 
-Get Pick Wave Details
-
-### Example
-```java
-// Import classes:
-import com.kibocommerce.sdk.fulfillment.ApiClient;
-import com.kibocommerce.sdk.fulfillment.ApiException;
-import com.kibocommerce.sdk.fulfillment.Configuration;
-import com.kibocommerce.sdk.fulfillment.auth.*;
-import com.kibocommerce.sdk.fulfillment.models.*;
-import com.kibocommerce.sdk.fulfillment.api.PickWaveApi;
-
-public class Example {
-  public static void main(String[] args) {
-    ApiClient defaultClient = Configuration.getDefaultApiClient();
-    defaultClient.setBasePath("http://https:/api");
-    
-    // Configure HTTP bearer authorization: bearerAuth
-    HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
-    bearerAuth.setBearerToken("BEARER TOKEN");
-
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
-
-    PickWaveApi apiInstance = new PickWaveApi(defaultClient);
-    Integer pickWaveNumber = 56; // Integer | pickWaveNumber
-    String sortContentsByLocator = "sortContentsByLocator_example"; // String | sortContentsByLocator
-    try {
-      EntityModelOfPickWaveDetail result = apiInstance.getPickWaveDetailsUsingGET(pickWaveNumber, sortContentsByLocator);
-      System.out.println(result);
-    } catch (ApiException e) {
-      System.err.println("Exception when calling PickWaveApi#getPickWaveDetailsUsingGET");
-      System.err.println("Status code: " + e.getCode());
-      System.err.println("Reason: " + e.getResponseBody());
-      System.err.println("Response headers: " + e.getResponseHeaders());
-      e.printStackTrace();
-    }
-  }
-}
-```
-
-### Parameters
-
-| Name | Type | Description  | Notes |
-|------------- | ------------- | ------------- | -------------|
-| **pickWaveNumber** | **Integer**| pickWaveNumber | |
-| **sortContentsByLocator** | **String**| sortContentsByLocator | [optional] |
-
-### Return type
-
-[**EntityModelOfPickWaveDetail**](EntityModelOfPickWaveDetail.md)
-
-### Authorization
-
-[bearerAuth](../README.md#bearerAuth), [clientOauth2](../README.md#clientOauth2)
-
-### HTTP request headers
-
- - **Content-Type**: Not defined
- - **Accept**: application/json, application/xml, application/hal+json
-
-### HTTP response details
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-| **200** | OK |  -  |
-| **401** | Unauthorized |  -  |
-| **403** | Forbidden |  -  |
-| **404** | Not Found |  -  |
-
-<a name="getPickWaveUsingGET"></a>
-# **getPickWaveUsingGET**
-> EntityModelOfPickWave getPickWaveUsingGET(pickWaveNumber, sortContents)
-
-Get Pick Wave
-
-Get Pick Wave
+Retrieve pick wave details by its ID number.
 
 ### Example
 ```java
@@ -336,7 +309,6 @@ Get Pick Wave
 import com.kibocommerce.sdk.fulfillment.ApiClient;
 import com.kibocommerce.sdk.fulfillment.ApiException;
 import com.kibocommerce.sdk.fulfillment.Configuration;
-import com.kibocommerce.sdk.fulfillment.auth.*;
 import com.kibocommerce.sdk.fulfillment.models.*;
 import com.kibocommerce.sdk.fulfillment.api.PickWaveApi;
 
@@ -344,23 +316,15 @@ public class Example {
   public static void main(String[] args) {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
     defaultClient.setBasePath("http://https:/api");
-    
-    // Configure HTTP bearer authorization: bearerAuth
-    HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
-    bearerAuth.setBearerToken("BEARER TOKEN");
-
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
 
     PickWaveApi apiInstance = new PickWaveApi(defaultClient);
     Integer pickWaveNumber = 56; // Integer | pickWaveNumber
     String sortContents = "sortContents_example"; // String | 
     try {
-      EntityModelOfPickWave result = apiInstance.getPickWaveUsingGET(pickWaveNumber, sortContents);
+      EntityModelOfPickWave result = apiInstance.getPickWave(pickWaveNumber, sortContents);
       System.out.println(result);
     } catch (ApiException e) {
-      System.err.println("Exception when calling PickWaveApi#getPickWaveUsingGET");
+      System.err.println("Exception when calling PickWaveApi#getPickWave");
       System.err.println("Status code: " + e.getCode());
       System.err.println("Reason: " + e.getResponseBody());
       System.err.println("Response headers: " + e.getResponseHeaders());
@@ -383,12 +347,12 @@ public class Example {
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth), [clientOauth2](../README.md#clientOauth2)
+No authorization required
 
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: application/json, application/xml, application/hal+json
+ - **Accept**: application/hal+json, application/json, application/xml
 
 ### HTTP response details
 | Status code | Description | Response headers |
@@ -398,13 +362,13 @@ public class Example {
 | **403** | Forbidden |  -  |
 | **404** | Not Found |  -  |
 
-<a name="getShipmentsInPickWaveUsingGET"></a>
-# **getShipmentsInPickWaveUsingGET**
-> CollectionModelOfShipment getShipmentsInPickWaveUsingGET(pickWaveNumber)
+<a name="getPickWaveDetails"></a>
+# **getPickWaveDetails**
+> EntityModelOfPickWaveDetail getPickWaveDetails(pickWaveNumber, sortContentsByLocator)
 
-Get Shipments in Pick Wave
+getPickWaveDetails
 
-Get Shipments in Pick Wave
+Get pick wave details for a specific wave.
 
 ### Example
 ```java
@@ -412,7 +376,6 @@ Get Shipments in Pick Wave
 import com.kibocommerce.sdk.fulfillment.ApiClient;
 import com.kibocommerce.sdk.fulfillment.ApiException;
 import com.kibocommerce.sdk.fulfillment.Configuration;
-import com.kibocommerce.sdk.fulfillment.auth.*;
 import com.kibocommerce.sdk.fulfillment.models.*;
 import com.kibocommerce.sdk.fulfillment.api.PickWaveApi;
 
@@ -420,22 +383,81 @@ public class Example {
   public static void main(String[] args) {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
     defaultClient.setBasePath("http://https:/api");
-    
-    // Configure HTTP bearer authorization: bearerAuth
-    HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
-    bearerAuth.setBearerToken("BEARER TOKEN");
 
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
+    PickWaveApi apiInstance = new PickWaveApi(defaultClient);
+    Integer pickWaveNumber = 56; // Integer | pickWaveNumber
+    String sortContentsByLocator = "sortContentsByLocator_example"; // String | sortContentsByLocator
+    try {
+      EntityModelOfPickWaveDetail result = apiInstance.getPickWaveDetails(pickWaveNumber, sortContentsByLocator);
+      System.out.println(result);
+    } catch (ApiException e) {
+      System.err.println("Exception when calling PickWaveApi#getPickWaveDetails");
+      System.err.println("Status code: " + e.getCode());
+      System.err.println("Reason: " + e.getResponseBody());
+      System.err.println("Response headers: " + e.getResponseHeaders());
+      e.printStackTrace();
+    }
+  }
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **pickWaveNumber** | **Integer**| pickWaveNumber | |
+| **sortContentsByLocator** | **String**| sortContentsByLocator | [optional] |
+
+### Return type
+
+[**EntityModelOfPickWaveDetail**](EntityModelOfPickWaveDetail.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/hal+json, application/json, application/xml
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | OK |  -  |
+| **401** | Unauthorized |  -  |
+| **403** | Forbidden |  -  |
+| **404** | Not Found |  -  |
+
+<a name="getShipmentsInPickWave"></a>
+# **getShipmentsInPickWave**
+> CollectionModelOfShipment getShipmentsInPickWave(pickWaveNumber)
+
+getShipmentsInPickWave
+
+Get a list of shipments included in a pick wave.
+
+### Example
+```java
+// Import classes:
+import com.kibocommerce.sdk.fulfillment.ApiClient;
+import com.kibocommerce.sdk.fulfillment.ApiException;
+import com.kibocommerce.sdk.fulfillment.Configuration;
+import com.kibocommerce.sdk.fulfillment.models.*;
+import com.kibocommerce.sdk.fulfillment.api.PickWaveApi;
+
+public class Example {
+  public static void main(String[] args) {
+    ApiClient defaultClient = Configuration.getDefaultApiClient();
+    defaultClient.setBasePath("http://https:/api");
 
     PickWaveApi apiInstance = new PickWaveApi(defaultClient);
     Integer pickWaveNumber = 56; // Integer | pickWaveNumber
     try {
-      CollectionModelOfShipment result = apiInstance.getShipmentsInPickWaveUsingGET(pickWaveNumber);
+      CollectionModelOfShipment result = apiInstance.getShipmentsInPickWave(pickWaveNumber);
       System.out.println(result);
     } catch (ApiException e) {
-      System.err.println("Exception when calling PickWaveApi#getShipmentsInPickWaveUsingGET");
+      System.err.println("Exception when calling PickWaveApi#getShipmentsInPickWave");
       System.err.println("Status code: " + e.getCode());
       System.err.println("Reason: " + e.getResponseBody());
       System.err.println("Response headers: " + e.getResponseHeaders());
@@ -457,12 +479,12 @@ public class Example {
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth), [clientOauth2](../README.md#clientOauth2)
+No authorization required
 
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: application/json, application/xml, application/hal+json
+ - **Accept**: application/hal+json, application/json, application/xml
 
 ### HTTP response details
 | Status code | Description | Response headers |
@@ -472,13 +494,13 @@ public class Example {
 | **403** | Forbidden |  -  |
 | **404** | Not Found |  -  |
 
-<a name="renderOrderPickSheetsUsingGET"></a>
-# **renderOrderPickSheetsUsingGET**
-> EntityModelOfstring renderOrderPickSheetsUsingGET(pickWaveNumber)
+<a name="isPickWaveEnabled"></a>
+# **isPickWaveEnabled**
+> Boolean isPickWaveEnabled(locationCode, xVolTenant, xVolSite)
 
-Render Pick Wave Order Sheets
+isPickWaveEnabled
 
-Render pick wave order pick sheets in HTML format for printing
+isPickWaveEnabled
 
 ### Example
 ```java
@@ -486,7 +508,6 @@ Render pick wave order pick sheets in HTML format for printing
 import com.kibocommerce.sdk.fulfillment.ApiClient;
 import com.kibocommerce.sdk.fulfillment.ApiException;
 import com.kibocommerce.sdk.fulfillment.Configuration;
-import com.kibocommerce.sdk.fulfillment.auth.*;
 import com.kibocommerce.sdk.fulfillment.models.*;
 import com.kibocommerce.sdk.fulfillment.api.PickWaveApi;
 
@@ -494,22 +515,83 @@ public class Example {
   public static void main(String[] args) {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
     defaultClient.setBasePath("http://https:/api");
-    
-    // Configure HTTP bearer authorization: bearerAuth
-    HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
-    bearerAuth.setBearerToken("BEARER TOKEN");
 
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
+    PickWaveApi apiInstance = new PickWaveApi(defaultClient);
+    String locationCode = "locationCode_example"; // String | locationCode
+    Integer xVolTenant = 56; // Integer | 
+    Integer xVolSite = 56; // Integer | 
+    try {
+      Boolean result = apiInstance.isPickWaveEnabled(locationCode, xVolTenant, xVolSite);
+      System.out.println(result);
+    } catch (ApiException e) {
+      System.err.println("Exception when calling PickWaveApi#isPickWaveEnabled");
+      System.err.println("Status code: " + e.getCode());
+      System.err.println("Reason: " + e.getResponseBody());
+      System.err.println("Response headers: " + e.getResponseHeaders());
+      e.printStackTrace();
+    }
+  }
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **locationCode** | **String**| locationCode | |
+| **xVolTenant** | **Integer**|  | |
+| **xVolSite** | **Integer**|  | [optional] |
+
+### Return type
+
+**Boolean**
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/hal+json, application/json, application/xml
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | OK |  -  |
+| **401** | Unauthorized |  -  |
+| **403** | Forbidden |  -  |
+| **404** | Not Found |  -  |
+
+<a name="renderOrderPickSheets"></a>
+# **renderOrderPickSheets**
+> EntityModelOfRenderedContent renderOrderPickSheets(pickWaveNumber)
+
+Render Order Pick Sheets
+
+Render order pick sheets in HTML.
+
+### Example
+```java
+// Import classes:
+import com.kibocommerce.sdk.fulfillment.ApiClient;
+import com.kibocommerce.sdk.fulfillment.ApiException;
+import com.kibocommerce.sdk.fulfillment.Configuration;
+import com.kibocommerce.sdk.fulfillment.models.*;
+import com.kibocommerce.sdk.fulfillment.api.PickWaveApi;
+
+public class Example {
+  public static void main(String[] args) {
+    ApiClient defaultClient = Configuration.getDefaultApiClient();
+    defaultClient.setBasePath("http://https:/api");
 
     PickWaveApi apiInstance = new PickWaveApi(defaultClient);
     Integer pickWaveNumber = 56; // Integer | pickWaveNumber
     try {
-      EntityModelOfstring result = apiInstance.renderOrderPickSheetsUsingGET(pickWaveNumber);
+      EntityModelOfRenderedContent result = apiInstance.renderOrderPickSheets(pickWaveNumber);
       System.out.println(result);
     } catch (ApiException e) {
-      System.err.println("Exception when calling PickWaveApi#renderOrderPickSheetsUsingGET");
+      System.err.println("Exception when calling PickWaveApi#renderOrderPickSheets");
       System.err.println("Status code: " + e.getCode());
       System.err.println("Reason: " + e.getResponseBody());
       System.err.println("Response headers: " + e.getResponseHeaders());
@@ -527,16 +609,16 @@ public class Example {
 
 ### Return type
 
-[**EntityModelOfstring**](EntityModelOfstring.md)
+[**EntityModelOfRenderedContent**](EntityModelOfRenderedContent.md)
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth), [clientOauth2](../README.md#clientOauth2)
+No authorization required
 
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: application/json, application/xml, application/hal+json
+ - **Accept**: application/hal+json, application/json, application/xml
 
 ### HTTP response details
 | Status code | Description | Response headers |
@@ -546,13 +628,13 @@ public class Example {
 | **403** | Forbidden |  -  |
 | **404** | Not Found |  -  |
 
-<a name="renderPickWaveUsingGET"></a>
-# **renderPickWaveUsingGET**
-> EntityModelOfstring renderPickWaveUsingGET(pickWaveNumber, printPickWave, printPackingLists, printSingleOrderSheets)
+<a name="renderPickWave"></a>
+# **renderPickWave**
+> EntityModelOfRenderedContent renderPickWave(pickWaveNumber, printPackingLists, printPickWave, printSingleOrderSheets)
 
-Render Pick Wave
+renderPickWave
 
-Render pick wave in HTML format for printing
+Render pick wave information in HTML.
 
 ### Example
 ```java
@@ -560,7 +642,6 @@ Render pick wave in HTML format for printing
 import com.kibocommerce.sdk.fulfillment.ApiClient;
 import com.kibocommerce.sdk.fulfillment.ApiException;
 import com.kibocommerce.sdk.fulfillment.Configuration;
-import com.kibocommerce.sdk.fulfillment.auth.*;
 import com.kibocommerce.sdk.fulfillment.models.*;
 import com.kibocommerce.sdk.fulfillment.api.PickWaveApi;
 
@@ -568,25 +649,17 @@ public class Example {
   public static void main(String[] args) {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
     defaultClient.setBasePath("http://https:/api");
-    
-    // Configure HTTP bearer authorization: bearerAuth
-    HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
-    bearerAuth.setBearerToken("BEARER TOKEN");
-
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
 
     PickWaveApi apiInstance = new PickWaveApi(defaultClient);
     Integer pickWaveNumber = 56; // Integer | pickWaveNumber
-    Boolean printPickWave = true; // Boolean | printPickWave
     Boolean printPackingLists = true; // Boolean | printPackingLists
+    Boolean printPickWave = true; // Boolean | printPickWave
     Boolean printSingleOrderSheets = true; // Boolean | printSingleOrderSheets
     try {
-      EntityModelOfstring result = apiInstance.renderPickWaveUsingGET(pickWaveNumber, printPickWave, printPackingLists, printSingleOrderSheets);
+      EntityModelOfRenderedContent result = apiInstance.renderPickWave(pickWaveNumber, printPackingLists, printPickWave, printSingleOrderSheets);
       System.out.println(result);
     } catch (ApiException e) {
-      System.err.println("Exception when calling PickWaveApi#renderPickWaveUsingGET");
+      System.err.println("Exception when calling PickWaveApi#renderPickWave");
       System.err.println("Status code: " + e.getCode());
       System.err.println("Reason: " + e.getResponseBody());
       System.err.println("Response headers: " + e.getResponseHeaders());
@@ -601,22 +674,22 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **pickWaveNumber** | **Integer**| pickWaveNumber | |
-| **printPickWave** | **Boolean**| printPickWave | [optional] |
 | **printPackingLists** | **Boolean**| printPackingLists | [optional] |
+| **printPickWave** | **Boolean**| printPickWave | [optional] |
 | **printSingleOrderSheets** | **Boolean**| printSingleOrderSheets | [optional] |
 
 ### Return type
 
-[**EntityModelOfstring**](EntityModelOfstring.md)
+[**EntityModelOfRenderedContent**](EntityModelOfRenderedContent.md)
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth), [clientOauth2](../README.md#clientOauth2)
+No authorization required
 
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: application/json, application/xml, application/hal+json
+ - **Accept**: application/hal+json, application/json, application/xml
 
 ### HTTP response details
 | Status code | Description | Response headers |

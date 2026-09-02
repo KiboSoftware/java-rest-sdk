@@ -8,8 +8,8 @@ List of search redirects
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
-|**totalCount** | **Integer** |  |  [optional] |
 |**items** | [**List&lt;SearchRedirect&gt;**](SearchRedirect.md) |  |  [optional] |
+|**totalCount** | **Integer** |  |  [optional] |
 
 
 ## Implemented Interfaces

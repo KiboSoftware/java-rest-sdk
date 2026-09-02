@@ -4,22 +4,22 @@ All URIs are relative to *http://https:/api*
 
 | Method | HTTP request | Description |
 |------------- | ------------- | -------------|
-| [**addAdminGroup**](AdminGroupApi.md#addAdminGroup) | **POST** /platform/adminuser/groups | Add a admin group |
-| [**addUsers**](AdminGroupApi.md#addUsers) | **POST** /platform/adminuser/groups/{groupCode}/addusers | Add users to admin group |
-| [**deleteAdminGroup**](AdminGroupApi.md#deleteAdminGroup) | **DELETE** /platform/adminuser/groups/{groupCode} | Deletes a Admin Group |
+| [**addAdminGroup**](AdminGroupApi.md#addAdminGroup) | **POST** /platform/adminuser/groups | Add Admin Group |
+| [**addUsers**](AdminGroupApi.md#addUsers) | **POST** /platform/adminuser/groups/{groupCode}/addusers | Add Users to Admin Group |
+| [**deleteAdminGroup**](AdminGroupApi.md#deleteAdminGroup) | **DELETE** /platform/adminuser/groups/{groupCode} | Delete Admin Group |
 | [**getAdminGroup**](AdminGroupApi.md#getAdminGroup) | **GET** /platform/adminuser/groups/{groupCode} | Get Admin Group |
 | [**getAdminGroups**](AdminGroupApi.md#getAdminGroups) | **GET** /platform/adminuser/groups | Get Admin Groups |
-| [**removeUsers**](AdminGroupApi.md#removeUsers) | **POST** /platform/adminuser/groups/{groupCode}/removeusers | Remove users from admin group |
-| [**updateAdminGroup**](AdminGroupApi.md#updateAdminGroup) | **PUT** /platform/adminuser/groups/{groupCode} | Update an existing adminGroup |
+| [**removeUsers**](AdminGroupApi.md#removeUsers) | **POST** /platform/adminuser/groups/{groupCode}/removeusers | Remove Users from Admin Group |
+| [**updateAdminGroup**](AdminGroupApi.md#updateAdminGroup) | **PUT** /platform/adminuser/groups/{groupCode} | Update Admin Group |
 
 
 <a name="addAdminGroup"></a>
 # **addAdminGroup**
-> AdminGroup addAdminGroup(adminGroup)
+> AdminGroup addAdminGroup(responseFields, adminGroup)
 
-Add a admin group
+Add Admin Group
 
-Add a admin group
+Adds an admin group
 
 ### Example
 ```java
@@ -40,14 +40,11 @@ public class Example {
     HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
     bearerAuth.setBearerToken("BEARER TOKEN");
 
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
-
     AdminGroupApi apiInstance = new AdminGroupApi(defaultClient);
+    String responseFields = "responseFields_example"; // String | limits which fields are returned in the response body
     AdminGroup adminGroup = new AdminGroup(); // AdminGroup | 
     try {
-      AdminGroup result = apiInstance.addAdminGroup(adminGroup);
+      AdminGroup result = apiInstance.addAdminGroup(responseFields, adminGroup);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling AdminGroupApi#addAdminGroup");
@@ -64,6 +61,7 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
+| **responseFields** | **String**| limits which fields are returned in the response body | [optional] |
 | **adminGroup** | [**AdminGroup**](AdminGroup.md)|  | [optional] |
 
 ### Return type
@@ -72,7 +70,7 @@ public class Example {
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth), [clientOauth2](../README.md#clientOauth2)
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
@@ -82,13 +80,13 @@ public class Example {
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Success |  -  |
+| **200** | OK |  -  |
 
 <a name="addUsers"></a>
 # **addUsers**
-> AdminGroup addUsers(groupCode, requestBody)
+> AdminGroup addUsers(groupCode, responseFields, requestBody)
 
-Add users to admin group
+Add Users to Admin Group
 
 Add users to admin group
 
@@ -111,15 +109,12 @@ public class Example {
     HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
     bearerAuth.setBearerToken("BEARER TOKEN");
 
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
-
     AdminGroupApi apiInstance = new AdminGroupApi(defaultClient);
     String groupCode = "groupCode_example"; // String | 
+    String responseFields = "responseFields_example"; // String | limits which fields are returned in the response body
     List<String> requestBody = Arrays.asList(); // List<String> | 
     try {
-      AdminGroup result = apiInstance.addUsers(groupCode, requestBody);
+      AdminGroup result = apiInstance.addUsers(groupCode, responseFields, requestBody);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling AdminGroupApi#addUsers");
@@ -137,6 +132,7 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **groupCode** | **String**|  | |
+| **responseFields** | **String**| limits which fields are returned in the response body | [optional] |
 | **requestBody** | [**List&lt;String&gt;**](String.md)|  | [optional] |
 
 ### Return type
@@ -145,7 +141,7 @@ public class Example {
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth), [clientOauth2](../README.md#clientOauth2)
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
@@ -155,15 +151,15 @@ public class Example {
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Success |  -  |
+| **200** | OK |  -  |
 
 <a name="deleteAdminGroup"></a>
 # **deleteAdminGroup**
 > deleteAdminGroup(groupCode)
 
-Deletes a Admin Group
+Delete Admin Group
 
-Deletes a Admin Group
+Deletes an Admin Group
 
 ### Example
 ```java
@@ -183,10 +179,6 @@ public class Example {
     // Configure HTTP bearer authorization: bearerAuth
     HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
     bearerAuth.setBearerToken("BEARER TOKEN");
-
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
 
     AdminGroupApi apiInstance = new AdminGroupApi(defaultClient);
     String groupCode = "groupCode_example"; // String | 
@@ -215,7 +207,7 @@ null (empty response body)
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth), [clientOauth2](../README.md#clientOauth2)
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
@@ -225,15 +217,15 @@ null (empty response body)
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Success |  -  |
+| **200** | OK |  -  |
 
 <a name="getAdminGroup"></a>
 # **getAdminGroup**
-> AdminGroup getAdminGroup(groupCode)
+> AdminGroup getAdminGroup(groupCode, responseFields)
 
 Get Admin Group
 
-Gets a Admin group by id
+Gets an Admin group by id
 
 ### Example
 ```java
@@ -254,14 +246,11 @@ public class Example {
     HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
     bearerAuth.setBearerToken("BEARER TOKEN");
 
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
-
     AdminGroupApi apiInstance = new AdminGroupApi(defaultClient);
     String groupCode = "groupCode_example"; // String | groupCode
+    String responseFields = "responseFields_example"; // String | limits which fields are returned in the response body
     try {
-      AdminGroup result = apiInstance.getAdminGroup(groupCode);
+      AdminGroup result = apiInstance.getAdminGroup(groupCode, responseFields);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling AdminGroupApi#getAdminGroup");
@@ -279,6 +268,7 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **groupCode** | **String**| groupCode | |
+| **responseFields** | **String**| limits which fields are returned in the response body | [optional] |
 
 ### Return type
 
@@ -286,7 +276,7 @@ public class Example {
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth), [clientOauth2](../README.md#clientOauth2)
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
@@ -296,11 +286,11 @@ public class Example {
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Success |  -  |
+| **200** | OK |  -  |
 
 <a name="getAdminGroups"></a>
 # **getAdminGroups**
-> AdminGroupCollection getAdminGroups(startIndex, pageSize, sortBy, filter)
+> AdminGroupCollection getAdminGroups(startIndex, pageSize, sortBy, filter, responseFields)
 
 Get Admin Groups
 
@@ -325,17 +315,14 @@ public class Example {
     HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
     bearerAuth.setBearerToken("BEARER TOKEN");
 
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
-
     AdminGroupApi apiInstance = new AdminGroupApi(defaultClient);
     Integer startIndex = 0; // Integer | 
     Integer pageSize = 100; // Integer | 
     String sortBy = "sortBy_example"; // String | 
     String filter = "filter_example"; // String | 
+    String responseFields = "responseFields_example"; // String | limits which fields are returned in the response body
     try {
-      AdminGroupCollection result = apiInstance.getAdminGroups(startIndex, pageSize, sortBy, filter);
+      AdminGroupCollection result = apiInstance.getAdminGroups(startIndex, pageSize, sortBy, filter, responseFields);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling AdminGroupApi#getAdminGroups");
@@ -356,6 +343,7 @@ public class Example {
 | **pageSize** | **Integer**|  | [optional] [default to 100] |
 | **sortBy** | **String**|  | [optional] |
 | **filter** | **String**|  | [optional] |
+| **responseFields** | **String**| limits which fields are returned in the response body | [optional] |
 
 ### Return type
 
@@ -363,7 +351,7 @@ public class Example {
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth), [clientOauth2](../README.md#clientOauth2)
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
@@ -373,13 +361,13 @@ public class Example {
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Success |  -  |
+| **200** | OK |  -  |
 
 <a name="removeUsers"></a>
 # **removeUsers**
-> removeUsers(groupCode, requestBody)
+> removeUsers(groupCode, responseFields, requestBody)
 
-Remove users from admin group
+Remove Users from Admin Group
 
 Remove users from admin group
 
@@ -402,15 +390,12 @@ public class Example {
     HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
     bearerAuth.setBearerToken("BEARER TOKEN");
 
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
-
     AdminGroupApi apiInstance = new AdminGroupApi(defaultClient);
     String groupCode = "groupCode_example"; // String | 
+    String responseFields = "responseFields_example"; // String | limits which fields are returned in the response body
     List<String> requestBody = Arrays.asList(); // List<String> | 
     try {
-      apiInstance.removeUsers(groupCode, requestBody);
+      apiInstance.removeUsers(groupCode, responseFields, requestBody);
     } catch (ApiException e) {
       System.err.println("Exception when calling AdminGroupApi#removeUsers");
       System.err.println("Status code: " + e.getCode());
@@ -427,6 +412,7 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **groupCode** | **String**|  | |
+| **responseFields** | **String**| limits which fields are returned in the response body | [optional] |
 | **requestBody** | [**List&lt;String&gt;**](String.md)|  | [optional] |
 
 ### Return type
@@ -435,7 +421,7 @@ null (empty response body)
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth), [clientOauth2](../README.md#clientOauth2)
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
@@ -445,13 +431,13 @@ null (empty response body)
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Success |  -  |
+| **200** | OK |  -  |
 
 <a name="updateAdminGroup"></a>
 # **updateAdminGroup**
-> AdminGroup updateAdminGroup(groupCode, adminGroup)
+> AdminGroup updateAdminGroup(groupCode, responseFields, adminGroup)
 
-Update an existing adminGroup
+Update Admin Group
 
 Update an existing adminGroup
 
@@ -474,15 +460,12 @@ public class Example {
     HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
     bearerAuth.setBearerToken("BEARER TOKEN");
 
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
-
     AdminGroupApi apiInstance = new AdminGroupApi(defaultClient);
     String groupCode = "groupCode_example"; // String | 
+    String responseFields = "responseFields_example"; // String | limits which fields are returned in the response body
     AdminGroup adminGroup = new AdminGroup(); // AdminGroup | 
     try {
-      AdminGroup result = apiInstance.updateAdminGroup(groupCode, adminGroup);
+      AdminGroup result = apiInstance.updateAdminGroup(groupCode, responseFields, adminGroup);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling AdminGroupApi#updateAdminGroup");
@@ -500,6 +483,7 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **groupCode** | **String**|  | |
+| **responseFields** | **String**| limits which fields are returned in the response body | [optional] |
 | **adminGroup** | [**AdminGroup**](AdminGroup.md)|  | [optional] |
 
 ### Return type
@@ -508,7 +492,7 @@ public class Example {
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth), [clientOauth2](../README.md#clientOauth2)
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
@@ -518,5 +502,5 @@ public class Example {
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Success |  -  |
+| **200** | OK |  -  |
 

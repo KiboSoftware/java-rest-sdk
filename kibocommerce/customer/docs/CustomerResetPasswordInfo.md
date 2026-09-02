@@ -7,9 +7,9 @@
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
+|**customerSetCode** | **String** |  |  [optional] |
 |**emailAddress** | **String** |  |  [optional] |
 |**userName** | **String** |  |  [optional] |
-|**customerSetCode** | **String** |  |  [optional] |
 
 
 ## Implemented Interfaces

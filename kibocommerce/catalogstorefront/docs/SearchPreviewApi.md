@@ -4,15 +4,15 @@ All URIs are relative to *http://https:/api*
 
 | Method | HTTP request | Description |
 |------------- | ------------- | -------------|
-| [**searchPreviewAsync**](SearchPreviewApi.md#searchPreviewAsync) | **POST** /commerce/catalog/storefront/productsearch/preview | Search preview |
-| [**siteSearchPreviewAsync**](SearchPreviewApi.md#siteSearchPreviewAsync) | **POST** /commerce/catalog/storefront/productsearch/sitesearchpreview | Site search preview |
+| [**searchPreviewAsync**](SearchPreviewApi.md#searchPreviewAsync) | **POST** /commerce/catalog/storefront/productsearch/preview | Search Preview |
+| [**siteSearchPreviewAsync**](SearchPreviewApi.md#siteSearchPreviewAsync) | **POST** /commerce/catalog/storefront/productsearch/sitesearchpreview | Site Search Preview |
 
 
 <a name="searchPreviewAsync"></a>
 # **searchPreviewAsync**
-> ProductSearchPreviewResult searchPreviewAsync(findProductsPreviewParameters)
+> ProductSearchPreviewResult searchPreviewAsync(responseFields, findProductsPreviewParameters)
 
-Search preview
+Search Preview
 
 Though this endpoint only returns data, the decision has been made to make it a POST because the request body will be larger than what a url length can contain.
 
@@ -35,14 +35,11 @@ public class Example {
     HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
     bearerAuth.setBearerToken("BEARER TOKEN");
 
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
-
     SearchPreviewApi apiInstance = new SearchPreviewApi(defaultClient);
+    String responseFields = "responseFields_example"; // String | limits which fields are returned in the response body
     FindProductsPreviewParameters findProductsPreviewParameters = new FindProductsPreviewParameters(); // FindProductsPreviewParameters | 
     try {
-      ProductSearchPreviewResult result = apiInstance.searchPreviewAsync(findProductsPreviewParameters);
+      ProductSearchPreviewResult result = apiInstance.searchPreviewAsync(responseFields, findProductsPreviewParameters);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling SearchPreviewApi#searchPreviewAsync");
@@ -59,6 +56,7 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
+| **responseFields** | **String**| limits which fields are returned in the response body | [optional] |
 | **findProductsPreviewParameters** | [**FindProductsPreviewParameters**](FindProductsPreviewParameters.md)|  | [optional] |
 
 ### Return type
@@ -67,7 +65,7 @@ public class Example {
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth), [clientOauth2](../README.md#clientOauth2)
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
@@ -77,13 +75,13 @@ public class Example {
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Success |  -  |
+| **200** | OK |  -  |
 
 <a name="siteSearchPreviewAsync"></a>
 # **siteSearchPreviewAsync**
-> ProductSearchPreviewResult siteSearchPreviewAsync(findProductsPreviewParameters)
+> ProductSearchPreviewResult siteSearchPreviewAsync(responseFields, findProductsPreviewParameters)
 
-Site search preview
+Site Search Preview
 
 Though this endpoint only returns data, the decision has been made to make it a POST because the request body will be larger than what a url length can contain.
 
@@ -106,14 +104,11 @@ public class Example {
     HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
     bearerAuth.setBearerToken("BEARER TOKEN");
 
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
-
     SearchPreviewApi apiInstance = new SearchPreviewApi(defaultClient);
+    String responseFields = "responseFields_example"; // String | limits which fields are returned in the response body
     FindProductsPreviewParameters findProductsPreviewParameters = new FindProductsPreviewParameters(); // FindProductsPreviewParameters | 
     try {
-      ProductSearchPreviewResult result = apiInstance.siteSearchPreviewAsync(findProductsPreviewParameters);
+      ProductSearchPreviewResult result = apiInstance.siteSearchPreviewAsync(responseFields, findProductsPreviewParameters);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling SearchPreviewApi#siteSearchPreviewAsync");
@@ -130,6 +125,7 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
+| **responseFields** | **String**| limits which fields are returned in the response body | [optional] |
 | **findProductsPreviewParameters** | [**FindProductsPreviewParameters**](FindProductsPreviewParameters.md)|  | [optional] |
 
 ### Return type
@@ -138,7 +134,7 @@ public class Example {
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth), [clientOauth2](../README.md#clientOauth2)
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
@@ -148,5 +144,5 @@ public class Example {
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Success |  -  |
+| **200** | OK |  -  |
 

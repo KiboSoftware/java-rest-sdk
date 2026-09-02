@@ -1,8 +1,8 @@
 /*
  * Kibo Catalog Admin Services
- * OpenAPI Spec for Kibo Catalog Admin Services
+ * <div id=\"overview_CATALOG_ADMIN\">             <h2>CATALOG ADMINISTRATION</h2>             <p>The Catalog Administration APIs are a collection of resources for configuring the catalogs and products offered to your shoppers, including                 discounts and coupon sets, faceting, price lists, and different types or variations of products. See the                 <a href=\"/concept-guides/catalog\">Catalog user guides</a>                 for information about the related features in the Unified Commerce Admin.</p>             <p>Use the <strong>Attributes</strong> resource to manage localization and attribute configurations for your catalogs. This current version of the Attributes API includes localizedContent to                 support <a href=\"/pages/catalog-structure#multi-locale-catalogs\">multi-locale catalogs</a>, which was not present in the legacy API model. If                 you were a client prior to May 2024 and have upgraded your implementation to support this feature,                 you can still access attribute data that has not yet been rewritten to the new model by providing                 an x-api-version header set to \"1\". </p>             <p>Use the <strong>Categories</strong> resource to organize products and control where they appear on the storefront. Create                 and maintain a hierarchy of categories and subcategories where the site will store properties. This current version of the Categories API includes localizedContent to                 support <a href=\"/pages/catalog-structure#multi-locale-catalogs\">multi-locale catalogs</a>, which was not present in the legacy API model. If                 you were a client prior to May 2024 and have upgraded your implementation to support this feature,                 you can still access category data that has not yet been rewritten to the new model by providing                 an x-api-version header set to \"1\". </p>             <p>Use the <strong>Coupon Sets</strong> resource to view and create coupon sets. You can use coupon sets to group multiple                 coupon codes together and associate them with one or more discounts.</p>             <p>Use the <strong>Currency</strong> resource to manage the currency localization rules and exchange rates for any of the                 currencies that are supported for placing orders in.</p>             <p>Use the <strong>Discounts</strong> and <strong>Discount Settings</strong> resources to define and manage discounts to apply to products, product categories, or                 orders. This current version of the Discounts API includes localizedContent to                 support <a href=\"/pages/catalog-structure#multi-locale-catalogs\">multi-locale catalogs</a>, which was not present in the legacy Products API model. If                 you were a client prior to May 2024 and have upgraded your implementation to support this feature,                 you can still access discount data that has not yet been rewritten to the new model by providing                 an x-api-version header set to \"1\". </p>             <p>Use the <strong>Facets</strong> resource to manage the facets shoppers use to filter product display results on a                 storefront. Facets can include categories, product attributes, or prices, and use either a range of                 values or discrete values.</p>             <p>Use the <strong>Master Catalog</strong> resource to view details of the master catalogs associated with a tenant and to                 manage the product publishing mode for each master catalog.</p>             <p>Use the <strong>Price Lists</strong> resources to view and create price lists. You can use price lists to override the                 catalog pricing of products for specific customer segments and/or sites.</p>             <p>Use the <strong>Products</strong>, <strong>Product Types/Extras/Options/Properties</strong>, and <strong>Product Sort Definitions</strong> resources to create new product definitions in the master catalog and determine which                 catalogs will feature products. This current version of the Products API includes localizedContent to                 support <a href=\"/pages/catalog-structure#multi-locale-catalogs\">multi-locale catalogs</a>, which was not present in the legacy Products API model. If                 you were a client prior to May 2024 and have upgraded your implementation to support this feature,                 you can still access product data that has not yet been rewritten to the new model by providing                 an x-api-version header set to \"1\".</p>             <p>Use the <strong>Publishing</strong> resource to publish pending product updates together as part of a set.</p>             <p>Use the <strong>Search</strong> resource to manage all settings and options for providing product search on your site, as                 well as search tuning rules.</p>         </div>
  *
- * The version of the OpenAPI document: 1.0.0
+ * The version of the OpenAPI document: v1
  * 
  *
  * NOTE: This class is auto generated by OpenAPI Generator (https://openapi-generator.tech).
@@ -59,52 +59,75 @@ import com.kibocommerce.sdk.common.JSON;
 public class AttributeInProductType implements Serializable {
   private static final long serialVersionUID = 1L;
 
+  public static final String SERIALIZED_NAME_ATTRIBUTE_DETAIL = "attributeDetail";
+  @SerializedName(SERIALIZED_NAME_ATTRIBUTE_DETAIL)
+  private CatalogAdminsAttribute attributeDetail;
+
   public static final String SERIALIZED_NAME_ATTRIBUTE_F_Q_N = "attributeFQN";
   @SerializedName(SERIALIZED_NAME_ATTRIBUTE_F_Q_N)
   private String attributeFQN;
-
-  public static final String SERIALIZED_NAME_IS_INHERITED_FROM_BASE_TYPE = "isInheritedFromBaseType";
-  @SerializedName(SERIALIZED_NAME_IS_INHERITED_FROM_BASE_TYPE)
-  private Boolean isInheritedFromBaseType;
-
-  public static final String SERIALIZED_NAME_ORDER = "order";
-  @SerializedName(SERIALIZED_NAME_ORDER)
-  private Integer order;
-
-  public static final String SERIALIZED_NAME_IS_REQUIRED_BY_ADMIN = "isRequiredByAdmin";
-  @SerializedName(SERIALIZED_NAME_IS_REQUIRED_BY_ADMIN)
-  private Boolean isRequiredByAdmin;
-
-  public static final String SERIALIZED_NAME_IS_HIDDEN_PROPERTY = "isHiddenProperty";
-  @SerializedName(SERIALIZED_NAME_IS_HIDDEN_PROPERTY)
-  private Boolean isHiddenProperty;
-
-  public static final String SERIALIZED_NAME_IS_ADMIN_ONLY_PROPERTY = "isAdminOnlyProperty";
-  @SerializedName(SERIALIZED_NAME_IS_ADMIN_ONLY_PROPERTY)
-  private Boolean isAdminOnlyProperty;
-
-  public static final String SERIALIZED_NAME_IS_PRODUCT_DETAILS_ONLY_PROPERTY = "isProductDetailsOnlyProperty";
-  @SerializedName(SERIALIZED_NAME_IS_PRODUCT_DETAILS_ONLY_PROPERTY)
-  private Boolean isProductDetailsOnlyProperty;
-
-  public static final String SERIALIZED_NAME_IS_MULTI_VALUE_PROPERTY = "isMultiValueProperty";
-  @SerializedName(SERIALIZED_NAME_IS_MULTI_VALUE_PROPERTY)
-  private Boolean isMultiValueProperty;
 
   public static final String SERIALIZED_NAME_DISPLAY_INFO = "displayInfo";
   @SerializedName(SERIALIZED_NAME_DISPLAY_INFO)
   private AttributeInProductTypeDisplayInfo displayInfo;
 
+  public static final String SERIALIZED_NAME_IS_ADMIN_ONLY_PROPERTY = "isAdminOnlyProperty";
+  @SerializedName(SERIALIZED_NAME_IS_ADMIN_ONLY_PROPERTY)
+  private Boolean isAdminOnlyProperty;
+
+  public static final String SERIALIZED_NAME_IS_HIDDEN_PROPERTY = "isHiddenProperty";
+  @SerializedName(SERIALIZED_NAME_IS_HIDDEN_PROPERTY)
+  private Boolean isHiddenProperty;
+
+  public static final String SERIALIZED_NAME_IS_INHERITED_FROM_BASE_TYPE = "isInheritedFromBaseType";
+  @SerializedName(SERIALIZED_NAME_IS_INHERITED_FROM_BASE_TYPE)
+  private Boolean isInheritedFromBaseType;
+
+  public static final String SERIALIZED_NAME_IS_MULTI_VALUE_PROPERTY = "isMultiValueProperty";
+  @SerializedName(SERIALIZED_NAME_IS_MULTI_VALUE_PROPERTY)
+  private Boolean isMultiValueProperty;
+
+  public static final String SERIALIZED_NAME_IS_PRODUCT_DETAILS_ONLY_PROPERTY = "isProductDetailsOnlyProperty";
+  @SerializedName(SERIALIZED_NAME_IS_PRODUCT_DETAILS_ONLY_PROPERTY)
+  private Boolean isProductDetailsOnlyProperty;
+
+  public static final String SERIALIZED_NAME_IS_REQUIRED_BY_ADMIN = "isRequiredByAdmin";
+  @SerializedName(SERIALIZED_NAME_IS_REQUIRED_BY_ADMIN)
+  private Boolean isRequiredByAdmin;
+
+  public static final String SERIALIZED_NAME_ORDER = "order";
+  @SerializedName(SERIALIZED_NAME_ORDER)
+  private Integer order;
+
   public static final String SERIALIZED_NAME_VOCABULARY_VALUES = "vocabularyValues";
   @SerializedName(SERIALIZED_NAME_VOCABULARY_VALUES)
   private List<AttributeVocabularyValueInProductType> vocabularyValues = null;
 
-  public static final String SERIALIZED_NAME_ATTRIBUTE_DETAIL = "attributeDetail";
-  @SerializedName(SERIALIZED_NAME_ATTRIBUTE_DETAIL)
-  private CatalogAdminsAttribute attributeDetail;
-
   public AttributeInProductType() {
   }
+
+  public AttributeInProductType attributeDetail(CatalogAdminsAttribute attributeDetail) {
+    
+    this.attributeDetail = attributeDetail;
+    return this;
+  }
+
+   /**
+   * Get attributeDetail
+   * @return attributeDetail
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
+
+  public CatalogAdminsAttribute getAttributeDetail() {
+    return attributeDetail;
+  }
+
+
+  public void setAttributeDetail(CatalogAdminsAttribute attributeDetail) {
+    this.attributeDetail = attributeDetail;
+  }
+
 
   public AttributeInProductType attributeFQN(String attributeFQN) {
     
@@ -129,95 +152,26 @@ public class AttributeInProductType implements Serializable {
   }
 
 
-  public AttributeInProductType isInheritedFromBaseType(Boolean isInheritedFromBaseType) {
+  public AttributeInProductType displayInfo(AttributeInProductTypeDisplayInfo displayInfo) {
     
-    this.isInheritedFromBaseType = isInheritedFromBaseType;
+    this.displayInfo = displayInfo;
     return this;
   }
 
    /**
-   * If True, the attribute is part of the base product type and can only have order modified.
-   * @return isInheritedFromBaseType
+   * Get displayInfo
+   * @return displayInfo
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "If True, the attribute is part of the base product type and can only have order modified.")
+  @ApiModelProperty(value = "")
 
-  public Boolean getIsInheritedFromBaseType() {
-    return isInheritedFromBaseType;
+  public AttributeInProductTypeDisplayInfo getDisplayInfo() {
+    return displayInfo;
   }
 
 
-  public void setIsInheritedFromBaseType(Boolean isInheritedFromBaseType) {
-    this.isInheritedFromBaseType = isInheritedFromBaseType;
-  }
-
-
-  public AttributeInProductType order(Integer order) {
-    
-    this.order = order;
-    return this;
-  }
-
-   /**
-   * Used to order the display of the attributes within a section
-   * @return order
-  **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(value = "Used to order the display of the attributes within a section")
-
-  public Integer getOrder() {
-    return order;
-  }
-
-
-  public void setOrder(Integer order) {
-    this.order = order;
-  }
-
-
-  public AttributeInProductType isRequiredByAdmin(Boolean isRequiredByAdmin) {
-    
-    this.isRequiredByAdmin = isRequiredByAdmin;
-    return this;
-  }
-
-   /**
-   * If True, the admin must include this attribute in products of this productType
-   * @return isRequiredByAdmin
-  **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(value = "If True, the admin must include this attribute in products of this productType")
-
-  public Boolean getIsRequiredByAdmin() {
-    return isRequiredByAdmin;
-  }
-
-
-  public void setIsRequiredByAdmin(Boolean isRequiredByAdmin) {
-    this.isRequiredByAdmin = isRequiredByAdmin;
-  }
-
-
-  public AttributeInProductType isHiddenProperty(Boolean isHiddenProperty) {
-    
-    this.isHiddenProperty = isHiddenProperty;
-    return this;
-  }
-
-   /**
-   * If True, the property is hidden in the storefront. This field only applies to properties.
-   * @return isHiddenProperty
-  **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(value = "If True, the property is hidden in the storefront. This field only applies to properties.")
-
-  public Boolean getIsHiddenProperty() {
-    return isHiddenProperty;
-  }
-
-
-  public void setIsHiddenProperty(Boolean isHiddenProperty) {
-    this.isHiddenProperty = isHiddenProperty;
+  public void setDisplayInfo(AttributeInProductTypeDisplayInfo displayInfo) {
+    this.displayInfo = displayInfo;
   }
 
 
@@ -244,26 +198,49 @@ public class AttributeInProductType implements Serializable {
   }
 
 
-  public AttributeInProductType isProductDetailsOnlyProperty(Boolean isProductDetailsOnlyProperty) {
+  public AttributeInProductType isHiddenProperty(Boolean isHiddenProperty) {
     
-    this.isProductDetailsOnlyProperty = isProductDetailsOnlyProperty;
+    this.isHiddenProperty = isHiddenProperty;
     return this;
   }
 
    /**
-   * If True this property will not be returned  storefront product listings (Search,GetProduct) it will still be returned on GetProduct, ValidateProduct...)
-   * @return isProductDetailsOnlyProperty
+   * If True, the property is hidden in the storefront. This field only applies to properties.
+   * @return isHiddenProperty
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "If True this property will not be returned  storefront product listings (Search,GetProduct) it will still be returned on GetProduct, ValidateProduct...)")
+  @ApiModelProperty(value = "If True, the property is hidden in the storefront. This field only applies to properties.")
 
-  public Boolean getIsProductDetailsOnlyProperty() {
-    return isProductDetailsOnlyProperty;
+  public Boolean getIsHiddenProperty() {
+    return isHiddenProperty;
   }
 
 
-  public void setIsProductDetailsOnlyProperty(Boolean isProductDetailsOnlyProperty) {
-    this.isProductDetailsOnlyProperty = isProductDetailsOnlyProperty;
+  public void setIsHiddenProperty(Boolean isHiddenProperty) {
+    this.isHiddenProperty = isHiddenProperty;
+  }
+
+
+  public AttributeInProductType isInheritedFromBaseType(Boolean isInheritedFromBaseType) {
+    
+    this.isInheritedFromBaseType = isInheritedFromBaseType;
+    return this;
+  }
+
+   /**
+   * If True, the attribute is part of the base product type and can only have order modified.
+   * @return isInheritedFromBaseType
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "If True, the attribute is part of the base product type and can only have order modified.")
+
+  public Boolean getIsInheritedFromBaseType() {
+    return isInheritedFromBaseType;
+  }
+
+
+  public void setIsInheritedFromBaseType(Boolean isInheritedFromBaseType) {
+    this.isInheritedFromBaseType = isInheritedFromBaseType;
   }
 
 
@@ -290,26 +267,72 @@ public class AttributeInProductType implements Serializable {
   }
 
 
-  public AttributeInProductType displayInfo(AttributeInProductTypeDisplayInfo displayInfo) {
+  public AttributeInProductType isProductDetailsOnlyProperty(Boolean isProductDetailsOnlyProperty) {
     
-    this.displayInfo = displayInfo;
+    this.isProductDetailsOnlyProperty = isProductDetailsOnlyProperty;
     return this;
   }
 
    /**
-   * Get displayInfo
-   * @return displayInfo
+   * If True this property will not be returned  storefront product listings (Search,GetProduct) it will still be returned on GetProduct, ValidateProduct...)
+   * @return isProductDetailsOnlyProperty
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
+  @ApiModelProperty(value = "If True this property will not be returned  storefront product listings (Search,GetProduct) it will still be returned on GetProduct, ValidateProduct...)")
 
-  public AttributeInProductTypeDisplayInfo getDisplayInfo() {
-    return displayInfo;
+  public Boolean getIsProductDetailsOnlyProperty() {
+    return isProductDetailsOnlyProperty;
   }
 
 
-  public void setDisplayInfo(AttributeInProductTypeDisplayInfo displayInfo) {
-    this.displayInfo = displayInfo;
+  public void setIsProductDetailsOnlyProperty(Boolean isProductDetailsOnlyProperty) {
+    this.isProductDetailsOnlyProperty = isProductDetailsOnlyProperty;
+  }
+
+
+  public AttributeInProductType isRequiredByAdmin(Boolean isRequiredByAdmin) {
+    
+    this.isRequiredByAdmin = isRequiredByAdmin;
+    return this;
+  }
+
+   /**
+   * If True, the admin must include this attribute in products of this productType
+   * @return isRequiredByAdmin
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "If True, the admin must include this attribute in products of this productType")
+
+  public Boolean getIsRequiredByAdmin() {
+    return isRequiredByAdmin;
+  }
+
+
+  public void setIsRequiredByAdmin(Boolean isRequiredByAdmin) {
+    this.isRequiredByAdmin = isRequiredByAdmin;
+  }
+
+
+  public AttributeInProductType order(Integer order) {
+    
+    this.order = order;
+    return this;
+  }
+
+   /**
+   * Used to order the display of the attributes within a section
+   * @return order
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "Used to order the display of the attributes within a section")
+
+  public Integer getOrder() {
+    return order;
+  }
+
+
+  public void setOrder(Integer order) {
+    this.order = order;
   }
 
 
@@ -344,29 +367,6 @@ public class AttributeInProductType implements Serializable {
   }
 
 
-  public AttributeInProductType attributeDetail(CatalogAdminsAttribute attributeDetail) {
-    
-    this.attributeDetail = attributeDetail;
-    return this;
-  }
-
-   /**
-   * Get attributeDetail
-   * @return attributeDetail
-  **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
-
-  public CatalogAdminsAttribute getAttributeDetail() {
-    return attributeDetail;
-  }
-
-
-  public void setAttributeDetail(CatalogAdminsAttribute attributeDetail) {
-    this.attributeDetail = attributeDetail;
-  }
-
-
 
   @Override
   public boolean equals(Object o) {
@@ -377,17 +377,17 @@ public class AttributeInProductType implements Serializable {
       return false;
     }
     AttributeInProductType attributeInProductType = (AttributeInProductType) o;
-    return Objects.equals(this.attributeFQN, attributeInProductType.attributeFQN) &&
-        Objects.equals(this.isInheritedFromBaseType, attributeInProductType.isInheritedFromBaseType) &&
-        Objects.equals(this.order, attributeInProductType.order) &&
-        Objects.equals(this.isRequiredByAdmin, attributeInProductType.isRequiredByAdmin) &&
-        Objects.equals(this.isHiddenProperty, attributeInProductType.isHiddenProperty) &&
-        Objects.equals(this.isAdminOnlyProperty, attributeInProductType.isAdminOnlyProperty) &&
-        Objects.equals(this.isProductDetailsOnlyProperty, attributeInProductType.isProductDetailsOnlyProperty) &&
-        Objects.equals(this.isMultiValueProperty, attributeInProductType.isMultiValueProperty) &&
+    return Objects.equals(this.attributeDetail, attributeInProductType.attributeDetail) &&
+        Objects.equals(this.attributeFQN, attributeInProductType.attributeFQN) &&
         Objects.equals(this.displayInfo, attributeInProductType.displayInfo) &&
-        Objects.equals(this.vocabularyValues, attributeInProductType.vocabularyValues) &&
-        Objects.equals(this.attributeDetail, attributeInProductType.attributeDetail);
+        Objects.equals(this.isAdminOnlyProperty, attributeInProductType.isAdminOnlyProperty) &&
+        Objects.equals(this.isHiddenProperty, attributeInProductType.isHiddenProperty) &&
+        Objects.equals(this.isInheritedFromBaseType, attributeInProductType.isInheritedFromBaseType) &&
+        Objects.equals(this.isMultiValueProperty, attributeInProductType.isMultiValueProperty) &&
+        Objects.equals(this.isProductDetailsOnlyProperty, attributeInProductType.isProductDetailsOnlyProperty) &&
+        Objects.equals(this.isRequiredByAdmin, attributeInProductType.isRequiredByAdmin) &&
+        Objects.equals(this.order, attributeInProductType.order) &&
+        Objects.equals(this.vocabularyValues, attributeInProductType.vocabularyValues);
   }
 
   private static <T> boolean equalsNullable(JsonNullable<T> a, JsonNullable<T> b) {
@@ -396,7 +396,7 @@ public class AttributeInProductType implements Serializable {
 
   @Override
   public int hashCode() {
-    return Objects.hash(attributeFQN, isInheritedFromBaseType, order, isRequiredByAdmin, isHiddenProperty, isAdminOnlyProperty, isProductDetailsOnlyProperty, isMultiValueProperty, displayInfo, vocabularyValues, attributeDetail);
+    return Objects.hash(attributeDetail, attributeFQN, displayInfo, isAdminOnlyProperty, isHiddenProperty, isInheritedFromBaseType, isMultiValueProperty, isProductDetailsOnlyProperty, isRequiredByAdmin, order, vocabularyValues);
   }
 
   private static <T> int hashCodeNullable(JsonNullable<T> a) {
@@ -410,17 +410,17 @@ public class AttributeInProductType implements Serializable {
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class AttributeInProductType {\n");
-    sb.append("    attributeFQN: ").append(toIndentedString(attributeFQN)).append("\n");
-    sb.append("    isInheritedFromBaseType: ").append(toIndentedString(isInheritedFromBaseType)).append("\n");
-    sb.append("    order: ").append(toIndentedString(order)).append("\n");
-    sb.append("    isRequiredByAdmin: ").append(toIndentedString(isRequiredByAdmin)).append("\n");
-    sb.append("    isHiddenProperty: ").append(toIndentedString(isHiddenProperty)).append("\n");
-    sb.append("    isAdminOnlyProperty: ").append(toIndentedString(isAdminOnlyProperty)).append("\n");
-    sb.append("    isProductDetailsOnlyProperty: ").append(toIndentedString(isProductDetailsOnlyProperty)).append("\n");
-    sb.append("    isMultiValueProperty: ").append(toIndentedString(isMultiValueProperty)).append("\n");
-    sb.append("    displayInfo: ").append(toIndentedString(displayInfo)).append("\n");
-    sb.append("    vocabularyValues: ").append(toIndentedString(vocabularyValues)).append("\n");
     sb.append("    attributeDetail: ").append(toIndentedString(attributeDetail)).append("\n");
+    sb.append("    attributeFQN: ").append(toIndentedString(attributeFQN)).append("\n");
+    sb.append("    displayInfo: ").append(toIndentedString(displayInfo)).append("\n");
+    sb.append("    isAdminOnlyProperty: ").append(toIndentedString(isAdminOnlyProperty)).append("\n");
+    sb.append("    isHiddenProperty: ").append(toIndentedString(isHiddenProperty)).append("\n");
+    sb.append("    isInheritedFromBaseType: ").append(toIndentedString(isInheritedFromBaseType)).append("\n");
+    sb.append("    isMultiValueProperty: ").append(toIndentedString(isMultiValueProperty)).append("\n");
+    sb.append("    isProductDetailsOnlyProperty: ").append(toIndentedString(isProductDetailsOnlyProperty)).append("\n");
+    sb.append("    isRequiredByAdmin: ").append(toIndentedString(isRequiredByAdmin)).append("\n");
+    sb.append("    order: ").append(toIndentedString(order)).append("\n");
+    sb.append("    vocabularyValues: ").append(toIndentedString(vocabularyValues)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -443,17 +443,17 @@ public class AttributeInProductType implements Serializable {
   static {
     // a set of all properties/fields (JSON key names)
     openapiFields = new HashSet<String>();
-    openapiFields.add("attributeFQN");
-    openapiFields.add("isInheritedFromBaseType");
-    openapiFields.add("order");
-    openapiFields.add("isRequiredByAdmin");
-    openapiFields.add("isHiddenProperty");
-    openapiFields.add("isAdminOnlyProperty");
-    openapiFields.add("isProductDetailsOnlyProperty");
-    openapiFields.add("isMultiValueProperty");
-    openapiFields.add("displayInfo");
-    openapiFields.add("vocabularyValues");
     openapiFields.add("attributeDetail");
+    openapiFields.add("attributeFQN");
+    openapiFields.add("displayInfo");
+    openapiFields.add("isAdminOnlyProperty");
+    openapiFields.add("isHiddenProperty");
+    openapiFields.add("isInheritedFromBaseType");
+    openapiFields.add("isMultiValueProperty");
+    openapiFields.add("isProductDetailsOnlyProperty");
+    openapiFields.add("isRequiredByAdmin");
+    openapiFields.add("order");
+    openapiFields.add("vocabularyValues");
 
     // a set of required properties/fields (JSON key names)
     openapiRequiredFields = new HashSet<String>();
@@ -480,6 +480,10 @@ public class AttributeInProductType implements Serializable {
       //    }
       //  }
       
+      // validate the optional field `attributeDetail`
+      if (jsonObj.get("attributeDetail") != null && !jsonObj.get("attributeDetail").isJsonNull()) {
+        CatalogAdminsAttribute.validateJsonObject(jsonObj.getAsJsonObject("attributeDetail"));
+      }
       if ((jsonObj.get("attributeFQN") != null && !jsonObj.get("attributeFQN").isJsonNull()) && !jsonObj.get("attributeFQN").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format("Expected the field `attributeFQN` to be a primitive type in the JSON string but got `%s`", jsonObj.get("attributeFQN").toString()));
       }
@@ -500,10 +504,6 @@ public class AttributeInProductType implements Serializable {
             AttributeVocabularyValueInProductType.validateJsonObject(jsonArrayvocabularyValues.get(i).getAsJsonObject());
           };
         }
-      }
-      // validate the optional field `attributeDetail`
-      if (jsonObj.get("attributeDetail") != null && !jsonObj.get("attributeDetail").isJsonNull()) {
-        CatalogAdminsAttribute.validateJsonObject(jsonObj.getAsJsonObject("attributeDetail"));
       }
   }
 

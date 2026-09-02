@@ -8,15 +8,17 @@ An object to group a handling fee with zones, rules, and servicetypes
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
-|**id** | **String** | The system generated id for this rule |  [optional] |
-|**sequence** | **Integer** | The sequence in which this rule is preferred over others |  [optional] |
-|**shippingTargetRuleCodes** | **List&lt;String&gt;** | The shipping target rule codes associated with this rule  &lt;remarks&gt;leave empty or null to denote all destinations&lt;/remarks&gt; |  [optional] |
-|**productTargetRuleCodes** | **List&lt;String&gt;** | the product target rule codes associated with this rule  &lt;remarks&gt;leave empty or null to denote all products&lt;/remarks&gt; |  [optional] |
-|**serviceTypes** | [**List&lt;ServiceType&gt;**](ServiceType.md) | the servicetypes associated with this rule  &lt;remarks&gt;leave empty or null to denote all carriers and subsequent service types&lt;/remarks&gt; |  [optional] |
-|**valueType** | **String** | The type of this handling fee  &lt;value&gt;percentage&lt;/value&gt;&lt;value&gt;flatrate&lt;/value&gt; |  [optional] |
 |**appliesTo** | **String** | The level at which this fee applies  &lt;value&gt;shippingrate&lt;/value&gt;&lt;value&gt;order&lt;/value&gt; |  [optional] |
-|**value** | **Double** | The value of this fee |  [optional] |
 |**auditInfo** | [**AdminUserAuditInfo**](AdminUserAuditInfo.md) |  |  [optional] |
+|**fulfillmentMethod** | **String** | Fulfillment method this rule applies to.  &lt;value&gt;Ship&lt;/value&gt;&lt;value&gt;Pickup&lt;/value&gt;&lt;value&gt;Delivery&lt;/value&gt; |  [optional] |
+|**id** | **String** | The system generated id for this rule |  [optional] |
+|**locationCodes** | **List&lt;String&gt;** | Optional location codes for Pickup/Delivery rules.  &lt;remarks&gt;Must be null for Ship rules. When empty/null for Pickup/Delivery, the rule applies to all locations.&lt;/remarks&gt; |  [optional] |
+|**productTargetRuleCodes** | **List&lt;String&gt;** | the product target rule codes associated with this rule  &lt;remarks&gt;leave empty or null to denote all products&lt;/remarks&gt; |  [optional] |
+|**sequence** | **Integer** | The sequence in which this rule is preferred over others |  [optional] |
+|**serviceTypes** | [**List&lt;ServiceType&gt;**](ServiceType.md) | the servicetypes associated with this rule  &lt;remarks&gt;leave empty or null to denote all carriers and subsequent service types&lt;/remarks&gt; |  [optional] |
+|**shippingTargetRuleCodes** | **List&lt;String&gt;** | The shipping target rule codes associated with this rule  &lt;remarks&gt;leave empty or null to denote all destinations&lt;/remarks&gt; |  [optional] |
+|**value** | **Double** | The value of this fee |  [optional] |
+|**valueType** | **String** | The type of this handling fee  &lt;value&gt;percentage&lt;/value&gt;&lt;value&gt;flatrate&lt;/value&gt; |  [optional] |
 
 
 ## Implemented Interfaces

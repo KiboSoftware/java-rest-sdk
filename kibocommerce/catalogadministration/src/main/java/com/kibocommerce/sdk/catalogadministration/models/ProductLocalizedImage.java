@@ -1,8 +1,8 @@
 /*
  * Kibo Catalog Admin Services
- * OpenAPI Spec for Kibo Catalog Admin Services
+ * <div id=\"overview_CATALOG_ADMIN\">             <h2>CATALOG ADMINISTRATION</h2>             <p>The Catalog Administration APIs are a collection of resources for configuring the catalogs and products offered to your shoppers, including                 discounts and coupon sets, faceting, price lists, and different types or variations of products. See the                 <a href=\"/concept-guides/catalog\">Catalog user guides</a>                 for information about the related features in the Unified Commerce Admin.</p>             <p>Use the <strong>Attributes</strong> resource to manage localization and attribute configurations for your catalogs. This current version of the Attributes API includes localizedContent to                 support <a href=\"/pages/catalog-structure#multi-locale-catalogs\">multi-locale catalogs</a>, which was not present in the legacy API model. If                 you were a client prior to May 2024 and have upgraded your implementation to support this feature,                 you can still access attribute data that has not yet been rewritten to the new model by providing                 an x-api-version header set to \"1\". </p>             <p>Use the <strong>Categories</strong> resource to organize products and control where they appear on the storefront. Create                 and maintain a hierarchy of categories and subcategories where the site will store properties. This current version of the Categories API includes localizedContent to                 support <a href=\"/pages/catalog-structure#multi-locale-catalogs\">multi-locale catalogs</a>, which was not present in the legacy API model. If                 you were a client prior to May 2024 and have upgraded your implementation to support this feature,                 you can still access category data that has not yet been rewritten to the new model by providing                 an x-api-version header set to \"1\". </p>             <p>Use the <strong>Coupon Sets</strong> resource to view and create coupon sets. You can use coupon sets to group multiple                 coupon codes together and associate them with one or more discounts.</p>             <p>Use the <strong>Currency</strong> resource to manage the currency localization rules and exchange rates for any of the                 currencies that are supported for placing orders in.</p>             <p>Use the <strong>Discounts</strong> and <strong>Discount Settings</strong> resources to define and manage discounts to apply to products, product categories, or                 orders. This current version of the Discounts API includes localizedContent to                 support <a href=\"/pages/catalog-structure#multi-locale-catalogs\">multi-locale catalogs</a>, which was not present in the legacy Products API model. If                 you were a client prior to May 2024 and have upgraded your implementation to support this feature,                 you can still access discount data that has not yet been rewritten to the new model by providing                 an x-api-version header set to \"1\". </p>             <p>Use the <strong>Facets</strong> resource to manage the facets shoppers use to filter product display results on a                 storefront. Facets can include categories, product attributes, or prices, and use either a range of                 values or discrete values.</p>             <p>Use the <strong>Master Catalog</strong> resource to view details of the master catalogs associated with a tenant and to                 manage the product publishing mode for each master catalog.</p>             <p>Use the <strong>Price Lists</strong> resources to view and create price lists. You can use price lists to override the                 catalog pricing of products for specific customer segments and/or sites.</p>             <p>Use the <strong>Products</strong>, <strong>Product Types/Extras/Options/Properties</strong>, and <strong>Product Sort Definitions</strong> resources to create new product definitions in the master catalog and determine which                 catalogs will feature products. This current version of the Products API includes localizedContent to                 support <a href=\"/pages/catalog-structure#multi-locale-catalogs\">multi-locale catalogs</a>, which was not present in the legacy Products API model. If                 you were a client prior to May 2024 and have upgraded your implementation to support this feature,                 you can still access product data that has not yet been rewritten to the new model by providing                 an x-api-version header set to \"1\".</p>             <p>Use the <strong>Publishing</strong> resource to publish pending product updates together as part of a set.</p>             <p>Use the <strong>Search</strong> resource to manage all settings and options for providing product search on your site, as                 well as search tuning rules.</p>         </div>
  *
- * The version of the OpenAPI document: 1.0.0
+ * The version of the OpenAPI document: v1
  * 
  *
  * NOTE: This class is auto generated by OpenAPI Generator (https://openapi-generator.tech).
@@ -55,117 +55,48 @@ import com.kibocommerce.sdk.common.JSON;
 public class ProductLocalizedImage implements Serializable {
   private static final long serialVersionUID = 1L;
 
-  public static final String SERIALIZED_NAME_ID = "id";
-  @SerializedName(SERIALIZED_NAME_ID)
-  private Integer id;
-
-  public static final String SERIALIZED_NAME_LOCALE_CODE = "localeCode";
-  @SerializedName(SERIALIZED_NAME_LOCALE_CODE)
-  private String localeCode;
-
-  public static final String SERIALIZED_NAME_IMAGE_LABEL = "imageLabel";
-  @SerializedName(SERIALIZED_NAME_IMAGE_LABEL)
-  private String imageLabel;
-
   public static final String SERIALIZED_NAME_ALT_TEXT = "altText";
   @SerializedName(SERIALIZED_NAME_ALT_TEXT)
   private String altText;
-
-  public static final String SERIALIZED_NAME_IMAGE_URL = "imageUrl";
-  @SerializedName(SERIALIZED_NAME_IMAGE_URL)
-  private String imageUrl;
 
   public static final String SERIALIZED_NAME_CMS_ID = "cmsId";
   @SerializedName(SERIALIZED_NAME_CMS_ID)
   private String cmsId;
 
-  public static final String SERIALIZED_NAME_VIDEO_URL = "videoUrl";
-  @SerializedName(SERIALIZED_NAME_VIDEO_URL)
-  private String videoUrl;
+  public static final String SERIALIZED_NAME_ID = "id";
+  @SerializedName(SERIALIZED_NAME_ID)
+  private Integer id;
+
+  public static final String SERIALIZED_NAME_IMAGE_LABEL = "imageLabel";
+  @SerializedName(SERIALIZED_NAME_IMAGE_LABEL)
+  private String imageLabel;
+
+  public static final String SERIALIZED_NAME_IMAGE_URL = "imageUrl";
+  @SerializedName(SERIALIZED_NAME_IMAGE_URL)
+  private String imageUrl;
+
+  public static final String SERIALIZED_NAME_LOCALE_CODE = "localeCode";
+  @SerializedName(SERIALIZED_NAME_LOCALE_CODE)
+  private String localeCode;
 
   public static final String SERIALIZED_NAME_MEDIA_TYPE = "mediaType";
   @SerializedName(SERIALIZED_NAME_MEDIA_TYPE)
   private String mediaType;
 
-  public static final String SERIALIZED_NAME_SEQUENCE = "sequence";
-  @SerializedName(SERIALIZED_NAME_SEQUENCE)
-  private Integer sequence;
-
   public static final String SERIALIZED_NAME_PRODUCT_IMAGE_GROUP_ID = "productImageGroupId";
   @SerializedName(SERIALIZED_NAME_PRODUCT_IMAGE_GROUP_ID)
   private String productImageGroupId;
 
+  public static final String SERIALIZED_NAME_SEQUENCE = "sequence";
+  @SerializedName(SERIALIZED_NAME_SEQUENCE)
+  private Integer sequence;
+
+  public static final String SERIALIZED_NAME_VIDEO_URL = "videoUrl";
+  @SerializedName(SERIALIZED_NAME_VIDEO_URL)
+  private String videoUrl;
+
   public ProductLocalizedImage() {
   }
-
-  public ProductLocalizedImage id(Integer id) {
-    
-    this.id = id;
-    return this;
-  }
-
-   /**
-   * Unique identifier of the image. System-supplied and read-only.
-   * @return id
-  **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(value = "Unique identifier of the image. System-supplied and read-only.")
-
-  public Integer getId() {
-    return id;
-  }
-
-
-  public void setId(Integer id) {
-    this.id = id;
-  }
-
-
-  public ProductLocalizedImage localeCode(String localeCode) {
-    
-    this.localeCode = localeCode;
-    return this;
-  }
-
-   /**
-   * Language used for the image content.
-   * @return localeCode
-  **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(value = "Language used for the image content.")
-
-  public String getLocaleCode() {
-    return localeCode;
-  }
-
-
-  public void setLocaleCode(String localeCode) {
-    this.localeCode = localeCode;
-  }
-
-
-  public ProductLocalizedImage imageLabel(String imageLabel) {
-    
-    this.imageLabel = imageLabel;
-    return this;
-  }
-
-   /**
-   * Image title that appears on the storefront.
-   * @return imageLabel
-  **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(value = "Image title that appears on the storefront.")
-
-  public String getImageLabel() {
-    return imageLabel;
-  }
-
-
-  public void setImageLabel(String imageLabel) {
-    this.imageLabel = imageLabel;
-  }
-
 
   public ProductLocalizedImage altText(String altText) {
     
@@ -187,29 +118,6 @@ public class ProductLocalizedImage implements Serializable {
 
   public void setAltText(String altText) {
     this.altText = altText;
-  }
-
-
-  public ProductLocalizedImage imageUrl(String imageUrl) {
-    
-    this.imageUrl = imageUrl;
-    return this;
-  }
-
-   /**
-   * URL of the image.
-   * @return imageUrl
-  **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(value = "URL of the image.")
-
-  public String getImageUrl() {
-    return imageUrl;
-  }
-
-
-  public void setImageUrl(String imageUrl) {
-    this.imageUrl = imageUrl;
   }
 
 
@@ -236,26 +144,95 @@ public class ProductLocalizedImage implements Serializable {
   }
 
 
-  public ProductLocalizedImage videoUrl(String videoUrl) {
+  public ProductLocalizedImage id(Integer id) {
     
-    this.videoUrl = videoUrl;
+    this.id = id;
     return this;
   }
 
    /**
-   * URL of a video associated with the product.
-   * @return videoUrl
+   * Unique identifier of the image. System-supplied and read-only.
+   * @return id
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "URL of a video associated with the product.")
+  @ApiModelProperty(value = "Unique identifier of the image. System-supplied and read-only.")
 
-  public String getVideoUrl() {
-    return videoUrl;
+  public Integer getId() {
+    return id;
   }
 
 
-  public void setVideoUrl(String videoUrl) {
-    this.videoUrl = videoUrl;
+  public void setId(Integer id) {
+    this.id = id;
+  }
+
+
+  public ProductLocalizedImage imageLabel(String imageLabel) {
+    
+    this.imageLabel = imageLabel;
+    return this;
+  }
+
+   /**
+   * Image title that appears on the storefront.
+   * @return imageLabel
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "Image title that appears on the storefront.")
+
+  public String getImageLabel() {
+    return imageLabel;
+  }
+
+
+  public void setImageLabel(String imageLabel) {
+    this.imageLabel = imageLabel;
+  }
+
+
+  public ProductLocalizedImage imageUrl(String imageUrl) {
+    
+    this.imageUrl = imageUrl;
+    return this;
+  }
+
+   /**
+   * URL of the image.
+   * @return imageUrl
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "URL of the image.")
+
+  public String getImageUrl() {
+    return imageUrl;
+  }
+
+
+  public void setImageUrl(String imageUrl) {
+    this.imageUrl = imageUrl;
+  }
+
+
+  public ProductLocalizedImage localeCode(String localeCode) {
+    
+    this.localeCode = localeCode;
+    return this;
+  }
+
+   /**
+   * Language used for the image content.
+   * @return localeCode
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "Language used for the image content.")
+
+  public String getLocaleCode() {
+    return localeCode;
+  }
+
+
+  public void setLocaleCode(String localeCode) {
+    this.localeCode = localeCode;
   }
 
 
@@ -282,29 +259,6 @@ public class ProductLocalizedImage implements Serializable {
   }
 
 
-  public ProductLocalizedImage sequence(Integer sequence) {
-    
-    this.sequence = sequence;
-    return this;
-  }
-
-   /**
-   * For products with multiple images, the order in which this image appears on the storefront.
-   * @return sequence
-  **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(value = "For products with multiple images, the order in which this image appears on the storefront.")
-
-  public Integer getSequence() {
-    return sequence;
-  }
-
-
-  public void setSequence(Integer sequence) {
-    this.sequence = sequence;
-  }
-
-
   public ProductLocalizedImage productImageGroupId(String productImageGroupId) {
     
     this.productImageGroupId = productImageGroupId;
@@ -328,6 +282,52 @@ public class ProductLocalizedImage implements Serializable {
   }
 
 
+  public ProductLocalizedImage sequence(Integer sequence) {
+    
+    this.sequence = sequence;
+    return this;
+  }
+
+   /**
+   * For products with multiple images, the order in which this image appears on the storefront.
+   * @return sequence
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "For products with multiple images, the order in which this image appears on the storefront.")
+
+  public Integer getSequence() {
+    return sequence;
+  }
+
+
+  public void setSequence(Integer sequence) {
+    this.sequence = sequence;
+  }
+
+
+  public ProductLocalizedImage videoUrl(String videoUrl) {
+    
+    this.videoUrl = videoUrl;
+    return this;
+  }
+
+   /**
+   * URL of a video associated with the product.
+   * @return videoUrl
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "URL of a video associated with the product.")
+
+  public String getVideoUrl() {
+    return videoUrl;
+  }
+
+
+  public void setVideoUrl(String videoUrl) {
+    this.videoUrl = videoUrl;
+  }
+
+
 
   @Override
   public boolean equals(Object o) {
@@ -338,16 +338,16 @@ public class ProductLocalizedImage implements Serializable {
       return false;
     }
     ProductLocalizedImage productLocalizedImage = (ProductLocalizedImage) o;
-    return Objects.equals(this.id, productLocalizedImage.id) &&
-        Objects.equals(this.localeCode, productLocalizedImage.localeCode) &&
-        Objects.equals(this.imageLabel, productLocalizedImage.imageLabel) &&
-        Objects.equals(this.altText, productLocalizedImage.altText) &&
-        Objects.equals(this.imageUrl, productLocalizedImage.imageUrl) &&
+    return Objects.equals(this.altText, productLocalizedImage.altText) &&
         Objects.equals(this.cmsId, productLocalizedImage.cmsId) &&
-        Objects.equals(this.videoUrl, productLocalizedImage.videoUrl) &&
+        Objects.equals(this.id, productLocalizedImage.id) &&
+        Objects.equals(this.imageLabel, productLocalizedImage.imageLabel) &&
+        Objects.equals(this.imageUrl, productLocalizedImage.imageUrl) &&
+        Objects.equals(this.localeCode, productLocalizedImage.localeCode) &&
         Objects.equals(this.mediaType, productLocalizedImage.mediaType) &&
+        Objects.equals(this.productImageGroupId, productLocalizedImage.productImageGroupId) &&
         Objects.equals(this.sequence, productLocalizedImage.sequence) &&
-        Objects.equals(this.productImageGroupId, productLocalizedImage.productImageGroupId);
+        Objects.equals(this.videoUrl, productLocalizedImage.videoUrl);
   }
 
   private static <T> boolean equalsNullable(JsonNullable<T> a, JsonNullable<T> b) {
@@ -356,7 +356,7 @@ public class ProductLocalizedImage implements Serializable {
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, localeCode, imageLabel, altText, imageUrl, cmsId, videoUrl, mediaType, sequence, productImageGroupId);
+    return Objects.hash(altText, cmsId, id, imageLabel, imageUrl, localeCode, mediaType, productImageGroupId, sequence, videoUrl);
   }
 
   private static <T> int hashCodeNullable(JsonNullable<T> a) {
@@ -370,16 +370,16 @@ public class ProductLocalizedImage implements Serializable {
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class ProductLocalizedImage {\n");
-    sb.append("    id: ").append(toIndentedString(id)).append("\n");
-    sb.append("    localeCode: ").append(toIndentedString(localeCode)).append("\n");
-    sb.append("    imageLabel: ").append(toIndentedString(imageLabel)).append("\n");
     sb.append("    altText: ").append(toIndentedString(altText)).append("\n");
-    sb.append("    imageUrl: ").append(toIndentedString(imageUrl)).append("\n");
     sb.append("    cmsId: ").append(toIndentedString(cmsId)).append("\n");
-    sb.append("    videoUrl: ").append(toIndentedString(videoUrl)).append("\n");
+    sb.append("    id: ").append(toIndentedString(id)).append("\n");
+    sb.append("    imageLabel: ").append(toIndentedString(imageLabel)).append("\n");
+    sb.append("    imageUrl: ").append(toIndentedString(imageUrl)).append("\n");
+    sb.append("    localeCode: ").append(toIndentedString(localeCode)).append("\n");
     sb.append("    mediaType: ").append(toIndentedString(mediaType)).append("\n");
-    sb.append("    sequence: ").append(toIndentedString(sequence)).append("\n");
     sb.append("    productImageGroupId: ").append(toIndentedString(productImageGroupId)).append("\n");
+    sb.append("    sequence: ").append(toIndentedString(sequence)).append("\n");
+    sb.append("    videoUrl: ").append(toIndentedString(videoUrl)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -402,16 +402,16 @@ public class ProductLocalizedImage implements Serializable {
   static {
     // a set of all properties/fields (JSON key names)
     openapiFields = new HashSet<String>();
-    openapiFields.add("id");
-    openapiFields.add("localeCode");
-    openapiFields.add("imageLabel");
     openapiFields.add("altText");
-    openapiFields.add("imageUrl");
     openapiFields.add("cmsId");
-    openapiFields.add("videoUrl");
+    openapiFields.add("id");
+    openapiFields.add("imageLabel");
+    openapiFields.add("imageUrl");
+    openapiFields.add("localeCode");
     openapiFields.add("mediaType");
-    openapiFields.add("sequence");
     openapiFields.add("productImageGroupId");
+    openapiFields.add("sequence");
+    openapiFields.add("videoUrl");
 
     // a set of required properties/fields (JSON key names)
     openapiRequiredFields = new HashSet<String>();
@@ -438,29 +438,29 @@ public class ProductLocalizedImage implements Serializable {
       //    }
       //  }
       
-      if ((jsonObj.get("localeCode") != null && !jsonObj.get("localeCode").isJsonNull()) && !jsonObj.get("localeCode").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `localeCode` to be a primitive type in the JSON string but got `%s`", jsonObj.get("localeCode").toString()));
-      }
-      if ((jsonObj.get("imageLabel") != null && !jsonObj.get("imageLabel").isJsonNull()) && !jsonObj.get("imageLabel").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `imageLabel` to be a primitive type in the JSON string but got `%s`", jsonObj.get("imageLabel").toString()));
-      }
       if ((jsonObj.get("altText") != null && !jsonObj.get("altText").isJsonNull()) && !jsonObj.get("altText").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format("Expected the field `altText` to be a primitive type in the JSON string but got `%s`", jsonObj.get("altText").toString()));
-      }
-      if ((jsonObj.get("imageUrl") != null && !jsonObj.get("imageUrl").isJsonNull()) && !jsonObj.get("imageUrl").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `imageUrl` to be a primitive type in the JSON string but got `%s`", jsonObj.get("imageUrl").toString()));
       }
       if ((jsonObj.get("cmsId") != null && !jsonObj.get("cmsId").isJsonNull()) && !jsonObj.get("cmsId").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format("Expected the field `cmsId` to be a primitive type in the JSON string but got `%s`", jsonObj.get("cmsId").toString()));
       }
-      if ((jsonObj.get("videoUrl") != null && !jsonObj.get("videoUrl").isJsonNull()) && !jsonObj.get("videoUrl").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `videoUrl` to be a primitive type in the JSON string but got `%s`", jsonObj.get("videoUrl").toString()));
+      if ((jsonObj.get("imageLabel") != null && !jsonObj.get("imageLabel").isJsonNull()) && !jsonObj.get("imageLabel").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `imageLabel` to be a primitive type in the JSON string but got `%s`", jsonObj.get("imageLabel").toString()));
+      }
+      if ((jsonObj.get("imageUrl") != null && !jsonObj.get("imageUrl").isJsonNull()) && !jsonObj.get("imageUrl").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `imageUrl` to be a primitive type in the JSON string but got `%s`", jsonObj.get("imageUrl").toString()));
+      }
+      if ((jsonObj.get("localeCode") != null && !jsonObj.get("localeCode").isJsonNull()) && !jsonObj.get("localeCode").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `localeCode` to be a primitive type in the JSON string but got `%s`", jsonObj.get("localeCode").toString()));
       }
       if ((jsonObj.get("mediaType") != null && !jsonObj.get("mediaType").isJsonNull()) && !jsonObj.get("mediaType").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format("Expected the field `mediaType` to be a primitive type in the JSON string but got `%s`", jsonObj.get("mediaType").toString()));
       }
       if ((jsonObj.get("productImageGroupId") != null && !jsonObj.get("productImageGroupId").isJsonNull()) && !jsonObj.get("productImageGroupId").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format("Expected the field `productImageGroupId` to be a primitive type in the JSON string but got `%s`", jsonObj.get("productImageGroupId").toString()));
+      }
+      if ((jsonObj.get("videoUrl") != null && !jsonObj.get("videoUrl").isJsonNull()) && !jsonObj.get("videoUrl").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `videoUrl` to be a primitive type in the JSON string but got `%s`", jsonObj.get("videoUrl").toString()));
       }
   }
 

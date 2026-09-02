@@ -11,7 +11,7 @@ All URIs are relative to *http://https:/api*
 
 <a name="createDeveloperUserAuthTicket"></a>
 # **createDeveloperUserAuthTicket**
-> DeveloperAdminUserAuthTicket createDeveloperUserAuthTicket(developerAccountId, userAuthInfo)
+> DeveloperAdminUserAuthTicket createDeveloperUserAuthTicket(developerAccountId, responseFields, userAuthInfo)
 
 Create Developer User Auth Ticket
 
@@ -36,15 +36,12 @@ public class Example {
     HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
     bearerAuth.setBearerToken("BEARER TOKEN");
 
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
-
     DeveloperAdminAuthTicketApi apiInstance = new DeveloperAdminAuthTicketApi(defaultClient);
     Integer developerAccountId = 56; // Integer | The users developer account Id
+    String responseFields = "responseFields_example"; // String | limits which fields are returned in the response body
     UserAuthInfo userAuthInfo = new UserAuthInfo(); // UserAuthInfo | User's email address and password.
     try {
-      DeveloperAdminUserAuthTicket result = apiInstance.createDeveloperUserAuthTicket(developerAccountId, userAuthInfo);
+      DeveloperAdminUserAuthTicket result = apiInstance.createDeveloperUserAuthTicket(developerAccountId, responseFields, userAuthInfo);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling DeveloperAdminAuthTicketApi#createDeveloperUserAuthTicket");
@@ -62,6 +59,7 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **developerAccountId** | **Integer**| The users developer account Id | [optional] |
+| **responseFields** | **String**| limits which fields are returned in the response body | [optional] |
 | **userAuthInfo** | [**UserAuthInfo**](UserAuthInfo.md)| User&#39;s email address and password. | [optional] |
 
 ### Return type
@@ -70,7 +68,7 @@ public class Example {
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth), [clientOauth2](../README.md#clientOauth2)
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
@@ -80,7 +78,7 @@ public class Example {
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Success |  -  |
+| **200** | OK |  -  |
 
 <a name="deleteUserAuthTicket"></a>
 # **deleteUserAuthTicket**
@@ -109,10 +107,6 @@ public class Example {
     HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
     bearerAuth.setBearerToken("BEARER TOKEN");
 
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
-
     DeveloperAdminAuthTicketApi apiInstance = new DeveloperAdminAuthTicketApi(defaultClient);
     String refreshToken = "refreshToken_example"; // String | The refresh token to delete.
     try {
@@ -140,7 +134,7 @@ null (empty response body)
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth), [clientOauth2](../README.md#clientOauth2)
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
@@ -150,11 +144,11 @@ null (empty response body)
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Success |  -  |
+| **200** | OK |  -  |
 
 <a name="refreshDeveloperAuthTicket"></a>
 # **refreshDeveloperAuthTicket**
-> DeveloperAdminUserAuthTicket refreshDeveloperAuthTicket(developerAccountId, developerAdminUserAuthTicket)
+> DeveloperAdminUserAuthTicket refreshDeveloperAuthTicket(developerAccountId, responseFields, developerAdminUserAuthTicket)
 
 Refresh Developer Auth Ticket
 
@@ -179,15 +173,12 @@ public class Example {
     HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
     bearerAuth.setBearerToken("BEARER TOKEN");
 
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
-
     DeveloperAdminAuthTicketApi apiInstance = new DeveloperAdminAuthTicketApi(defaultClient);
     Integer developerAccountId = 56; // Integer | The users developer account Id
+    String responseFields = "responseFields_example"; // String | limits which fields are returned in the response body
     DeveloperAdminUserAuthTicket developerAdminUserAuthTicket = new DeveloperAdminUserAuthTicket(); // DeveloperAdminUserAuthTicket | An existing valid auth ticket containing the refresh token.
     try {
-      DeveloperAdminUserAuthTicket result = apiInstance.refreshDeveloperAuthTicket(developerAccountId, developerAdminUserAuthTicket);
+      DeveloperAdminUserAuthTicket result = apiInstance.refreshDeveloperAuthTicket(developerAccountId, responseFields, developerAdminUserAuthTicket);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling DeveloperAdminAuthTicketApi#refreshDeveloperAuthTicket");
@@ -205,6 +196,7 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **developerAccountId** | **Integer**| The users developer account Id | [optional] |
+| **responseFields** | **String**| limits which fields are returned in the response body | [optional] |
 | **developerAdminUserAuthTicket** | [**DeveloperAdminUserAuthTicket**](DeveloperAdminUserAuthTicket.md)| An existing valid auth ticket containing the refresh token. | [optional] |
 
 ### Return type
@@ -213,7 +205,7 @@ public class Example {
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth), [clientOauth2](../README.md#clientOauth2)
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
@@ -223,5 +215,5 @@ public class Example {
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Success |  -  |
+| **200** | OK |  -  |
 

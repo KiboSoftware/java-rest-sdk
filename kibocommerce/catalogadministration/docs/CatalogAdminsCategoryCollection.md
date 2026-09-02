@@ -8,8 +8,8 @@ Collection of categories returned as a whole. A collection is not paged.
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
-|**totalCount** | **Integer** |  |  [optional] |
 |**items** | [**List&lt;CatalogAdminsCategory&gt;**](CatalogAdminsCategory.md) |  |  [optional] |
+|**totalCount** | **Integer** |  |  [optional] |
 
 
 ## Implemented Interfaces

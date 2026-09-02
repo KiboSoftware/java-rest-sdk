@@ -8,10 +8,10 @@ A currency and some localization options
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
+|**auditInfo** | [**AdminUserAuditInfo**](AdminUserAuditInfo.md) |  |  [optional] |
 |**currencyCode** | **String** | Currency Code |  [optional] |
 |**decimalPlaces** | **Integer** | Number of decimal places to round to |  [optional] |
 |**roundingStrategy** | **Integer** | The rounding strategy to use |  [optional] |
-|**auditInfo** | [**AdminUserAuditInfo**](AdminUserAuditInfo.md) |  |  [optional] |
 
 
 ## Implemented Interfaces

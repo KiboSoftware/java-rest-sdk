@@ -1,8 +1,8 @@
 /*
  * Kibo Catalog Admin Services
- * OpenAPI Spec for Kibo Catalog Admin Services
+ * <div id=\"overview_CATALOG_ADMIN\">             <h2>CATALOG ADMINISTRATION</h2>             <p>The Catalog Administration APIs are a collection of resources for configuring the catalogs and products offered to your shoppers, including                 discounts and coupon sets, faceting, price lists, and different types or variations of products. See the                 <a href=\"/concept-guides/catalog\">Catalog user guides</a>                 for information about the related features in the Unified Commerce Admin.</p>             <p>Use the <strong>Attributes</strong> resource to manage localization and attribute configurations for your catalogs. This current version of the Attributes API includes localizedContent to                 support <a href=\"/pages/catalog-structure#multi-locale-catalogs\">multi-locale catalogs</a>, which was not present in the legacy API model. If                 you were a client prior to May 2024 and have upgraded your implementation to support this feature,                 you can still access attribute data that has not yet been rewritten to the new model by providing                 an x-api-version header set to \"1\". </p>             <p>Use the <strong>Categories</strong> resource to organize products and control where they appear on the storefront. Create                 and maintain a hierarchy of categories and subcategories where the site will store properties. This current version of the Categories API includes localizedContent to                 support <a href=\"/pages/catalog-structure#multi-locale-catalogs\">multi-locale catalogs</a>, which was not present in the legacy API model. If                 you were a client prior to May 2024 and have upgraded your implementation to support this feature,                 you can still access category data that has not yet been rewritten to the new model by providing                 an x-api-version header set to \"1\". </p>             <p>Use the <strong>Coupon Sets</strong> resource to view and create coupon sets. You can use coupon sets to group multiple                 coupon codes together and associate them with one or more discounts.</p>             <p>Use the <strong>Currency</strong> resource to manage the currency localization rules and exchange rates for any of the                 currencies that are supported for placing orders in.</p>             <p>Use the <strong>Discounts</strong> and <strong>Discount Settings</strong> resources to define and manage discounts to apply to products, product categories, or                 orders. This current version of the Discounts API includes localizedContent to                 support <a href=\"/pages/catalog-structure#multi-locale-catalogs\">multi-locale catalogs</a>, which was not present in the legacy Products API model. If                 you were a client prior to May 2024 and have upgraded your implementation to support this feature,                 you can still access discount data that has not yet been rewritten to the new model by providing                 an x-api-version header set to \"1\". </p>             <p>Use the <strong>Facets</strong> resource to manage the facets shoppers use to filter product display results on a                 storefront. Facets can include categories, product attributes, or prices, and use either a range of                 values or discrete values.</p>             <p>Use the <strong>Master Catalog</strong> resource to view details of the master catalogs associated with a tenant and to                 manage the product publishing mode for each master catalog.</p>             <p>Use the <strong>Price Lists</strong> resources to view and create price lists. You can use price lists to override the                 catalog pricing of products for specific customer segments and/or sites.</p>             <p>Use the <strong>Products</strong>, <strong>Product Types/Extras/Options/Properties</strong>, and <strong>Product Sort Definitions</strong> resources to create new product definitions in the master catalog and determine which                 catalogs will feature products. This current version of the Products API includes localizedContent to                 support <a href=\"/pages/catalog-structure#multi-locale-catalogs\">multi-locale catalogs</a>, which was not present in the legacy Products API model. If                 you were a client prior to May 2024 and have upgraded your implementation to support this feature,                 you can still access product data that has not yet been rewritten to the new model by providing                 an x-api-version header set to \"1\".</p>             <p>Use the <strong>Publishing</strong> resource to publish pending product updates together as part of a set.</p>             <p>Use the <strong>Search</strong> resource to manage all settings and options for providing product search on your site, as                 well as search tuning rules.</p>         </div>
  *
- * The version of the OpenAPI document: 1.0.0
+ * The version of the OpenAPI document: v1
  * 
  *
  * NOTE: This class is auto generated by OpenAPI Generator (https://openapi-generator.tech).
@@ -58,25 +58,13 @@ import com.kibocommerce.sdk.common.JSON;
 public class CatalogAdminsPriceList implements Serializable {
   private static final long serialVersionUID = 1L;
 
-  public static final String SERIALIZED_NAME_PRICE_LIST_CODE = "priceListCode";
-  @SerializedName(SERIALIZED_NAME_PRICE_LIST_CODE)
-  private String priceListCode;
+  public static final String SERIALIZED_NAME_AUDIT_INFO = "auditInfo";
+  @SerializedName(SERIALIZED_NAME_AUDIT_INFO)
+  private AdminUserAuditInfo auditInfo;
 
-  public static final String SERIALIZED_NAME_PRICE_LIST_SEQUENCE = "priceListSequence";
-  @SerializedName(SERIALIZED_NAME_PRICE_LIST_SEQUENCE)
-  private Integer priceListSequence;
-
-  public static final String SERIALIZED_NAME_PARENT_PRICE_LIST_CODE = "parentPriceListCode";
-  @SerializedName(SERIALIZED_NAME_PARENT_PRICE_LIST_CODE)
-  private String parentPriceListCode;
-
-  public static final String SERIALIZED_NAME_PARENT_PRICE_LIST_NAME = "parentPriceListName";
-  @SerializedName(SERIALIZED_NAME_PARENT_PRICE_LIST_NAME)
-  private String parentPriceListName;
-
-  public static final String SERIALIZED_NAME_NAME = "name";
-  @SerializedName(SERIALIZED_NAME_NAME)
-  private String name;
+  public static final String SERIALIZED_NAME_DEFAULT_FOR_SITES = "defaultForSites";
+  @SerializedName(SERIALIZED_NAME_DEFAULT_FOR_SITES)
+  private List<Integer> defaultForSites = null;
 
   public static final String SERIALIZED_NAME_DESCRIPTION = "description";
   @SerializedName(SERIALIZED_NAME_DESCRIPTION)
@@ -90,18 +78,6 @@ public class CatalogAdminsPriceList implements Serializable {
   @SerializedName(SERIALIZED_NAME_FILTERED_IN_STOREFRONT)
   private Boolean filteredInStorefront;
 
-  public static final String SERIALIZED_NAME_VALID_FOR_ALL_SITES = "validForAllSites";
-  @SerializedName(SERIALIZED_NAME_VALID_FOR_ALL_SITES)
-  private Boolean validForAllSites;
-
-  public static final String SERIALIZED_NAME_VALID_SITES = "validSites";
-  @SerializedName(SERIALIZED_NAME_VALID_SITES)
-  private List<Integer> validSites = null;
-
-  public static final String SERIALIZED_NAME_DEFAULT_FOR_SITES = "defaultForSites";
-  @SerializedName(SERIALIZED_NAME_DEFAULT_FOR_SITES)
-  private List<Integer> defaultForSites = null;
-
   public static final String SERIALIZED_NAME_INDEXED_SITES = "indexedSites";
   @SerializedName(SERIALIZED_NAME_INDEXED_SITES)
   private List<Integer> indexedSites = null;
@@ -109,6 +85,26 @@ public class CatalogAdminsPriceList implements Serializable {
   public static final String SERIALIZED_NAME_MAPPED_CUSTOMER_SEGMENTS = "mappedCustomerSegments";
   @SerializedName(SERIALIZED_NAME_MAPPED_CUSTOMER_SEGMENTS)
   private List<String> mappedCustomerSegments = null;
+
+  public static final String SERIALIZED_NAME_NAME = "name";
+  @SerializedName(SERIALIZED_NAME_NAME)
+  private String name;
+
+  public static final String SERIALIZED_NAME_PARENT_PRICE_LIST_CODE = "parentPriceListCode";
+  @SerializedName(SERIALIZED_NAME_PARENT_PRICE_LIST_CODE)
+  private String parentPriceListCode;
+
+  public static final String SERIALIZED_NAME_PARENT_PRICE_LIST_NAME = "parentPriceListName";
+  @SerializedName(SERIALIZED_NAME_PARENT_PRICE_LIST_NAME)
+  private String parentPriceListName;
+
+  public static final String SERIALIZED_NAME_PRICE_LIST_CODE = "priceListCode";
+  @SerializedName(SERIALIZED_NAME_PRICE_LIST_CODE)
+  private String priceListCode;
+
+  public static final String SERIALIZED_NAME_PRICE_LIST_SEQUENCE = "priceListSequence";
+  @SerializedName(SERIALIZED_NAME_PRICE_LIST_SEQUENCE)
+  private Integer priceListSequence;
 
   public static final String SERIALIZED_NAME_RANK = "rank";
   @SerializedName(SERIALIZED_NAME_RANK)
@@ -118,125 +114,68 @@ public class CatalogAdminsPriceList implements Serializable {
   @SerializedName(SERIALIZED_NAME_RESOLVABLE)
   private Boolean resolvable;
 
-  public static final String SERIALIZED_NAME_AUDIT_INFO = "auditInfo";
-  @SerializedName(SERIALIZED_NAME_AUDIT_INFO)
-  private AdminUserAuditInfo auditInfo;
+  public static final String SERIALIZED_NAME_VALID_FOR_ALL_SITES = "validForAllSites";
+  @SerializedName(SERIALIZED_NAME_VALID_FOR_ALL_SITES)
+  private Boolean validForAllSites;
+
+  public static final String SERIALIZED_NAME_VALID_SITES = "validSites";
+  @SerializedName(SERIALIZED_NAME_VALID_SITES)
+  private List<Integer> validSites = null;
 
   public CatalogAdminsPriceList() {
   }
 
-  public CatalogAdminsPriceList priceListCode(String priceListCode) {
+  public CatalogAdminsPriceList auditInfo(AdminUserAuditInfo auditInfo) {
     
-    this.priceListCode = priceListCode;
+    this.auditInfo = auditInfo;
     return this;
   }
 
    /**
-   * External unique identifier of the PriceList. Must be unique an only contain url sanitized characters. Max length is 50
-   * @return priceListCode
-  **/
-  @javax.annotation.Nonnull
-  @ApiModelProperty(required = true, value = "External unique identifier of the PriceList. Must be unique an only contain url sanitized characters. Max length is 50")
-
-  public String getPriceListCode() {
-    return priceListCode;
-  }
-
-
-  public void setPriceListCode(String priceListCode) {
-    this.priceListCode = priceListCode;
-  }
-
-
-  public CatalogAdminsPriceList priceListSequence(Integer priceListSequence) {
-    
-    this.priceListSequence = priceListSequence;
-    return this;
-  }
-
-   /**
-   * Get priceListSequence
-   * @return priceListSequence
+   * Get auditInfo
+   * @return auditInfo
   **/
   @javax.annotation.Nullable
   @ApiModelProperty(value = "")
 
-  public Integer getPriceListSequence() {
-    return priceListSequence;
+  public AdminUserAuditInfo getAuditInfo() {
+    return auditInfo;
   }
 
 
-  public void setPriceListSequence(Integer priceListSequence) {
-    this.priceListSequence = priceListSequence;
+  public void setAuditInfo(AdminUserAuditInfo auditInfo) {
+    this.auditInfo = auditInfo;
   }
 
 
-  public CatalogAdminsPriceList parentPriceListCode(String parentPriceListCode) {
+  public CatalogAdminsPriceList defaultForSites(List<Integer> defaultForSites) {
     
-    this.parentPriceListCode = parentPriceListCode;
+    this.defaultForSites = defaultForSites;
+    return this;
+  }
+
+  public CatalogAdminsPriceList addDefaultForSitesItem(Integer defaultForSitesItem) {
+    if (this.defaultForSites == null) {
+      this.defaultForSites = new ArrayList<>();
+    }
+    this.defaultForSites.add(defaultForSitesItem);
     return this;
   }
 
    /**
-   * Parent PriceList code, Can be null for root level priceLists
-   * @return parentPriceListCode
+   * Get defaultForSites
+   * @return defaultForSites
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "Parent PriceList code, Can be null for root level priceLists")
+  @ApiModelProperty(value = "")
 
-  public String getParentPriceListCode() {
-    return parentPriceListCode;
+  public List<Integer> getDefaultForSites() {
+    return defaultForSites;
   }
 
 
-  public void setParentPriceListCode(String parentPriceListCode) {
-    this.parentPriceListCode = parentPriceListCode;
-  }
-
-
-  public CatalogAdminsPriceList parentPriceListName(String parentPriceListName) {
-    
-    this.parentPriceListName = parentPriceListName;
-    return this;
-  }
-
-   /**
-   * Parent PriceList name, Can be null for root level priceLists. Read only in contract.
-   * @return parentPriceListName
-  **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(value = "Parent PriceList name, Can be null for root level priceLists. Read only in contract.")
-
-  public String getParentPriceListName() {
-    return parentPriceListName;
-  }
-
-
-  public void setParentPriceListName(String parentPriceListName) {
-    this.parentPriceListName = parentPriceListName;
-  }
-
-
-  public CatalogAdminsPriceList name(String name) {
-    
-    this.name = name;
-    return this;
-  }
-
-   /**
-   * Name of the priceList. Max length is 100
-   * @return name
-  **/
-  @javax.annotation.Nonnull
-  @ApiModelProperty(required = true, value = "Name of the priceList. Max length is 100")
-
-  public String getName() {
-    return name;
-  }
-
-
-  public void setName(String name) {
-    this.name = name;
+  public void setDefaultForSites(List<Integer> defaultForSites) {
+    this.defaultForSites = defaultForSites;
   }
 
 
@@ -309,6 +248,229 @@ public class CatalogAdminsPriceList implements Serializable {
   }
 
 
+  public CatalogAdminsPriceList indexedSites(List<Integer> indexedSites) {
+    
+    this.indexedSites = indexedSites;
+    return this;
+  }
+
+  public CatalogAdminsPriceList addIndexedSitesItem(Integer indexedSitesItem) {
+    if (this.indexedSites == null) {
+      this.indexedSites = new ArrayList<>();
+    }
+    this.indexedSites.add(indexedSitesItem);
+    return this;
+  }
+
+   /**
+   * Get indexedSites
+   * @return indexedSites
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
+
+  public List<Integer> getIndexedSites() {
+    return indexedSites;
+  }
+
+
+  public void setIndexedSites(List<Integer> indexedSites) {
+    this.indexedSites = indexedSites;
+  }
+
+
+  public CatalogAdminsPriceList mappedCustomerSegments(List<String> mappedCustomerSegments) {
+    
+    this.mappedCustomerSegments = mappedCustomerSegments;
+    return this;
+  }
+
+  public CatalogAdminsPriceList addMappedCustomerSegmentsItem(String mappedCustomerSegmentsItem) {
+    if (this.mappedCustomerSegments == null) {
+      this.mappedCustomerSegments = new ArrayList<>();
+    }
+    this.mappedCustomerSegments.add(mappedCustomerSegmentsItem);
+    return this;
+  }
+
+   /**
+   * List of customer segment code associated with this price list. Used to resolve default price list
+   * @return mappedCustomerSegments
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "List of customer segment code associated with this price list. Used to resolve default price list")
+
+  public List<String> getMappedCustomerSegments() {
+    return mappedCustomerSegments;
+  }
+
+
+  public void setMappedCustomerSegments(List<String> mappedCustomerSegments) {
+    this.mappedCustomerSegments = mappedCustomerSegments;
+  }
+
+
+  public CatalogAdminsPriceList name(String name) {
+    
+    this.name = name;
+    return this;
+  }
+
+   /**
+   * Name of the priceList. Max length is 100
+   * @return name
+  **/
+  @javax.annotation.Nonnull
+  @ApiModelProperty(required = true, value = "Name of the priceList. Max length is 100")
+
+  public String getName() {
+    return name;
+  }
+
+
+  public void setName(String name) {
+    this.name = name;
+  }
+
+
+  public CatalogAdminsPriceList parentPriceListCode(String parentPriceListCode) {
+    
+    this.parentPriceListCode = parentPriceListCode;
+    return this;
+  }
+
+   /**
+   * Parent PriceList code, Can be null for root level priceLists
+   * @return parentPriceListCode
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "Parent PriceList code, Can be null for root level priceLists")
+
+  public String getParentPriceListCode() {
+    return parentPriceListCode;
+  }
+
+
+  public void setParentPriceListCode(String parentPriceListCode) {
+    this.parentPriceListCode = parentPriceListCode;
+  }
+
+
+  public CatalogAdminsPriceList parentPriceListName(String parentPriceListName) {
+    
+    this.parentPriceListName = parentPriceListName;
+    return this;
+  }
+
+   /**
+   * Parent PriceList name, Can be null for root level priceLists. Read only in contract.
+   * @return parentPriceListName
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "Parent PriceList name, Can be null for root level priceLists. Read only in contract.")
+
+  public String getParentPriceListName() {
+    return parentPriceListName;
+  }
+
+
+  public void setParentPriceListName(String parentPriceListName) {
+    this.parentPriceListName = parentPriceListName;
+  }
+
+
+  public CatalogAdminsPriceList priceListCode(String priceListCode) {
+    
+    this.priceListCode = priceListCode;
+    return this;
+  }
+
+   /**
+   * External unique identifier of the PriceList. Must be unique an only contain url sanitized characters. Max length is 50
+   * @return priceListCode
+  **/
+  @javax.annotation.Nonnull
+  @ApiModelProperty(required = true, value = "External unique identifier of the PriceList. Must be unique an only contain url sanitized characters. Max length is 50")
+
+  public String getPriceListCode() {
+    return priceListCode;
+  }
+
+
+  public void setPriceListCode(String priceListCode) {
+    this.priceListCode = priceListCode;
+  }
+
+
+  public CatalogAdminsPriceList priceListSequence(Integer priceListSequence) {
+    
+    this.priceListSequence = priceListSequence;
+    return this;
+  }
+
+   /**
+   * Get priceListSequence
+   * @return priceListSequence
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
+
+  public Integer getPriceListSequence() {
+    return priceListSequence;
+  }
+
+
+  public void setPriceListSequence(Integer priceListSequence) {
+    this.priceListSequence = priceListSequence;
+  }
+
+
+  public CatalogAdminsPriceList rank(Integer rank) {
+    
+    this.rank = rank;
+    return this;
+  }
+
+   /**
+   * Used to prioritize price list resolution when more than 1 price list maps
+   * @return rank
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "Used to prioritize price list resolution when more than 1 price list maps")
+
+  public Integer getRank() {
+    return rank;
+  }
+
+
+  public void setRank(Integer rank) {
+    this.rank = rank;
+  }
+
+
+  public CatalogAdminsPriceList resolvable(Boolean resolvable) {
+    
+    this.resolvable = resolvable;
+    return this;
+  }
+
+   /**
+   * Determines if this price list can be resolved as the current price list  within a session.
+   * @return resolvable
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "Determines if this price list can be resolved as the current price list  within a session.")
+
+  public Boolean getResolvable() {
+    return resolvable;
+  }
+
+
+  public void setResolvable(Boolean resolvable) {
+    this.resolvable = resolvable;
+  }
+
+
   public CatalogAdminsPriceList validForAllSites(Boolean validForAllSites) {
     
     this.validForAllSites = validForAllSites;
@@ -363,168 +525,6 @@ public class CatalogAdminsPriceList implements Serializable {
   }
 
 
-  public CatalogAdminsPriceList defaultForSites(List<Integer> defaultForSites) {
-    
-    this.defaultForSites = defaultForSites;
-    return this;
-  }
-
-  public CatalogAdminsPriceList addDefaultForSitesItem(Integer defaultForSitesItem) {
-    if (this.defaultForSites == null) {
-      this.defaultForSites = new ArrayList<>();
-    }
-    this.defaultForSites.add(defaultForSitesItem);
-    return this;
-  }
-
-   /**
-   * Get defaultForSites
-   * @return defaultForSites
-  **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
-
-  public List<Integer> getDefaultForSites() {
-    return defaultForSites;
-  }
-
-
-  public void setDefaultForSites(List<Integer> defaultForSites) {
-    this.defaultForSites = defaultForSites;
-  }
-
-
-  public CatalogAdminsPriceList indexedSites(List<Integer> indexedSites) {
-    
-    this.indexedSites = indexedSites;
-    return this;
-  }
-
-  public CatalogAdminsPriceList addIndexedSitesItem(Integer indexedSitesItem) {
-    if (this.indexedSites == null) {
-      this.indexedSites = new ArrayList<>();
-    }
-    this.indexedSites.add(indexedSitesItem);
-    return this;
-  }
-
-   /**
-   * Get indexedSites
-   * @return indexedSites
-  **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
-
-  public List<Integer> getIndexedSites() {
-    return indexedSites;
-  }
-
-
-  public void setIndexedSites(List<Integer> indexedSites) {
-    this.indexedSites = indexedSites;
-  }
-
-
-  public CatalogAdminsPriceList mappedCustomerSegments(List<String> mappedCustomerSegments) {
-    
-    this.mappedCustomerSegments = mappedCustomerSegments;
-    return this;
-  }
-
-  public CatalogAdminsPriceList addMappedCustomerSegmentsItem(String mappedCustomerSegmentsItem) {
-    if (this.mappedCustomerSegments == null) {
-      this.mappedCustomerSegments = new ArrayList<>();
-    }
-    this.mappedCustomerSegments.add(mappedCustomerSegmentsItem);
-    return this;
-  }
-
-   /**
-   * List of customer segment code associated with this price list.  Used to resolve default price list
-   * @return mappedCustomerSegments
-  **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(value = "List of customer segment code associated with this price list.  Used to resolve default price list")
-
-  public List<String> getMappedCustomerSegments() {
-    return mappedCustomerSegments;
-  }
-
-
-  public void setMappedCustomerSegments(List<String> mappedCustomerSegments) {
-    this.mappedCustomerSegments = mappedCustomerSegments;
-  }
-
-
-  public CatalogAdminsPriceList rank(Integer rank) {
-    
-    this.rank = rank;
-    return this;
-  }
-
-   /**
-   * Used to prioritize price list resolution when more than 1 price list maps
-   * @return rank
-  **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(value = "Used to prioritize price list resolution when more than 1 price list maps")
-
-  public Integer getRank() {
-    return rank;
-  }
-
-
-  public void setRank(Integer rank) {
-    this.rank = rank;
-  }
-
-
-  public CatalogAdminsPriceList resolvable(Boolean resolvable) {
-    
-    this.resolvable = resolvable;
-    return this;
-  }
-
-   /**
-   * Determines if this price list can be resolved as the current price list   within a session.
-   * @return resolvable
-  **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(value = "Determines if this price list can be resolved as the current price list   within a session.")
-
-  public Boolean getResolvable() {
-    return resolvable;
-  }
-
-
-  public void setResolvable(Boolean resolvable) {
-    this.resolvable = resolvable;
-  }
-
-
-  public CatalogAdminsPriceList auditInfo(AdminUserAuditInfo auditInfo) {
-    
-    this.auditInfo = auditInfo;
-    return this;
-  }
-
-   /**
-   * Get auditInfo
-   * @return auditInfo
-  **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
-
-  public AdminUserAuditInfo getAuditInfo() {
-    return auditInfo;
-  }
-
-
-  public void setAuditInfo(AdminUserAuditInfo auditInfo) {
-    this.auditInfo = auditInfo;
-  }
-
-
 
   @Override
   public boolean equals(Object o) {
@@ -535,22 +535,22 @@ public class CatalogAdminsPriceList implements Serializable {
       return false;
     }
     CatalogAdminsPriceList catalogAdminsPriceList = (CatalogAdminsPriceList) o;
-    return Objects.equals(this.priceListCode, catalogAdminsPriceList.priceListCode) &&
-        Objects.equals(this.priceListSequence, catalogAdminsPriceList.priceListSequence) &&
-        Objects.equals(this.parentPriceListCode, catalogAdminsPriceList.parentPriceListCode) &&
-        Objects.equals(this.parentPriceListName, catalogAdminsPriceList.parentPriceListName) &&
-        Objects.equals(this.name, catalogAdminsPriceList.name) &&
+    return Objects.equals(this.auditInfo, catalogAdminsPriceList.auditInfo) &&
+        Objects.equals(this.defaultForSites, catalogAdminsPriceList.defaultForSites) &&
         Objects.equals(this.description, catalogAdminsPriceList.description) &&
         Objects.equals(this.enabled, catalogAdminsPriceList.enabled) &&
         Objects.equals(this.filteredInStorefront, catalogAdminsPriceList.filteredInStorefront) &&
-        Objects.equals(this.validForAllSites, catalogAdminsPriceList.validForAllSites) &&
-        Objects.equals(this.validSites, catalogAdminsPriceList.validSites) &&
-        Objects.equals(this.defaultForSites, catalogAdminsPriceList.defaultForSites) &&
         Objects.equals(this.indexedSites, catalogAdminsPriceList.indexedSites) &&
         Objects.equals(this.mappedCustomerSegments, catalogAdminsPriceList.mappedCustomerSegments) &&
+        Objects.equals(this.name, catalogAdminsPriceList.name) &&
+        Objects.equals(this.parentPriceListCode, catalogAdminsPriceList.parentPriceListCode) &&
+        Objects.equals(this.parentPriceListName, catalogAdminsPriceList.parentPriceListName) &&
+        Objects.equals(this.priceListCode, catalogAdminsPriceList.priceListCode) &&
+        Objects.equals(this.priceListSequence, catalogAdminsPriceList.priceListSequence) &&
         Objects.equals(this.rank, catalogAdminsPriceList.rank) &&
         Objects.equals(this.resolvable, catalogAdminsPriceList.resolvable) &&
-        Objects.equals(this.auditInfo, catalogAdminsPriceList.auditInfo);
+        Objects.equals(this.validForAllSites, catalogAdminsPriceList.validForAllSites) &&
+        Objects.equals(this.validSites, catalogAdminsPriceList.validSites);
   }
 
   private static <T> boolean equalsNullable(JsonNullable<T> a, JsonNullable<T> b) {
@@ -559,7 +559,7 @@ public class CatalogAdminsPriceList implements Serializable {
 
   @Override
   public int hashCode() {
-    return Objects.hash(priceListCode, priceListSequence, parentPriceListCode, parentPriceListName, name, description, enabled, filteredInStorefront, validForAllSites, validSites, defaultForSites, indexedSites, mappedCustomerSegments, rank, resolvable, auditInfo);
+    return Objects.hash(auditInfo, defaultForSites, description, enabled, filteredInStorefront, indexedSites, mappedCustomerSegments, name, parentPriceListCode, parentPriceListName, priceListCode, priceListSequence, rank, resolvable, validForAllSites, validSites);
   }
 
   private static <T> int hashCodeNullable(JsonNullable<T> a) {
@@ -573,22 +573,22 @@ public class CatalogAdminsPriceList implements Serializable {
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class CatalogAdminsPriceList {\n");
-    sb.append("    priceListCode: ").append(toIndentedString(priceListCode)).append("\n");
-    sb.append("    priceListSequence: ").append(toIndentedString(priceListSequence)).append("\n");
-    sb.append("    parentPriceListCode: ").append(toIndentedString(parentPriceListCode)).append("\n");
-    sb.append("    parentPriceListName: ").append(toIndentedString(parentPriceListName)).append("\n");
-    sb.append("    name: ").append(toIndentedString(name)).append("\n");
+    sb.append("    auditInfo: ").append(toIndentedString(auditInfo)).append("\n");
+    sb.append("    defaultForSites: ").append(toIndentedString(defaultForSites)).append("\n");
     sb.append("    description: ").append(toIndentedString(description)).append("\n");
     sb.append("    enabled: ").append(toIndentedString(enabled)).append("\n");
     sb.append("    filteredInStorefront: ").append(toIndentedString(filteredInStorefront)).append("\n");
-    sb.append("    validForAllSites: ").append(toIndentedString(validForAllSites)).append("\n");
-    sb.append("    validSites: ").append(toIndentedString(validSites)).append("\n");
-    sb.append("    defaultForSites: ").append(toIndentedString(defaultForSites)).append("\n");
     sb.append("    indexedSites: ").append(toIndentedString(indexedSites)).append("\n");
     sb.append("    mappedCustomerSegments: ").append(toIndentedString(mappedCustomerSegments)).append("\n");
+    sb.append("    name: ").append(toIndentedString(name)).append("\n");
+    sb.append("    parentPriceListCode: ").append(toIndentedString(parentPriceListCode)).append("\n");
+    sb.append("    parentPriceListName: ").append(toIndentedString(parentPriceListName)).append("\n");
+    sb.append("    priceListCode: ").append(toIndentedString(priceListCode)).append("\n");
+    sb.append("    priceListSequence: ").append(toIndentedString(priceListSequence)).append("\n");
     sb.append("    rank: ").append(toIndentedString(rank)).append("\n");
     sb.append("    resolvable: ").append(toIndentedString(resolvable)).append("\n");
-    sb.append("    auditInfo: ").append(toIndentedString(auditInfo)).append("\n");
+    sb.append("    validForAllSites: ").append(toIndentedString(validForAllSites)).append("\n");
+    sb.append("    validSites: ").append(toIndentedString(validSites)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -611,27 +611,27 @@ public class CatalogAdminsPriceList implements Serializable {
   static {
     // a set of all properties/fields (JSON key names)
     openapiFields = new HashSet<String>();
-    openapiFields.add("priceListCode");
-    openapiFields.add("priceListSequence");
-    openapiFields.add("parentPriceListCode");
-    openapiFields.add("parentPriceListName");
-    openapiFields.add("name");
+    openapiFields.add("auditInfo");
+    openapiFields.add("defaultForSites");
     openapiFields.add("description");
     openapiFields.add("enabled");
     openapiFields.add("filteredInStorefront");
-    openapiFields.add("validForAllSites");
-    openapiFields.add("validSites");
-    openapiFields.add("defaultForSites");
     openapiFields.add("indexedSites");
     openapiFields.add("mappedCustomerSegments");
+    openapiFields.add("name");
+    openapiFields.add("parentPriceListCode");
+    openapiFields.add("parentPriceListName");
+    openapiFields.add("priceListCode");
+    openapiFields.add("priceListSequence");
     openapiFields.add("rank");
     openapiFields.add("resolvable");
-    openapiFields.add("auditInfo");
+    openapiFields.add("validForAllSites");
+    openapiFields.add("validSites");
 
     // a set of required properties/fields (JSON key names)
     openapiRequiredFields = new HashSet<String>();
-    openapiRequiredFields.add("priceListCode");
     openapiRequiredFields.add("name");
+    openapiRequiredFields.add("priceListCode");
   }
 
  /**
@@ -662,28 +662,16 @@ public class CatalogAdminsPriceList implements Serializable {
           throw new IllegalArgumentException(String.format("The required field `%s` is not found in the JSON string: %s", requiredField, jsonObj.toString()));
         }
       }
-      if (!jsonObj.get("priceListCode").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `priceListCode` to be a primitive type in the JSON string but got `%s`", jsonObj.get("priceListCode").toString()));
-      }
-      if ((jsonObj.get("parentPriceListCode") != null && !jsonObj.get("parentPriceListCode").isJsonNull()) && !jsonObj.get("parentPriceListCode").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `parentPriceListCode` to be a primitive type in the JSON string but got `%s`", jsonObj.get("parentPriceListCode").toString()));
-      }
-      if ((jsonObj.get("parentPriceListName") != null && !jsonObj.get("parentPriceListName").isJsonNull()) && !jsonObj.get("parentPriceListName").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `parentPriceListName` to be a primitive type in the JSON string but got `%s`", jsonObj.get("parentPriceListName").toString()));
-      }
-      if (!jsonObj.get("name").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `name` to be a primitive type in the JSON string but got `%s`", jsonObj.get("name").toString()));
-      }
-      if ((jsonObj.get("description") != null && !jsonObj.get("description").isJsonNull()) && !jsonObj.get("description").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `description` to be a primitive type in the JSON string but got `%s`", jsonObj.get("description").toString()));
-      }
-      // ensure the json data is an array
-      if (!jsonObj.get("validSites").isJsonArray()) {
-        throw new IllegalArgumentException(String.format("Expected the field `validSites` to be an array in the JSON string but got `%s`", jsonObj.get("validSites").toString()));
+      // validate the optional field `auditInfo`
+      if (jsonObj.get("auditInfo") != null && !jsonObj.get("auditInfo").isJsonNull()) {
+        AdminUserAuditInfo.validateJsonObject(jsonObj.getAsJsonObject("auditInfo"));
       }
       // ensure the json data is an array
       if (!jsonObj.get("defaultForSites").isJsonArray()) {
         throw new IllegalArgumentException(String.format("Expected the field `defaultForSites` to be an array in the JSON string but got `%s`", jsonObj.get("defaultForSites").toString()));
+      }
+      if ((jsonObj.get("description") != null && !jsonObj.get("description").isJsonNull()) && !jsonObj.get("description").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `description` to be a primitive type in the JSON string but got `%s`", jsonObj.get("description").toString()));
       }
       // ensure the json data is an array
       if (!jsonObj.get("indexedSites").isJsonArray()) {
@@ -693,9 +681,21 @@ public class CatalogAdminsPriceList implements Serializable {
       if (!jsonObj.get("mappedCustomerSegments").isJsonArray()) {
         throw new IllegalArgumentException(String.format("Expected the field `mappedCustomerSegments` to be an array in the JSON string but got `%s`", jsonObj.get("mappedCustomerSegments").toString()));
       }
-      // validate the optional field `auditInfo`
-      if (jsonObj.get("auditInfo") != null && !jsonObj.get("auditInfo").isJsonNull()) {
-        AdminUserAuditInfo.validateJsonObject(jsonObj.getAsJsonObject("auditInfo"));
+      if (!jsonObj.get("name").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `name` to be a primitive type in the JSON string but got `%s`", jsonObj.get("name").toString()));
+      }
+      if ((jsonObj.get("parentPriceListCode") != null && !jsonObj.get("parentPriceListCode").isJsonNull()) && !jsonObj.get("parentPriceListCode").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `parentPriceListCode` to be a primitive type in the JSON string but got `%s`", jsonObj.get("parentPriceListCode").toString()));
+      }
+      if ((jsonObj.get("parentPriceListName") != null && !jsonObj.get("parentPriceListName").isJsonNull()) && !jsonObj.get("parentPriceListName").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `parentPriceListName` to be a primitive type in the JSON string but got `%s`", jsonObj.get("parentPriceListName").toString()));
+      }
+      if (!jsonObj.get("priceListCode").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `priceListCode` to be a primitive type in the JSON string but got `%s`", jsonObj.get("priceListCode").toString()));
+      }
+      // ensure the json data is an array
+      if (!jsonObj.get("validSites").isJsonArray()) {
+        throw new IllegalArgumentException(String.format("Expected the field `validSites` to be an array in the JSON string but got `%s`", jsonObj.get("validSites").toString()));
       }
   }
 

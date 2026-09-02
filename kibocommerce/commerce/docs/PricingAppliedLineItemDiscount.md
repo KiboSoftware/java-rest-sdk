@@ -7,14 +7,14 @@
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
-|**quantity** | **Integer** |  |  [optional] |
+|**couponCode** | **String** |  |  [optional] |
+|**couponSetId** | **Integer** |  |  [optional] |
+|**discount** | [**PricingDiscount**](PricingDiscount.md) |  |  [optional] |
+|**impact** | **Double** |  |  [optional] |
 |**impactPerUnit** | **Double** |  |  [optional] |
 |**isForced** | **Boolean** |  |  [optional] |
 |**normalizedImpact** | **Double** |  |  [optional] |
-|**impact** | **Double** |  |  [optional] |
-|**discount** | [**PricingDiscount**](PricingDiscount.md) |  |  [optional] |
-|**couponCode** | **String** |  |  [optional] |
-|**couponSetId** | **Integer** |  |  [optional] |
+|**quantity** | **Integer** |  |  [optional] |
 
 
 ## Implemented Interfaces

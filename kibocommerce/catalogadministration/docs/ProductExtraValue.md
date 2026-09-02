@@ -8,13 +8,13 @@ A value of a product option for this product. For example, a computer product ma
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
-|**value** | **Object** |  |  [optional] |
+|**attributeVocabularyValueDetail** | [**CatalogAdminsAttributeVocabularyValue**](CatalogAdminsAttributeVocabularyValue.md) |  |  [optional] |
 |**deltaPrice** | [**ProductExtraValueDeltaPrice**](ProductExtraValueDeltaPrice.md) |  |  [optional] |
-|**localizedDeltaPrice** | [**List&lt;ProductExtraValueDeltaPrice&gt;**](ProductExtraValueDeltaPrice.md) |  |  [optional] |
 |**deltaWeight** | **Double** |  |  [optional] |
 |**isDefaulted** | **Boolean** |  |  [optional] |
+|**localizedDeltaPrice** | [**List&lt;ProductExtraValueDeltaPrice&gt;**](ProductExtraValueDeltaPrice.md) |  |  [optional] |
 |**quantity** | **Integer** |  |  [optional] |
-|**attributeVocabularyValueDetail** | [**CatalogAdminsAttributeVocabularyValue**](CatalogAdminsAttributeVocabularyValue.md) |  |  [optional] |
+|**value** | **Object** |  |  [optional] |
 
 
 ## Implemented Interfaces

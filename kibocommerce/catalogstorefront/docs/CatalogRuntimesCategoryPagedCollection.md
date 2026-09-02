@@ -8,11 +8,11 @@ Collection of categories where categories are returned in a series of pages.
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
-|**startIndex** | **Integer** |  |  [optional] |
-|**pageSize** | **Integer** |  |  [optional] |
-|**pageCount** | **Integer** |  |  [optional] |
-|**totalCount** | **Integer** |  |  [optional] |
 |**items** | [**List&lt;CatalogRuntimesCategory&gt;**](CatalogRuntimesCategory.md) |  |  [optional] |
+|**pageCount** | **Integer** |  |  [optional] |
+|**pageSize** | **Integer** |  |  [optional] |
+|**startIndex** | **Integer** |  |  [optional] |
+|**totalCount** | **Integer** |  |  [optional] |
 
 
 ## Implemented Interfaces

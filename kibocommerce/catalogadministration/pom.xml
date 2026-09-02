@@ -1,22 +1,22 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.kibocommerce</groupId>
     <artifactId>catalogadministration</artifactId>
     <packaging>jar</packaging>
     <name>catalogadministration</name>
-    <version>2.0.0</version>
-    <url>https://github.com/KiboSoftware/java-sdk-poc.git</url>
+    <version>3.0.0</version>
+    <url>https://github.com/KiboSoftware/java-rest-sdk.git</url>
     <description>OpenAPI Java</description>
     <scm>
-        <connection>scm:git:git@github.com:KiboSoftware/java-sdk-poc.git</connection>
-        <developerConnection>scm:git:git@github.com:KiboSoftware/java-sdk-poc.git</developerConnection>
-        <url>https://github.com/KiboSoftware/java-sdk-poc.git</url>
-      <tag>sdk-2.6.0</tag>
-  </scm>
+        <connection>scm:git:git@github.com:KiboSoftware/java-rest-sdk.git</connection>
+        <developerConnection>scm:git:git@github.com:KiboSoftware/java-rest-sdk.git</developerConnection>
+        <url>https://github.com/KiboSoftware/java-rest-sdk.git</url>
+    </scm>
     <parent>
         <groupId>com.kibocommerce</groupId>
         <artifactId>sdk</artifactId>
-        <version>2.0.0</version>
+        <version>3.0.0</version>
     </parent>
 
     <licenses>
@@ -209,8 +209,8 @@
                       <include>.gitignore</include>
                     </includes>
                     <!-- define the steps to apply to those files -->
-                    <trimTrailingWhitespace />
-                    <endWithNewline />
+                    <trimTrailingWhitespace/>
+                    <endWithNewline/>
                     <indent>
                       <spaces>true</spaces> <!-- or <tabs>true</tabs> -->
                       <spacesPerTab>4</spacesPerTab> <!-- optional, default is 4 -->
@@ -228,8 +228,8 @@
                     <reflowLongStrings>true</reflowLongStrings>
                   </googleJavaFormat>
 
-                  <removeUnusedImports />
-                  <importOrder />
+                  <removeUnusedImports/>
+                  <importOrder/>
 
                 </java>
               </configuration>
@@ -265,7 +265,7 @@
     <dependency>
         <groupId>com.kibocommerce</groupId>
         <artifactId>common</artifactId>
-        <version>2.0.0</version>
+        <version>3.0.0</version>
     </dependency>
         <dependency>
             <groupId>io.swagger</groupId>
@@ -297,11 +297,6 @@
             <groupId>io.gsonfire</groupId>
             <artifactId>gson-fire</artifactId>
             <version>${gson-fire-version}</version>
-        </dependency>
-        <dependency>
-            <groupId>org.apache.oltu.oauth2</groupId>
-            <artifactId>org.apache.oltu.oauth2.client</artifactId>
-            <version>1.0.2</version>
         </dependency>
         <dependency>
             <groupId>org.apache.commons</groupId>

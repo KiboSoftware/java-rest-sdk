@@ -8,8 +8,8 @@ A value of a product option for this product. For example, a computer product ma
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
-|**value** | **Object** |  |  [optional] |
 |**attributeVocabularyValueDetail** | [**CatalogAdminsAttributeVocabularyValue**](CatalogAdminsAttributeVocabularyValue.md) |  |  [optional] |
+|**value** | **Object** |  |  [optional] |
 
 
 ## Implemented Interfaces

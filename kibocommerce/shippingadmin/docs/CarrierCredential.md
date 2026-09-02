@@ -8,12 +8,12 @@ Stores a reference to a Mozu.ShippingAdmin.Contracts.Carriers.CarrierCredentialS
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
-|**carrierId** | **String** | The Carrier ID associated with this carrier credential.  Usually the short name of a carrier (e.g., \&quot;FedEx\&quot;). |  [optional] |
-|**siteId** | **Integer** | The Site ID associated with this carrier credential, if any. |  [optional] |
-|**locationGroupCode** | **String** | The Location Group Code associated with this carrier credential, if any. |  [optional] |
-|**locationCode** | **String** | The Location Code associated with this carrier credential, if any. |  [optional] |
-|**credentialSet** | [**CarrierCredentialSet**](CarrierCredentialSet.md) |  |  [optional] |
 |**auditInfo** | [**AdminUserAuditInfo**](AdminUserAuditInfo.md) |  |  [optional] |
+|**carrierId** | **String** | The Carrier ID associated with this carrier credential.  Usually the short name of a carrier (e.g., \&quot;FedEx\&quot;). |  [optional] |
+|**credentialSet** | [**CarrierCredentialSet**](CarrierCredentialSet.md) |  |  [optional] |
+|**locationCode** | **String** | The Location Code associated with this carrier credential, if any. |  [optional] |
+|**locationGroupCode** | **String** | The Location Group Code associated with this carrier credential, if any. |  [optional] |
+|**siteId** | **Integer** | The Site ID associated with this carrier credential, if any. |  [optional] |
 
 
 ## Implemented Interfaces

@@ -8,9 +8,9 @@ Supplier info for the product
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
-|**mfgPartNumber** | **String** |  |  [optional] |
-|**distPartNumber** | **String** |  |  [optional] |
 |**cost** | [**CatalogAdminsProductCost**](CatalogAdminsProductCost.md) |  |  [optional] |
+|**distPartNumber** | **String** |  |  [optional] |
+|**mfgPartNumber** | **String** |  |  [optional] |
 
 
 ## Implemented Interfaces

@@ -7,10 +7,10 @@
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
-|**attributeDefinition** | [**CommerceRuntimeAttribute**](CommerceRuntimeAttribute.md) |  |  [optional] |
+|**attributeDefinition** | [**LocationStorefrontAttribute**](LocationStorefrontAttribute.md) |  |  [optional] |
+|**attributeDefinitionId** | **Integer** |  |  [optional] |
 |**auditInfo** | [**AdminUserAuditInfo**](AdminUserAuditInfo.md) |  |  [optional] |
 |**fullyQualifiedName** | **String** |  |  [optional] |
-|**attributeDefinitionId** | **Integer** |  |  [optional] |
 |**values** | **List&lt;Object&gt;** |  |  [optional] |
 
 

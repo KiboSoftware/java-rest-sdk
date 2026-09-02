@@ -1,8 +1,8 @@
 /*
  * Kibo Catalog Admin Services
- * OpenAPI Spec for Kibo Catalog Admin Services
+ * <div id=\"overview_CATALOG_ADMIN\">             <h2>CATALOG ADMINISTRATION</h2>             <p>The Catalog Administration APIs are a collection of resources for configuring the catalogs and products offered to your shoppers, including                 discounts and coupon sets, faceting, price lists, and different types or variations of products. See the                 <a href=\"/concept-guides/catalog\">Catalog user guides</a>                 for information about the related features in the Unified Commerce Admin.</p>             <p>Use the <strong>Attributes</strong> resource to manage localization and attribute configurations for your catalogs. This current version of the Attributes API includes localizedContent to                 support <a href=\"/pages/catalog-structure#multi-locale-catalogs\">multi-locale catalogs</a>, which was not present in the legacy API model. If                 you were a client prior to May 2024 and have upgraded your implementation to support this feature,                 you can still access attribute data that has not yet been rewritten to the new model by providing                 an x-api-version header set to \"1\". </p>             <p>Use the <strong>Categories</strong> resource to organize products and control where they appear on the storefront. Create                 and maintain a hierarchy of categories and subcategories where the site will store properties. This current version of the Categories API includes localizedContent to                 support <a href=\"/pages/catalog-structure#multi-locale-catalogs\">multi-locale catalogs</a>, which was not present in the legacy API model. If                 you were a client prior to May 2024 and have upgraded your implementation to support this feature,                 you can still access category data that has not yet been rewritten to the new model by providing                 an x-api-version header set to \"1\". </p>             <p>Use the <strong>Coupon Sets</strong> resource to view and create coupon sets. You can use coupon sets to group multiple                 coupon codes together and associate them with one or more discounts.</p>             <p>Use the <strong>Currency</strong> resource to manage the currency localization rules and exchange rates for any of the                 currencies that are supported for placing orders in.</p>             <p>Use the <strong>Discounts</strong> and <strong>Discount Settings</strong> resources to define and manage discounts to apply to products, product categories, or                 orders. This current version of the Discounts API includes localizedContent to                 support <a href=\"/pages/catalog-structure#multi-locale-catalogs\">multi-locale catalogs</a>, which was not present in the legacy Products API model. If                 you were a client prior to May 2024 and have upgraded your implementation to support this feature,                 you can still access discount data that has not yet been rewritten to the new model by providing                 an x-api-version header set to \"1\". </p>             <p>Use the <strong>Facets</strong> resource to manage the facets shoppers use to filter product display results on a                 storefront. Facets can include categories, product attributes, or prices, and use either a range of                 values or discrete values.</p>             <p>Use the <strong>Master Catalog</strong> resource to view details of the master catalogs associated with a tenant and to                 manage the product publishing mode for each master catalog.</p>             <p>Use the <strong>Price Lists</strong> resources to view and create price lists. You can use price lists to override the                 catalog pricing of products for specific customer segments and/or sites.</p>             <p>Use the <strong>Products</strong>, <strong>Product Types/Extras/Options/Properties</strong>, and <strong>Product Sort Definitions</strong> resources to create new product definitions in the master catalog and determine which                 catalogs will feature products. This current version of the Products API includes localizedContent to                 support <a href=\"/pages/catalog-structure#multi-locale-catalogs\">multi-locale catalogs</a>, which was not present in the legacy Products API model. If                 you were a client prior to May 2024 and have upgraded your implementation to support this feature,                 you can still access product data that has not yet been rewritten to the new model by providing                 an x-api-version header set to \"1\".</p>             <p>Use the <strong>Publishing</strong> resource to publish pending product updates together as part of a set.</p>             <p>Use the <strong>Search</strong> resource to manage all settings and options for providing product search on your site, as                 well as search tuning rules.</p>         </div>
  *
- * The version of the OpenAPI document: 1.0.0
+ * The version of the OpenAPI document: v1
  * 
  *
  * NOTE: This class is auto generated by OpenAPI Generator (https://openapi-generator.tech).
@@ -62,6 +62,26 @@ import com.kibocommerce.sdk.common.JSON;
 public class ProductVariation implements Serializable {
   private static final long serialVersionUID = 1L;
 
+  public static final String SERIALIZED_NAME_DELTA_PRICE = "deltaPrice";
+  @SerializedName(SERIALIZED_NAME_DELTA_PRICE)
+  private ProductVariationDeltaPrice deltaPrice;
+
+  public static final String SERIALIZED_NAME_DELTA_WEIGHT = "deltaWeight";
+  @SerializedName(SERIALIZED_NAME_DELTA_WEIGHT)
+  private Double deltaWeight;
+
+  public static final String SERIALIZED_NAME_FIXED_PRICE = "fixedPrice";
+  @SerializedName(SERIALIZED_NAME_FIXED_PRICE)
+  private ProductVariationFixedPrice fixedPrice;
+
+  public static final String SERIALIZED_NAME_FIXED_WEIGHT = "fixedWeight";
+  @SerializedName(SERIALIZED_NAME_FIXED_WEIGHT)
+  private Double fixedWeight;
+
+  public static final String SERIALIZED_NAME_FULFILLMENT_TYPES_SUPPORTED = "fulfillmentTypesSupported";
+  @SerializedName(SERIALIZED_NAME_FULFILLMENT_TYPES_SUPPORTED)
+  private List<String> fulfillmentTypesSupported = null;
+
   public static final String SERIALIZED_NAME_IS_ACTIVE = "isActive";
   @SerializedName(SERIALIZED_NAME_IS_ACTIVE)
   private Boolean isActive;
@@ -70,41 +90,13 @@ public class ProductVariation implements Serializable {
   @SerializedName(SERIALIZED_NAME_IS_ORPHAN)
   private Boolean isOrphan;
 
-  public static final String SERIALIZED_NAME_VARIATION_EXISTS = "variationExists";
-  @SerializedName(SERIALIZED_NAME_VARIATION_EXISTS)
-  private Boolean variationExists;
-
-  public static final String SERIALIZED_NAME_VARIATIONKEY = "variationkey";
-  @SerializedName(SERIALIZED_NAME_VARIATIONKEY)
-  private String variationkey;
-
-  public static final String SERIALIZED_NAME_VARIATION_PRODUCT_CODE = "variationProductCode";
-  @SerializedName(SERIALIZED_NAME_VARIATION_PRODUCT_CODE)
-  private String variationProductCode;
-
-  public static final String SERIALIZED_NAME_DELTA_PRICE = "deltaPrice";
-  @SerializedName(SERIALIZED_NAME_DELTA_PRICE)
-  private ProductVariationDeltaPrice deltaPrice;
-
   public static final String SERIALIZED_NAME_LOCALIZED_DELTA_PRICE = "localizedDeltaPrice";
   @SerializedName(SERIALIZED_NAME_LOCALIZED_DELTA_PRICE)
   private List<ProductVariationDeltaPrice> localizedDeltaPrice = null;
 
-  public static final String SERIALIZED_NAME_FIXED_PRICE = "fixedPrice";
-  @SerializedName(SERIALIZED_NAME_FIXED_PRICE)
-  private ProductVariationFixedPrice fixedPrice;
-
   public static final String SERIALIZED_NAME_LOCALIZED_FIXED_PRICE = "localizedFixedPrice";
   @SerializedName(SERIALIZED_NAME_LOCALIZED_FIXED_PRICE)
   private List<ProductVariationFixedPrice> localizedFixedPrice = null;
-
-  public static final String SERIALIZED_NAME_DELTA_WEIGHT = "deltaWeight";
-  @SerializedName(SERIALIZED_NAME_DELTA_WEIGHT)
-  private Double deltaWeight;
-
-  public static final String SERIALIZED_NAME_FIXED_WEIGHT = "fixedWeight";
-  @SerializedName(SERIALIZED_NAME_FIXED_WEIGHT)
-  private Double fixedWeight;
 
   public static final String SERIALIZED_NAME_OPTIONS = "options";
   @SerializedName(SERIALIZED_NAME_OPTIONS)
@@ -114,20 +106,151 @@ public class ProductVariation implements Serializable {
   @SerializedName(SERIALIZED_NAME_PROPERTIES)
   private List<ProductVariationProperty> properties = null;
 
-  public static final String SERIALIZED_NAME_UPC = "upc";
-  @SerializedName(SERIALIZED_NAME_UPC)
-  private String upc;
-
-  public static final String SERIALIZED_NAME_FULFILLMENT_TYPES_SUPPORTED = "fulfillmentTypesSupported";
-  @SerializedName(SERIALIZED_NAME_FULFILLMENT_TYPES_SUPPORTED)
-  private List<String> fulfillmentTypesSupported = null;
-
   public static final String SERIALIZED_NAME_SUPPLIER_INFO = "supplierInfo";
   @SerializedName(SERIALIZED_NAME_SUPPLIER_INFO)
   private ProductSupplierInfo supplierInfo;
 
+  public static final String SERIALIZED_NAME_UPC = "upc";
+  @SerializedName(SERIALIZED_NAME_UPC)
+  private String upc;
+
+  public static final String SERIALIZED_NAME_VARIATION_EXISTS = "variationExists";
+  @SerializedName(SERIALIZED_NAME_VARIATION_EXISTS)
+  private Boolean variationExists;
+
+  public static final String SERIALIZED_NAME_VARIATION_PRODUCT_CODE = "variationProductCode";
+  @SerializedName(SERIALIZED_NAME_VARIATION_PRODUCT_CODE)
+  private String variationProductCode;
+
+  public static final String SERIALIZED_NAME_VARIATIONKEY = "variationkey";
+  @SerializedName(SERIALIZED_NAME_VARIATIONKEY)
+  private String variationkey;
+
   public ProductVariation() {
   }
+
+  public ProductVariation deltaPrice(ProductVariationDeltaPrice deltaPrice) {
+    
+    this.deltaPrice = deltaPrice;
+    return this;
+  }
+
+   /**
+   * Get deltaPrice
+   * @return deltaPrice
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
+
+  public ProductVariationDeltaPrice getDeltaPrice() {
+    return deltaPrice;
+  }
+
+
+  public void setDeltaPrice(ProductVariationDeltaPrice deltaPrice) {
+    this.deltaPrice = deltaPrice;
+  }
+
+
+  public ProductVariation deltaWeight(Double deltaWeight) {
+    
+    this.deltaWeight = deltaWeight;
+    return this;
+  }
+
+   /**
+   * Weight of the product with this variation.
+   * @return deltaWeight
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "Weight of the product with this variation.")
+
+  public Double getDeltaWeight() {
+    return deltaWeight;
+  }
+
+
+  public void setDeltaWeight(Double deltaWeight) {
+    this.deltaWeight = deltaWeight;
+  }
+
+
+  public ProductVariation fixedPrice(ProductVariationFixedPrice fixedPrice) {
+    
+    this.fixedPrice = fixedPrice;
+    return this;
+  }
+
+   /**
+   * Get fixedPrice
+   * @return fixedPrice
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
+
+  public ProductVariationFixedPrice getFixedPrice() {
+    return fixedPrice;
+  }
+
+
+  public void setFixedPrice(ProductVariationFixedPrice fixedPrice) {
+    this.fixedPrice = fixedPrice;
+  }
+
+
+  public ProductVariation fixedWeight(Double fixedWeight) {
+    
+    this.fixedWeight = fixedWeight;
+    return this;
+  }
+
+   /**
+   * Fixed weight of the product with this variation.
+   * @return fixedWeight
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "Fixed weight of the product with this variation.")
+
+  public Double getFixedWeight() {
+    return fixedWeight;
+  }
+
+
+  public void setFixedWeight(Double fixedWeight) {
+    this.fixedWeight = fixedWeight;
+  }
+
+
+  public ProductVariation fulfillmentTypesSupported(List<String> fulfillmentTypesSupported) {
+    
+    this.fulfillmentTypesSupported = fulfillmentTypesSupported;
+    return this;
+  }
+
+  public ProductVariation addFulfillmentTypesSupportedItem(String fulfillmentTypesSupportedItem) {
+    if (this.fulfillmentTypesSupported == null) {
+      this.fulfillmentTypesSupported = new ArrayList<>();
+    }
+    this.fulfillmentTypesSupported.add(fulfillmentTypesSupportedItem);
+    return this;
+  }
+
+   /**
+   * Indicates the fulfillment types the product supports.
+   * @return fulfillmentTypesSupported
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "Indicates the fulfillment types the product supports.")
+
+  public List<String> getFulfillmentTypesSupported() {
+    return fulfillmentTypesSupported;
+  }
+
+
+  public void setFulfillmentTypesSupported(List<String> fulfillmentTypesSupported) {
+    this.fulfillmentTypesSupported = fulfillmentTypesSupported;
+  }
+
 
   public ProductVariation isActive(Boolean isActive) {
     
@@ -175,98 +298,6 @@ public class ProductVariation implements Serializable {
   }
 
 
-  public ProductVariation variationExists(Boolean variationExists) {
-    
-    this.variationExists = variationExists;
-    return this;
-  }
-
-   /**
-   * If true, the product variation exists. When the merchant sets IsActive to true, the system sets VariationExists to true and creates a Variation Key as a unique identifier for this variation. System-supplied and read-only.
-   * @return variationExists
-  **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(value = "If true, the product variation exists. When the merchant sets IsActive to true, the system sets VariationExists to true and creates a Variation Key as a unique identifier for this variation. System-supplied and read-only.")
-
-  public Boolean getVariationExists() {
-    return variationExists;
-  }
-
-
-  public void setVariationExists(Boolean variationExists) {
-    this.variationExists = variationExists;
-  }
-
-
-  public ProductVariation variationkey(String variationkey) {
-    
-    this.variationkey = variationkey;
-    return this;
-  }
-
-   /**
-   * Unique identifier for a single variation (\&quot;small\&quot; + \&quot;red\&quot; + \&quot;short-sleeved\&quot;). System-supplied and read-only.
-   * @return variationkey
-  **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(value = "Unique identifier for a single variation (\"small\" + \"red\" + \"short-sleeved\"). System-supplied and read-only.")
-
-  public String getVariationkey() {
-    return variationkey;
-  }
-
-
-  public void setVariationkey(String variationkey) {
-    this.variationkey = variationkey;
-  }
-
-
-  public ProductVariation variationProductCode(String variationProductCode) {
-    
-    this.variationProductCode = variationProductCode;
-    return this;
-  }
-
-   /**
-   * Descriptive code to refer to a single variation. Typically this is a sequence appended to the base ProduceCode. A merchant can create this code to easily recognize a product variation. By default, the system creates this code by appending a number to the base product. After the merchant supplies this code, it becomes read-only.
-   * @return variationProductCode
-  **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(value = "Descriptive code to refer to a single variation. Typically this is a sequence appended to the base ProduceCode. A merchant can create this code to easily recognize a product variation. By default, the system creates this code by appending a number to the base product. After the merchant supplies this code, it becomes read-only.")
-
-  public String getVariationProductCode() {
-    return variationProductCode;
-  }
-
-
-  public void setVariationProductCode(String variationProductCode) {
-    this.variationProductCode = variationProductCode;
-  }
-
-
-  public ProductVariation deltaPrice(ProductVariationDeltaPrice deltaPrice) {
-    
-    this.deltaPrice = deltaPrice;
-    return this;
-  }
-
-   /**
-   * Get deltaPrice
-   * @return deltaPrice
-  **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
-
-  public ProductVariationDeltaPrice getDeltaPrice() {
-    return deltaPrice;
-  }
-
-
-  public void setDeltaPrice(ProductVariationDeltaPrice deltaPrice) {
-    this.deltaPrice = deltaPrice;
-  }
-
-
   public ProductVariation localizedDeltaPrice(List<ProductVariationDeltaPrice> localizedDeltaPrice) {
     
     this.localizedDeltaPrice = localizedDeltaPrice;
@@ -282,11 +313,11 @@ public class ProductVariation implements Serializable {
   }
 
    /**
-   * How much more the variation costs above the cost of the base product. If the price of the base product changes, this price is adjusted accordingly.  This collection allows for multiple currencies.
+   * How much more the variation costs above the cost of the base product. If the price of the base product changes, this price is adjusted accordingly. This collection allows for multiple currencies.
    * @return localizedDeltaPrice
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "How much more the variation costs above the cost of the base product. If the price of the base product changes, this price is adjusted accordingly.  This collection allows for multiple currencies.")
+  @ApiModelProperty(value = "How much more the variation costs above the cost of the base product. If the price of the base product changes, this price is adjusted accordingly. This collection allows for multiple currencies.")
 
   public List<ProductVariationDeltaPrice> getLocalizedDeltaPrice() {
     return localizedDeltaPrice;
@@ -295,29 +326,6 @@ public class ProductVariation implements Serializable {
 
   public void setLocalizedDeltaPrice(List<ProductVariationDeltaPrice> localizedDeltaPrice) {
     this.localizedDeltaPrice = localizedDeltaPrice;
-  }
-
-
-  public ProductVariation fixedPrice(ProductVariationFixedPrice fixedPrice) {
-    
-    this.fixedPrice = fixedPrice;
-    return this;
-  }
-
-   /**
-   * Get fixedPrice
-   * @return fixedPrice
-  **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
-
-  public ProductVariationFixedPrice getFixedPrice() {
-    return fixedPrice;
-  }
-
-
-  public void setFixedPrice(ProductVariationFixedPrice fixedPrice) {
-    this.fixedPrice = fixedPrice;
   }
 
 
@@ -336,11 +344,11 @@ public class ProductVariation implements Serializable {
   }
 
    /**
-   * Price of the variation using fixed per currency  This collection allows for multiple currencies.
+   * Price of the variation using fixed per currency This collection allows for multiple currencies.
    * @return localizedFixedPrice
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "Price of the variation using fixed per currency  This collection allows for multiple currencies.")
+  @ApiModelProperty(value = "Price of the variation using fixed per currency This collection allows for multiple currencies.")
 
   public List<ProductVariationFixedPrice> getLocalizedFixedPrice() {
     return localizedFixedPrice;
@@ -349,52 +357,6 @@ public class ProductVariation implements Serializable {
 
   public void setLocalizedFixedPrice(List<ProductVariationFixedPrice> localizedFixedPrice) {
     this.localizedFixedPrice = localizedFixedPrice;
-  }
-
-
-  public ProductVariation deltaWeight(Double deltaWeight) {
-    
-    this.deltaWeight = deltaWeight;
-    return this;
-  }
-
-   /**
-   * Weight of the product with this variation.
-   * @return deltaWeight
-  **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(value = "Weight of the product with this variation.")
-
-  public Double getDeltaWeight() {
-    return deltaWeight;
-  }
-
-
-  public void setDeltaWeight(Double deltaWeight) {
-    this.deltaWeight = deltaWeight;
-  }
-
-
-  public ProductVariation fixedWeight(Double fixedWeight) {
-    
-    this.fixedWeight = fixedWeight;
-    return this;
-  }
-
-   /**
-   * Fixed weight of the product with this variation.
-   * @return fixedWeight
-  **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(value = "Fixed weight of the product with this variation.")
-
-  public Double getFixedWeight() {
-    return fixedWeight;
-  }
-
-
-  public void setFixedWeight(Double fixedWeight) {
-    this.fixedWeight = fixedWeight;
   }
 
 
@@ -460,60 +422,6 @@ public class ProductVariation implements Serializable {
   }
 
 
-  public ProductVariation upc(String upc) {
-    
-    this.upc = upc;
-    return this;
-  }
-
-   /**
-   * Price Lookup Unit code for the product
-   * @return upc
-  **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(value = "Price Lookup Unit code for the product")
-
-  public String getUpc() {
-    return upc;
-  }
-
-
-  public void setUpc(String upc) {
-    this.upc = upc;
-  }
-
-
-  public ProductVariation fulfillmentTypesSupported(List<String> fulfillmentTypesSupported) {
-    
-    this.fulfillmentTypesSupported = fulfillmentTypesSupported;
-    return this;
-  }
-
-  public ProductVariation addFulfillmentTypesSupportedItem(String fulfillmentTypesSupportedItem) {
-    if (this.fulfillmentTypesSupported == null) {
-      this.fulfillmentTypesSupported = new ArrayList<>();
-    }
-    this.fulfillmentTypesSupported.add(fulfillmentTypesSupportedItem);
-    return this;
-  }
-
-   /**
-   * Indicates the fulfillment types the product supports.
-   * @return fulfillmentTypesSupported
-  **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(value = "Indicates the fulfillment types the product supports.")
-
-  public List<String> getFulfillmentTypesSupported() {
-    return fulfillmentTypesSupported;
-  }
-
-
-  public void setFulfillmentTypesSupported(List<String> fulfillmentTypesSupported) {
-    this.fulfillmentTypesSupported = fulfillmentTypesSupported;
-  }
-
-
   public ProductVariation supplierInfo(ProductSupplierInfo supplierInfo) {
     
     this.supplierInfo = supplierInfo;
@@ -537,6 +445,98 @@ public class ProductVariation implements Serializable {
   }
 
 
+  public ProductVariation upc(String upc) {
+    
+    this.upc = upc;
+    return this;
+  }
+
+   /**
+   * Price Lookup Unit code for the product
+   * @return upc
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "Price Lookup Unit code for the product")
+
+  public String getUpc() {
+    return upc;
+  }
+
+
+  public void setUpc(String upc) {
+    this.upc = upc;
+  }
+
+
+  public ProductVariation variationExists(Boolean variationExists) {
+    
+    this.variationExists = variationExists;
+    return this;
+  }
+
+   /**
+   * If true, the product variation exists. When the merchant sets IsActive to true, the system sets VariationExists to true and creates a Variation Key as a unique identifier for this variation. System-supplied and read-only.
+   * @return variationExists
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "If true, the product variation exists. When the merchant sets IsActive to true, the system sets VariationExists to true and creates a Variation Key as a unique identifier for this variation. System-supplied and read-only.")
+
+  public Boolean getVariationExists() {
+    return variationExists;
+  }
+
+
+  public void setVariationExists(Boolean variationExists) {
+    this.variationExists = variationExists;
+  }
+
+
+  public ProductVariation variationProductCode(String variationProductCode) {
+    
+    this.variationProductCode = variationProductCode;
+    return this;
+  }
+
+   /**
+   * Descriptive code to refer to a single variation. Typically this is a sequence appended to the base ProduceCode. A merchant can create this code to easily recognize a product variation. By default, the system creates this code by appending a number to the base product. After the merchant supplies this code, it becomes read-only.
+   * @return variationProductCode
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "Descriptive code to refer to a single variation. Typically this is a sequence appended to the base ProduceCode. A merchant can create this code to easily recognize a product variation. By default, the system creates this code by appending a number to the base product. After the merchant supplies this code, it becomes read-only.")
+
+  public String getVariationProductCode() {
+    return variationProductCode;
+  }
+
+
+  public void setVariationProductCode(String variationProductCode) {
+    this.variationProductCode = variationProductCode;
+  }
+
+
+  public ProductVariation variationkey(String variationkey) {
+    
+    this.variationkey = variationkey;
+    return this;
+  }
+
+   /**
+   * Unique identifier for a single variation (\&quot;small\&quot; + \&quot;red\&quot; + \&quot;short-sleeved\&quot;). System-supplied and read-only.
+   * @return variationkey
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "Unique identifier for a single variation (\"small\" + \"red\" + \"short-sleeved\"). System-supplied and read-only.")
+
+  public String getVariationkey() {
+    return variationkey;
+  }
+
+
+  public void setVariationkey(String variationkey) {
+    this.variationkey = variationkey;
+  }
+
+
 
   @Override
   public boolean equals(Object o) {
@@ -547,22 +547,22 @@ public class ProductVariation implements Serializable {
       return false;
     }
     ProductVariation productVariation = (ProductVariation) o;
-    return Objects.equals(this.isActive, productVariation.isActive) &&
-        Objects.equals(this.isOrphan, productVariation.isOrphan) &&
-        Objects.equals(this.variationExists, productVariation.variationExists) &&
-        Objects.equals(this.variationkey, productVariation.variationkey) &&
-        Objects.equals(this.variationProductCode, productVariation.variationProductCode) &&
-        Objects.equals(this.deltaPrice, productVariation.deltaPrice) &&
-        Objects.equals(this.localizedDeltaPrice, productVariation.localizedDeltaPrice) &&
-        Objects.equals(this.fixedPrice, productVariation.fixedPrice) &&
-        Objects.equals(this.localizedFixedPrice, productVariation.localizedFixedPrice) &&
+    return Objects.equals(this.deltaPrice, productVariation.deltaPrice) &&
         Objects.equals(this.deltaWeight, productVariation.deltaWeight) &&
+        Objects.equals(this.fixedPrice, productVariation.fixedPrice) &&
         Objects.equals(this.fixedWeight, productVariation.fixedWeight) &&
+        Objects.equals(this.fulfillmentTypesSupported, productVariation.fulfillmentTypesSupported) &&
+        Objects.equals(this.isActive, productVariation.isActive) &&
+        Objects.equals(this.isOrphan, productVariation.isOrphan) &&
+        Objects.equals(this.localizedDeltaPrice, productVariation.localizedDeltaPrice) &&
+        Objects.equals(this.localizedFixedPrice, productVariation.localizedFixedPrice) &&
         Objects.equals(this.options, productVariation.options) &&
         Objects.equals(this.properties, productVariation.properties) &&
+        Objects.equals(this.supplierInfo, productVariation.supplierInfo) &&
         Objects.equals(this.upc, productVariation.upc) &&
-        Objects.equals(this.fulfillmentTypesSupported, productVariation.fulfillmentTypesSupported) &&
-        Objects.equals(this.supplierInfo, productVariation.supplierInfo);
+        Objects.equals(this.variationExists, productVariation.variationExists) &&
+        Objects.equals(this.variationProductCode, productVariation.variationProductCode) &&
+        Objects.equals(this.variationkey, productVariation.variationkey);
   }
 
   private static <T> boolean equalsNullable(JsonNullable<T> a, JsonNullable<T> b) {
@@ -571,7 +571,7 @@ public class ProductVariation implements Serializable {
 
   @Override
   public int hashCode() {
-    return Objects.hash(isActive, isOrphan, variationExists, variationkey, variationProductCode, deltaPrice, localizedDeltaPrice, fixedPrice, localizedFixedPrice, deltaWeight, fixedWeight, options, properties, upc, fulfillmentTypesSupported, supplierInfo);
+    return Objects.hash(deltaPrice, deltaWeight, fixedPrice, fixedWeight, fulfillmentTypesSupported, isActive, isOrphan, localizedDeltaPrice, localizedFixedPrice, options, properties, supplierInfo, upc, variationExists, variationProductCode, variationkey);
   }
 
   private static <T> int hashCodeNullable(JsonNullable<T> a) {
@@ -585,22 +585,22 @@ public class ProductVariation implements Serializable {
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class ProductVariation {\n");
+    sb.append("    deltaPrice: ").append(toIndentedString(deltaPrice)).append("\n");
+    sb.append("    deltaWeight: ").append(toIndentedString(deltaWeight)).append("\n");
+    sb.append("    fixedPrice: ").append(toIndentedString(fixedPrice)).append("\n");
+    sb.append("    fixedWeight: ").append(toIndentedString(fixedWeight)).append("\n");
+    sb.append("    fulfillmentTypesSupported: ").append(toIndentedString(fulfillmentTypesSupported)).append("\n");
     sb.append("    isActive: ").append(toIndentedString(isActive)).append("\n");
     sb.append("    isOrphan: ").append(toIndentedString(isOrphan)).append("\n");
-    sb.append("    variationExists: ").append(toIndentedString(variationExists)).append("\n");
-    sb.append("    variationkey: ").append(toIndentedString(variationkey)).append("\n");
-    sb.append("    variationProductCode: ").append(toIndentedString(variationProductCode)).append("\n");
-    sb.append("    deltaPrice: ").append(toIndentedString(deltaPrice)).append("\n");
     sb.append("    localizedDeltaPrice: ").append(toIndentedString(localizedDeltaPrice)).append("\n");
-    sb.append("    fixedPrice: ").append(toIndentedString(fixedPrice)).append("\n");
     sb.append("    localizedFixedPrice: ").append(toIndentedString(localizedFixedPrice)).append("\n");
-    sb.append("    deltaWeight: ").append(toIndentedString(deltaWeight)).append("\n");
-    sb.append("    fixedWeight: ").append(toIndentedString(fixedWeight)).append("\n");
     sb.append("    options: ").append(toIndentedString(options)).append("\n");
     sb.append("    properties: ").append(toIndentedString(properties)).append("\n");
-    sb.append("    upc: ").append(toIndentedString(upc)).append("\n");
-    sb.append("    fulfillmentTypesSupported: ").append(toIndentedString(fulfillmentTypesSupported)).append("\n");
     sb.append("    supplierInfo: ").append(toIndentedString(supplierInfo)).append("\n");
+    sb.append("    upc: ").append(toIndentedString(upc)).append("\n");
+    sb.append("    variationExists: ").append(toIndentedString(variationExists)).append("\n");
+    sb.append("    variationProductCode: ").append(toIndentedString(variationProductCode)).append("\n");
+    sb.append("    variationkey: ").append(toIndentedString(variationkey)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -623,22 +623,22 @@ public class ProductVariation implements Serializable {
   static {
     // a set of all properties/fields (JSON key names)
     openapiFields = new HashSet<String>();
+    openapiFields.add("deltaPrice");
+    openapiFields.add("deltaWeight");
+    openapiFields.add("fixedPrice");
+    openapiFields.add("fixedWeight");
+    openapiFields.add("fulfillmentTypesSupported");
     openapiFields.add("isActive");
     openapiFields.add("isOrphan");
-    openapiFields.add("variationExists");
-    openapiFields.add("variationkey");
-    openapiFields.add("variationProductCode");
-    openapiFields.add("deltaPrice");
     openapiFields.add("localizedDeltaPrice");
-    openapiFields.add("fixedPrice");
     openapiFields.add("localizedFixedPrice");
-    openapiFields.add("deltaWeight");
-    openapiFields.add("fixedWeight");
     openapiFields.add("options");
     openapiFields.add("properties");
-    openapiFields.add("upc");
-    openapiFields.add("fulfillmentTypesSupported");
     openapiFields.add("supplierInfo");
+    openapiFields.add("upc");
+    openapiFields.add("variationExists");
+    openapiFields.add("variationProductCode");
+    openapiFields.add("variationkey");
 
     // a set of required properties/fields (JSON key names)
     openapiRequiredFields = new HashSet<String>();
@@ -665,15 +665,17 @@ public class ProductVariation implements Serializable {
       //    }
       //  }
       
-      if ((jsonObj.get("variationkey") != null && !jsonObj.get("variationkey").isJsonNull()) && !jsonObj.get("variationkey").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `variationkey` to be a primitive type in the JSON string but got `%s`", jsonObj.get("variationkey").toString()));
-      }
-      if ((jsonObj.get("variationProductCode") != null && !jsonObj.get("variationProductCode").isJsonNull()) && !jsonObj.get("variationProductCode").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `variationProductCode` to be a primitive type in the JSON string but got `%s`", jsonObj.get("variationProductCode").toString()));
-      }
       // validate the optional field `deltaPrice`
       if (jsonObj.get("deltaPrice") != null && !jsonObj.get("deltaPrice").isJsonNull()) {
         ProductVariationDeltaPrice.validateJsonObject(jsonObj.getAsJsonObject("deltaPrice"));
+      }
+      // validate the optional field `fixedPrice`
+      if (jsonObj.get("fixedPrice") != null && !jsonObj.get("fixedPrice").isJsonNull()) {
+        ProductVariationFixedPrice.validateJsonObject(jsonObj.getAsJsonObject("fixedPrice"));
+      }
+      // ensure the json data is an array
+      if (!jsonObj.get("fulfillmentTypesSupported").isJsonArray()) {
+        throw new IllegalArgumentException(String.format("Expected the field `fulfillmentTypesSupported` to be an array in the JSON string but got `%s`", jsonObj.get("fulfillmentTypesSupported").toString()));
       }
       if (jsonObj.get("localizedDeltaPrice") != null && !jsonObj.get("localizedDeltaPrice").isJsonNull()) {
         JsonArray jsonArraylocalizedDeltaPrice = jsonObj.getAsJsonArray("localizedDeltaPrice");
@@ -688,10 +690,6 @@ public class ProductVariation implements Serializable {
             ProductVariationDeltaPrice.validateJsonObject(jsonArraylocalizedDeltaPrice.get(i).getAsJsonObject());
           };
         }
-      }
-      // validate the optional field `fixedPrice`
-      if (jsonObj.get("fixedPrice") != null && !jsonObj.get("fixedPrice").isJsonNull()) {
-        ProductVariationFixedPrice.validateJsonObject(jsonObj.getAsJsonObject("fixedPrice"));
       }
       if (jsonObj.get("localizedFixedPrice") != null && !jsonObj.get("localizedFixedPrice").isJsonNull()) {
         JsonArray jsonArraylocalizedFixedPrice = jsonObj.getAsJsonArray("localizedFixedPrice");
@@ -735,16 +733,18 @@ public class ProductVariation implements Serializable {
           };
         }
       }
-      if ((jsonObj.get("upc") != null && !jsonObj.get("upc").isJsonNull()) && !jsonObj.get("upc").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `upc` to be a primitive type in the JSON string but got `%s`", jsonObj.get("upc").toString()));
-      }
-      // ensure the json data is an array
-      if (!jsonObj.get("fulfillmentTypesSupported").isJsonArray()) {
-        throw new IllegalArgumentException(String.format("Expected the field `fulfillmentTypesSupported` to be an array in the JSON string but got `%s`", jsonObj.get("fulfillmentTypesSupported").toString()));
-      }
       // validate the optional field `supplierInfo`
       if (jsonObj.get("supplierInfo") != null && !jsonObj.get("supplierInfo").isJsonNull()) {
         ProductSupplierInfo.validateJsonObject(jsonObj.getAsJsonObject("supplierInfo"));
+      }
+      if ((jsonObj.get("upc") != null && !jsonObj.get("upc").isJsonNull()) && !jsonObj.get("upc").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `upc` to be a primitive type in the JSON string but got `%s`", jsonObj.get("upc").toString()));
+      }
+      if ((jsonObj.get("variationProductCode") != null && !jsonObj.get("variationProductCode").isJsonNull()) && !jsonObj.get("variationProductCode").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `variationProductCode` to be a primitive type in the JSON string but got `%s`", jsonObj.get("variationProductCode").toString()));
+      }
+      if ((jsonObj.get("variationkey") != null && !jsonObj.get("variationkey").isJsonNull()) && !jsonObj.get("variationkey").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `variationkey` to be a primitive type in the JSON string but got `%s`", jsonObj.get("variationkey").toString()));
       }
   }
 

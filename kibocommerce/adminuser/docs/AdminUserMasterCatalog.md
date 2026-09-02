@@ -7,12 +7,13 @@
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
-|**tenantId** | **Integer** |  |  [optional] |
-|**defaultLocaleCode** | **String** |  |  [optional] |
-|**defaultCurrencyCode** | **String** |  |  [optional] |
-|**catalogs** | [**List&lt;Catalog&gt;**](Catalog.md) |  |  [optional] |
 |**id** | **Integer** |  |  [optional] |
 |**name** | **String** |  |  [optional] |
+|**catalogs** | [**List&lt;Catalog&gt;**](Catalog.md) |  |  [optional] |
+|**defaultCurrencyCode** | **String** |  |  [optional] |
+|**defaultLocaleCode** | **String** |  |  [optional] |
+|**supportedLocaleCodes** | **List&lt;String&gt;** |  |  [optional] |
+|**tenantId** | **Integer** |  |  [optional] |
 
 
 ## Implemented Interfaces

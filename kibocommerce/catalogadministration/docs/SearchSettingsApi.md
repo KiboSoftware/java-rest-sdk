@@ -4,23 +4,23 @@ All URIs are relative to *http://https:/api*
 
 | Method | HTTP request | Description |
 |------------- | ------------- | -------------|
-| [**addSearchSetting**](SearchSettingsApi.md#addSearchSetting) | **POST** /commerce/catalog/admin/search/settings | Add search setting |
-| [**deleteSearchSetting**](SearchSettingsApi.md#deleteSearchSetting) | **DELETE** /commerce/catalog/admin/search/settings/{name} | Delete search setting |
-| [**deleteSiteSearchSettings**](SearchSettingsApi.md#deleteSiteSearchSettings) | **DELETE** /commerce/catalog/admin/search/{name}/sitesearchsettings | Delete site search settings |
-| [**getSearchSetting**](SearchSettingsApi.md#getSearchSetting) | **GET** /commerce/catalog/admin/search/settings/{name} | Get search setting |
-| [**getSearchSettings**](SearchSettingsApi.md#getSearchSettings) | **GET** /commerce/catalog/admin/search/settings | Get search settings |
-| [**getSiteSearchSettings**](SearchSettingsApi.md#getSiteSearchSettings) | **GET** /commerce/catalog/admin/search/{name}/sitesearchsettings | Get site search settings |
-| [**getSystemDefaultSettings**](SearchSettingsApi.md#getSystemDefaultSettings) | **GET** /commerce/catalog/admin/search/settings/systemdefault | Get system default search setting |
-| [**updateSearchSetting**](SearchSettingsApi.md#updateSearchSetting) | **PUT** /commerce/catalog/admin/search/settings/{name} | Update search setting |
-| [**updateSiteSearchSettings**](SearchSettingsApi.md#updateSiteSearchSettings) | **PUT** /commerce/catalog/admin/search/{name}/sitesearchsettings | Update site search settings |
-| [**updateSpellCheck**](SearchSettingsApi.md#updateSpellCheck) | **PUT** /commerce/catalog/admin/search/spellcheck | Update Spellcheck settings |
+| [**addSearchSetting**](SearchSettingsApi.md#addSearchSetting) | **POST** /commerce/catalog/admin/search/settings | Add Search Settings |
+| [**deleteSearchSetting**](SearchSettingsApi.md#deleteSearchSetting) | **DELETE** /commerce/catalog/admin/search/settings/{name} | Delete Search Settings by Name |
+| [**deleteSiteSearchSettings**](SearchSettingsApi.md#deleteSiteSearchSettings) | **DELETE** /commerce/catalog/admin/search/{name}/sitesearchsettings | Delete Site Search Settings |
+| [**getSearchSetting**](SearchSettingsApi.md#getSearchSetting) | **GET** /commerce/catalog/admin/search/settings/{name} | Get Search Settings by Name |
+| [**getSearchSettings**](SearchSettingsApi.md#getSearchSettings) | **GET** /commerce/catalog/admin/search/settings | Get Search Settings |
+| [**getSiteSearchSettings**](SearchSettingsApi.md#getSiteSearchSettings) | **GET** /commerce/catalog/admin/search/{name}/sitesearchsettings | Get Site Search Settings |
+| [**getSystemDefaultSettings**](SearchSettingsApi.md#getSystemDefaultSettings) | **GET** /commerce/catalog/admin/search/settings/systemdefault | Get System Default Search Settings |
+| [**updateSearchSetting**](SearchSettingsApi.md#updateSearchSetting) | **PUT** /commerce/catalog/admin/search/settings/{name} | Update Search Settings by Name |
+| [**updateSiteSearchSettings**](SearchSettingsApi.md#updateSiteSearchSettings) | **PUT** /commerce/catalog/admin/search/{name}/sitesearchsettings | Update Site Search Settings |
+| [**updateSpellCheck**](SearchSettingsApi.md#updateSpellCheck) | **PUT** /commerce/catalog/admin/search/spellcheck | Update Spellcheck Settings |
 
 
 <a name="addSearchSetting"></a>
 # **addSearchSetting**
-> SearchSettings addSearchSetting(fromSystemDefault, copyFromName, name, makeDefault, searchSettings)
+> SearchSettings addSearchSetting(fromSystemDefault, copyFromName, name, makeDefault, responseFields, searchSettings)
 
-Add search setting
+Add Search Settings
 
 Adds the Search Settings for a specific site.
 
@@ -43,18 +43,15 @@ public class Example {
     HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
     bearerAuth.setBearerToken("BEARER TOKEN");
 
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
-
     SearchSettingsApi apiInstance = new SearchSettingsApi(defaultClient);
     Boolean fromSystemDefault = false; // Boolean | 
     String copyFromName = "copyFromName_example"; // String | 
     String name = "name_example"; // String | 
     Boolean makeDefault = false; // Boolean | 
+    String responseFields = "responseFields_example"; // String | limits which fields are returned in the response body
     SearchSettings searchSettings = new SearchSettings(); // SearchSettings | 
     try {
-      SearchSettings result = apiInstance.addSearchSetting(fromSystemDefault, copyFromName, name, makeDefault, searchSettings);
+      SearchSettings result = apiInstance.addSearchSetting(fromSystemDefault, copyFromName, name, makeDefault, responseFields, searchSettings);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling SearchSettingsApi#addSearchSetting");
@@ -75,6 +72,7 @@ public class Example {
 | **copyFromName** | **String**|  | [optional] |
 | **name** | **String**|  | [optional] |
 | **makeDefault** | **Boolean**|  | [optional] [default to false] |
+| **responseFields** | **String**| limits which fields are returned in the response body | [optional] |
 | **searchSettings** | [**SearchSettings**](SearchSettings.md)|  | [optional] |
 
 ### Return type
@@ -83,7 +81,7 @@ public class Example {
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth), [clientOauth2](../README.md#clientOauth2)
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
@@ -93,13 +91,13 @@ public class Example {
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Success |  -  |
+| **200** | OK |  -  |
 
 <a name="deleteSearchSetting"></a>
 # **deleteSearchSetting**
 > SearchSettings deleteSearchSetting(name)
 
-Delete search setting
+Delete Search Settings by Name
 
 Delete the Search Settings for a specific site by name.
 
@@ -121,10 +119,6 @@ public class Example {
     // Configure HTTP bearer authorization: bearerAuth
     HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
     bearerAuth.setBearerToken("BEARER TOKEN");
-
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
 
     SearchSettingsApi apiInstance = new SearchSettingsApi(defaultClient);
     String name = "name_example"; // String | 
@@ -154,7 +148,7 @@ public class Example {
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth), [clientOauth2](../README.md#clientOauth2)
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
@@ -164,13 +158,13 @@ public class Example {
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Success |  -  |
+| **200** | OK |  -  |
 
 <a name="deleteSiteSearchSettings"></a>
 # **deleteSiteSearchSettings**
 > deleteSiteSearchSettings(name)
 
-Delete site search settings
+Delete Site Search Settings
 
 Deletes the SiteSearchSettings for a specific SearchSetting by name.
 
@@ -192,10 +186,6 @@ public class Example {
     // Configure HTTP bearer authorization: bearerAuth
     HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
     bearerAuth.setBearerToken("BEARER TOKEN");
-
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
 
     SearchSettingsApi apiInstance = new SearchSettingsApi(defaultClient);
     String name = "name_example"; // String | 
@@ -224,7 +214,7 @@ null (empty response body)
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth), [clientOauth2](../README.md#clientOauth2)
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
@@ -234,15 +224,15 @@ null (empty response body)
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Success |  -  |
+| **200** | OK |  -  |
 
 <a name="getSearchSetting"></a>
 # **getSearchSetting**
-> SearchSettings getSearchSetting(name)
+> SearchSettings getSearchSetting(name, responseFields)
 
-Get search setting
+Get Search Settings by Name
 
-Get site search settings by name.
+Get specific site search settings by name.
 
 ### Example
 ```java
@@ -263,14 +253,11 @@ public class Example {
     HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
     bearerAuth.setBearerToken("BEARER TOKEN");
 
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
-
     SearchSettingsApi apiInstance = new SearchSettingsApi(defaultClient);
     String name = "name_example"; // String | 
+    String responseFields = "responseFields_example"; // String | limits which fields are returned in the response body
     try {
-      SearchSettings result = apiInstance.getSearchSetting(name);
+      SearchSettings result = apiInstance.getSearchSetting(name, responseFields);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling SearchSettingsApi#getSearchSetting");
@@ -288,6 +275,7 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **name** | **String**|  | |
+| **responseFields** | **String**| limits which fields are returned in the response body | [optional] |
 
 ### Return type
 
@@ -295,7 +283,7 @@ public class Example {
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth), [clientOauth2](../README.md#clientOauth2)
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
@@ -305,13 +293,13 @@ public class Example {
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Success |  -  |
+| **200** | OK |  -  |
 
 <a name="getSearchSettings"></a>
 # **getSearchSettings**
-> SearchSettingsCollection getSearchSettings()
+> SearchSettingsCollection getSearchSettings(responseFields)
 
-Get search settings
+Get Search Settings
 
 Get site search settings list.
 
@@ -334,13 +322,10 @@ public class Example {
     HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
     bearerAuth.setBearerToken("BEARER TOKEN");
 
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
-
     SearchSettingsApi apiInstance = new SearchSettingsApi(defaultClient);
+    String responseFields = "responseFields_example"; // String | limits which fields are returned in the response body
     try {
-      SearchSettingsCollection result = apiInstance.getSearchSettings();
+      SearchSettingsCollection result = apiInstance.getSearchSettings(responseFields);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling SearchSettingsApi#getSearchSettings");
@@ -354,7 +339,10 @@ public class Example {
 ```
 
 ### Parameters
-This endpoint does not need any parameter.
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **responseFields** | **String**| limits which fields are returned in the response body | [optional] |
 
 ### Return type
 
@@ -362,7 +350,7 @@ This endpoint does not need any parameter.
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth), [clientOauth2](../README.md#clientOauth2)
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
@@ -372,13 +360,13 @@ This endpoint does not need any parameter.
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Success |  -  |
+| **200** | OK |  -  |
 
 <a name="getSiteSearchSettings"></a>
 # **getSiteSearchSettings**
-> SiteSearchSettings getSiteSearchSettings(name)
+> SiteSearchSettings getSiteSearchSettings(name, responseFields)
 
-Get site search settings
+Get Site Search Settings
 
 Get SiteSearchSettings for a specific SearchSettings by name.
 
@@ -401,14 +389,11 @@ public class Example {
     HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
     bearerAuth.setBearerToken("BEARER TOKEN");
 
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
-
     SearchSettingsApi apiInstance = new SearchSettingsApi(defaultClient);
     String name = "name_example"; // String | 
+    String responseFields = "responseFields_example"; // String | limits which fields are returned in the response body
     try {
-      SiteSearchSettings result = apiInstance.getSiteSearchSettings(name);
+      SiteSearchSettings result = apiInstance.getSiteSearchSettings(name, responseFields);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling SearchSettingsApi#getSiteSearchSettings");
@@ -426,6 +411,7 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **name** | **String**|  | |
+| **responseFields** | **String**| limits which fields are returned in the response body | [optional] |
 
 ### Return type
 
@@ -433,7 +419,7 @@ public class Example {
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth), [clientOauth2](../README.md#clientOauth2)
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
@@ -443,15 +429,15 @@ public class Example {
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Success |  -  |
+| **200** | OK |  -  |
 
 <a name="getSystemDefaultSettings"></a>
 # **getSystemDefaultSettings**
-> SearchSettings getSystemDefaultSettings()
+> SearchSettings getSystemDefaultSettings(responseFields)
 
-Get system default search setting
+Get System Default Search Settings
 
-Get the system default search settings
+Get the system default search settings.
 
 ### Example
 ```java
@@ -472,13 +458,10 @@ public class Example {
     HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
     bearerAuth.setBearerToken("BEARER TOKEN");
 
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
-
     SearchSettingsApi apiInstance = new SearchSettingsApi(defaultClient);
+    String responseFields = "responseFields_example"; // String | limits which fields are returned in the response body
     try {
-      SearchSettings result = apiInstance.getSystemDefaultSettings();
+      SearchSettings result = apiInstance.getSystemDefaultSettings(responseFields);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling SearchSettingsApi#getSystemDefaultSettings");
@@ -492,7 +475,10 @@ public class Example {
 ```
 
 ### Parameters
-This endpoint does not need any parameter.
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **responseFields** | **String**| limits which fields are returned in the response body | [optional] |
 
 ### Return type
 
@@ -500,7 +486,7 @@ This endpoint does not need any parameter.
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth), [clientOauth2](../README.md#clientOauth2)
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
@@ -510,15 +496,15 @@ This endpoint does not need any parameter.
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Success |  -  |
+| **200** | OK |  -  |
 
 <a name="updateSearchSetting"></a>
 # **updateSearchSetting**
-> SearchSettings updateSearchSetting(name, searchSettings)
+> SearchSettings updateSearchSetting(name, responseFields, searchSettings)
 
-Update search setting
+Update Search Settings by Name
 
-Updates the Search Settings for a specific site.
+Update site search settings for a specific site by name.
 
 ### Example
 ```java
@@ -539,15 +525,12 @@ public class Example {
     HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
     bearerAuth.setBearerToken("BEARER TOKEN");
 
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
-
     SearchSettingsApi apiInstance = new SearchSettingsApi(defaultClient);
     String name = "name_example"; // String | 
+    String responseFields = "responseFields_example"; // String | limits which fields are returned in the response body
     SearchSettings searchSettings = new SearchSettings(); // SearchSettings | 
     try {
-      SearchSettings result = apiInstance.updateSearchSetting(name, searchSettings);
+      SearchSettings result = apiInstance.updateSearchSetting(name, responseFields, searchSettings);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling SearchSettingsApi#updateSearchSetting");
@@ -565,6 +548,7 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **name** | **String**|  | |
+| **responseFields** | **String**| limits which fields are returned in the response body | [optional] |
 | **searchSettings** | [**SearchSettings**](SearchSettings.md)|  | [optional] |
 
 ### Return type
@@ -573,7 +557,7 @@ public class Example {
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth), [clientOauth2](../README.md#clientOauth2)
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
@@ -583,13 +567,13 @@ public class Example {
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Success |  -  |
+| **200** | OK |  -  |
 
 <a name="updateSiteSearchSettings"></a>
 # **updateSiteSearchSettings**
-> SiteSearchSettings updateSiteSearchSettings(name, siteSearchSettings)
+> SiteSearchSettings updateSiteSearchSettings(name, responseFields, siteSearchSettings)
 
-Update site search settings
+Update Site Search Settings
 
 Updates the SiteSearchSettings for a specific SearchSetting by name.
 
@@ -612,15 +596,12 @@ public class Example {
     HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
     bearerAuth.setBearerToken("BEARER TOKEN");
 
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
-
     SearchSettingsApi apiInstance = new SearchSettingsApi(defaultClient);
     String name = "name_example"; // String | 
+    String responseFields = "responseFields_example"; // String | limits which fields are returned in the response body
     SiteSearchSettings siteSearchSettings = new SiteSearchSettings(); // SiteSearchSettings | 
     try {
-      SiteSearchSettings result = apiInstance.updateSiteSearchSettings(name, siteSearchSettings);
+      SiteSearchSettings result = apiInstance.updateSiteSearchSettings(name, responseFields, siteSearchSettings);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling SearchSettingsApi#updateSiteSearchSettings");
@@ -638,6 +619,7 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **name** | **String**|  | |
+| **responseFields** | **String**| limits which fields are returned in the response body | [optional] |
 | **siteSearchSettings** | [**SiteSearchSettings**](SiteSearchSettings.md)|  | [optional] |
 
 ### Return type
@@ -646,7 +628,7 @@ public class Example {
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth), [clientOauth2](../README.md#clientOauth2)
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
@@ -656,13 +638,13 @@ public class Example {
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Success |  -  |
+| **200** | OK |  -  |
 
 <a name="updateSpellCheck"></a>
 # **updateSpellCheck**
-> updateSpellCheck(spellcheckUpdate)
+> updateSpellCheck(responseFields, spellcheckUpdate)
 
-Update Spellcheck settings
+Update Spellcheck Settings
 
 Update Spellcheck for SiteSearchSettings.
 
@@ -685,14 +667,11 @@ public class Example {
     HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
     bearerAuth.setBearerToken("BEARER TOKEN");
 
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
-
     SearchSettingsApi apiInstance = new SearchSettingsApi(defaultClient);
+    String responseFields = "responseFields_example"; // String | limits which fields are returned in the response body
     SpellcheckUpdate spellcheckUpdate = new SpellcheckUpdate(); // SpellcheckUpdate | 
     try {
-      apiInstance.updateSpellCheck(spellcheckUpdate);
+      apiInstance.updateSpellCheck(responseFields, spellcheckUpdate);
     } catch (ApiException e) {
       System.err.println("Exception when calling SearchSettingsApi#updateSpellCheck");
       System.err.println("Status code: " + e.getCode());
@@ -708,6 +687,7 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
+| **responseFields** | **String**| limits which fields are returned in the response body | [optional] |
 | **spellcheckUpdate** | [**SpellcheckUpdate**](SpellcheckUpdate.md)|  | [optional] |
 
 ### Return type
@@ -716,7 +696,7 @@ null (empty response body)
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth), [clientOauth2](../README.md#clientOauth2)
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
@@ -726,5 +706,5 @@ null (empty response body)
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Success |  -  |
+| **200** | OK |  -  |
 

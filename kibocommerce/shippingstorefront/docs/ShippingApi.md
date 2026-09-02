@@ -4,89 +4,17 @@ All URIs are relative to *http://https:/api*
 
 | Method | HTTP request | Description |
 |------------- | ------------- | -------------|
-| [**cancelLabels**](ShippingApi.md#cancelLabels) | **POST** /commerce/catalog/storefront/shipping/cancel-labels | Cancel Labels |
 | [**getCarriers**](ShippingApi.md#getCarriers) | **GET** /commerce/catalog/storefront/shipping/carriers | Get Carriers |
 | [**getLabels**](ShippingApi.md#getLabels) | **POST** /commerce/catalog/storefront/shipping/request-labels | Get Labels |
-| [**getManifest**](ShippingApi.md#getManifest) | **POST** /commerce/catalog/storefront/shipping/request-manifest | Get Manifest |
-| [**getManifestURL**](ShippingApi.md#getManifestURL) | **GET** /commerce/catalog/storefront/shipping/{carrierId}/get-manifest-url/{manifestId} | Get Manifest URL |
+| [**getLabelsByTrackingNumber**](ShippingApi.md#getLabelsByTrackingNumber) | **POST** /commerce/catalog/storefront/shipping/get-labels | Get Labels By Tracking Number |
 | [**getMultiRates**](ShippingApi.md#getMultiRates) | **POST** /commerce/catalog/storefront/shipping/request-multi-rates | Get Multi Rates |
 | [**getRates**](ShippingApi.md#getRates) | **POST** /commerce/catalog/storefront/shipping/request-rates | Get Rates |
+| [**getTransitTimes**](ShippingApi.md#getTransitTimes) | **POST** /commerce/catalog/storefront/shipping/transit-times | Get Transit Times |
 
-
-<a name="cancelLabels"></a>
-# **cancelLabels**
-> CancelLabelResponse cancelLabels(cancelLabelRequest)
-
-Cancel Labels
-
-Cancel a Unused Label
-
-### Example
-```java
-// Import classes:
-import com.kibocommerce.sdk.shippingstorefront.ApiClient;
-import com.kibocommerce.sdk.shippingstorefront.ApiException;
-import com.kibocommerce.sdk.shippingstorefront.Configuration;
-import com.kibocommerce.sdk.shippingstorefront.auth.*;
-import com.kibocommerce.sdk.shippingstorefront.models.*;
-import com.kibocommerce.sdk.shippingstorefront.api.ShippingApi;
-
-public class Example {
-  public static void main(String[] args) {
-    ApiClient defaultClient = Configuration.getDefaultApiClient();
-    defaultClient.setBasePath("http://https:/api");
-    
-    // Configure HTTP bearer authorization: bearerAuth
-    HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
-    bearerAuth.setBearerToken("BEARER TOKEN");
-
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
-
-    ShippingApi apiInstance = new ShippingApi(defaultClient);
-    CancelLabelRequest cancelLabelRequest = new CancelLabelRequest(); // CancelLabelRequest | 
-    try {
-      CancelLabelResponse result = apiInstance.cancelLabels(cancelLabelRequest);
-      System.out.println(result);
-    } catch (ApiException e) {
-      System.err.println("Exception when calling ShippingApi#cancelLabels");
-      System.err.println("Status code: " + e.getCode());
-      System.err.println("Reason: " + e.getResponseBody());
-      System.err.println("Response headers: " + e.getResponseHeaders());
-      e.printStackTrace();
-    }
-  }
-}
-```
-
-### Parameters
-
-| Name | Type | Description  | Notes |
-|------------- | ------------- | ------------- | -------------|
-| **cancelLabelRequest** | [**CancelLabelRequest**](CancelLabelRequest.md)|  | [optional] |
-
-### Return type
-
-[**CancelLabelResponse**](CancelLabelResponse.md)
-
-### Authorization
-
-[bearerAuth](../README.md#bearerAuth), [clientOauth2](../README.md#clientOauth2)
-
-### HTTP request headers
-
- - **Content-Type**: application/json
- - **Accept**: text/plain, application/json, text/json
-
-### HTTP response details
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-| **200** | Success |  -  |
 
 <a name="getCarriers"></a>
 # **getCarriers**
-> CarrierResponse getCarriers()
+> CarrierResponse getCarriers(responseFields)
 
 Get Carriers
 
@@ -111,13 +39,10 @@ public class Example {
     HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
     bearerAuth.setBearerToken("BEARER TOKEN");
 
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
-
     ShippingApi apiInstance = new ShippingApi(defaultClient);
+    String responseFields = "responseFields_example"; // String | limits which fields are returned in the response body
     try {
-      CarrierResponse result = apiInstance.getCarriers();
+      CarrierResponse result = apiInstance.getCarriers(responseFields);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling ShippingApi#getCarriers");
@@ -131,7 +56,10 @@ public class Example {
 ```
 
 ### Parameters
-This endpoint does not need any parameter.
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **responseFields** | **String**| limits which fields are returned in the response body | [optional] |
 
 ### Return type
 
@@ -139,21 +67,21 @@ This endpoint does not need any parameter.
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth), [clientOauth2](../README.md#clientOauth2)
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: text/plain, application/json, text/json
+ - **Accept**: application/json, text/json, text/plain
 
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Success |  -  |
+| **200** | OK |  -  |
 
 <a name="getLabels"></a>
 # **getLabels**
-> ShipmentResponse getLabels(shipmentRequest)
+> ShippingRuntimeShipmentResponse getLabels(responseFields, shipmentRequest)
 
 Get Labels
 
@@ -178,14 +106,11 @@ public class Example {
     HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
     bearerAuth.setBearerToken("BEARER TOKEN");
 
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
-
     ShippingApi apiInstance = new ShippingApi(defaultClient);
+    String responseFields = "responseFields_example"; // String | limits which fields are returned in the response body
     ShipmentRequest shipmentRequest = new ShipmentRequest(); // ShipmentRequest | 
     try {
-      ShipmentResponse result = apiInstance.getLabels(shipmentRequest);
+      ShippingRuntimeShipmentResponse result = apiInstance.getLabels(responseFields, shipmentRequest);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling ShippingApi#getLabels");
@@ -202,33 +127,34 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
+| **responseFields** | **String**| limits which fields are returned in the response body | [optional] |
 | **shipmentRequest** | [**ShipmentRequest**](ShipmentRequest.md)|  | [optional] |
 
 ### Return type
 
-[**ShipmentResponse**](ShipmentResponse.md)
+[**ShippingRuntimeShipmentResponse**](ShippingRuntimeShipmentResponse.md)
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth), [clientOauth2](../README.md#clientOauth2)
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
  - **Content-Type**: application/json
- - **Accept**: text/plain, application/json, text/json
+ - **Accept**: application/json, text/json, text/plain
 
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Success |  -  |
+| **200** | OK |  -  |
 
-<a name="getManifest"></a>
-# **getManifest**
-> ManifestResponse getManifest(shippingRuntimeManifestRequest)
+<a name="getLabelsByTrackingNumber"></a>
+# **getLabelsByTrackingNumber**
+> LabelResponse getLabelsByTrackingNumber(responseFields, labelRequest)
 
-Get Manifest
+Get Labels By Tracking Number
 
-Get Manifest for the list Shipping Labels
+Get shipping labels by tracking number.
 
 ### Example
 ```java
@@ -249,17 +175,14 @@ public class Example {
     HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
     bearerAuth.setBearerToken("BEARER TOKEN");
 
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
-
     ShippingApi apiInstance = new ShippingApi(defaultClient);
-    ShippingRuntimeManifestRequest shippingRuntimeManifestRequest = new ShippingRuntimeManifestRequest(); // ShippingRuntimeManifestRequest | 
+    String responseFields = "responseFields_example"; // String | limits which fields are returned in the response body
+    LabelRequest labelRequest = new LabelRequest(); // LabelRequest | 
     try {
-      ManifestResponse result = apiInstance.getManifest(shippingRuntimeManifestRequest);
+      LabelResponse result = apiInstance.getLabelsByTrackingNumber(responseFields, labelRequest);
       System.out.println(result);
     } catch (ApiException e) {
-      System.err.println("Exception when calling ShippingApi#getManifest");
+      System.err.println("Exception when calling ShippingApi#getLabelsByTrackingNumber");
       System.err.println("Status code: " + e.getCode());
       System.err.println("Reason: " + e.getResponseBody());
       System.err.println("Response headers: " + e.getResponseHeaders());
@@ -273,102 +196,30 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **shippingRuntimeManifestRequest** | [**ShippingRuntimeManifestRequest**](ShippingRuntimeManifestRequest.md)|  | [optional] |
+| **responseFields** | **String**| limits which fields are returned in the response body | [optional] |
+| **labelRequest** | [**LabelRequest**](LabelRequest.md)|  | [optional] |
 
 ### Return type
 
-[**ManifestResponse**](ManifestResponse.md)
+[**LabelResponse**](LabelResponse.md)
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth), [clientOauth2](../README.md#clientOauth2)
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
  - **Content-Type**: application/json
- - **Accept**: text/plain, application/json, text/json
+ - **Accept**: application/json, text/json, text/plain
 
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Success |  -  |
-
-<a name="getManifestURL"></a>
-# **getManifestURL**
-> String getManifestURL(carrierId, manifestId)
-
-Get Manifest URL
-
-Get Manifest URL for the Manifest Id
-
-### Example
-```java
-// Import classes:
-import com.kibocommerce.sdk.shippingstorefront.ApiClient;
-import com.kibocommerce.sdk.shippingstorefront.ApiException;
-import com.kibocommerce.sdk.shippingstorefront.Configuration;
-import com.kibocommerce.sdk.shippingstorefront.auth.*;
-import com.kibocommerce.sdk.shippingstorefront.models.*;
-import com.kibocommerce.sdk.shippingstorefront.api.ShippingApi;
-
-public class Example {
-  public static void main(String[] args) {
-    ApiClient defaultClient = Configuration.getDefaultApiClient();
-    defaultClient.setBasePath("http://https:/api");
-    
-    // Configure HTTP bearer authorization: bearerAuth
-    HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
-    bearerAuth.setBearerToken("BEARER TOKEN");
-
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
-
-    ShippingApi apiInstance = new ShippingApi(defaultClient);
-    String carrierId = "carrierId_example"; // String | 
-    String manifestId = "manifestId_example"; // String | 
-    try {
-      String result = apiInstance.getManifestURL(carrierId, manifestId);
-      System.out.println(result);
-    } catch (ApiException e) {
-      System.err.println("Exception when calling ShippingApi#getManifestURL");
-      System.err.println("Status code: " + e.getCode());
-      System.err.println("Reason: " + e.getResponseBody());
-      System.err.println("Response headers: " + e.getResponseHeaders());
-      e.printStackTrace();
-    }
-  }
-}
-```
-
-### Parameters
-
-| Name | Type | Description  | Notes |
-|------------- | ------------- | ------------- | -------------|
-| **carrierId** | **String**|  | |
-| **manifestId** | **String**|  | |
-
-### Return type
-
-**String**
-
-### Authorization
-
-[bearerAuth](../README.md#bearerAuth), [clientOauth2](../README.md#clientOauth2)
-
-### HTTP request headers
-
- - **Content-Type**: Not defined
- - **Accept**: text/plain, application/json, text/json
-
-### HTTP response details
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-| **200** | Success |  -  |
+| **200** | OK |  -  |
 
 <a name="getMultiRates"></a>
 # **getMultiRates**
-> List&lt;RatesResponseGroup&gt; getMultiRates(includeRawResponse, rateRequestGroup)
+> List&lt;RatesResponseGroup&gt; getMultiRates(includeRawResponse, responseFields, rateRequestGroup)
 
 Get Multi Rates
 
@@ -393,15 +244,12 @@ public class Example {
     HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
     bearerAuth.setBearerToken("BEARER TOKEN");
 
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
-
     ShippingApi apiInstance = new ShippingApi(defaultClient);
     Boolean includeRawResponse = false; // Boolean | 
+    String responseFields = "responseFields_example"; // String | limits which fields are returned in the response body
     List<RateRequestGroup> rateRequestGroup = Arrays.asList(); // List<RateRequestGroup> | 
     try {
-      List<RatesResponseGroup> result = apiInstance.getMultiRates(includeRawResponse, rateRequestGroup);
+      List<RatesResponseGroup> result = apiInstance.getMultiRates(includeRawResponse, responseFields, rateRequestGroup);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling ShippingApi#getMultiRates");
@@ -419,6 +267,7 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **includeRawResponse** | **Boolean**|  | [optional] [default to false] |
+| **responseFields** | **String**| limits which fields are returned in the response body | [optional] |
 | **rateRequestGroup** | [**List&lt;RateRequestGroup&gt;**](RateRequestGroup.md)|  | [optional] |
 
 ### Return type
@@ -427,21 +276,21 @@ public class Example {
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth), [clientOauth2](../README.md#clientOauth2)
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
  - **Content-Type**: application/json
- - **Accept**: text/plain, application/json, text/json
+ - **Accept**: application/json, text/json, text/plain
 
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Success |  -  |
+| **200** | OK |  -  |
 
 <a name="getRates"></a>
 # **getRates**
-> RatesResponse getRates(includeRawResponse, rateRequest)
+> RatesResponse getRates(includeRawResponse, responseFields, rateRequest)
 
 Get Rates
 
@@ -466,15 +315,12 @@ public class Example {
     HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
     bearerAuth.setBearerToken("BEARER TOKEN");
 
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
-
     ShippingApi apiInstance = new ShippingApi(defaultClient);
     Boolean includeRawResponse = false; // Boolean | 
+    String responseFields = "responseFields_example"; // String | limits which fields are returned in the response body
     RateRequest rateRequest = new RateRequest(); // RateRequest | 
     try {
-      RatesResponse result = apiInstance.getRates(includeRawResponse, rateRequest);
+      RatesResponse result = apiInstance.getRates(includeRawResponse, responseFields, rateRequest);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling ShippingApi#getRates");
@@ -492,6 +338,7 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **includeRawResponse** | **Boolean**|  | [optional] [default to false] |
+| **responseFields** | **String**| limits which fields are returned in the response body | [optional] |
 | **rateRequest** | [**RateRequest**](RateRequest.md)|  | [optional] |
 
 ### Return type
@@ -500,15 +347,84 @@ public class Example {
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth), [clientOauth2](../README.md#clientOauth2)
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
  - **Content-Type**: application/json
- - **Accept**: text/plain, application/json, text/json
+ - **Accept**: application/json, text/json, text/plain
 
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Success |  -  |
+| **200** | OK |  -  |
+
+<a name="getTransitTimes"></a>
+# **getTransitTimes**
+> TransitTimesResponse getTransitTimes(responseFields, transitTimesRequest)
+
+Get Transit Times
+
+Get Transit Times
+
+### Example
+```java
+// Import classes:
+import com.kibocommerce.sdk.shippingstorefront.ApiClient;
+import com.kibocommerce.sdk.shippingstorefront.ApiException;
+import com.kibocommerce.sdk.shippingstorefront.Configuration;
+import com.kibocommerce.sdk.shippingstorefront.auth.*;
+import com.kibocommerce.sdk.shippingstorefront.models.*;
+import com.kibocommerce.sdk.shippingstorefront.api.ShippingApi;
+
+public class Example {
+  public static void main(String[] args) {
+    ApiClient defaultClient = Configuration.getDefaultApiClient();
+    defaultClient.setBasePath("http://https:/api");
+    
+    // Configure HTTP bearer authorization: bearerAuth
+    HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+    bearerAuth.setBearerToken("BEARER TOKEN");
+
+    ShippingApi apiInstance = new ShippingApi(defaultClient);
+    String responseFields = "responseFields_example"; // String | limits which fields are returned in the response body
+    TransitTimesRequest transitTimesRequest = new TransitTimesRequest(); // TransitTimesRequest | 
+    try {
+      TransitTimesResponse result = apiInstance.getTransitTimes(responseFields, transitTimesRequest);
+      System.out.println(result);
+    } catch (ApiException e) {
+      System.err.println("Exception when calling ShippingApi#getTransitTimes");
+      System.err.println("Status code: " + e.getCode());
+      System.err.println("Reason: " + e.getResponseBody());
+      System.err.println("Response headers: " + e.getResponseHeaders());
+      e.printStackTrace();
+    }
+  }
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **responseFields** | **String**| limits which fields are returned in the response body | [optional] |
+| **transitTimesRequest** | [**TransitTimesRequest**](TransitTimesRequest.md)|  | [optional] |
+
+### Return type
+
+[**TransitTimesResponse**](TransitTimesResponse.md)
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json, text/json, text/plain
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | OK |  -  |
 

@@ -11,15 +11,15 @@
 |**attributes** | **Map&lt;String, Object&gt;** |  |  [optional] |
 |**binRanges** | [**List&lt;PickWaveBinRange&gt;**](PickWaveBinRange.md) |  |  [optional] |
 |**fulfillableShipmentsOnly** | **Boolean** |  |  [optional] |
-|**fulfillmentLocationCode** | **String** |  |  |
+|**fulfillmentLocationCode** | **String** |  |  [optional] |
 |**includeZeroInventory** | **Boolean** |  |  [optional] |
 |**lockWave** | **Boolean** |  |  [optional] |
-|**maxShipments** | **Integer** |  |  |
+|**maxShipments** | **Integer** |  |  [optional] |
 |**pickWaveType** | [**PickWaveTypeEnum**](#PickWaveTypeEnum) |  |  [optional] |
 |**products** | [**List&lt;PickWaveProductMatch&gt;**](PickWaveProductMatch.md) |  |  [optional] |
 |**shipmentDateEnd** | **OffsetDateTime** |  |  [optional] |
 |**shipmentDateStart** | **OffsetDateTime** |  |  [optional] |
-|**shipmentType** | [**ShipmentTypeEnum**](#ShipmentTypeEnum) |  |  |
+|**shipmentType** | [**ShipmentTypeEnum**](#ShipmentTypeEnum) |  |  [optional] |
 |**shippingOption** | [**ShippingOptionEnum**](#ShippingOptionEnum) |  |  [optional] |
 
 
@@ -28,9 +28,9 @@
 
 | Name | Value |
 |---- | -----|
-| MULTIPLE | &quot;MULTIPLE&quot; |
 | NORMAL | &quot;NORMAL&quot; |
 | SINGLE | &quot;SINGLE&quot; |
+| MULTIPLE | &quot;MULTIPLE&quot; |
 
 
 
@@ -38,8 +38,8 @@
 
 | Name | Value |
 |---- | -----|
-| BOPIS | &quot;BOPIS&quot; |
 | STH | &quot;STH&quot; |
+| BOPIS | &quot;BOPIS&quot; |
 
 
 
@@ -47,9 +47,9 @@
 
 | Name | Value |
 |---- | -----|
-| ALL | &quot;ALL&quot; |
-| EXPRESS_ONLY | &quot;EXPRESS_ONLY&quot; |
 | STANDARD_ONLY | &quot;STANDARD_ONLY&quot; |
+| EXPRESS_ONLY | &quot;EXPRESS_ONLY&quot; |
+| ALL | &quot;ALL&quot; |
 
 
 ## Implemented Interfaces

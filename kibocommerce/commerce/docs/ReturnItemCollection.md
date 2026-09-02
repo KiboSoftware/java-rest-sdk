@@ -8,8 +8,8 @@ Collection of return items listed on the order.
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
-|**totalCount** | **Integer** |  |  [optional] |
 |**items** | [**List&lt;ReturnItem&gt;**](ReturnItem.md) |  |  [optional] |
+|**totalCount** | **Integer** |  |  [optional] |
 
 
 ## Implemented Interfaces

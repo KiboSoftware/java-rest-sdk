@@ -9,7 +9,7 @@
 |------------ | ------------- | ------------- | -------------|
 |**actualQuantity** | **Integer** |  |  [optional] |
 |**attributes** | **Map&lt;String, Object&gt;** |  |  [optional] |
-|**auditInfo** | [**AuditInfo0**](AuditInfo0.md) |  |  [optional] |
+|**auditInfo** | [**FulfillmentAPIAuditInfo**](FulfillmentAPIAuditInfo.md) |  |  [optional] |
 |**binId** | **Integer** |  |  [optional] |
 |**binName** | **String** |  |  [optional] |
 |**contentId** | **String** |  |  [optional] |
@@ -19,12 +19,13 @@
 |**locatorName** | **String** |  |  [optional] |
 |**name** | **String** |  |  [optional] |
 |**optionAttributeFQN** | **String** |  |  [optional] |
-|**options** | [**List&lt;FulfillmentProductOption&gt;**](FulfillmentProductOption.md) |  |  [optional] |
+|**options** | [**List&lt;FulfillmentAPIProductOption&gt;**](FulfillmentAPIProductOption.md) |  |  [optional] |
 |**orderNumber** | **Integer** |  |  [optional] |
 |**partNumber** | **String** |  |  [optional] |
 |**productCode** | **String** |  |  [optional] |
 |**quantity** | **Integer** |  |  [optional] |
 |**shipmentNumber** | **Integer** |  |  [optional] |
+|**shortageReason** | [**ModifiedReason**](ModifiedReason.md) |  |  [optional] |
 |**sku** | **String** |  |  [optional] |
 |**status** | [**StatusEnum**](#StatusEnum) |  |  [optional] |
 |**upc** | **String** |  |  [optional] |

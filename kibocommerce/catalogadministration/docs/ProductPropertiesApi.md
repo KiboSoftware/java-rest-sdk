@@ -4,26 +4,26 @@ All URIs are relative to *http://https:/api*
 
 | Method | HTTP request | Description |
 |------------- | ------------- | -------------|
-| [**addProperty**](ProductPropertiesApi.md#addProperty) | **POST** /commerce/catalog/admin/products/{productCode}/Properties | Add property |
-| [**addPropertyValueLocalizedContent**](ProductPropertiesApi.md#addPropertyValueLocalizedContent) | **POST** /commerce/catalog/admin/products/{productCode}/Properties/{attributeFQN}/values/{value}/LocalizedContent | Add property value localized content |
-| [**deleteProperty**](ProductPropertiesApi.md#deleteProperty) | **DELETE** /commerce/catalog/admin/products/{productCode}/Properties/{attributeFQN} | Delete property |
-| [**deletePropertyValueLocalizedContent**](ProductPropertiesApi.md#deletePropertyValueLocalizedContent) | **DELETE** /commerce/catalog/admin/products/{productCode}/Properties/{attributeFQN}/values/{value}/LocalizedContent/{localeCode} | Delete property value localized content |
-| [**getProperties**](ProductPropertiesApi.md#getProperties) | **GET** /commerce/catalog/admin/products/{productCode}/Properties | Get properties |
-| [**getProperty**](ProductPropertiesApi.md#getProperty) | **GET** /commerce/catalog/admin/products/{productCode}/Properties/{attributeFQN} | Get property |
-| [**getPropertyValueLocalizedContent**](ProductPropertiesApi.md#getPropertyValueLocalizedContent) | **GET** /commerce/catalog/admin/products/{productCode}/Properties/{attributeFQN}/values/{value}/LocalizedContent/{localeCode} | Get property value localized content |
-| [**getPropertyValueLocalizedContents**](ProductPropertiesApi.md#getPropertyValueLocalizedContents) | **GET** /commerce/catalog/admin/products/{productCode}/Properties/{attributeFQN}/values/{value}/LocalizedContent | Get property value localized contents |
-| [**updateProperty**](ProductPropertiesApi.md#updateProperty) | **PUT** /commerce/catalog/admin/products/{productCode}/Properties/{attributeFQN} | Update property |
-| [**updatePropertyValueLocalizedContent**](ProductPropertiesApi.md#updatePropertyValueLocalizedContent) | **PUT** /commerce/catalog/admin/products/{productCode}/Properties/{attributeFQN}/values/{value}/LocalizedContent/{localeCode} | Update property value localized content |
-| [**updatePropertyValueLocalizedContents**](ProductPropertiesApi.md#updatePropertyValueLocalizedContents) | **PUT** /commerce/catalog/admin/products/{productCode}/Properties/{attributeFQN}/values/{value}/LocalizedContent | Update property value localized contents |
+| [**addProperty**](ProductPropertiesApi.md#addProperty) | **POST** /commerce/catalog/admin/products/{productCode}/Properties | Add Product Property |
+| [**addPropertyValueLocalizedContent**](ProductPropertiesApi.md#addPropertyValueLocalizedContent) | **POST** /commerce/catalog/admin/products/{productCode}/Properties/{attributeFQN}/values/{value}/LocalizedContent | Add Product Property Localized Content |
+| [**deleteProperty**](ProductPropertiesApi.md#deleteProperty) | **DELETE** /commerce/catalog/admin/products/{productCode}/Properties/{attributeFQN} | Delete Product Property |
+| [**deletePropertyValueLocalizedContent**](ProductPropertiesApi.md#deletePropertyValueLocalizedContent) | **DELETE** /commerce/catalog/admin/products/{productCode}/Properties/{attributeFQN}/values/{value}/LocalizedContent/{localeCode} | Delete Product Property Localized Content by Locale |
+| [**getProperties**](ProductPropertiesApi.md#getProperties) | **GET** /commerce/catalog/admin/products/{productCode}/Properties | Get Product Properties |
+| [**getProperty**](ProductPropertiesApi.md#getProperty) | **GET** /commerce/catalog/admin/products/{productCode}/Properties/{attributeFQN} | Get Product Property |
+| [**getPropertyValueLocalizedContent**](ProductPropertiesApi.md#getPropertyValueLocalizedContent) | **GET** /commerce/catalog/admin/products/{productCode}/Properties/{attributeFQN}/values/{value}/LocalizedContent/{localeCode} | Get Product Property Localized Content by Locale |
+| [**getPropertyValueLocalizedContents**](ProductPropertiesApi.md#getPropertyValueLocalizedContents) | **GET** /commerce/catalog/admin/products/{productCode}/Properties/{attributeFQN}/values/{value}/LocalizedContent | Get Product Property Localized Contents |
+| [**updateProperty**](ProductPropertiesApi.md#updateProperty) | **PUT** /commerce/catalog/admin/products/{productCode}/Properties/{attributeFQN} | Update Product Property |
+| [**updatePropertyValueLocalizedContent**](ProductPropertiesApi.md#updatePropertyValueLocalizedContent) | **PUT** /commerce/catalog/admin/products/{productCode}/Properties/{attributeFQN}/values/{value}/LocalizedContent/{localeCode} | Update Product Property Localized Content by Locale |
+| [**updatePropertyValueLocalizedContents**](ProductPropertiesApi.md#updatePropertyValueLocalizedContents) | **PUT** /commerce/catalog/admin/products/{productCode}/Properties/{attributeFQN}/values/{value}/LocalizedContent | Update Product Property Localized Content |
 
 
 <a name="addProperty"></a>
 # **addProperty**
-> CatalogAdminsProductProperty addProperty(productCode, catalogAdminsProductProperty)
+> CatalogAdminsProductProperty addProperty(productCode, batchJobCode, responseFields, catalogAdminsProductProperty)
 
-Add property
+Add Product Property
 
-Add property
+Add a property to a product. This current version of the Products API includes localizedContent to support &lt;a href&#x3D;\&quot;/pages/catalog-structure#multi-locale-catalogs\&quot;&gt;multi-locale catalogs&lt;/a&gt;, which was not present in the previous API model. If you were a client prior to May 2024 and have upgraded your implementation to support this feature, you can still access product data that has not yet been rewritten to the new model by providing an x-api-version header set to \&quot;1\&quot;.
 
 ### Example
 ```java
@@ -44,15 +44,13 @@ public class Example {
     HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
     bearerAuth.setBearerToken("BEARER TOKEN");
 
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
-
     ProductPropertiesApi apiInstance = new ProductPropertiesApi(defaultClient);
     String productCode = "productCode_example"; // String | 
+    String batchJobCode = "batchJobCode_example"; // String | 
+    String responseFields = "responseFields_example"; // String | limits which fields are returned in the response body
     CatalogAdminsProductProperty catalogAdminsProductProperty = new CatalogAdminsProductProperty(); // CatalogAdminsProductProperty | 
     try {
-      CatalogAdminsProductProperty result = apiInstance.addProperty(productCode, catalogAdminsProductProperty);
+      CatalogAdminsProductProperty result = apiInstance.addProperty(productCode, batchJobCode, responseFields, catalogAdminsProductProperty);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling ProductPropertiesApi#addProperty");
@@ -70,6 +68,8 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **productCode** | **String**|  | |
+| **batchJobCode** | **String**|  | [optional] |
+| **responseFields** | **String**| limits which fields are returned in the response body | [optional] |
 | **catalogAdminsProductProperty** | [**CatalogAdminsProductProperty**](CatalogAdminsProductProperty.md)|  | [optional] |
 
 ### Return type
@@ -78,7 +78,7 @@ public class Example {
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth), [clientOauth2](../README.md#clientOauth2)
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
@@ -88,15 +88,15 @@ public class Example {
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Success |  -  |
+| **200** | OK |  -  |
 
 <a name="addPropertyValueLocalizedContent"></a>
 # **addPropertyValueLocalizedContent**
-> ProductPropertyValueLocalizedContent addPropertyValueLocalizedContent(productCode, attributeFQN, value, productPropertyValueLocalizedContent)
+> ProductPropertyValueLocalizedContent addPropertyValueLocalizedContent(productCode, attributeFQN, value, responseFields, productPropertyValueLocalizedContent)
 
-Add property value localized content
+Add Product Property Localized Content
 
-
+Add property value localized content.
 
 ### Example
 ```java
@@ -117,17 +117,14 @@ public class Example {
     HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
     bearerAuth.setBearerToken("BEARER TOKEN");
 
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
-
     ProductPropertiesApi apiInstance = new ProductPropertiesApi(defaultClient);
     String productCode = "productCode_example"; // String | 
     String attributeFQN = "attributeFQN_example"; // String | 
     String value = "value_example"; // String | 
+    String responseFields = "responseFields_example"; // String | limits which fields are returned in the response body
     ProductPropertyValueLocalizedContent productPropertyValueLocalizedContent = new ProductPropertyValueLocalizedContent(); // ProductPropertyValueLocalizedContent | 
     try {
-      ProductPropertyValueLocalizedContent result = apiInstance.addPropertyValueLocalizedContent(productCode, attributeFQN, value, productPropertyValueLocalizedContent);
+      ProductPropertyValueLocalizedContent result = apiInstance.addPropertyValueLocalizedContent(productCode, attributeFQN, value, responseFields, productPropertyValueLocalizedContent);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling ProductPropertiesApi#addPropertyValueLocalizedContent");
@@ -147,6 +144,7 @@ public class Example {
 | **productCode** | **String**|  | |
 | **attributeFQN** | **String**|  | |
 | **value** | **String**|  | |
+| **responseFields** | **String**| limits which fields are returned in the response body | [optional] |
 | **productPropertyValueLocalizedContent** | [**ProductPropertyValueLocalizedContent**](ProductPropertyValueLocalizedContent.md)|  | [optional] |
 
 ### Return type
@@ -155,7 +153,7 @@ public class Example {
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth), [clientOauth2](../README.md#clientOauth2)
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
@@ -165,15 +163,15 @@ public class Example {
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Success |  -  |
+| **200** | OK |  -  |
 
 <a name="deleteProperty"></a>
 # **deleteProperty**
-> deleteProperty(productCode, attributeFQN)
+> deleteProperty(productCode, attributeFQN, batchJobCode)
 
-Delete property
+Delete Product Property
 
-Delete Property
+Delete a specific product property.
 
 ### Example
 ```java
@@ -194,15 +192,12 @@ public class Example {
     HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
     bearerAuth.setBearerToken("BEARER TOKEN");
 
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
-
     ProductPropertiesApi apiInstance = new ProductPropertiesApi(defaultClient);
     String productCode = "productCode_example"; // String | 
     String attributeFQN = "attributeFQN_example"; // String | 
+    String batchJobCode = "batchJobCode_example"; // String | 
     try {
-      apiInstance.deleteProperty(productCode, attributeFQN);
+      apiInstance.deleteProperty(productCode, attributeFQN, batchJobCode);
     } catch (ApiException e) {
       System.err.println("Exception when calling ProductPropertiesApi#deleteProperty");
       System.err.println("Status code: " + e.getCode());
@@ -220,6 +215,7 @@ public class Example {
 |------------- | ------------- | ------------- | -------------|
 | **productCode** | **String**|  | |
 | **attributeFQN** | **String**|  | |
+| **batchJobCode** | **String**|  | [optional] |
 
 ### Return type
 
@@ -227,7 +223,7 @@ null (empty response body)
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth), [clientOauth2](../README.md#clientOauth2)
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
@@ -237,15 +233,15 @@ null (empty response body)
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Success |  -  |
+| **200** | OK |  -  |
 
 <a name="deletePropertyValueLocalizedContent"></a>
 # **deletePropertyValueLocalizedContent**
 > deletePropertyValueLocalizedContent(productCode, attributeFQN, value, localeCode)
 
-Delete property value localized content
+Delete Product Property Localized Content by Locale
 
-
+Delete property value localized content by locale code.
 
 ### Example
 ```java
@@ -265,10 +261,6 @@ public class Example {
     // Configure HTTP bearer authorization: bearerAuth
     HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
     bearerAuth.setBearerToken("BEARER TOKEN");
-
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
 
     ProductPropertiesApi apiInstance = new ProductPropertiesApi(defaultClient);
     String productCode = "productCode_example"; // String | 
@@ -303,7 +295,7 @@ null (empty response body)
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth), [clientOauth2](../README.md#clientOauth2)
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
@@ -313,15 +305,15 @@ null (empty response body)
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Success |  -  |
+| **200** | OK |  -  |
 
 <a name="getProperties"></a>
 # **getProperties**
-> List&lt;CatalogAdminsProductProperty&gt; getProperties(productCode)
+> List&lt;CatalogAdminsProductProperty&gt; getProperties(productCode, responseFields)
 
-Get properties
+Get Product Properties
 
-Get properties for the product
+Get properties for a product. This current version of the Products API includes localizedContent to support &lt;a href&#x3D;\&quot;/pages/catalog-structure#multi-locale-catalogs\&quot;&gt;multi-locale catalogs&lt;/a&gt;, which was not present in the previous API model. If you were a client prior to May 2024 and have upgraded your implementation to support this feature, you can still access product data that has not yet been rewritten to the new model by providing an x-api-version header set to \&quot;1\&quot;.
 
 ### Example
 ```java
@@ -342,14 +334,11 @@ public class Example {
     HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
     bearerAuth.setBearerToken("BEARER TOKEN");
 
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
-
     ProductPropertiesApi apiInstance = new ProductPropertiesApi(defaultClient);
     String productCode = "productCode_example"; // String | 
+    String responseFields = "responseFields_example"; // String | limits which fields are returned in the response body
     try {
-      List<CatalogAdminsProductProperty> result = apiInstance.getProperties(productCode);
+      List<CatalogAdminsProductProperty> result = apiInstance.getProperties(productCode, responseFields);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling ProductPropertiesApi#getProperties");
@@ -367,6 +356,7 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **productCode** | **String**|  | |
+| **responseFields** | **String**| limits which fields are returned in the response body | [optional] |
 
 ### Return type
 
@@ -374,7 +364,7 @@ public class Example {
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth), [clientOauth2](../README.md#clientOauth2)
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
@@ -384,15 +374,15 @@ public class Example {
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Success |  -  |
+| **200** | OK |  -  |
 
 <a name="getProperty"></a>
 # **getProperty**
-> CatalogAdminsProductProperty getProperty(productCode, attributeFQN)
+> CatalogAdminsProductProperty getProperty(productCode, attributeFQN, responseFields)
 
-Get property
+Get Product Property
 
-Get individual property
+Get a specific product property. This current version of the Products API includes localizedContent to support &lt;a href&#x3D;\&quot;/pages/catalog-structure#multi-locale-catalogs\&quot;&gt;multi-locale catalogs&lt;/a&gt;, which was not present in the previous API model. If you were a client prior to May 2024 and have upgraded your implementation to support this feature, you can still access product data that has not yet been rewritten to the new model by providing an x-api-version header set to \&quot;1\&quot;.
 
 ### Example
 ```java
@@ -413,15 +403,12 @@ public class Example {
     HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
     bearerAuth.setBearerToken("BEARER TOKEN");
 
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
-
     ProductPropertiesApi apiInstance = new ProductPropertiesApi(defaultClient);
     String productCode = "productCode_example"; // String | 
     String attributeFQN = "attributeFQN_example"; // String | 
+    String responseFields = "responseFields_example"; // String | limits which fields are returned in the response body
     try {
-      CatalogAdminsProductProperty result = apiInstance.getProperty(productCode, attributeFQN);
+      CatalogAdminsProductProperty result = apiInstance.getProperty(productCode, attributeFQN, responseFields);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling ProductPropertiesApi#getProperty");
@@ -440,6 +427,7 @@ public class Example {
 |------------- | ------------- | ------------- | -------------|
 | **productCode** | **String**|  | |
 | **attributeFQN** | **String**|  | |
+| **responseFields** | **String**| limits which fields are returned in the response body | [optional] |
 
 ### Return type
 
@@ -447,7 +435,7 @@ public class Example {
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth), [clientOauth2](../README.md#clientOauth2)
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
@@ -457,15 +445,15 @@ public class Example {
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Success |  -  |
+| **200** | OK |  -  |
 
 <a name="getPropertyValueLocalizedContent"></a>
 # **getPropertyValueLocalizedContent**
-> ProductPropertyValueLocalizedContent getPropertyValueLocalizedContent(productCode, attributeFQN, value, localeCode)
+> ProductPropertyValueLocalizedContent getPropertyValueLocalizedContent(productCode, attributeFQN, value, localeCode, responseFields)
 
-Get property value localized content
+Get Product Property Localized Content by Locale
 
-
+Get property value localized content.
 
 ### Example
 ```java
@@ -486,17 +474,14 @@ public class Example {
     HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
     bearerAuth.setBearerToken("BEARER TOKEN");
 
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
-
     ProductPropertiesApi apiInstance = new ProductPropertiesApi(defaultClient);
     String productCode = "productCode_example"; // String | 
     String attributeFQN = "attributeFQN_example"; // String | 
     String value = "value_example"; // String | 
     String localeCode = "localeCode_example"; // String | 
+    String responseFields = "responseFields_example"; // String | limits which fields are returned in the response body
     try {
-      ProductPropertyValueLocalizedContent result = apiInstance.getPropertyValueLocalizedContent(productCode, attributeFQN, value, localeCode);
+      ProductPropertyValueLocalizedContent result = apiInstance.getPropertyValueLocalizedContent(productCode, attributeFQN, value, localeCode, responseFields);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling ProductPropertiesApi#getPropertyValueLocalizedContent");
@@ -517,6 +502,7 @@ public class Example {
 | **attributeFQN** | **String**|  | |
 | **value** | **String**|  | |
 | **localeCode** | **String**|  | |
+| **responseFields** | **String**| limits which fields are returned in the response body | [optional] |
 
 ### Return type
 
@@ -524,7 +510,7 @@ public class Example {
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth), [clientOauth2](../README.md#clientOauth2)
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
@@ -534,15 +520,15 @@ public class Example {
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Success |  -  |
+| **200** | OK |  -  |
 
 <a name="getPropertyValueLocalizedContents"></a>
 # **getPropertyValueLocalizedContents**
-> List&lt;ProductPropertyValueLocalizedContent&gt; getPropertyValueLocalizedContents(productCode, attributeFQN, value)
+> List&lt;ProductPropertyValueLocalizedContent&gt; getPropertyValueLocalizedContents(productCode, attributeFQN, value, responseFields)
 
-Get property value localized contents
+Get Product Property Localized Contents
 
-
+Get property value localized content.
 
 ### Example
 ```java
@@ -563,16 +549,13 @@ public class Example {
     HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
     bearerAuth.setBearerToken("BEARER TOKEN");
 
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
-
     ProductPropertiesApi apiInstance = new ProductPropertiesApi(defaultClient);
     String productCode = "productCode_example"; // String | 
     String attributeFQN = "attributeFQN_example"; // String | 
     String value = "value_example"; // String | 
+    String responseFields = "responseFields_example"; // String | limits which fields are returned in the response body
     try {
-      List<ProductPropertyValueLocalizedContent> result = apiInstance.getPropertyValueLocalizedContents(productCode, attributeFQN, value);
+      List<ProductPropertyValueLocalizedContent> result = apiInstance.getPropertyValueLocalizedContents(productCode, attributeFQN, value, responseFields);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling ProductPropertiesApi#getPropertyValueLocalizedContents");
@@ -592,6 +575,7 @@ public class Example {
 | **productCode** | **String**|  | |
 | **attributeFQN** | **String**|  | |
 | **value** | **String**|  | |
+| **responseFields** | **String**| limits which fields are returned in the response body | [optional] |
 
 ### Return type
 
@@ -599,7 +583,7 @@ public class Example {
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth), [clientOauth2](../README.md#clientOauth2)
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
@@ -609,15 +593,15 @@ public class Example {
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Success |  -  |
+| **200** | OK |  -  |
 
 <a name="updateProperty"></a>
 # **updateProperty**
-> CatalogAdminsProductProperty updateProperty(productCode, attributeFQN, catalogAdminsProductProperty)
+> CatalogAdminsProductProperty updateProperty(productCode, attributeFQN, batchJobCode, allowSyscalcValueUpdates, responseFields, catalogAdminsProductProperty)
 
-Update property
+Update Product Property
 
-Update property
+Update a specific product property. This current version of the Products API includes localizedContent to support &lt;a href&#x3D;\&quot;/pages/catalog-structure#multi-locale-catalogs\&quot;&gt;multi-locale catalogs&lt;/a&gt;, which was not present in the previous API model. If you were a client prior to May 2024 and have upgraded your implementation to support this feature, you can still access product data that has not yet been rewritten to the new model by providing an x-api-version header set to \&quot;1\&quot;.
 
 ### Example
 ```java
@@ -638,16 +622,15 @@ public class Example {
     HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
     bearerAuth.setBearerToken("BEARER TOKEN");
 
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
-
     ProductPropertiesApi apiInstance = new ProductPropertiesApi(defaultClient);
     String productCode = "productCode_example"; // String | 
     String attributeFQN = "attributeFQN_example"; // String | 
+    String batchJobCode = "batchJobCode_example"; // String | 
+    Boolean allowSyscalcValueUpdates = false; // Boolean | 
+    String responseFields = "responseFields_example"; // String | limits which fields are returned in the response body
     CatalogAdminsProductProperty catalogAdminsProductProperty = new CatalogAdminsProductProperty(); // CatalogAdminsProductProperty | 
     try {
-      CatalogAdminsProductProperty result = apiInstance.updateProperty(productCode, attributeFQN, catalogAdminsProductProperty);
+      CatalogAdminsProductProperty result = apiInstance.updateProperty(productCode, attributeFQN, batchJobCode, allowSyscalcValueUpdates, responseFields, catalogAdminsProductProperty);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling ProductPropertiesApi#updateProperty");
@@ -666,6 +649,9 @@ public class Example {
 |------------- | ------------- | ------------- | -------------|
 | **productCode** | **String**|  | |
 | **attributeFQN** | **String**|  | |
+| **batchJobCode** | **String**|  | [optional] |
+| **allowSyscalcValueUpdates** | **Boolean**|  | [optional] [default to false] |
+| **responseFields** | **String**| limits which fields are returned in the response body | [optional] |
 | **catalogAdminsProductProperty** | [**CatalogAdminsProductProperty**](CatalogAdminsProductProperty.md)|  | [optional] |
 
 ### Return type
@@ -674,7 +660,7 @@ public class Example {
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth), [clientOauth2](../README.md#clientOauth2)
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
@@ -684,15 +670,15 @@ public class Example {
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Success |  -  |
+| **200** | OK |  -  |
 
 <a name="updatePropertyValueLocalizedContent"></a>
 # **updatePropertyValueLocalizedContent**
-> ProductPropertyValueLocalizedContent updatePropertyValueLocalizedContent(productCode, attributeFQN, value, localeCode, productPropertyValueLocalizedContent)
+> ProductPropertyValueLocalizedContent updatePropertyValueLocalizedContent(productCode, attributeFQN, value, localeCode, responseFields, productPropertyValueLocalizedContent)
 
-Update property value localized content
+Update Product Property Localized Content by Locale
 
-
+Update property value localized content by locale code.
 
 ### Example
 ```java
@@ -713,18 +699,15 @@ public class Example {
     HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
     bearerAuth.setBearerToken("BEARER TOKEN");
 
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
-
     ProductPropertiesApi apiInstance = new ProductPropertiesApi(defaultClient);
     String productCode = "productCode_example"; // String | 
     String attributeFQN = "attributeFQN_example"; // String | 
     String value = "value_example"; // String | 
     String localeCode = "localeCode_example"; // String | 
+    String responseFields = "responseFields_example"; // String | limits which fields are returned in the response body
     ProductPropertyValueLocalizedContent productPropertyValueLocalizedContent = new ProductPropertyValueLocalizedContent(); // ProductPropertyValueLocalizedContent | 
     try {
-      ProductPropertyValueLocalizedContent result = apiInstance.updatePropertyValueLocalizedContent(productCode, attributeFQN, value, localeCode, productPropertyValueLocalizedContent);
+      ProductPropertyValueLocalizedContent result = apiInstance.updatePropertyValueLocalizedContent(productCode, attributeFQN, value, localeCode, responseFields, productPropertyValueLocalizedContent);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling ProductPropertiesApi#updatePropertyValueLocalizedContent");
@@ -745,6 +728,7 @@ public class Example {
 | **attributeFQN** | **String**|  | |
 | **value** | **String**|  | |
 | **localeCode** | **String**|  | |
+| **responseFields** | **String**| limits which fields are returned in the response body | [optional] |
 | **productPropertyValueLocalizedContent** | [**ProductPropertyValueLocalizedContent**](ProductPropertyValueLocalizedContent.md)|  | [optional] |
 
 ### Return type
@@ -753,7 +737,7 @@ public class Example {
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth), [clientOauth2](../README.md#clientOauth2)
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
@@ -763,15 +747,15 @@ public class Example {
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Success |  -  |
+| **200** | OK |  -  |
 
 <a name="updatePropertyValueLocalizedContents"></a>
 # **updatePropertyValueLocalizedContents**
-> List&lt;ProductPropertyValueLocalizedContent&gt; updatePropertyValueLocalizedContents(productCode, attributeFQN, value, productPropertyValueLocalizedContent)
+> List&lt;ProductPropertyValueLocalizedContent&gt; updatePropertyValueLocalizedContents(productCode, attributeFQN, value, responseFields, productPropertyValueLocalizedContent)
 
-Update property value localized contents
+Update Product Property Localized Content
 
-
+Update property value localized content.
 
 ### Example
 ```java
@@ -792,17 +776,14 @@ public class Example {
     HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
     bearerAuth.setBearerToken("BEARER TOKEN");
 
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
-
     ProductPropertiesApi apiInstance = new ProductPropertiesApi(defaultClient);
     String productCode = "productCode_example"; // String | 
     String attributeFQN = "attributeFQN_example"; // String | 
     String value = "value_example"; // String | 
+    String responseFields = "responseFields_example"; // String | limits which fields are returned in the response body
     List<ProductPropertyValueLocalizedContent> productPropertyValueLocalizedContent = Arrays.asList(); // List<ProductPropertyValueLocalizedContent> | 
     try {
-      List<ProductPropertyValueLocalizedContent> result = apiInstance.updatePropertyValueLocalizedContents(productCode, attributeFQN, value, productPropertyValueLocalizedContent);
+      List<ProductPropertyValueLocalizedContent> result = apiInstance.updatePropertyValueLocalizedContents(productCode, attributeFQN, value, responseFields, productPropertyValueLocalizedContent);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling ProductPropertiesApi#updatePropertyValueLocalizedContents");
@@ -822,6 +803,7 @@ public class Example {
 | **productCode** | **String**|  | |
 | **attributeFQN** | **String**|  | |
 | **value** | **String**|  | |
+| **responseFields** | **String**| limits which fields are returned in the response body | [optional] |
 | **productPropertyValueLocalizedContent** | [**List&lt;ProductPropertyValueLocalizedContent&gt;**](ProductPropertyValueLocalizedContent.md)|  | [optional] |
 
 ### Return type
@@ -830,7 +812,7 @@ public class Example {
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth), [clientOauth2](../README.md#clientOauth2)
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
@@ -840,5 +822,5 @@ public class Example {
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Success |  -  |
+| **200** | OK |  -  |
 

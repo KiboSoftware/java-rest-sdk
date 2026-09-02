@@ -8,11 +8,11 @@ Update Export Settings Response
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
-|**tenantID** | **Integer** | Tenant ID |  [optional] |
 |**name** | **String** | Name |  [optional] |
-|**success** | **Boolean** | Flag for success |  [optional] |
+|**tenantID** | **Integer** | Tenant ID |  [optional] |
 |**messages** | **List&lt;String&gt;** | List of messages |  [optional] |
 |**numResults** | **Integer** | Number of results |  [optional] |
+|**success** | **Boolean** | Flag for success |  [optional] |
 
 
 ## Implemented Interfaces

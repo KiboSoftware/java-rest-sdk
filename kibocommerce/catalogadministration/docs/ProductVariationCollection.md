@@ -8,8 +8,8 @@ Collection of product variations returned as a whole. A collection is not paged.
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
-|**totalCount** | **Integer** |  |  [optional] |
 |**items** | [**List&lt;ProductVariation&gt;**](ProductVariation.md) |  |  [optional] |
+|**totalCount** | **Integer** |  |  [optional] |
 
 
 ## Implemented Interfaces

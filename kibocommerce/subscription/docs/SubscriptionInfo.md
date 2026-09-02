@@ -7,8 +7,8 @@
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
-|**required** | **Boolean** | Indicates commerce item is subscribed or not. |  [optional] |
 |**frequency** | [**Frequency**](Frequency.md) |  |  [optional] |
+|**required** | **Boolean** | Indicates commerce item is subscribed or not. |  [optional] |
 |**trial** | [**Trial**](Trial.md) |  |  [optional] |
 
 

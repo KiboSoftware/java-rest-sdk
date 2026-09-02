@@ -7,7 +7,7 @@
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
-|**contact** | [**FulfillmentContact**](FulfillmentContact.md) |  |  [optional] |
+|**contact** | [**FulfillmentAPIContact**](FulfillmentAPIContact.md) |  |  [optional] |
 
 
 ## Implemented Interfaces

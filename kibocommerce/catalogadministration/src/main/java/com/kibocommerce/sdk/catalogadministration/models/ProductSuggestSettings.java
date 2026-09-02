@@ -1,8 +1,8 @@
 /*
  * Kibo Catalog Admin Services
- * OpenAPI Spec for Kibo Catalog Admin Services
+ * <div id=\"overview_CATALOG_ADMIN\">             <h2>CATALOG ADMINISTRATION</h2>             <p>The Catalog Administration APIs are a collection of resources for configuring the catalogs and products offered to your shoppers, including                 discounts and coupon sets, faceting, price lists, and different types or variations of products. See the                 <a href=\"/concept-guides/catalog\">Catalog user guides</a>                 for information about the related features in the Unified Commerce Admin.</p>             <p>Use the <strong>Attributes</strong> resource to manage localization and attribute configurations for your catalogs. This current version of the Attributes API includes localizedContent to                 support <a href=\"/pages/catalog-structure#multi-locale-catalogs\">multi-locale catalogs</a>, which was not present in the legacy API model. If                 you were a client prior to May 2024 and have upgraded your implementation to support this feature,                 you can still access attribute data that has not yet been rewritten to the new model by providing                 an x-api-version header set to \"1\". </p>             <p>Use the <strong>Categories</strong> resource to organize products and control where they appear on the storefront. Create                 and maintain a hierarchy of categories and subcategories where the site will store properties. This current version of the Categories API includes localizedContent to                 support <a href=\"/pages/catalog-structure#multi-locale-catalogs\">multi-locale catalogs</a>, which was not present in the legacy API model. If                 you were a client prior to May 2024 and have upgraded your implementation to support this feature,                 you can still access category data that has not yet been rewritten to the new model by providing                 an x-api-version header set to \"1\". </p>             <p>Use the <strong>Coupon Sets</strong> resource to view and create coupon sets. You can use coupon sets to group multiple                 coupon codes together and associate them with one or more discounts.</p>             <p>Use the <strong>Currency</strong> resource to manage the currency localization rules and exchange rates for any of the                 currencies that are supported for placing orders in.</p>             <p>Use the <strong>Discounts</strong> and <strong>Discount Settings</strong> resources to define and manage discounts to apply to products, product categories, or                 orders. This current version of the Discounts API includes localizedContent to                 support <a href=\"/pages/catalog-structure#multi-locale-catalogs\">multi-locale catalogs</a>, which was not present in the legacy Products API model. If                 you were a client prior to May 2024 and have upgraded your implementation to support this feature,                 you can still access discount data that has not yet been rewritten to the new model by providing                 an x-api-version header set to \"1\". </p>             <p>Use the <strong>Facets</strong> resource to manage the facets shoppers use to filter product display results on a                 storefront. Facets can include categories, product attributes, or prices, and use either a range of                 values or discrete values.</p>             <p>Use the <strong>Master Catalog</strong> resource to view details of the master catalogs associated with a tenant and to                 manage the product publishing mode for each master catalog.</p>             <p>Use the <strong>Price Lists</strong> resources to view and create price lists. You can use price lists to override the                 catalog pricing of products for specific customer segments and/or sites.</p>             <p>Use the <strong>Products</strong>, <strong>Product Types/Extras/Options/Properties</strong>, and <strong>Product Sort Definitions</strong> resources to create new product definitions in the master catalog and determine which                 catalogs will feature products. This current version of the Products API includes localizedContent to                 support <a href=\"/pages/catalog-structure#multi-locale-catalogs\">multi-locale catalogs</a>, which was not present in the legacy Products API model. If                 you were a client prior to May 2024 and have upgraded your implementation to support this feature,                 you can still access product data that has not yet been rewritten to the new model by providing                 an x-api-version header set to \"1\".</p>             <p>Use the <strong>Publishing</strong> resource to publish pending product updates together as part of a set.</p>             <p>Use the <strong>Search</strong> resource to manage all settings and options for providing product search on your site, as                 well as search tuning rules.</p>         </div>
  *
- * The version of the OpenAPI document: 1.0.0
+ * The version of the OpenAPI document: v1
  * 
  *
  * NOTE: This class is auto generated by OpenAPI Generator (https://openapi-generator.tech).
@@ -58,17 +58,9 @@ import com.kibocommerce.sdk.common.JSON;
 public class ProductSuggestSettings implements Serializable {
   private static final long serialVersionUID = 1L;
 
-  public static final String SERIALIZED_NAME_CUSTOM_BOOSTS = "customBoosts";
-  @SerializedName(SERIALIZED_NAME_CUSTOM_BOOSTS)
-  private List<String> customBoosts = null;
-
-  public static final String SERIALIZED_NAME_FIELD_VALUE_BOOST = "fieldValueBoost";
-  @SerializedName(SERIALIZED_NAME_FIELD_VALUE_BOOST)
-  private FieldValueBoost fieldValueBoost;
-
-  public static final String SERIALIZED_NAME_SEARCH_CHILD_PRODUCTS_BY_DEFAULT = "searchChildProductsByDefault";
-  @SerializedName(SERIALIZED_NAME_SEARCH_CHILD_PRODUCTS_BY_DEFAULT)
-  private Boolean searchChildProductsByDefault;
+  public static final String SERIALIZED_NAME_CROSS_FIELD_ADDITIVE_SCORE_FACTOR = "crossFieldAdditiveScoreFactor";
+  @SerializedName(SERIALIZED_NAME_CROSS_FIELD_ADDITIVE_SCORE_FACTOR)
+  private Double crossFieldAdditiveScoreFactor;
 
   public static final String SERIALIZED_NAME_FIELD_WEIGHTS = "fieldWeights";
   @SerializedName(SERIALIZED_NAME_FIELD_WEIGHTS)
@@ -86,87 +78,41 @@ public class ProductSuggestSettings implements Serializable {
   @SerializedName(SERIALIZED_NAME_RETURN_FIELDS)
   private List<String> returnFields = null;
 
-  public static final String SERIALIZED_NAME_CROSS_FIELD_ADDITIVE_SCORE_FACTOR = "crossFieldAdditiveScoreFactor";
-  @SerializedName(SERIALIZED_NAME_CROSS_FIELD_ADDITIVE_SCORE_FACTOR)
-  private Double crossFieldAdditiveScoreFactor;
+  public static final String SERIALIZED_NAME_CUSTOM_BOOSTS = "customBoosts";
+  @SerializedName(SERIALIZED_NAME_CUSTOM_BOOSTS)
+  private List<String> customBoosts = null;
+
+  public static final String SERIALIZED_NAME_FIELD_VALUE_BOOST = "fieldValueBoost";
+  @SerializedName(SERIALIZED_NAME_FIELD_VALUE_BOOST)
+  private FieldValueBoost fieldValueBoost;
+
+  public static final String SERIALIZED_NAME_SEARCH_CHILD_PRODUCTS_BY_DEFAULT = "searchChildProductsByDefault";
+  @SerializedName(SERIALIZED_NAME_SEARCH_CHILD_PRODUCTS_BY_DEFAULT)
+  private Boolean searchChildProductsByDefault;
 
   public ProductSuggestSettings() {
   }
 
-  public ProductSuggestSettings customBoosts(List<String> customBoosts) {
+  public ProductSuggestSettings crossFieldAdditiveScoreFactor(Double crossFieldAdditiveScoreFactor) {
     
-    this.customBoosts = customBoosts;
-    return this;
-  }
-
-  public ProductSuggestSettings addCustomBoostsItem(String customBoostsItem) {
-    if (this.customBoosts == null) {
-      this.customBoosts = new ArrayList<>();
-    }
-    this.customBoosts.add(customBoostsItem);
+    this.crossFieldAdditiveScoreFactor = crossFieldAdditiveScoreFactor;
     return this;
   }
 
    /**
-   * Get customBoosts
-   * @return customBoosts
+   * Get crossFieldAdditiveScoreFactor
+   * @return crossFieldAdditiveScoreFactor
   **/
   @javax.annotation.Nullable
   @ApiModelProperty(value = "")
 
-  public List<String> getCustomBoosts() {
-    return customBoosts;
+  public Double getCrossFieldAdditiveScoreFactor() {
+    return crossFieldAdditiveScoreFactor;
   }
 
 
-  public void setCustomBoosts(List<String> customBoosts) {
-    this.customBoosts = customBoosts;
-  }
-
-
-  public ProductSuggestSettings fieldValueBoost(FieldValueBoost fieldValueBoost) {
-    
-    this.fieldValueBoost = fieldValueBoost;
-    return this;
-  }
-
-   /**
-   * Get fieldValueBoost
-   * @return fieldValueBoost
-  **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
-
-  public FieldValueBoost getFieldValueBoost() {
-    return fieldValueBoost;
-  }
-
-
-  public void setFieldValueBoost(FieldValueBoost fieldValueBoost) {
-    this.fieldValueBoost = fieldValueBoost;
-  }
-
-
-  public ProductSuggestSettings searchChildProductsByDefault(Boolean searchChildProductsByDefault) {
-    
-    this.searchChildProductsByDefault = searchChildProductsByDefault;
-    return this;
-  }
-
-   /**
-   * Get searchChildProductsByDefault
-   * @return searchChildProductsByDefault
-  **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
-
-  public Boolean getSearchChildProductsByDefault() {
-    return searchChildProductsByDefault;
-  }
-
-
-  public void setSearchChildProductsByDefault(Boolean searchChildProductsByDefault) {
-    this.searchChildProductsByDefault = searchChildProductsByDefault;
+  public void setCrossFieldAdditiveScoreFactor(Double crossFieldAdditiveScoreFactor) {
+    this.crossFieldAdditiveScoreFactor = crossFieldAdditiveScoreFactor;
   }
 
 
@@ -278,26 +224,80 @@ public class ProductSuggestSettings implements Serializable {
   }
 
 
-  public ProductSuggestSettings crossFieldAdditiveScoreFactor(Double crossFieldAdditiveScoreFactor) {
+  public ProductSuggestSettings customBoosts(List<String> customBoosts) {
     
-    this.crossFieldAdditiveScoreFactor = crossFieldAdditiveScoreFactor;
+    this.customBoosts = customBoosts;
+    return this;
+  }
+
+  public ProductSuggestSettings addCustomBoostsItem(String customBoostsItem) {
+    if (this.customBoosts == null) {
+      this.customBoosts = new ArrayList<>();
+    }
+    this.customBoosts.add(customBoostsItem);
     return this;
   }
 
    /**
-   * Get crossFieldAdditiveScoreFactor
-   * @return crossFieldAdditiveScoreFactor
+   * Get customBoosts
+   * @return customBoosts
   **/
   @javax.annotation.Nullable
   @ApiModelProperty(value = "")
 
-  public Double getCrossFieldAdditiveScoreFactor() {
-    return crossFieldAdditiveScoreFactor;
+  public List<String> getCustomBoosts() {
+    return customBoosts;
   }
 
 
-  public void setCrossFieldAdditiveScoreFactor(Double crossFieldAdditiveScoreFactor) {
-    this.crossFieldAdditiveScoreFactor = crossFieldAdditiveScoreFactor;
+  public void setCustomBoosts(List<String> customBoosts) {
+    this.customBoosts = customBoosts;
+  }
+
+
+  public ProductSuggestSettings fieldValueBoost(FieldValueBoost fieldValueBoost) {
+    
+    this.fieldValueBoost = fieldValueBoost;
+    return this;
+  }
+
+   /**
+   * Get fieldValueBoost
+   * @return fieldValueBoost
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
+
+  public FieldValueBoost getFieldValueBoost() {
+    return fieldValueBoost;
+  }
+
+
+  public void setFieldValueBoost(FieldValueBoost fieldValueBoost) {
+    this.fieldValueBoost = fieldValueBoost;
+  }
+
+
+  public ProductSuggestSettings searchChildProductsByDefault(Boolean searchChildProductsByDefault) {
+    
+    this.searchChildProductsByDefault = searchChildProductsByDefault;
+    return this;
+  }
+
+   /**
+   * Get searchChildProductsByDefault
+   * @return searchChildProductsByDefault
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
+
+  public Boolean getSearchChildProductsByDefault() {
+    return searchChildProductsByDefault;
+  }
+
+
+  public void setSearchChildProductsByDefault(Boolean searchChildProductsByDefault) {
+    this.searchChildProductsByDefault = searchChildProductsByDefault;
   }
 
 
@@ -311,14 +311,14 @@ public class ProductSuggestSettings implements Serializable {
       return false;
     }
     ProductSuggestSettings productSuggestSettings = (ProductSuggestSettings) o;
-    return Objects.equals(this.customBoosts, productSuggestSettings.customBoosts) &&
-        Objects.equals(this.fieldValueBoost, productSuggestSettings.fieldValueBoost) &&
-        Objects.equals(this.searchChildProductsByDefault, productSuggestSettings.searchChildProductsByDefault) &&
+    return Objects.equals(this.crossFieldAdditiveScoreFactor, productSuggestSettings.crossFieldAdditiveScoreFactor) &&
         Objects.equals(this.fieldWeights, productSuggestSettings.fieldWeights) &&
         Objects.equals(this.personalizationExperience, productSuggestSettings.personalizationExperience) &&
         Objects.equals(this.personalizationFactor, productSuggestSettings.personalizationFactor) &&
         Objects.equals(this.returnFields, productSuggestSettings.returnFields) &&
-        Objects.equals(this.crossFieldAdditiveScoreFactor, productSuggestSettings.crossFieldAdditiveScoreFactor);
+        Objects.equals(this.customBoosts, productSuggestSettings.customBoosts) &&
+        Objects.equals(this.fieldValueBoost, productSuggestSettings.fieldValueBoost) &&
+        Objects.equals(this.searchChildProductsByDefault, productSuggestSettings.searchChildProductsByDefault);
   }
 
   private static <T> boolean equalsNullable(JsonNullable<T> a, JsonNullable<T> b) {
@@ -327,7 +327,7 @@ public class ProductSuggestSettings implements Serializable {
 
   @Override
   public int hashCode() {
-    return Objects.hash(customBoosts, fieldValueBoost, searchChildProductsByDefault, fieldWeights, personalizationExperience, personalizationFactor, returnFields, crossFieldAdditiveScoreFactor);
+    return Objects.hash(crossFieldAdditiveScoreFactor, fieldWeights, personalizationExperience, personalizationFactor, returnFields, customBoosts, fieldValueBoost, searchChildProductsByDefault);
   }
 
   private static <T> int hashCodeNullable(JsonNullable<T> a) {
@@ -341,14 +341,14 @@ public class ProductSuggestSettings implements Serializable {
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class ProductSuggestSettings {\n");
-    sb.append("    customBoosts: ").append(toIndentedString(customBoosts)).append("\n");
-    sb.append("    fieldValueBoost: ").append(toIndentedString(fieldValueBoost)).append("\n");
-    sb.append("    searchChildProductsByDefault: ").append(toIndentedString(searchChildProductsByDefault)).append("\n");
+    sb.append("    crossFieldAdditiveScoreFactor: ").append(toIndentedString(crossFieldAdditiveScoreFactor)).append("\n");
     sb.append("    fieldWeights: ").append(toIndentedString(fieldWeights)).append("\n");
     sb.append("    personalizationExperience: ").append(toIndentedString(personalizationExperience)).append("\n");
     sb.append("    personalizationFactor: ").append(toIndentedString(personalizationFactor)).append("\n");
     sb.append("    returnFields: ").append(toIndentedString(returnFields)).append("\n");
-    sb.append("    crossFieldAdditiveScoreFactor: ").append(toIndentedString(crossFieldAdditiveScoreFactor)).append("\n");
+    sb.append("    customBoosts: ").append(toIndentedString(customBoosts)).append("\n");
+    sb.append("    fieldValueBoost: ").append(toIndentedString(fieldValueBoost)).append("\n");
+    sb.append("    searchChildProductsByDefault: ").append(toIndentedString(searchChildProductsByDefault)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -371,11 +371,14 @@ public class ProductSuggestSettings implements Serializable {
   static {
     // a set of all properties/fields (JSON key names)
     openapiFields = new HashSet<String>();
+    openapiFields.add("crossFieldAdditiveScoreFactor");
     openapiFields.add("fieldWeights");
     openapiFields.add("personalizationExperience");
     openapiFields.add("personalizationFactor");
     openapiFields.add("returnFields");
-    openapiFields.add("crossFieldAdditiveScoreFactor");
+    openapiFields.add("customBoosts");
+    openapiFields.add("fieldValueBoost");
+    openapiFields.add("searchChildProductsByDefault");
 
     // a set of required properties/fields (JSON key names)
     openapiRequiredFields = new HashSet<String>();
@@ -402,14 +405,6 @@ public class ProductSuggestSettings implements Serializable {
       //    }
       //  }
       
-      // ensure the json data is an array
-      if (!jsonObj.get("customBoosts").isJsonArray()) {
-        throw new IllegalArgumentException(String.format("Expected the field `customBoosts` to be an array in the JSON string but got `%s`", jsonObj.get("customBoosts").toString()));
-      }
-      // validate the optional field `fieldValueBoost`
-      if (jsonObj.get("fieldValueBoost") != null && !jsonObj.get("fieldValueBoost").isJsonNull()) {
-        FieldValueBoost.validateJsonObject(jsonObj.getAsJsonObject("fieldValueBoost"));
-      }
       if (jsonObj.get("fieldWeights") != null && !jsonObj.get("fieldWeights").isJsonNull()) {
         JsonArray jsonArrayfieldWeights = jsonObj.getAsJsonArray("fieldWeights");
         if (jsonArrayfieldWeights != null) {
@@ -430,6 +425,14 @@ public class ProductSuggestSettings implements Serializable {
       // ensure the json data is an array
       if (!jsonObj.get("returnFields").isJsonArray()) {
         throw new IllegalArgumentException(String.format("Expected the field `returnFields` to be an array in the JSON string but got `%s`", jsonObj.get("returnFields").toString()));
+      }
+      // ensure the json data is an array
+      if (!jsonObj.get("customBoosts").isJsonArray()) {
+        throw new IllegalArgumentException(String.format("Expected the field `customBoosts` to be an array in the JSON string but got `%s`", jsonObj.get("customBoosts").toString()));
+      }
+      // validate the optional field `fieldValueBoost`
+      if (jsonObj.get("fieldValueBoost") != null && !jsonObj.get("fieldValueBoost").isJsonNull()) {
+        FieldValueBoost.validateJsonObject(jsonObj.getAsJsonObject("fieldValueBoost"));
       }
   }
 

@@ -1,8 +1,8 @@
 /*
  * Kibo Catalog Admin Services
- * OpenAPI Spec for Kibo Catalog Admin Services
+ * <div id=\"overview_CATALOG_ADMIN\">             <h2>CATALOG ADMINISTRATION</h2>             <p>The Catalog Administration APIs are a collection of resources for configuring the catalogs and products offered to your shoppers, including                 discounts and coupon sets, faceting, price lists, and different types or variations of products. See the                 <a href=\"/concept-guides/catalog\">Catalog user guides</a>                 for information about the related features in the Unified Commerce Admin.</p>             <p>Use the <strong>Attributes</strong> resource to manage localization and attribute configurations for your catalogs. This current version of the Attributes API includes localizedContent to                 support <a href=\"/pages/catalog-structure#multi-locale-catalogs\">multi-locale catalogs</a>, which was not present in the legacy API model. If                 you were a client prior to May 2024 and have upgraded your implementation to support this feature,                 you can still access attribute data that has not yet been rewritten to the new model by providing                 an x-api-version header set to \"1\". </p>             <p>Use the <strong>Categories</strong> resource to organize products and control where they appear on the storefront. Create                 and maintain a hierarchy of categories and subcategories where the site will store properties. This current version of the Categories API includes localizedContent to                 support <a href=\"/pages/catalog-structure#multi-locale-catalogs\">multi-locale catalogs</a>, which was not present in the legacy API model. If                 you were a client prior to May 2024 and have upgraded your implementation to support this feature,                 you can still access category data that has not yet been rewritten to the new model by providing                 an x-api-version header set to \"1\". </p>             <p>Use the <strong>Coupon Sets</strong> resource to view and create coupon sets. You can use coupon sets to group multiple                 coupon codes together and associate them with one or more discounts.</p>             <p>Use the <strong>Currency</strong> resource to manage the currency localization rules and exchange rates for any of the                 currencies that are supported for placing orders in.</p>             <p>Use the <strong>Discounts</strong> and <strong>Discount Settings</strong> resources to define and manage discounts to apply to products, product categories, or                 orders. This current version of the Discounts API includes localizedContent to                 support <a href=\"/pages/catalog-structure#multi-locale-catalogs\">multi-locale catalogs</a>, which was not present in the legacy Products API model. If                 you were a client prior to May 2024 and have upgraded your implementation to support this feature,                 you can still access discount data that has not yet been rewritten to the new model by providing                 an x-api-version header set to \"1\". </p>             <p>Use the <strong>Facets</strong> resource to manage the facets shoppers use to filter product display results on a                 storefront. Facets can include categories, product attributes, or prices, and use either a range of                 values or discrete values.</p>             <p>Use the <strong>Master Catalog</strong> resource to view details of the master catalogs associated with a tenant and to                 manage the product publishing mode for each master catalog.</p>             <p>Use the <strong>Price Lists</strong> resources to view and create price lists. You can use price lists to override the                 catalog pricing of products for specific customer segments and/or sites.</p>             <p>Use the <strong>Products</strong>, <strong>Product Types/Extras/Options/Properties</strong>, and <strong>Product Sort Definitions</strong> resources to create new product definitions in the master catalog and determine which                 catalogs will feature products. This current version of the Products API includes localizedContent to                 support <a href=\"/pages/catalog-structure#multi-locale-catalogs\">multi-locale catalogs</a>, which was not present in the legacy Products API model. If                 you were a client prior to May 2024 and have upgraded your implementation to support this feature,                 you can still access product data that has not yet been rewritten to the new model by providing                 an x-api-version header set to \"1\".</p>             <p>Use the <strong>Publishing</strong> resource to publish pending product updates together as part of a set.</p>             <p>Use the <strong>Search</strong> resource to manage all settings and options for providing product search on your site, as                 well as search tuning rules.</p>         </div>
  *
- * The version of the OpenAPI document: 1.0.0
+ * The version of the OpenAPI document: v1
  * 
  *
  * NOTE: This class is auto generated by OpenAPI Generator (https://openapi-generator.tech).
@@ -95,16 +95,17 @@ public class DiscountSettingsApi {
     /**
      * Build call for getDiscountSettings
      * @param catalogId  (required)
+     * @param responseFields limits which fields are returned in the response body (optional)
      * @param _callback Callback for upload/download progress
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call getDiscountSettingsCall(Integer catalogId, final ApiCallback _callback) throws ApiException {
+    public okhttp3.Call getDiscountSettingsCall(Integer catalogId, String responseFields, final ApiCallback _callback) throws ApiException {
         String basePath = null;
         // Operation Servers
         String[] localBasePaths = new String[] {  };
@@ -130,6 +131,10 @@ public class DiscountSettingsApi {
         Map<String, String> localVarCookieParams = new HashMap<String, String>();
         Map<String, Object> localVarFormParams = new HashMap<String, Object>();
 
+        if (responseFields != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("responseFields", responseFields));
+        }
+
         final String[] localVarAccepts = {
             "application/json", "text/json", "text/plain"
         };
@@ -146,12 +151,12 @@ public class DiscountSettingsApi {
             localVarHeaderParams.put("Content-Type", localVarContentType);
         }
 
-        String[] localVarAuthNames = new String[] { "bearerAuth", "clientOauth2" };
+        String[] localVarAuthNames = new String[] { "bearerAuth" };
         return localVarApiClient.buildCall(basePath, localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call getDiscountSettingsValidateBeforeCall(Integer catalogId, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call getDiscountSettingsValidateBeforeCall(Integer catalogId, String responseFields, final ApiCallback _callback) throws ApiException {
         
         // verify the required parameter 'catalogId' is set
         if (catalogId == null) {
@@ -159,62 +164,65 @@ public class DiscountSettingsApi {
         }
         
 
-        okhttp3.Call localVarCall = getDiscountSettingsCall(catalogId, _callback);
+        okhttp3.Call localVarCall = getDiscountSettingsCall(catalogId, responseFields, _callback);
         return localVarCall;
 
     }
 
     /**
-     * Get discount settings
-     * 
+     * Get Discount Settings
+     * Retrieves the discount settings of a particular catalog.
      * @param catalogId  (required)
+     * @param responseFields limits which fields are returned in the response body (optional)
      * @return DiscountSettings
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
      </table>
      */
-    public DiscountSettings getDiscountSettings(Integer catalogId) throws ApiException {
-        ApiResponse<DiscountSettings> localVarResp = getDiscountSettingsWithHttpInfo(catalogId);
+    public DiscountSettings getDiscountSettings(Integer catalogId, String responseFields) throws ApiException {
+        ApiResponse<DiscountSettings> localVarResp = getDiscountSettingsWithHttpInfo(catalogId, responseFields);
         return localVarResp.getData();
     }
 
     /**
-     * Get discount settings
-     * 
+     * Get Discount Settings
+     * Retrieves the discount settings of a particular catalog.
      * @param catalogId  (required)
+     * @param responseFields limits which fields are returned in the response body (optional)
      * @return ApiResponse&lt;DiscountSettings&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<DiscountSettings> getDiscountSettingsWithHttpInfo(Integer catalogId) throws ApiException {
-        okhttp3.Call localVarCall = getDiscountSettingsValidateBeforeCall(catalogId, null);
+    public ApiResponse<DiscountSettings> getDiscountSettingsWithHttpInfo(Integer catalogId, String responseFields) throws ApiException {
+        okhttp3.Call localVarCall = getDiscountSettingsValidateBeforeCall(catalogId, responseFields, null);
         Type localVarReturnType = new TypeToken<DiscountSettings>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
 
     /**
-     * Get discount settings (asynchronously)
-     * 
+     * Get Discount Settings (asynchronously)
+     * Retrieves the discount settings of a particular catalog.
      * @param catalogId  (required)
+     * @param responseFields limits which fields are returned in the response body (optional)
      * @param _callback The callback to be executed when the API call finishes
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call getDiscountSettingsAsync(Integer catalogId, final ApiCallback<DiscountSettings> _callback) throws ApiException {
+    public okhttp3.Call getDiscountSettingsAsync(Integer catalogId, String responseFields, final ApiCallback<DiscountSettings> _callback) throws ApiException {
 
-        okhttp3.Call localVarCall = getDiscountSettingsValidateBeforeCall(catalogId, _callback);
+        okhttp3.Call localVarCall = getDiscountSettingsValidateBeforeCall(catalogId, responseFields, _callback);
         Type localVarReturnType = new TypeToken<DiscountSettings>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
@@ -222,6 +230,7 @@ public class DiscountSettingsApi {
     /**
      * Build call for updateDiscountSettings
      * @param catalogId  (required)
+     * @param responseFields limits which fields are returned in the response body (optional)
      * @param discountSettings  (optional)
      * @param _callback Callback for upload/download progress
      * @return Call to execute
@@ -229,10 +238,10 @@ public class DiscountSettingsApi {
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call updateDiscountSettingsCall(Integer catalogId, DiscountSettings discountSettings, final ApiCallback _callback) throws ApiException {
+    public okhttp3.Call updateDiscountSettingsCall(Integer catalogId, String responseFields, DiscountSettings discountSettings, final ApiCallback _callback) throws ApiException {
         String basePath = null;
         // Operation Servers
         String[] localBasePaths = new String[] {  };
@@ -258,6 +267,10 @@ public class DiscountSettingsApi {
         Map<String, String> localVarCookieParams = new HashMap<String, String>();
         Map<String, Object> localVarFormParams = new HashMap<String, Object>();
 
+        if (responseFields != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("responseFields", responseFields));
+        }
+
         final String[] localVarAccepts = {
             "application/json", "text/json", "text/plain"
         };
@@ -274,12 +287,12 @@ public class DiscountSettingsApi {
             localVarHeaderParams.put("Content-Type", localVarContentType);
         }
 
-        String[] localVarAuthNames = new String[] { "bearerAuth", "clientOauth2" };
+        String[] localVarAuthNames = new String[] { "bearerAuth" };
         return localVarApiClient.buildCall(basePath, localVarPath, "PUT", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call updateDiscountSettingsValidateBeforeCall(Integer catalogId, DiscountSettings discountSettings, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call updateDiscountSettingsValidateBeforeCall(Integer catalogId, String responseFields, DiscountSettings discountSettings, final ApiCallback _callback) throws ApiException {
         
         // verify the required parameter 'catalogId' is set
         if (catalogId == null) {
@@ -287,52 +300,55 @@ public class DiscountSettingsApi {
         }
         
 
-        okhttp3.Call localVarCall = updateDiscountSettingsCall(catalogId, discountSettings, _callback);
+        okhttp3.Call localVarCall = updateDiscountSettingsCall(catalogId, responseFields, discountSettings, _callback);
         return localVarCall;
 
     }
 
     /**
-     * Update discount settings
-     * 
+     * Update Discount Settings
+     * Updates the discount settings of a particular catalog.
      * @param catalogId  (required)
+     * @param responseFields limits which fields are returned in the response body (optional)
      * @param discountSettings  (optional)
      * @return DiscountSettings
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
      </table>
      */
-    public DiscountSettings updateDiscountSettings(Integer catalogId, DiscountSettings discountSettings) throws ApiException {
-        ApiResponse<DiscountSettings> localVarResp = updateDiscountSettingsWithHttpInfo(catalogId, discountSettings);
+    public DiscountSettings updateDiscountSettings(Integer catalogId, String responseFields, DiscountSettings discountSettings) throws ApiException {
+        ApiResponse<DiscountSettings> localVarResp = updateDiscountSettingsWithHttpInfo(catalogId, responseFields, discountSettings);
         return localVarResp.getData();
     }
 
     /**
-     * Update discount settings
-     * 
+     * Update Discount Settings
+     * Updates the discount settings of a particular catalog.
      * @param catalogId  (required)
+     * @param responseFields limits which fields are returned in the response body (optional)
      * @param discountSettings  (optional)
      * @return ApiResponse&lt;DiscountSettings&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<DiscountSettings> updateDiscountSettingsWithHttpInfo(Integer catalogId, DiscountSettings discountSettings) throws ApiException {
-        okhttp3.Call localVarCall = updateDiscountSettingsValidateBeforeCall(catalogId, discountSettings, null);
+    public ApiResponse<DiscountSettings> updateDiscountSettingsWithHttpInfo(Integer catalogId, String responseFields, DiscountSettings discountSettings) throws ApiException {
+        okhttp3.Call localVarCall = updateDiscountSettingsValidateBeforeCall(catalogId, responseFields, discountSettings, null);
         Type localVarReturnType = new TypeToken<DiscountSettings>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
 
     /**
-     * Update discount settings (asynchronously)
-     * 
+     * Update Discount Settings (asynchronously)
+     * Updates the discount settings of a particular catalog.
      * @param catalogId  (required)
+     * @param responseFields limits which fields are returned in the response body (optional)
      * @param discountSettings  (optional)
      * @param _callback The callback to be executed when the API call finishes
      * @return The request call
@@ -340,12 +356,12 @@ public class DiscountSettingsApi {
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call updateDiscountSettingsAsync(Integer catalogId, DiscountSettings discountSettings, final ApiCallback<DiscountSettings> _callback) throws ApiException {
+    public okhttp3.Call updateDiscountSettingsAsync(Integer catalogId, String responseFields, DiscountSettings discountSettings, final ApiCallback<DiscountSettings> _callback) throws ApiException {
 
-        okhttp3.Call localVarCall = updateDiscountSettingsValidateBeforeCall(catalogId, discountSettings, _callback);
+        okhttp3.Call localVarCall = updateDiscountSettingsValidateBeforeCall(catalogId, responseFields, discountSettings, _callback);
         Type localVarReturnType = new TypeToken<DiscountSettings>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;

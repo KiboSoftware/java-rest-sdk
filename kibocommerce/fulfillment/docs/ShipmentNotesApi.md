@@ -4,18 +4,18 @@ All URIs are relative to *http://https:/api*
 
 | Method | HTTP request | Description |
 |------------- | ------------- | -------------|
-| [**deleteShipmentNoteUsingDELETE**](ShipmentNotesApi.md#deleteShipmentNoteUsingDELETE) | **DELETE** /commerce/shipments/{shipmentNumber}/notes/{noteId} | Delete Shipment Note |
-| [**newShipmentNoteUsingPOST**](ShipmentNotesApi.md#newShipmentNoteUsingPOST) | **POST** /commerce/shipments/{shipmentNumber}/notes | Create Shipment Note |
-| [**updateShipmentNoteUsingPUT**](ShipmentNotesApi.md#updateShipmentNoteUsingPUT) | **PUT** /commerce/shipments/{shipmentNumber}/notes/{noteId} | Update Shipment Note |
+| [**deleteShipmentNote**](ShipmentNotesApi.md#deleteShipmentNote) | **DELETE** /commerce/shipments/{shipmentNumber}/notes/{noteId} | deleteShipmentNote |
+| [**newShipmentNote**](ShipmentNotesApi.md#newShipmentNote) | **POST** /commerce/shipments/{shipmentNumber}/notes | New Shipment Note |
+| [**updateShipmentNote**](ShipmentNotesApi.md#updateShipmentNote) | **PUT** /commerce/shipments/{shipmentNumber}/notes/{noteId} | updateShipmentNote |
 
 
-<a name="deleteShipmentNoteUsingDELETE"></a>
-# **deleteShipmentNoteUsingDELETE**
-> deleteShipmentNoteUsingDELETE(shipmentNumber, noteId, ifMatch)
+<a name="deleteShipmentNote"></a>
+# **deleteShipmentNote**
+> deleteShipmentNote(noteId, shipmentNumber, ifMatch)
 
-Delete Shipment Note
+deleteShipmentNote
 
-Delete Shipment Note
+Delete an existing shipment note.
 
 ### Example
 ```java
@@ -23,7 +23,6 @@ Delete Shipment Note
 import com.kibocommerce.sdk.fulfillment.ApiClient;
 import com.kibocommerce.sdk.fulfillment.ApiException;
 import com.kibocommerce.sdk.fulfillment.Configuration;
-import com.kibocommerce.sdk.fulfillment.auth.*;
 import com.kibocommerce.sdk.fulfillment.models.*;
 import com.kibocommerce.sdk.fulfillment.api.ShipmentNotesApi;
 
@@ -31,23 +30,15 @@ public class Example {
   public static void main(String[] args) {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
     defaultClient.setBasePath("http://https:/api");
-    
-    // Configure HTTP bearer authorization: bearerAuth
-    HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
-    bearerAuth.setBearerToken("BEARER TOKEN");
-
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
 
     ShipmentNotesApi apiInstance = new ShipmentNotesApi(defaultClient);
-    Integer shipmentNumber = 56; // Integer | shipmentNumber
     String noteId = "noteId_example"; // String | noteId
+    Integer shipmentNumber = 56; // Integer | shipmentNumber
     String ifMatch = "ifMatch_example"; // String | If-Match
     try {
-      apiInstance.deleteShipmentNoteUsingDELETE(shipmentNumber, noteId, ifMatch);
+      apiInstance.deleteShipmentNote(noteId, shipmentNumber, ifMatch);
     } catch (ApiException e) {
-      System.err.println("Exception when calling ShipmentNotesApi#deleteShipmentNoteUsingDELETE");
+      System.err.println("Exception when calling ShipmentNotesApi#deleteShipmentNote");
       System.err.println("Status code: " + e.getCode());
       System.err.println("Reason: " + e.getResponseBody());
       System.err.println("Response headers: " + e.getResponseHeaders());
@@ -61,8 +52,8 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **shipmentNumber** | **Integer**| shipmentNumber | |
 | **noteId** | **String**| noteId | |
+| **shipmentNumber** | **Integer**| shipmentNumber | |
 | **ifMatch** | **String**| If-Match | [optional] |
 
 ### Return type
@@ -71,7 +62,7 @@ null (empty response body)
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth), [clientOauth2](../README.md#clientOauth2)
+No authorization required
 
 ### HTTP request headers
 
@@ -81,18 +72,17 @@ null (empty response body)
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **204** | Success |  -  |
+| **204** | No Content |  -  |
 | **401** | Unauthorized |  -  |
 | **403** | Forbidden |  -  |
-| **404** | Not Found |  -  |
 
-<a name="newShipmentNoteUsingPOST"></a>
-# **newShipmentNoteUsingPOST**
-> EntityModelOfShipment newShipmentNoteUsingPOST(shipmentNumber, ifMatch, fulfillmentShipmentNote)
+<a name="newShipmentNote"></a>
+# **newShipmentNote**
+> EntityModelOfShipment newShipmentNote(shipmentNumber, shipmentNoteDto, ifMatch)
 
-Create Shipment Note
+New Shipment Note
 
-Create Shipment Note
+Add a new note to a shipment.
 
 ### Example
 ```java
@@ -100,7 +90,6 @@ Create Shipment Note
 import com.kibocommerce.sdk.fulfillment.ApiClient;
 import com.kibocommerce.sdk.fulfillment.ApiException;
 import com.kibocommerce.sdk.fulfillment.Configuration;
-import com.kibocommerce.sdk.fulfillment.auth.*;
 import com.kibocommerce.sdk.fulfillment.models.*;
 import com.kibocommerce.sdk.fulfillment.api.ShipmentNotesApi;
 
@@ -108,24 +97,16 @@ public class Example {
   public static void main(String[] args) {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
     defaultClient.setBasePath("http://https:/api");
-    
-    // Configure HTTP bearer authorization: bearerAuth
-    HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
-    bearerAuth.setBearerToken("BEARER TOKEN");
-
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
 
     ShipmentNotesApi apiInstance = new ShipmentNotesApi(defaultClient);
     Integer shipmentNumber = 56; // Integer | shipmentNumber
+    FulfillmentAPIShipmentNote shipmentNoteDto = new FulfillmentAPIShipmentNote(); // FulfillmentAPIShipmentNote | shipmentNoteDto
     String ifMatch = "ifMatch_example"; // String | If-Match
-    FulfillmentShipmentNote fulfillmentShipmentNote = new FulfillmentShipmentNote(); // FulfillmentShipmentNote | 
     try {
-      EntityModelOfShipment result = apiInstance.newShipmentNoteUsingPOST(shipmentNumber, ifMatch, fulfillmentShipmentNote);
+      EntityModelOfShipment result = apiInstance.newShipmentNote(shipmentNumber, shipmentNoteDto, ifMatch);
       System.out.println(result);
     } catch (ApiException e) {
-      System.err.println("Exception when calling ShipmentNotesApi#newShipmentNoteUsingPOST");
+      System.err.println("Exception when calling ShipmentNotesApi#newShipmentNote");
       System.err.println("Status code: " + e.getCode());
       System.err.println("Reason: " + e.getResponseBody());
       System.err.println("Response headers: " + e.getResponseHeaders());
@@ -140,8 +121,8 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **shipmentNumber** | **Integer**| shipmentNumber | |
+| **shipmentNoteDto** | [**FulfillmentAPIShipmentNote**](FulfillmentAPIShipmentNote.md)| shipmentNoteDto | |
 | **ifMatch** | **String**| If-Match | [optional] |
-| **fulfillmentShipmentNote** | [**FulfillmentShipmentNote**](FulfillmentShipmentNote.md)|  | [optional] |
 
 ### Return type
 
@@ -149,30 +130,29 @@ public class Example {
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth), [clientOauth2](../README.md#clientOauth2)
+No authorization required
 
 ### HTTP request headers
 
  - **Content-Type**: application/json
- - **Accept**: application/json, application/xml, */*, application/hal+json
+ - **Accept**: application/hal+json, application/json, application/xml
 
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Shipment note added |  -  |
+| **200** | OK |  -  |
 | **201** | Created |  -  |
-| **400** | Invalid Input |  -  |
 | **401** | Unauthorized |  -  |
 | **403** | Forbidden |  -  |
 | **404** | Not Found |  -  |
 
-<a name="updateShipmentNoteUsingPUT"></a>
-# **updateShipmentNoteUsingPUT**
-> EntityModelOfShipment updateShipmentNoteUsingPUT(shipmentNumber, noteId, ifMatch, fulfillmentShipmentNote)
+<a name="updateShipmentNote"></a>
+# **updateShipmentNote**
+> EntityModelOfShipment updateShipmentNote(noteId, shipmentNumber, shipmentNoteDto, ifMatch)
 
-Update Shipment Note
+updateShipmentNote
 
-Update Shipment Note
+Update an existing shipment note.
 
 ### Example
 ```java
@@ -180,7 +160,6 @@ Update Shipment Note
 import com.kibocommerce.sdk.fulfillment.ApiClient;
 import com.kibocommerce.sdk.fulfillment.ApiException;
 import com.kibocommerce.sdk.fulfillment.Configuration;
-import com.kibocommerce.sdk.fulfillment.auth.*;
 import com.kibocommerce.sdk.fulfillment.models.*;
 import com.kibocommerce.sdk.fulfillment.api.ShipmentNotesApi;
 
@@ -188,25 +167,17 @@ public class Example {
   public static void main(String[] args) {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
     defaultClient.setBasePath("http://https:/api");
-    
-    // Configure HTTP bearer authorization: bearerAuth
-    HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
-    bearerAuth.setBearerToken("BEARER TOKEN");
-
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
 
     ShipmentNotesApi apiInstance = new ShipmentNotesApi(defaultClient);
-    Integer shipmentNumber = 56; // Integer | shipmentNumber
     String noteId = "noteId_example"; // String | noteId
+    Integer shipmentNumber = 56; // Integer | shipmentNumber
+    FulfillmentAPIShipmentNote shipmentNoteDto = new FulfillmentAPIShipmentNote(); // FulfillmentAPIShipmentNote | shipmentNoteDto
     String ifMatch = "ifMatch_example"; // String | If-Match
-    FulfillmentShipmentNote fulfillmentShipmentNote = new FulfillmentShipmentNote(); // FulfillmentShipmentNote | 
     try {
-      EntityModelOfShipment result = apiInstance.updateShipmentNoteUsingPUT(shipmentNumber, noteId, ifMatch, fulfillmentShipmentNote);
+      EntityModelOfShipment result = apiInstance.updateShipmentNote(noteId, shipmentNumber, shipmentNoteDto, ifMatch);
       System.out.println(result);
     } catch (ApiException e) {
-      System.err.println("Exception when calling ShipmentNotesApi#updateShipmentNoteUsingPUT");
+      System.err.println("Exception when calling ShipmentNotesApi#updateShipmentNote");
       System.err.println("Status code: " + e.getCode());
       System.err.println("Reason: " + e.getResponseBody());
       System.err.println("Response headers: " + e.getResponseHeaders());
@@ -220,10 +191,10 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **shipmentNumber** | **Integer**| shipmentNumber | |
 | **noteId** | **String**| noteId | |
+| **shipmentNumber** | **Integer**| shipmentNumber | |
+| **shipmentNoteDto** | [**FulfillmentAPIShipmentNote**](FulfillmentAPIShipmentNote.md)| shipmentNoteDto | |
 | **ifMatch** | **String**| If-Match | [optional] |
-| **fulfillmentShipmentNote** | [**FulfillmentShipmentNote**](FulfillmentShipmentNote.md)|  | [optional] |
 
 ### Return type
 
@@ -231,19 +202,18 @@ public class Example {
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth), [clientOauth2](../README.md#clientOauth2)
+No authorization required
 
 ### HTTP request headers
 
  - **Content-Type**: application/json
- - **Accept**: application/json, application/xml, application/hal+json
+ - **Accept**: application/hal+json, application/json, application/xml
 
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Success |  -  |
+| **200** | OK |  -  |
 | **201** | Created |  -  |
-| **400** | Invalid Input |  -  |
 | **401** | Unauthorized |  -  |
 | **403** | Forbidden |  -  |
 | **404** | Not Found |  -  |

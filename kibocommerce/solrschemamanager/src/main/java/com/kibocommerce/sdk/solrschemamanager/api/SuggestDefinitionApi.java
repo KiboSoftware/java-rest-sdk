@@ -1,8 +1,8 @@
 /*
  * Kibo ProductRuntime Service
- * OpenAPI Spec for Kibo ProductRuntime Service
+ * <div id=\"overview_CATALOG_ADMIN\">             <h2>CATALOG ADMINISTRATION</h2>             <p>The Catalog Administration APIs are a collection of resources for configuring the catalogs and products offered to your shoppers, including                 discounts and coupon sets, faceting, price lists, and different types or variations of products. See the                 <a href=\"/concept-guides/catalog\">Catalog user guides</a>                 for information about the related features in the Unified Commerce Admin.</p>             <p>Use the <strong>Attributes</strong> resource to manage localization and attribute configurations for your catalogs. This current version of the Attributes API includes localizedContent to                 support <a href=\"/pages/catalog-structure#multi-locale-catalogs\">multi-locale catalogs</a>, which was not present in the legacy API model. If                 you were a client prior to May 2024 and have upgraded your implementation to support this feature,                 you can still access attribute data that has not yet been rewritten to the new model by providing                 an x-api-version header set to \"1\". </p>             <p>Use the <strong>Categories</strong> resource to organize products and control where they appear on the storefront. Create                 and maintain a hierarchy of categories and subcategories where the site will store properties. This current version of the Categories API includes localizedContent to                 support <a href=\"/pages/catalog-structure#multi-locale-catalogs\">multi-locale catalogs</a>, which was not present in the legacy API model. If                 you were a client prior to May 2024 and have upgraded your implementation to support this feature,                 you can still access category data that has not yet been rewritten to the new model by providing                 an x-api-version header set to \"1\". </p>             <p>Use the <strong>Coupon Sets</strong> resource to view and create coupon sets. You can use coupon sets to group multiple                 coupon codes together and associate them with one or more discounts.</p>             <p>Use the <strong>Currency</strong> resource to manage the currency localization rules and exchange rates for any of the                 currencies that are supported for placing orders in.</p>             <p>Use the <strong>Discounts</strong> and <strong>Discount Settings</strong> resources to define and manage discounts to apply to products, product categories, or                 orders. This current version of the Discounts API includes localizedContent to                 support <a href=\"/pages/catalog-structure#multi-locale-catalogs\">multi-locale catalogs</a>, which was not present in the legacy Products API model. If                 you were a client prior to May 2024 and have upgraded your implementation to support this feature,                 you can still access discount data that has not yet been rewritten to the new model by providing                 an x-api-version header set to \"1\". </p>             <p>Use the <strong>Facets</strong> resource to manage the facets shoppers use to filter product display results on a                 storefront. Facets can include categories, product attributes, or prices, and use either a range of                 values or discrete values.</p>             <p>Use the <strong>Master Catalog</strong> resource to view details of the master catalogs associated with a tenant and to                 manage the product publishing mode for each master catalog.</p>             <p>Use the <strong>Price Lists</strong> resources to view and create price lists. You can use price lists to override the                 catalog pricing of products for specific customer segments and/or sites.</p>             <p>Use the <strong>Products</strong>, <strong>Product Types/Extras/Options/Properties</strong>, and <strong>Product Sort Definitions</strong> resources to create new product definitions in the master catalog and determine which                 catalogs will feature products. This current version of the Products API includes localizedContent to                 support <a href=\"/pages/catalog-structure#multi-locale-catalogs\">multi-locale catalogs</a>, which was not present in the legacy Products API model. If                 you were a client prior to May 2024 and have upgraded your implementation to support this feature,                 you can still access product data that has not yet been rewritten to the new model by providing                 an x-api-version header set to \"1\".</p>             <p>Use the <strong>Publishing</strong> resource to publish pending product updates together as part of a set.</p>             <p>Use the <strong>Search</strong> resource to manage all settings and options for providing product search on your site, as                 well as search tuning rules.</p>         </div>
  *
- * The version of the OpenAPI document: 1.0.0
+ * The version of the OpenAPI document: v1
  * 
  *
  * NOTE: This class is auto generated by OpenAPI Generator (https://openapi-generator.tech).
@@ -94,17 +94,18 @@ public class SuggestDefinitionApi {
 
     /**
      * Build call for downLoadSuggest
-     * @param language langage code used by the site (en, es, fr) (required)
+     * @param language Language code used by the site (en, es, fr) (required)
+     * @param responseFields limits which fields are returned in the response body (optional)
      * @param _callback Callback for upload/download progress
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call downLoadSuggestCall(String language, final ApiCallback _callback) throws ApiException {
+    public okhttp3.Call downLoadSuggestCall(String language, String responseFields, final ApiCallback _callback) throws ApiException {
         String basePath = null;
         // Operation Servers
         String[] localBasePaths = new String[] {  };
@@ -130,6 +131,10 @@ public class SuggestDefinitionApi {
         Map<String, String> localVarCookieParams = new HashMap<String, String>();
         Map<String, Object> localVarFormParams = new HashMap<String, Object>();
 
+        if (responseFields != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("responseFields", responseFields));
+        }
+
         final String[] localVarAccepts = {
             
         };
@@ -146,12 +151,12 @@ public class SuggestDefinitionApi {
             localVarHeaderParams.put("Content-Type", localVarContentType);
         }
 
-        String[] localVarAuthNames = new String[] { "bearerAuth", "clientOauth2" };
+        String[] localVarAuthNames = new String[] { "bearerAuth" };
         return localVarApiClient.buildCall(basePath, localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call downLoadSuggestValidateBeforeCall(String language, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call downLoadSuggestValidateBeforeCall(String language, String responseFields, final ApiCallback _callback) throws ApiException {
         
         // verify the required parameter 'language' is set
         if (language == null) {
@@ -159,7 +164,7 @@ public class SuggestDefinitionApi {
         }
         
 
-        okhttp3.Call localVarCall = downLoadSuggestCall(language, _callback);
+        okhttp3.Call localVarCall = downLoadSuggestCall(language, responseFields, _callback);
         return localVarCall;
 
     }
@@ -167,67 +172,71 @@ public class SuggestDefinitionApi {
     /**
      * Downloads the suggest file for the site
      * Downloads the suggest file for the site
-     * @param language langage code used by the site (en, es, fr) (required)
+     * @param language Language code used by the site (en, es, fr) (required)
+     * @param responseFields limits which fields are returned in the response body (optional)
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
      </table>
      */
-    public void downLoadSuggest(String language) throws ApiException {
-        downLoadSuggestWithHttpInfo(language);
+    public void downLoadSuggest(String language, String responseFields) throws ApiException {
+        downLoadSuggestWithHttpInfo(language, responseFields);
     }
 
     /**
      * Downloads the suggest file for the site
      * Downloads the suggest file for the site
-     * @param language langage code used by the site (en, es, fr) (required)
+     * @param language Language code used by the site (en, es, fr) (required)
+     * @param responseFields limits which fields are returned in the response body (optional)
      * @return ApiResponse&lt;Void&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<Void> downLoadSuggestWithHttpInfo(String language) throws ApiException {
-        okhttp3.Call localVarCall = downLoadSuggestValidateBeforeCall(language, null);
+    public ApiResponse<Void> downLoadSuggestWithHttpInfo(String language, String responseFields) throws ApiException {
+        okhttp3.Call localVarCall = downLoadSuggestValidateBeforeCall(language, responseFields, null);
         return localVarApiClient.execute(localVarCall);
     }
 
     /**
      * Downloads the suggest file for the site (asynchronously)
      * Downloads the suggest file for the site
-     * @param language langage code used by the site (en, es, fr) (required)
+     * @param language Language code used by the site (en, es, fr) (required)
+     * @param responseFields limits which fields are returned in the response body (optional)
      * @param _callback The callback to be executed when the API call finishes
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call downLoadSuggestAsync(String language, final ApiCallback<Void> _callback) throws ApiException {
+    public okhttp3.Call downLoadSuggestAsync(String language, String responseFields, final ApiCallback<Void> _callback) throws ApiException {
 
-        okhttp3.Call localVarCall = downLoadSuggestValidateBeforeCall(language, _callback);
+        okhttp3.Call localVarCall = downLoadSuggestValidateBeforeCall(language, responseFields, _callback);
         localVarApiClient.executeAsync(localVarCall, _callback);
         return localVarCall;
     }
     /**
      * Build call for getSuggestSettings
-     * @param language language code use by the site (en, es, fr) (required)
+     * @param language Language code use by the site (en, es, fr) (required)
+     * @param responseFields limits which fields are returned in the response body (optional)
      * @param _callback Callback for upload/download progress
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call getSuggestSettingsCall(String language, final ApiCallback _callback) throws ApiException {
+    public okhttp3.Call getSuggestSettingsCall(String language, String responseFields, final ApiCallback _callback) throws ApiException {
         String basePath = null;
         // Operation Servers
         String[] localBasePaths = new String[] {  };
@@ -253,6 +262,10 @@ public class SuggestDefinitionApi {
         Map<String, String> localVarCookieParams = new HashMap<String, String>();
         Map<String, Object> localVarFormParams = new HashMap<String, Object>();
 
+        if (responseFields != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("responseFields", responseFields));
+        }
+
         final String[] localVarAccepts = {
             "application/json", "text/json", "text/plain"
         };
@@ -269,12 +282,12 @@ public class SuggestDefinitionApi {
             localVarHeaderParams.put("Content-Type", localVarContentType);
         }
 
-        String[] localVarAuthNames = new String[] { "bearerAuth", "clientOauth2" };
+        String[] localVarAuthNames = new String[] { "bearerAuth" };
         return localVarApiClient.buildCall(basePath, localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call getSuggestSettingsValidateBeforeCall(String language, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call getSuggestSettingsValidateBeforeCall(String language, String responseFields, final ApiCallback _callback) throws ApiException {
         
         // verify the required parameter 'language' is set
         if (language == null) {
@@ -282,7 +295,7 @@ public class SuggestDefinitionApi {
         }
         
 
-        okhttp3.Call localVarCall = getSuggestSettingsCall(language, _callback);
+        okhttp3.Call localVarCall = getSuggestSettingsCall(language, responseFields, _callback);
         return localVarCall;
 
     }
@@ -290,34 +303,36 @@ public class SuggestDefinitionApi {
     /**
      * Gets the suggester settings for the site
      * Gets the suggester settings for the site
-     * @param language language code use by the site (en, es, fr) (required)
+     * @param language Language code use by the site (en, es, fr) (required)
+     * @param responseFields limits which fields are returned in the response body (optional)
      * @return Suggester
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
      </table>
      */
-    public Suggester getSuggestSettings(String language) throws ApiException {
-        ApiResponse<Suggester> localVarResp = getSuggestSettingsWithHttpInfo(language);
+    public Suggester getSuggestSettings(String language, String responseFields) throws ApiException {
+        ApiResponse<Suggester> localVarResp = getSuggestSettingsWithHttpInfo(language, responseFields);
         return localVarResp.getData();
     }
 
     /**
      * Gets the suggester settings for the site
      * Gets the suggester settings for the site
-     * @param language language code use by the site (en, es, fr) (required)
+     * @param language Language code use by the site (en, es, fr) (required)
+     * @param responseFields limits which fields are returned in the response body (optional)
      * @return ApiResponse&lt;Suggester&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<Suggester> getSuggestSettingsWithHttpInfo(String language) throws ApiException {
-        okhttp3.Call localVarCall = getSuggestSettingsValidateBeforeCall(language, null);
+    public ApiResponse<Suggester> getSuggestSettingsWithHttpInfo(String language, String responseFields) throws ApiException {
+        okhttp3.Call localVarCall = getSuggestSettingsValidateBeforeCall(language, responseFields, null);
         Type localVarReturnType = new TypeToken<Suggester>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
@@ -325,37 +340,39 @@ public class SuggestDefinitionApi {
     /**
      * Gets the suggester settings for the site (asynchronously)
      * Gets the suggester settings for the site
-     * @param language language code use by the site (en, es, fr) (required)
+     * @param language Language code use by the site (en, es, fr) (required)
+     * @param responseFields limits which fields are returned in the response body (optional)
      * @param _callback The callback to be executed when the API call finishes
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call getSuggestSettingsAsync(String language, final ApiCallback<Suggester> _callback) throws ApiException {
+    public okhttp3.Call getSuggestSettingsAsync(String language, String responseFields, final ApiCallback<Suggester> _callback) throws ApiException {
 
-        okhttp3.Call localVarCall = getSuggestSettingsValidateBeforeCall(language, _callback);
+        okhttp3.Call localVarCall = getSuggestSettingsValidateBeforeCall(language, responseFields, _callback);
         Type localVarReturnType = new TypeToken<Suggester>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
     }
     /**
      * Build call for updateSuggestSettings
-     * @param language language code use by the site (en, es, fr) (required)
-     * @param suggester suggset definition in (optional)
+     * @param language Language code use by the site (en, es, fr) (required)
+     * @param responseFields limits which fields are returned in the response body (optional)
+     * @param suggester Suggest definition in (optional)
      * @param _callback Callback for upload/download progress
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call updateSuggestSettingsCall(String language, Suggester suggester, final ApiCallback _callback) throws ApiException {
+    public okhttp3.Call updateSuggestSettingsCall(String language, String responseFields, Suggester suggester, final ApiCallback _callback) throws ApiException {
         String basePath = null;
         // Operation Servers
         String[] localBasePaths = new String[] {  };
@@ -381,6 +398,10 @@ public class SuggestDefinitionApi {
         Map<String, String> localVarCookieParams = new HashMap<String, String>();
         Map<String, Object> localVarFormParams = new HashMap<String, Object>();
 
+        if (responseFields != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("responseFields", responseFields));
+        }
+
         final String[] localVarAccepts = {
             "application/json", "text/json", "text/plain"
         };
@@ -390,19 +411,19 @@ public class SuggestDefinitionApi {
         }
 
         final String[] localVarContentTypes = {
-            "text/plain", "application/octet-stream", "application/zip", "application/json"
+            "application/json", "application/octet-stream", "application/zip", "text/plain"
         };
         final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
         if (localVarContentType != null) {
             localVarHeaderParams.put("Content-Type", localVarContentType);
         }
 
-        String[] localVarAuthNames = new String[] { "bearerAuth", "clientOauth2" };
+        String[] localVarAuthNames = new String[] { "bearerAuth" };
         return localVarApiClient.buildCall(basePath, localVarPath, "PUT", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call updateSuggestSettingsValidateBeforeCall(String language, Suggester suggester, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call updateSuggestSettingsValidateBeforeCall(String language, String responseFields, Suggester suggester, final ApiCallback _callback) throws ApiException {
         
         // verify the required parameter 'language' is set
         if (language == null) {
@@ -410,7 +431,7 @@ public class SuggestDefinitionApi {
         }
         
 
-        okhttp3.Call localVarCall = updateSuggestSettingsCall(language, suggester, _callback);
+        okhttp3.Call localVarCall = updateSuggestSettingsCall(language, responseFields, suggester, _callback);
         return localVarCall;
 
     }
@@ -418,36 +439,38 @@ public class SuggestDefinitionApi {
     /**
      * Updates the suggester settings for the site
      * Updates the suggester settings for the site
-     * @param language language code use by the site (en, es, fr) (required)
-     * @param suggester suggset definition in (optional)
+     * @param language Language code use by the site (en, es, fr) (required)
+     * @param responseFields limits which fields are returned in the response body (optional)
+     * @param suggester Suggest definition in (optional)
      * @return Suggester
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
      </table>
      */
-    public Suggester updateSuggestSettings(String language, Suggester suggester) throws ApiException {
-        ApiResponse<Suggester> localVarResp = updateSuggestSettingsWithHttpInfo(language, suggester);
+    public Suggester updateSuggestSettings(String language, String responseFields, Suggester suggester) throws ApiException {
+        ApiResponse<Suggester> localVarResp = updateSuggestSettingsWithHttpInfo(language, responseFields, suggester);
         return localVarResp.getData();
     }
 
     /**
      * Updates the suggester settings for the site
      * Updates the suggester settings for the site
-     * @param language language code use by the site (en, es, fr) (required)
-     * @param suggester suggset definition in (optional)
+     * @param language Language code use by the site (en, es, fr) (required)
+     * @param responseFields limits which fields are returned in the response body (optional)
+     * @param suggester Suggest definition in (optional)
      * @return ApiResponse&lt;Suggester&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<Suggester> updateSuggestSettingsWithHttpInfo(String language, Suggester suggester) throws ApiException {
-        okhttp3.Call localVarCall = updateSuggestSettingsValidateBeforeCall(language, suggester, null);
+    public ApiResponse<Suggester> updateSuggestSettingsWithHttpInfo(String language, String responseFields, Suggester suggester) throws ApiException {
+        okhttp3.Call localVarCall = updateSuggestSettingsValidateBeforeCall(language, responseFields, suggester, null);
         Type localVarReturnType = new TypeToken<Suggester>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
@@ -455,20 +478,21 @@ public class SuggestDefinitionApi {
     /**
      * Updates the suggester settings for the site (asynchronously)
      * Updates the suggester settings for the site
-     * @param language language code use by the site (en, es, fr) (required)
-     * @param suggester suggset definition in (optional)
+     * @param language Language code use by the site (en, es, fr) (required)
+     * @param responseFields limits which fields are returned in the response body (optional)
+     * @param suggester Suggest definition in (optional)
      * @param _callback The callback to be executed when the API call finishes
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call updateSuggestSettingsAsync(String language, Suggester suggester, final ApiCallback<Suggester> _callback) throws ApiException {
+    public okhttp3.Call updateSuggestSettingsAsync(String language, String responseFields, Suggester suggester, final ApiCallback<Suggester> _callback) throws ApiException {
 
-        okhttp3.Call localVarCall = updateSuggestSettingsValidateBeforeCall(language, suggester, _callback);
+        okhttp3.Call localVarCall = updateSuggestSettingsValidateBeforeCall(language, responseFields, suggester, _callback);
         Type localVarReturnType = new TypeToken<Suggester>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
@@ -476,16 +500,17 @@ public class SuggestDefinitionApi {
     /**
      * Build call for uploadSuggest
      * @param language language code use by the site (en, es, fr) (required)
+     * @param responseFields limits which fields are returned in the response body (optional)
      * @param _callback Callback for upload/download progress
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call uploadSuggestCall(String language, final ApiCallback _callback) throws ApiException {
+    public okhttp3.Call uploadSuggestCall(String language, String responseFields, final ApiCallback _callback) throws ApiException {
         String basePath = null;
         // Operation Servers
         String[] localBasePaths = new String[] {  };
@@ -511,6 +536,10 @@ public class SuggestDefinitionApi {
         Map<String, String> localVarCookieParams = new HashMap<String, String>();
         Map<String, Object> localVarFormParams = new HashMap<String, Object>();
 
+        if (responseFields != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("responseFields", responseFields));
+        }
+
         final String[] localVarAccepts = {
             "application/json", "text/json", "text/plain"
         };
@@ -527,12 +556,12 @@ public class SuggestDefinitionApi {
             localVarHeaderParams.put("Content-Type", localVarContentType);
         }
 
-        String[] localVarAuthNames = new String[] { "bearerAuth", "clientOauth2" };
+        String[] localVarAuthNames = new String[] { "bearerAuth" };
         return localVarApiClient.buildCall(basePath, localVarPath, "PUT", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call uploadSuggestValidateBeforeCall(String language, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call uploadSuggestValidateBeforeCall(String language, String responseFields, final ApiCallback _callback) throws ApiException {
         
         // verify the required parameter 'language' is set
         if (language == null) {
@@ -540,62 +569,65 @@ public class SuggestDefinitionApi {
         }
         
 
-        okhttp3.Call localVarCall = uploadSuggestCall(language, _callback);
+        okhttp3.Call localVarCall = uploadSuggestCall(language, responseFields, _callback);
         return localVarCall;
 
     }
 
     /**
-     * Uploads a suggest file for the site in tab seperated format)
-     * Uploads a suggest file for the site in tab seperated format)
+     * Uploads a suggest file for the site in tab separated format)
+     * Uploads a suggest file for the site in tab separated format)
      * @param language language code use by the site (en, es, fr) (required)
+     * @param responseFields limits which fields are returned in the response body (optional)
      * @return List&lt;String&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
      </table>
      */
-    public List<String> uploadSuggest(String language) throws ApiException {
-        ApiResponse<List<String>> localVarResp = uploadSuggestWithHttpInfo(language);
+    public List<String> uploadSuggest(String language, String responseFields) throws ApiException {
+        ApiResponse<List<String>> localVarResp = uploadSuggestWithHttpInfo(language, responseFields);
         return localVarResp.getData();
     }
 
     /**
-     * Uploads a suggest file for the site in tab seperated format)
-     * Uploads a suggest file for the site in tab seperated format)
+     * Uploads a suggest file for the site in tab separated format)
+     * Uploads a suggest file for the site in tab separated format)
      * @param language language code use by the site (en, es, fr) (required)
+     * @param responseFields limits which fields are returned in the response body (optional)
      * @return ApiResponse&lt;List&lt;String&gt;&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<List<String>> uploadSuggestWithHttpInfo(String language) throws ApiException {
-        okhttp3.Call localVarCall = uploadSuggestValidateBeforeCall(language, null);
+    public ApiResponse<List<String>> uploadSuggestWithHttpInfo(String language, String responseFields) throws ApiException {
+        okhttp3.Call localVarCall = uploadSuggestValidateBeforeCall(language, responseFields, null);
         Type localVarReturnType = new TypeToken<List<String>>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
 
     /**
-     * Uploads a suggest file for the site in tab seperated format) (asynchronously)
-     * Uploads a suggest file for the site in tab seperated format)
+     * Uploads a suggest file for the site in tab separated format) (asynchronously)
+     * Uploads a suggest file for the site in tab separated format)
      * @param language language code use by the site (en, es, fr) (required)
+     * @param responseFields limits which fields are returned in the response body (optional)
      * @param _callback The callback to be executed when the API call finishes
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call uploadSuggestAsync(String language, final ApiCallback<List<String>> _callback) throws ApiException {
+    public okhttp3.Call uploadSuggestAsync(String language, String responseFields, final ApiCallback<List<String>> _callback) throws ApiException {
 
-        okhttp3.Call localVarCall = uploadSuggestValidateBeforeCall(language, _callback);
+        okhttp3.Call localVarCall = uploadSuggestValidateBeforeCall(language, responseFields, _callback);
         Type localVarReturnType = new TypeToken<List<String>>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;

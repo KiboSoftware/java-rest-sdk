@@ -7,13 +7,13 @@
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
-|**productCode** | **String** |  |  [optional] |
-|**name** | **String** |  |  [optional] |
 |**goodsType** | **String** |  |  [optional] |
-|**quantity** | **Integer** |  |  [optional] |
+|**measurements** | [**ReservationWebAPIPackageMeasurements**](ReservationWebAPIPackageMeasurements.md) |  |  [optional] |
+|**name** | **String** |  |  [optional] |
 |**optionAttributeFQN** | **String** |  |  [optional] |
 |**optionValue** | **Object** |  |  [optional] |
-|**measurements** | [**ReservationWebAPIPackageMeasurements**](ReservationWebAPIPackageMeasurements.md) |  |  [optional] |
+|**productCode** | **String** |  |  [optional] |
+|**quantity** | **Integer** |  |  [optional] |
 
 
 ## Implemented Interfaces

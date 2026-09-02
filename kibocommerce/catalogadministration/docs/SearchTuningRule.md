@@ -7,19 +7,19 @@
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
-|**siteId** | **Integer** |  |  [optional] |
-|**searchTuningRuleCode** | **String** |  |  [optional] |
-|**searchTuningRuleName** | **String** |  |  [optional] |
-|**searchTuningRuleDescription** | **String** |  |  [optional] |
-|**keywords** | **List&lt;String&gt;** |  |  [optional] |
-|**filters** | [**List&lt;SearchTuningRuleFilter&gt;**](SearchTuningRuleFilter.md) |  |  [optional] |
 |**active** | **Boolean** |  |  [optional] |
-|**isDefault** | **Boolean** |  |  [optional] |
-|**activeStartDate** | **OffsetDateTime** |  |  [optional] |
 |**activeEndDate** | **OffsetDateTime** |  |  [optional] |
-|**boostedProductCodes** | **List&lt;String&gt;** |  |  [optional] |
-|**blockedProductCodes** | **List&lt;String&gt;** |  |  [optional] |
+|**activeStartDate** | **OffsetDateTime** |  |  [optional] |
 |**auditInfo** | [**AdminUserAuditInfo**](AdminUserAuditInfo.md) |  |  [optional] |
+|**blockedProductCodes** | **List&lt;String&gt;** |  |  [optional] |
+|**boostedProductCodes** | **List&lt;String&gt;** |  |  [optional] |
+|**filters** | [**List&lt;SearchTuningRuleFilter&gt;**](SearchTuningRuleFilter.md) |  |  [optional] |
+|**isDefault** | **Boolean** |  |  [optional] |
+|**keywords** | **List&lt;String&gt;** |  |  [optional] |
+|**searchTuningRuleCode** | **String** |  |  [optional] |
+|**searchTuningRuleDescription** | **String** |  |  [optional] |
+|**searchTuningRuleName** | **String** |  |  [optional] |
+|**siteId** | **Integer** |  |  [optional] |
 
 
 ## Implemented Interfaces

@@ -7,8 +7,8 @@
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
-|**sortFields** | **List&lt;String&gt;** |  |  [optional] |
 |**inclusionExclusionType** | **String** |  |  [optional] |
+|**sortFields** | **List&lt;String&gt;** |  |  [optional] |
 
 
 ## Implemented Interfaces

@@ -4,18 +4,18 @@ All URIs are relative to *http://https:/api*
 
 | Method | HTTP request | Description |
 |------------- | ------------- | -------------|
-| [**addSearchRedirect**](SearchRedirectApi.md#addSearchRedirect) | **POST** /commerce/catalog/admin/search/redirect | Add search redirect |
-| [**deleteSearchRedirect**](SearchRedirectApi.md#deleteSearchRedirect) | **DELETE** /commerce/catalog/admin/search/redirect/{redirectId} | Delete search redirect |
-| [**getSearchRedirect**](SearchRedirectApi.md#getSearchRedirect) | **GET** /commerce/catalog/admin/search/redirect/{redirectId} | Get search redirect |
-| [**getSearchRedirects**](SearchRedirectApi.md#getSearchRedirects) | **GET** /commerce/catalog/admin/search/redirect | Get search redirects |
-| [**updateSearchRedirect**](SearchRedirectApi.md#updateSearchRedirect) | **PUT** /commerce/catalog/admin/search/redirect/{redirectId} | Update search redirect |
+| [**addSearchRedirect**](SearchRedirectApi.md#addSearchRedirect) | **POST** /commerce/catalog/admin/search/redirect | Add Search Redirect |
+| [**deleteSearchRedirect**](SearchRedirectApi.md#deleteSearchRedirect) | **DELETE** /commerce/catalog/admin/search/redirect/{redirectId} | Delete Search Redirect |
+| [**getSearchRedirect**](SearchRedirectApi.md#getSearchRedirect) | **GET** /commerce/catalog/admin/search/redirect/{redirectId} | Get Search Redirect |
+| [**getSearchRedirects**](SearchRedirectApi.md#getSearchRedirects) | **GET** /commerce/catalog/admin/search/redirect | Get Search Redirects |
+| [**updateSearchRedirect**](SearchRedirectApi.md#updateSearchRedirect) | **PUT** /commerce/catalog/admin/search/redirect/{redirectId} | Update Search Redirect |
 
 
 <a name="addSearchRedirect"></a>
 # **addSearchRedirect**
-> SearchRedirect addSearchRedirect(fromSystemDefault, searchRedirect)
+> SearchRedirect addSearchRedirect(fromSystemDefault, responseFields, searchRedirect)
 
-Add search redirect
+Add Search Redirect
 
 Adds a search redirect for a specific site.
 
@@ -38,15 +38,12 @@ public class Example {
     HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
     bearerAuth.setBearerToken("BEARER TOKEN");
 
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
-
     SearchRedirectApi apiInstance = new SearchRedirectApi(defaultClient);
     Boolean fromSystemDefault = false; // Boolean | 
+    String responseFields = "responseFields_example"; // String | limits which fields are returned in the response body
     SearchRedirect searchRedirect = new SearchRedirect(); // SearchRedirect | 
     try {
-      SearchRedirect result = apiInstance.addSearchRedirect(fromSystemDefault, searchRedirect);
+      SearchRedirect result = apiInstance.addSearchRedirect(fromSystemDefault, responseFields, searchRedirect);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling SearchRedirectApi#addSearchRedirect");
@@ -64,6 +61,7 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **fromSystemDefault** | **Boolean**|  | [optional] [default to false] |
+| **responseFields** | **String**| limits which fields are returned in the response body | [optional] |
 | **searchRedirect** | [**SearchRedirect**](SearchRedirect.md)|  | [optional] |
 
 ### Return type
@@ -72,7 +70,7 @@ public class Example {
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth), [clientOauth2](../README.md#clientOauth2)
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
@@ -82,13 +80,13 @@ public class Example {
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Success |  -  |
+| **200** | OK |  -  |
 
 <a name="deleteSearchRedirect"></a>
 # **deleteSearchRedirect**
 > SearchRedirect deleteSearchRedirect(redirectId)
 
-Delete search redirect
+Delete Search Redirect
 
 Deletes a specific redirect for a site.
 
@@ -110,10 +108,6 @@ public class Example {
     // Configure HTTP bearer authorization: bearerAuth
     HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
     bearerAuth.setBearerToken("BEARER TOKEN");
-
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
 
     SearchRedirectApi apiInstance = new SearchRedirectApi(defaultClient);
     String redirectId = "redirectId_example"; // String | 
@@ -143,7 +137,7 @@ public class Example {
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth), [clientOauth2](../README.md#clientOauth2)
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
@@ -153,13 +147,13 @@ public class Example {
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Success |  -  |
+| **200** | OK |  -  |
 
 <a name="getSearchRedirect"></a>
 # **getSearchRedirect**
-> SearchRedirect getSearchRedirect(redirectId)
+> SearchRedirect getSearchRedirect(redirectId, responseFields)
 
-Get search redirect
+Get Search Redirect
 
 Get search redirect by redirect id.
 
@@ -182,14 +176,11 @@ public class Example {
     HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
     bearerAuth.setBearerToken("BEARER TOKEN");
 
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
-
     SearchRedirectApi apiInstance = new SearchRedirectApi(defaultClient);
     String redirectId = "redirectId_example"; // String | 
+    String responseFields = "responseFields_example"; // String | limits which fields are returned in the response body
     try {
-      SearchRedirect result = apiInstance.getSearchRedirect(redirectId);
+      SearchRedirect result = apiInstance.getSearchRedirect(redirectId, responseFields);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling SearchRedirectApi#getSearchRedirect");
@@ -207,6 +198,7 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **redirectId** | **String**|  | |
+| **responseFields** | **String**| limits which fields are returned in the response body | [optional] |
 
 ### Return type
 
@@ -214,7 +206,7 @@ public class Example {
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth), [clientOauth2](../README.md#clientOauth2)
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
@@ -224,13 +216,13 @@ public class Example {
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Success |  -  |
+| **200** | OK |  -  |
 
 <a name="getSearchRedirects"></a>
 # **getSearchRedirects**
-> SearchRedirectCollection getSearchRedirects()
+> SearchRedirectCollection getSearchRedirects(responseFields)
 
-Get search redirects
+Get Search Redirects
 
 Get search redirect list.
 
@@ -253,13 +245,10 @@ public class Example {
     HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
     bearerAuth.setBearerToken("BEARER TOKEN");
 
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
-
     SearchRedirectApi apiInstance = new SearchRedirectApi(defaultClient);
+    String responseFields = "responseFields_example"; // String | limits which fields are returned in the response body
     try {
-      SearchRedirectCollection result = apiInstance.getSearchRedirects();
+      SearchRedirectCollection result = apiInstance.getSearchRedirects(responseFields);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling SearchRedirectApi#getSearchRedirects");
@@ -273,7 +262,10 @@ public class Example {
 ```
 
 ### Parameters
-This endpoint does not need any parameter.
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **responseFields** | **String**| limits which fields are returned in the response body | [optional] |
 
 ### Return type
 
@@ -281,7 +273,7 @@ This endpoint does not need any parameter.
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth), [clientOauth2](../README.md#clientOauth2)
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
@@ -291,13 +283,13 @@ This endpoint does not need any parameter.
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Success |  -  |
+| **200** | OK |  -  |
 
 <a name="updateSearchRedirect"></a>
 # **updateSearchRedirect**
-> SearchRedirect updateSearchRedirect(redirectId, searchRedirect)
+> SearchRedirect updateSearchRedirect(redirectId, responseFields, searchRedirect)
 
-Update search redirect
+Update Search Redirect
 
 Update a search redirect for a specific site.
 
@@ -320,15 +312,12 @@ public class Example {
     HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
     bearerAuth.setBearerToken("BEARER TOKEN");
 
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
-
     SearchRedirectApi apiInstance = new SearchRedirectApi(defaultClient);
     String redirectId = "redirectId_example"; // String | 
+    String responseFields = "responseFields_example"; // String | limits which fields are returned in the response body
     SearchRedirect searchRedirect = new SearchRedirect(); // SearchRedirect | 
     try {
-      SearchRedirect result = apiInstance.updateSearchRedirect(redirectId, searchRedirect);
+      SearchRedirect result = apiInstance.updateSearchRedirect(redirectId, responseFields, searchRedirect);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling SearchRedirectApi#updateSearchRedirect");
@@ -346,6 +335,7 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **redirectId** | **String**|  | |
+| **responseFields** | **String**| limits which fields are returned in the response body | [optional] |
 | **searchRedirect** | [**SearchRedirect**](SearchRedirect.md)|  | [optional] |
 
 ### Return type
@@ -354,7 +344,7 @@ public class Example {
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth), [clientOauth2](../README.md#clientOauth2)
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
@@ -364,5 +354,5 @@ public class Example {
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Success |  -  |
+| **200** | OK |  -  |
 

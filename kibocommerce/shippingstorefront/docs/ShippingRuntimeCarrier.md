@@ -8,13 +8,14 @@ A Carrier definition supported by Shipping Runtime.
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
-|**carrierId** | **String** |  |  [optional] |
-|**isBuiltIn** | **Boolean** |  |  [optional] |
-|**certified** | **Boolean** |  |  [optional] |
-|**name** | **String** |  |  [optional] |
-|**description** | **String** |  |  [optional] |
-|**logoUrl** | **String** |  |  [optional] |
 |**auditInfo** | [**AdminUserAuditInfo**](AdminUserAuditInfo.md) |  |  [optional] |
+|**carrierId** | **String** |  |  [optional] |
+|**certified** | **Boolean** |  |  [optional] |
+|**description** | **String** |  |  [optional] |
+|**features** | **List&lt;String&gt;** |  |  [optional] |
+|**isBuiltIn** | **Boolean** |  |  [optional] |
+|**logoUrl** | **String** |  |  [optional] |
+|**name** | **String** |  |  [optional] |
 
 
 ## Implemented Interfaces

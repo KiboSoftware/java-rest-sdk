@@ -7,13 +7,14 @@
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
-|**id** | **Integer** |  |  [optional] |
 |**categoryId** | **Integer** |  |  [optional] |
-|**name** | **String** |  |  [optional] |
-|**requiresBehaviorIds** | **List&lt;Integer&gt;** |  |  [optional] |
-|**validUserTypes** | **List&lt;String&gt;** |  |  [optional] |
+|**id** | **Integer** |  |  [optional] |
 |**isPrivate** | **Boolean** |  |  [optional] |
+|**name** | **String** |  |  [optional] |
+|**oAuthScopes** | **List&lt;String&gt;** |  |  [optional] |
+|**requiresBehaviorIds** | **List&lt;Integer&gt;** |  |  [optional] |
 |**systemRoles** | **List&lt;String&gt;** |  |  [optional] |
+|**validUserTypes** | **List&lt;String&gt;** |  |  [optional] |
 
 
 ## Implemented Interfaces

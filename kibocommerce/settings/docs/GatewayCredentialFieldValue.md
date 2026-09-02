@@ -7,9 +7,9 @@
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
+|**isValueSet** | **Boolean** |  |  [optional] |
 |**name** | **String** |  |  [optional] |
 |**value** | **String** |  |  [optional] |
-|**isValueSet** | **Boolean** |  |  [optional] |
 
 
 ## Implemented Interfaces

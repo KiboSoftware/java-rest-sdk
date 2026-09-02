@@ -12,6 +12,7 @@
 |**city** | **String** |  |  [optional] |
 |**countryCode** | **String** |  |  [optional] |
 |**created** | **String** |  |  [optional] |
+|**deliveryEnabled** | **Boolean** |  |  [optional] |
 |**directShip** | **Boolean** |  |  [optional] |
 |**express** | **Boolean** |  |  [optional] |
 |**fridayHours** | **String** |  |  [optional] |

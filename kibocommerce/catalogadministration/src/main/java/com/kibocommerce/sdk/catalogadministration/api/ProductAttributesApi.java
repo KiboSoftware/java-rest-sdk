@@ -1,8 +1,8 @@
 /*
  * Kibo Catalog Admin Services
- * OpenAPI Spec for Kibo Catalog Admin Services
+ * <div id=\"overview_CATALOG_ADMIN\">             <h2>CATALOG ADMINISTRATION</h2>             <p>The Catalog Administration APIs are a collection of resources for configuring the catalogs and products offered to your shoppers, including                 discounts and coupon sets, faceting, price lists, and different types or variations of products. See the                 <a href=\"/concept-guides/catalog\">Catalog user guides</a>                 for information about the related features in the Unified Commerce Admin.</p>             <p>Use the <strong>Attributes</strong> resource to manage localization and attribute configurations for your catalogs. This current version of the Attributes API includes localizedContent to                 support <a href=\"/pages/catalog-structure#multi-locale-catalogs\">multi-locale catalogs</a>, which was not present in the legacy API model. If                 you were a client prior to May 2024 and have upgraded your implementation to support this feature,                 you can still access attribute data that has not yet been rewritten to the new model by providing                 an x-api-version header set to \"1\". </p>             <p>Use the <strong>Categories</strong> resource to organize products and control where they appear on the storefront. Create                 and maintain a hierarchy of categories and subcategories where the site will store properties. This current version of the Categories API includes localizedContent to                 support <a href=\"/pages/catalog-structure#multi-locale-catalogs\">multi-locale catalogs</a>, which was not present in the legacy API model. If                 you were a client prior to May 2024 and have upgraded your implementation to support this feature,                 you can still access category data that has not yet been rewritten to the new model by providing                 an x-api-version header set to \"1\". </p>             <p>Use the <strong>Coupon Sets</strong> resource to view and create coupon sets. You can use coupon sets to group multiple                 coupon codes together and associate them with one or more discounts.</p>             <p>Use the <strong>Currency</strong> resource to manage the currency localization rules and exchange rates for any of the                 currencies that are supported for placing orders in.</p>             <p>Use the <strong>Discounts</strong> and <strong>Discount Settings</strong> resources to define and manage discounts to apply to products, product categories, or                 orders. This current version of the Discounts API includes localizedContent to                 support <a href=\"/pages/catalog-structure#multi-locale-catalogs\">multi-locale catalogs</a>, which was not present in the legacy Products API model. If                 you were a client prior to May 2024 and have upgraded your implementation to support this feature,                 you can still access discount data that has not yet been rewritten to the new model by providing                 an x-api-version header set to \"1\". </p>             <p>Use the <strong>Facets</strong> resource to manage the facets shoppers use to filter product display results on a                 storefront. Facets can include categories, product attributes, or prices, and use either a range of                 values or discrete values.</p>             <p>Use the <strong>Master Catalog</strong> resource to view details of the master catalogs associated with a tenant and to                 manage the product publishing mode for each master catalog.</p>             <p>Use the <strong>Price Lists</strong> resources to view and create price lists. You can use price lists to override the                 catalog pricing of products for specific customer segments and/or sites.</p>             <p>Use the <strong>Products</strong>, <strong>Product Types/Extras/Options/Properties</strong>, and <strong>Product Sort Definitions</strong> resources to create new product definitions in the master catalog and determine which                 catalogs will feature products. This current version of the Products API includes localizedContent to                 support <a href=\"/pages/catalog-structure#multi-locale-catalogs\">multi-locale catalogs</a>, which was not present in the legacy Products API model. If                 you were a client prior to May 2024 and have upgraded your implementation to support this feature,                 you can still access product data that has not yet been rewritten to the new model by providing                 an x-api-version header set to \"1\".</p>             <p>Use the <strong>Publishing</strong> resource to publish pending product updates together as part of a set.</p>             <p>Use the <strong>Search</strong> resource to manage all settings and options for providing product search on your site, as                 well as search tuning rules.</p>         </div>
  *
- * The version of the OpenAPI document: 1.0.0
+ * The version of the OpenAPI document: v1
  * 
  *
  * NOTE: This class is auto generated by OpenAPI Generator (https://openapi-generator.tech).
@@ -99,6 +99,7 @@ public class ProductAttributesApi {
 
     /**
      * Build call for addAttribute
+     * @param responseFields limits which fields are returned in the response body (optional)
      * @param catalogAdminsAttribute  (optional)
      * @param _callback Callback for upload/download progress
      * @return Call to execute
@@ -106,10 +107,10 @@ public class ProductAttributesApi {
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call addAttributeCall(CatalogAdminsAttribute catalogAdminsAttribute, final ApiCallback _callback) throws ApiException {
+    public okhttp3.Call addAttributeCall(String responseFields, CatalogAdminsAttribute catalogAdminsAttribute, final ApiCallback _callback) throws ApiException {
         String basePath = null;
         // Operation Servers
         String[] localBasePaths = new String[] {  };
@@ -134,6 +135,10 @@ public class ProductAttributesApi {
         Map<String, String> localVarCookieParams = new HashMap<String, String>();
         Map<String, Object> localVarFormParams = new HashMap<String, Object>();
 
+        if (responseFields != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("responseFields", responseFields));
+        }
+
         final String[] localVarAccepts = {
             "application/json", "text/json", "text/plain"
         };
@@ -150,57 +155,60 @@ public class ProductAttributesApi {
             localVarHeaderParams.put("Content-Type", localVarContentType);
         }
 
-        String[] localVarAuthNames = new String[] { "bearerAuth", "clientOauth2" };
+        String[] localVarAuthNames = new String[] { "bearerAuth" };
         return localVarApiClient.buildCall(basePath, localVarPath, "POST", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call addAttributeValidateBeforeCall(CatalogAdminsAttribute catalogAdminsAttribute, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call addAttributeValidateBeforeCall(String responseFields, CatalogAdminsAttribute catalogAdminsAttribute, final ApiCallback _callback) throws ApiException {
         
 
-        okhttp3.Call localVarCall = addAttributeCall(catalogAdminsAttribute, _callback);
+        okhttp3.Call localVarCall = addAttributeCall(responseFields, catalogAdminsAttribute, _callback);
         return localVarCall;
 
     }
 
     /**
-     * Add a product attribute
-     * Add / Create Attribute
+     * Add Product Attribute
+     * Create a new attribute. The attribute name, attribute type, input type, and data type are required. This current version of the Attributes API includes localizedContent to support &lt;a href&#x3D;\&quot;/pages/catalog-structure#multi-locale-catalogs\&quot;&gt;multi-locale catalogs&lt;/a&gt;, which was not present in the previous API model. If you were a client prior to May 2024 and have upgraded your implementation to support this feature, you can still access attribute data that has not yet been rewritten to the new model by providing an x-api-version header set to \&quot;1\&quot;.
+     * @param responseFields limits which fields are returned in the response body (optional)
      * @param catalogAdminsAttribute  (optional)
      * @return CatalogAdminsAttribute
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
      </table>
      */
-    public CatalogAdminsAttribute addAttribute(CatalogAdminsAttribute catalogAdminsAttribute) throws ApiException {
-        ApiResponse<CatalogAdminsAttribute> localVarResp = addAttributeWithHttpInfo(catalogAdminsAttribute);
+    public CatalogAdminsAttribute addAttribute(String responseFields, CatalogAdminsAttribute catalogAdminsAttribute) throws ApiException {
+        ApiResponse<CatalogAdminsAttribute> localVarResp = addAttributeWithHttpInfo(responseFields, catalogAdminsAttribute);
         return localVarResp.getData();
     }
 
     /**
-     * Add a product attribute
-     * Add / Create Attribute
+     * Add Product Attribute
+     * Create a new attribute. The attribute name, attribute type, input type, and data type are required. This current version of the Attributes API includes localizedContent to support &lt;a href&#x3D;\&quot;/pages/catalog-structure#multi-locale-catalogs\&quot;&gt;multi-locale catalogs&lt;/a&gt;, which was not present in the previous API model. If you were a client prior to May 2024 and have upgraded your implementation to support this feature, you can still access attribute data that has not yet been rewritten to the new model by providing an x-api-version header set to \&quot;1\&quot;.
+     * @param responseFields limits which fields are returned in the response body (optional)
      * @param catalogAdminsAttribute  (optional)
      * @return ApiResponse&lt;CatalogAdminsAttribute&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<CatalogAdminsAttribute> addAttributeWithHttpInfo(CatalogAdminsAttribute catalogAdminsAttribute) throws ApiException {
-        okhttp3.Call localVarCall = addAttributeValidateBeforeCall(catalogAdminsAttribute, null);
+    public ApiResponse<CatalogAdminsAttribute> addAttributeWithHttpInfo(String responseFields, CatalogAdminsAttribute catalogAdminsAttribute) throws ApiException {
+        okhttp3.Call localVarCall = addAttributeValidateBeforeCall(responseFields, catalogAdminsAttribute, null);
         Type localVarReturnType = new TypeToken<CatalogAdminsAttribute>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
 
     /**
-     * Add a product attribute (asynchronously)
-     * Add / Create Attribute
+     * Add Product Attribute (asynchronously)
+     * Create a new attribute. The attribute name, attribute type, input type, and data type are required. This current version of the Attributes API includes localizedContent to support &lt;a href&#x3D;\&quot;/pages/catalog-structure#multi-locale-catalogs\&quot;&gt;multi-locale catalogs&lt;/a&gt;, which was not present in the previous API model. If you were a client prior to May 2024 and have upgraded your implementation to support this feature, you can still access attribute data that has not yet been rewritten to the new model by providing an x-api-version header set to \&quot;1\&quot;.
+     * @param responseFields limits which fields are returned in the response body (optional)
      * @param catalogAdminsAttribute  (optional)
      * @param _callback The callback to be executed when the API call finishes
      * @return The request call
@@ -208,12 +216,12 @@ public class ProductAttributesApi {
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call addAttributeAsync(CatalogAdminsAttribute catalogAdminsAttribute, final ApiCallback<CatalogAdminsAttribute> _callback) throws ApiException {
+    public okhttp3.Call addAttributeAsync(String responseFields, CatalogAdminsAttribute catalogAdminsAttribute, final ApiCallback<CatalogAdminsAttribute> _callback) throws ApiException {
 
-        okhttp3.Call localVarCall = addAttributeValidateBeforeCall(catalogAdminsAttribute, _callback);
+        okhttp3.Call localVarCall = addAttributeValidateBeforeCall(responseFields, catalogAdminsAttribute, _callback);
         Type localVarReturnType = new TypeToken<CatalogAdminsAttribute>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
@@ -221,6 +229,7 @@ public class ProductAttributesApi {
     /**
      * Build call for addAttributeVocabularyValue
      * @param attributeFQN  (required)
+     * @param responseFields limits which fields are returned in the response body (optional)
      * @param catalogAdminsAttributeVocabularyValue  (optional)
      * @param _callback Callback for upload/download progress
      * @return Call to execute
@@ -228,10 +237,10 @@ public class ProductAttributesApi {
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call addAttributeVocabularyValueCall(String attributeFQN, CatalogAdminsAttributeVocabularyValue catalogAdminsAttributeVocabularyValue, final ApiCallback _callback) throws ApiException {
+    public okhttp3.Call addAttributeVocabularyValueCall(String attributeFQN, String responseFields, CatalogAdminsAttributeVocabularyValue catalogAdminsAttributeVocabularyValue, final ApiCallback _callback) throws ApiException {
         String basePath = null;
         // Operation Servers
         String[] localBasePaths = new String[] {  };
@@ -257,6 +266,10 @@ public class ProductAttributesApi {
         Map<String, String> localVarCookieParams = new HashMap<String, String>();
         Map<String, Object> localVarFormParams = new HashMap<String, Object>();
 
+        if (responseFields != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("responseFields", responseFields));
+        }
+
         final String[] localVarAccepts = {
             "application/json", "text/json", "text/plain"
         };
@@ -273,12 +286,12 @@ public class ProductAttributesApi {
             localVarHeaderParams.put("Content-Type", localVarContentType);
         }
 
-        String[] localVarAuthNames = new String[] { "bearerAuth", "clientOauth2" };
+        String[] localVarAuthNames = new String[] { "bearerAuth" };
         return localVarApiClient.buildCall(basePath, localVarPath, "POST", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call addAttributeVocabularyValueValidateBeforeCall(String attributeFQN, CatalogAdminsAttributeVocabularyValue catalogAdminsAttributeVocabularyValue, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call addAttributeVocabularyValueValidateBeforeCall(String attributeFQN, String responseFields, CatalogAdminsAttributeVocabularyValue catalogAdminsAttributeVocabularyValue, final ApiCallback _callback) throws ApiException {
         
         // verify the required parameter 'attributeFQN' is set
         if (attributeFQN == null) {
@@ -286,52 +299,55 @@ public class ProductAttributesApi {
         }
         
 
-        okhttp3.Call localVarCall = addAttributeVocabularyValueCall(attributeFQN, catalogAdminsAttributeVocabularyValue, _callback);
+        okhttp3.Call localVarCall = addAttributeVocabularyValueCall(attributeFQN, responseFields, catalogAdminsAttributeVocabularyValue, _callback);
         return localVarCall;
 
     }
 
     /**
-     * Add product attribute vocabulary value
-     * Add product attribute vocabulary value
+     * Add Vocabulary Value
+     * Creates product attribute vocabulary values
      * @param attributeFQN  (required)
+     * @param responseFields limits which fields are returned in the response body (optional)
      * @param catalogAdminsAttributeVocabularyValue  (optional)
      * @return CatalogAdminsAttributeVocabularyValue
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
      </table>
      */
-    public CatalogAdminsAttributeVocabularyValue addAttributeVocabularyValue(String attributeFQN, CatalogAdminsAttributeVocabularyValue catalogAdminsAttributeVocabularyValue) throws ApiException {
-        ApiResponse<CatalogAdminsAttributeVocabularyValue> localVarResp = addAttributeVocabularyValueWithHttpInfo(attributeFQN, catalogAdminsAttributeVocabularyValue);
+    public CatalogAdminsAttributeVocabularyValue addAttributeVocabularyValue(String attributeFQN, String responseFields, CatalogAdminsAttributeVocabularyValue catalogAdminsAttributeVocabularyValue) throws ApiException {
+        ApiResponse<CatalogAdminsAttributeVocabularyValue> localVarResp = addAttributeVocabularyValueWithHttpInfo(attributeFQN, responseFields, catalogAdminsAttributeVocabularyValue);
         return localVarResp.getData();
     }
 
     /**
-     * Add product attribute vocabulary value
-     * Add product attribute vocabulary value
+     * Add Vocabulary Value
+     * Creates product attribute vocabulary values
      * @param attributeFQN  (required)
+     * @param responseFields limits which fields are returned in the response body (optional)
      * @param catalogAdminsAttributeVocabularyValue  (optional)
      * @return ApiResponse&lt;CatalogAdminsAttributeVocabularyValue&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<CatalogAdminsAttributeVocabularyValue> addAttributeVocabularyValueWithHttpInfo(String attributeFQN, CatalogAdminsAttributeVocabularyValue catalogAdminsAttributeVocabularyValue) throws ApiException {
-        okhttp3.Call localVarCall = addAttributeVocabularyValueValidateBeforeCall(attributeFQN, catalogAdminsAttributeVocabularyValue, null);
+    public ApiResponse<CatalogAdminsAttributeVocabularyValue> addAttributeVocabularyValueWithHttpInfo(String attributeFQN, String responseFields, CatalogAdminsAttributeVocabularyValue catalogAdminsAttributeVocabularyValue) throws ApiException {
+        okhttp3.Call localVarCall = addAttributeVocabularyValueValidateBeforeCall(attributeFQN, responseFields, catalogAdminsAttributeVocabularyValue, null);
         Type localVarReturnType = new TypeToken<CatalogAdminsAttributeVocabularyValue>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
 
     /**
-     * Add product attribute vocabulary value (asynchronously)
-     * Add product attribute vocabulary value
+     * Add Vocabulary Value (asynchronously)
+     * Creates product attribute vocabulary values
      * @param attributeFQN  (required)
+     * @param responseFields limits which fields are returned in the response body (optional)
      * @param catalogAdminsAttributeVocabularyValue  (optional)
      * @param _callback The callback to be executed when the API call finishes
      * @return The request call
@@ -339,12 +355,12 @@ public class ProductAttributesApi {
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call addAttributeVocabularyValueAsync(String attributeFQN, CatalogAdminsAttributeVocabularyValue catalogAdminsAttributeVocabularyValue, final ApiCallback<CatalogAdminsAttributeVocabularyValue> _callback) throws ApiException {
+    public okhttp3.Call addAttributeVocabularyValueAsync(String attributeFQN, String responseFields, CatalogAdminsAttributeVocabularyValue catalogAdminsAttributeVocabularyValue, final ApiCallback<CatalogAdminsAttributeVocabularyValue> _callback) throws ApiException {
 
-        okhttp3.Call localVarCall = addAttributeVocabularyValueValidateBeforeCall(attributeFQN, catalogAdminsAttributeVocabularyValue, _callback);
+        okhttp3.Call localVarCall = addAttributeVocabularyValueValidateBeforeCall(attributeFQN, responseFields, catalogAdminsAttributeVocabularyValue, _callback);
         Type localVarReturnType = new TypeToken<CatalogAdminsAttributeVocabularyValue>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
@@ -353,6 +369,7 @@ public class ProductAttributesApi {
      * Build call for addAttributeVocabularyValueLocalizedContent
      * @param attributeFQN  (required)
      * @param value  (required)
+     * @param responseFields limits which fields are returned in the response body (optional)
      * @param attributeVocabularyValueLocalizedContent  (optional)
      * @param _callback Callback for upload/download progress
      * @return Call to execute
@@ -360,10 +377,10 @@ public class ProductAttributesApi {
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call addAttributeVocabularyValueLocalizedContentCall(String attributeFQN, String value, AttributeVocabularyValueLocalizedContent attributeVocabularyValueLocalizedContent, final ApiCallback _callback) throws ApiException {
+    public okhttp3.Call addAttributeVocabularyValueLocalizedContentCall(String attributeFQN, String value, String responseFields, AttributeVocabularyValueLocalizedContent attributeVocabularyValueLocalizedContent, final ApiCallback _callback) throws ApiException {
         String basePath = null;
         // Operation Servers
         String[] localBasePaths = new String[] {  };
@@ -390,6 +407,10 @@ public class ProductAttributesApi {
         Map<String, String> localVarCookieParams = new HashMap<String, String>();
         Map<String, Object> localVarFormParams = new HashMap<String, Object>();
 
+        if (responseFields != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("responseFields", responseFields));
+        }
+
         final String[] localVarAccepts = {
             "application/json", "text/json", "text/plain"
         };
@@ -406,12 +427,12 @@ public class ProductAttributesApi {
             localVarHeaderParams.put("Content-Type", localVarContentType);
         }
 
-        String[] localVarAuthNames = new String[] { "bearerAuth", "clientOauth2" };
+        String[] localVarAuthNames = new String[] { "bearerAuth" };
         return localVarApiClient.buildCall(basePath, localVarPath, "POST", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call addAttributeVocabularyValueLocalizedContentValidateBeforeCall(String attributeFQN, String value, AttributeVocabularyValueLocalizedContent attributeVocabularyValueLocalizedContent, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call addAttributeVocabularyValueLocalizedContentValidateBeforeCall(String attributeFQN, String value, String responseFields, AttributeVocabularyValueLocalizedContent attributeVocabularyValueLocalizedContent, final ApiCallback _callback) throws ApiException {
         
         // verify the required parameter 'attributeFQN' is set
         if (attributeFQN == null) {
@@ -424,55 +445,58 @@ public class ProductAttributesApi {
         }
         
 
-        okhttp3.Call localVarCall = addAttributeVocabularyValueLocalizedContentCall(attributeFQN, value, attributeVocabularyValueLocalizedContent, _callback);
+        okhttp3.Call localVarCall = addAttributeVocabularyValueLocalizedContentCall(attributeFQN, value, responseFields, attributeVocabularyValueLocalizedContent, _callback);
         return localVarCall;
 
     }
 
     /**
-     * Add product attribute vocabulary value
-     * 
+     * Add Vocabulary Value Localized Content
+     * Creates vocabulary value localized content
      * @param attributeFQN  (required)
      * @param value  (required)
+     * @param responseFields limits which fields are returned in the response body (optional)
      * @param attributeVocabularyValueLocalizedContent  (optional)
      * @return AttributeVocabularyValueLocalizedContent
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
      </table>
      */
-    public AttributeVocabularyValueLocalizedContent addAttributeVocabularyValueLocalizedContent(String attributeFQN, String value, AttributeVocabularyValueLocalizedContent attributeVocabularyValueLocalizedContent) throws ApiException {
-        ApiResponse<AttributeVocabularyValueLocalizedContent> localVarResp = addAttributeVocabularyValueLocalizedContentWithHttpInfo(attributeFQN, value, attributeVocabularyValueLocalizedContent);
+    public AttributeVocabularyValueLocalizedContent addAttributeVocabularyValueLocalizedContent(String attributeFQN, String value, String responseFields, AttributeVocabularyValueLocalizedContent attributeVocabularyValueLocalizedContent) throws ApiException {
+        ApiResponse<AttributeVocabularyValueLocalizedContent> localVarResp = addAttributeVocabularyValueLocalizedContentWithHttpInfo(attributeFQN, value, responseFields, attributeVocabularyValueLocalizedContent);
         return localVarResp.getData();
     }
 
     /**
-     * Add product attribute vocabulary value
-     * 
+     * Add Vocabulary Value Localized Content
+     * Creates vocabulary value localized content
      * @param attributeFQN  (required)
      * @param value  (required)
+     * @param responseFields limits which fields are returned in the response body (optional)
      * @param attributeVocabularyValueLocalizedContent  (optional)
      * @return ApiResponse&lt;AttributeVocabularyValueLocalizedContent&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<AttributeVocabularyValueLocalizedContent> addAttributeVocabularyValueLocalizedContentWithHttpInfo(String attributeFQN, String value, AttributeVocabularyValueLocalizedContent attributeVocabularyValueLocalizedContent) throws ApiException {
-        okhttp3.Call localVarCall = addAttributeVocabularyValueLocalizedContentValidateBeforeCall(attributeFQN, value, attributeVocabularyValueLocalizedContent, null);
+    public ApiResponse<AttributeVocabularyValueLocalizedContent> addAttributeVocabularyValueLocalizedContentWithHttpInfo(String attributeFQN, String value, String responseFields, AttributeVocabularyValueLocalizedContent attributeVocabularyValueLocalizedContent) throws ApiException {
+        okhttp3.Call localVarCall = addAttributeVocabularyValueLocalizedContentValidateBeforeCall(attributeFQN, value, responseFields, attributeVocabularyValueLocalizedContent, null);
         Type localVarReturnType = new TypeToken<AttributeVocabularyValueLocalizedContent>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
 
     /**
-     * Add product attribute vocabulary value (asynchronously)
-     * 
+     * Add Vocabulary Value Localized Content (asynchronously)
+     * Creates vocabulary value localized content
      * @param attributeFQN  (required)
      * @param value  (required)
+     * @param responseFields limits which fields are returned in the response body (optional)
      * @param attributeVocabularyValueLocalizedContent  (optional)
      * @param _callback The callback to be executed when the API call finishes
      * @return The request call
@@ -480,12 +504,12 @@ public class ProductAttributesApi {
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call addAttributeVocabularyValueLocalizedContentAsync(String attributeFQN, String value, AttributeVocabularyValueLocalizedContent attributeVocabularyValueLocalizedContent, final ApiCallback<AttributeVocabularyValueLocalizedContent> _callback) throws ApiException {
+    public okhttp3.Call addAttributeVocabularyValueLocalizedContentAsync(String attributeFQN, String value, String responseFields, AttributeVocabularyValueLocalizedContent attributeVocabularyValueLocalizedContent, final ApiCallback<AttributeVocabularyValueLocalizedContent> _callback) throws ApiException {
 
-        okhttp3.Call localVarCall = addAttributeVocabularyValueLocalizedContentValidateBeforeCall(attributeFQN, value, attributeVocabularyValueLocalizedContent, _callback);
+        okhttp3.Call localVarCall = addAttributeVocabularyValueLocalizedContentValidateBeforeCall(attributeFQN, value, responseFields, attributeVocabularyValueLocalizedContent, _callback);
         Type localVarReturnType = new TypeToken<AttributeVocabularyValueLocalizedContent>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
@@ -493,6 +517,7 @@ public class ProductAttributesApi {
     /**
      * Build call for addLocalizedContent
      * @param attributeFQN  (required)
+     * @param responseFields limits which fields are returned in the response body (optional)
      * @param catalogAdminsAttributeLocalizedContent  (optional)
      * @param _callback Callback for upload/download progress
      * @return Call to execute
@@ -500,10 +525,10 @@ public class ProductAttributesApi {
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call addLocalizedContentCall(String attributeFQN, CatalogAdminsAttributeLocalizedContent catalogAdminsAttributeLocalizedContent, final ApiCallback _callback) throws ApiException {
+    public okhttp3.Call addLocalizedContentCall(String attributeFQN, String responseFields, CatalogAdminsAttributeLocalizedContent catalogAdminsAttributeLocalizedContent, final ApiCallback _callback) throws ApiException {
         String basePath = null;
         // Operation Servers
         String[] localBasePaths = new String[] {  };
@@ -529,6 +554,10 @@ public class ProductAttributesApi {
         Map<String, String> localVarCookieParams = new HashMap<String, String>();
         Map<String, Object> localVarFormParams = new HashMap<String, Object>();
 
+        if (responseFields != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("responseFields", responseFields));
+        }
+
         final String[] localVarAccepts = {
             "application/json", "text/json", "text/plain"
         };
@@ -545,12 +574,12 @@ public class ProductAttributesApi {
             localVarHeaderParams.put("Content-Type", localVarContentType);
         }
 
-        String[] localVarAuthNames = new String[] { "bearerAuth", "clientOauth2" };
+        String[] localVarAuthNames = new String[] { "bearerAuth" };
         return localVarApiClient.buildCall(basePath, localVarPath, "POST", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call addLocalizedContentValidateBeforeCall(String attributeFQN, CatalogAdminsAttributeLocalizedContent catalogAdminsAttributeLocalizedContent, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call addLocalizedContentValidateBeforeCall(String attributeFQN, String responseFields, CatalogAdminsAttributeLocalizedContent catalogAdminsAttributeLocalizedContent, final ApiCallback _callback) throws ApiException {
         
         // verify the required parameter 'attributeFQN' is set
         if (attributeFQN == null) {
@@ -558,52 +587,55 @@ public class ProductAttributesApi {
         }
         
 
-        okhttp3.Call localVarCall = addLocalizedContentCall(attributeFQN, catalogAdminsAttributeLocalizedContent, _callback);
+        okhttp3.Call localVarCall = addLocalizedContentCall(attributeFQN, responseFields, catalogAdminsAttributeLocalizedContent, _callback);
         return localVarCall;
 
     }
 
     /**
-     * Add product attribute localized content
-     * 
+     * Add Localized Content
+     * Creates product attribute localized content
      * @param attributeFQN  (required)
+     * @param responseFields limits which fields are returned in the response body (optional)
      * @param catalogAdminsAttributeLocalizedContent  (optional)
      * @return CatalogAdminsAttributeLocalizedContent
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
      </table>
      */
-    public CatalogAdminsAttributeLocalizedContent addLocalizedContent(String attributeFQN, CatalogAdminsAttributeLocalizedContent catalogAdminsAttributeLocalizedContent) throws ApiException {
-        ApiResponse<CatalogAdminsAttributeLocalizedContent> localVarResp = addLocalizedContentWithHttpInfo(attributeFQN, catalogAdminsAttributeLocalizedContent);
+    public CatalogAdminsAttributeLocalizedContent addLocalizedContent(String attributeFQN, String responseFields, CatalogAdminsAttributeLocalizedContent catalogAdminsAttributeLocalizedContent) throws ApiException {
+        ApiResponse<CatalogAdminsAttributeLocalizedContent> localVarResp = addLocalizedContentWithHttpInfo(attributeFQN, responseFields, catalogAdminsAttributeLocalizedContent);
         return localVarResp.getData();
     }
 
     /**
-     * Add product attribute localized content
-     * 
+     * Add Localized Content
+     * Creates product attribute localized content
      * @param attributeFQN  (required)
+     * @param responseFields limits which fields are returned in the response body (optional)
      * @param catalogAdminsAttributeLocalizedContent  (optional)
      * @return ApiResponse&lt;CatalogAdminsAttributeLocalizedContent&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<CatalogAdminsAttributeLocalizedContent> addLocalizedContentWithHttpInfo(String attributeFQN, CatalogAdminsAttributeLocalizedContent catalogAdminsAttributeLocalizedContent) throws ApiException {
-        okhttp3.Call localVarCall = addLocalizedContentValidateBeforeCall(attributeFQN, catalogAdminsAttributeLocalizedContent, null);
+    public ApiResponse<CatalogAdminsAttributeLocalizedContent> addLocalizedContentWithHttpInfo(String attributeFQN, String responseFields, CatalogAdminsAttributeLocalizedContent catalogAdminsAttributeLocalizedContent) throws ApiException {
+        okhttp3.Call localVarCall = addLocalizedContentValidateBeforeCall(attributeFQN, responseFields, catalogAdminsAttributeLocalizedContent, null);
         Type localVarReturnType = new TypeToken<CatalogAdminsAttributeLocalizedContent>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
 
     /**
-     * Add product attribute localized content (asynchronously)
-     * 
+     * Add Localized Content (asynchronously)
+     * Creates product attribute localized content
      * @param attributeFQN  (required)
+     * @param responseFields limits which fields are returned in the response body (optional)
      * @param catalogAdminsAttributeLocalizedContent  (optional)
      * @param _callback The callback to be executed when the API call finishes
      * @return The request call
@@ -611,12 +643,12 @@ public class ProductAttributesApi {
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call addLocalizedContentAsync(String attributeFQN, CatalogAdminsAttributeLocalizedContent catalogAdminsAttributeLocalizedContent, final ApiCallback<CatalogAdminsAttributeLocalizedContent> _callback) throws ApiException {
+    public okhttp3.Call addLocalizedContentAsync(String attributeFQN, String responseFields, CatalogAdminsAttributeLocalizedContent catalogAdminsAttributeLocalizedContent, final ApiCallback<CatalogAdminsAttributeLocalizedContent> _callback) throws ApiException {
 
-        okhttp3.Call localVarCall = addLocalizedContentValidateBeforeCall(attributeFQN, catalogAdminsAttributeLocalizedContent, _callback);
+        okhttp3.Call localVarCall = addLocalizedContentValidateBeforeCall(attributeFQN, responseFields, catalogAdminsAttributeLocalizedContent, _callback);
         Type localVarReturnType = new TypeToken<CatalogAdminsAttributeLocalizedContent>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
@@ -630,7 +662,7 @@ public class ProductAttributesApi {
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
      </table>
      */
     public okhttp3.Call deleteAttributeCall(String attributeFQN, final ApiCallback _callback) throws ApiException {
@@ -675,7 +707,7 @@ public class ProductAttributesApi {
             localVarHeaderParams.put("Content-Type", localVarContentType);
         }
 
-        String[] localVarAuthNames = new String[] { "bearerAuth", "clientOauth2" };
+        String[] localVarAuthNames = new String[] { "bearerAuth" };
         return localVarApiClient.buildCall(basePath, localVarPath, "DELETE", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
     }
 
@@ -694,14 +726,14 @@ public class ProductAttributesApi {
     }
 
     /**
-     * Delete product attribute
-     * 
+     * Delete Product Attribute
+     * Deletes a product attribute by its FQN
      * @param attributeFQN  (required)
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
      </table>
      */
     public void deleteAttribute(String attributeFQN) throws ApiException {
@@ -709,15 +741,15 @@ public class ProductAttributesApi {
     }
 
     /**
-     * Delete product attribute
-     * 
+     * Delete Product Attribute
+     * Deletes a product attribute by its FQN
      * @param attributeFQN  (required)
      * @return ApiResponse&lt;Void&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
      </table>
      */
     public ApiResponse<Void> deleteAttributeWithHttpInfo(String attributeFQN) throws ApiException {
@@ -726,8 +758,8 @@ public class ProductAttributesApi {
     }
 
     /**
-     * Delete product attribute (asynchronously)
-     * 
+     * Delete Product Attribute (asynchronously)
+     * Deletes a product attribute by its FQN
      * @param attributeFQN  (required)
      * @param _callback The callback to be executed when the API call finishes
      * @return The request call
@@ -735,7 +767,7 @@ public class ProductAttributesApi {
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
      </table>
      */
     public okhttp3.Call deleteAttributeAsync(String attributeFQN, final ApiCallback<Void> _callback) throws ApiException {
@@ -754,7 +786,7 @@ public class ProductAttributesApi {
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
      </table>
      */
     public okhttp3.Call deleteAttributeVocabularyValueCall(String attributeFQN, String value, final ApiCallback _callback) throws ApiException {
@@ -800,7 +832,7 @@ public class ProductAttributesApi {
             localVarHeaderParams.put("Content-Type", localVarContentType);
         }
 
-        String[] localVarAuthNames = new String[] { "bearerAuth", "clientOauth2" };
+        String[] localVarAuthNames = new String[] { "bearerAuth" };
         return localVarApiClient.buildCall(basePath, localVarPath, "DELETE", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
     }
 
@@ -824,15 +856,15 @@ public class ProductAttributesApi {
     }
 
     /**
-     * Delete product attribute vocabulary value
-     * 
+     * Delete Vocabulary Value
+     * Deletes a product attribute vocabulary value
      * @param attributeFQN  (required)
      * @param value  (required)
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
      </table>
      */
     public void deleteAttributeVocabularyValue(String attributeFQN, String value) throws ApiException {
@@ -840,8 +872,8 @@ public class ProductAttributesApi {
     }
 
     /**
-     * Delete product attribute vocabulary value
-     * 
+     * Delete Vocabulary Value
+     * Deletes a product attribute vocabulary value
      * @param attributeFQN  (required)
      * @param value  (required)
      * @return ApiResponse&lt;Void&gt;
@@ -849,7 +881,7 @@ public class ProductAttributesApi {
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
      </table>
      */
     public ApiResponse<Void> deleteAttributeVocabularyValueWithHttpInfo(String attributeFQN, String value) throws ApiException {
@@ -858,8 +890,8 @@ public class ProductAttributesApi {
     }
 
     /**
-     * Delete product attribute vocabulary value (asynchronously)
-     * 
+     * Delete Vocabulary Value (asynchronously)
+     * Deletes a product attribute vocabulary value
      * @param attributeFQN  (required)
      * @param value  (required)
      * @param _callback The callback to be executed when the API call finishes
@@ -868,7 +900,7 @@ public class ProductAttributesApi {
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
      </table>
      */
     public okhttp3.Call deleteAttributeVocabularyValueAsync(String attributeFQN, String value, final ApiCallback<Void> _callback) throws ApiException {
@@ -888,7 +920,7 @@ public class ProductAttributesApi {
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
      </table>
      */
     public okhttp3.Call deleteAttributeVocabularyValueLocalizedContentCall(String attributeFQN, String value, String localeCode, final ApiCallback _callback) throws ApiException {
@@ -935,7 +967,7 @@ public class ProductAttributesApi {
             localVarHeaderParams.put("Content-Type", localVarContentType);
         }
 
-        String[] localVarAuthNames = new String[] { "bearerAuth", "clientOauth2" };
+        String[] localVarAuthNames = new String[] { "bearerAuth" };
         return localVarApiClient.buildCall(basePath, localVarPath, "DELETE", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
     }
 
@@ -964,8 +996,8 @@ public class ProductAttributesApi {
     }
 
     /**
-     * Delete product attribute vocabulary value localized content
-     * 
+     * Delete Vocabulary Value Localized Content by Locale Code
+     * Delete product attribute vocabulary value localized content by its locale code
      * @param attributeFQN  (required)
      * @param value  (required)
      * @param localeCode  (required)
@@ -973,7 +1005,7 @@ public class ProductAttributesApi {
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
      </table>
      */
     public void deleteAttributeVocabularyValueLocalizedContent(String attributeFQN, String value, String localeCode) throws ApiException {
@@ -981,8 +1013,8 @@ public class ProductAttributesApi {
     }
 
     /**
-     * Delete product attribute vocabulary value localized content
-     * 
+     * Delete Vocabulary Value Localized Content by Locale Code
+     * Delete product attribute vocabulary value localized content by its locale code
      * @param attributeFQN  (required)
      * @param value  (required)
      * @param localeCode  (required)
@@ -991,7 +1023,7 @@ public class ProductAttributesApi {
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
      </table>
      */
     public ApiResponse<Void> deleteAttributeVocabularyValueLocalizedContentWithHttpInfo(String attributeFQN, String value, String localeCode) throws ApiException {
@@ -1000,8 +1032,8 @@ public class ProductAttributesApi {
     }
 
     /**
-     * Delete product attribute vocabulary value localized content (asynchronously)
-     * 
+     * Delete Vocabulary Value Localized Content by Locale Code (asynchronously)
+     * Delete product attribute vocabulary value localized content by its locale code
      * @param attributeFQN  (required)
      * @param value  (required)
      * @param localeCode  (required)
@@ -1011,7 +1043,7 @@ public class ProductAttributesApi {
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
      </table>
      */
     public okhttp3.Call deleteAttributeVocabularyValueLocalizedContentAsync(String attributeFQN, String value, String localeCode, final ApiCallback<Void> _callback) throws ApiException {
@@ -1030,7 +1062,7 @@ public class ProductAttributesApi {
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
      </table>
      */
     public okhttp3.Call deleteLocalizedContentCall(String attributeFQN, String localeCode, final ApiCallback _callback) throws ApiException {
@@ -1076,7 +1108,7 @@ public class ProductAttributesApi {
             localVarHeaderParams.put("Content-Type", localVarContentType);
         }
 
-        String[] localVarAuthNames = new String[] { "bearerAuth", "clientOauth2" };
+        String[] localVarAuthNames = new String[] { "bearerAuth" };
         return localVarApiClient.buildCall(basePath, localVarPath, "DELETE", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
     }
 
@@ -1100,15 +1132,15 @@ public class ProductAttributesApi {
     }
 
     /**
-     * Delete product attribute localized content
-     * 
+     * Delete Localized Content by Locale Code
+     * Deletes localized content by its locale code
      * @param attributeFQN  (required)
      * @param localeCode  (required)
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
      </table>
      */
     public void deleteLocalizedContent(String attributeFQN, String localeCode) throws ApiException {
@@ -1116,8 +1148,8 @@ public class ProductAttributesApi {
     }
 
     /**
-     * Delete product attribute localized content
-     * 
+     * Delete Localized Content by Locale Code
+     * Deletes localized content by its locale code
      * @param attributeFQN  (required)
      * @param localeCode  (required)
      * @return ApiResponse&lt;Void&gt;
@@ -1125,7 +1157,7 @@ public class ProductAttributesApi {
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
      </table>
      */
     public ApiResponse<Void> deleteLocalizedContentWithHttpInfo(String attributeFQN, String localeCode) throws ApiException {
@@ -1134,8 +1166,8 @@ public class ProductAttributesApi {
     }
 
     /**
-     * Delete product attribute localized content (asynchronously)
-     * 
+     * Delete Localized Content by Locale Code (asynchronously)
+     * Deletes localized content by its locale code
      * @param attributeFQN  (required)
      * @param localeCode  (required)
      * @param _callback The callback to be executed when the API call finishes
@@ -1144,7 +1176,7 @@ public class ProductAttributesApi {
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
      </table>
      */
     public okhttp3.Call deleteLocalizedContentAsync(String attributeFQN, String localeCode, final ApiCallback<Void> _callback) throws ApiException {
@@ -1157,16 +1189,17 @@ public class ProductAttributesApi {
      * Build call for getAttribute
      * @param attributeFQN  (required)
      * @param responseGroups  (optional)
+     * @param responseFields limits which fields are returned in the response body (optional)
      * @param _callback Callback for upload/download progress
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call getAttributeCall(String attributeFQN, String responseGroups, final ApiCallback _callback) throws ApiException {
+    public okhttp3.Call getAttributeCall(String attributeFQN, String responseGroups, String responseFields, final ApiCallback _callback) throws ApiException {
         String basePath = null;
         // Operation Servers
         String[] localBasePaths = new String[] {  };
@@ -1196,6 +1229,10 @@ public class ProductAttributesApi {
             localVarQueryParams.addAll(localVarApiClient.parameterToPair("responseGroups", responseGroups));
         }
 
+        if (responseFields != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("responseFields", responseFields));
+        }
+
         final String[] localVarAccepts = {
             "application/json", "text/json", "text/plain"
         };
@@ -1212,12 +1249,12 @@ public class ProductAttributesApi {
             localVarHeaderParams.put("Content-Type", localVarContentType);
         }
 
-        String[] localVarAuthNames = new String[] { "bearerAuth", "clientOauth2" };
+        String[] localVarAuthNames = new String[] { "bearerAuth" };
         return localVarApiClient.buildCall(basePath, localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call getAttributeValidateBeforeCall(String attributeFQN, String responseGroups, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call getAttributeValidateBeforeCall(String attributeFQN, String responseGroups, String responseFields, final ApiCallback _callback) throws ApiException {
         
         // verify the required parameter 'attributeFQN' is set
         if (attributeFQN == null) {
@@ -1225,65 +1262,68 @@ public class ProductAttributesApi {
         }
         
 
-        okhttp3.Call localVarCall = getAttributeCall(attributeFQN, responseGroups, _callback);
+        okhttp3.Call localVarCall = getAttributeCall(attributeFQN, responseGroups, responseFields, _callback);
         return localVarCall;
 
     }
 
     /**
-     * Get product attribute
-     * 
+     * Get Product Attribute
+     * Retrieves a product attribute by its FQN. This current version of the Attributes API includes localizedContent to support &lt;a href&#x3D;\&quot;/pages/catalog-structure#multi-locale-catalogs\&quot;&gt;multi-locale catalogs&lt;/a&gt;, which was not present in the previous API model. If you were a client prior to May 2024 and have upgraded your implementation to support this feature, you can still access attribute data that has not yet been rewritten to the new model by providing an x-api-version header set to \&quot;1\&quot;.
      * @param attributeFQN  (required)
      * @param responseGroups  (optional)
+     * @param responseFields limits which fields are returned in the response body (optional)
      * @return CatalogAdminsAttribute
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
      </table>
      */
-    public CatalogAdminsAttribute getAttribute(String attributeFQN, String responseGroups) throws ApiException {
-        ApiResponse<CatalogAdminsAttribute> localVarResp = getAttributeWithHttpInfo(attributeFQN, responseGroups);
+    public CatalogAdminsAttribute getAttribute(String attributeFQN, String responseGroups, String responseFields) throws ApiException {
+        ApiResponse<CatalogAdminsAttribute> localVarResp = getAttributeWithHttpInfo(attributeFQN, responseGroups, responseFields);
         return localVarResp.getData();
     }
 
     /**
-     * Get product attribute
-     * 
+     * Get Product Attribute
+     * Retrieves a product attribute by its FQN. This current version of the Attributes API includes localizedContent to support &lt;a href&#x3D;\&quot;/pages/catalog-structure#multi-locale-catalogs\&quot;&gt;multi-locale catalogs&lt;/a&gt;, which was not present in the previous API model. If you were a client prior to May 2024 and have upgraded your implementation to support this feature, you can still access attribute data that has not yet been rewritten to the new model by providing an x-api-version header set to \&quot;1\&quot;.
      * @param attributeFQN  (required)
      * @param responseGroups  (optional)
+     * @param responseFields limits which fields are returned in the response body (optional)
      * @return ApiResponse&lt;CatalogAdminsAttribute&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<CatalogAdminsAttribute> getAttributeWithHttpInfo(String attributeFQN, String responseGroups) throws ApiException {
-        okhttp3.Call localVarCall = getAttributeValidateBeforeCall(attributeFQN, responseGroups, null);
+    public ApiResponse<CatalogAdminsAttribute> getAttributeWithHttpInfo(String attributeFQN, String responseGroups, String responseFields) throws ApiException {
+        okhttp3.Call localVarCall = getAttributeValidateBeforeCall(attributeFQN, responseGroups, responseFields, null);
         Type localVarReturnType = new TypeToken<CatalogAdminsAttribute>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
 
     /**
-     * Get product attribute (asynchronously)
-     * 
+     * Get Product Attribute (asynchronously)
+     * Retrieves a product attribute by its FQN. This current version of the Attributes API includes localizedContent to support &lt;a href&#x3D;\&quot;/pages/catalog-structure#multi-locale-catalogs\&quot;&gt;multi-locale catalogs&lt;/a&gt;, which was not present in the previous API model. If you were a client prior to May 2024 and have upgraded your implementation to support this feature, you can still access attribute data that has not yet been rewritten to the new model by providing an x-api-version header set to \&quot;1\&quot;.
      * @param attributeFQN  (required)
      * @param responseGroups  (optional)
+     * @param responseFields limits which fields are returned in the response body (optional)
      * @param _callback The callback to be executed when the API call finishes
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call getAttributeAsync(String attributeFQN, String responseGroups, final ApiCallback<CatalogAdminsAttribute> _callback) throws ApiException {
+    public okhttp3.Call getAttributeAsync(String attributeFQN, String responseGroups, String responseFields, final ApiCallback<CatalogAdminsAttribute> _callback) throws ApiException {
 
-        okhttp3.Call localVarCall = getAttributeValidateBeforeCall(attributeFQN, responseGroups, _callback);
+        okhttp3.Call localVarCall = getAttributeValidateBeforeCall(attributeFQN, responseGroups, responseFields, _callback);
         Type localVarReturnType = new TypeToken<CatalogAdminsAttribute>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
@@ -1292,16 +1332,17 @@ public class ProductAttributesApi {
      * Build call for getAttributeLocalizedContent
      * @param attributeFQN  (required)
      * @param localeCode  (required)
+     * @param responseFields limits which fields are returned in the response body (optional)
      * @param _callback Callback for upload/download progress
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call getAttributeLocalizedContentCall(String attributeFQN, String localeCode, final ApiCallback _callback) throws ApiException {
+    public okhttp3.Call getAttributeLocalizedContentCall(String attributeFQN, String localeCode, String responseFields, final ApiCallback _callback) throws ApiException {
         String basePath = null;
         // Operation Servers
         String[] localBasePaths = new String[] {  };
@@ -1328,6 +1369,10 @@ public class ProductAttributesApi {
         Map<String, String> localVarCookieParams = new HashMap<String, String>();
         Map<String, Object> localVarFormParams = new HashMap<String, Object>();
 
+        if (responseFields != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("responseFields", responseFields));
+        }
+
         final String[] localVarAccepts = {
             "application/json", "text/json", "text/plain"
         };
@@ -1344,12 +1389,12 @@ public class ProductAttributesApi {
             localVarHeaderParams.put("Content-Type", localVarContentType);
         }
 
-        String[] localVarAuthNames = new String[] { "bearerAuth", "clientOauth2" };
+        String[] localVarAuthNames = new String[] { "bearerAuth" };
         return localVarApiClient.buildCall(basePath, localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call getAttributeLocalizedContentValidateBeforeCall(String attributeFQN, String localeCode, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call getAttributeLocalizedContentValidateBeforeCall(String attributeFQN, String localeCode, String responseFields, final ApiCallback _callback) throws ApiException {
         
         // verify the required parameter 'attributeFQN' is set
         if (attributeFQN == null) {
@@ -1362,65 +1407,68 @@ public class ProductAttributesApi {
         }
         
 
-        okhttp3.Call localVarCall = getAttributeLocalizedContentCall(attributeFQN, localeCode, _callback);
+        okhttp3.Call localVarCall = getAttributeLocalizedContentCall(attributeFQN, localeCode, responseFields, _callback);
         return localVarCall;
 
     }
 
     /**
-     * Get product attribute localized content
-     * 
+     * Get Localized Content by Locale Code
+     * Retrieves localized content by its locale code
      * @param attributeFQN  (required)
      * @param localeCode  (required)
+     * @param responseFields limits which fields are returned in the response body (optional)
      * @return CatalogAdminsAttributeLocalizedContent
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
      </table>
      */
-    public CatalogAdminsAttributeLocalizedContent getAttributeLocalizedContent(String attributeFQN, String localeCode) throws ApiException {
-        ApiResponse<CatalogAdminsAttributeLocalizedContent> localVarResp = getAttributeLocalizedContentWithHttpInfo(attributeFQN, localeCode);
+    public CatalogAdminsAttributeLocalizedContent getAttributeLocalizedContent(String attributeFQN, String localeCode, String responseFields) throws ApiException {
+        ApiResponse<CatalogAdminsAttributeLocalizedContent> localVarResp = getAttributeLocalizedContentWithHttpInfo(attributeFQN, localeCode, responseFields);
         return localVarResp.getData();
     }
 
     /**
-     * Get product attribute localized content
-     * 
+     * Get Localized Content by Locale Code
+     * Retrieves localized content by its locale code
      * @param attributeFQN  (required)
      * @param localeCode  (required)
+     * @param responseFields limits which fields are returned in the response body (optional)
      * @return ApiResponse&lt;CatalogAdminsAttributeLocalizedContent&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<CatalogAdminsAttributeLocalizedContent> getAttributeLocalizedContentWithHttpInfo(String attributeFQN, String localeCode) throws ApiException {
-        okhttp3.Call localVarCall = getAttributeLocalizedContentValidateBeforeCall(attributeFQN, localeCode, null);
+    public ApiResponse<CatalogAdminsAttributeLocalizedContent> getAttributeLocalizedContentWithHttpInfo(String attributeFQN, String localeCode, String responseFields) throws ApiException {
+        okhttp3.Call localVarCall = getAttributeLocalizedContentValidateBeforeCall(attributeFQN, localeCode, responseFields, null);
         Type localVarReturnType = new TypeToken<CatalogAdminsAttributeLocalizedContent>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
 
     /**
-     * Get product attribute localized content (asynchronously)
-     * 
+     * Get Localized Content by Locale Code (asynchronously)
+     * Retrieves localized content by its locale code
      * @param attributeFQN  (required)
      * @param localeCode  (required)
+     * @param responseFields limits which fields are returned in the response body (optional)
      * @param _callback The callback to be executed when the API call finishes
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call getAttributeLocalizedContentAsync(String attributeFQN, String localeCode, final ApiCallback<CatalogAdminsAttributeLocalizedContent> _callback) throws ApiException {
+    public okhttp3.Call getAttributeLocalizedContentAsync(String attributeFQN, String localeCode, String responseFields, final ApiCallback<CatalogAdminsAttributeLocalizedContent> _callback) throws ApiException {
 
-        okhttp3.Call localVarCall = getAttributeLocalizedContentValidateBeforeCall(attributeFQN, localeCode, _callback);
+        okhttp3.Call localVarCall = getAttributeLocalizedContentValidateBeforeCall(attributeFQN, localeCode, responseFields, _callback);
         Type localVarReturnType = new TypeToken<CatalogAdminsAttributeLocalizedContent>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
@@ -1428,16 +1476,17 @@ public class ProductAttributesApi {
     /**
      * Build call for getAttributeLocalizedContents
      * @param attributeFQN  (required)
+     * @param responseFields limits which fields are returned in the response body (optional)
      * @param _callback Callback for upload/download progress
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call getAttributeLocalizedContentsCall(String attributeFQN, final ApiCallback _callback) throws ApiException {
+    public okhttp3.Call getAttributeLocalizedContentsCall(String attributeFQN, String responseFields, final ApiCallback _callback) throws ApiException {
         String basePath = null;
         // Operation Servers
         String[] localBasePaths = new String[] {  };
@@ -1463,6 +1512,10 @@ public class ProductAttributesApi {
         Map<String, String> localVarCookieParams = new HashMap<String, String>();
         Map<String, Object> localVarFormParams = new HashMap<String, Object>();
 
+        if (responseFields != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("responseFields", responseFields));
+        }
+
         final String[] localVarAccepts = {
             "application/json", "text/json", "text/plain"
         };
@@ -1479,12 +1532,12 @@ public class ProductAttributesApi {
             localVarHeaderParams.put("Content-Type", localVarContentType);
         }
 
-        String[] localVarAuthNames = new String[] { "bearerAuth", "clientOauth2" };
+        String[] localVarAuthNames = new String[] { "bearerAuth" };
         return localVarApiClient.buildCall(basePath, localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call getAttributeLocalizedContentsValidateBeforeCall(String attributeFQN, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call getAttributeLocalizedContentsValidateBeforeCall(String attributeFQN, String responseFields, final ApiCallback _callback) throws ApiException {
         
         // verify the required parameter 'attributeFQN' is set
         if (attributeFQN == null) {
@@ -1492,62 +1545,65 @@ public class ProductAttributesApi {
         }
         
 
-        okhttp3.Call localVarCall = getAttributeLocalizedContentsCall(attributeFQN, _callback);
+        okhttp3.Call localVarCall = getAttributeLocalizedContentsCall(attributeFQN, responseFields, _callback);
         return localVarCall;
 
     }
 
     /**
-     * Get product attribute localized contents
-     * 
+     * Get Localized Content
+     * Retrieves product attribute localized content
      * @param attributeFQN  (required)
+     * @param responseFields limits which fields are returned in the response body (optional)
      * @return List&lt;CatalogAdminsAttributeLocalizedContent&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
      </table>
      */
-    public List<CatalogAdminsAttributeLocalizedContent> getAttributeLocalizedContents(String attributeFQN) throws ApiException {
-        ApiResponse<List<CatalogAdminsAttributeLocalizedContent>> localVarResp = getAttributeLocalizedContentsWithHttpInfo(attributeFQN);
+    public List<CatalogAdminsAttributeLocalizedContent> getAttributeLocalizedContents(String attributeFQN, String responseFields) throws ApiException {
+        ApiResponse<List<CatalogAdminsAttributeLocalizedContent>> localVarResp = getAttributeLocalizedContentsWithHttpInfo(attributeFQN, responseFields);
         return localVarResp.getData();
     }
 
     /**
-     * Get product attribute localized contents
-     * 
+     * Get Localized Content
+     * Retrieves product attribute localized content
      * @param attributeFQN  (required)
+     * @param responseFields limits which fields are returned in the response body (optional)
      * @return ApiResponse&lt;List&lt;CatalogAdminsAttributeLocalizedContent&gt;&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<List<CatalogAdminsAttributeLocalizedContent>> getAttributeLocalizedContentsWithHttpInfo(String attributeFQN) throws ApiException {
-        okhttp3.Call localVarCall = getAttributeLocalizedContentsValidateBeforeCall(attributeFQN, null);
+    public ApiResponse<List<CatalogAdminsAttributeLocalizedContent>> getAttributeLocalizedContentsWithHttpInfo(String attributeFQN, String responseFields) throws ApiException {
+        okhttp3.Call localVarCall = getAttributeLocalizedContentsValidateBeforeCall(attributeFQN, responseFields, null);
         Type localVarReturnType = new TypeToken<List<CatalogAdminsAttributeLocalizedContent>>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
 
     /**
-     * Get product attribute localized contents (asynchronously)
-     * 
+     * Get Localized Content (asynchronously)
+     * Retrieves product attribute localized content
      * @param attributeFQN  (required)
+     * @param responseFields limits which fields are returned in the response body (optional)
      * @param _callback The callback to be executed when the API call finishes
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call getAttributeLocalizedContentsAsync(String attributeFQN, final ApiCallback<List<CatalogAdminsAttributeLocalizedContent>> _callback) throws ApiException {
+    public okhttp3.Call getAttributeLocalizedContentsAsync(String attributeFQN, String responseFields, final ApiCallback<List<CatalogAdminsAttributeLocalizedContent>> _callback) throws ApiException {
 
-        okhttp3.Call localVarCall = getAttributeLocalizedContentsValidateBeforeCall(attributeFQN, _callback);
+        okhttp3.Call localVarCall = getAttributeLocalizedContentsValidateBeforeCall(attributeFQN, responseFields, _callback);
         Type localVarReturnType = new TypeToken<List<CatalogAdminsAttributeLocalizedContent>>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
@@ -1558,16 +1614,17 @@ public class ProductAttributesApi {
      * @param pageSize Used to page results from a query. Indicates the maximum number of entities to return from a query. The default value is 20 and the maximum value is 200. Optional. (optional, default to 0)
      * @param sortBy The element to sort the results by and the order in which the results appear. Either ascending (a-z) or descending (z-a) order. Optional. (optional)
      * @param filter A set of filter expressions representing the search parameters for a query: eq&#x3D;equals, ne&#x3D;not equals, gt&#x3D;greater than, lt &#x3D; less than or equals, gt &#x3D; greater than or equals, lt &#x3D; less than or equals, sw &#x3D; starts with, or cont &#x3D; contains. Optional. (optional)
+     * @param responseFields limits which fields are returned in the response body (optional)
      * @param _callback Callback for upload/download progress
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call getAttributeTypeRulesCall(Integer startIndex, Integer pageSize, String sortBy, String filter, final ApiCallback _callback) throws ApiException {
+    public okhttp3.Call getAttributeTypeRulesCall(Integer startIndex, Integer pageSize, String sortBy, String filter, String responseFields, final ApiCallback _callback) throws ApiException {
         String basePath = null;
         // Operation Servers
         String[] localBasePaths = new String[] {  };
@@ -1608,6 +1665,10 @@ public class ProductAttributesApi {
             localVarQueryParams.addAll(localVarApiClient.parameterToPair("filter", filter));
         }
 
+        if (responseFields != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("responseFields", responseFields));
+        }
+
         final String[] localVarAccepts = {
             "application/json", "text/json", "text/plain"
         };
@@ -1624,79 +1685,82 @@ public class ProductAttributesApi {
             localVarHeaderParams.put("Content-Type", localVarContentType);
         }
 
-        String[] localVarAuthNames = new String[] { "bearerAuth", "clientOauth2" };
+        String[] localVarAuthNames = new String[] { "bearerAuth" };
         return localVarApiClient.buildCall(basePath, localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call getAttributeTypeRulesValidateBeforeCall(Integer startIndex, Integer pageSize, String sortBy, String filter, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call getAttributeTypeRulesValidateBeforeCall(Integer startIndex, Integer pageSize, String sortBy, String filter, String responseFields, final ApiCallback _callback) throws ApiException {
         
 
-        okhttp3.Call localVarCall = getAttributeTypeRulesCall(startIndex, pageSize, sortBy, filter, _callback);
+        okhttp3.Call localVarCall = getAttributeTypeRulesCall(startIndex, pageSize, sortBy, filter, responseFields, _callback);
         return localVarCall;
 
     }
 
     /**
-     * Get attribute type rules
+     * Get Attribute Type Rules
      * Retrieves a paged list of attribute type rules according to any specified filter criteria and sort options.
      * @param startIndex Used to page results from a query. Indicates the zero-based offset in the complete result set where the returned entities begin. For example, with a PageSize of 25, to get the 51st through the 75th items, startIndex&#x3D;3. The default value is 0. Optional. (optional, default to 0)
      * @param pageSize Used to page results from a query. Indicates the maximum number of entities to return from a query. The default value is 20 and the maximum value is 200. Optional. (optional, default to 0)
      * @param sortBy The element to sort the results by and the order in which the results appear. Either ascending (a-z) or descending (z-a) order. Optional. (optional)
      * @param filter A set of filter expressions representing the search parameters for a query: eq&#x3D;equals, ne&#x3D;not equals, gt&#x3D;greater than, lt &#x3D; less than or equals, gt &#x3D; greater than or equals, lt &#x3D; less than or equals, sw &#x3D; starts with, or cont &#x3D; contains. Optional. (optional)
+     * @param responseFields limits which fields are returned in the response body (optional)
      * @return AttributeTypeRuleCollection
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
      </table>
      */
-    public AttributeTypeRuleCollection getAttributeTypeRules(Integer startIndex, Integer pageSize, String sortBy, String filter) throws ApiException {
-        ApiResponse<AttributeTypeRuleCollection> localVarResp = getAttributeTypeRulesWithHttpInfo(startIndex, pageSize, sortBy, filter);
+    public AttributeTypeRuleCollection getAttributeTypeRules(Integer startIndex, Integer pageSize, String sortBy, String filter, String responseFields) throws ApiException {
+        ApiResponse<AttributeTypeRuleCollection> localVarResp = getAttributeTypeRulesWithHttpInfo(startIndex, pageSize, sortBy, filter, responseFields);
         return localVarResp.getData();
     }
 
     /**
-     * Get attribute type rules
+     * Get Attribute Type Rules
      * Retrieves a paged list of attribute type rules according to any specified filter criteria and sort options.
      * @param startIndex Used to page results from a query. Indicates the zero-based offset in the complete result set where the returned entities begin. For example, with a PageSize of 25, to get the 51st through the 75th items, startIndex&#x3D;3. The default value is 0. Optional. (optional, default to 0)
      * @param pageSize Used to page results from a query. Indicates the maximum number of entities to return from a query. The default value is 20 and the maximum value is 200. Optional. (optional, default to 0)
      * @param sortBy The element to sort the results by and the order in which the results appear. Either ascending (a-z) or descending (z-a) order. Optional. (optional)
      * @param filter A set of filter expressions representing the search parameters for a query: eq&#x3D;equals, ne&#x3D;not equals, gt&#x3D;greater than, lt &#x3D; less than or equals, gt &#x3D; greater than or equals, lt &#x3D; less than or equals, sw &#x3D; starts with, or cont &#x3D; contains. Optional. (optional)
+     * @param responseFields limits which fields are returned in the response body (optional)
      * @return ApiResponse&lt;AttributeTypeRuleCollection&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<AttributeTypeRuleCollection> getAttributeTypeRulesWithHttpInfo(Integer startIndex, Integer pageSize, String sortBy, String filter) throws ApiException {
-        okhttp3.Call localVarCall = getAttributeTypeRulesValidateBeforeCall(startIndex, pageSize, sortBy, filter, null);
+    public ApiResponse<AttributeTypeRuleCollection> getAttributeTypeRulesWithHttpInfo(Integer startIndex, Integer pageSize, String sortBy, String filter, String responseFields) throws ApiException {
+        okhttp3.Call localVarCall = getAttributeTypeRulesValidateBeforeCall(startIndex, pageSize, sortBy, filter, responseFields, null);
         Type localVarReturnType = new TypeToken<AttributeTypeRuleCollection>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
 
     /**
-     * Get attribute type rules (asynchronously)
+     * Get Attribute Type Rules (asynchronously)
      * Retrieves a paged list of attribute type rules according to any specified filter criteria and sort options.
      * @param startIndex Used to page results from a query. Indicates the zero-based offset in the complete result set where the returned entities begin. For example, with a PageSize of 25, to get the 51st through the 75th items, startIndex&#x3D;3. The default value is 0. Optional. (optional, default to 0)
      * @param pageSize Used to page results from a query. Indicates the maximum number of entities to return from a query. The default value is 20 and the maximum value is 200. Optional. (optional, default to 0)
      * @param sortBy The element to sort the results by and the order in which the results appear. Either ascending (a-z) or descending (z-a) order. Optional. (optional)
      * @param filter A set of filter expressions representing the search parameters for a query: eq&#x3D;equals, ne&#x3D;not equals, gt&#x3D;greater than, lt &#x3D; less than or equals, gt &#x3D; greater than or equals, lt &#x3D; less than or equals, sw &#x3D; starts with, or cont &#x3D; contains. Optional. (optional)
+     * @param responseFields limits which fields are returned in the response body (optional)
      * @param _callback The callback to be executed when the API call finishes
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call getAttributeTypeRulesAsync(Integer startIndex, Integer pageSize, String sortBy, String filter, final ApiCallback<AttributeTypeRuleCollection> _callback) throws ApiException {
+    public okhttp3.Call getAttributeTypeRulesAsync(Integer startIndex, Integer pageSize, String sortBy, String filter, String responseFields, final ApiCallback<AttributeTypeRuleCollection> _callback) throws ApiException {
 
-        okhttp3.Call localVarCall = getAttributeTypeRulesValidateBeforeCall(startIndex, pageSize, sortBy, filter, _callback);
+        okhttp3.Call localVarCall = getAttributeTypeRulesValidateBeforeCall(startIndex, pageSize, sortBy, filter, responseFields, _callback);
         Type localVarReturnType = new TypeToken<AttributeTypeRuleCollection>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
@@ -1705,16 +1769,17 @@ public class ProductAttributesApi {
      * Build call for getAttributeVocabularyValue
      * @param attributeFQN  (required)
      * @param value  (required)
+     * @param responseFields limits which fields are returned in the response body (optional)
      * @param _callback Callback for upload/download progress
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call getAttributeVocabularyValueCall(String attributeFQN, String value, final ApiCallback _callback) throws ApiException {
+    public okhttp3.Call getAttributeVocabularyValueCall(String attributeFQN, String value, String responseFields, final ApiCallback _callback) throws ApiException {
         String basePath = null;
         // Operation Servers
         String[] localBasePaths = new String[] {  };
@@ -1741,6 +1806,10 @@ public class ProductAttributesApi {
         Map<String, String> localVarCookieParams = new HashMap<String, String>();
         Map<String, Object> localVarFormParams = new HashMap<String, Object>();
 
+        if (responseFields != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("responseFields", responseFields));
+        }
+
         final String[] localVarAccepts = {
             "application/json", "text/json", "text/plain"
         };
@@ -1757,12 +1826,12 @@ public class ProductAttributesApi {
             localVarHeaderParams.put("Content-Type", localVarContentType);
         }
 
-        String[] localVarAuthNames = new String[] { "bearerAuth", "clientOauth2" };
+        String[] localVarAuthNames = new String[] { "bearerAuth" };
         return localVarApiClient.buildCall(basePath, localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call getAttributeVocabularyValueValidateBeforeCall(String attributeFQN, String value, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call getAttributeVocabularyValueValidateBeforeCall(String attributeFQN, String value, String responseFields, final ApiCallback _callback) throws ApiException {
         
         // verify the required parameter 'attributeFQN' is set
         if (attributeFQN == null) {
@@ -1775,65 +1844,68 @@ public class ProductAttributesApi {
         }
         
 
-        okhttp3.Call localVarCall = getAttributeVocabularyValueCall(attributeFQN, value, _callback);
+        okhttp3.Call localVarCall = getAttributeVocabularyValueCall(attributeFQN, value, responseFields, _callback);
         return localVarCall;
 
     }
 
     /**
-     * Get product attribute vocabulary value
-     * 
+     * Get Vocabulary Value
+     * Retrieves a product attribute vocabulary value
      * @param attributeFQN  (required)
      * @param value  (required)
+     * @param responseFields limits which fields are returned in the response body (optional)
      * @return CatalogAdminsAttributeVocabularyValue
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
      </table>
      */
-    public CatalogAdminsAttributeVocabularyValue getAttributeVocabularyValue(String attributeFQN, String value) throws ApiException {
-        ApiResponse<CatalogAdminsAttributeVocabularyValue> localVarResp = getAttributeVocabularyValueWithHttpInfo(attributeFQN, value);
+    public CatalogAdminsAttributeVocabularyValue getAttributeVocabularyValue(String attributeFQN, String value, String responseFields) throws ApiException {
+        ApiResponse<CatalogAdminsAttributeVocabularyValue> localVarResp = getAttributeVocabularyValueWithHttpInfo(attributeFQN, value, responseFields);
         return localVarResp.getData();
     }
 
     /**
-     * Get product attribute vocabulary value
-     * 
+     * Get Vocabulary Value
+     * Retrieves a product attribute vocabulary value
      * @param attributeFQN  (required)
      * @param value  (required)
+     * @param responseFields limits which fields are returned in the response body (optional)
      * @return ApiResponse&lt;CatalogAdminsAttributeVocabularyValue&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<CatalogAdminsAttributeVocabularyValue> getAttributeVocabularyValueWithHttpInfo(String attributeFQN, String value) throws ApiException {
-        okhttp3.Call localVarCall = getAttributeVocabularyValueValidateBeforeCall(attributeFQN, value, null);
+    public ApiResponse<CatalogAdminsAttributeVocabularyValue> getAttributeVocabularyValueWithHttpInfo(String attributeFQN, String value, String responseFields) throws ApiException {
+        okhttp3.Call localVarCall = getAttributeVocabularyValueValidateBeforeCall(attributeFQN, value, responseFields, null);
         Type localVarReturnType = new TypeToken<CatalogAdminsAttributeVocabularyValue>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
 
     /**
-     * Get product attribute vocabulary value (asynchronously)
-     * 
+     * Get Vocabulary Value (asynchronously)
+     * Retrieves a product attribute vocabulary value
      * @param attributeFQN  (required)
      * @param value  (required)
+     * @param responseFields limits which fields are returned in the response body (optional)
      * @param _callback The callback to be executed when the API call finishes
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call getAttributeVocabularyValueAsync(String attributeFQN, String value, final ApiCallback<CatalogAdminsAttributeVocabularyValue> _callback) throws ApiException {
+    public okhttp3.Call getAttributeVocabularyValueAsync(String attributeFQN, String value, String responseFields, final ApiCallback<CatalogAdminsAttributeVocabularyValue> _callback) throws ApiException {
 
-        okhttp3.Call localVarCall = getAttributeVocabularyValueValidateBeforeCall(attributeFQN, value, _callback);
+        okhttp3.Call localVarCall = getAttributeVocabularyValueValidateBeforeCall(attributeFQN, value, responseFields, _callback);
         Type localVarReturnType = new TypeToken<CatalogAdminsAttributeVocabularyValue>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
@@ -1843,16 +1915,17 @@ public class ProductAttributesApi {
      * @param attributeFQN  (required)
      * @param value  (required)
      * @param localeCode  (required)
+     * @param responseFields limits which fields are returned in the response body (optional)
      * @param _callback Callback for upload/download progress
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call getAttributeVocabularyValueLocalizedContentCall(String attributeFQN, String value, String localeCode, final ApiCallback _callback) throws ApiException {
+    public okhttp3.Call getAttributeVocabularyValueLocalizedContentCall(String attributeFQN, String value, String localeCode, String responseFields, final ApiCallback _callback) throws ApiException {
         String basePath = null;
         // Operation Servers
         String[] localBasePaths = new String[] {  };
@@ -1880,6 +1953,10 @@ public class ProductAttributesApi {
         Map<String, String> localVarCookieParams = new HashMap<String, String>();
         Map<String, Object> localVarFormParams = new HashMap<String, Object>();
 
+        if (responseFields != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("responseFields", responseFields));
+        }
+
         final String[] localVarAccepts = {
             "application/json", "text/json", "text/plain"
         };
@@ -1896,12 +1973,12 @@ public class ProductAttributesApi {
             localVarHeaderParams.put("Content-Type", localVarContentType);
         }
 
-        String[] localVarAuthNames = new String[] { "bearerAuth", "clientOauth2" };
+        String[] localVarAuthNames = new String[] { "bearerAuth" };
         return localVarApiClient.buildCall(basePath, localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call getAttributeVocabularyValueLocalizedContentValidateBeforeCall(String attributeFQN, String value, String localeCode, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call getAttributeVocabularyValueLocalizedContentValidateBeforeCall(String attributeFQN, String value, String localeCode, String responseFields, final ApiCallback _callback) throws ApiException {
         
         // verify the required parameter 'attributeFQN' is set
         if (attributeFQN == null) {
@@ -1919,68 +1996,71 @@ public class ProductAttributesApi {
         }
         
 
-        okhttp3.Call localVarCall = getAttributeVocabularyValueLocalizedContentCall(attributeFQN, value, localeCode, _callback);
+        okhttp3.Call localVarCall = getAttributeVocabularyValueLocalizedContentCall(attributeFQN, value, localeCode, responseFields, _callback);
         return localVarCall;
 
     }
 
     /**
-     * Get product attribute vocabulary value localized content
-     * 
+     * Get Vocabulary Value Localized Content by Locale Code
+     * Get product attribute vocabulary value localized content by its locale code
      * @param attributeFQN  (required)
      * @param value  (required)
      * @param localeCode  (required)
+     * @param responseFields limits which fields are returned in the response body (optional)
      * @return AttributeVocabularyValueLocalizedContent
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
      </table>
      */
-    public AttributeVocabularyValueLocalizedContent getAttributeVocabularyValueLocalizedContent(String attributeFQN, String value, String localeCode) throws ApiException {
-        ApiResponse<AttributeVocabularyValueLocalizedContent> localVarResp = getAttributeVocabularyValueLocalizedContentWithHttpInfo(attributeFQN, value, localeCode);
+    public AttributeVocabularyValueLocalizedContent getAttributeVocabularyValueLocalizedContent(String attributeFQN, String value, String localeCode, String responseFields) throws ApiException {
+        ApiResponse<AttributeVocabularyValueLocalizedContent> localVarResp = getAttributeVocabularyValueLocalizedContentWithHttpInfo(attributeFQN, value, localeCode, responseFields);
         return localVarResp.getData();
     }
 
     /**
-     * Get product attribute vocabulary value localized content
-     * 
+     * Get Vocabulary Value Localized Content by Locale Code
+     * Get product attribute vocabulary value localized content by its locale code
      * @param attributeFQN  (required)
      * @param value  (required)
      * @param localeCode  (required)
+     * @param responseFields limits which fields are returned in the response body (optional)
      * @return ApiResponse&lt;AttributeVocabularyValueLocalizedContent&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<AttributeVocabularyValueLocalizedContent> getAttributeVocabularyValueLocalizedContentWithHttpInfo(String attributeFQN, String value, String localeCode) throws ApiException {
-        okhttp3.Call localVarCall = getAttributeVocabularyValueLocalizedContentValidateBeforeCall(attributeFQN, value, localeCode, null);
+    public ApiResponse<AttributeVocabularyValueLocalizedContent> getAttributeVocabularyValueLocalizedContentWithHttpInfo(String attributeFQN, String value, String localeCode, String responseFields) throws ApiException {
+        okhttp3.Call localVarCall = getAttributeVocabularyValueLocalizedContentValidateBeforeCall(attributeFQN, value, localeCode, responseFields, null);
         Type localVarReturnType = new TypeToken<AttributeVocabularyValueLocalizedContent>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
 
     /**
-     * Get product attribute vocabulary value localized content (asynchronously)
-     * 
+     * Get Vocabulary Value Localized Content by Locale Code (asynchronously)
+     * Get product attribute vocabulary value localized content by its locale code
      * @param attributeFQN  (required)
      * @param value  (required)
      * @param localeCode  (required)
+     * @param responseFields limits which fields are returned in the response body (optional)
      * @param _callback The callback to be executed when the API call finishes
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call getAttributeVocabularyValueLocalizedContentAsync(String attributeFQN, String value, String localeCode, final ApiCallback<AttributeVocabularyValueLocalizedContent> _callback) throws ApiException {
+    public okhttp3.Call getAttributeVocabularyValueLocalizedContentAsync(String attributeFQN, String value, String localeCode, String responseFields, final ApiCallback<AttributeVocabularyValueLocalizedContent> _callback) throws ApiException {
 
-        okhttp3.Call localVarCall = getAttributeVocabularyValueLocalizedContentValidateBeforeCall(attributeFQN, value, localeCode, _callback);
+        okhttp3.Call localVarCall = getAttributeVocabularyValueLocalizedContentValidateBeforeCall(attributeFQN, value, localeCode, responseFields, _callback);
         Type localVarReturnType = new TypeToken<AttributeVocabularyValueLocalizedContent>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
@@ -1989,16 +2069,17 @@ public class ProductAttributesApi {
      * Build call for getAttributeVocabularyValueLocalizedContents
      * @param attributeFQN  (required)
      * @param value  (required)
+     * @param responseFields limits which fields are returned in the response body (optional)
      * @param _callback Callback for upload/download progress
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call getAttributeVocabularyValueLocalizedContentsCall(String attributeFQN, String value, final ApiCallback _callback) throws ApiException {
+    public okhttp3.Call getAttributeVocabularyValueLocalizedContentsCall(String attributeFQN, String value, String responseFields, final ApiCallback _callback) throws ApiException {
         String basePath = null;
         // Operation Servers
         String[] localBasePaths = new String[] {  };
@@ -2025,6 +2106,10 @@ public class ProductAttributesApi {
         Map<String, String> localVarCookieParams = new HashMap<String, String>();
         Map<String, Object> localVarFormParams = new HashMap<String, Object>();
 
+        if (responseFields != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("responseFields", responseFields));
+        }
+
         final String[] localVarAccepts = {
             "application/json", "text/json", "text/plain"
         };
@@ -2041,12 +2126,12 @@ public class ProductAttributesApi {
             localVarHeaderParams.put("Content-Type", localVarContentType);
         }
 
-        String[] localVarAuthNames = new String[] { "bearerAuth", "clientOauth2" };
+        String[] localVarAuthNames = new String[] { "bearerAuth" };
         return localVarApiClient.buildCall(basePath, localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call getAttributeVocabularyValueLocalizedContentsValidateBeforeCall(String attributeFQN, String value, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call getAttributeVocabularyValueLocalizedContentsValidateBeforeCall(String attributeFQN, String value, String responseFields, final ApiCallback _callback) throws ApiException {
         
         // verify the required parameter 'attributeFQN' is set
         if (attributeFQN == null) {
@@ -2059,65 +2144,68 @@ public class ProductAttributesApi {
         }
         
 
-        okhttp3.Call localVarCall = getAttributeVocabularyValueLocalizedContentsCall(attributeFQN, value, _callback);
+        okhttp3.Call localVarCall = getAttributeVocabularyValueLocalizedContentsCall(attributeFQN, value, responseFields, _callback);
         return localVarCall;
 
     }
 
     /**
-     * Get product attribute vocabulary value localized content
-     * 
+     * Get Vocabulary Value Localized Content
+     * Retrieves vocabulary value localized content
      * @param attributeFQN  (required)
      * @param value  (required)
+     * @param responseFields limits which fields are returned in the response body (optional)
      * @return List&lt;AttributeVocabularyValueLocalizedContent&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
      </table>
      */
-    public List<AttributeVocabularyValueLocalizedContent> getAttributeVocabularyValueLocalizedContents(String attributeFQN, String value) throws ApiException {
-        ApiResponse<List<AttributeVocabularyValueLocalizedContent>> localVarResp = getAttributeVocabularyValueLocalizedContentsWithHttpInfo(attributeFQN, value);
+    public List<AttributeVocabularyValueLocalizedContent> getAttributeVocabularyValueLocalizedContents(String attributeFQN, String value, String responseFields) throws ApiException {
+        ApiResponse<List<AttributeVocabularyValueLocalizedContent>> localVarResp = getAttributeVocabularyValueLocalizedContentsWithHttpInfo(attributeFQN, value, responseFields);
         return localVarResp.getData();
     }
 
     /**
-     * Get product attribute vocabulary value localized content
-     * 
+     * Get Vocabulary Value Localized Content
+     * Retrieves vocabulary value localized content
      * @param attributeFQN  (required)
      * @param value  (required)
+     * @param responseFields limits which fields are returned in the response body (optional)
      * @return ApiResponse&lt;List&lt;AttributeVocabularyValueLocalizedContent&gt;&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<List<AttributeVocabularyValueLocalizedContent>> getAttributeVocabularyValueLocalizedContentsWithHttpInfo(String attributeFQN, String value) throws ApiException {
-        okhttp3.Call localVarCall = getAttributeVocabularyValueLocalizedContentsValidateBeforeCall(attributeFQN, value, null);
+    public ApiResponse<List<AttributeVocabularyValueLocalizedContent>> getAttributeVocabularyValueLocalizedContentsWithHttpInfo(String attributeFQN, String value, String responseFields) throws ApiException {
+        okhttp3.Call localVarCall = getAttributeVocabularyValueLocalizedContentsValidateBeforeCall(attributeFQN, value, responseFields, null);
         Type localVarReturnType = new TypeToken<List<AttributeVocabularyValueLocalizedContent>>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
 
     /**
-     * Get product attribute vocabulary value localized content (asynchronously)
-     * 
+     * Get Vocabulary Value Localized Content (asynchronously)
+     * Retrieves vocabulary value localized content
      * @param attributeFQN  (required)
      * @param value  (required)
+     * @param responseFields limits which fields are returned in the response body (optional)
      * @param _callback The callback to be executed when the API call finishes
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call getAttributeVocabularyValueLocalizedContentsAsync(String attributeFQN, String value, final ApiCallback<List<AttributeVocabularyValueLocalizedContent>> _callback) throws ApiException {
+    public okhttp3.Call getAttributeVocabularyValueLocalizedContentsAsync(String attributeFQN, String value, String responseFields, final ApiCallback<List<AttributeVocabularyValueLocalizedContent>> _callback) throws ApiException {
 
-        okhttp3.Call localVarCall = getAttributeVocabularyValueLocalizedContentsValidateBeforeCall(attributeFQN, value, _callback);
+        okhttp3.Call localVarCall = getAttributeVocabularyValueLocalizedContentsValidateBeforeCall(attributeFQN, value, responseFields, _callback);
         Type localVarReturnType = new TypeToken<List<AttributeVocabularyValueLocalizedContent>>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
@@ -2126,16 +2214,17 @@ public class ProductAttributesApi {
      * Build call for getAttributeVocabularyValues
      * @param attributeFQN  (required)
      * @param responseGroups  (optional)
+     * @param responseFields limits which fields are returned in the response body (optional)
      * @param _callback Callback for upload/download progress
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call getAttributeVocabularyValuesCall(String attributeFQN, String responseGroups, final ApiCallback _callback) throws ApiException {
+    public okhttp3.Call getAttributeVocabularyValuesCall(String attributeFQN, String responseGroups, String responseFields, final ApiCallback _callback) throws ApiException {
         String basePath = null;
         // Operation Servers
         String[] localBasePaths = new String[] {  };
@@ -2165,6 +2254,10 @@ public class ProductAttributesApi {
             localVarQueryParams.addAll(localVarApiClient.parameterToPair("responseGroups", responseGroups));
         }
 
+        if (responseFields != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("responseFields", responseFields));
+        }
+
         final String[] localVarAccepts = {
             "application/json", "text/json", "text/plain"
         };
@@ -2181,12 +2274,12 @@ public class ProductAttributesApi {
             localVarHeaderParams.put("Content-Type", localVarContentType);
         }
 
-        String[] localVarAuthNames = new String[] { "bearerAuth", "clientOauth2" };
+        String[] localVarAuthNames = new String[] { "bearerAuth" };
         return localVarApiClient.buildCall(basePath, localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call getAttributeVocabularyValuesValidateBeforeCall(String attributeFQN, String responseGroups, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call getAttributeVocabularyValuesValidateBeforeCall(String attributeFQN, String responseGroups, String responseFields, final ApiCallback _callback) throws ApiException {
         
         // verify the required parameter 'attributeFQN' is set
         if (attributeFQN == null) {
@@ -2194,65 +2287,68 @@ public class ProductAttributesApi {
         }
         
 
-        okhttp3.Call localVarCall = getAttributeVocabularyValuesCall(attributeFQN, responseGroups, _callback);
+        okhttp3.Call localVarCall = getAttributeVocabularyValuesCall(attributeFQN, responseGroups, responseFields, _callback);
         return localVarCall;
 
     }
 
     /**
-     * Get product attribute vocabulary values
-     * 
+     * Get Vocabulary Values
+     * Retrieves product attribute vocabulary values
      * @param attributeFQN  (required)
      * @param responseGroups  (optional)
+     * @param responseFields limits which fields are returned in the response body (optional)
      * @return List&lt;CatalogAdminsAttributeVocabularyValue&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
      </table>
      */
-    public List<CatalogAdminsAttributeVocabularyValue> getAttributeVocabularyValues(String attributeFQN, String responseGroups) throws ApiException {
-        ApiResponse<List<CatalogAdminsAttributeVocabularyValue>> localVarResp = getAttributeVocabularyValuesWithHttpInfo(attributeFQN, responseGroups);
+    public List<CatalogAdminsAttributeVocabularyValue> getAttributeVocabularyValues(String attributeFQN, String responseGroups, String responseFields) throws ApiException {
+        ApiResponse<List<CatalogAdminsAttributeVocabularyValue>> localVarResp = getAttributeVocabularyValuesWithHttpInfo(attributeFQN, responseGroups, responseFields);
         return localVarResp.getData();
     }
 
     /**
-     * Get product attribute vocabulary values
-     * 
+     * Get Vocabulary Values
+     * Retrieves product attribute vocabulary values
      * @param attributeFQN  (required)
      * @param responseGroups  (optional)
+     * @param responseFields limits which fields are returned in the response body (optional)
      * @return ApiResponse&lt;List&lt;CatalogAdminsAttributeVocabularyValue&gt;&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<List<CatalogAdminsAttributeVocabularyValue>> getAttributeVocabularyValuesWithHttpInfo(String attributeFQN, String responseGroups) throws ApiException {
-        okhttp3.Call localVarCall = getAttributeVocabularyValuesValidateBeforeCall(attributeFQN, responseGroups, null);
+    public ApiResponse<List<CatalogAdminsAttributeVocabularyValue>> getAttributeVocabularyValuesWithHttpInfo(String attributeFQN, String responseGroups, String responseFields) throws ApiException {
+        okhttp3.Call localVarCall = getAttributeVocabularyValuesValidateBeforeCall(attributeFQN, responseGroups, responseFields, null);
         Type localVarReturnType = new TypeToken<List<CatalogAdminsAttributeVocabularyValue>>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
 
     /**
-     * Get product attribute vocabulary values (asynchronously)
-     * 
+     * Get Vocabulary Values (asynchronously)
+     * Retrieves product attribute vocabulary values
      * @param attributeFQN  (required)
      * @param responseGroups  (optional)
+     * @param responseFields limits which fields are returned in the response body (optional)
      * @param _callback The callback to be executed when the API call finishes
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call getAttributeVocabularyValuesAsync(String attributeFQN, String responseGroups, final ApiCallback<List<CatalogAdminsAttributeVocabularyValue>> _callback) throws ApiException {
+    public okhttp3.Call getAttributeVocabularyValuesAsync(String attributeFQN, String responseGroups, String responseFields, final ApiCallback<List<CatalogAdminsAttributeVocabularyValue>> _callback) throws ApiException {
 
-        okhttp3.Call localVarCall = getAttributeVocabularyValuesValidateBeforeCall(attributeFQN, responseGroups, _callback);
+        okhttp3.Call localVarCall = getAttributeVocabularyValuesValidateBeforeCall(attributeFQN, responseGroups, responseFields, _callback);
         Type localVarReturnType = new TypeToken<List<CatalogAdminsAttributeVocabularyValue>>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
@@ -2264,16 +2360,17 @@ public class ProductAttributesApi {
      * @param sortBy  (optional)
      * @param filter  (optional)
      * @param responseGroups  (optional)
+     * @param responseFields limits which fields are returned in the response body (optional)
      * @param _callback Callback for upload/download progress
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call getAttributesCall(Integer startIndex, Integer pageSize, String sortBy, String filter, String responseGroups, final ApiCallback _callback) throws ApiException {
+    public okhttp3.Call getAttributesCall(Integer startIndex, Integer pageSize, String sortBy, String filter, String responseGroups, String responseFields, final ApiCallback _callback) throws ApiException {
         String basePath = null;
         // Operation Servers
         String[] localBasePaths = new String[] {  };
@@ -2318,6 +2415,10 @@ public class ProductAttributesApi {
             localVarQueryParams.addAll(localVarApiClient.parameterToPair("responseGroups", responseGroups));
         }
 
+        if (responseFields != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("responseFields", responseFields));
+        }
+
         final String[] localVarAccepts = {
             "application/json", "text/json", "text/plain"
         };
@@ -2334,82 +2435,85 @@ public class ProductAttributesApi {
             localVarHeaderParams.put("Content-Type", localVarContentType);
         }
 
-        String[] localVarAuthNames = new String[] { "bearerAuth", "clientOauth2" };
+        String[] localVarAuthNames = new String[] { "bearerAuth" };
         return localVarApiClient.buildCall(basePath, localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call getAttributesValidateBeforeCall(Integer startIndex, Integer pageSize, String sortBy, String filter, String responseGroups, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call getAttributesValidateBeforeCall(Integer startIndex, Integer pageSize, String sortBy, String filter, String responseGroups, String responseFields, final ApiCallback _callback) throws ApiException {
         
 
-        okhttp3.Call localVarCall = getAttributesCall(startIndex, pageSize, sortBy, filter, responseGroups, _callback);
+        okhttp3.Call localVarCall = getAttributesCall(startIndex, pageSize, sortBy, filter, responseGroups, responseFields, _callback);
         return localVarCall;
 
     }
 
     /**
-     * Get product attributes
-     * Get product attributes
+     * Get Product Attributes.
+     * Get product attributes. This current version of the Attributes API includes localizedContent to support &lt;a href&#x3D;\&quot;/pages/catalog-structure#multi-locale-catalogs\&quot;&gt;multi-locale catalogs&lt;/a&gt;, which was not present in the previous API model. If you were a client prior to May 2024 and have upgraded your implementation to support this feature, you can still access attribute data that has not yet been rewritten to the new model by providing an x-api-version header set to \&quot;1\&quot;.
      * @param startIndex  (optional, default to 0)
      * @param pageSize  (optional, default to 0)
      * @param sortBy  (optional)
      * @param filter  (optional)
      * @param responseGroups  (optional)
+     * @param responseFields limits which fields are returned in the response body (optional)
      * @return CatalogAdminsAttributeCollection
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
      </table>
      */
-    public CatalogAdminsAttributeCollection getAttributes(Integer startIndex, Integer pageSize, String sortBy, String filter, String responseGroups) throws ApiException {
-        ApiResponse<CatalogAdminsAttributeCollection> localVarResp = getAttributesWithHttpInfo(startIndex, pageSize, sortBy, filter, responseGroups);
+    public CatalogAdminsAttributeCollection getAttributes(Integer startIndex, Integer pageSize, String sortBy, String filter, String responseGroups, String responseFields) throws ApiException {
+        ApiResponse<CatalogAdminsAttributeCollection> localVarResp = getAttributesWithHttpInfo(startIndex, pageSize, sortBy, filter, responseGroups, responseFields);
         return localVarResp.getData();
     }
 
     /**
-     * Get product attributes
-     * Get product attributes
+     * Get Product Attributes.
+     * Get product attributes. This current version of the Attributes API includes localizedContent to support &lt;a href&#x3D;\&quot;/pages/catalog-structure#multi-locale-catalogs\&quot;&gt;multi-locale catalogs&lt;/a&gt;, which was not present in the previous API model. If you were a client prior to May 2024 and have upgraded your implementation to support this feature, you can still access attribute data that has not yet been rewritten to the new model by providing an x-api-version header set to \&quot;1\&quot;.
      * @param startIndex  (optional, default to 0)
      * @param pageSize  (optional, default to 0)
      * @param sortBy  (optional)
      * @param filter  (optional)
      * @param responseGroups  (optional)
+     * @param responseFields limits which fields are returned in the response body (optional)
      * @return ApiResponse&lt;CatalogAdminsAttributeCollection&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<CatalogAdminsAttributeCollection> getAttributesWithHttpInfo(Integer startIndex, Integer pageSize, String sortBy, String filter, String responseGroups) throws ApiException {
-        okhttp3.Call localVarCall = getAttributesValidateBeforeCall(startIndex, pageSize, sortBy, filter, responseGroups, null);
+    public ApiResponse<CatalogAdminsAttributeCollection> getAttributesWithHttpInfo(Integer startIndex, Integer pageSize, String sortBy, String filter, String responseGroups, String responseFields) throws ApiException {
+        okhttp3.Call localVarCall = getAttributesValidateBeforeCall(startIndex, pageSize, sortBy, filter, responseGroups, responseFields, null);
         Type localVarReturnType = new TypeToken<CatalogAdminsAttributeCollection>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
 
     /**
-     * Get product attributes (asynchronously)
-     * Get product attributes
+     * Get Product Attributes. (asynchronously)
+     * Get product attributes. This current version of the Attributes API includes localizedContent to support &lt;a href&#x3D;\&quot;/pages/catalog-structure#multi-locale-catalogs\&quot;&gt;multi-locale catalogs&lt;/a&gt;, which was not present in the previous API model. If you were a client prior to May 2024 and have upgraded your implementation to support this feature, you can still access attribute data that has not yet been rewritten to the new model by providing an x-api-version header set to \&quot;1\&quot;.
      * @param startIndex  (optional, default to 0)
      * @param pageSize  (optional, default to 0)
      * @param sortBy  (optional)
      * @param filter  (optional)
      * @param responseGroups  (optional)
+     * @param responseFields limits which fields are returned in the response body (optional)
      * @param _callback The callback to be executed when the API call finishes
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call getAttributesAsync(Integer startIndex, Integer pageSize, String sortBy, String filter, String responseGroups, final ApiCallback<CatalogAdminsAttributeCollection> _callback) throws ApiException {
+    public okhttp3.Call getAttributesAsync(Integer startIndex, Integer pageSize, String sortBy, String filter, String responseGroups, String responseFields, final ApiCallback<CatalogAdminsAttributeCollection> _callback) throws ApiException {
 
-        okhttp3.Call localVarCall = getAttributesValidateBeforeCall(startIndex, pageSize, sortBy, filter, responseGroups, _callback);
+        okhttp3.Call localVarCall = getAttributesValidateBeforeCall(startIndex, pageSize, sortBy, filter, responseGroups, responseFields, _callback);
         Type localVarReturnType = new TypeToken<CatalogAdminsAttributeCollection>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
@@ -2417,6 +2521,7 @@ public class ProductAttributesApi {
     /**
      * Build call for updateAttribute
      * @param attributeFQN  (required)
+     * @param responseFields limits which fields are returned in the response body (optional)
      * @param catalogAdminsAttribute  (optional)
      * @param _callback Callback for upload/download progress
      * @return Call to execute
@@ -2424,10 +2529,10 @@ public class ProductAttributesApi {
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call updateAttributeCall(String attributeFQN, CatalogAdminsAttribute catalogAdminsAttribute, final ApiCallback _callback) throws ApiException {
+    public okhttp3.Call updateAttributeCall(String attributeFQN, String responseFields, CatalogAdminsAttribute catalogAdminsAttribute, final ApiCallback _callback) throws ApiException {
         String basePath = null;
         // Operation Servers
         String[] localBasePaths = new String[] {  };
@@ -2453,6 +2558,10 @@ public class ProductAttributesApi {
         Map<String, String> localVarCookieParams = new HashMap<String, String>();
         Map<String, Object> localVarFormParams = new HashMap<String, Object>();
 
+        if (responseFields != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("responseFields", responseFields));
+        }
+
         final String[] localVarAccepts = {
             "application/json", "text/json", "text/plain"
         };
@@ -2469,12 +2578,12 @@ public class ProductAttributesApi {
             localVarHeaderParams.put("Content-Type", localVarContentType);
         }
 
-        String[] localVarAuthNames = new String[] { "bearerAuth", "clientOauth2" };
+        String[] localVarAuthNames = new String[] { "bearerAuth" };
         return localVarApiClient.buildCall(basePath, localVarPath, "PUT", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call updateAttributeValidateBeforeCall(String attributeFQN, CatalogAdminsAttribute catalogAdminsAttribute, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call updateAttributeValidateBeforeCall(String attributeFQN, String responseFields, CatalogAdminsAttribute catalogAdminsAttribute, final ApiCallback _callback) throws ApiException {
         
         // verify the required parameter 'attributeFQN' is set
         if (attributeFQN == null) {
@@ -2482,52 +2591,55 @@ public class ProductAttributesApi {
         }
         
 
-        okhttp3.Call localVarCall = updateAttributeCall(attributeFQN, catalogAdminsAttribute, _callback);
+        okhttp3.Call localVarCall = updateAttributeCall(attributeFQN, responseFields, catalogAdminsAttribute, _callback);
         return localVarCall;
 
     }
 
     /**
-     * Update a product attribute
-     * 
+     * Update Product Attribute
+     * Updates a product attribute by its FQN. This current version of the Attributes API includes localizedContent to support &lt;a href&#x3D;\&quot;/pages/catalog-structure#multi-locale-catalogs\&quot;&gt;multi-locale catalogs&lt;/a&gt;, which was not present in the previous API model. If you were a client prior to May 2024 and have upgraded your implementation to support this feature, you can still access attribute data that has not yet been rewritten to the new model by providing an x-api-version header set to \&quot;1\&quot;.
      * @param attributeFQN  (required)
+     * @param responseFields limits which fields are returned in the response body (optional)
      * @param catalogAdminsAttribute  (optional)
      * @return CatalogAdminsAttribute
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
      </table>
      */
-    public CatalogAdminsAttribute updateAttribute(String attributeFQN, CatalogAdminsAttribute catalogAdminsAttribute) throws ApiException {
-        ApiResponse<CatalogAdminsAttribute> localVarResp = updateAttributeWithHttpInfo(attributeFQN, catalogAdminsAttribute);
+    public CatalogAdminsAttribute updateAttribute(String attributeFQN, String responseFields, CatalogAdminsAttribute catalogAdminsAttribute) throws ApiException {
+        ApiResponse<CatalogAdminsAttribute> localVarResp = updateAttributeWithHttpInfo(attributeFQN, responseFields, catalogAdminsAttribute);
         return localVarResp.getData();
     }
 
     /**
-     * Update a product attribute
-     * 
+     * Update Product Attribute
+     * Updates a product attribute by its FQN. This current version of the Attributes API includes localizedContent to support &lt;a href&#x3D;\&quot;/pages/catalog-structure#multi-locale-catalogs\&quot;&gt;multi-locale catalogs&lt;/a&gt;, which was not present in the previous API model. If you were a client prior to May 2024 and have upgraded your implementation to support this feature, you can still access attribute data that has not yet been rewritten to the new model by providing an x-api-version header set to \&quot;1\&quot;.
      * @param attributeFQN  (required)
+     * @param responseFields limits which fields are returned in the response body (optional)
      * @param catalogAdminsAttribute  (optional)
      * @return ApiResponse&lt;CatalogAdminsAttribute&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<CatalogAdminsAttribute> updateAttributeWithHttpInfo(String attributeFQN, CatalogAdminsAttribute catalogAdminsAttribute) throws ApiException {
-        okhttp3.Call localVarCall = updateAttributeValidateBeforeCall(attributeFQN, catalogAdminsAttribute, null);
+    public ApiResponse<CatalogAdminsAttribute> updateAttributeWithHttpInfo(String attributeFQN, String responseFields, CatalogAdminsAttribute catalogAdminsAttribute) throws ApiException {
+        okhttp3.Call localVarCall = updateAttributeValidateBeforeCall(attributeFQN, responseFields, catalogAdminsAttribute, null);
         Type localVarReturnType = new TypeToken<CatalogAdminsAttribute>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
 
     /**
-     * Update a product attribute (asynchronously)
-     * 
+     * Update Product Attribute (asynchronously)
+     * Updates a product attribute by its FQN. This current version of the Attributes API includes localizedContent to support &lt;a href&#x3D;\&quot;/pages/catalog-structure#multi-locale-catalogs\&quot;&gt;multi-locale catalogs&lt;/a&gt;, which was not present in the previous API model. If you were a client prior to May 2024 and have upgraded your implementation to support this feature, you can still access attribute data that has not yet been rewritten to the new model by providing an x-api-version header set to \&quot;1\&quot;.
      * @param attributeFQN  (required)
+     * @param responseFields limits which fields are returned in the response body (optional)
      * @param catalogAdminsAttribute  (optional)
      * @param _callback The callback to be executed when the API call finishes
      * @return The request call
@@ -2535,12 +2647,12 @@ public class ProductAttributesApi {
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call updateAttributeAsync(String attributeFQN, CatalogAdminsAttribute catalogAdminsAttribute, final ApiCallback<CatalogAdminsAttribute> _callback) throws ApiException {
+    public okhttp3.Call updateAttributeAsync(String attributeFQN, String responseFields, CatalogAdminsAttribute catalogAdminsAttribute, final ApiCallback<CatalogAdminsAttribute> _callback) throws ApiException {
 
-        okhttp3.Call localVarCall = updateAttributeValidateBeforeCall(attributeFQN, catalogAdminsAttribute, _callback);
+        okhttp3.Call localVarCall = updateAttributeValidateBeforeCall(attributeFQN, responseFields, catalogAdminsAttribute, _callback);
         Type localVarReturnType = new TypeToken<CatalogAdminsAttribute>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
@@ -2549,6 +2661,7 @@ public class ProductAttributesApi {
      * Build call for updateAttributeVocabularyValue
      * @param attributeFQN  (required)
      * @param value  (required)
+     * @param responseFields limits which fields are returned in the response body (optional)
      * @param catalogAdminsAttributeVocabularyValue  (optional)
      * @param _callback Callback for upload/download progress
      * @return Call to execute
@@ -2556,10 +2669,10 @@ public class ProductAttributesApi {
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call updateAttributeVocabularyValueCall(String attributeFQN, String value, CatalogAdminsAttributeVocabularyValue catalogAdminsAttributeVocabularyValue, final ApiCallback _callback) throws ApiException {
+    public okhttp3.Call updateAttributeVocabularyValueCall(String attributeFQN, String value, String responseFields, CatalogAdminsAttributeVocabularyValue catalogAdminsAttributeVocabularyValue, final ApiCallback _callback) throws ApiException {
         String basePath = null;
         // Operation Servers
         String[] localBasePaths = new String[] {  };
@@ -2586,6 +2699,10 @@ public class ProductAttributesApi {
         Map<String, String> localVarCookieParams = new HashMap<String, String>();
         Map<String, Object> localVarFormParams = new HashMap<String, Object>();
 
+        if (responseFields != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("responseFields", responseFields));
+        }
+
         final String[] localVarAccepts = {
             "application/json", "text/json", "text/plain"
         };
@@ -2602,12 +2719,12 @@ public class ProductAttributesApi {
             localVarHeaderParams.put("Content-Type", localVarContentType);
         }
 
-        String[] localVarAuthNames = new String[] { "bearerAuth", "clientOauth2" };
+        String[] localVarAuthNames = new String[] { "bearerAuth" };
         return localVarApiClient.buildCall(basePath, localVarPath, "PUT", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call updateAttributeVocabularyValueValidateBeforeCall(String attributeFQN, String value, CatalogAdminsAttributeVocabularyValue catalogAdminsAttributeVocabularyValue, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call updateAttributeVocabularyValueValidateBeforeCall(String attributeFQN, String value, String responseFields, CatalogAdminsAttributeVocabularyValue catalogAdminsAttributeVocabularyValue, final ApiCallback _callback) throws ApiException {
         
         // verify the required parameter 'attributeFQN' is set
         if (attributeFQN == null) {
@@ -2620,55 +2737,58 @@ public class ProductAttributesApi {
         }
         
 
-        okhttp3.Call localVarCall = updateAttributeVocabularyValueCall(attributeFQN, value, catalogAdminsAttributeVocabularyValue, _callback);
+        okhttp3.Call localVarCall = updateAttributeVocabularyValueCall(attributeFQN, value, responseFields, catalogAdminsAttributeVocabularyValue, _callback);
         return localVarCall;
 
     }
 
     /**
-     * Update product attribute vocabulary value
-     * 
+     * Update Vocabulary Value
+     * Updates a product attribute vocabulary value
      * @param attributeFQN  (required)
      * @param value  (required)
+     * @param responseFields limits which fields are returned in the response body (optional)
      * @param catalogAdminsAttributeVocabularyValue  (optional)
      * @return CatalogAdminsAttributeVocabularyValue
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
      </table>
      */
-    public CatalogAdminsAttributeVocabularyValue updateAttributeVocabularyValue(String attributeFQN, String value, CatalogAdminsAttributeVocabularyValue catalogAdminsAttributeVocabularyValue) throws ApiException {
-        ApiResponse<CatalogAdminsAttributeVocabularyValue> localVarResp = updateAttributeVocabularyValueWithHttpInfo(attributeFQN, value, catalogAdminsAttributeVocabularyValue);
+    public CatalogAdminsAttributeVocabularyValue updateAttributeVocabularyValue(String attributeFQN, String value, String responseFields, CatalogAdminsAttributeVocabularyValue catalogAdminsAttributeVocabularyValue) throws ApiException {
+        ApiResponse<CatalogAdminsAttributeVocabularyValue> localVarResp = updateAttributeVocabularyValueWithHttpInfo(attributeFQN, value, responseFields, catalogAdminsAttributeVocabularyValue);
         return localVarResp.getData();
     }
 
     /**
-     * Update product attribute vocabulary value
-     * 
+     * Update Vocabulary Value
+     * Updates a product attribute vocabulary value
      * @param attributeFQN  (required)
      * @param value  (required)
+     * @param responseFields limits which fields are returned in the response body (optional)
      * @param catalogAdminsAttributeVocabularyValue  (optional)
      * @return ApiResponse&lt;CatalogAdminsAttributeVocabularyValue&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<CatalogAdminsAttributeVocabularyValue> updateAttributeVocabularyValueWithHttpInfo(String attributeFQN, String value, CatalogAdminsAttributeVocabularyValue catalogAdminsAttributeVocabularyValue) throws ApiException {
-        okhttp3.Call localVarCall = updateAttributeVocabularyValueValidateBeforeCall(attributeFQN, value, catalogAdminsAttributeVocabularyValue, null);
+    public ApiResponse<CatalogAdminsAttributeVocabularyValue> updateAttributeVocabularyValueWithHttpInfo(String attributeFQN, String value, String responseFields, CatalogAdminsAttributeVocabularyValue catalogAdminsAttributeVocabularyValue) throws ApiException {
+        okhttp3.Call localVarCall = updateAttributeVocabularyValueValidateBeforeCall(attributeFQN, value, responseFields, catalogAdminsAttributeVocabularyValue, null);
         Type localVarReturnType = new TypeToken<CatalogAdminsAttributeVocabularyValue>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
 
     /**
-     * Update product attribute vocabulary value (asynchronously)
-     * 
+     * Update Vocabulary Value (asynchronously)
+     * Updates a product attribute vocabulary value
      * @param attributeFQN  (required)
      * @param value  (required)
+     * @param responseFields limits which fields are returned in the response body (optional)
      * @param catalogAdminsAttributeVocabularyValue  (optional)
      * @param _callback The callback to be executed when the API call finishes
      * @return The request call
@@ -2676,12 +2796,12 @@ public class ProductAttributesApi {
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call updateAttributeVocabularyValueAsync(String attributeFQN, String value, CatalogAdminsAttributeVocabularyValue catalogAdminsAttributeVocabularyValue, final ApiCallback<CatalogAdminsAttributeVocabularyValue> _callback) throws ApiException {
+    public okhttp3.Call updateAttributeVocabularyValueAsync(String attributeFQN, String value, String responseFields, CatalogAdminsAttributeVocabularyValue catalogAdminsAttributeVocabularyValue, final ApiCallback<CatalogAdminsAttributeVocabularyValue> _callback) throws ApiException {
 
-        okhttp3.Call localVarCall = updateAttributeVocabularyValueValidateBeforeCall(attributeFQN, value, catalogAdminsAttributeVocabularyValue, _callback);
+        okhttp3.Call localVarCall = updateAttributeVocabularyValueValidateBeforeCall(attributeFQN, value, responseFields, catalogAdminsAttributeVocabularyValue, _callback);
         Type localVarReturnType = new TypeToken<CatalogAdminsAttributeVocabularyValue>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
@@ -2691,6 +2811,7 @@ public class ProductAttributesApi {
      * @param attributeFQN  (required)
      * @param value  (required)
      * @param localeCode  (required)
+     * @param responseFields limits which fields are returned in the response body (optional)
      * @param attributeVocabularyValueLocalizedContent  (optional)
      * @param _callback Callback for upload/download progress
      * @return Call to execute
@@ -2698,10 +2819,10 @@ public class ProductAttributesApi {
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call updateAttributeVocabularyValueLocalizedContentCall(String attributeFQN, String value, String localeCode, AttributeVocabularyValueLocalizedContent attributeVocabularyValueLocalizedContent, final ApiCallback _callback) throws ApiException {
+    public okhttp3.Call updateAttributeVocabularyValueLocalizedContentCall(String attributeFQN, String value, String localeCode, String responseFields, AttributeVocabularyValueLocalizedContent attributeVocabularyValueLocalizedContent, final ApiCallback _callback) throws ApiException {
         String basePath = null;
         // Operation Servers
         String[] localBasePaths = new String[] {  };
@@ -2729,6 +2850,10 @@ public class ProductAttributesApi {
         Map<String, String> localVarCookieParams = new HashMap<String, String>();
         Map<String, Object> localVarFormParams = new HashMap<String, Object>();
 
+        if (responseFields != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("responseFields", responseFields));
+        }
+
         final String[] localVarAccepts = {
             "application/json", "text/json", "text/plain"
         };
@@ -2745,12 +2870,12 @@ public class ProductAttributesApi {
             localVarHeaderParams.put("Content-Type", localVarContentType);
         }
 
-        String[] localVarAuthNames = new String[] { "bearerAuth", "clientOauth2" };
+        String[] localVarAuthNames = new String[] { "bearerAuth" };
         return localVarApiClient.buildCall(basePath, localVarPath, "PUT", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call updateAttributeVocabularyValueLocalizedContentValidateBeforeCall(String attributeFQN, String value, String localeCode, AttributeVocabularyValueLocalizedContent attributeVocabularyValueLocalizedContent, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call updateAttributeVocabularyValueLocalizedContentValidateBeforeCall(String attributeFQN, String value, String localeCode, String responseFields, AttributeVocabularyValueLocalizedContent attributeVocabularyValueLocalizedContent, final ApiCallback _callback) throws ApiException {
         
         // verify the required parameter 'attributeFQN' is set
         if (attributeFQN == null) {
@@ -2768,58 +2893,61 @@ public class ProductAttributesApi {
         }
         
 
-        okhttp3.Call localVarCall = updateAttributeVocabularyValueLocalizedContentCall(attributeFQN, value, localeCode, attributeVocabularyValueLocalizedContent, _callback);
+        okhttp3.Call localVarCall = updateAttributeVocabularyValueLocalizedContentCall(attributeFQN, value, localeCode, responseFields, attributeVocabularyValueLocalizedContent, _callback);
         return localVarCall;
 
     }
 
     /**
-     * Update product attribute vocabulary value localized content
-     * 
+     * Update Vocabulary Value Localized Content by Locale Code
+     * Update product attribute vocabulary value localized content by its locale code
      * @param attributeFQN  (required)
      * @param value  (required)
      * @param localeCode  (required)
+     * @param responseFields limits which fields are returned in the response body (optional)
      * @param attributeVocabularyValueLocalizedContent  (optional)
      * @return AttributeVocabularyValueLocalizedContent
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
      </table>
      */
-    public AttributeVocabularyValueLocalizedContent updateAttributeVocabularyValueLocalizedContent(String attributeFQN, String value, String localeCode, AttributeVocabularyValueLocalizedContent attributeVocabularyValueLocalizedContent) throws ApiException {
-        ApiResponse<AttributeVocabularyValueLocalizedContent> localVarResp = updateAttributeVocabularyValueLocalizedContentWithHttpInfo(attributeFQN, value, localeCode, attributeVocabularyValueLocalizedContent);
+    public AttributeVocabularyValueLocalizedContent updateAttributeVocabularyValueLocalizedContent(String attributeFQN, String value, String localeCode, String responseFields, AttributeVocabularyValueLocalizedContent attributeVocabularyValueLocalizedContent) throws ApiException {
+        ApiResponse<AttributeVocabularyValueLocalizedContent> localVarResp = updateAttributeVocabularyValueLocalizedContentWithHttpInfo(attributeFQN, value, localeCode, responseFields, attributeVocabularyValueLocalizedContent);
         return localVarResp.getData();
     }
 
     /**
-     * Update product attribute vocabulary value localized content
-     * 
+     * Update Vocabulary Value Localized Content by Locale Code
+     * Update product attribute vocabulary value localized content by its locale code
      * @param attributeFQN  (required)
      * @param value  (required)
      * @param localeCode  (required)
+     * @param responseFields limits which fields are returned in the response body (optional)
      * @param attributeVocabularyValueLocalizedContent  (optional)
      * @return ApiResponse&lt;AttributeVocabularyValueLocalizedContent&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<AttributeVocabularyValueLocalizedContent> updateAttributeVocabularyValueLocalizedContentWithHttpInfo(String attributeFQN, String value, String localeCode, AttributeVocabularyValueLocalizedContent attributeVocabularyValueLocalizedContent) throws ApiException {
-        okhttp3.Call localVarCall = updateAttributeVocabularyValueLocalizedContentValidateBeforeCall(attributeFQN, value, localeCode, attributeVocabularyValueLocalizedContent, null);
+    public ApiResponse<AttributeVocabularyValueLocalizedContent> updateAttributeVocabularyValueLocalizedContentWithHttpInfo(String attributeFQN, String value, String localeCode, String responseFields, AttributeVocabularyValueLocalizedContent attributeVocabularyValueLocalizedContent) throws ApiException {
+        okhttp3.Call localVarCall = updateAttributeVocabularyValueLocalizedContentValidateBeforeCall(attributeFQN, value, localeCode, responseFields, attributeVocabularyValueLocalizedContent, null);
         Type localVarReturnType = new TypeToken<AttributeVocabularyValueLocalizedContent>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
 
     /**
-     * Update product attribute vocabulary value localized content (asynchronously)
-     * 
+     * Update Vocabulary Value Localized Content by Locale Code (asynchronously)
+     * Update product attribute vocabulary value localized content by its locale code
      * @param attributeFQN  (required)
      * @param value  (required)
      * @param localeCode  (required)
+     * @param responseFields limits which fields are returned in the response body (optional)
      * @param attributeVocabularyValueLocalizedContent  (optional)
      * @param _callback The callback to be executed when the API call finishes
      * @return The request call
@@ -2827,12 +2955,12 @@ public class ProductAttributesApi {
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call updateAttributeVocabularyValueLocalizedContentAsync(String attributeFQN, String value, String localeCode, AttributeVocabularyValueLocalizedContent attributeVocabularyValueLocalizedContent, final ApiCallback<AttributeVocabularyValueLocalizedContent> _callback) throws ApiException {
+    public okhttp3.Call updateAttributeVocabularyValueLocalizedContentAsync(String attributeFQN, String value, String localeCode, String responseFields, AttributeVocabularyValueLocalizedContent attributeVocabularyValueLocalizedContent, final ApiCallback<AttributeVocabularyValueLocalizedContent> _callback) throws ApiException {
 
-        okhttp3.Call localVarCall = updateAttributeVocabularyValueLocalizedContentValidateBeforeCall(attributeFQN, value, localeCode, attributeVocabularyValueLocalizedContent, _callback);
+        okhttp3.Call localVarCall = updateAttributeVocabularyValueLocalizedContentValidateBeforeCall(attributeFQN, value, localeCode, responseFields, attributeVocabularyValueLocalizedContent, _callback);
         Type localVarReturnType = new TypeToken<AttributeVocabularyValueLocalizedContent>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
@@ -2841,6 +2969,7 @@ public class ProductAttributesApi {
      * Build call for updateAttributeVocabularyValueLocalizedContents
      * @param attributeFQN  (required)
      * @param value  (required)
+     * @param responseFields limits which fields are returned in the response body (optional)
      * @param attributeVocabularyValueLocalizedContent  (optional)
      * @param _callback Callback for upload/download progress
      * @return Call to execute
@@ -2848,10 +2977,10 @@ public class ProductAttributesApi {
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call updateAttributeVocabularyValueLocalizedContentsCall(String attributeFQN, String value, List<AttributeVocabularyValueLocalizedContent> attributeVocabularyValueLocalizedContent, final ApiCallback _callback) throws ApiException {
+    public okhttp3.Call updateAttributeVocabularyValueLocalizedContentsCall(String attributeFQN, String value, String responseFields, List<AttributeVocabularyValueLocalizedContent> attributeVocabularyValueLocalizedContent, final ApiCallback _callback) throws ApiException {
         String basePath = null;
         // Operation Servers
         String[] localBasePaths = new String[] {  };
@@ -2878,6 +3007,10 @@ public class ProductAttributesApi {
         Map<String, String> localVarCookieParams = new HashMap<String, String>();
         Map<String, Object> localVarFormParams = new HashMap<String, Object>();
 
+        if (responseFields != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("responseFields", responseFields));
+        }
+
         final String[] localVarAccepts = {
             "application/json", "text/json", "text/plain"
         };
@@ -2894,12 +3027,12 @@ public class ProductAttributesApi {
             localVarHeaderParams.put("Content-Type", localVarContentType);
         }
 
-        String[] localVarAuthNames = new String[] { "bearerAuth", "clientOauth2" };
+        String[] localVarAuthNames = new String[] { "bearerAuth" };
         return localVarApiClient.buildCall(basePath, localVarPath, "PUT", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call updateAttributeVocabularyValueLocalizedContentsValidateBeforeCall(String attributeFQN, String value, List<AttributeVocabularyValueLocalizedContent> attributeVocabularyValueLocalizedContent, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call updateAttributeVocabularyValueLocalizedContentsValidateBeforeCall(String attributeFQN, String value, String responseFields, List<AttributeVocabularyValueLocalizedContent> attributeVocabularyValueLocalizedContent, final ApiCallback _callback) throws ApiException {
         
         // verify the required parameter 'attributeFQN' is set
         if (attributeFQN == null) {
@@ -2912,55 +3045,58 @@ public class ProductAttributesApi {
         }
         
 
-        okhttp3.Call localVarCall = updateAttributeVocabularyValueLocalizedContentsCall(attributeFQN, value, attributeVocabularyValueLocalizedContent, _callback);
+        okhttp3.Call localVarCall = updateAttributeVocabularyValueLocalizedContentsCall(attributeFQN, value, responseFields, attributeVocabularyValueLocalizedContent, _callback);
         return localVarCall;
 
     }
 
     /**
-     * Update product attribute vocabulary value localized content
-     * 
+     * Update Vocabulary Value Localized Content
+     * Updates vocabulary value localized content
      * @param attributeFQN  (required)
      * @param value  (required)
+     * @param responseFields limits which fields are returned in the response body (optional)
      * @param attributeVocabularyValueLocalizedContent  (optional)
      * @return List&lt;AttributeVocabularyValueLocalizedContent&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
      </table>
      */
-    public List<AttributeVocabularyValueLocalizedContent> updateAttributeVocabularyValueLocalizedContents(String attributeFQN, String value, List<AttributeVocabularyValueLocalizedContent> attributeVocabularyValueLocalizedContent) throws ApiException {
-        ApiResponse<List<AttributeVocabularyValueLocalizedContent>> localVarResp = updateAttributeVocabularyValueLocalizedContentsWithHttpInfo(attributeFQN, value, attributeVocabularyValueLocalizedContent);
+    public List<AttributeVocabularyValueLocalizedContent> updateAttributeVocabularyValueLocalizedContents(String attributeFQN, String value, String responseFields, List<AttributeVocabularyValueLocalizedContent> attributeVocabularyValueLocalizedContent) throws ApiException {
+        ApiResponse<List<AttributeVocabularyValueLocalizedContent>> localVarResp = updateAttributeVocabularyValueLocalizedContentsWithHttpInfo(attributeFQN, value, responseFields, attributeVocabularyValueLocalizedContent);
         return localVarResp.getData();
     }
 
     /**
-     * Update product attribute vocabulary value localized content
-     * 
+     * Update Vocabulary Value Localized Content
+     * Updates vocabulary value localized content
      * @param attributeFQN  (required)
      * @param value  (required)
+     * @param responseFields limits which fields are returned in the response body (optional)
      * @param attributeVocabularyValueLocalizedContent  (optional)
      * @return ApiResponse&lt;List&lt;AttributeVocabularyValueLocalizedContent&gt;&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<List<AttributeVocabularyValueLocalizedContent>> updateAttributeVocabularyValueLocalizedContentsWithHttpInfo(String attributeFQN, String value, List<AttributeVocabularyValueLocalizedContent> attributeVocabularyValueLocalizedContent) throws ApiException {
-        okhttp3.Call localVarCall = updateAttributeVocabularyValueLocalizedContentsValidateBeforeCall(attributeFQN, value, attributeVocabularyValueLocalizedContent, null);
+    public ApiResponse<List<AttributeVocabularyValueLocalizedContent>> updateAttributeVocabularyValueLocalizedContentsWithHttpInfo(String attributeFQN, String value, String responseFields, List<AttributeVocabularyValueLocalizedContent> attributeVocabularyValueLocalizedContent) throws ApiException {
+        okhttp3.Call localVarCall = updateAttributeVocabularyValueLocalizedContentsValidateBeforeCall(attributeFQN, value, responseFields, attributeVocabularyValueLocalizedContent, null);
         Type localVarReturnType = new TypeToken<List<AttributeVocabularyValueLocalizedContent>>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
 
     /**
-     * Update product attribute vocabulary value localized content (asynchronously)
-     * 
+     * Update Vocabulary Value Localized Content (asynchronously)
+     * Updates vocabulary value localized content
      * @param attributeFQN  (required)
      * @param value  (required)
+     * @param responseFields limits which fields are returned in the response body (optional)
      * @param attributeVocabularyValueLocalizedContent  (optional)
      * @param _callback The callback to be executed when the API call finishes
      * @return The request call
@@ -2968,12 +3104,12 @@ public class ProductAttributesApi {
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call updateAttributeVocabularyValueLocalizedContentsAsync(String attributeFQN, String value, List<AttributeVocabularyValueLocalizedContent> attributeVocabularyValueLocalizedContent, final ApiCallback<List<AttributeVocabularyValueLocalizedContent>> _callback) throws ApiException {
+    public okhttp3.Call updateAttributeVocabularyValueLocalizedContentsAsync(String attributeFQN, String value, String responseFields, List<AttributeVocabularyValueLocalizedContent> attributeVocabularyValueLocalizedContent, final ApiCallback<List<AttributeVocabularyValueLocalizedContent>> _callback) throws ApiException {
 
-        okhttp3.Call localVarCall = updateAttributeVocabularyValueLocalizedContentsValidateBeforeCall(attributeFQN, value, attributeVocabularyValueLocalizedContent, _callback);
+        okhttp3.Call localVarCall = updateAttributeVocabularyValueLocalizedContentsValidateBeforeCall(attributeFQN, value, responseFields, attributeVocabularyValueLocalizedContent, _callback);
         Type localVarReturnType = new TypeToken<List<AttributeVocabularyValueLocalizedContent>>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
@@ -2981,6 +3117,7 @@ public class ProductAttributesApi {
     /**
      * Build call for updateAttributeVocabularyValues
      * @param attributeFQN  (required)
+     * @param responseFields limits which fields are returned in the response body (optional)
      * @param catalogAdminsAttributeVocabularyValue  (optional)
      * @param _callback Callback for upload/download progress
      * @return Call to execute
@@ -2988,10 +3125,10 @@ public class ProductAttributesApi {
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call updateAttributeVocabularyValuesCall(String attributeFQN, List<CatalogAdminsAttributeVocabularyValue> catalogAdminsAttributeVocabularyValue, final ApiCallback _callback) throws ApiException {
+    public okhttp3.Call updateAttributeVocabularyValuesCall(String attributeFQN, String responseFields, List<CatalogAdminsAttributeVocabularyValue> catalogAdminsAttributeVocabularyValue, final ApiCallback _callback) throws ApiException {
         String basePath = null;
         // Operation Servers
         String[] localBasePaths = new String[] {  };
@@ -3017,6 +3154,10 @@ public class ProductAttributesApi {
         Map<String, String> localVarCookieParams = new HashMap<String, String>();
         Map<String, Object> localVarFormParams = new HashMap<String, Object>();
 
+        if (responseFields != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("responseFields", responseFields));
+        }
+
         final String[] localVarAccepts = {
             "application/json", "text/json", "text/plain"
         };
@@ -3033,12 +3174,12 @@ public class ProductAttributesApi {
             localVarHeaderParams.put("Content-Type", localVarContentType);
         }
 
-        String[] localVarAuthNames = new String[] { "bearerAuth", "clientOauth2" };
+        String[] localVarAuthNames = new String[] { "bearerAuth" };
         return localVarApiClient.buildCall(basePath, localVarPath, "PUT", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call updateAttributeVocabularyValuesValidateBeforeCall(String attributeFQN, List<CatalogAdminsAttributeVocabularyValue> catalogAdminsAttributeVocabularyValue, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call updateAttributeVocabularyValuesValidateBeforeCall(String attributeFQN, String responseFields, List<CatalogAdminsAttributeVocabularyValue> catalogAdminsAttributeVocabularyValue, final ApiCallback _callback) throws ApiException {
         
         // verify the required parameter 'attributeFQN' is set
         if (attributeFQN == null) {
@@ -3046,52 +3187,55 @@ public class ProductAttributesApi {
         }
         
 
-        okhttp3.Call localVarCall = updateAttributeVocabularyValuesCall(attributeFQN, catalogAdminsAttributeVocabularyValue, _callback);
+        okhttp3.Call localVarCall = updateAttributeVocabularyValuesCall(attributeFQN, responseFields, catalogAdminsAttributeVocabularyValue, _callback);
         return localVarCall;
 
     }
 
     /**
-     * Update product attribute vocabulary values
-     * 
+     * Update Vocabulary Values
+     * Updates product attribute vocabulary values
      * @param attributeFQN  (required)
+     * @param responseFields limits which fields are returned in the response body (optional)
      * @param catalogAdminsAttributeVocabularyValue  (optional)
      * @return List&lt;CatalogAdminsAttributeVocabularyValue&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
      </table>
      */
-    public List<CatalogAdminsAttributeVocabularyValue> updateAttributeVocabularyValues(String attributeFQN, List<CatalogAdminsAttributeVocabularyValue> catalogAdminsAttributeVocabularyValue) throws ApiException {
-        ApiResponse<List<CatalogAdminsAttributeVocabularyValue>> localVarResp = updateAttributeVocabularyValuesWithHttpInfo(attributeFQN, catalogAdminsAttributeVocabularyValue);
+    public List<CatalogAdminsAttributeVocabularyValue> updateAttributeVocabularyValues(String attributeFQN, String responseFields, List<CatalogAdminsAttributeVocabularyValue> catalogAdminsAttributeVocabularyValue) throws ApiException {
+        ApiResponse<List<CatalogAdminsAttributeVocabularyValue>> localVarResp = updateAttributeVocabularyValuesWithHttpInfo(attributeFQN, responseFields, catalogAdminsAttributeVocabularyValue);
         return localVarResp.getData();
     }
 
     /**
-     * Update product attribute vocabulary values
-     * 
+     * Update Vocabulary Values
+     * Updates product attribute vocabulary values
      * @param attributeFQN  (required)
+     * @param responseFields limits which fields are returned in the response body (optional)
      * @param catalogAdminsAttributeVocabularyValue  (optional)
      * @return ApiResponse&lt;List&lt;CatalogAdminsAttributeVocabularyValue&gt;&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<List<CatalogAdminsAttributeVocabularyValue>> updateAttributeVocabularyValuesWithHttpInfo(String attributeFQN, List<CatalogAdminsAttributeVocabularyValue> catalogAdminsAttributeVocabularyValue) throws ApiException {
-        okhttp3.Call localVarCall = updateAttributeVocabularyValuesValidateBeforeCall(attributeFQN, catalogAdminsAttributeVocabularyValue, null);
+    public ApiResponse<List<CatalogAdminsAttributeVocabularyValue>> updateAttributeVocabularyValuesWithHttpInfo(String attributeFQN, String responseFields, List<CatalogAdminsAttributeVocabularyValue> catalogAdminsAttributeVocabularyValue) throws ApiException {
+        okhttp3.Call localVarCall = updateAttributeVocabularyValuesValidateBeforeCall(attributeFQN, responseFields, catalogAdminsAttributeVocabularyValue, null);
         Type localVarReturnType = new TypeToken<List<CatalogAdminsAttributeVocabularyValue>>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
 
     /**
-     * Update product attribute vocabulary values (asynchronously)
-     * 
+     * Update Vocabulary Values (asynchronously)
+     * Updates product attribute vocabulary values
      * @param attributeFQN  (required)
+     * @param responseFields limits which fields are returned in the response body (optional)
      * @param catalogAdminsAttributeVocabularyValue  (optional)
      * @param _callback The callback to be executed when the API call finishes
      * @return The request call
@@ -3099,12 +3243,12 @@ public class ProductAttributesApi {
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call updateAttributeVocabularyValuesAsync(String attributeFQN, List<CatalogAdminsAttributeVocabularyValue> catalogAdminsAttributeVocabularyValue, final ApiCallback<List<CatalogAdminsAttributeVocabularyValue>> _callback) throws ApiException {
+    public okhttp3.Call updateAttributeVocabularyValuesAsync(String attributeFQN, String responseFields, List<CatalogAdminsAttributeVocabularyValue> catalogAdminsAttributeVocabularyValue, final ApiCallback<List<CatalogAdminsAttributeVocabularyValue>> _callback) throws ApiException {
 
-        okhttp3.Call localVarCall = updateAttributeVocabularyValuesValidateBeforeCall(attributeFQN, catalogAdminsAttributeVocabularyValue, _callback);
+        okhttp3.Call localVarCall = updateAttributeVocabularyValuesValidateBeforeCall(attributeFQN, responseFields, catalogAdminsAttributeVocabularyValue, _callback);
         Type localVarReturnType = new TypeToken<List<CatalogAdminsAttributeVocabularyValue>>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
@@ -3113,6 +3257,7 @@ public class ProductAttributesApi {
      * Build call for updateLocalizedContent
      * @param attributeFQN  (required)
      * @param localeCode  (required)
+     * @param responseFields limits which fields are returned in the response body (optional)
      * @param catalogAdminsAttributeLocalizedContent  (optional)
      * @param _callback Callback for upload/download progress
      * @return Call to execute
@@ -3120,10 +3265,10 @@ public class ProductAttributesApi {
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call updateLocalizedContentCall(String attributeFQN, String localeCode, CatalogAdminsAttributeLocalizedContent catalogAdminsAttributeLocalizedContent, final ApiCallback _callback) throws ApiException {
+    public okhttp3.Call updateLocalizedContentCall(String attributeFQN, String localeCode, String responseFields, CatalogAdminsAttributeLocalizedContent catalogAdminsAttributeLocalizedContent, final ApiCallback _callback) throws ApiException {
         String basePath = null;
         // Operation Servers
         String[] localBasePaths = new String[] {  };
@@ -3150,6 +3295,10 @@ public class ProductAttributesApi {
         Map<String, String> localVarCookieParams = new HashMap<String, String>();
         Map<String, Object> localVarFormParams = new HashMap<String, Object>();
 
+        if (responseFields != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("responseFields", responseFields));
+        }
+
         final String[] localVarAccepts = {
             "application/json", "text/json", "text/plain"
         };
@@ -3166,12 +3315,12 @@ public class ProductAttributesApi {
             localVarHeaderParams.put("Content-Type", localVarContentType);
         }
 
-        String[] localVarAuthNames = new String[] { "bearerAuth", "clientOauth2" };
+        String[] localVarAuthNames = new String[] { "bearerAuth" };
         return localVarApiClient.buildCall(basePath, localVarPath, "PUT", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call updateLocalizedContentValidateBeforeCall(String attributeFQN, String localeCode, CatalogAdminsAttributeLocalizedContent catalogAdminsAttributeLocalizedContent, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call updateLocalizedContentValidateBeforeCall(String attributeFQN, String localeCode, String responseFields, CatalogAdminsAttributeLocalizedContent catalogAdminsAttributeLocalizedContent, final ApiCallback _callback) throws ApiException {
         
         // verify the required parameter 'attributeFQN' is set
         if (attributeFQN == null) {
@@ -3184,55 +3333,58 @@ public class ProductAttributesApi {
         }
         
 
-        okhttp3.Call localVarCall = updateLocalizedContentCall(attributeFQN, localeCode, catalogAdminsAttributeLocalizedContent, _callback);
+        okhttp3.Call localVarCall = updateLocalizedContentCall(attributeFQN, localeCode, responseFields, catalogAdminsAttributeLocalizedContent, _callback);
         return localVarCall;
 
     }
 
     /**
-     * Update product attribute localized content
-     * 
+     * Update Localized Content by Locale Code
+     * Updates localized content by its locale code
      * @param attributeFQN  (required)
      * @param localeCode  (required)
+     * @param responseFields limits which fields are returned in the response body (optional)
      * @param catalogAdminsAttributeLocalizedContent  (optional)
      * @return CatalogAdminsAttributeLocalizedContent
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
      </table>
      */
-    public CatalogAdminsAttributeLocalizedContent updateLocalizedContent(String attributeFQN, String localeCode, CatalogAdminsAttributeLocalizedContent catalogAdminsAttributeLocalizedContent) throws ApiException {
-        ApiResponse<CatalogAdminsAttributeLocalizedContent> localVarResp = updateLocalizedContentWithHttpInfo(attributeFQN, localeCode, catalogAdminsAttributeLocalizedContent);
+    public CatalogAdminsAttributeLocalizedContent updateLocalizedContent(String attributeFQN, String localeCode, String responseFields, CatalogAdminsAttributeLocalizedContent catalogAdminsAttributeLocalizedContent) throws ApiException {
+        ApiResponse<CatalogAdminsAttributeLocalizedContent> localVarResp = updateLocalizedContentWithHttpInfo(attributeFQN, localeCode, responseFields, catalogAdminsAttributeLocalizedContent);
         return localVarResp.getData();
     }
 
     /**
-     * Update product attribute localized content
-     * 
+     * Update Localized Content by Locale Code
+     * Updates localized content by its locale code
      * @param attributeFQN  (required)
      * @param localeCode  (required)
+     * @param responseFields limits which fields are returned in the response body (optional)
      * @param catalogAdminsAttributeLocalizedContent  (optional)
      * @return ApiResponse&lt;CatalogAdminsAttributeLocalizedContent&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<CatalogAdminsAttributeLocalizedContent> updateLocalizedContentWithHttpInfo(String attributeFQN, String localeCode, CatalogAdminsAttributeLocalizedContent catalogAdminsAttributeLocalizedContent) throws ApiException {
-        okhttp3.Call localVarCall = updateLocalizedContentValidateBeforeCall(attributeFQN, localeCode, catalogAdminsAttributeLocalizedContent, null);
+    public ApiResponse<CatalogAdminsAttributeLocalizedContent> updateLocalizedContentWithHttpInfo(String attributeFQN, String localeCode, String responseFields, CatalogAdminsAttributeLocalizedContent catalogAdminsAttributeLocalizedContent) throws ApiException {
+        okhttp3.Call localVarCall = updateLocalizedContentValidateBeforeCall(attributeFQN, localeCode, responseFields, catalogAdminsAttributeLocalizedContent, null);
         Type localVarReturnType = new TypeToken<CatalogAdminsAttributeLocalizedContent>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
 
     /**
-     * Update product attribute localized content (asynchronously)
-     * 
+     * Update Localized Content by Locale Code (asynchronously)
+     * Updates localized content by its locale code
      * @param attributeFQN  (required)
      * @param localeCode  (required)
+     * @param responseFields limits which fields are returned in the response body (optional)
      * @param catalogAdminsAttributeLocalizedContent  (optional)
      * @param _callback The callback to be executed when the API call finishes
      * @return The request call
@@ -3240,12 +3392,12 @@ public class ProductAttributesApi {
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call updateLocalizedContentAsync(String attributeFQN, String localeCode, CatalogAdminsAttributeLocalizedContent catalogAdminsAttributeLocalizedContent, final ApiCallback<CatalogAdminsAttributeLocalizedContent> _callback) throws ApiException {
+    public okhttp3.Call updateLocalizedContentAsync(String attributeFQN, String localeCode, String responseFields, CatalogAdminsAttributeLocalizedContent catalogAdminsAttributeLocalizedContent, final ApiCallback<CatalogAdminsAttributeLocalizedContent> _callback) throws ApiException {
 
-        okhttp3.Call localVarCall = updateLocalizedContentValidateBeforeCall(attributeFQN, localeCode, catalogAdminsAttributeLocalizedContent, _callback);
+        okhttp3.Call localVarCall = updateLocalizedContentValidateBeforeCall(attributeFQN, localeCode, responseFields, catalogAdminsAttributeLocalizedContent, _callback);
         Type localVarReturnType = new TypeToken<CatalogAdminsAttributeLocalizedContent>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
@@ -3253,6 +3405,7 @@ public class ProductAttributesApi {
     /**
      * Build call for updateLocalizedContents
      * @param attributeFQN  (required)
+     * @param responseFields limits which fields are returned in the response body (optional)
      * @param catalogAdminsAttributeLocalizedContent  (optional)
      * @param _callback Callback for upload/download progress
      * @return Call to execute
@@ -3260,10 +3413,10 @@ public class ProductAttributesApi {
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call updateLocalizedContentsCall(String attributeFQN, List<CatalogAdminsAttributeLocalizedContent> catalogAdminsAttributeLocalizedContent, final ApiCallback _callback) throws ApiException {
+    public okhttp3.Call updateLocalizedContentsCall(String attributeFQN, String responseFields, List<CatalogAdminsAttributeLocalizedContent> catalogAdminsAttributeLocalizedContent, final ApiCallback _callback) throws ApiException {
         String basePath = null;
         // Operation Servers
         String[] localBasePaths = new String[] {  };
@@ -3289,6 +3442,10 @@ public class ProductAttributesApi {
         Map<String, String> localVarCookieParams = new HashMap<String, String>();
         Map<String, Object> localVarFormParams = new HashMap<String, Object>();
 
+        if (responseFields != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("responseFields", responseFields));
+        }
+
         final String[] localVarAccepts = {
             "application/json", "text/json", "text/plain"
         };
@@ -3305,12 +3462,12 @@ public class ProductAttributesApi {
             localVarHeaderParams.put("Content-Type", localVarContentType);
         }
 
-        String[] localVarAuthNames = new String[] { "bearerAuth", "clientOauth2" };
+        String[] localVarAuthNames = new String[] { "bearerAuth" };
         return localVarApiClient.buildCall(basePath, localVarPath, "PUT", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call updateLocalizedContentsValidateBeforeCall(String attributeFQN, List<CatalogAdminsAttributeLocalizedContent> catalogAdminsAttributeLocalizedContent, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call updateLocalizedContentsValidateBeforeCall(String attributeFQN, String responseFields, List<CatalogAdminsAttributeLocalizedContent> catalogAdminsAttributeLocalizedContent, final ApiCallback _callback) throws ApiException {
         
         // verify the required parameter 'attributeFQN' is set
         if (attributeFQN == null) {
@@ -3318,52 +3475,55 @@ public class ProductAttributesApi {
         }
         
 
-        okhttp3.Call localVarCall = updateLocalizedContentsCall(attributeFQN, catalogAdminsAttributeLocalizedContent, _callback);
+        okhttp3.Call localVarCall = updateLocalizedContentsCall(attributeFQN, responseFields, catalogAdminsAttributeLocalizedContent, _callback);
         return localVarCall;
 
     }
 
     /**
-     * Update product attribute localized content
-     * 
+     * Update Localized Content
+     * Updates product attribute localized content
      * @param attributeFQN  (required)
+     * @param responseFields limits which fields are returned in the response body (optional)
      * @param catalogAdminsAttributeLocalizedContent  (optional)
      * @return List&lt;CatalogAdminsAttributeLocalizedContent&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
      </table>
      */
-    public List<CatalogAdminsAttributeLocalizedContent> updateLocalizedContents(String attributeFQN, List<CatalogAdminsAttributeLocalizedContent> catalogAdminsAttributeLocalizedContent) throws ApiException {
-        ApiResponse<List<CatalogAdminsAttributeLocalizedContent>> localVarResp = updateLocalizedContentsWithHttpInfo(attributeFQN, catalogAdminsAttributeLocalizedContent);
+    public List<CatalogAdminsAttributeLocalizedContent> updateLocalizedContents(String attributeFQN, String responseFields, List<CatalogAdminsAttributeLocalizedContent> catalogAdminsAttributeLocalizedContent) throws ApiException {
+        ApiResponse<List<CatalogAdminsAttributeLocalizedContent>> localVarResp = updateLocalizedContentsWithHttpInfo(attributeFQN, responseFields, catalogAdminsAttributeLocalizedContent);
         return localVarResp.getData();
     }
 
     /**
-     * Update product attribute localized content
-     * 
+     * Update Localized Content
+     * Updates product attribute localized content
      * @param attributeFQN  (required)
+     * @param responseFields limits which fields are returned in the response body (optional)
      * @param catalogAdminsAttributeLocalizedContent  (optional)
      * @return ApiResponse&lt;List&lt;CatalogAdminsAttributeLocalizedContent&gt;&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<List<CatalogAdminsAttributeLocalizedContent>> updateLocalizedContentsWithHttpInfo(String attributeFQN, List<CatalogAdminsAttributeLocalizedContent> catalogAdminsAttributeLocalizedContent) throws ApiException {
-        okhttp3.Call localVarCall = updateLocalizedContentsValidateBeforeCall(attributeFQN, catalogAdminsAttributeLocalizedContent, null);
+    public ApiResponse<List<CatalogAdminsAttributeLocalizedContent>> updateLocalizedContentsWithHttpInfo(String attributeFQN, String responseFields, List<CatalogAdminsAttributeLocalizedContent> catalogAdminsAttributeLocalizedContent) throws ApiException {
+        okhttp3.Call localVarCall = updateLocalizedContentsValidateBeforeCall(attributeFQN, responseFields, catalogAdminsAttributeLocalizedContent, null);
         Type localVarReturnType = new TypeToken<List<CatalogAdminsAttributeLocalizedContent>>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
 
     /**
-     * Update product attribute localized content (asynchronously)
-     * 
+     * Update Localized Content (asynchronously)
+     * Updates product attribute localized content
      * @param attributeFQN  (required)
+     * @param responseFields limits which fields are returned in the response body (optional)
      * @param catalogAdminsAttributeLocalizedContent  (optional)
      * @param _callback The callback to be executed when the API call finishes
      * @return The request call
@@ -3371,12 +3531,12 @@ public class ProductAttributesApi {
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call updateLocalizedContentsAsync(String attributeFQN, List<CatalogAdminsAttributeLocalizedContent> catalogAdminsAttributeLocalizedContent, final ApiCallback<List<CatalogAdminsAttributeLocalizedContent>> _callback) throws ApiException {
+    public okhttp3.Call updateLocalizedContentsAsync(String attributeFQN, String responseFields, List<CatalogAdminsAttributeLocalizedContent> catalogAdminsAttributeLocalizedContent, final ApiCallback<List<CatalogAdminsAttributeLocalizedContent>> _callback) throws ApiException {
 
-        okhttp3.Call localVarCall = updateLocalizedContentsValidateBeforeCall(attributeFQN, catalogAdminsAttributeLocalizedContent, _callback);
+        okhttp3.Call localVarCall = updateLocalizedContentsValidateBeforeCall(attributeFQN, responseFields, catalogAdminsAttributeLocalizedContent, _callback);
         Type localVarReturnType = new TypeToken<List<CatalogAdminsAttributeLocalizedContent>>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;

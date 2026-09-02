@@ -7,11 +7,11 @@
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
+|**children** | [**List&lt;TagNode&gt;**](TagNode.md) |  |  [optional] |
+|**isRoot** | **Boolean** |  |  [optional] |
+|**tagCode** | **String** |  |  [optional] |
 |**tagName** | **String** |  |  [optional] |
 |**tagPath** | **String** |  |  [optional] |
-|**tagCode** | **String** |  |  [optional] |
-|**isRoot** | **Boolean** |  |  [optional] |
-|**children** | [**List&lt;TagNode&gt;**](TagNode.md) |  |  [optional] |
 
 
 ## Implemented Interfaces

@@ -7,12 +7,12 @@
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
+|**campaignEndDate** | **OffsetDateTime** |  |  [optional] |
 |**campaignName** | **String** |  |  [optional] |
 |**campaignStartDate** | **OffsetDateTime** |  |  [optional] |
-|**campaignEndDate** | **OffsetDateTime** |  |  [optional] |
-|**siteSearchSettings** | [**CampaignSiteSearchSettings**](CampaignSiteSearchSettings.md) |  |  [optional] |
-|**productSuggestSettings** | [**CampaignProductSuggestSettings**](CampaignProductSuggestSettings.md) |  |  [optional] |
 |**listingSettings** | [**CampaignListingSettings**](CampaignListingSettings.md) |  |  [optional] |
+|**productSuggestSettings** | [**CampaignProductSuggestSettings**](CampaignProductSuggestSettings.md) |  |  [optional] |
+|**siteSearchSettings** | [**CampaignSiteSearchSettings**](CampaignSiteSearchSettings.md) |  |  [optional] |
 
 
 ## Implemented Interfaces

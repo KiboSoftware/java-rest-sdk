@@ -4,16 +4,16 @@ All URIs are relative to *http://https:/api*
 
 | Method | HTTP request | Description |
 |------------- | ------------- | -------------|
-| [**deleteListingSettings**](SearchListingSettingsApi.md#deleteListingSettings) | **DELETE** /commerce/catalog/admin/search/{name}/listingsettings | Delete search listing settings |
-| [**getListingSettings**](SearchListingSettingsApi.md#getListingSettings) | **GET** /commerce/catalog/admin/search/{name}/listingsettings | Get search listing settings |
-| [**updateListingSettings**](SearchListingSettingsApi.md#updateListingSettings) | **PUT** /commerce/catalog/admin/search/{name}/listingsettings | Add/Update search listing settings |
+| [**deleteListingSettings**](SearchListingSettingsApi.md#deleteListingSettings) | **DELETE** /commerce/catalog/admin/search/{name}/listingsettings | Delete Search Listing Settings |
+| [**getListingSettings**](SearchListingSettingsApi.md#getListingSettings) | **GET** /commerce/catalog/admin/search/{name}/listingsettings | Get Search Listing Settings |
+| [**updateListingSettings**](SearchListingSettingsApi.md#updateListingSettings) | **PUT** /commerce/catalog/admin/search/{name}/listingsettings | Update Search Listing Settings |
 
 
 <a name="deleteListingSettings"></a>
 # **deleteListingSettings**
 > deleteListingSettings(name)
 
-Delete search listing settings
+Delete Search Listing Settings
 
 Deletes the ListingSettings for a specific SearchSetting by name.
 
@@ -35,10 +35,6 @@ public class Example {
     // Configure HTTP bearer authorization: bearerAuth
     HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
     bearerAuth.setBearerToken("BEARER TOKEN");
-
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
 
     SearchListingSettingsApi apiInstance = new SearchListingSettingsApi(defaultClient);
     String name = "name_example"; // String | 
@@ -67,7 +63,7 @@ null (empty response body)
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth), [clientOauth2](../README.md#clientOauth2)
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
@@ -77,13 +73,13 @@ null (empty response body)
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Success |  -  |
+| **200** | OK |  -  |
 
 <a name="getListingSettings"></a>
 # **getListingSettings**
-> ListingSettings getListingSettings(name)
+> ListingSettings getListingSettings(name, responseFields)
 
-Get search listing settings
+Get Search Listing Settings
 
 Get ListingSettings for a specific SearchSettings by name.
 
@@ -106,14 +102,11 @@ public class Example {
     HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
     bearerAuth.setBearerToken("BEARER TOKEN");
 
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
-
     SearchListingSettingsApi apiInstance = new SearchListingSettingsApi(defaultClient);
     String name = "name_example"; // String | 
+    String responseFields = "responseFields_example"; // String | limits which fields are returned in the response body
     try {
-      ListingSettings result = apiInstance.getListingSettings(name);
+      ListingSettings result = apiInstance.getListingSettings(name, responseFields);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling SearchListingSettingsApi#getListingSettings");
@@ -131,6 +124,7 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **name** | **String**|  | |
+| **responseFields** | **String**| limits which fields are returned in the response body | [optional] |
 
 ### Return type
 
@@ -138,7 +132,7 @@ public class Example {
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth), [clientOauth2](../README.md#clientOauth2)
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
@@ -148,15 +142,15 @@ public class Example {
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Success |  -  |
+| **200** | OK |  -  |
 
 <a name="updateListingSettings"></a>
 # **updateListingSettings**
-> ListingSettings updateListingSettings(name, listingSettings)
+> ListingSettings updateListingSettings(name, responseFields, listingSettings)
 
-Add/Update search listing settings
+Update Search Listing Settings
 
-Adds or Updates (Upsert) the ListingSettings for a specific SearchSetting by name.
+Adds or updates the ListingSettings for a specific SearchSetting by name.
 
 ### Example
 ```java
@@ -177,15 +171,12 @@ public class Example {
     HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
     bearerAuth.setBearerToken("BEARER TOKEN");
 
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
-
     SearchListingSettingsApi apiInstance = new SearchListingSettingsApi(defaultClient);
     String name = "name_example"; // String | 
+    String responseFields = "responseFields_example"; // String | limits which fields are returned in the response body
     ListingSettings listingSettings = new ListingSettings(); // ListingSettings | 
     try {
-      ListingSettings result = apiInstance.updateListingSettings(name, listingSettings);
+      ListingSettings result = apiInstance.updateListingSettings(name, responseFields, listingSettings);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling SearchListingSettingsApi#updateListingSettings");
@@ -203,6 +194,7 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **name** | **String**|  | |
+| **responseFields** | **String**| limits which fields are returned in the response body | [optional] |
 | **listingSettings** | [**ListingSettings**](ListingSettings.md)|  | [optional] |
 
 ### Return type
@@ -211,7 +203,7 @@ public class Example {
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth), [clientOauth2](../README.md#clientOauth2)
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
@@ -221,5 +213,5 @@ public class Example {
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Success |  -  |
+| **200** | OK |  -  |
 

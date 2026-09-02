@@ -8,10 +8,10 @@ How much more a product variation costs above the cost of the base product. If t
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
-|**currencyCode** | **String** | Which currency is in use. |  [optional] |
-|**value** | **Double** | How much more the variation costs above the cost of the base product. |  [optional] |
-|**msrp** | **Double** | Manufacturer Suggested Retail Price. |  [optional] |
 |**creditValue** | **Double** | Credit amt of the product |  [optional] |
+|**currencyCode** | **String** | Which currency is in use. |  [optional] |
+|**msrp** | **Double** | Manufacturer Suggested Retail Price. |  [optional] |
+|**value** | **Double** | How much more the variation costs above the cost of the base product. |  [optional] |
 
 
 ## Implemented Interfaces

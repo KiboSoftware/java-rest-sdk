@@ -7,9 +7,9 @@
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
+|**enforceSitewideSSL** | **Boolean** |  |  [optional] |
 |**requireAuthForLive** | **Boolean** |  |  [optional] |
 |**requireAuthForPending** | **Boolean** |  |  [optional] |
-|**enforceSitewideSSL** | **Boolean** |  |  [optional] |
 
 
 ## Implemented Interfaces

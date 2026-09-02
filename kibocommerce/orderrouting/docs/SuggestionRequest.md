@@ -15,20 +15,25 @@
 |**extendedCustomerInfo** | [**ExtendedCustomerInfo**](ExtendedCustomerInfo.md) |  |  [optional] |
 |**extendedOrderInfo** | [**ExtendedOrderInfo**](ExtendedOrderInfo.md) |  |  [optional] |
 |**externalResponseID** | **String** |  |  [optional] |
+|**forceSTHConsolidationOnSplitShipments** | **Boolean** |  |  [optional] |
 |**fraud** | **Integer** |  |  [optional] |
 |**futureDateLimit** | **OffsetDateTime** |  |  [optional] |
 |**futureExclusionListLocationCode** | [**List&lt;ExclusionListEntryLocationCode&gt;**](ExclusionListEntryLocationCode.md) |  |  [optional] |
 |**inventoryRequestType** | [**InventoryRequestTypeEnum**](#InventoryRequestTypeEnum) |  |  [optional] |
 |**isExpress** | **Boolean** |  |  [optional] |
-|**items** | [**List&lt;ApiDocumentationOrderItem&gt;**](ApiDocumentationOrderItem.md) |  |  [optional] |
+|**items** | [**List&lt;OrderRoutingOrderItem&gt;**](OrderRoutingOrderItem.md) |  |  |
 |**locationCodeWhiteList** | **List&lt;String&gt;** |  |  [optional] |
 |**numShipmentsNotInRequest** | **Integer** |  |  [optional] |
 |**orderID** | **Integer** |  |  [optional] |
-|**orderType** | [**OrderTypeEnum**](#OrderTypeEnum) |  |  [optional] |
+|**orderType** | [**OrderTypeEnum**](#OrderTypeEnum) |  |  |
 |**pickupLocationCode** | **String** |  |  [optional] |
-|**shippingAddress** | [**ShippingAddress**](ShippingAddress.md) |  |  [optional] |
+|**shippingAddress** | [**OrderRoutingShippingAddress**](OrderRoutingShippingAddress.md) |  |  [optional] |
+|**shippingMethod** | **String** |  |  [optional] |
+|**sort** | [**SortEnum**](#SortEnum) |  |  [optional] |
+|**sthConsolidationLocationOverride** | **String** |  |  [optional] |
+|**strategyID** | **String** |  |  [optional] |
 |**tags** | **Map&lt;String, String&gt;** |  |  [optional] |
-|**total** | **BigDecimal** |  |  [optional] |
+|**total** | **BigDecimal** |  |  |
 
 
 
@@ -45,8 +50,8 @@
 | Name | Value |
 |---- | -----|
 | ALL | &quot;ALL&quot; |
-| PARTIAL | &quot;PARTIAL&quot; |
 | ANY | &quot;ANY&quot; |
+| PARTIAL | &quot;PARTIAL&quot; |
 | ALL_STORES | &quot;ALL_STORES&quot; |
 
 
@@ -58,6 +63,18 @@
 | DIRECTSHIP | &quot;DIRECTSHIP&quot; |
 | TRANSFER | &quot;TRANSFER&quot; |
 | STH_CONSOLIDATED | &quot;STH_CONSOLIDATED&quot; |
+| RETURN | &quot;RETURN&quot; |
+| DISPOSITION | &quot;DISPOSITION&quot; |
+| DELIVERY | &quot;DELIVERY&quot; |
+| BOPIS | &quot;BOPIS&quot; |
+
+
+
+## Enum: SortEnum
+
+| Name | Value |
+|---- | -----|
+| SUGGESTION_SORT | &quot;SUGGESTION_SORT&quot; |
 
 
 ## Implemented Interfaces

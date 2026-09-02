@@ -8,8 +8,8 @@
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
 |**discountsRestricted** | **Boolean** |  |  [optional] |
-|**discountsRestrictedStartDate** | **OffsetDateTime** |  |  [optional] |
 |**discountsRestrictedEndDate** | **OffsetDateTime** |  |  [optional] |
+|**discountsRestrictedStartDate** | **OffsetDateTime** |  |  [optional] |
 
 
 ## Implemented Interfaces

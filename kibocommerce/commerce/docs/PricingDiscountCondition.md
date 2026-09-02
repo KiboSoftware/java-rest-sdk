@@ -7,23 +7,23 @@
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
-|**requiresCoupon** | **Boolean** |  |  [optional] |
 |**couponCode** | **String** |  |  [optional] |
-|**minimumQuantityProductsRequiredInCategories** | **Integer** |  |  [optional] |
-|**includedCategoryIds** | **List&lt;Integer&gt;** |  |  [optional] |
-|**excludedCategoryIds** | **List&lt;Integer&gt;** |  |  [optional] |
-|**minimumQuantityRequiredProducts** | **Integer** |  |  [optional] |
-|**includedProductCodes** | **List&lt;String&gt;** |  |  [optional] |
-|**excludedProductCodes** | **List&lt;String&gt;** |  |  [optional] |
-|**paymentWorkflows** | **List&lt;String&gt;** |  |  [optional] |
 |**customerSegmentIds** | **List&lt;Integer&gt;** |  |  [optional] |
-|**minimumOrderAmount** | **Double** |  |  [optional] |
-|**maximumOrderAmount** | **Double** |  |  [optional] |
-|**minimumLifetimeValueAmount** | **Double** |  |  [optional] |
-|**startDate** | **OffsetDateTime** |  |  [optional] |
+|**excludedCategoryIds** | **List&lt;Integer&gt;** |  |  [optional] |
+|**excludedProductCodes** | **List&lt;String&gt;** |  |  [optional] |
 |**expirationDate** | **OffsetDateTime** |  |  [optional] |
-|**minimumCategorySubtotalBeforeDiscounts** | **Double** |  |  [optional] |
+|**includedCategoryIds** | **List&lt;Integer&gt;** |  |  [optional] |
+|**includedProductCodes** | **List&lt;String&gt;** |  |  [optional] |
+|**maximumOrderAmount** | **Double** |  |  [optional] |
 |**minDistinctProductsRequired** | **Integer** |  |  [optional] |
+|**minimumCategorySubtotalBeforeDiscounts** | **Double** |  |  [optional] |
+|**minimumLifetimeValueAmount** | **Double** |  |  [optional] |
+|**minimumOrderAmount** | **Double** |  |  [optional] |
+|**minimumQuantityProductsRequiredInCategories** | **Integer** |  |  [optional] |
+|**minimumQuantityRequiredProducts** | **Integer** |  |  [optional] |
+|**paymentWorkflows** | **List&lt;String&gt;** |  |  [optional] |
+|**requiresCoupon** | **Boolean** |  |  [optional] |
+|**startDate** | **OffsetDateTime** |  |  [optional] |
 
 
 ## Implemented Interfaces

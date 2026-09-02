@@ -4,21 +4,21 @@ All URIs are relative to *http://https:/api*
 
 | Method | HTTP request | Description |
 |------------- | ------------- | -------------|
-| [**addFacet**](FacetsApi.md#addFacet) | **POST** /commerce/catalog/admin/facets | Add facet |
-| [**deleteFacetById**](FacetsApi.md#deleteFacetById) | **DELETE** /commerce/catalog/admin/facets/{facetId} | Delete facet |
-| [**getFacet**](FacetsApi.md#getFacet) | **GET** /commerce/catalog/admin/facets/{facetId} | Get facet |
-| [**getFacetCategoryList**](FacetsApi.md#getFacetCategoryList) | **GET** /commerce/catalog/admin/facets/category | Get facet category list |
-| [**getFacetCategoryListLegacy**](FacetsApi.md#getFacetCategoryListLegacy) | **GET** /commerce/catalog/admin/facets/category/{categoryId} | Get facet category list (legacy) |
+| [**addFacet**](FacetsApi.md#addFacet) | **POST** /commerce/catalog/admin/facets | Add Facet |
+| [**deleteFacetById**](FacetsApi.md#deleteFacetById) | **DELETE** /commerce/catalog/admin/facets/{facetId} | Delete Facet |
+| [**getFacet**](FacetsApi.md#getFacet) | **GET** /commerce/catalog/admin/facets/{facetId} | Get Facet |
+| [**getFacetCategoryList**](FacetsApi.md#getFacetCategoryList) | **GET** /commerce/catalog/admin/facets/category | Get Facet Category List |
+| [**getFacetCategoryListLegacy**](FacetsApi.md#getFacetCategoryListLegacy) | **GET** /commerce/catalog/admin/facets/category/{categoryId} | Get Facet Category List (Legacy) |
 | [**getFacets**](FacetsApi.md#getFacets) | **GET** /commerce/catalog/admin/facets | Get facets |
-| [**updateFacet**](FacetsApi.md#updateFacet) | **PUT** /commerce/catalog/admin/facets/{facetId} | Update facet |
-| [**updateFacetSet**](FacetsApi.md#updateFacetSet) | **POST** /commerce/catalog/admin/facets/set/edit | Update facet |
+| [**updateFacet**](FacetsApi.md#updateFacet) | **PUT** /commerce/catalog/admin/facets/{facetId} | Update Facet |
+| [**updateFacetSet**](FacetsApi.md#updateFacetSet) | **POST** /commerce/catalog/admin/facets/set/edit | Update Facet Set |
 
 
 <a name="addFacet"></a>
 # **addFacet**
-> CatalogAdminsFacet addFacet(catalogAdminsFacet)
+> CatalogAdminsFacet addFacet(responseFields, catalogAdminsFacet)
 
-Add facet
+Add Facet
 
 Adds a new Facet to a category in a catalog.
 
@@ -41,14 +41,11 @@ public class Example {
     HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
     bearerAuth.setBearerToken("BEARER TOKEN");
 
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
-
     FacetsApi apiInstance = new FacetsApi(defaultClient);
+    String responseFields = "responseFields_example"; // String | limits which fields are returned in the response body
     CatalogAdminsFacet catalogAdminsFacet = new CatalogAdminsFacet(); // CatalogAdminsFacet | 
     try {
-      CatalogAdminsFacet result = apiInstance.addFacet(catalogAdminsFacet);
+      CatalogAdminsFacet result = apiInstance.addFacet(responseFields, catalogAdminsFacet);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling FacetsApi#addFacet");
@@ -65,6 +62,7 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
+| **responseFields** | **String**| limits which fields are returned in the response body | [optional] |
 | **catalogAdminsFacet** | [**CatalogAdminsFacet**](CatalogAdminsFacet.md)|  | [optional] |
 
 ### Return type
@@ -73,7 +71,7 @@ public class Example {
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth), [clientOauth2](../README.md#clientOauth2)
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
@@ -83,13 +81,13 @@ public class Example {
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Success |  -  |
+| **200** | OK |  -  |
 
 <a name="deleteFacetById"></a>
 # **deleteFacetById**
 > deleteFacetById(facetId)
 
-Delete facet
+Delete Facet
 
 Deletes the Facet definition from the store.
 
@@ -111,10 +109,6 @@ public class Example {
     // Configure HTTP bearer authorization: bearerAuth
     HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
     bearerAuth.setBearerToken("BEARER TOKEN");
-
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
 
     FacetsApi apiInstance = new FacetsApi(defaultClient);
     Integer facetId = 56; // Integer | 
@@ -143,7 +137,7 @@ null (empty response body)
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth), [clientOauth2](../README.md#clientOauth2)
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
@@ -153,15 +147,15 @@ null (empty response body)
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Success |  -  |
+| **200** | OK |  -  |
 
 <a name="getFacet"></a>
 # **getFacet**
-> CatalogAdminsFacet getFacet(facetId, validate)
+> CatalogAdminsFacet getFacet(facetId, validate, responseFields)
 
-Get facet
+Get Facet
 
-Retrieves the details of a Facet Definition
+Retrieves the details of a Facet definition.
 
 ### Example
 ```java
@@ -182,15 +176,12 @@ public class Example {
     HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
     bearerAuth.setBearerToken("BEARER TOKEN");
 
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
-
     FacetsApi apiInstance = new FacetsApi(defaultClient);
     Integer facetId = 56; // Integer | 
     Boolean validate = true; // Boolean | 
+    String responseFields = "responseFields_example"; // String | limits which fields are returned in the response body
     try {
-      CatalogAdminsFacet result = apiInstance.getFacet(facetId, validate);
+      CatalogAdminsFacet result = apiInstance.getFacet(facetId, validate, responseFields);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling FacetsApi#getFacet");
@@ -209,6 +200,7 @@ public class Example {
 |------------- | ------------- | ------------- | -------------|
 | **facetId** | **Integer**|  | |
 | **validate** | **Boolean**|  | [optional] |
+| **responseFields** | **String**| limits which fields are returned in the response body | [optional] |
 
 ### Return type
 
@@ -216,7 +208,7 @@ public class Example {
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth), [clientOauth2](../README.md#clientOauth2)
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
@@ -226,15 +218,15 @@ public class Example {
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Success |  -  |
+| **200** | OK |  -  |
 
 <a name="getFacetCategoryList"></a>
 # **getFacetCategoryList**
-> FacetSet getFacetCategoryList(categoryId, categoryCode, includeAvailable, validate)
+> FacetSet getFacetCategoryList(categoryId, categoryCode, includeAvailable, validate, responseFields)
 
-Get facet category list
+Get Facet Category List
 
-Retrieves a list of configured, and optionally available, Facet Configurations for the specified category.
+Retrieves a list of configured, and optionally available, Facet configurations for the specified category.
 
 ### Example
 ```java
@@ -255,17 +247,14 @@ public class Example {
     HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
     bearerAuth.setBearerToken("BEARER TOKEN");
 
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
-
     FacetsApi apiInstance = new FacetsApi(defaultClient);
     Integer categoryId = 56; // Integer | 
     String categoryCode = "categoryCode_example"; // String | 
     Boolean includeAvailable = true; // Boolean | 
     Boolean validate = true; // Boolean | 
+    String responseFields = "responseFields_example"; // String | limits which fields are returned in the response body
     try {
-      FacetSet result = apiInstance.getFacetCategoryList(categoryId, categoryCode, includeAvailable, validate);
+      FacetSet result = apiInstance.getFacetCategoryList(categoryId, categoryCode, includeAvailable, validate, responseFields);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling FacetsApi#getFacetCategoryList");
@@ -286,6 +275,7 @@ public class Example {
 | **categoryCode** | **String**|  | [optional] |
 | **includeAvailable** | **Boolean**|  | [optional] |
 | **validate** | **Boolean**|  | [optional] |
+| **responseFields** | **String**| limits which fields are returned in the response body | [optional] |
 
 ### Return type
 
@@ -293,7 +283,7 @@ public class Example {
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth), [clientOauth2](../README.md#clientOauth2)
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
@@ -303,15 +293,15 @@ public class Example {
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Success |  -  |
+| **200** | OK |  -  |
 
 <a name="getFacetCategoryListLegacy"></a>
 # **getFacetCategoryListLegacy**
-> FacetSet getFacetCategoryListLegacy(categoryId, includeAvailable, validate)
+> FacetSet getFacetCategoryListLegacy(categoryId, includeAvailable, validate, responseFields)
 
-Get facet category list (legacy)
+Get Facet Category List (Legacy)
 
-Retrieves a list of configured, and optionally available, Facet Configurations for the specified category.
+Retrieves a list of configured, and optionally available, Facet configurations for the specified category. 
 
 ### Example
 ```java
@@ -332,16 +322,13 @@ public class Example {
     HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
     bearerAuth.setBearerToken("BEARER TOKEN");
 
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
-
     FacetsApi apiInstance = new FacetsApi(defaultClient);
     Integer categoryId = 56; // Integer | 
     Boolean includeAvailable = true; // Boolean | 
     Boolean validate = true; // Boolean | 
+    String responseFields = "responseFields_example"; // String | limits which fields are returned in the response body
     try {
-      FacetSet result = apiInstance.getFacetCategoryListLegacy(categoryId, includeAvailable, validate);
+      FacetSet result = apiInstance.getFacetCategoryListLegacy(categoryId, includeAvailable, validate, responseFields);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling FacetsApi#getFacetCategoryListLegacy");
@@ -361,6 +348,7 @@ public class Example {
 | **categoryId** | **Integer**|  | |
 | **includeAvailable** | **Boolean**|  | [optional] |
 | **validate** | **Boolean**|  | [optional] |
+| **responseFields** | **String**| limits which fields are returned in the response body | [optional] |
 
 ### Return type
 
@@ -368,7 +356,7 @@ public class Example {
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth), [clientOauth2](../README.md#clientOauth2)
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
@@ -378,11 +366,11 @@ public class Example {
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Success |  -  |
+| **200** | OK |  -  |
 
 <a name="getFacets"></a>
 # **getFacets**
-> FacetCollection getFacets()
+> FacetCollection getFacets(responseFields)
 
 Get facets
 
@@ -407,13 +395,10 @@ public class Example {
     HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
     bearerAuth.setBearerToken("BEARER TOKEN");
 
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
-
     FacetsApi apiInstance = new FacetsApi(defaultClient);
+    String responseFields = "responseFields_example"; // String | limits which fields are returned in the response body
     try {
-      FacetCollection result = apiInstance.getFacets();
+      FacetCollection result = apiInstance.getFacets(responseFields);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling FacetsApi#getFacets");
@@ -427,7 +412,10 @@ public class Example {
 ```
 
 ### Parameters
-This endpoint does not need any parameter.
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **responseFields** | **String**| limits which fields are returned in the response body | [optional] |
 
 ### Return type
 
@@ -435,7 +423,7 @@ This endpoint does not need any parameter.
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth), [clientOauth2](../README.md#clientOauth2)
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
@@ -445,13 +433,13 @@ This endpoint does not need any parameter.
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Success |  -  |
+| **200** | OK |  -  |
 
 <a name="updateFacet"></a>
 # **updateFacet**
-> CatalogAdminsFacet updateFacet(facetId, catalogAdminsFacet)
+> CatalogAdminsFacet updateFacet(facetId, responseFields, catalogAdminsFacet)
 
-Update facet
+Update Facet
 
 Modifies a Facet definition.
 
@@ -474,15 +462,12 @@ public class Example {
     HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
     bearerAuth.setBearerToken("BEARER TOKEN");
 
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
-
     FacetsApi apiInstance = new FacetsApi(defaultClient);
     Integer facetId = 56; // Integer | 
+    String responseFields = "responseFields_example"; // String | limits which fields are returned in the response body
     CatalogAdminsFacet catalogAdminsFacet = new CatalogAdminsFacet(); // CatalogAdminsFacet | 
     try {
-      CatalogAdminsFacet result = apiInstance.updateFacet(facetId, catalogAdminsFacet);
+      CatalogAdminsFacet result = apiInstance.updateFacet(facetId, responseFields, catalogAdminsFacet);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling FacetsApi#updateFacet");
@@ -500,6 +485,7 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **facetId** | **Integer**|  | |
+| **responseFields** | **String**| limits which fields are returned in the response body | [optional] |
 | **catalogAdminsFacet** | [**CatalogAdminsFacet**](CatalogAdminsFacet.md)|  | [optional] |
 
 ### Return type
@@ -508,7 +494,7 @@ public class Example {
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth), [clientOauth2](../README.md#clientOauth2)
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
@@ -518,13 +504,13 @@ public class Example {
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Success |  -  |
+| **200** | OK |  -  |
 
 <a name="updateFacetSet"></a>
 # **updateFacetSet**
-> FacetSet updateFacetSet(categoryId, categoryCode, facetSet)
+> FacetSet updateFacetSet(categoryId, categoryCode, responseFields, facetSet)
 
-Update facet
+Update Facet Set
 
 Modifies a Facet definition.
 
@@ -547,16 +533,13 @@ public class Example {
     HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
     bearerAuth.setBearerToken("BEARER TOKEN");
 
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
-
     FacetsApi apiInstance = new FacetsApi(defaultClient);
     Integer categoryId = 56; // Integer | 
     String categoryCode = "categoryCode_example"; // String | 
+    String responseFields = "responseFields_example"; // String | limits which fields are returned in the response body
     FacetSet facetSet = new FacetSet(); // FacetSet | 
     try {
-      FacetSet result = apiInstance.updateFacetSet(categoryId, categoryCode, facetSet);
+      FacetSet result = apiInstance.updateFacetSet(categoryId, categoryCode, responseFields, facetSet);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling FacetsApi#updateFacetSet");
@@ -575,6 +558,7 @@ public class Example {
 |------------- | ------------- | ------------- | -------------|
 | **categoryId** | **Integer**|  | [optional] |
 | **categoryCode** | **String**|  | [optional] |
+| **responseFields** | **String**| limits which fields are returned in the response body | [optional] |
 | **facetSet** | [**FacetSet**](FacetSet.md)|  | [optional] |
 
 ### Return type
@@ -583,7 +567,7 @@ public class Example {
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth), [clientOauth2](../README.md#clientOauth2)
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
@@ -593,5 +577,5 @@ public class Example {
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Success |  -  |
+| **200** | OK |  -  |
 

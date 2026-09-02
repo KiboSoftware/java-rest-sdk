@@ -9,8 +9,8 @@
 |------------ | ------------- | ------------- | -------------|
 |**attributeFqn** | **String** |  |  [optional] |
 |**code** | **Integer** |  |  [optional] |
-|**severity** | **String** |  |  [optional] |
 |**message** | **String** |  |  [optional] |
+|**severity** | **String** |  |  [optional] |
 
 
 ## Implemented Interfaces

@@ -8,8 +8,8 @@ Collection of fulfillment information for items on an order.
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
-|**totalCount** | **Integer** |  |  [optional] |
 |**items** | [**List&lt;OrderReturnableItem&gt;**](OrderReturnableItem.md) |  |  [optional] |
+|**totalCount** | **Integer** |  |  [optional] |
 
 
 ## Implemented Interfaces

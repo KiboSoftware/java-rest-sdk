@@ -8,14 +8,14 @@ Search Merchandizing Rule
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
+|**auditInfo** | [**AdminUserAuditInfo**](AdminUserAuditInfo.md) |  |  [optional] |
 |**code** | **String** | Unique identifier. Will be generated if not provided. |  [optional] |
-|**name** | **String** |  |  [optional] |
+|**context** | [**CatalogAdminsSearchMerchandizingRuleContext**](CatalogAdminsSearchMerchandizingRuleContext.md) |  |  [optional] |
 |**description** | **String** |  |  [optional] |
 |**isDisabled** | **Boolean** |  |  [optional] |
-|**tags** | **List&lt;String&gt;** |  |  [optional] |
-|**context** | [**CatalogAdminsSearchMerchandizingRuleContext**](CatalogAdminsSearchMerchandizingRuleContext.md) |  |  [optional] |
+|**name** | **String** |  |  [optional] |
 |**ruleImpact** | [**SearchMerchandizingRuleImpact**](SearchMerchandizingRuleImpact.md) |  |  [optional] |
-|**auditInfo** | [**AdminUserAuditInfo**](AdminUserAuditInfo.md) |  |  [optional] |
+|**tags** | **List&lt;String&gt;** |  |  [optional] |
 
 
 ## Implemented Interfaces

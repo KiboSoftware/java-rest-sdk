@@ -1,8 +1,8 @@
 /*
  * Kibo Catalog Admin Services
- * OpenAPI Spec for Kibo Catalog Admin Services
+ * <div id=\"overview_CATALOG_ADMIN\">             <h2>CATALOG ADMINISTRATION</h2>             <p>The Catalog Administration APIs are a collection of resources for configuring the catalogs and products offered to your shoppers, including                 discounts and coupon sets, faceting, price lists, and different types or variations of products. See the                 <a href=\"/concept-guides/catalog\">Catalog user guides</a>                 for information about the related features in the Unified Commerce Admin.</p>             <p>Use the <strong>Attributes</strong> resource to manage localization and attribute configurations for your catalogs. This current version of the Attributes API includes localizedContent to                 support <a href=\"/pages/catalog-structure#multi-locale-catalogs\">multi-locale catalogs</a>, which was not present in the legacy API model. If                 you were a client prior to May 2024 and have upgraded your implementation to support this feature,                 you can still access attribute data that has not yet been rewritten to the new model by providing                 an x-api-version header set to \"1\". </p>             <p>Use the <strong>Categories</strong> resource to organize products and control where they appear on the storefront. Create                 and maintain a hierarchy of categories and subcategories where the site will store properties. This current version of the Categories API includes localizedContent to                 support <a href=\"/pages/catalog-structure#multi-locale-catalogs\">multi-locale catalogs</a>, which was not present in the legacy API model. If                 you were a client prior to May 2024 and have upgraded your implementation to support this feature,                 you can still access category data that has not yet been rewritten to the new model by providing                 an x-api-version header set to \"1\". </p>             <p>Use the <strong>Coupon Sets</strong> resource to view and create coupon sets. You can use coupon sets to group multiple                 coupon codes together and associate them with one or more discounts.</p>             <p>Use the <strong>Currency</strong> resource to manage the currency localization rules and exchange rates for any of the                 currencies that are supported for placing orders in.</p>             <p>Use the <strong>Discounts</strong> and <strong>Discount Settings</strong> resources to define and manage discounts to apply to products, product categories, or                 orders. This current version of the Discounts API includes localizedContent to                 support <a href=\"/pages/catalog-structure#multi-locale-catalogs\">multi-locale catalogs</a>, which was not present in the legacy Products API model. If                 you were a client prior to May 2024 and have upgraded your implementation to support this feature,                 you can still access discount data that has not yet been rewritten to the new model by providing                 an x-api-version header set to \"1\". </p>             <p>Use the <strong>Facets</strong> resource to manage the facets shoppers use to filter product display results on a                 storefront. Facets can include categories, product attributes, or prices, and use either a range of                 values or discrete values.</p>             <p>Use the <strong>Master Catalog</strong> resource to view details of the master catalogs associated with a tenant and to                 manage the product publishing mode for each master catalog.</p>             <p>Use the <strong>Price Lists</strong> resources to view and create price lists. You can use price lists to override the                 catalog pricing of products for specific customer segments and/or sites.</p>             <p>Use the <strong>Products</strong>, <strong>Product Types/Extras/Options/Properties</strong>, and <strong>Product Sort Definitions</strong> resources to create new product definitions in the master catalog and determine which                 catalogs will feature products. This current version of the Products API includes localizedContent to                 support <a href=\"/pages/catalog-structure#multi-locale-catalogs\">multi-locale catalogs</a>, which was not present in the legacy Products API model. If                 you were a client prior to May 2024 and have upgraded your implementation to support this feature,                 you can still access product data that has not yet been rewritten to the new model by providing                 an x-api-version header set to \"1\".</p>             <p>Use the <strong>Publishing</strong> resource to publish pending product updates together as part of a set.</p>             <p>Use the <strong>Search</strong> resource to manage all settings and options for providing product search on your site, as                 well as search tuning rules.</p>         </div>
  *
- * The version of the OpenAPI document: 1.0.0
+ * The version of the OpenAPI document: v1
  * 
  *
  * NOTE: This class is auto generated by OpenAPI Generator (https://openapi-generator.tech).
@@ -59,17 +59,13 @@ import com.kibocommerce.sdk.common.JSON;
 public class ProductExtraValue implements Serializable {
   private static final long serialVersionUID = 1L;
 
-  public static final String SERIALIZED_NAME_VALUE = "value";
-  @SerializedName(SERIALIZED_NAME_VALUE)
-  private Object value = null;
+  public static final String SERIALIZED_NAME_ATTRIBUTE_VOCABULARY_VALUE_DETAIL = "attributeVocabularyValueDetail";
+  @SerializedName(SERIALIZED_NAME_ATTRIBUTE_VOCABULARY_VALUE_DETAIL)
+  private CatalogAdminsAttributeVocabularyValue attributeVocabularyValueDetail;
 
   public static final String SERIALIZED_NAME_DELTA_PRICE = "deltaPrice";
   @SerializedName(SERIALIZED_NAME_DELTA_PRICE)
   private ProductExtraValueDeltaPrice deltaPrice;
-
-  public static final String SERIALIZED_NAME_LOCALIZED_DELTA_PRICE = "localizedDeltaPrice";
-  @SerializedName(SERIALIZED_NAME_LOCALIZED_DELTA_PRICE)
-  private List<ProductExtraValueDeltaPrice> localizedDeltaPrice = null;
 
   public static final String SERIALIZED_NAME_DELTA_WEIGHT = "deltaWeight";
   @SerializedName(SERIALIZED_NAME_DELTA_WEIGHT)
@@ -79,37 +75,41 @@ public class ProductExtraValue implements Serializable {
   @SerializedName(SERIALIZED_NAME_IS_DEFAULTED)
   private Boolean isDefaulted;
 
+  public static final String SERIALIZED_NAME_LOCALIZED_DELTA_PRICE = "localizedDeltaPrice";
+  @SerializedName(SERIALIZED_NAME_LOCALIZED_DELTA_PRICE)
+  private List<ProductExtraValueDeltaPrice> localizedDeltaPrice = null;
+
   public static final String SERIALIZED_NAME_QUANTITY = "quantity";
   @SerializedName(SERIALIZED_NAME_QUANTITY)
   private Integer quantity;
 
-  public static final String SERIALIZED_NAME_ATTRIBUTE_VOCABULARY_VALUE_DETAIL = "attributeVocabularyValueDetail";
-  @SerializedName(SERIALIZED_NAME_ATTRIBUTE_VOCABULARY_VALUE_DETAIL)
-  private CatalogAdminsAttributeVocabularyValue attributeVocabularyValueDetail;
+  public static final String SERIALIZED_NAME_VALUE = "value";
+  @SerializedName(SERIALIZED_NAME_VALUE)
+  private Object value = null;
 
   public ProductExtraValue() {
   }
 
-  public ProductExtraValue value(Object value) {
+  public ProductExtraValue attributeVocabularyValueDetail(CatalogAdminsAttributeVocabularyValue attributeVocabularyValueDetail) {
     
-    this.value = value;
+    this.attributeVocabularyValueDetail = attributeVocabularyValueDetail;
     return this;
   }
 
    /**
-   * Get value
-   * @return value
+   * Get attributeVocabularyValueDetail
+   * @return attributeVocabularyValueDetail
   **/
   @javax.annotation.Nullable
   @ApiModelProperty(value = "")
 
-  public Object getValue() {
-    return value;
+  public CatalogAdminsAttributeVocabularyValue getAttributeVocabularyValueDetail() {
+    return attributeVocabularyValueDetail;
   }
 
 
-  public void setValue(Object value) {
-    this.value = value;
+  public void setAttributeVocabularyValueDetail(CatalogAdminsAttributeVocabularyValue attributeVocabularyValueDetail) {
+    this.attributeVocabularyValueDetail = attributeVocabularyValueDetail;
   }
 
 
@@ -133,37 +133,6 @@ public class ProductExtraValue implements Serializable {
 
   public void setDeltaPrice(ProductExtraValueDeltaPrice deltaPrice) {
     this.deltaPrice = deltaPrice;
-  }
-
-
-  public ProductExtraValue localizedDeltaPrice(List<ProductExtraValueDeltaPrice> localizedDeltaPrice) {
-    
-    this.localizedDeltaPrice = localizedDeltaPrice;
-    return this;
-  }
-
-  public ProductExtraValue addLocalizedDeltaPriceItem(ProductExtraValueDeltaPrice localizedDeltaPriceItem) {
-    if (this.localizedDeltaPrice == null) {
-      this.localizedDeltaPrice = new ArrayList<>();
-    }
-    this.localizedDeltaPrice.add(localizedDeltaPriceItem);
-    return this;
-  }
-
-   /**
-   * Get localizedDeltaPrice
-   * @return localizedDeltaPrice
-  **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
-
-  public List<ProductExtraValueDeltaPrice> getLocalizedDeltaPrice() {
-    return localizedDeltaPrice;
-  }
-
-
-  public void setLocalizedDeltaPrice(List<ProductExtraValueDeltaPrice> localizedDeltaPrice) {
-    this.localizedDeltaPrice = localizedDeltaPrice;
   }
 
 
@@ -213,6 +182,37 @@ public class ProductExtraValue implements Serializable {
   }
 
 
+  public ProductExtraValue localizedDeltaPrice(List<ProductExtraValueDeltaPrice> localizedDeltaPrice) {
+    
+    this.localizedDeltaPrice = localizedDeltaPrice;
+    return this;
+  }
+
+  public ProductExtraValue addLocalizedDeltaPriceItem(ProductExtraValueDeltaPrice localizedDeltaPriceItem) {
+    if (this.localizedDeltaPrice == null) {
+      this.localizedDeltaPrice = new ArrayList<>();
+    }
+    this.localizedDeltaPrice.add(localizedDeltaPriceItem);
+    return this;
+  }
+
+   /**
+   * Get localizedDeltaPrice
+   * @return localizedDeltaPrice
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
+
+  public List<ProductExtraValueDeltaPrice> getLocalizedDeltaPrice() {
+    return localizedDeltaPrice;
+  }
+
+
+  public void setLocalizedDeltaPrice(List<ProductExtraValueDeltaPrice> localizedDeltaPrice) {
+    this.localizedDeltaPrice = localizedDeltaPrice;
+  }
+
+
   public ProductExtraValue quantity(Integer quantity) {
     
     this.quantity = quantity;
@@ -236,26 +236,26 @@ public class ProductExtraValue implements Serializable {
   }
 
 
-  public ProductExtraValue attributeVocabularyValueDetail(CatalogAdminsAttributeVocabularyValue attributeVocabularyValueDetail) {
+  public ProductExtraValue value(Object value) {
     
-    this.attributeVocabularyValueDetail = attributeVocabularyValueDetail;
+    this.value = value;
     return this;
   }
 
    /**
-   * Get attributeVocabularyValueDetail
-   * @return attributeVocabularyValueDetail
+   * Get value
+   * @return value
   **/
   @javax.annotation.Nullable
   @ApiModelProperty(value = "")
 
-  public CatalogAdminsAttributeVocabularyValue getAttributeVocabularyValueDetail() {
-    return attributeVocabularyValueDetail;
+  public Object getValue() {
+    return value;
   }
 
 
-  public void setAttributeVocabularyValueDetail(CatalogAdminsAttributeVocabularyValue attributeVocabularyValueDetail) {
-    this.attributeVocabularyValueDetail = attributeVocabularyValueDetail;
+  public void setValue(Object value) {
+    this.value = value;
   }
 
 
@@ -269,13 +269,13 @@ public class ProductExtraValue implements Serializable {
       return false;
     }
     ProductExtraValue productExtraValue = (ProductExtraValue) o;
-    return Objects.equals(this.value, productExtraValue.value) &&
+    return Objects.equals(this.attributeVocabularyValueDetail, productExtraValue.attributeVocabularyValueDetail) &&
         Objects.equals(this.deltaPrice, productExtraValue.deltaPrice) &&
-        Objects.equals(this.localizedDeltaPrice, productExtraValue.localizedDeltaPrice) &&
         Objects.equals(this.deltaWeight, productExtraValue.deltaWeight) &&
         Objects.equals(this.isDefaulted, productExtraValue.isDefaulted) &&
+        Objects.equals(this.localizedDeltaPrice, productExtraValue.localizedDeltaPrice) &&
         Objects.equals(this.quantity, productExtraValue.quantity) &&
-        Objects.equals(this.attributeVocabularyValueDetail, productExtraValue.attributeVocabularyValueDetail);
+        Objects.equals(this.value, productExtraValue.value);
   }
 
   private static <T> boolean equalsNullable(JsonNullable<T> a, JsonNullable<T> b) {
@@ -284,7 +284,7 @@ public class ProductExtraValue implements Serializable {
 
   @Override
   public int hashCode() {
-    return Objects.hash(value, deltaPrice, localizedDeltaPrice, deltaWeight, isDefaulted, quantity, attributeVocabularyValueDetail);
+    return Objects.hash(attributeVocabularyValueDetail, deltaPrice, deltaWeight, isDefaulted, localizedDeltaPrice, quantity, value);
   }
 
   private static <T> int hashCodeNullable(JsonNullable<T> a) {
@@ -298,13 +298,13 @@ public class ProductExtraValue implements Serializable {
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class ProductExtraValue {\n");
-    sb.append("    value: ").append(toIndentedString(value)).append("\n");
+    sb.append("    attributeVocabularyValueDetail: ").append(toIndentedString(attributeVocabularyValueDetail)).append("\n");
     sb.append("    deltaPrice: ").append(toIndentedString(deltaPrice)).append("\n");
-    sb.append("    localizedDeltaPrice: ").append(toIndentedString(localizedDeltaPrice)).append("\n");
     sb.append("    deltaWeight: ").append(toIndentedString(deltaWeight)).append("\n");
     sb.append("    isDefaulted: ").append(toIndentedString(isDefaulted)).append("\n");
+    sb.append("    localizedDeltaPrice: ").append(toIndentedString(localizedDeltaPrice)).append("\n");
     sb.append("    quantity: ").append(toIndentedString(quantity)).append("\n");
-    sb.append("    attributeVocabularyValueDetail: ").append(toIndentedString(attributeVocabularyValueDetail)).append("\n");
+    sb.append("    value: ").append(toIndentedString(value)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -327,13 +327,13 @@ public class ProductExtraValue implements Serializable {
   static {
     // a set of all properties/fields (JSON key names)
     openapiFields = new HashSet<String>();
-    openapiFields.add("value");
+    openapiFields.add("attributeVocabularyValueDetail");
     openapiFields.add("deltaPrice");
-    openapiFields.add("localizedDeltaPrice");
     openapiFields.add("deltaWeight");
     openapiFields.add("isDefaulted");
+    openapiFields.add("localizedDeltaPrice");
     openapiFields.add("quantity");
-    openapiFields.add("attributeVocabularyValueDetail");
+    openapiFields.add("value");
 
     // a set of required properties/fields (JSON key names)
     openapiRequiredFields = new HashSet<String>();
@@ -360,6 +360,10 @@ public class ProductExtraValue implements Serializable {
       //    }
       //  }
       
+      // validate the optional field `attributeVocabularyValueDetail`
+      if (jsonObj.get("attributeVocabularyValueDetail") != null && !jsonObj.get("attributeVocabularyValueDetail").isJsonNull()) {
+        CatalogAdminsAttributeVocabularyValue.validateJsonObject(jsonObj.getAsJsonObject("attributeVocabularyValueDetail"));
+      }
       // validate the optional field `deltaPrice`
       if (jsonObj.get("deltaPrice") != null && !jsonObj.get("deltaPrice").isJsonNull()) {
         ProductExtraValueDeltaPrice.validateJsonObject(jsonObj.getAsJsonObject("deltaPrice"));
@@ -377,10 +381,6 @@ public class ProductExtraValue implements Serializable {
             ProductExtraValueDeltaPrice.validateJsonObject(jsonArraylocalizedDeltaPrice.get(i).getAsJsonObject());
           };
         }
-      }
-      // validate the optional field `attributeVocabularyValueDetail`
-      if (jsonObj.get("attributeVocabularyValueDetail") != null && !jsonObj.get("attributeVocabularyValueDetail").isJsonNull()) {
-        CatalogAdminsAttributeVocabularyValue.validateJsonObject(jsonObj.getAsJsonObject("attributeVocabularyValueDetail"));
       }
   }
 

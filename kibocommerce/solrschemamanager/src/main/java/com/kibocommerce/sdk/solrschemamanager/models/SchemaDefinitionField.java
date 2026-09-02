@@ -1,8 +1,8 @@
 /*
  * Kibo ProductRuntime Service
- * OpenAPI Spec for Kibo ProductRuntime Service
+ * <div id=\"overview_CATALOG_ADMIN\">             <h2>CATALOG ADMINISTRATION</h2>             <p>The Catalog Administration APIs are a collection of resources for configuring the catalogs and products offered to your shoppers, including                 discounts and coupon sets, faceting, price lists, and different types or variations of products. See the                 <a href=\"/concept-guides/catalog\">Catalog user guides</a>                 for information about the related features in the Unified Commerce Admin.</p>             <p>Use the <strong>Attributes</strong> resource to manage localization and attribute configurations for your catalogs. This current version of the Attributes API includes localizedContent to                 support <a href=\"/pages/catalog-structure#multi-locale-catalogs\">multi-locale catalogs</a>, which was not present in the legacy API model. If                 you were a client prior to May 2024 and have upgraded your implementation to support this feature,                 you can still access attribute data that has not yet been rewritten to the new model by providing                 an x-api-version header set to \"1\". </p>             <p>Use the <strong>Categories</strong> resource to organize products and control where they appear on the storefront. Create                 and maintain a hierarchy of categories and subcategories where the site will store properties. This current version of the Categories API includes localizedContent to                 support <a href=\"/pages/catalog-structure#multi-locale-catalogs\">multi-locale catalogs</a>, which was not present in the legacy API model. If                 you were a client prior to May 2024 and have upgraded your implementation to support this feature,                 you can still access category data that has not yet been rewritten to the new model by providing                 an x-api-version header set to \"1\". </p>             <p>Use the <strong>Coupon Sets</strong> resource to view and create coupon sets. You can use coupon sets to group multiple                 coupon codes together and associate them with one or more discounts.</p>             <p>Use the <strong>Currency</strong> resource to manage the currency localization rules and exchange rates for any of the                 currencies that are supported for placing orders in.</p>             <p>Use the <strong>Discounts</strong> and <strong>Discount Settings</strong> resources to define and manage discounts to apply to products, product categories, or                 orders. This current version of the Discounts API includes localizedContent to                 support <a href=\"/pages/catalog-structure#multi-locale-catalogs\">multi-locale catalogs</a>, which was not present in the legacy Products API model. If                 you were a client prior to May 2024 and have upgraded your implementation to support this feature,                 you can still access discount data that has not yet been rewritten to the new model by providing                 an x-api-version header set to \"1\". </p>             <p>Use the <strong>Facets</strong> resource to manage the facets shoppers use to filter product display results on a                 storefront. Facets can include categories, product attributes, or prices, and use either a range of                 values or discrete values.</p>             <p>Use the <strong>Master Catalog</strong> resource to view details of the master catalogs associated with a tenant and to                 manage the product publishing mode for each master catalog.</p>             <p>Use the <strong>Price Lists</strong> resources to view and create price lists. You can use price lists to override the                 catalog pricing of products for specific customer segments and/or sites.</p>             <p>Use the <strong>Products</strong>, <strong>Product Types/Extras/Options/Properties</strong>, and <strong>Product Sort Definitions</strong> resources to create new product definitions in the master catalog and determine which                 catalogs will feature products. This current version of the Products API includes localizedContent to                 support <a href=\"/pages/catalog-structure#multi-locale-catalogs\">multi-locale catalogs</a>, which was not present in the legacy Products API model. If                 you were a client prior to May 2024 and have upgraded your implementation to support this feature,                 you can still access product data that has not yet been rewritten to the new model by providing                 an x-api-version header set to \"1\".</p>             <p>Use the <strong>Publishing</strong> resource to publish pending product updates together as part of a set.</p>             <p>Use the <strong>Search</strong> resource to manage all settings and options for providing product search on your site, as                 well as search tuning rules.</p>         </div>
  *
- * The version of the OpenAPI document: 1.0.0
+ * The version of the OpenAPI document: v1
  * 
  *
  * NOTE: This class is auto generated by OpenAPI Generator (https://openapi-generator.tech).
@@ -54,51 +54,38 @@ import com.kibocommerce.sdk.common.JSON;
 public class SchemaDefinitionField implements Serializable {
   private static final long serialVersionUID = 1L;
 
-  public static final String SERIALIZED_NAME_FIELD_NAME = "fieldName";
-  @SerializedName(SERIALIZED_NAME_FIELD_NAME)
-  private String fieldName;
-
   public static final String SERIALIZED_NAME_FIELD_DEFINITION = "fieldDefinition";
   @SerializedName(SERIALIZED_NAME_FIELD_DEFINITION)
   private String fieldDefinition;
+
+  public static final String SERIALIZED_NAME_FIELD_NAME = "fieldName";
+  @SerializedName(SERIALIZED_NAME_FIELD_NAME)
+  private String fieldName;
 
   public static final String SERIALIZED_NAME_FRIENDLY_NAME = "friendlyName";
   @SerializedName(SERIALIZED_NAME_FRIENDLY_NAME)
   private String friendlyName;
 
-  public static final String SERIALIZED_NAME_SEARCH_FIELD_NAME = "searchFieldName";
-  @SerializedName(SERIALIZED_NAME_SEARCH_FIELD_NAME)
-  private String searchFieldName;
-
   public static final String SERIALIZED_NAME_INGEST_FIELD_NAME = "ingestFieldName";
   @SerializedName(SERIALIZED_NAME_INGEST_FIELD_NAME)
   private String ingestFieldName;
 
+  public static final String SERIALIZED_NAME_SEARCH_FIELD_NAME = "searchFieldName";
+  @SerializedName(SERIALIZED_NAME_SEARCH_FIELD_NAME)
+  private String searchFieldName;
+
   public SchemaDefinitionField() {
   }
 
-  public SchemaDefinitionField fieldName(String fieldName) {
-    
-    this.fieldName = fieldName;
-    return this;
+  
+  public SchemaDefinitionField(
+     String ingestFieldName, 
+     String searchFieldName
+  ) {
+    this();
+    this.ingestFieldName = ingestFieldName;
+    this.searchFieldName = searchFieldName;
   }
-
-   /**
-   * Get fieldName
-   * @return fieldName
-  **/
-  @javax.annotation.Nonnull
-  @ApiModelProperty(required = true, value = "")
-
-  public String getFieldName() {
-    return fieldName;
-  }
-
-
-  public void setFieldName(String fieldName) {
-    this.fieldName = fieldName;
-  }
-
 
   public SchemaDefinitionField fieldDefinition(String fieldDefinition) {
     
@@ -120,6 +107,29 @@ public class SchemaDefinitionField implements Serializable {
 
   public void setFieldDefinition(String fieldDefinition) {
     this.fieldDefinition = fieldDefinition;
+  }
+
+
+  public SchemaDefinitionField fieldName(String fieldName) {
+    
+    this.fieldName = fieldName;
+    return this;
+  }
+
+   /**
+   * Get fieldName
+   * @return fieldName
+  **/
+  @javax.annotation.Nonnull
+  @ApiModelProperty(required = true, value = "")
+
+  public String getFieldName() {
+    return fieldName;
+  }
+
+
+  public void setFieldName(String fieldName) {
+    this.fieldName = fieldName;
   }
 
 
@@ -146,11 +156,19 @@ public class SchemaDefinitionField implements Serializable {
   }
 
 
-  public SchemaDefinitionField searchFieldName(String searchFieldName) {
-    
-    this.searchFieldName = searchFieldName;
-    return this;
+   /**
+   * Get ingestFieldName
+   * @return ingestFieldName
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
+
+  public String getIngestFieldName() {
+    return ingestFieldName;
   }
+
+
+
 
    /**
    * Get searchFieldName
@@ -164,32 +182,6 @@ public class SchemaDefinitionField implements Serializable {
   }
 
 
-  public void setSearchFieldName(String searchFieldName) {
-    this.searchFieldName = searchFieldName;
-  }
-
-
-  public SchemaDefinitionField ingestFieldName(String ingestFieldName) {
-    
-    this.ingestFieldName = ingestFieldName;
-    return this;
-  }
-
-   /**
-   * Get ingestFieldName
-   * @return ingestFieldName
-  **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
-
-  public String getIngestFieldName() {
-    return ingestFieldName;
-  }
-
-
-  public void setIngestFieldName(String ingestFieldName) {
-    this.ingestFieldName = ingestFieldName;
-  }
 
 
 
@@ -202,11 +194,11 @@ public class SchemaDefinitionField implements Serializable {
       return false;
     }
     SchemaDefinitionField schemaDefinitionField = (SchemaDefinitionField) o;
-    return Objects.equals(this.fieldName, schemaDefinitionField.fieldName) &&
-        Objects.equals(this.fieldDefinition, schemaDefinitionField.fieldDefinition) &&
+    return Objects.equals(this.fieldDefinition, schemaDefinitionField.fieldDefinition) &&
+        Objects.equals(this.fieldName, schemaDefinitionField.fieldName) &&
         Objects.equals(this.friendlyName, schemaDefinitionField.friendlyName) &&
-        Objects.equals(this.searchFieldName, schemaDefinitionField.searchFieldName) &&
-        Objects.equals(this.ingestFieldName, schemaDefinitionField.ingestFieldName);
+        Objects.equals(this.ingestFieldName, schemaDefinitionField.ingestFieldName) &&
+        Objects.equals(this.searchFieldName, schemaDefinitionField.searchFieldName);
   }
 
   private static <T> boolean equalsNullable(JsonNullable<T> a, JsonNullable<T> b) {
@@ -215,7 +207,7 @@ public class SchemaDefinitionField implements Serializable {
 
   @Override
   public int hashCode() {
-    return Objects.hash(fieldName, fieldDefinition, friendlyName, searchFieldName, ingestFieldName);
+    return Objects.hash(fieldDefinition, fieldName, friendlyName, ingestFieldName, searchFieldName);
   }
 
   private static <T> int hashCodeNullable(JsonNullable<T> a) {
@@ -229,11 +221,11 @@ public class SchemaDefinitionField implements Serializable {
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class SchemaDefinitionField {\n");
-    sb.append("    fieldName: ").append(toIndentedString(fieldName)).append("\n");
     sb.append("    fieldDefinition: ").append(toIndentedString(fieldDefinition)).append("\n");
+    sb.append("    fieldName: ").append(toIndentedString(fieldName)).append("\n");
     sb.append("    friendlyName: ").append(toIndentedString(friendlyName)).append("\n");
-    sb.append("    searchFieldName: ").append(toIndentedString(searchFieldName)).append("\n");
     sb.append("    ingestFieldName: ").append(toIndentedString(ingestFieldName)).append("\n");
+    sb.append("    searchFieldName: ").append(toIndentedString(searchFieldName)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -256,16 +248,16 @@ public class SchemaDefinitionField implements Serializable {
   static {
     // a set of all properties/fields (JSON key names)
     openapiFields = new HashSet<String>();
-    openapiFields.add("fieldName");
     openapiFields.add("fieldDefinition");
+    openapiFields.add("fieldName");
     openapiFields.add("friendlyName");
-    openapiFields.add("searchFieldName");
     openapiFields.add("ingestFieldName");
+    openapiFields.add("searchFieldName");
 
     // a set of required properties/fields (JSON key names)
     openapiRequiredFields = new HashSet<String>();
-    openapiRequiredFields.add("fieldName");
     openapiRequiredFields.add("fieldDefinition");
+    openapiRequiredFields.add("fieldName");
   }
 
  /**
@@ -296,20 +288,20 @@ public class SchemaDefinitionField implements Serializable {
           throw new IllegalArgumentException(String.format("The required field `%s` is not found in the JSON string: %s", requiredField, jsonObj.toString()));
         }
       }
-      if (!jsonObj.get("fieldName").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `fieldName` to be a primitive type in the JSON string but got `%s`", jsonObj.get("fieldName").toString()));
-      }
       if (!jsonObj.get("fieldDefinition").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format("Expected the field `fieldDefinition` to be a primitive type in the JSON string but got `%s`", jsonObj.get("fieldDefinition").toString()));
+      }
+      if (!jsonObj.get("fieldName").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `fieldName` to be a primitive type in the JSON string but got `%s`", jsonObj.get("fieldName").toString()));
       }
       if ((jsonObj.get("friendlyName") != null && !jsonObj.get("friendlyName").isJsonNull()) && !jsonObj.get("friendlyName").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format("Expected the field `friendlyName` to be a primitive type in the JSON string but got `%s`", jsonObj.get("friendlyName").toString()));
       }
-      if ((jsonObj.get("searchFieldName") != null && !jsonObj.get("searchFieldName").isJsonNull()) && !jsonObj.get("searchFieldName").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `searchFieldName` to be a primitive type in the JSON string but got `%s`", jsonObj.get("searchFieldName").toString()));
-      }
       if ((jsonObj.get("ingestFieldName") != null && !jsonObj.get("ingestFieldName").isJsonNull()) && !jsonObj.get("ingestFieldName").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format("Expected the field `ingestFieldName` to be a primitive type in the JSON string but got `%s`", jsonObj.get("ingestFieldName").toString()));
+      }
+      if ((jsonObj.get("searchFieldName") != null && !jsonObj.get("searchFieldName").isJsonNull()) && !jsonObj.get("searchFieldName").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `searchFieldName` to be a primitive type in the JSON string but got `%s`", jsonObj.get("searchFieldName").toString()));
       }
   }
 

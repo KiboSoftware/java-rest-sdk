@@ -4,21 +4,21 @@ All URIs are relative to *http://https:/api*
 
 | Method | HTTP request | Description |
 |------------- | ------------- | -------------|
-| [**deleteGroupUsingDELETE**](OrderRoutingGroupApi.md#deleteGroupUsingDELETE) | **DELETE** /commerce/orders/orderrouting/api/v1/group/delete/{groupID} | deleteGroup |
-| [**getGroupUsingGET**](OrderRoutingGroupApi.md#getGroupUsingGET) | **GET** /commerce/orders/orderrouting/api/v1/group/{groupID} | getGroup |
-| [**saveGroupUsingPOST**](OrderRoutingGroupApi.md#saveGroupUsingPOST) | **POST** /commerce/orders/orderrouting/api/v1/group | saveGroup |
-| [**setGroupFiltersUsingPOST**](OrderRoutingGroupApi.md#setGroupFiltersUsingPOST) | **POST** /commerce/orders/orderrouting/api/v1/group/{groupID}/setFilters | setGroupFilters |
-| [**setGroupSortsUsingPOST**](OrderRoutingGroupApi.md#setGroupSortsUsingPOST) | **POST** /commerce/orders/orderrouting/api/v1/group/{groupID}/setSorts | setGroupSorts |
-| [**testGroupUsingGET**](OrderRoutingGroupApi.md#testGroupUsingGET) | **GET** /commerce/orders/orderrouting/api/v1/group/test | testGroup |
+| [**deleteGroup**](OrderRoutingGroupApi.md#deleteGroup) | **DELETE** /commerce/orders/orderrouting/api/v1/group/delete/{groupID} | Delete Group |
+| [**getGroup**](OrderRoutingGroupApi.md#getGroup) | **GET** /commerce/orders/orderrouting/api/v1/group/{groupID} | Get Group |
+| [**saveGroup**](OrderRoutingGroupApi.md#saveGroup) | **POST** /commerce/orders/orderrouting/api/v1/group | Save Group |
+| [**setGroupFilters**](OrderRoutingGroupApi.md#setGroupFilters) | **POST** /commerce/orders/orderrouting/api/v1/group/{groupID}/setFilters | Set Group Filters |
+| [**setGroupSorts**](OrderRoutingGroupApi.md#setGroupSorts) | **POST** /commerce/orders/orderrouting/api/v1/group/{groupID}/setSorts | Set Group Sorts |
+| [**testGroup**](OrderRoutingGroupApi.md#testGroup) | **GET** /commerce/orders/orderrouting/api/v1/group/test | Test Group |
 
 
-<a name="deleteGroupUsingDELETE"></a>
-# **deleteGroupUsingDELETE**
-> deleteGroupUsingDELETE(groupID, xVolSite, xVolTenant)
+<a name="deleteGroup"></a>
+# **deleteGroup**
+> deleteGroup(groupID, xVolTenant, xVolSite)
 
-deleteGroup
+Delete Group
 
-deleteGroup
+Delete Group
 
 ### Example
 ```java
@@ -39,18 +39,14 @@ public class Example {
     HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
     bearerAuth.setBearerToken("BEARER TOKEN");
 
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
-
     OrderRoutingGroupApi apiInstance = new OrderRoutingGroupApi(defaultClient);
-    Integer groupID = 56; // Integer | groupID
-    Integer xVolSite = 56; // Integer | 
-    Integer xVolTenant = 56; // Integer | 
+    Integer groupID = 56; // Integer | 
+    Integer xVolTenant = 56; // Integer | Tenant
+    Integer xVolSite = 56; // Integer | Site
     try {
-      apiInstance.deleteGroupUsingDELETE(groupID, xVolSite, xVolTenant);
+      apiInstance.deleteGroup(groupID, xVolTenant, xVolSite);
     } catch (ApiException e) {
-      System.err.println("Exception when calling OrderRoutingGroupApi#deleteGroupUsingDELETE");
+      System.err.println("Exception when calling OrderRoutingGroupApi#deleteGroup");
       System.err.println("Status code: " + e.getCode());
       System.err.println("Reason: " + e.getResponseBody());
       System.err.println("Response headers: " + e.getResponseHeaders());
@@ -64,9 +60,9 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **groupID** | **Integer**| groupID | |
-| **xVolSite** | **Integer**|  | |
-| **xVolTenant** | **Integer**|  | |
+| **groupID** | **Integer**|  | |
+| **xVolTenant** | **Integer**| Tenant | |
+| **xVolSite** | **Integer**| Site | |
 
 ### Return type
 
@@ -74,28 +70,30 @@ null (empty response body)
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth), [clientOauth2](../README.md#clientOauth2)
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: Not defined
+ - **Accept**: */*
 
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | OK |  -  |
-| **204** | No Content |  -  |
-| **401** | Unauthorized |  -  |
+| **400** | Bad Request |  -  |
 | **403** | Forbidden |  -  |
+| **409** | Conflict |  -  |
+| **410** | Gone |  -  |
+| **500** | Internal Server Error |  -  |
 
-<a name="getGroupUsingGET"></a>
-# **getGroupUsingGET**
-> ApiDocumentationLocationGroup getGroupUsingGET(groupID, xVolSite, xVolTenant)
+<a name="getGroup"></a>
+# **getGroup**
+> OrderRoutingLocationGroup getGroup(groupID, xVolTenant, xVolSite)
 
-getGroup
+Get Group
 
-getGroup
+Retrieves a routing group by ID.
 
 ### Example
 ```java
@@ -116,19 +114,15 @@ public class Example {
     HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
     bearerAuth.setBearerToken("BEARER TOKEN");
 
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
-
     OrderRoutingGroupApi apiInstance = new OrderRoutingGroupApi(defaultClient);
-    Integer groupID = 56; // Integer | groupID
-    Integer xVolSite = 56; // Integer | 
-    Integer xVolTenant = 56; // Integer | 
+    Integer groupID = 56; // Integer | 
+    Integer xVolTenant = 56; // Integer | Tenant
+    Integer xVolSite = 56; // Integer | Site
     try {
-      ApiDocumentationLocationGroup result = apiInstance.getGroupUsingGET(groupID, xVolSite, xVolTenant);
+      OrderRoutingLocationGroup result = apiInstance.getGroup(groupID, xVolTenant, xVolSite);
       System.out.println(result);
     } catch (ApiException e) {
-      System.err.println("Exception when calling OrderRoutingGroupApi#getGroupUsingGET");
+      System.err.println("Exception when calling OrderRoutingGroupApi#getGroup");
       System.err.println("Status code: " + e.getCode());
       System.err.println("Reason: " + e.getResponseBody());
       System.err.println("Response headers: " + e.getResponseHeaders());
@@ -142,38 +136,40 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **groupID** | **Integer**| groupID | |
-| **xVolSite** | **Integer**|  | |
-| **xVolTenant** | **Integer**|  | |
+| **groupID** | **Integer**|  | |
+| **xVolTenant** | **Integer**| Tenant | |
+| **xVolSite** | **Integer**| Site | |
 
 ### Return type
 
-[**ApiDocumentationLocationGroup**](ApiDocumentationLocationGroup.md)
+[**OrderRoutingLocationGroup**](OrderRoutingLocationGroup.md)
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth), [clientOauth2](../README.md#clientOauth2)
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: application/json
+ - **Accept**: application/json, */*
 
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | OK |  -  |
-| **401** | Unauthorized |  -  |
+| **400** | Bad Request |  -  |
 | **403** | Forbidden |  -  |
-| **404** | Not Found |  -  |
+| **409** | Conflict |  -  |
+| **410** | Gone |  -  |
+| **500** | Internal Server Error |  -  |
 
-<a name="saveGroupUsingPOST"></a>
-# **saveGroupUsingPOST**
-> ApiDocumentationLocationGroup saveGroupUsingPOST(xVolSite, xVolTenant, loc)
+<a name="saveGroup"></a>
+# **saveGroup**
+> OrderRoutingLocationGroup saveGroup(locationGroupModel)
 
-saveGroup
+Save Group
 
-saveGroup
+Saves a routing group.
 
 ### Example
 ```java
@@ -194,19 +190,13 @@ public class Example {
     HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
     bearerAuth.setBearerToken("BEARER TOKEN");
 
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
-
     OrderRoutingGroupApi apiInstance = new OrderRoutingGroupApi(defaultClient);
-    Integer xVolSite = 56; // Integer | 
-    Integer xVolTenant = 56; // Integer | 
-    LocationGroupModel loc = new LocationGroupModel(); // LocationGroupModel | loc
+    LocationGroupModel locationGroupModel = new LocationGroupModel(); // LocationGroupModel | 
     try {
-      ApiDocumentationLocationGroup result = apiInstance.saveGroupUsingPOST(xVolSite, xVolTenant, loc);
+      OrderRoutingLocationGroup result = apiInstance.saveGroup(locationGroupModel);
       System.out.println(result);
     } catch (ApiException e) {
-      System.err.println("Exception when calling OrderRoutingGroupApi#saveGroupUsingPOST");
+      System.err.println("Exception when calling OrderRoutingGroupApi#saveGroup");
       System.err.println("Status code: " + e.getCode());
       System.err.println("Reason: " + e.getResponseBody());
       System.err.println("Response headers: " + e.getResponseHeaders());
@@ -220,39 +210,38 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **xVolSite** | **Integer**|  | |
-| **xVolTenant** | **Integer**|  | |
-| **loc** | [**LocationGroupModel**](LocationGroupModel.md)| loc | |
+| **locationGroupModel** | [**LocationGroupModel**](LocationGroupModel.md)|  | |
 
 ### Return type
 
-[**ApiDocumentationLocationGroup**](ApiDocumentationLocationGroup.md)
+[**OrderRoutingLocationGroup**](OrderRoutingLocationGroup.md)
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth), [clientOauth2](../README.md#clientOauth2)
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
  - **Content-Type**: application/json
- - **Accept**: application/json
+ - **Accept**: application/json, */*
 
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | OK |  -  |
-| **201** | Created |  -  |
-| **401** | Unauthorized |  -  |
+| **400** | Bad Request |  -  |
 | **403** | Forbidden |  -  |
-| **404** | Not Found |  -  |
+| **409** | Conflict |  -  |
+| **410** | Gone |  -  |
+| **500** | Internal Server Error |  -  |
 
-<a name="setGroupFiltersUsingPOST"></a>
-# **setGroupFiltersUsingPOST**
-> ApiDocumentationLocationGroup setGroupFiltersUsingPOST(groupID, xVolSite, xVolTenant, filterIDs)
+<a name="setGroupFilters"></a>
+# **setGroupFilters**
+> OrderRoutingLocationGroup setGroupFilters(groupID, xVolTenant, xVolSite, requestBody)
 
-setGroupFilters
+Set Group Filters
 
-setGroupFilters
+Sets a routing group&#39;s filters.
 
 ### Example
 ```java
@@ -273,20 +262,16 @@ public class Example {
     HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
     bearerAuth.setBearerToken("BEARER TOKEN");
 
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
-
     OrderRoutingGroupApi apiInstance = new OrderRoutingGroupApi(defaultClient);
-    Integer groupID = 56; // Integer | groupID
-    Integer xVolSite = 56; // Integer | 
-    Integer xVolTenant = 56; // Integer | 
-    List<Integer> filterIDs = Arrays.asList(); // List<Integer> | filterIDs
+    Integer groupID = 56; // Integer | 
+    Integer xVolTenant = 56; // Integer | Tenant
+    Integer xVolSite = 56; // Integer | Site
+    Set<Integer> requestBody = Arrays.asList(); // Set<Integer> | 
     try {
-      ApiDocumentationLocationGroup result = apiInstance.setGroupFiltersUsingPOST(groupID, xVolSite, xVolTenant, filterIDs);
+      OrderRoutingLocationGroup result = apiInstance.setGroupFilters(groupID, xVolTenant, xVolSite, requestBody);
       System.out.println(result);
     } catch (ApiException e) {
-      System.err.println("Exception when calling OrderRoutingGroupApi#setGroupFiltersUsingPOST");
+      System.err.println("Exception when calling OrderRoutingGroupApi#setGroupFilters");
       System.err.println("Status code: " + e.getCode());
       System.err.println("Reason: " + e.getResponseBody());
       System.err.println("Response headers: " + e.getResponseHeaders());
@@ -300,40 +285,41 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **groupID** | **Integer**| groupID | |
-| **xVolSite** | **Integer**|  | |
-| **xVolTenant** | **Integer**|  | |
-| **filterIDs** | [**List&lt;Integer&gt;**](Integer.md)| filterIDs | |
+| **groupID** | **Integer**|  | |
+| **xVolTenant** | **Integer**| Tenant | |
+| **xVolSite** | **Integer**| Site | |
+| **requestBody** | [**Set&lt;Integer&gt;**](Integer.md)|  | |
 
 ### Return type
 
-[**ApiDocumentationLocationGroup**](ApiDocumentationLocationGroup.md)
+[**OrderRoutingLocationGroup**](OrderRoutingLocationGroup.md)
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth), [clientOauth2](../README.md#clientOauth2)
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
  - **Content-Type**: application/json
- - **Accept**: application/json
+ - **Accept**: application/json, */*
 
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | OK |  -  |
-| **201** | Created |  -  |
-| **401** | Unauthorized |  -  |
+| **400** | Bad Request |  -  |
 | **403** | Forbidden |  -  |
-| **404** | Not Found |  -  |
+| **409** | Conflict |  -  |
+| **410** | Gone |  -  |
+| **500** | Internal Server Error |  -  |
 
-<a name="setGroupSortsUsingPOST"></a>
-# **setGroupSortsUsingPOST**
-> ApiDocumentationLocationGroup setGroupSortsUsingPOST(groupID, xVolSite, xVolTenant, sorts)
+<a name="setGroupSorts"></a>
+# **setGroupSorts**
+> OrderRoutingLocationGroup setGroupSorts(groupID, xVolTenant, xVolSite, locationSort)
 
-setGroupSorts
+Set Group Sorts
 
-setGroupSorts
+Sets a routing group&#39;s sorting options.
 
 ### Example
 ```java
@@ -354,20 +340,16 @@ public class Example {
     HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
     bearerAuth.setBearerToken("BEARER TOKEN");
 
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
-
     OrderRoutingGroupApi apiInstance = new OrderRoutingGroupApi(defaultClient);
-    Integer groupID = 56; // Integer | groupID
-    Integer xVolSite = 56; // Integer | 
-    Integer xVolTenant = 56; // Integer | 
-    List<LocationSort> sorts = Arrays.asList(); // List<LocationSort> | sorts
+    Integer groupID = 56; // Integer | 
+    Integer xVolTenant = 56; // Integer | Tenant
+    Integer xVolSite = 56; // Integer | Site
+    List<LocationSort> locationSort = Arrays.asList(); // List<LocationSort> | 
     try {
-      ApiDocumentationLocationGroup result = apiInstance.setGroupSortsUsingPOST(groupID, xVolSite, xVolTenant, sorts);
+      OrderRoutingLocationGroup result = apiInstance.setGroupSorts(groupID, xVolTenant, xVolSite, locationSort);
       System.out.println(result);
     } catch (ApiException e) {
-      System.err.println("Exception when calling OrderRoutingGroupApi#setGroupSortsUsingPOST");
+      System.err.println("Exception when calling OrderRoutingGroupApi#setGroupSorts");
       System.err.println("Status code: " + e.getCode());
       System.err.println("Reason: " + e.getResponseBody());
       System.err.println("Response headers: " + e.getResponseHeaders());
@@ -381,40 +363,41 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **groupID** | **Integer**| groupID | |
-| **xVolSite** | **Integer**|  | |
-| **xVolTenant** | **Integer**|  | |
-| **sorts** | [**List&lt;LocationSort&gt;**](LocationSort.md)| sorts | |
+| **groupID** | **Integer**|  | |
+| **xVolTenant** | **Integer**| Tenant | |
+| **xVolSite** | **Integer**| Site | |
+| **locationSort** | [**List&lt;LocationSort&gt;**](LocationSort.md)|  | |
 
 ### Return type
 
-[**ApiDocumentationLocationGroup**](ApiDocumentationLocationGroup.md)
+[**OrderRoutingLocationGroup**](OrderRoutingLocationGroup.md)
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth), [clientOauth2](../README.md#clientOauth2)
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
  - **Content-Type**: application/json
- - **Accept**: application/json
+ - **Accept**: application/json, */*
 
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | OK |  -  |
-| **201** | Created |  -  |
-| **401** | Unauthorized |  -  |
+| **400** | Bad Request |  -  |
 | **403** | Forbidden |  -  |
-| **404** | Not Found |  -  |
+| **409** | Conflict |  -  |
+| **410** | Gone |  -  |
+| **500** | Internal Server Error |  -  |
 
-<a name="testGroupUsingGET"></a>
-# **testGroupUsingGET**
-> ApiDocumentationLocationGroup testGroupUsingGET(xVolSite, xVolTenant)
+<a name="testGroup"></a>
+# **testGroup**
+> OrderRoutingLocationGroup testGroup()
 
-testGroup
+Test Group
 
-testGroup
+Tests a routing group.
 
 ### Example
 ```java
@@ -435,18 +418,12 @@ public class Example {
     HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
     bearerAuth.setBearerToken("BEARER TOKEN");
 
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
-
     OrderRoutingGroupApi apiInstance = new OrderRoutingGroupApi(defaultClient);
-    Integer xVolSite = 56; // Integer | 
-    Integer xVolTenant = 56; // Integer | 
     try {
-      ApiDocumentationLocationGroup result = apiInstance.testGroupUsingGET(xVolSite, xVolTenant);
+      OrderRoutingLocationGroup result = apiInstance.testGroup();
       System.out.println(result);
     } catch (ApiException e) {
-      System.err.println("Exception when calling OrderRoutingGroupApi#testGroupUsingGET");
+      System.err.println("Exception when calling OrderRoutingGroupApi#testGroup");
       System.err.println("Status code: " + e.getCode());
       System.err.println("Reason: " + e.getResponseBody());
       System.err.println("Response headers: " + e.getResponseHeaders());
@@ -457,30 +434,28 @@ public class Example {
 ```
 
 ### Parameters
-
-| Name | Type | Description  | Notes |
-|------------- | ------------- | ------------- | -------------|
-| **xVolSite** | **Integer**|  | |
-| **xVolTenant** | **Integer**|  | |
+This endpoint does not need any parameter.
 
 ### Return type
 
-[**ApiDocumentationLocationGroup**](ApiDocumentationLocationGroup.md)
+[**OrderRoutingLocationGroup**](OrderRoutingLocationGroup.md)
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth), [clientOauth2](../README.md#clientOauth2)
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: application/json
+ - **Accept**: application/json, */*
 
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | OK |  -  |
-| **401** | Unauthorized |  -  |
+| **400** | Bad Request |  -  |
 | **403** | Forbidden |  -  |
-| **404** | Not Found |  -  |
+| **409** | Conflict |  -  |
+| **410** | Gone |  -  |
+| **500** | Internal Server Error |  -  |
 

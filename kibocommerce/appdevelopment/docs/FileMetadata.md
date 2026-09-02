@@ -7,12 +7,12 @@
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
-|**id** | **String** |  |  [optional] |
-|**type** | **String** |  |  [optional] |
-|**path** | **String** |  |  [optional] |
-|**checkSum** | **String** |  |  [optional] |
-|**sizeInBytes** | **Long** |  |  [optional] |
 |**auditInfo** | [**AdminUserAuditInfo**](AdminUserAuditInfo.md) |  |  [optional] |
+|**checkSum** | **String** |  |  [optional] |
+|**id** | **String** |  |  [optional] |
+|**path** | **String** |  |  [optional] |
+|**sizeInBytes** | **Long** |  |  [optional] |
+|**type** | **String** |  |  [optional] |
 
 
 ## Implemented Interfaces

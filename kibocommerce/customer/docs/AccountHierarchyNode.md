@@ -7,8 +7,8 @@
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
-|**id** | **Integer** |  |  [optional] |
 |**children** | [**List&lt;AccountHierarchyNode&gt;**](AccountHierarchyNode.md) |  |  [optional] |
+|**id** | **Integer** |  |  [optional] |
 
 
 ## Implemented Interfaces

@@ -1,8 +1,8 @@
 /*
  * Kibo Catalog Admin Services
- * OpenAPI Spec for Kibo Catalog Admin Services
+ * <div id=\"overview_CATALOG_ADMIN\">             <h2>CATALOG ADMINISTRATION</h2>             <p>The Catalog Administration APIs are a collection of resources for configuring the catalogs and products offered to your shoppers, including                 discounts and coupon sets, faceting, price lists, and different types or variations of products. See the                 <a href=\"/concept-guides/catalog\">Catalog user guides</a>                 for information about the related features in the Unified Commerce Admin.</p>             <p>Use the <strong>Attributes</strong> resource to manage localization and attribute configurations for your catalogs. This current version of the Attributes API includes localizedContent to                 support <a href=\"/pages/catalog-structure#multi-locale-catalogs\">multi-locale catalogs</a>, which was not present in the legacy API model. If                 you were a client prior to May 2024 and have upgraded your implementation to support this feature,                 you can still access attribute data that has not yet been rewritten to the new model by providing                 an x-api-version header set to \"1\". </p>             <p>Use the <strong>Categories</strong> resource to organize products and control where they appear on the storefront. Create                 and maintain a hierarchy of categories and subcategories where the site will store properties. This current version of the Categories API includes localizedContent to                 support <a href=\"/pages/catalog-structure#multi-locale-catalogs\">multi-locale catalogs</a>, which was not present in the legacy API model. If                 you were a client prior to May 2024 and have upgraded your implementation to support this feature,                 you can still access category data that has not yet been rewritten to the new model by providing                 an x-api-version header set to \"1\". </p>             <p>Use the <strong>Coupon Sets</strong> resource to view and create coupon sets. You can use coupon sets to group multiple                 coupon codes together and associate them with one or more discounts.</p>             <p>Use the <strong>Currency</strong> resource to manage the currency localization rules and exchange rates for any of the                 currencies that are supported for placing orders in.</p>             <p>Use the <strong>Discounts</strong> and <strong>Discount Settings</strong> resources to define and manage discounts to apply to products, product categories, or                 orders. This current version of the Discounts API includes localizedContent to                 support <a href=\"/pages/catalog-structure#multi-locale-catalogs\">multi-locale catalogs</a>, which was not present in the legacy Products API model. If                 you were a client prior to May 2024 and have upgraded your implementation to support this feature,                 you can still access discount data that has not yet been rewritten to the new model by providing                 an x-api-version header set to \"1\". </p>             <p>Use the <strong>Facets</strong> resource to manage the facets shoppers use to filter product display results on a                 storefront. Facets can include categories, product attributes, or prices, and use either a range of                 values or discrete values.</p>             <p>Use the <strong>Master Catalog</strong> resource to view details of the master catalogs associated with a tenant and to                 manage the product publishing mode for each master catalog.</p>             <p>Use the <strong>Price Lists</strong> resources to view and create price lists. You can use price lists to override the                 catalog pricing of products for specific customer segments and/or sites.</p>             <p>Use the <strong>Products</strong>, <strong>Product Types/Extras/Options/Properties</strong>, and <strong>Product Sort Definitions</strong> resources to create new product definitions in the master catalog and determine which                 catalogs will feature products. This current version of the Products API includes localizedContent to                 support <a href=\"/pages/catalog-structure#multi-locale-catalogs\">multi-locale catalogs</a>, which was not present in the legacy Products API model. If                 you were a client prior to May 2024 and have upgraded your implementation to support this feature,                 you can still access product data that has not yet been rewritten to the new model by providing                 an x-api-version header set to \"1\".</p>             <p>Use the <strong>Publishing</strong> resource to publish pending product updates together as part of a set.</p>             <p>Use the <strong>Search</strong> resource to manage all settings and options for providing product search on your site, as                 well as search tuning rules.</p>         </div>
  *
- * The version of the OpenAPI document: 1.0.0
+ * The version of the OpenAPI document: v1
  * 
  *
  * NOTE: This class is auto generated by OpenAPI Generator (https://openapi-generator.tech).
@@ -20,10 +20,10 @@ import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
-import com.kibocommerce.sdk.catalogadministration.models.TargetedCategory;
+import com.kibocommerce.sdk.catalogadministration.models.CatalogAdminsTargetedCategory;
+import com.kibocommerce.sdk.catalogadministration.models.CatalogAdminsTargetedShippingMethod;
+import com.kibocommerce.sdk.catalogadministration.models.CatalogAdminsTargetedShippingZone;
 import com.kibocommerce.sdk.catalogadministration.models.TargetedProduct;
-import com.kibocommerce.sdk.catalogadministration.models.TargetedShippingMethod;
-import com.kibocommerce.sdk.catalogadministration.models.TargetedShippingZone;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
@@ -54,16 +54,44 @@ import java.util.Set;
 import com.kibocommerce.sdk.common.JSON;
 
 /**
- * What to discount. Specifies the type of discount (percentage off, monetary amount, or free shipping) and which products, categories, or shipping methods are eligible for the discount.  Can also specify the minimum amount that the order must total for the discount to apply.
+ * What to discount. Specifies the type of discount (percentage off, monetary amount, or free shipping) and which products, categories, or shipping methods are eligible for the discount. Can also specify the minimum amount that the order must total for the discount to apply.
  */
-@ApiModel(description = "What to discount. Specifies the type of discount (percentage off, monetary amount, or free shipping) and which products, categories, or shipping methods are eligible for the discount.  Can also specify the minimum amount that the order must total for the discount to apply.")
+@ApiModel(description = "What to discount. Specifies the type of discount (percentage off, monetary amount, or free shipping) and which products, categories, or shipping methods are eligible for the discount. Can also specify the minimum amount that the order must total for the discount to apply.")
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
 public class CatalogAdminsDiscountTarget implements Serializable {
   private static final long serialVersionUID = 1L;
 
-  public static final String SERIALIZED_NAME_TYPE = "type";
-  @SerializedName(SERIALIZED_NAME_TYPE)
-  private String type;
+  public static final String SERIALIZED_NAME_APPLIES_TO_LEAST_EXPENSIVE_PRODUCTS_FIRST = "appliesToLeastExpensiveProductsFirst";
+  @SerializedName(SERIALIZED_NAME_APPLIES_TO_LEAST_EXPENSIVE_PRODUCTS_FIRST)
+  private Boolean appliesToLeastExpensiveProductsFirst;
+
+  public static final String SERIALIZED_NAME_CATEGORIES = "categories";
+  @SerializedName(SERIALIZED_NAME_CATEGORIES)
+  private List<CatalogAdminsTargetedCategory> categories = null;
+
+  public static final String SERIALIZED_NAME_DO_NOT_APPLY_TO_HANDLING_FEES = "doNotApplyToHandlingFees";
+  @SerializedName(SERIALIZED_NAME_DO_NOT_APPLY_TO_HANDLING_FEES)
+  private Boolean doNotApplyToHandlingFees;
+
+  public static final String SERIALIZED_NAME_EXCLUDE_ITEMS_WITH_EXISTING_PRODUCT_DISCOUNTS = "excludeItemsWithExistingProductDiscounts";
+  @SerializedName(SERIALIZED_NAME_EXCLUDE_ITEMS_WITH_EXISTING_PRODUCT_DISCOUNTS)
+  private Boolean excludeItemsWithExistingProductDiscounts;
+
+  public static final String SERIALIZED_NAME_EXCLUDE_ITEMS_WITH_EXISTING_SHIPPING_DISCOUNTS = "excludeItemsWithExistingShippingDiscounts";
+  @SerializedName(SERIALIZED_NAME_EXCLUDE_ITEMS_WITH_EXISTING_SHIPPING_DISCOUNTS)
+  private Boolean excludeItemsWithExistingShippingDiscounts;
+
+  public static final String SERIALIZED_NAME_EXCLUDED_CATEGORIES = "excludedCategories";
+  @SerializedName(SERIALIZED_NAME_EXCLUDED_CATEGORIES)
+  private List<CatalogAdminsTargetedCategory> excludedCategories = null;
+
+  public static final String SERIALIZED_NAME_EXCLUDED_CATEGORIES_OPERATOR = "excludedCategoriesOperator";
+  @SerializedName(SERIALIZED_NAME_EXCLUDED_CATEGORIES_OPERATOR)
+  private String excludedCategoriesOperator;
+
+  public static final String SERIALIZED_NAME_EXCLUDED_PRODUCTS = "excludedProducts";
+  @SerializedName(SERIALIZED_NAME_EXCLUDED_PRODUCTS)
+  private List<TargetedProduct> excludedProducts = null;
 
   public static final String SERIALIZED_NAME_INCLUDE_ALL_PRODUCTS = "includeAllProducts";
   @SerializedName(SERIALIZED_NAME_INCLUDE_ALL_PRODUCTS)
@@ -73,133 +101,59 @@ public class CatalogAdminsDiscountTarget implements Serializable {
   @SerializedName(SERIALIZED_NAME_INCLUDED_CATEGORIES_OPERATOR)
   private String includedCategoriesOperator;
 
-  public static final String SERIALIZED_NAME_CATEGORIES = "categories";
-  @SerializedName(SERIALIZED_NAME_CATEGORIES)
-  private List<TargetedCategory> categories = null;
-
-  public static final String SERIALIZED_NAME_EXCLUDED_CATEGORIES_OPERATOR = "excludedCategoriesOperator";
-  @SerializedName(SERIALIZED_NAME_EXCLUDED_CATEGORIES_OPERATOR)
-  private String excludedCategoriesOperator;
-
-  public static final String SERIALIZED_NAME_EXCLUDED_CATEGORIES = "excludedCategories";
-  @SerializedName(SERIALIZED_NAME_EXCLUDED_CATEGORIES)
-  private List<TargetedCategory> excludedCategories = null;
+  public static final String SERIALIZED_NAME_MAXIMUM_QUANTITY_PER_REDEMPTION = "maximumQuantityPerRedemption";
+  @SerializedName(SERIALIZED_NAME_MAXIMUM_QUANTITY_PER_REDEMPTION)
+  private Integer maximumQuantityPerRedemption;
 
   public static final String SERIALIZED_NAME_PRODUCTS = "products";
   @SerializedName(SERIALIZED_NAME_PRODUCTS)
   private List<TargetedProduct> products = null;
 
-  public static final String SERIALIZED_NAME_EXCLUDED_PRODUCTS = "excludedProducts";
-  @SerializedName(SERIALIZED_NAME_EXCLUDED_PRODUCTS)
-  private List<TargetedProduct> excludedProducts = null;
-
-  public static final String SERIALIZED_NAME_EXCLUDE_ITEMS_WITH_EXISTING_SHIPPING_DISCOUNTS = "excludeItemsWithExistingShippingDiscounts";
-  @SerializedName(SERIALIZED_NAME_EXCLUDE_ITEMS_WITH_EXISTING_SHIPPING_DISCOUNTS)
-  private Boolean excludeItemsWithExistingShippingDiscounts;
-
-  public static final String SERIALIZED_NAME_EXCLUDE_ITEMS_WITH_EXISTING_PRODUCT_DISCOUNTS = "excludeItemsWithExistingProductDiscounts";
-  @SerializedName(SERIALIZED_NAME_EXCLUDE_ITEMS_WITH_EXISTING_PRODUCT_DISCOUNTS)
-  private Boolean excludeItemsWithExistingProductDiscounts;
-
   public static final String SERIALIZED_NAME_SHIPPING_METHODS = "shippingMethods";
   @SerializedName(SERIALIZED_NAME_SHIPPING_METHODS)
-  private List<TargetedShippingMethod> shippingMethods = null;
+  private List<CatalogAdminsTargetedShippingMethod> shippingMethods = null;
 
   public static final String SERIALIZED_NAME_SHIPPING_ZONES = "shippingZones";
   @SerializedName(SERIALIZED_NAME_SHIPPING_ZONES)
-  private List<TargetedShippingZone> shippingZones = null;
+  private List<CatalogAdminsTargetedShippingZone> shippingZones = null;
 
-  public static final String SERIALIZED_NAME_DO_NOT_APPLY_TO_HANDLING_FEES = "doNotApplyToHandlingFees";
-  @SerializedName(SERIALIZED_NAME_DO_NOT_APPLY_TO_HANDLING_FEES)
-  private Boolean doNotApplyToHandlingFees;
-
-  public static final String SERIALIZED_NAME_MAXIMUM_QUANTITY_PER_REDEMPTION = "maximumQuantityPerRedemption";
-  @SerializedName(SERIALIZED_NAME_MAXIMUM_QUANTITY_PER_REDEMPTION)
-  private Integer maximumQuantityPerRedemption;
-
-  public static final String SERIALIZED_NAME_APPLIES_TO_LEAST_EXPENSIVE_PRODUCTS_FIRST = "appliesToLeastExpensiveProductsFirst";
-  @SerializedName(SERIALIZED_NAME_APPLIES_TO_LEAST_EXPENSIVE_PRODUCTS_FIRST)
-  private Boolean appliesToLeastExpensiveProductsFirst;
+  public static final String SERIALIZED_NAME_TYPE = "type";
+  @SerializedName(SERIALIZED_NAME_TYPE)
+  private String type;
 
   public CatalogAdminsDiscountTarget() {
   }
 
-  public CatalogAdminsDiscountTarget type(String type) {
+  public CatalogAdminsDiscountTarget appliesToLeastExpensiveProductsFirst(Boolean appliesToLeastExpensiveProductsFirst) {
     
-    this.type = type;
+    this.appliesToLeastExpensiveProductsFirst = appliesToLeastExpensiveProductsFirst;
     return this;
   }
 
    /**
-   *     Type of target to which the discount applies. Possible values: &lt;pre&gt;Product&lt;/pre&gt; or &lt;pre&gt;Shipping&lt;/pre&gt;.   If this is a &lt;pre&gt;Product&lt;/pre&gt; type, you can specify which products or categories that the discount applies to.      If this is a &lt;pre&gt;Shipping&lt;/pre&gt; type then you must specify which shipping methods apply.
-   * @return type
-  **/
-  @javax.annotation.Nonnull
-  @ApiModelProperty(required = true, value = "    Type of target to which the discount applies. Possible values: <pre>Product</pre> or <pre>Shipping</pre>.   If this is a <pre>Product</pre> type, you can specify which products or categories that the discount applies to.      If this is a <pre>Shipping</pre> type then you must specify which shipping methods apply.")
-
-  public String getType() {
-    return type;
-  }
-
-
-  public void setType(String type) {
-    this.type = type;
-  }
-
-
-  public CatalogAdminsDiscountTarget includeAllProducts(Boolean includeAllProducts) {
-    
-    this.includeAllProducts = includeAllProducts;
-    return this;
-  }
-
-   /**
-   * If yes, the discount applies to all products sold on the storefront.
-   * @return includeAllProducts
+   * Determines which way the discount is optimized.  Consumers favor(default - false/null) or tenants favor (when this is set to true) Applies to discounts where target is not a specific product or list of products.   May also impact behavior of Buy X Get Y so that X is the most expensive items and Y the least expensive.
+   * @return appliesToLeastExpensiveProductsFirst
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "If yes, the discount applies to all products sold on the storefront.")
+  @ApiModelProperty(value = "Determines which way the discount is optimized.  Consumers favor(default - false/null) or tenants favor (when this is set to true) Applies to discounts where target is not a specific product or list of products.   May also impact behavior of Buy X Get Y so that X is the most expensive items and Y the least expensive.")
 
-  public Boolean getIncludeAllProducts() {
-    return includeAllProducts;
+  public Boolean getAppliesToLeastExpensiveProductsFirst() {
+    return appliesToLeastExpensiveProductsFirst;
   }
 
 
-  public void setIncludeAllProducts(Boolean includeAllProducts) {
-    this.includeAllProducts = includeAllProducts;
+  public void setAppliesToLeastExpensiveProductsFirst(Boolean appliesToLeastExpensiveProductsFirst) {
+    this.appliesToLeastExpensiveProductsFirst = appliesToLeastExpensiveProductsFirst;
   }
 
 
-  public CatalogAdminsDiscountTarget includedCategoriesOperator(String includedCategoriesOperator) {
-    
-    this.includedCategoriesOperator = includedCategoriesOperator;
-    return this;
-  }
-
-   /**
-   * Applies to Included categories  When Any, the target product can belong to any specified category.  When All, the target product must belong to all specified categories.  Defaults to Any
-   * @return includedCategoriesOperator
-  **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(value = "Applies to Included categories  When Any, the target product can belong to any specified category.  When All, the target product must belong to all specified categories.  Defaults to Any")
-
-  public String getIncludedCategoriesOperator() {
-    return includedCategoriesOperator;
-  }
-
-
-  public void setIncludedCategoriesOperator(String includedCategoriesOperator) {
-    this.includedCategoriesOperator = includedCategoriesOperator;
-  }
-
-
-  public CatalogAdminsDiscountTarget categories(List<TargetedCategory> categories) {
+  public CatalogAdminsDiscountTarget categories(List<CatalogAdminsTargetedCategory> categories) {
     
     this.categories = categories;
     return this;
   }
 
-  public CatalogAdminsDiscountTarget addCategoriesItem(TargetedCategory categoriesItem) {
+  public CatalogAdminsDiscountTarget addCategoriesItem(CatalogAdminsTargetedCategory categoriesItem) {
     if (this.categories == null) {
       this.categories = new ArrayList<>();
     }
@@ -214,46 +168,92 @@ public class CatalogAdminsDiscountTarget implements Serializable {
   @javax.annotation.Nullable
   @ApiModelProperty(value = "List of categories to discount. When a discount applies to a category, all products in the category are discounted.")
 
-  public List<TargetedCategory> getCategories() {
+  public List<CatalogAdminsTargetedCategory> getCategories() {
     return categories;
   }
 
 
-  public void setCategories(List<TargetedCategory> categories) {
+  public void setCategories(List<CatalogAdminsTargetedCategory> categories) {
     this.categories = categories;
   }
 
 
-  public CatalogAdminsDiscountTarget excludedCategoriesOperator(String excludedCategoriesOperator) {
+  public CatalogAdminsDiscountTarget doNotApplyToHandlingFees(Boolean doNotApplyToHandlingFees) {
     
-    this.excludedCategoriesOperator = excludedCategoriesOperator;
+    this.doNotApplyToHandlingFees = doNotApplyToHandlingFees;
     return this;
   }
 
    /**
-   * Applies to Included categories  Defaults to Any
-   * @return excludedCategoriesOperator
+   * Prevents the discount from being applied to handling fees
+   * @return doNotApplyToHandlingFees
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "Applies to Included categories  Defaults to Any")
+  @ApiModelProperty(value = "Prevents the discount from being applied to handling fees")
 
-  public String getExcludedCategoriesOperator() {
-    return excludedCategoriesOperator;
+  public Boolean getDoNotApplyToHandlingFees() {
+    return doNotApplyToHandlingFees;
   }
 
 
-  public void setExcludedCategoriesOperator(String excludedCategoriesOperator) {
-    this.excludedCategoriesOperator = excludedCategoriesOperator;
+  public void setDoNotApplyToHandlingFees(Boolean doNotApplyToHandlingFees) {
+    this.doNotApplyToHandlingFees = doNotApplyToHandlingFees;
   }
 
 
-  public CatalogAdminsDiscountTarget excludedCategories(List<TargetedCategory> excludedCategories) {
+  public CatalogAdminsDiscountTarget excludeItemsWithExistingProductDiscounts(Boolean excludeItemsWithExistingProductDiscounts) {
+    
+    this.excludeItemsWithExistingProductDiscounts = excludeItemsWithExistingProductDiscounts;
+    return this;
+  }
+
+   /**
+   * Prevents order scoped discounts from layering over items that already have a product discount with the  same type.
+   * @return excludeItemsWithExistingProductDiscounts
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "Prevents order scoped discounts from layering over items that already have a product discount with the  same type.")
+
+  public Boolean getExcludeItemsWithExistingProductDiscounts() {
+    return excludeItemsWithExistingProductDiscounts;
+  }
+
+
+  public void setExcludeItemsWithExistingProductDiscounts(Boolean excludeItemsWithExistingProductDiscounts) {
+    this.excludeItemsWithExistingProductDiscounts = excludeItemsWithExistingProductDiscounts;
+  }
+
+
+  public CatalogAdminsDiscountTarget excludeItemsWithExistingShippingDiscounts(Boolean excludeItemsWithExistingShippingDiscounts) {
+    
+    this.excludeItemsWithExistingShippingDiscounts = excludeItemsWithExistingShippingDiscounts;
+    return this;
+  }
+
+   /**
+   * Prevents order scoped discounts from layering over items that already have a shipping discount with the  same type.
+   * @return excludeItemsWithExistingShippingDiscounts
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "Prevents order scoped discounts from layering over items that already have a shipping discount with the  same type.")
+
+  public Boolean getExcludeItemsWithExistingShippingDiscounts() {
+    return excludeItemsWithExistingShippingDiscounts;
+  }
+
+
+  public void setExcludeItemsWithExistingShippingDiscounts(Boolean excludeItemsWithExistingShippingDiscounts) {
+    this.excludeItemsWithExistingShippingDiscounts = excludeItemsWithExistingShippingDiscounts;
+  }
+
+
+  public CatalogAdminsDiscountTarget excludedCategories(List<CatalogAdminsTargetedCategory> excludedCategories) {
     
     this.excludedCategories = excludedCategories;
     return this;
   }
 
-  public CatalogAdminsDiscountTarget addExcludedCategoriesItem(TargetedCategory excludedCategoriesItem) {
+  public CatalogAdminsDiscountTarget addExcludedCategoriesItem(CatalogAdminsTargetedCategory excludedCategoriesItem) {
     if (this.excludedCategories == null) {
       this.excludedCategories = new ArrayList<>();
     }
@@ -268,44 +268,36 @@ public class CatalogAdminsDiscountTarget implements Serializable {
   @javax.annotation.Nullable
   @ApiModelProperty(value = "List of categories to exclude from the discount. Useful to exclude specific child categories.")
 
-  public List<TargetedCategory> getExcludedCategories() {
+  public List<CatalogAdminsTargetedCategory> getExcludedCategories() {
     return excludedCategories;
   }
 
 
-  public void setExcludedCategories(List<TargetedCategory> excludedCategories) {
+  public void setExcludedCategories(List<CatalogAdminsTargetedCategory> excludedCategories) {
     this.excludedCategories = excludedCategories;
   }
 
 
-  public CatalogAdminsDiscountTarget products(List<TargetedProduct> products) {
+  public CatalogAdminsDiscountTarget excludedCategoriesOperator(String excludedCategoriesOperator) {
     
-    this.products = products;
-    return this;
-  }
-
-  public CatalogAdminsDiscountTarget addProductsItem(TargetedProduct productsItem) {
-    if (this.products == null) {
-      this.products = new ArrayList<>();
-    }
-    this.products.add(productsItem);
+    this.excludedCategoriesOperator = excludedCategoriesOperator;
     return this;
   }
 
    /**
-   * List of products that are eligible for the discount.
-   * @return products
+   * Applies to Included categories Defaults to Any
+   * @return excludedCategoriesOperator
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "List of products that are eligible for the discount.")
+  @ApiModelProperty(value = "Applies to Included categories Defaults to Any")
 
-  public List<TargetedProduct> getProducts() {
-    return products;
+  public String getExcludedCategoriesOperator() {
+    return excludedCategoriesOperator;
   }
 
 
-  public void setProducts(List<TargetedProduct> products) {
-    this.products = products;
+  public void setExcludedCategoriesOperator(String excludedCategoriesOperator) {
+    this.excludedCategoriesOperator = excludedCategoriesOperator;
   }
 
 
@@ -340,59 +332,114 @@ public class CatalogAdminsDiscountTarget implements Serializable {
   }
 
 
-  public CatalogAdminsDiscountTarget excludeItemsWithExistingShippingDiscounts(Boolean excludeItemsWithExistingShippingDiscounts) {
+  public CatalogAdminsDiscountTarget includeAllProducts(Boolean includeAllProducts) {
     
-    this.excludeItemsWithExistingShippingDiscounts = excludeItemsWithExistingShippingDiscounts;
+    this.includeAllProducts = includeAllProducts;
     return this;
   }
 
    /**
-   * Prevents order scoped discounts from layering over items that already have a shipping discount with the   same type.
-   * @return excludeItemsWithExistingShippingDiscounts
+   * If yes, the discount applies to all products sold on the storefront.
+   * @return includeAllProducts
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "Prevents order scoped discounts from layering over items that already have a shipping discount with the   same type.")
+  @ApiModelProperty(value = "If yes, the discount applies to all products sold on the storefront.")
 
-  public Boolean getExcludeItemsWithExistingShippingDiscounts() {
-    return excludeItemsWithExistingShippingDiscounts;
+  public Boolean getIncludeAllProducts() {
+    return includeAllProducts;
   }
 
 
-  public void setExcludeItemsWithExistingShippingDiscounts(Boolean excludeItemsWithExistingShippingDiscounts) {
-    this.excludeItemsWithExistingShippingDiscounts = excludeItemsWithExistingShippingDiscounts;
+  public void setIncludeAllProducts(Boolean includeAllProducts) {
+    this.includeAllProducts = includeAllProducts;
   }
 
 
-  public CatalogAdminsDiscountTarget excludeItemsWithExistingProductDiscounts(Boolean excludeItemsWithExistingProductDiscounts) {
+  public CatalogAdminsDiscountTarget includedCategoriesOperator(String includedCategoriesOperator) {
     
-    this.excludeItemsWithExistingProductDiscounts = excludeItemsWithExistingProductDiscounts;
+    this.includedCategoriesOperator = includedCategoriesOperator;
     return this;
   }
 
    /**
-   * Prevents order scoped discounts from layering over items that already have a product discount with the   same type.
-   * @return excludeItemsWithExistingProductDiscounts
+   * Applies to Included categories When Any, the target product can belong to any specified category. When All, the target product must belong to all specified categories. Defaults to Any
+   * @return includedCategoriesOperator
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "Prevents order scoped discounts from layering over items that already have a product discount with the   same type.")
+  @ApiModelProperty(value = "Applies to Included categories When Any, the target product can belong to any specified category. When All, the target product must belong to all specified categories. Defaults to Any")
 
-  public Boolean getExcludeItemsWithExistingProductDiscounts() {
-    return excludeItemsWithExistingProductDiscounts;
+  public String getIncludedCategoriesOperator() {
+    return includedCategoriesOperator;
   }
 
 
-  public void setExcludeItemsWithExistingProductDiscounts(Boolean excludeItemsWithExistingProductDiscounts) {
-    this.excludeItemsWithExistingProductDiscounts = excludeItemsWithExistingProductDiscounts;
+  public void setIncludedCategoriesOperator(String includedCategoriesOperator) {
+    this.includedCategoriesOperator = includedCategoriesOperator;
   }
 
 
-  public CatalogAdminsDiscountTarget shippingMethods(List<TargetedShippingMethod> shippingMethods) {
+  public CatalogAdminsDiscountTarget maximumQuantityPerRedemption(Integer maximumQuantityPerRedemption) {
+    
+    this.maximumQuantityPerRedemption = maximumQuantityPerRedemption;
+    return this;
+  }
+
+   /**
+   * When a condition is specified, this property limits the number of items that can be targeted per discount redemption with an order. if multiple redemptions are allowed per order then multiples of this value would be allowed in multiples of the associated  condition. If no condition is specified then this value is not used.   If null and condition exists, then defaults to 1.
+   * minimum: 0
+   * @return maximumQuantityPerRedemption
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "When a condition is specified, this property limits the number of items that can be targeted per discount redemption with an order. if multiple redemptions are allowed per order then multiples of this value would be allowed in multiples of the associated  condition. If no condition is specified then this value is not used.   If null and condition exists, then defaults to 1.")
+
+  public Integer getMaximumQuantityPerRedemption() {
+    return maximumQuantityPerRedemption;
+  }
+
+
+  public void setMaximumQuantityPerRedemption(Integer maximumQuantityPerRedemption) {
+    this.maximumQuantityPerRedemption = maximumQuantityPerRedemption;
+  }
+
+
+  public CatalogAdminsDiscountTarget products(List<TargetedProduct> products) {
+    
+    this.products = products;
+    return this;
+  }
+
+  public CatalogAdminsDiscountTarget addProductsItem(TargetedProduct productsItem) {
+    if (this.products == null) {
+      this.products = new ArrayList<>();
+    }
+    this.products.add(productsItem);
+    return this;
+  }
+
+   /**
+   * List of products that are eligible for the discount.
+   * @return products
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "List of products that are eligible for the discount.")
+
+  public List<TargetedProduct> getProducts() {
+    return products;
+  }
+
+
+  public void setProducts(List<TargetedProduct> products) {
+    this.products = products;
+  }
+
+
+  public CatalogAdminsDiscountTarget shippingMethods(List<CatalogAdminsTargetedShippingMethod> shippingMethods) {
     
     this.shippingMethods = shippingMethods;
     return this;
   }
 
-  public CatalogAdminsDiscountTarget addShippingMethodsItem(TargetedShippingMethod shippingMethodsItem) {
+  public CatalogAdminsDiscountTarget addShippingMethodsItem(CatalogAdminsTargetedShippingMethod shippingMethodsItem) {
     if (this.shippingMethods == null) {
       this.shippingMethods = new ArrayList<>();
     }
@@ -407,23 +454,23 @@ public class CatalogAdminsDiscountTarget implements Serializable {
   @javax.annotation.Nullable
   @ApiModelProperty(value = "Shipping method that is eligible for shipping discounts. This is a shipping method defined in Shipping Settings.")
 
-  public List<TargetedShippingMethod> getShippingMethods() {
+  public List<CatalogAdminsTargetedShippingMethod> getShippingMethods() {
     return shippingMethods;
   }
 
 
-  public void setShippingMethods(List<TargetedShippingMethod> shippingMethods) {
+  public void setShippingMethods(List<CatalogAdminsTargetedShippingMethod> shippingMethods) {
     this.shippingMethods = shippingMethods;
   }
 
 
-  public CatalogAdminsDiscountTarget shippingZones(List<TargetedShippingZone> shippingZones) {
+  public CatalogAdminsDiscountTarget shippingZones(List<CatalogAdminsTargetedShippingZone> shippingZones) {
     
     this.shippingZones = shippingZones;
     return this;
   }
 
-  public CatalogAdminsDiscountTarget addShippingZonesItem(TargetedShippingZone shippingZonesItem) {
+  public CatalogAdminsDiscountTarget addShippingZonesItem(CatalogAdminsTargetedShippingZone shippingZonesItem) {
     if (this.shippingZones == null) {
       this.shippingZones = new ArrayList<>();
     }
@@ -438,82 +485,36 @@ public class CatalogAdminsDiscountTarget implements Serializable {
   @javax.annotation.Nullable
   @ApiModelProperty(value = "Shipping Zones that are applicable for this discount")
 
-  public List<TargetedShippingZone> getShippingZones() {
+  public List<CatalogAdminsTargetedShippingZone> getShippingZones() {
     return shippingZones;
   }
 
 
-  public void setShippingZones(List<TargetedShippingZone> shippingZones) {
+  public void setShippingZones(List<CatalogAdminsTargetedShippingZone> shippingZones) {
     this.shippingZones = shippingZones;
   }
 
 
-  public CatalogAdminsDiscountTarget doNotApplyToHandlingFees(Boolean doNotApplyToHandlingFees) {
+  public CatalogAdminsDiscountTarget type(String type) {
     
-    this.doNotApplyToHandlingFees = doNotApplyToHandlingFees;
+    this.type = type;
     return this;
   }
 
    /**
-   * Prevents the discount from being applied to handling fees
-   * @return doNotApplyToHandlingFees
+   *     Type of target to which the discount applies. Possible values: &lt;pre&gt;Product&lt;/pre&gt; or &lt;pre&gt;Shipping&lt;/pre&gt;.  If this is a &lt;pre&gt;Product&lt;/pre&gt; type, you can specify which products or categories that the discount applies to.     If this is a &lt;pre&gt;Shipping&lt;/pre&gt; type then you must specify which shipping methods apply.
+   * @return type
   **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(value = "Prevents the discount from being applied to handling fees")
+  @javax.annotation.Nonnull
+  @ApiModelProperty(required = true, value = "    Type of target to which the discount applies. Possible values: <pre>Product</pre> or <pre>Shipping</pre>.  If this is a <pre>Product</pre> type, you can specify which products or categories that the discount applies to.     If this is a <pre>Shipping</pre> type then you must specify which shipping methods apply.")
 
-  public Boolean getDoNotApplyToHandlingFees() {
-    return doNotApplyToHandlingFees;
+  public String getType() {
+    return type;
   }
 
 
-  public void setDoNotApplyToHandlingFees(Boolean doNotApplyToHandlingFees) {
-    this.doNotApplyToHandlingFees = doNotApplyToHandlingFees;
-  }
-
-
-  public CatalogAdminsDiscountTarget maximumQuantityPerRedemption(Integer maximumQuantityPerRedemption) {
-    
-    this.maximumQuantityPerRedemption = maximumQuantityPerRedemption;
-    return this;
-  }
-
-   /**
-   * When a condition is specified, this property limits the number of items that can be targeted per discount redemption with an order.  if multiple redemptions are allowed per order then multiples of this value would be allowed in multiples of the associated   condition.  If no condition is specified then this value is not used.    If null and condition exists, then defaults to 1.
-   * @return maximumQuantityPerRedemption
-  **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(value = "When a condition is specified, this property limits the number of items that can be targeted per discount redemption with an order.  if multiple redemptions are allowed per order then multiples of this value would be allowed in multiples of the associated   condition.  If no condition is specified then this value is not used.    If null and condition exists, then defaults to 1.")
-
-  public Integer getMaximumQuantityPerRedemption() {
-    return maximumQuantityPerRedemption;
-  }
-
-
-  public void setMaximumQuantityPerRedemption(Integer maximumQuantityPerRedemption) {
-    this.maximumQuantityPerRedemption = maximumQuantityPerRedemption;
-  }
-
-
-  public CatalogAdminsDiscountTarget appliesToLeastExpensiveProductsFirst(Boolean appliesToLeastExpensiveProductsFirst) {
-    
-    this.appliesToLeastExpensiveProductsFirst = appliesToLeastExpensiveProductsFirst;
-    return this;
-  }
-
-   /**
-   * Determines which way the discount is optimized.  Consumers favor(default - false/null) or tenants favor (when this is set to true)  Applies to discounts where target is not a specific product or list of products.    May also impact behavior of Buy X Get Y so that X is the most expensive items and Y the least expensive.
-   * @return appliesToLeastExpensiveProductsFirst
-  **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(value = "Determines which way the discount is optimized.  Consumers favor(default - false/null) or tenants favor (when this is set to true)  Applies to discounts where target is not a specific product or list of products.    May also impact behavior of Buy X Get Y so that X is the most expensive items and Y the least expensive.")
-
-  public Boolean getAppliesToLeastExpensiveProductsFirst() {
-    return appliesToLeastExpensiveProductsFirst;
-  }
-
-
-  public void setAppliesToLeastExpensiveProductsFirst(Boolean appliesToLeastExpensiveProductsFirst) {
-    this.appliesToLeastExpensiveProductsFirst = appliesToLeastExpensiveProductsFirst;
+  public void setType(String type) {
+    this.type = type;
   }
 
 
@@ -527,21 +528,21 @@ public class CatalogAdminsDiscountTarget implements Serializable {
       return false;
     }
     CatalogAdminsDiscountTarget catalogAdminsDiscountTarget = (CatalogAdminsDiscountTarget) o;
-    return Objects.equals(this.type, catalogAdminsDiscountTarget.type) &&
+    return Objects.equals(this.appliesToLeastExpensiveProductsFirst, catalogAdminsDiscountTarget.appliesToLeastExpensiveProductsFirst) &&
+        Objects.equals(this.categories, catalogAdminsDiscountTarget.categories) &&
+        Objects.equals(this.doNotApplyToHandlingFees, catalogAdminsDiscountTarget.doNotApplyToHandlingFees) &&
+        Objects.equals(this.excludeItemsWithExistingProductDiscounts, catalogAdminsDiscountTarget.excludeItemsWithExistingProductDiscounts) &&
+        Objects.equals(this.excludeItemsWithExistingShippingDiscounts, catalogAdminsDiscountTarget.excludeItemsWithExistingShippingDiscounts) &&
+        Objects.equals(this.excludedCategories, catalogAdminsDiscountTarget.excludedCategories) &&
+        Objects.equals(this.excludedCategoriesOperator, catalogAdminsDiscountTarget.excludedCategoriesOperator) &&
+        Objects.equals(this.excludedProducts, catalogAdminsDiscountTarget.excludedProducts) &&
         Objects.equals(this.includeAllProducts, catalogAdminsDiscountTarget.includeAllProducts) &&
         Objects.equals(this.includedCategoriesOperator, catalogAdminsDiscountTarget.includedCategoriesOperator) &&
-        Objects.equals(this.categories, catalogAdminsDiscountTarget.categories) &&
-        Objects.equals(this.excludedCategoriesOperator, catalogAdminsDiscountTarget.excludedCategoriesOperator) &&
-        Objects.equals(this.excludedCategories, catalogAdminsDiscountTarget.excludedCategories) &&
+        Objects.equals(this.maximumQuantityPerRedemption, catalogAdminsDiscountTarget.maximumQuantityPerRedemption) &&
         Objects.equals(this.products, catalogAdminsDiscountTarget.products) &&
-        Objects.equals(this.excludedProducts, catalogAdminsDiscountTarget.excludedProducts) &&
-        Objects.equals(this.excludeItemsWithExistingShippingDiscounts, catalogAdminsDiscountTarget.excludeItemsWithExistingShippingDiscounts) &&
-        Objects.equals(this.excludeItemsWithExistingProductDiscounts, catalogAdminsDiscountTarget.excludeItemsWithExistingProductDiscounts) &&
         Objects.equals(this.shippingMethods, catalogAdminsDiscountTarget.shippingMethods) &&
         Objects.equals(this.shippingZones, catalogAdminsDiscountTarget.shippingZones) &&
-        Objects.equals(this.doNotApplyToHandlingFees, catalogAdminsDiscountTarget.doNotApplyToHandlingFees) &&
-        Objects.equals(this.maximumQuantityPerRedemption, catalogAdminsDiscountTarget.maximumQuantityPerRedemption) &&
-        Objects.equals(this.appliesToLeastExpensiveProductsFirst, catalogAdminsDiscountTarget.appliesToLeastExpensiveProductsFirst);
+        Objects.equals(this.type, catalogAdminsDiscountTarget.type);
   }
 
   private static <T> boolean equalsNullable(JsonNullable<T> a, JsonNullable<T> b) {
@@ -550,7 +551,7 @@ public class CatalogAdminsDiscountTarget implements Serializable {
 
   @Override
   public int hashCode() {
-    return Objects.hash(type, includeAllProducts, includedCategoriesOperator, categories, excludedCategoriesOperator, excludedCategories, products, excludedProducts, excludeItemsWithExistingShippingDiscounts, excludeItemsWithExistingProductDiscounts, shippingMethods, shippingZones, doNotApplyToHandlingFees, maximumQuantityPerRedemption, appliesToLeastExpensiveProductsFirst);
+    return Objects.hash(appliesToLeastExpensiveProductsFirst, categories, doNotApplyToHandlingFees, excludeItemsWithExistingProductDiscounts, excludeItemsWithExistingShippingDiscounts, excludedCategories, excludedCategoriesOperator, excludedProducts, includeAllProducts, includedCategoriesOperator, maximumQuantityPerRedemption, products, shippingMethods, shippingZones, type);
   }
 
   private static <T> int hashCodeNullable(JsonNullable<T> a) {
@@ -564,21 +565,21 @@ public class CatalogAdminsDiscountTarget implements Serializable {
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class CatalogAdminsDiscountTarget {\n");
-    sb.append("    type: ").append(toIndentedString(type)).append("\n");
+    sb.append("    appliesToLeastExpensiveProductsFirst: ").append(toIndentedString(appliesToLeastExpensiveProductsFirst)).append("\n");
+    sb.append("    categories: ").append(toIndentedString(categories)).append("\n");
+    sb.append("    doNotApplyToHandlingFees: ").append(toIndentedString(doNotApplyToHandlingFees)).append("\n");
+    sb.append("    excludeItemsWithExistingProductDiscounts: ").append(toIndentedString(excludeItemsWithExistingProductDiscounts)).append("\n");
+    sb.append("    excludeItemsWithExistingShippingDiscounts: ").append(toIndentedString(excludeItemsWithExistingShippingDiscounts)).append("\n");
+    sb.append("    excludedCategories: ").append(toIndentedString(excludedCategories)).append("\n");
+    sb.append("    excludedCategoriesOperator: ").append(toIndentedString(excludedCategoriesOperator)).append("\n");
+    sb.append("    excludedProducts: ").append(toIndentedString(excludedProducts)).append("\n");
     sb.append("    includeAllProducts: ").append(toIndentedString(includeAllProducts)).append("\n");
     sb.append("    includedCategoriesOperator: ").append(toIndentedString(includedCategoriesOperator)).append("\n");
-    sb.append("    categories: ").append(toIndentedString(categories)).append("\n");
-    sb.append("    excludedCategoriesOperator: ").append(toIndentedString(excludedCategoriesOperator)).append("\n");
-    sb.append("    excludedCategories: ").append(toIndentedString(excludedCategories)).append("\n");
+    sb.append("    maximumQuantityPerRedemption: ").append(toIndentedString(maximumQuantityPerRedemption)).append("\n");
     sb.append("    products: ").append(toIndentedString(products)).append("\n");
-    sb.append("    excludedProducts: ").append(toIndentedString(excludedProducts)).append("\n");
-    sb.append("    excludeItemsWithExistingShippingDiscounts: ").append(toIndentedString(excludeItemsWithExistingShippingDiscounts)).append("\n");
-    sb.append("    excludeItemsWithExistingProductDiscounts: ").append(toIndentedString(excludeItemsWithExistingProductDiscounts)).append("\n");
     sb.append("    shippingMethods: ").append(toIndentedString(shippingMethods)).append("\n");
     sb.append("    shippingZones: ").append(toIndentedString(shippingZones)).append("\n");
-    sb.append("    doNotApplyToHandlingFees: ").append(toIndentedString(doNotApplyToHandlingFees)).append("\n");
-    sb.append("    maximumQuantityPerRedemption: ").append(toIndentedString(maximumQuantityPerRedemption)).append("\n");
-    sb.append("    appliesToLeastExpensiveProductsFirst: ").append(toIndentedString(appliesToLeastExpensiveProductsFirst)).append("\n");
+    sb.append("    type: ").append(toIndentedString(type)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -601,21 +602,21 @@ public class CatalogAdminsDiscountTarget implements Serializable {
   static {
     // a set of all properties/fields (JSON key names)
     openapiFields = new HashSet<String>();
-    openapiFields.add("type");
+    openapiFields.add("appliesToLeastExpensiveProductsFirst");
+    openapiFields.add("categories");
+    openapiFields.add("doNotApplyToHandlingFees");
+    openapiFields.add("excludeItemsWithExistingProductDiscounts");
+    openapiFields.add("excludeItemsWithExistingShippingDiscounts");
+    openapiFields.add("excludedCategories");
+    openapiFields.add("excludedCategoriesOperator");
+    openapiFields.add("excludedProducts");
     openapiFields.add("includeAllProducts");
     openapiFields.add("includedCategoriesOperator");
-    openapiFields.add("categories");
-    openapiFields.add("excludedCategoriesOperator");
-    openapiFields.add("excludedCategories");
+    openapiFields.add("maximumQuantityPerRedemption");
     openapiFields.add("products");
-    openapiFields.add("excludedProducts");
-    openapiFields.add("excludeItemsWithExistingShippingDiscounts");
-    openapiFields.add("excludeItemsWithExistingProductDiscounts");
     openapiFields.add("shippingMethods");
     openapiFields.add("shippingZones");
-    openapiFields.add("doNotApplyToHandlingFees");
-    openapiFields.add("maximumQuantityPerRedemption");
-    openapiFields.add("appliesToLeastExpensiveProductsFirst");
+    openapiFields.add("type");
 
     // a set of required properties/fields (JSON key names)
     openapiRequiredFields = new HashSet<String>();
@@ -650,12 +651,6 @@ public class CatalogAdminsDiscountTarget implements Serializable {
           throw new IllegalArgumentException(String.format("The required field `%s` is not found in the JSON string: %s", requiredField, jsonObj.toString()));
         }
       }
-      if (!jsonObj.get("type").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `type` to be a primitive type in the JSON string but got `%s`", jsonObj.get("type").toString()));
-      }
-      if ((jsonObj.get("includedCategoriesOperator") != null && !jsonObj.get("includedCategoriesOperator").isJsonNull()) && !jsonObj.get("includedCategoriesOperator").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `includedCategoriesOperator` to be a primitive type in the JSON string but got `%s`", jsonObj.get("includedCategoriesOperator").toString()));
-      }
       if (jsonObj.get("categories") != null && !jsonObj.get("categories").isJsonNull()) {
         JsonArray jsonArraycategories = jsonObj.getAsJsonArray("categories");
         if (jsonArraycategories != null) {
@@ -666,12 +661,9 @@ public class CatalogAdminsDiscountTarget implements Serializable {
 
           // validate the optional field `categories` (array)
           for (int i = 0; i < jsonArraycategories.size(); i++) {
-            TargetedCategory.validateJsonObject(jsonArraycategories.get(i).getAsJsonObject());
+            CatalogAdminsTargetedCategory.validateJsonObject(jsonArraycategories.get(i).getAsJsonObject());
           };
         }
-      }
-      if ((jsonObj.get("excludedCategoriesOperator") != null && !jsonObj.get("excludedCategoriesOperator").isJsonNull()) && !jsonObj.get("excludedCategoriesOperator").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `excludedCategoriesOperator` to be a primitive type in the JSON string but got `%s`", jsonObj.get("excludedCategoriesOperator").toString()));
       }
       if (jsonObj.get("excludedCategories") != null && !jsonObj.get("excludedCategories").isJsonNull()) {
         JsonArray jsonArrayexcludedCategories = jsonObj.getAsJsonArray("excludedCategories");
@@ -683,23 +675,12 @@ public class CatalogAdminsDiscountTarget implements Serializable {
 
           // validate the optional field `excludedCategories` (array)
           for (int i = 0; i < jsonArrayexcludedCategories.size(); i++) {
-            TargetedCategory.validateJsonObject(jsonArrayexcludedCategories.get(i).getAsJsonObject());
+            CatalogAdminsTargetedCategory.validateJsonObject(jsonArrayexcludedCategories.get(i).getAsJsonObject());
           };
         }
       }
-      if (jsonObj.get("products") != null && !jsonObj.get("products").isJsonNull()) {
-        JsonArray jsonArrayproducts = jsonObj.getAsJsonArray("products");
-        if (jsonArrayproducts != null) {
-          // ensure the json data is an array
-          if (!jsonObj.get("products").isJsonArray()) {
-            throw new IllegalArgumentException(String.format("Expected the field `products` to be an array in the JSON string but got `%s`", jsonObj.get("products").toString()));
-          }
-
-          // validate the optional field `products` (array)
-          for (int i = 0; i < jsonArrayproducts.size(); i++) {
-            TargetedProduct.validateJsonObject(jsonArrayproducts.get(i).getAsJsonObject());
-          };
-        }
+      if ((jsonObj.get("excludedCategoriesOperator") != null && !jsonObj.get("excludedCategoriesOperator").isJsonNull()) && !jsonObj.get("excludedCategoriesOperator").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `excludedCategoriesOperator` to be a primitive type in the JSON string but got `%s`", jsonObj.get("excludedCategoriesOperator").toString()));
       }
       if (jsonObj.get("excludedProducts") != null && !jsonObj.get("excludedProducts").isJsonNull()) {
         JsonArray jsonArrayexcludedProducts = jsonObj.getAsJsonArray("excludedProducts");
@@ -715,6 +696,23 @@ public class CatalogAdminsDiscountTarget implements Serializable {
           };
         }
       }
+      if ((jsonObj.get("includedCategoriesOperator") != null && !jsonObj.get("includedCategoriesOperator").isJsonNull()) && !jsonObj.get("includedCategoriesOperator").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `includedCategoriesOperator` to be a primitive type in the JSON string but got `%s`", jsonObj.get("includedCategoriesOperator").toString()));
+      }
+      if (jsonObj.get("products") != null && !jsonObj.get("products").isJsonNull()) {
+        JsonArray jsonArrayproducts = jsonObj.getAsJsonArray("products");
+        if (jsonArrayproducts != null) {
+          // ensure the json data is an array
+          if (!jsonObj.get("products").isJsonArray()) {
+            throw new IllegalArgumentException(String.format("Expected the field `products` to be an array in the JSON string but got `%s`", jsonObj.get("products").toString()));
+          }
+
+          // validate the optional field `products` (array)
+          for (int i = 0; i < jsonArrayproducts.size(); i++) {
+            TargetedProduct.validateJsonObject(jsonArrayproducts.get(i).getAsJsonObject());
+          };
+        }
+      }
       if (jsonObj.get("shippingMethods") != null && !jsonObj.get("shippingMethods").isJsonNull()) {
         JsonArray jsonArrayshippingMethods = jsonObj.getAsJsonArray("shippingMethods");
         if (jsonArrayshippingMethods != null) {
@@ -725,7 +723,7 @@ public class CatalogAdminsDiscountTarget implements Serializable {
 
           // validate the optional field `shippingMethods` (array)
           for (int i = 0; i < jsonArrayshippingMethods.size(); i++) {
-            TargetedShippingMethod.validateJsonObject(jsonArrayshippingMethods.get(i).getAsJsonObject());
+            CatalogAdminsTargetedShippingMethod.validateJsonObject(jsonArrayshippingMethods.get(i).getAsJsonObject());
           };
         }
       }
@@ -739,9 +737,12 @@ public class CatalogAdminsDiscountTarget implements Serializable {
 
           // validate the optional field `shippingZones` (array)
           for (int i = 0; i < jsonArrayshippingZones.size(); i++) {
-            TargetedShippingZone.validateJsonObject(jsonArrayshippingZones.get(i).getAsJsonObject());
+            CatalogAdminsTargetedShippingZone.validateJsonObject(jsonArrayshippingZones.get(i).getAsJsonObject());
           };
         }
+      }
+      if (!jsonObj.get("type").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `type` to be a primitive type in the JSON string but got `%s`", jsonObj.get("type").toString()));
       }
   }
 

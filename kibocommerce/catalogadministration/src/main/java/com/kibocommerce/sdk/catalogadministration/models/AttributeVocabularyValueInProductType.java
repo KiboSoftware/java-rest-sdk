@@ -1,8 +1,8 @@
 /*
  * Kibo Catalog Admin Services
- * OpenAPI Spec for Kibo Catalog Admin Services
+ * <div id=\"overview_CATALOG_ADMIN\">             <h2>CATALOG ADMINISTRATION</h2>             <p>The Catalog Administration APIs are a collection of resources for configuring the catalogs and products offered to your shoppers, including                 discounts and coupon sets, faceting, price lists, and different types or variations of products. See the                 <a href=\"/concept-guides/catalog\">Catalog user guides</a>                 for information about the related features in the Unified Commerce Admin.</p>             <p>Use the <strong>Attributes</strong> resource to manage localization and attribute configurations for your catalogs. This current version of the Attributes API includes localizedContent to                 support <a href=\"/pages/catalog-structure#multi-locale-catalogs\">multi-locale catalogs</a>, which was not present in the legacy API model. If                 you were a client prior to May 2024 and have upgraded your implementation to support this feature,                 you can still access attribute data that has not yet been rewritten to the new model by providing                 an x-api-version header set to \"1\". </p>             <p>Use the <strong>Categories</strong> resource to organize products and control where they appear on the storefront. Create                 and maintain a hierarchy of categories and subcategories where the site will store properties. This current version of the Categories API includes localizedContent to                 support <a href=\"/pages/catalog-structure#multi-locale-catalogs\">multi-locale catalogs</a>, which was not present in the legacy API model. If                 you were a client prior to May 2024 and have upgraded your implementation to support this feature,                 you can still access category data that has not yet been rewritten to the new model by providing                 an x-api-version header set to \"1\". </p>             <p>Use the <strong>Coupon Sets</strong> resource to view and create coupon sets. You can use coupon sets to group multiple                 coupon codes together and associate them with one or more discounts.</p>             <p>Use the <strong>Currency</strong> resource to manage the currency localization rules and exchange rates for any of the                 currencies that are supported for placing orders in.</p>             <p>Use the <strong>Discounts</strong> and <strong>Discount Settings</strong> resources to define and manage discounts to apply to products, product categories, or                 orders. This current version of the Discounts API includes localizedContent to                 support <a href=\"/pages/catalog-structure#multi-locale-catalogs\">multi-locale catalogs</a>, which was not present in the legacy Products API model. If                 you were a client prior to May 2024 and have upgraded your implementation to support this feature,                 you can still access discount data that has not yet been rewritten to the new model by providing                 an x-api-version header set to \"1\". </p>             <p>Use the <strong>Facets</strong> resource to manage the facets shoppers use to filter product display results on a                 storefront. Facets can include categories, product attributes, or prices, and use either a range of                 values or discrete values.</p>             <p>Use the <strong>Master Catalog</strong> resource to view details of the master catalogs associated with a tenant and to                 manage the product publishing mode for each master catalog.</p>             <p>Use the <strong>Price Lists</strong> resources to view and create price lists. You can use price lists to override the                 catalog pricing of products for specific customer segments and/or sites.</p>             <p>Use the <strong>Products</strong>, <strong>Product Types/Extras/Options/Properties</strong>, and <strong>Product Sort Definitions</strong> resources to create new product definitions in the master catalog and determine which                 catalogs will feature products. This current version of the Products API includes localizedContent to                 support <a href=\"/pages/catalog-structure#multi-locale-catalogs\">multi-locale catalogs</a>, which was not present in the legacy Products API model. If                 you were a client prior to May 2024 and have upgraded your implementation to support this feature,                 you can still access product data that has not yet been rewritten to the new model by providing                 an x-api-version header set to \"1\".</p>             <p>Use the <strong>Publishing</strong> resource to publish pending product updates together as part of a set.</p>             <p>Use the <strong>Search</strong> resource to manage all settings and options for providing product search on your site, as                 well as search tuning rules.</p>         </div>
  *
- * The version of the OpenAPI document: 1.0.0
+ * The version of the OpenAPI document: v1
  * 
  *
  * NOTE: This class is auto generated by OpenAPI Generator (https://openapi-generator.tech).
@@ -56,17 +56,17 @@ import com.kibocommerce.sdk.common.JSON;
 public class AttributeVocabularyValueInProductType implements Serializable {
   private static final long serialVersionUID = 1L;
 
-  public static final String SERIALIZED_NAME_VALUE = "value";
-  @SerializedName(SERIALIZED_NAME_VALUE)
-  private Object value = null;
+  public static final String SERIALIZED_NAME_DISPLAY_INFO = "displayInfo";
+  @SerializedName(SERIALIZED_NAME_DISPLAY_INFO)
+  private CatalogAdminsAttributeVocabularyValueDisplayInfo displayInfo;
 
   public static final String SERIALIZED_NAME_ORDER = "order";
   @SerializedName(SERIALIZED_NAME_ORDER)
   private Integer order;
 
-  public static final String SERIALIZED_NAME_DISPLAY_INFO = "displayInfo";
-  @SerializedName(SERIALIZED_NAME_DISPLAY_INFO)
-  private CatalogAdminsAttributeVocabularyValueDisplayInfo displayInfo;
+  public static final String SERIALIZED_NAME_VALUE = "value";
+  @SerializedName(SERIALIZED_NAME_VALUE)
+  private Object value = null;
 
   public static final String SERIALIZED_NAME_VOCABULARY_VALUE_DETAIL = "vocabularyValueDetail";
   @SerializedName(SERIALIZED_NAME_VOCABULARY_VALUE_DETAIL)
@@ -75,26 +75,26 @@ public class AttributeVocabularyValueInProductType implements Serializable {
   public AttributeVocabularyValueInProductType() {
   }
 
-  public AttributeVocabularyValueInProductType value(Object value) {
+  public AttributeVocabularyValueInProductType displayInfo(CatalogAdminsAttributeVocabularyValueDisplayInfo displayInfo) {
     
-    this.value = value;
+    this.displayInfo = displayInfo;
     return this;
   }
 
    /**
-   * The actual value of the attribute vocabulary. This must be an existing value defined in the attribute vocabulary
-   * @return value
+   * Get displayInfo
+   * @return displayInfo
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "The actual value of the attribute vocabulary. This must be an existing value defined in the attribute vocabulary")
+  @ApiModelProperty(value = "")
 
-  public Object getValue() {
-    return value;
+  public CatalogAdminsAttributeVocabularyValueDisplayInfo getDisplayInfo() {
+    return displayInfo;
   }
 
 
-  public void setValue(Object value) {
-    this.value = value;
+  public void setDisplayInfo(CatalogAdminsAttributeVocabularyValueDisplayInfo displayInfo) {
+    this.displayInfo = displayInfo;
   }
 
 
@@ -121,26 +121,26 @@ public class AttributeVocabularyValueInProductType implements Serializable {
   }
 
 
-  public AttributeVocabularyValueInProductType displayInfo(CatalogAdminsAttributeVocabularyValueDisplayInfo displayInfo) {
+  public AttributeVocabularyValueInProductType value(Object value) {
     
-    this.displayInfo = displayInfo;
+    this.value = value;
     return this;
   }
 
    /**
-   * Get displayInfo
-   * @return displayInfo
+   * The actual value of the attribute vocabulary. This must be an existing value defined in the attribute vocabulary
+   * @return value
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
+  @ApiModelProperty(value = "The actual value of the attribute vocabulary. This must be an existing value defined in the attribute vocabulary")
 
-  public CatalogAdminsAttributeVocabularyValueDisplayInfo getDisplayInfo() {
-    return displayInfo;
+  public Object getValue() {
+    return value;
   }
 
 
-  public void setDisplayInfo(CatalogAdminsAttributeVocabularyValueDisplayInfo displayInfo) {
-    this.displayInfo = displayInfo;
+  public void setValue(Object value) {
+    this.value = value;
   }
 
 
@@ -177,9 +177,9 @@ public class AttributeVocabularyValueInProductType implements Serializable {
       return false;
     }
     AttributeVocabularyValueInProductType attributeVocabularyValueInProductType = (AttributeVocabularyValueInProductType) o;
-    return Objects.equals(this.value, attributeVocabularyValueInProductType.value) &&
+    return Objects.equals(this.displayInfo, attributeVocabularyValueInProductType.displayInfo) &&
         Objects.equals(this.order, attributeVocabularyValueInProductType.order) &&
-        Objects.equals(this.displayInfo, attributeVocabularyValueInProductType.displayInfo) &&
+        Objects.equals(this.value, attributeVocabularyValueInProductType.value) &&
         Objects.equals(this.vocabularyValueDetail, attributeVocabularyValueInProductType.vocabularyValueDetail);
   }
 
@@ -189,7 +189,7 @@ public class AttributeVocabularyValueInProductType implements Serializable {
 
   @Override
   public int hashCode() {
-    return Objects.hash(value, order, displayInfo, vocabularyValueDetail);
+    return Objects.hash(displayInfo, order, value, vocabularyValueDetail);
   }
 
   private static <T> int hashCodeNullable(JsonNullable<T> a) {
@@ -203,9 +203,9 @@ public class AttributeVocabularyValueInProductType implements Serializable {
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class AttributeVocabularyValueInProductType {\n");
-    sb.append("    value: ").append(toIndentedString(value)).append("\n");
-    sb.append("    order: ").append(toIndentedString(order)).append("\n");
     sb.append("    displayInfo: ").append(toIndentedString(displayInfo)).append("\n");
+    sb.append("    order: ").append(toIndentedString(order)).append("\n");
+    sb.append("    value: ").append(toIndentedString(value)).append("\n");
     sb.append("    vocabularyValueDetail: ").append(toIndentedString(vocabularyValueDetail)).append("\n");
     sb.append("}");
     return sb.toString();
@@ -229,9 +229,9 @@ public class AttributeVocabularyValueInProductType implements Serializable {
   static {
     // a set of all properties/fields (JSON key names)
     openapiFields = new HashSet<String>();
-    openapiFields.add("value");
-    openapiFields.add("order");
     openapiFields.add("displayInfo");
+    openapiFields.add("order");
+    openapiFields.add("value");
     openapiFields.add("vocabularyValueDetail");
 
     // a set of required properties/fields (JSON key names)

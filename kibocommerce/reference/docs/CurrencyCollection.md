@@ -7,8 +7,8 @@
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
+|**items** | [**List&lt;ReferenceCurrency&gt;**](ReferenceCurrency.md) |  |  [optional] |
 |**totalCount** | **Integer** |  |  [optional] |
-|**items** | [**List&lt;Currency&gt;**](Currency.md) |  |  [optional] |
 
 
 ## Implemented Interfaces

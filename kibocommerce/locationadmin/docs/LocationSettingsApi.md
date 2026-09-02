@@ -11,7 +11,7 @@ All URIs are relative to *http://https:/api*
 
 <a name="getLocationUsage"></a>
 # **getLocationUsage**
-> LocationUsage getLocationUsage(code)
+> LocationUsage getLocationUsage(code, responseFields)
 
 Get Location Usage
 
@@ -36,14 +36,11 @@ public class Example {
     HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
     bearerAuth.setBearerToken("BEARER TOKEN");
 
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
-
     LocationSettingsApi apiInstance = new LocationSettingsApi(defaultClient);
     String code = "code_example"; // String | 
+    String responseFields = "responseFields_example"; // String | limits which fields are returned in the response body
     try {
-      LocationUsage result = apiInstance.getLocationUsage(code);
+      LocationUsage result = apiInstance.getLocationUsage(code, responseFields);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling LocationSettingsApi#getLocationUsage");
@@ -61,6 +58,7 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **code** | **String**|  | |
+| **responseFields** | **String**| limits which fields are returned in the response body | [optional] |
 
 ### Return type
 
@@ -68,7 +66,7 @@ public class Example {
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth), [clientOauth2](../README.md#clientOauth2)
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
@@ -82,11 +80,11 @@ public class Example {
 
 <a name="getLocationUsages"></a>
 # **getLocationUsages**
-> LocationUsageCollection getLocationUsages()
+> LocationUsageCollection getLocationUsages(responseFields)
 
 Get Location Usages
 
-Get the locationUsages for the Site.
+Get the locationUsages for the site.
 
 ### Example
 ```java
@@ -107,13 +105,10 @@ public class Example {
     HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
     bearerAuth.setBearerToken("BEARER TOKEN");
 
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
-
     LocationSettingsApi apiInstance = new LocationSettingsApi(defaultClient);
+    String responseFields = "responseFields_example"; // String | limits which fields are returned in the response body
     try {
-      LocationUsageCollection result = apiInstance.getLocationUsages();
+      LocationUsageCollection result = apiInstance.getLocationUsages(responseFields);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling LocationSettingsApi#getLocationUsages");
@@ -127,7 +122,10 @@ public class Example {
 ```
 
 ### Parameters
-This endpoint does not need any parameter.
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **responseFields** | **String**| limits which fields are returned in the response body | [optional] |
 
 ### Return type
 
@@ -135,7 +133,7 @@ This endpoint does not need any parameter.
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth), [clientOauth2](../README.md#clientOauth2)
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
@@ -149,7 +147,7 @@ This endpoint does not need any parameter.
 
 <a name="updateLocationUsageAsync"></a>
 # **updateLocationUsageAsync**
-> LocationUsage updateLocationUsageAsync(code, locationUsage)
+> LocationUsage updateLocationUsageAsync(code, responseFields, locationUsage)
 
 Update Location Usage Async
 
@@ -174,15 +172,12 @@ public class Example {
     HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
     bearerAuth.setBearerToken("BEARER TOKEN");
 
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
-
     LocationSettingsApi apiInstance = new LocationSettingsApi(defaultClient);
     String code = "code_example"; // String | 
+    String responseFields = "responseFields_example"; // String | limits which fields are returned in the response body
     LocationUsage locationUsage = new LocationUsage(); // LocationUsage | 
     try {
-      LocationUsage result = apiInstance.updateLocationUsageAsync(code, locationUsage);
+      LocationUsage result = apiInstance.updateLocationUsageAsync(code, responseFields, locationUsage);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling LocationSettingsApi#updateLocationUsageAsync");
@@ -200,6 +195,7 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **code** | **String**|  | |
+| **responseFields** | **String**| limits which fields are returned in the response body | [optional] |
 | **locationUsage** | [**LocationUsage**](LocationUsage.md)|  | [optional] |
 
 ### Return type
@@ -208,7 +204,7 @@ public class Example {
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth), [clientOauth2](../README.md#clientOauth2)
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 

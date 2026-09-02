@@ -7,11 +7,11 @@
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
-|**startIndex** | **Integer** |  |  [optional] |
-|**pageSize** | **Integer** |  |  [optional] |
+|**items** | [**List&lt;Tenant&gt;**](Tenant.md) |  |  [optional] |
 |**pageCount** | **Integer** |  |  [optional] |
+|**pageSize** | **Integer** |  |  [optional] |
+|**startIndex** | **Integer** |  |  [optional] |
 |**totalCount** | **Integer** |  |  [optional] |
-|**items** | [**List&lt;AdminUserTenant&gt;**](AdminUserTenant.md) |  |  [optional] |
 
 
 ## Implemented Interfaces

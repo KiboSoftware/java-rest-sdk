@@ -7,19 +7,21 @@
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
-|**productCode** | **String** |  |  [optional] |
-|**name** | **String** |  |  [optional] |
-|**productType** | **String** |  |  [optional] |
-|**mfgPartNumber** | **String** |  |  [optional] |
-|**variationProductCode** | **String** |  |  [optional] |
-|**sku** | **String** |  |  [optional] |
-|**goodsType** | **String** |  |  [optional] |
-|**productUsage** | **String** |  |  [optional] |
 |**bundledProducts** | [**List&lt;BundledProdu&gt;**](BundledProdu.md) |  |  [optional] |
+|**condition** | **String** |  |  [optional] |
+|**goodsType** | **String** |  |  [optional] |
 |**isSplitExtrasInShipment** | **Boolean** |  |  [optional] |
-|**properties** | [**List&lt;ReservationWebAPIProductProperty&gt;**](ReservationWebAPIProductProperty.md) |  |  [optional] |
-|**measurements** | [**ReservationWebAPIPackageMeasurements**](ReservationWebAPIPackageMeasurements.md) |  |  [optional] |
 |**isTaxable** | **Boolean** |  |  [optional] |
+|**measurements** | [**ReservationWebAPIPackageMeasurements**](ReservationWebAPIPackageMeasurements.md) |  |  [optional] |
+|**mfgPartNumber** | **String** |  |  [optional] |
+|**name** | **String** |  |  [optional] |
+|**productCode** | **String** |  |  [optional] |
+|**productType** | **String** |  |  [optional] |
+|**productUsage** | **String** |  |  [optional] |
+|**properties** | [**List&lt;ReservationWebAPIProductProperty&gt;**](ReservationWebAPIProductProperty.md) |  |  [optional] |
+|**serialNumber** | **String** |  |  [optional] |
+|**sku** | **String** |  |  [optional] |
+|**variationProductCode** | **String** |  |  [optional] |
 
 
 ## Implemented Interfaces

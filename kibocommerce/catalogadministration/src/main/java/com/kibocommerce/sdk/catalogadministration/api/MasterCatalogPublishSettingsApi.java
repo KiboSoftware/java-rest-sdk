@@ -1,8 +1,8 @@
 /*
  * Kibo Catalog Admin Services
- * OpenAPI Spec for Kibo Catalog Admin Services
+ * <div id=\"overview_CATALOG_ADMIN\">             <h2>CATALOG ADMINISTRATION</h2>             <p>The Catalog Administration APIs are a collection of resources for configuring the catalogs and products offered to your shoppers, including                 discounts and coupon sets, faceting, price lists, and different types or variations of products. See the                 <a href=\"/concept-guides/catalog\">Catalog user guides</a>                 for information about the related features in the Unified Commerce Admin.</p>             <p>Use the <strong>Attributes</strong> resource to manage localization and attribute configurations for your catalogs. This current version of the Attributes API includes localizedContent to                 support <a href=\"/pages/catalog-structure#multi-locale-catalogs\">multi-locale catalogs</a>, which was not present in the legacy API model. If                 you were a client prior to May 2024 and have upgraded your implementation to support this feature,                 you can still access attribute data that has not yet been rewritten to the new model by providing                 an x-api-version header set to \"1\". </p>             <p>Use the <strong>Categories</strong> resource to organize products and control where they appear on the storefront. Create                 and maintain a hierarchy of categories and subcategories where the site will store properties. This current version of the Categories API includes localizedContent to                 support <a href=\"/pages/catalog-structure#multi-locale-catalogs\">multi-locale catalogs</a>, which was not present in the legacy API model. If                 you were a client prior to May 2024 and have upgraded your implementation to support this feature,                 you can still access category data that has not yet been rewritten to the new model by providing                 an x-api-version header set to \"1\". </p>             <p>Use the <strong>Coupon Sets</strong> resource to view and create coupon sets. You can use coupon sets to group multiple                 coupon codes together and associate them with one or more discounts.</p>             <p>Use the <strong>Currency</strong> resource to manage the currency localization rules and exchange rates for any of the                 currencies that are supported for placing orders in.</p>             <p>Use the <strong>Discounts</strong> and <strong>Discount Settings</strong> resources to define and manage discounts to apply to products, product categories, or                 orders. This current version of the Discounts API includes localizedContent to                 support <a href=\"/pages/catalog-structure#multi-locale-catalogs\">multi-locale catalogs</a>, which was not present in the legacy Products API model. If                 you were a client prior to May 2024 and have upgraded your implementation to support this feature,                 you can still access discount data that has not yet been rewritten to the new model by providing                 an x-api-version header set to \"1\". </p>             <p>Use the <strong>Facets</strong> resource to manage the facets shoppers use to filter product display results on a                 storefront. Facets can include categories, product attributes, or prices, and use either a range of                 values or discrete values.</p>             <p>Use the <strong>Master Catalog</strong> resource to view details of the master catalogs associated with a tenant and to                 manage the product publishing mode for each master catalog.</p>             <p>Use the <strong>Price Lists</strong> resources to view and create price lists. You can use price lists to override the                 catalog pricing of products for specific customer segments and/or sites.</p>             <p>Use the <strong>Products</strong>, <strong>Product Types/Extras/Options/Properties</strong>, and <strong>Product Sort Definitions</strong> resources to create new product definitions in the master catalog and determine which                 catalogs will feature products. This current version of the Products API includes localizedContent to                 support <a href=\"/pages/catalog-structure#multi-locale-catalogs\">multi-locale catalogs</a>, which was not present in the legacy Products API model. If                 you were a client prior to May 2024 and have upgraded your implementation to support this feature,                 you can still access product data that has not yet been rewritten to the new model by providing                 an x-api-version header set to \"1\".</p>             <p>Use the <strong>Publishing</strong> resource to publish pending product updates together as part of a set.</p>             <p>Use the <strong>Search</strong> resource to manage all settings and options for providing product search on your site, as                 well as search tuning rules.</p>         </div>
  *
- * The version of the OpenAPI document: 1.0.0
+ * The version of the OpenAPI document: v1
  * 
  *
  * NOTE: This class is auto generated by OpenAPI Generator (https://openapi-generator.tech).
@@ -96,16 +96,17 @@ public class MasterCatalogPublishSettingsApi {
     /**
      * Build call for getMasterCatalog
      * @param masterCatalogId  (required)
+     * @param responseFields limits which fields are returned in the response body (optional)
      * @param _callback Callback for upload/download progress
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call getMasterCatalogCall(Integer masterCatalogId, final ApiCallback _callback) throws ApiException {
+    public okhttp3.Call getMasterCatalogCall(Integer masterCatalogId, String responseFields, final ApiCallback _callback) throws ApiException {
         String basePath = null;
         // Operation Servers
         String[] localBasePaths = new String[] {  };
@@ -131,6 +132,10 @@ public class MasterCatalogPublishSettingsApi {
         Map<String, String> localVarCookieParams = new HashMap<String, String>();
         Map<String, Object> localVarFormParams = new HashMap<String, Object>();
 
+        if (responseFields != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("responseFields", responseFields));
+        }
+
         final String[] localVarAccepts = {
             "application/json", "text/json", "text/plain"
         };
@@ -147,12 +152,12 @@ public class MasterCatalogPublishSettingsApi {
             localVarHeaderParams.put("Content-Type", localVarContentType);
         }
 
-        String[] localVarAuthNames = new String[] { "bearerAuth", "clientOauth2" };
+        String[] localVarAuthNames = new String[] { "bearerAuth" };
         return localVarApiClient.buildCall(basePath, localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call getMasterCatalogValidateBeforeCall(Integer masterCatalogId, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call getMasterCatalogValidateBeforeCall(Integer masterCatalogId, String responseFields, final ApiCallback _callback) throws ApiException {
         
         // verify the required parameter 'masterCatalogId' is set
         if (masterCatalogId == null) {
@@ -160,78 +165,82 @@ public class MasterCatalogPublishSettingsApi {
         }
         
 
-        okhttp3.Call localVarCall = getMasterCatalogCall(masterCatalogId, _callback);
+        okhttp3.Call localVarCall = getMasterCatalogCall(masterCatalogId, responseFields, _callback);
         return localVarCall;
 
     }
 
     /**
-     * Get master catalog
-     * Get a MasterCatalog
+     * Get Master Catalog
+     * Retrieves a specific master catalog by its Id.
      * @param masterCatalogId  (required)
+     * @param responseFields limits which fields are returned in the response body (optional)
      * @return CatalogAdminsMasterCatalog
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
      </table>
      */
-    public CatalogAdminsMasterCatalog getMasterCatalog(Integer masterCatalogId) throws ApiException {
-        ApiResponse<CatalogAdminsMasterCatalog> localVarResp = getMasterCatalogWithHttpInfo(masterCatalogId);
+    public CatalogAdminsMasterCatalog getMasterCatalog(Integer masterCatalogId, String responseFields) throws ApiException {
+        ApiResponse<CatalogAdminsMasterCatalog> localVarResp = getMasterCatalogWithHttpInfo(masterCatalogId, responseFields);
         return localVarResp.getData();
     }
 
     /**
-     * Get master catalog
-     * Get a MasterCatalog
+     * Get Master Catalog
+     * Retrieves a specific master catalog by its Id.
      * @param masterCatalogId  (required)
+     * @param responseFields limits which fields are returned in the response body (optional)
      * @return ApiResponse&lt;CatalogAdminsMasterCatalog&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<CatalogAdminsMasterCatalog> getMasterCatalogWithHttpInfo(Integer masterCatalogId) throws ApiException {
-        okhttp3.Call localVarCall = getMasterCatalogValidateBeforeCall(masterCatalogId, null);
+    public ApiResponse<CatalogAdminsMasterCatalog> getMasterCatalogWithHttpInfo(Integer masterCatalogId, String responseFields) throws ApiException {
+        okhttp3.Call localVarCall = getMasterCatalogValidateBeforeCall(masterCatalogId, responseFields, null);
         Type localVarReturnType = new TypeToken<CatalogAdminsMasterCatalog>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
 
     /**
-     * Get master catalog (asynchronously)
-     * Get a MasterCatalog
+     * Get Master Catalog (asynchronously)
+     * Retrieves a specific master catalog by its Id.
      * @param masterCatalogId  (required)
+     * @param responseFields limits which fields are returned in the response body (optional)
      * @param _callback The callback to be executed when the API call finishes
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call getMasterCatalogAsync(Integer masterCatalogId, final ApiCallback<CatalogAdminsMasterCatalog> _callback) throws ApiException {
+    public okhttp3.Call getMasterCatalogAsync(Integer masterCatalogId, String responseFields, final ApiCallback<CatalogAdminsMasterCatalog> _callback) throws ApiException {
 
-        okhttp3.Call localVarCall = getMasterCatalogValidateBeforeCall(masterCatalogId, _callback);
+        okhttp3.Call localVarCall = getMasterCatalogValidateBeforeCall(masterCatalogId, responseFields, _callback);
         Type localVarReturnType = new TypeToken<CatalogAdminsMasterCatalog>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
     }
     /**
      * Build call for getMasterCatalogs
+     * @param responseFields limits which fields are returned in the response body (optional)
      * @param _callback Callback for upload/download progress
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call getMasterCatalogsCall(final ApiCallback _callback) throws ApiException {
+    public okhttp3.Call getMasterCatalogsCall(String responseFields, final ApiCallback _callback) throws ApiException {
         String basePath = null;
         // Operation Servers
         String[] localBasePaths = new String[] {  };
@@ -256,6 +265,10 @@ public class MasterCatalogPublishSettingsApi {
         Map<String, String> localVarCookieParams = new HashMap<String, String>();
         Map<String, Object> localVarFormParams = new HashMap<String, Object>();
 
+        if (responseFields != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("responseFields", responseFields));
+        }
+
         final String[] localVarAccepts = {
             "application/json", "text/json", "text/plain"
         };
@@ -272,67 +285,70 @@ public class MasterCatalogPublishSettingsApi {
             localVarHeaderParams.put("Content-Type", localVarContentType);
         }
 
-        String[] localVarAuthNames = new String[] { "bearerAuth", "clientOauth2" };
+        String[] localVarAuthNames = new String[] { "bearerAuth" };
         return localVarApiClient.buildCall(basePath, localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call getMasterCatalogsValidateBeforeCall(final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call getMasterCatalogsValidateBeforeCall(String responseFields, final ApiCallback _callback) throws ApiException {
         
 
-        okhttp3.Call localVarCall = getMasterCatalogsCall(_callback);
+        okhttp3.Call localVarCall = getMasterCatalogsCall(responseFields, _callback);
         return localVarCall;
 
     }
 
     /**
-     * Get master catalogs
-     * 
+     * Get Master Catalogs
+     * Retrieves all master catalogs.
+     * @param responseFields limits which fields are returned in the response body (optional)
      * @return MasterCatalogCollection
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
      </table>
      */
-    public MasterCatalogCollection getMasterCatalogs() throws ApiException {
-        ApiResponse<MasterCatalogCollection> localVarResp = getMasterCatalogsWithHttpInfo();
+    public MasterCatalogCollection getMasterCatalogs(String responseFields) throws ApiException {
+        ApiResponse<MasterCatalogCollection> localVarResp = getMasterCatalogsWithHttpInfo(responseFields);
         return localVarResp.getData();
     }
 
     /**
-     * Get master catalogs
-     * 
+     * Get Master Catalogs
+     * Retrieves all master catalogs.
+     * @param responseFields limits which fields are returned in the response body (optional)
      * @return ApiResponse&lt;MasterCatalogCollection&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<MasterCatalogCollection> getMasterCatalogsWithHttpInfo() throws ApiException {
-        okhttp3.Call localVarCall = getMasterCatalogsValidateBeforeCall(null);
+    public ApiResponse<MasterCatalogCollection> getMasterCatalogsWithHttpInfo(String responseFields) throws ApiException {
+        okhttp3.Call localVarCall = getMasterCatalogsValidateBeforeCall(responseFields, null);
         Type localVarReturnType = new TypeToken<MasterCatalogCollection>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
 
     /**
-     * Get master catalogs (asynchronously)
-     * 
+     * Get Master Catalogs (asynchronously)
+     * Retrieves all master catalogs.
+     * @param responseFields limits which fields are returned in the response body (optional)
      * @param _callback The callback to be executed when the API call finishes
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call getMasterCatalogsAsync(final ApiCallback<MasterCatalogCollection> _callback) throws ApiException {
+    public okhttp3.Call getMasterCatalogsAsync(String responseFields, final ApiCallback<MasterCatalogCollection> _callback) throws ApiException {
 
-        okhttp3.Call localVarCall = getMasterCatalogsValidateBeforeCall(_callback);
+        okhttp3.Call localVarCall = getMasterCatalogsValidateBeforeCall(responseFields, _callback);
         Type localVarReturnType = new TypeToken<MasterCatalogCollection>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
@@ -340,6 +356,7 @@ public class MasterCatalogPublishSettingsApi {
     /**
      * Build call for updateMasterCatalog
      * @param masterCatalogId  (required)
+     * @param responseFields limits which fields are returned in the response body (optional)
      * @param catalogAdminsMasterCatalog  (optional)
      * @param _callback Callback for upload/download progress
      * @return Call to execute
@@ -347,10 +364,10 @@ public class MasterCatalogPublishSettingsApi {
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call updateMasterCatalogCall(Integer masterCatalogId, CatalogAdminsMasterCatalog catalogAdminsMasterCatalog, final ApiCallback _callback) throws ApiException {
+    public okhttp3.Call updateMasterCatalogCall(Integer masterCatalogId, String responseFields, CatalogAdminsMasterCatalog catalogAdminsMasterCatalog, final ApiCallback _callback) throws ApiException {
         String basePath = null;
         // Operation Servers
         String[] localBasePaths = new String[] {  };
@@ -376,6 +393,10 @@ public class MasterCatalogPublishSettingsApi {
         Map<String, String> localVarCookieParams = new HashMap<String, String>();
         Map<String, Object> localVarFormParams = new HashMap<String, Object>();
 
+        if (responseFields != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("responseFields", responseFields));
+        }
+
         final String[] localVarAccepts = {
             "application/json", "text/json", "text/plain"
         };
@@ -392,12 +413,12 @@ public class MasterCatalogPublishSettingsApi {
             localVarHeaderParams.put("Content-Type", localVarContentType);
         }
 
-        String[] localVarAuthNames = new String[] { "bearerAuth", "clientOauth2" };
+        String[] localVarAuthNames = new String[] { "bearerAuth" };
         return localVarApiClient.buildCall(basePath, localVarPath, "PUT", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call updateMasterCatalogValidateBeforeCall(Integer masterCatalogId, CatalogAdminsMasterCatalog catalogAdminsMasterCatalog, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call updateMasterCatalogValidateBeforeCall(Integer masterCatalogId, String responseFields, CatalogAdminsMasterCatalog catalogAdminsMasterCatalog, final ApiCallback _callback) throws ApiException {
         
         // verify the required parameter 'masterCatalogId' is set
         if (masterCatalogId == null) {
@@ -405,52 +426,55 @@ public class MasterCatalogPublishSettingsApi {
         }
         
 
-        okhttp3.Call localVarCall = updateMasterCatalogCall(masterCatalogId, catalogAdminsMasterCatalog, _callback);
+        okhttp3.Call localVarCall = updateMasterCatalogCall(masterCatalogId, responseFields, catalogAdminsMasterCatalog, _callback);
         return localVarCall;
 
     }
 
     /**
-     * Update master catalog
-     * Update the publishingMode of a MasterCatalog
+     * Update Master Catalog
+     * Update the publishing mode of a master catalog
      * @param masterCatalogId  (required)
+     * @param responseFields limits which fields are returned in the response body (optional)
      * @param catalogAdminsMasterCatalog  (optional)
      * @return CatalogAdminsMasterCatalog
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
      </table>
      */
-    public CatalogAdminsMasterCatalog updateMasterCatalog(Integer masterCatalogId, CatalogAdminsMasterCatalog catalogAdminsMasterCatalog) throws ApiException {
-        ApiResponse<CatalogAdminsMasterCatalog> localVarResp = updateMasterCatalogWithHttpInfo(masterCatalogId, catalogAdminsMasterCatalog);
+    public CatalogAdminsMasterCatalog updateMasterCatalog(Integer masterCatalogId, String responseFields, CatalogAdminsMasterCatalog catalogAdminsMasterCatalog) throws ApiException {
+        ApiResponse<CatalogAdminsMasterCatalog> localVarResp = updateMasterCatalogWithHttpInfo(masterCatalogId, responseFields, catalogAdminsMasterCatalog);
         return localVarResp.getData();
     }
 
     /**
-     * Update master catalog
-     * Update the publishingMode of a MasterCatalog
+     * Update Master Catalog
+     * Update the publishing mode of a master catalog
      * @param masterCatalogId  (required)
+     * @param responseFields limits which fields are returned in the response body (optional)
      * @param catalogAdminsMasterCatalog  (optional)
      * @return ApiResponse&lt;CatalogAdminsMasterCatalog&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<CatalogAdminsMasterCatalog> updateMasterCatalogWithHttpInfo(Integer masterCatalogId, CatalogAdminsMasterCatalog catalogAdminsMasterCatalog) throws ApiException {
-        okhttp3.Call localVarCall = updateMasterCatalogValidateBeforeCall(masterCatalogId, catalogAdminsMasterCatalog, null);
+    public ApiResponse<CatalogAdminsMasterCatalog> updateMasterCatalogWithHttpInfo(Integer masterCatalogId, String responseFields, CatalogAdminsMasterCatalog catalogAdminsMasterCatalog) throws ApiException {
+        okhttp3.Call localVarCall = updateMasterCatalogValidateBeforeCall(masterCatalogId, responseFields, catalogAdminsMasterCatalog, null);
         Type localVarReturnType = new TypeToken<CatalogAdminsMasterCatalog>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
 
     /**
-     * Update master catalog (asynchronously)
-     * Update the publishingMode of a MasterCatalog
+     * Update Master Catalog (asynchronously)
+     * Update the publishing mode of a master catalog
      * @param masterCatalogId  (required)
+     * @param responseFields limits which fields are returned in the response body (optional)
      * @param catalogAdminsMasterCatalog  (optional)
      * @param _callback The callback to be executed when the API call finishes
      * @return The request call
@@ -458,12 +482,12 @@ public class MasterCatalogPublishSettingsApi {
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call updateMasterCatalogAsync(Integer masterCatalogId, CatalogAdminsMasterCatalog catalogAdminsMasterCatalog, final ApiCallback<CatalogAdminsMasterCatalog> _callback) throws ApiException {
+    public okhttp3.Call updateMasterCatalogAsync(Integer masterCatalogId, String responseFields, CatalogAdminsMasterCatalog catalogAdminsMasterCatalog, final ApiCallback<CatalogAdminsMasterCatalog> _callback) throws ApiException {
 
-        okhttp3.Call localVarCall = updateMasterCatalogValidateBeforeCall(masterCatalogId, catalogAdminsMasterCatalog, _callback);
+        okhttp3.Call localVarCall = updateMasterCatalogValidateBeforeCall(masterCatalogId, responseFields, catalogAdminsMasterCatalog, _callback);
         Type localVarReturnType = new TypeToken<CatalogAdminsMasterCatalog>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;

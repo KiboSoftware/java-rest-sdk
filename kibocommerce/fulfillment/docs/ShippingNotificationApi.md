@@ -4,16 +4,16 @@ All URIs are relative to *http://https:/api*
 
 | Method | HTTP request | Description |
 |------------- | ------------- | -------------|
-| [**handleCarrierNotificationUsingPOST**](ShippingNotificationApi.md#handleCarrierNotificationUsingPOST) | **POST** /commerce/fulfillment/shipping/notifications/{carrier} | Handle Carrier Notification |
+| [**handleCarrierNotification**](ShippingNotificationApi.md#handleCarrierNotification) | **POST** /commerce/fulfillment/shipping/notifications/{carrier} | Handle Carrier Notifications |
 
 
-<a name="handleCarrierNotificationUsingPOST"></a>
-# **handleCarrierNotificationUsingPOST**
-> String handleCarrierNotificationUsingPOST(carrier)
+<a name="handleCarrierNotification"></a>
+# **handleCarrierNotification**
+> String handleCarrierNotification(carrier, paramMap)
 
-Handle Carrier Notification
+Handle Carrier Notifications
 
-Handle Carrier Notification
+Handle carrier notifications.
 
 ### Example
 ```java
@@ -21,7 +21,6 @@ Handle Carrier Notification
 import com.kibocommerce.sdk.fulfillment.ApiClient;
 import com.kibocommerce.sdk.fulfillment.ApiException;
 import com.kibocommerce.sdk.fulfillment.Configuration;
-import com.kibocommerce.sdk.fulfillment.auth.*;
 import com.kibocommerce.sdk.fulfillment.models.*;
 import com.kibocommerce.sdk.fulfillment.api.ShippingNotificationApi;
 
@@ -29,22 +28,15 @@ public class Example {
   public static void main(String[] args) {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
     defaultClient.setBasePath("http://https:/api");
-    
-    // Configure HTTP bearer authorization: bearerAuth
-    HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
-    bearerAuth.setBearerToken("BEARER TOKEN");
-
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
 
     ShippingNotificationApi apiInstance = new ShippingNotificationApi(defaultClient);
     String carrier = "carrier_example"; // String | carrier
+    String paramMap = "paramMap_example"; // String | paramMap
     try {
-      String result = apiInstance.handleCarrierNotificationUsingPOST(carrier);
+      String result = apiInstance.handleCarrierNotification(carrier, paramMap);
       System.out.println(result);
     } catch (ApiException e) {
-      System.err.println("Exception when calling ShippingNotificationApi#handleCarrierNotificationUsingPOST");
+      System.err.println("Exception when calling ShippingNotificationApi#handleCarrierNotification");
       System.err.println("Status code: " + e.getCode());
       System.err.println("Reason: " + e.getResponseBody());
       System.err.println("Response headers: " + e.getResponseHeaders());
@@ -59,6 +51,7 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **carrier** | **String**| carrier | |
+| **paramMap** | **String**| paramMap | |
 
 ### Return type
 
@@ -66,7 +59,7 @@ public class Example {
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth), [clientOauth2](../README.md#clientOauth2)
+No authorization required
 
 ### HTTP request headers
 

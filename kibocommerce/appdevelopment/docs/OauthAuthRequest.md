@@ -9,8 +9,8 @@
 |------------ | ------------- | ------------- | -------------|
 |**clientId** | **String** |  |  [optional] |
 |**clientSecret** | **String** |  |  [optional] |
-|**refreshToken** | **String** |  |  [optional] |
 |**grantType** | **String** |  |  [optional] |
+|**refreshToken** | **String** |  |  [optional] |
 
 
 ## Implemented Interfaces

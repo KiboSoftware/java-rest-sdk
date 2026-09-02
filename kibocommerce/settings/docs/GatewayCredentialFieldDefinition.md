@@ -7,10 +7,10 @@
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
-|**name** | **String** |  |  [optional] |
-|**displayName** | **String** |  |  [optional] |
 |**adminDisplayOrder** | **Integer** |  |  [optional] |
+|**displayName** | **String** |  |  [optional] |
 |**isPublic** | **Boolean** |  |  [optional] |
+|**name** | **String** |  |  [optional] |
 
 
 ## Implemented Interfaces

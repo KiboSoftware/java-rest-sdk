@@ -5,24 +5,24 @@ All URIs are relative to *http://https:/api*
 | Method | HTTP request | Description |
 |------------- | ------------- | -------------|
 | [**addUserRole**](AdminUserApi.md#addUserRole) | **POST** /platform/adminuser/accounts/{userId}/roles/{roleId} | Add User Role |
-| [**changePassword**](AdminUserApi.md#changePassword) | **POST** /platform/adminuser/accounts/{userId}/Change-Password | Changes a user&#39;s password |
+| [**changePassword**](AdminUserApi.md#changePassword) | **POST** /platform/adminuser/accounts/{userId}/Change-Password | Change Password |
 | [**changeUserPassword**](AdminUserApi.md#changeUserPassword) | **POST** /platform/adminuser/accounts/{userId}/Change-User-Password | Change User Password |
-| [**createUser**](AdminUserApi.md#createUser) | **POST** /platform/adminuser/accounts | Creates a new user |
+| [**createUser**](AdminUserApi.md#createUser) | **POST** /platform/adminuser/accounts | Create User |
 | [**deleteUser**](AdminUserApi.md#deleteUser) | **DELETE** /platform/adminuser/accounts/{userId} | Delete User |
-| [**getTenantScopesForUser**](AdminUserApi.md#getTenantScopesForUser) | **GET** /platform/adminuser/accounts/{userId}/tenants | Get tenant scope for users |
+| [**getTenantScopesForUser**](AdminUserApi.md#getTenantScopesForUser) | **GET** /platform/adminuser/accounts/{userId}/tenants | Get Tenant Scope |
 | [**getUser**](AdminUserApi.md#getUser) | **GET** /platform/adminuser/accounts/{userId} | Get User |
 | [**getUserById**](AdminUserApi.md#getUserById) | **GET** /platform/adminuser/accounts/{userId}/userbyid | Get User By Id |
 | [**getUserRoles**](AdminUserApi.md#getUserRoles) | **GET** /platform/adminuser/accounts/{userId}/roles | Get User Roles |
 | [**getUsers**](AdminUserApi.md#getUsers) | **GET** /platform/adminuser/accounts | Get Users |
 | [**removeUserRole**](AdminUserApi.md#removeUserRole) | **DELETE** /platform/adminuser/accounts/{userId}/roles/{roleId} | Remove User Role |
 | [**resetPassword**](AdminUserApi.md#resetPassword) | **POST** /platform/adminuser/accounts/Reset-Password | Reset Password |
-| [**unlockUser**](AdminUserApi.md#unlockUser) | **POST** /platform/adminuser/accounts/{userId}/unlock | Enables the user |
+| [**unlockUser**](AdminUserApi.md#unlockUser) | **POST** /platform/adminuser/accounts/{userId}/unlock | Unlock User |
 | [**updateUser**](AdminUserApi.md#updateUser) | **PUT** /platform/adminuser/accounts/{userId} | Update User |
 
 
 <a name="addUserRole"></a>
 # **addUserRole**
-> addUserRole(userId, roleId)
+> addUserRole(userId, roleId, responseFields)
 
 Add User Role
 
@@ -47,15 +47,12 @@ public class Example {
     HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
     bearerAuth.setBearerToken("BEARER TOKEN");
 
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
-
     AdminUserApi apiInstance = new AdminUserApi(defaultClient);
     String userId = "userId_example"; // String | Unique identifier of the user who receives the role.
     Integer roleId = 56; // Integer | Unique identifier of the role to add.
+    String responseFields = "responseFields_example"; // String | limits which fields are returned in the response body
     try {
-      apiInstance.addUserRole(userId, roleId);
+      apiInstance.addUserRole(userId, roleId, responseFields);
     } catch (ApiException e) {
       System.err.println("Exception when calling AdminUserApi#addUserRole");
       System.err.println("Status code: " + e.getCode());
@@ -73,6 +70,7 @@ public class Example {
 |------------- | ------------- | ------------- | -------------|
 | **userId** | **String**| Unique identifier of the user who receives the role. | |
 | **roleId** | **Integer**| Unique identifier of the role to add. | |
+| **responseFields** | **String**| limits which fields are returned in the response body | [optional] |
 
 ### Return type
 
@@ -80,7 +78,7 @@ null (empty response body)
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth), [clientOauth2](../README.md#clientOauth2)
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
@@ -90,15 +88,15 @@ null (empty response body)
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Success |  -  |
+| **200** | OK |  -  |
 
 <a name="changePassword"></a>
 # **changePassword**
-> changePassword(userId, adminUserPasswordInfo)
+> changePassword(userId, responseFields, adminUserPasswordInfo)
 
-Changes a user&#39;s password
+Change Password
 
-
+Change a password
 
 ### Example
 ```java
@@ -119,15 +117,12 @@ public class Example {
     HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
     bearerAuth.setBearerToken("BEARER TOKEN");
 
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
-
     AdminUserApi apiInstance = new AdminUserApi(defaultClient);
     String userId = "userId_example"; // String | Unique identifier of the user for whom to change the password.
+    String responseFields = "responseFields_example"; // String | limits which fields are returned in the response body
     AdminUserPasswordInfo adminUserPasswordInfo = new AdminUserPasswordInfo(); // AdminUserPasswordInfo | Old password and new password.
     try {
-      apiInstance.changePassword(userId, adminUserPasswordInfo);
+      apiInstance.changePassword(userId, responseFields, adminUserPasswordInfo);
     } catch (ApiException e) {
       System.err.println("Exception when calling AdminUserApi#changePassword");
       System.err.println("Status code: " + e.getCode());
@@ -144,6 +139,7 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **userId** | **String**| Unique identifier of the user for whom to change the password. | |
+| **responseFields** | **String**| limits which fields are returned in the response body | [optional] |
 | **adminUserPasswordInfo** | [**AdminUserPasswordInfo**](AdminUserPasswordInfo.md)| Old password and new password. | [optional] |
 
 ### Return type
@@ -152,7 +148,7 @@ null (empty response body)
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth), [clientOauth2](../README.md#clientOauth2)
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
@@ -162,11 +158,11 @@ null (empty response body)
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Success |  -  |
+| **200** | OK |  -  |
 
 <a name="changeUserPassword"></a>
 # **changeUserPassword**
-> changeUserPassword(userId, changeUserPasswordInfo)
+> changeUserPassword(userId, responseFields, changeUserPasswordInfo)
 
 Change User Password
 
@@ -191,15 +187,12 @@ public class Example {
     HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
     bearerAuth.setBearerToken("BEARER TOKEN");
 
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
-
     AdminUserApi apiInstance = new AdminUserApi(defaultClient);
     String userId = "userId_example"; // String | Unique identifier of the user for whom to change the password.
+    String responseFields = "responseFields_example"; // String | limits which fields are returned in the response body
     ChangeUserPasswordInfo changeUserPasswordInfo = new ChangeUserPasswordInfo(); // ChangeUserPasswordInfo | New password info for this user
     try {
-      apiInstance.changeUserPassword(userId, changeUserPasswordInfo);
+      apiInstance.changeUserPassword(userId, responseFields, changeUserPasswordInfo);
     } catch (ApiException e) {
       System.err.println("Exception when calling AdminUserApi#changeUserPassword");
       System.err.println("Status code: " + e.getCode());
@@ -216,6 +209,7 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **userId** | **String**| Unique identifier of the user for whom to change the password. | |
+| **responseFields** | **String**| limits which fields are returned in the response body | [optional] |
 | **changeUserPasswordInfo** | [**ChangeUserPasswordInfo**](ChangeUserPasswordInfo.md)| New password info for this user | [optional] |
 
 ### Return type
@@ -224,7 +218,7 @@ null (empty response body)
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth), [clientOauth2](../README.md#clientOauth2)
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
@@ -234,13 +228,13 @@ null (empty response body)
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Success |  -  |
+| **200** | OK |  -  |
 
 <a name="createUser"></a>
 # **createUser**
-> User createUser(user)
+> User createUser(responseFields, user)
 
-Creates a new user
+Create User
 
 Creates a new user
 
@@ -263,14 +257,11 @@ public class Example {
     HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
     bearerAuth.setBearerToken("BEARER TOKEN");
 
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
-
     AdminUserApi apiInstance = new AdminUserApi(defaultClient);
+    String responseFields = "responseFields_example"; // String | limits which fields are returned in the response body
     User user = new User(); // User | The user to be created
     try {
-      User result = apiInstance.createUser(user);
+      User result = apiInstance.createUser(responseFields, user);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling AdminUserApi#createUser");
@@ -287,6 +278,7 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
+| **responseFields** | **String**| limits which fields are returned in the response body | [optional] |
 | **user** | [**User**](User.md)| The user to be created | [optional] |
 
 ### Return type
@@ -295,7 +287,7 @@ public class Example {
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth), [clientOauth2](../README.md#clientOauth2)
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
@@ -305,7 +297,7 @@ public class Example {
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Success |  -  |
+| **200** | OK |  -  |
 
 <a name="deleteUser"></a>
 # **deleteUser**
@@ -334,10 +326,6 @@ public class Example {
     HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
     bearerAuth.setBearerToken("BEARER TOKEN");
 
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
-
     AdminUserApi apiInstance = new AdminUserApi(defaultClient);
     String userId = "userId_example"; // String | Unique identifier of the user account to delete.
     try {
@@ -365,7 +353,7 @@ null (empty response body)
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth), [clientOauth2](../README.md#clientOauth2)
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
@@ -375,13 +363,13 @@ null (empty response body)
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Success |  -  |
+| **200** | OK |  -  |
 
 <a name="getTenantScopesForUser"></a>
 # **getTenantScopesForUser**
-> TenantCollection getTenantScopesForUser(userId)
+> TenantCollection getTenantScopesForUser(userId, responseFields)
 
-Get tenant scope for users
+Get Tenant Scope
 
 Get tenant scope for users
 
@@ -404,14 +392,11 @@ public class Example {
     HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
     bearerAuth.setBearerToken("BEARER TOKEN");
 
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
-
     AdminUserApi apiInstance = new AdminUserApi(defaultClient);
     String userId = "userId_example"; // String | 
+    String responseFields = "responseFields_example"; // String | limits which fields are returned in the response body
     try {
-      TenantCollection result = apiInstance.getTenantScopesForUser(userId);
+      TenantCollection result = apiInstance.getTenantScopesForUser(userId, responseFields);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling AdminUserApi#getTenantScopesForUser");
@@ -429,6 +414,7 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **userId** | **String**|  | |
+| **responseFields** | **String**| limits which fields are returned in the response body | [optional] |
 
 ### Return type
 
@@ -436,7 +422,7 @@ public class Example {
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth), [clientOauth2](../README.md#clientOauth2)
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
@@ -446,11 +432,11 @@ public class Example {
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Success |  -  |
+| **200** | OK |  -  |
 
 <a name="getUser"></a>
 # **getUser**
-> User getUser(userId)
+> User getUser(userId, responseFields)
 
 Get User
 
@@ -475,14 +461,11 @@ public class Example {
     HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
     bearerAuth.setBearerToken("BEARER TOKEN");
 
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
-
     AdminUserApi apiInstance = new AdminUserApi(defaultClient);
     String userId = "userId_example"; // String | Unique identifier of the user whose details you want to view.
+    String responseFields = "responseFields_example"; // String | limits which fields are returned in the response body
     try {
-      User result = apiInstance.getUser(userId);
+      User result = apiInstance.getUser(userId, responseFields);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling AdminUserApi#getUser");
@@ -500,6 +483,7 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **userId** | **String**| Unique identifier of the user whose details you want to view. | |
+| **responseFields** | **String**| limits which fields are returned in the response body | [optional] |
 
 ### Return type
 
@@ -507,7 +491,7 @@ public class Example {
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth), [clientOauth2](../README.md#clientOauth2)
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
@@ -517,11 +501,11 @@ public class Example {
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Success |  -  |
+| **200** | OK |  -  |
 
 <a name="getUserById"></a>
 # **getUserById**
-> User getUserById(userId, responseGroups)
+> User getUserById(userId, responseGroups, responseFields)
 
 Get User By Id
 
@@ -546,15 +530,12 @@ public class Example {
     HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
     bearerAuth.setBearerToken("BEARER TOKEN");
 
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
-
     AdminUserApi apiInstance = new AdminUserApi(defaultClient);
     String userId = "userId_example"; // String | Unique identifier of the user whose details you want to view.
     String responseGroups = "responseGroups_example"; // String | 
+    String responseFields = "responseFields_example"; // String | limits which fields are returned in the response body
     try {
-      User result = apiInstance.getUserById(userId, responseGroups);
+      User result = apiInstance.getUserById(userId, responseGroups, responseFields);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling AdminUserApi#getUserById");
@@ -573,6 +554,7 @@ public class Example {
 |------------- | ------------- | ------------- | -------------|
 | **userId** | **String**| Unique identifier of the user whose details you want to view. | |
 | **responseGroups** | **String**|  | [optional] |
+| **responseFields** | **String**| limits which fields are returned in the response body | [optional] |
 
 ### Return type
 
@@ -580,7 +562,7 @@ public class Example {
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth), [clientOauth2](../README.md#clientOauth2)
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
@@ -590,11 +572,11 @@ public class Example {
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Success |  -  |
+| **200** | OK |  -  |
 
 <a name="getUserRoles"></a>
 # **getUserRoles**
-> AdminUserUserRoleCollection getUserRoles(userId)
+> AdminUserUserRoleCollection getUserRoles(userId, responseFields)
 
 Get User Roles
 
@@ -619,14 +601,11 @@ public class Example {
     HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
     bearerAuth.setBearerToken("BEARER TOKEN");
 
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
-
     AdminUserApi apiInstance = new AdminUserApi(defaultClient);
     String userId = "userId_example"; // String | Unique identifier of the user.
+    String responseFields = "responseFields_example"; // String | limits which fields are returned in the response body
     try {
-      AdminUserUserRoleCollection result = apiInstance.getUserRoles(userId);
+      AdminUserUserRoleCollection result = apiInstance.getUserRoles(userId, responseFields);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling AdminUserApi#getUserRoles");
@@ -644,6 +623,7 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **userId** | **String**| Unique identifier of the user. | |
+| **responseFields** | **String**| limits which fields are returned in the response body | [optional] |
 
 ### Return type
 
@@ -651,7 +631,7 @@ public class Example {
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth), [clientOauth2](../README.md#clientOauth2)
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
@@ -661,11 +641,11 @@ public class Example {
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Success |  -  |
+| **200** | OK |  -  |
 
 <a name="getUsers"></a>
 # **getUsers**
-> getUsers(emailAddress, startIndex, pageSize, sortBy, filter, responseGroups)
+> getUsers(emailAddress, startIndex, pageSize, sortBy, filter, responseGroups, responseFields)
 
 Get Users
 
@@ -690,10 +670,6 @@ public class Example {
     HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
     bearerAuth.setBearerToken("BEARER TOKEN");
 
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
-
     AdminUserApi apiInstance = new AdminUserApi(defaultClient);
     String emailAddress = "emailAddress_example"; // String | 
     Integer startIndex = 0; // Integer | 
@@ -701,8 +677,9 @@ public class Example {
     String sortBy = "sortBy_example"; // String | The element to sort the results by and the order in which the results appear. Either ascending (a-z) or descending (z-a) order. Optional.
     String filter = "filter_example"; // String | A set of filter expressions representing the search parameters for a query: eq=equals, ne=not equals, gt=greater than, lt = less than or equals, gt = greater than or equals, lt = less than or equals, sw = starts with, or cont = contains. Optional.
     String responseGroups = "responseGroups_example"; // String | 
+    String responseFields = "responseFields_example"; // String | limits which fields are returned in the response body
     try {
-      apiInstance.getUsers(emailAddress, startIndex, pageSize, sortBy, filter, responseGroups);
+      apiInstance.getUsers(emailAddress, startIndex, pageSize, sortBy, filter, responseGroups, responseFields);
     } catch (ApiException e) {
       System.err.println("Exception when calling AdminUserApi#getUsers");
       System.err.println("Status code: " + e.getCode());
@@ -724,6 +701,7 @@ public class Example {
 | **sortBy** | **String**| The element to sort the results by and the order in which the results appear. Either ascending (a-z) or descending (z-a) order. Optional. | [optional] |
 | **filter** | **String**| A set of filter expressions representing the search parameters for a query: eq&#x3D;equals, ne&#x3D;not equals, gt&#x3D;greater than, lt &#x3D; less than or equals, gt &#x3D; greater than or equals, lt &#x3D; less than or equals, sw &#x3D; starts with, or cont &#x3D; contains. Optional. | [optional] |
 | **responseGroups** | **String**|  | [optional] |
+| **responseFields** | **String**| limits which fields are returned in the response body | [optional] |
 
 ### Return type
 
@@ -731,7 +709,7 @@ null (empty response body)
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth), [clientOauth2](../README.md#clientOauth2)
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
@@ -741,7 +719,7 @@ null (empty response body)
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Success |  -  |
+| **200** | OK |  -  |
 
 <a name="removeUserRole"></a>
 # **removeUserRole**
@@ -769,10 +747,6 @@ public class Example {
     // Configure HTTP bearer authorization: bearerAuth
     HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
     bearerAuth.setBearerToken("BEARER TOKEN");
-
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
 
     AdminUserApi apiInstance = new AdminUserApi(defaultClient);
     String userId = "userId_example"; // String | Unique identifier of the user with the role to delete.
@@ -803,7 +777,7 @@ null (empty response body)
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth), [clientOauth2](../README.md#clientOauth2)
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
@@ -813,11 +787,11 @@ null (empty response body)
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Success |  -  |
+| **200** | OK |  -  |
 
 <a name="resetPassword"></a>
 # **resetPassword**
-> resetPassword(adminUserResetPasswordInfo)
+> resetPassword(responseFields, adminUserResetPasswordInfo)
 
 Reset Password
 
@@ -842,14 +816,11 @@ public class Example {
     HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
     bearerAuth.setBearerToken("BEARER TOKEN");
 
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
-
     AdminUserApi apiInstance = new AdminUserApi(defaultClient);
-    AdminUserResetPasswordInfo adminUserResetPasswordInfo = new AdminUserResetPasswordInfo(); // AdminUserResetPasswordInfo | Email address of the user who has requested a password reset.               Note that the site ID is passed in the request header.
+    String responseFields = "responseFields_example"; // String | limits which fields are returned in the response body
+    AdminUserResetPasswordInfo adminUserResetPasswordInfo = new AdminUserResetPasswordInfo(); // AdminUserResetPasswordInfo | Email address of the user who has requested a password reset.              Note that the site ID is passed in the request header.
     try {
-      apiInstance.resetPassword(adminUserResetPasswordInfo);
+      apiInstance.resetPassword(responseFields, adminUserResetPasswordInfo);
     } catch (ApiException e) {
       System.err.println("Exception when calling AdminUserApi#resetPassword");
       System.err.println("Status code: " + e.getCode());
@@ -865,7 +836,8 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **adminUserResetPasswordInfo** | [**AdminUserResetPasswordInfo**](AdminUserResetPasswordInfo.md)| Email address of the user who has requested a password reset.               Note that the site ID is passed in the request header. | [optional] |
+| **responseFields** | **String**| limits which fields are returned in the response body | [optional] |
+| **adminUserResetPasswordInfo** | [**AdminUserResetPasswordInfo**](AdminUserResetPasswordInfo.md)| Email address of the user who has requested a password reset.              Note that the site ID is passed in the request header. | [optional] |
 
 ### Return type
 
@@ -873,7 +845,7 @@ null (empty response body)
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth), [clientOauth2](../README.md#clientOauth2)
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
@@ -883,15 +855,15 @@ null (empty response body)
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Success |  -  |
+| **200** | OK |  -  |
 
 <a name="unlockUser"></a>
 # **unlockUser**
-> unlockUser(userId)
+> unlockUser(userId, responseFields)
 
-Enables the user
+Unlock User
 
-
+Unlocks (or \&quot;enables\&quot;) a user
 
 ### Example
 ```java
@@ -912,14 +884,11 @@ public class Example {
     HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
     bearerAuth.setBearerToken("BEARER TOKEN");
 
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
-
     AdminUserApi apiInstance = new AdminUserApi(defaultClient);
     String userId = "userId_example"; // String | The user id.
+    String responseFields = "responseFields_example"; // String | limits which fields are returned in the response body
     try {
-      apiInstance.unlockUser(userId);
+      apiInstance.unlockUser(userId, responseFields);
     } catch (ApiException e) {
       System.err.println("Exception when calling AdminUserApi#unlockUser");
       System.err.println("Status code: " + e.getCode());
@@ -936,6 +905,7 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **userId** | **String**| The user id. | |
+| **responseFields** | **String**| limits which fields are returned in the response body | [optional] |
 
 ### Return type
 
@@ -943,7 +913,7 @@ null (empty response body)
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth), [clientOauth2](../README.md#clientOauth2)
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
@@ -953,11 +923,11 @@ null (empty response body)
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Success |  -  |
+| **200** | OK |  -  |
 
 <a name="updateUser"></a>
 # **updateUser**
-> User updateUser(userId, user)
+> User updateUser(userId, responseFields, user)
 
 Update User
 
@@ -982,15 +952,12 @@ public class Example {
     HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
     bearerAuth.setBearerToken("BEARER TOKEN");
 
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
-
     AdminUserApi apiInstance = new AdminUserApi(defaultClient);
     String userId = "userId_example"; // String | Unique identifier of the user whose login information you want to change.
+    String responseFields = "responseFields_example"; // String | limits which fields are returned in the response body
     User user = new User(); // User | Details of the new user account. Required properties: EmailAddress, FirstName, LastName, and Password. Note that the site ID is passed in the request header.
     try {
-      User result = apiInstance.updateUser(userId, user);
+      User result = apiInstance.updateUser(userId, responseFields, user);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling AdminUserApi#updateUser");
@@ -1008,6 +975,7 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **userId** | **String**| Unique identifier of the user whose login information you want to change. | |
+| **responseFields** | **String**| limits which fields are returned in the response body | [optional] |
 | **user** | [**User**](User.md)| Details of the new user account. Required properties: EmailAddress, FirstName, LastName, and Password. Note that the site ID is passed in the request header. | [optional] |
 
 ### Return type
@@ -1016,7 +984,7 @@ public class Example {
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth), [clientOauth2](../README.md#clientOauth2)
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
@@ -1026,5 +994,5 @@ public class Example {
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Success |  -  |
+| **200** | OK |  -  |
 

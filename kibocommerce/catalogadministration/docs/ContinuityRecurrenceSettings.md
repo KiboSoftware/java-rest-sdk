@@ -7,8 +7,8 @@
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
-|**startOrdinal** | **Integer** | Continuity ordinal to start discounting |  [optional] |
 |**interval** | **Integer** | Interval until next discount applies |  [optional] |
+|**startOrdinal** | **Integer** | Continuity ordinal to start discounting |  [optional] |
 |**stopOrdinal** | **Integer** | Continuity ordinal to stop discounting |  [optional] |
 
 

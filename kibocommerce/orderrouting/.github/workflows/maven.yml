@@ -13,7 +13,7 @@ on:
 
 jobs:
   build:
-    name: Build Api Documentation
+    name: Build Order Routing
     runs-on: ubuntu-latest
     strategy:
       matrix:

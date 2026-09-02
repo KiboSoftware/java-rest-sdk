@@ -7,14 +7,15 @@
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
+|**amount** | **Double** |  |  [optional] |
 |**code** | **String** |  |  [optional] |
 |**content** | [**ShippingRateLocalizedContent**](ShippingRateLocalizedContent.md) |  |  [optional] |
-|**amount** | **Double** |  |  [optional] |
-|**daysInTransit** | **Integer** |  |  [optional] |
-|**shippingItemRates** | [**List&lt;ShippingItemRate&gt;**](ShippingItemRate.md) |  |  [optional] |
 |**customAttributes** | [**List&lt;CustomAttribute&gt;**](CustomAttribute.md) |  |  [optional] |
-|**messages** | [**List&lt;ShippingRateValidationMessage&gt;**](ShippingRateValidationMessage.md) |  |  [optional] |
 |**data** | **Object** |  |  [optional] |
+|**daysInTransit** | **Integer** |  |  [optional] |
+|**messages** | [**List&lt;ShippingRateValidationMessage&gt;**](ShippingRateValidationMessage.md) |  |  [optional] |
+|**shippingItemRates** | [**List&lt;ShippingRuntimeShippingItemRate&gt;**](ShippingRuntimeShippingItemRate.md) |  |  [optional] |
+|**windows** | [**List&lt;ShippingRuntimeDeliveryWindow&gt;**](ShippingRuntimeDeliveryWindow.md) |  |  [optional] |
 
 
 ## Implemented Interfaces

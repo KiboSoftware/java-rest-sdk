@@ -7,8 +7,8 @@
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
-|**auditInfo** | [**FulfillmentAuditInfo**](FulfillmentAuditInfo.md) |  |  [optional] |
-|**contents** | [**List&lt;PickWaveContent0&gt;**](PickWaveContent0.md) |  |  [optional] |
+|**auditInfo** | [**FulfillmentAPIAuditInfo**](FulfillmentAPIAuditInfo.md) |  |  [optional] |
+|**contents** | [**List&lt;PickWaveContent&gt;**](PickWaveContent.md) |  |  [optional] |
 |**imageUrl** | **String** |  |  [optional] |
 |**locatorName** | **String** |  |  [optional] |
 |**name** | **String** |  |  [optional] |

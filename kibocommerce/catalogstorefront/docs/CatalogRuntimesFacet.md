@@ -8,9 +8,9 @@ For faceted searches, name of the facet and list of facet values. For example, a
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
-|**label** | **String** |  |  [optional] |
 |**facetType** | **String** | Value, RangeQuery, Hierarchy |  [optional] |
 |**field** | **String** |  |  [optional] |
+|**label** | **String** |  |  [optional] |
 |**values** | [**List&lt;FacetValue&gt;**](FacetValue.md) |  |  [optional] |
 
 

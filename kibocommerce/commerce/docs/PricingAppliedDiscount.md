@@ -7,10 +7,10 @@
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
-|**impact** | **Double** |  |  [optional] |
-|**discount** | [**PricingDiscount**](PricingDiscount.md) |  |  [optional] |
 |**couponCode** | **String** |  |  [optional] |
 |**couponSetId** | **Integer** |  |  [optional] |
+|**discount** | [**PricingDiscount**](PricingDiscount.md) |  |  [optional] |
+|**impact** | **Double** |  |  [optional] |
 
 
 ## Implemented Interfaces

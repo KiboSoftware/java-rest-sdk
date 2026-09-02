@@ -4,21 +4,20 @@ All URIs are relative to *http://https:/api*
 
 | Method | HTTP request | Description |
 |------------- | ------------- | -------------|
-| [**assignProductsToPublishSet**](ProductPublishingApi.md#assignProductsToPublishSet) | **POST** /commerce/catalog/admin/publishing/publishsets | Assign products to publish set |
-| [**deletePublishSet**](ProductPublishingApi.md#deletePublishSet) | **DELETE** /commerce/catalog/admin/publishing/publishsets/{publishSetCode} | Delete publish set |
-| [**discardDrafts**](ProductPublishingApi.md#discardDrafts) | **POST** /commerce/catalog/admin/publishing/discarddrafts | Discard draft products |
-| [**getPublishSet**](ProductPublishingApi.md#getPublishSet) | **GET** /commerce/catalog/admin/publishing/publishsets/{publishSetCode} | Get publish set |
-| [**getPublishSets**](ProductPublishingApi.md#getPublishSets) | **GET** /commerce/catalog/admin/publishing/publishsets | Get publish sets |
-| [**publishDrafts**](ProductPublishingApi.md#publishDrafts) | **POST** /commerce/catalog/admin/publishing/publishdrafts | Publish draft products |
+| [**assignProductsToPublishSet**](ProductPublishingApi.md#assignProductsToPublishSet) | **POST** /commerce/catalog/admin/publishing/publishsets | Assign Products to Publish Sets |
+| [**deletePublishSet**](ProductPublishingApi.md#deletePublishSet) | **DELETE** /commerce/catalog/admin/publishing/publishsets/{publishSetCode} | Delete Publish Set |
+| [**getPublishSet**](ProductPublishingApi.md#getPublishSet) | **GET** /commerce/catalog/admin/publishing/publishsets/{publishSetCode} | Get Publish Set |
+| [**getPublishSets**](ProductPublishingApi.md#getPublishSets) | **GET** /commerce/catalog/admin/publishing/publishsets | Get Publish Sets |
+| [**publishDrafts**](ProductPublishingApi.md#publishDrafts) | **POST** /commerce/catalog/admin/publishing/publishdrafts | Publish Draft Products |
 
 
 <a name="assignProductsToPublishSet"></a>
 # **assignProductsToPublishSet**
-> PublishSet assignProductsToPublishSet(publishSet)
+> PublishSet assignProductsToPublishSet(responseFields, publishSet)
 
-Assign products to publish set
+Assign Products to Publish Sets
 
-
+Assign products to publish sets.
 
 ### Example
 ```java
@@ -39,14 +38,11 @@ public class Example {
     HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
     bearerAuth.setBearerToken("BEARER TOKEN");
 
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
-
     ProductPublishingApi apiInstance = new ProductPublishingApi(defaultClient);
+    String responseFields = "responseFields_example"; // String | limits which fields are returned in the response body
     PublishSet publishSet = new PublishSet(); // PublishSet | 
     try {
-      PublishSet result = apiInstance.assignProductsToPublishSet(publishSet);
+      PublishSet result = apiInstance.assignProductsToPublishSet(responseFields, publishSet);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling ProductPublishingApi#assignProductsToPublishSet");
@@ -63,6 +59,7 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
+| **responseFields** | **String**| limits which fields are returned in the response body | [optional] |
 | **publishSet** | [**PublishSet**](PublishSet.md)|  | [optional] |
 
 ### Return type
@@ -71,7 +68,7 @@ public class Example {
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth), [clientOauth2](../README.md#clientOauth2)
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
@@ -81,15 +78,15 @@ public class Example {
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Success |  -  |
+| **200** | OK |  -  |
 
 <a name="deletePublishSet"></a>
 # **deletePublishSet**
 > deletePublishSet(publishSetCode, discardDrafts)
 
-Delete publish set
+Delete Publish Set
 
-Removes all details about a PublishSet from the product service.          If the discardDrafts param is true, it also deletes the product drafts.
+Removes all details about a PublishSet from the product service. If the discardDrafts param is true, it also deletes the product drafts.
 
 ### Example
 ```java
@@ -109,10 +106,6 @@ public class Example {
     // Configure HTTP bearer authorization: bearerAuth
     HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
     bearerAuth.setBearerToken("BEARER TOKEN");
-
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
 
     ProductPublishingApi apiInstance = new ProductPublishingApi(defaultClient);
     String publishSetCode = "publishSetCode_example"; // String | The code of the PublishSet to delete
@@ -143,7 +136,7 @@ null (empty response body)
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth), [clientOauth2](../README.md#clientOauth2)
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
@@ -153,83 +146,13 @@ null (empty response body)
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Success |  -  |
-
-<a name="discardDrafts"></a>
-# **discardDrafts**
-> discardDrafts(publishingScope)
-
-Discard draft products
-
-
-
-### Example
-```java
-// Import classes:
-import com.kibocommerce.sdk.catalogadministration.ApiClient;
-import com.kibocommerce.sdk.catalogadministration.ApiException;
-import com.kibocommerce.sdk.catalogadministration.Configuration;
-import com.kibocommerce.sdk.catalogadministration.auth.*;
-import com.kibocommerce.sdk.catalogadministration.models.*;
-import com.kibocommerce.sdk.catalogadministration.api.ProductPublishingApi;
-
-public class Example {
-  public static void main(String[] args) {
-    ApiClient defaultClient = Configuration.getDefaultApiClient();
-    defaultClient.setBasePath("http://https:/api");
-    
-    // Configure HTTP bearer authorization: bearerAuth
-    HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
-    bearerAuth.setBearerToken("BEARER TOKEN");
-
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
-
-    ProductPublishingApi apiInstance = new ProductPublishingApi(defaultClient);
-    PublishingScope publishingScope = new PublishingScope(); // PublishingScope | 
-    try {
-      apiInstance.discardDrafts(publishingScope);
-    } catch (ApiException e) {
-      System.err.println("Exception when calling ProductPublishingApi#discardDrafts");
-      System.err.println("Status code: " + e.getCode());
-      System.err.println("Reason: " + e.getResponseBody());
-      System.err.println("Response headers: " + e.getResponseHeaders());
-      e.printStackTrace();
-    }
-  }
-}
-```
-
-### Parameters
-
-| Name | Type | Description  | Notes |
-|------------- | ------------- | ------------- | -------------|
-| **publishingScope** | [**PublishingScope**](PublishingScope.md)|  | [optional] |
-
-### Return type
-
-null (empty response body)
-
-### Authorization
-
-[bearerAuth](../README.md#bearerAuth), [clientOauth2](../README.md#clientOauth2)
-
-### HTTP request headers
-
- - **Content-Type**: application/json
- - **Accept**: Not defined
-
-### HTTP response details
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-| **200** | Success |  -  |
+| **200** | OK |  -  |
 
 <a name="getPublishSet"></a>
 # **getPublishSet**
-> PublishSet getPublishSet(publishSetCode)
+> PublishSet getPublishSet(publishSetCode, responseFields)
 
-Get publish set
+Get Publish Set
 
 Retrieves the details of a single PublishSet.
 
@@ -252,14 +175,11 @@ public class Example {
     HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
     bearerAuth.setBearerToken("BEARER TOKEN");
 
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
-
     ProductPublishingApi apiInstance = new ProductPublishingApi(defaultClient);
     String publishSetCode = "publishSetCode_example"; // String | 
+    String responseFields = "responseFields_example"; // String | limits which fields are returned in the response body
     try {
-      PublishSet result = apiInstance.getPublishSet(publishSetCode);
+      PublishSet result = apiInstance.getPublishSet(publishSetCode, responseFields);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling ProductPublishingApi#getPublishSet");
@@ -277,6 +197,7 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **publishSetCode** | **String**|  | |
+| **responseFields** | **String**| limits which fields are returned in the response body | [optional] |
 
 ### Return type
 
@@ -284,7 +205,7 @@ public class Example {
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth), [clientOauth2](../README.md#clientOauth2)
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
@@ -294,13 +215,13 @@ public class Example {
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Success |  -  |
+| **200** | OK |  -  |
 
 <a name="getPublishSets"></a>
 # **getPublishSets**
-> PublishSetCollection getPublishSets()
+> PublishSetCollection getPublishSets(responseFields)
 
-Get publish sets
+Get Publish Sets
 
 Retrieves a list of PublishSets including the product counts.
 
@@ -323,13 +244,10 @@ public class Example {
     HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
     bearerAuth.setBearerToken("BEARER TOKEN");
 
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
-
     ProductPublishingApi apiInstance = new ProductPublishingApi(defaultClient);
+    String responseFields = "responseFields_example"; // String | limits which fields are returned in the response body
     try {
-      PublishSetCollection result = apiInstance.getPublishSets();
+      PublishSetCollection result = apiInstance.getPublishSets(responseFields);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling ProductPublishingApi#getPublishSets");
@@ -343,7 +261,10 @@ public class Example {
 ```
 
 ### Parameters
-This endpoint does not need any parameter.
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **responseFields** | **String**| limits which fields are returned in the response body | [optional] |
 
 ### Return type
 
@@ -351,7 +272,7 @@ This endpoint does not need any parameter.
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth), [clientOauth2](../README.md#clientOauth2)
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
@@ -361,15 +282,15 @@ This endpoint does not need any parameter.
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Success |  -  |
+| **200** | OK |  -  |
 
 <a name="publishDrafts"></a>
 # **publishDrafts**
-> publishDrafts(publishingScope)
+> publishDrafts(responseFields, publishingScope)
 
-Publish draft products
+Publish Draft Products
 
-
+Publis draft products.
 
 ### Example
 ```java
@@ -390,14 +311,11 @@ public class Example {
     HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
     bearerAuth.setBearerToken("BEARER TOKEN");
 
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
-
     ProductPublishingApi apiInstance = new ProductPublishingApi(defaultClient);
+    String responseFields = "responseFields_example"; // String | limits which fields are returned in the response body
     PublishingScope publishingScope = new PublishingScope(); // PublishingScope | 
     try {
-      apiInstance.publishDrafts(publishingScope);
+      apiInstance.publishDrafts(responseFields, publishingScope);
     } catch (ApiException e) {
       System.err.println("Exception when calling ProductPublishingApi#publishDrafts");
       System.err.println("Status code: " + e.getCode());
@@ -413,6 +331,7 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
+| **responseFields** | **String**| limits which fields are returned in the response body | [optional] |
 | **publishingScope** | [**PublishingScope**](PublishingScope.md)|  | [optional] |
 
 ### Return type
@@ -421,7 +340,7 @@ null (empty response body)
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth), [clientOauth2](../README.md#clientOauth2)
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
@@ -431,5 +350,5 @@ null (empty response body)
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Success |  -  |
+| **200** | OK |  -  |
 

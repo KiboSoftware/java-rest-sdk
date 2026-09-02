@@ -1,7 +1,7 @@
 # locationstorefront
 
 Kibo Location Storefront Service
-- API version: 1.0.0
+- API version: v1_storefront
 
 OpenAPI Spec for Kibo Location Storefront Service
 
@@ -39,7 +39,7 @@ Add this dependency to your project's POM:
 <dependency>
   <groupId>com.kibocommerce</groupId>
   <artifactId>locationstorefront</artifactId>
-  <version>1.0.0</version>
+  <version>3.0.0</version>
   <scope>compile</scope>
 </dependency>
 ```
@@ -55,7 +55,7 @@ Add this dependency to your project's build file:
   }
 
   dependencies {
-     implementation "com.kibocommerce:locationstorefront:1.0.0"
+     implementation "com.kibocommerce:locationstorefront:3.0.0"
   }
 ```
 
@@ -69,7 +69,7 @@ mvn clean package
 
 Then manually install the following JARs:
 
-* `target/locationstorefront-1.0.0.jar`
+* `target/locationstorefront-3.0.0.jar`
 * `target/lib/*.jar`
 
 ## Getting Started
@@ -95,14 +95,11 @@ public class Example {
     HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
     bearerAuth.setBearerToken("BEARER TOKEN");
 
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
-
     LocationApi apiInstance = new LocationApi(defaultClient);
     Boolean includeAttributeDefinition = false; // Boolean | 
+    String responseFields = "responseFields_example"; // String | limits which fields are returned in the response body
     try {
-      Location result = apiInstance.getCurbsideLocation(includeAttributeDefinition);
+      Location result = apiInstance.getCurbsideLocation(includeAttributeDefinition, responseFields);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling LocationApi#getCurbsideLocation");
@@ -134,25 +131,40 @@ Class | Method | HTTP request | Description
 
 ## Documentation for Models
 
+ - [Address](docs/Address.md)
  - [AdminUserAuditInfo](docs/AdminUserAuditInfo.md)
- - [AttributeValueLocalizedContent](docs/AttributeValueLocalizedContent.md)
+ - [Capacity](docs/Capacity.md)
  - [CommerceRuntimeAddress](docs/CommerceRuntimeAddress.md)
  - [CommerceRuntimeAttribute](docs/CommerceRuntimeAttribute.md)
  - [CommerceRuntimeAttributeLocalizedContent](docs/CommerceRuntimeAttributeLocalizedContent.md)
- - [CommerceRuntimeAttributeMetadataItem](docs/CommerceRuntimeAttributeMetadataItem.md)
  - [CommerceRuntimeAttributeValidation](docs/CommerceRuntimeAttributeValidation.md)
- - [CommerceRuntimeAttributeVocabularyValue](docs/CommerceRuntimeAttributeVocabularyValue.md)
  - [Coordinates](docs/Coordinates.md)
+ - [CutoffHours](docs/CutoffHours.md)
+ - [CutoffSchedule](docs/CutoffSchedule.md)
+ - [CutoffTimes](docs/CutoffTimes.md)
+ - [DropShip](docs/DropShip.md)
+ - [FulfillmentProcessingTime](docs/FulfillmentProcessingTime.md)
  - [FulfillmentType](docs/FulfillmentType.md)
  - [Hours](docs/Hours.md)
  - [Location](docs/Location.md)
  - [LocationAttribute](docs/LocationAttribute.md)
  - [LocationCollection](docs/LocationCollection.md)
+ - [LocationStorefrontAttribute](docs/LocationStorefrontAttribute.md)
+ - [LocationStorefrontAttributeMetadataItem](docs/LocationStorefrontAttributeMetadataItem.md)
+ - [LocationStorefrontAttributeValueLocalizedContent](docs/LocationStorefrontAttributeValueLocalizedContent.md)
+ - [LocationStorefrontAttributeVocabularyValue](docs/LocationStorefrontAttributeVocabularyValue.md)
+ - [LocationTimeZone](docs/LocationTimeZone.md)
  - [LocationType](docs/LocationType.md)
- - [ProcessingTime](docs/ProcessingTime.md)
+ - [Operation](docs/Operation.md)
+ - [Operation1](docs/Operation1.md)
+ - [OperationBase](docs/OperationBase.md)
+ - [ProcessingTimes](docs/ProcessingTimes.md)
+ - [ReceiveProcessingTime](docs/ReceiveProcessingTime.md)
  - [RegularHours](docs/RegularHours.md)
  - [ShippingOriginContact](docs/ShippingOriginContact.md)
- - [TransferTime](docs/TransferTime.md)
+ - [SlaConfiguration](docs/SlaConfiguration.md)
+ - [TimeZone](docs/TimeZone.md)
+ - [WeeklyCutoffHours](docs/WeeklyCutoffHours.md)
 
 
 ## Documentation for Authorization
@@ -161,13 +173,6 @@ Authentication schemes defined for the API:
 ### bearerAuth
 
 - **Type**: HTTP basic authentication
-
-### clientOauth2
-
-- **Type**: OAuth
-- **Flow**: application
-- **Authorization URL**: 
-- **Scopes**: N/A
 
 
 ## Recommendation

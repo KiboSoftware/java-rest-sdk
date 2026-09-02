@@ -7,11 +7,11 @@
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
-|**taxContextId** | **String** |  |  [optional] |
 |**customerId** | **String** |  |  [optional] |
+|**destinationAddress** | [**Address**](Address.md) |  |  [optional] |
+|**originAddress** | [**Address**](Address.md) |  |  [optional] |
+|**taxContextId** | **String** |  |  [optional] |
 |**taxExemptId** | **String** |  |  [optional] |
-|**originAddress** | [**CommerceRuntimeAddress**](CommerceRuntimeAddress.md) |  |  [optional] |
-|**destinationAddress** | [**CommerceRuntimeAddress**](CommerceRuntimeAddress.md) |  |  [optional] |
 
 
 ## Implemented Interfaces

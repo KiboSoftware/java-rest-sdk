@@ -1,118 +1,70 @@
 openapi: 3.0.1
 info:
-  description: OpenAPI Spec for Kibo ProductRuntime Service
+  description: |-
+    <div id="overview_CATALOG_ADMIN">
+                <h2>CATALOG ADMINISTRATION</h2>
+                <p>The Catalog Administration APIs are a collection of resources for configuring the catalogs and products offered to your shoppers, including
+                    discounts and coupon sets, faceting, price lists, and different types or variations of products. See the
+                    <a href="/concept-guides/catalog">Catalog user guides</a>
+                    for information about the related features in the Unified Commerce Admin.</p>
+                <p>Use the <strong>Attributes</strong> resource to manage localization and attribute configurations for your catalogs. This current version of the Attributes API includes localizedContent to
+                    support <a href="/pages/catalog-structure#multi-locale-catalogs">multi-locale catalogs</a>, which was not present in the legacy API model. If
+                    you were a client prior to May 2024 and have upgraded your implementation to support this feature,
+                    you can still access attribute data that has not yet been rewritten to the new model by providing
+                    an x-api-version header set to "1". </p>
+                <p>Use the <strong>Categories</strong> resource to organize products and control where they appear on the storefront. Create
+                    and maintain a hierarchy of categories and subcategories where the site will store properties. This current version of the Categories API includes localizedContent to
+                    support <a href="/pages/catalog-structure#multi-locale-catalogs">multi-locale catalogs</a>, which was not present in the legacy API model. If
+                    you were a client prior to May 2024 and have upgraded your implementation to support this feature,
+                    you can still access category data that has not yet been rewritten to the new model by providing
+                    an x-api-version header set to "1". </p>
+                <p>Use the <strong>Coupon Sets</strong> resource to view and create coupon sets. You can use coupon sets to group multiple
+                    coupon codes together and associate them with one or more discounts.</p>
+                <p>Use the <strong>Currency</strong> resource to manage the currency localization rules and exchange rates for any of the
+                    currencies that are supported for placing orders in.</p>
+                <p>Use the <strong>Discounts</strong> and <strong>Discount Settings</strong> resources to define and manage discounts to apply to products, product categories, or
+                    orders. This current version of the Discounts API includes localizedContent to
+                    support <a href="/pages/catalog-structure#multi-locale-catalogs">multi-locale catalogs</a>, which was not present in the legacy Products API model. If
+                    you were a client prior to May 2024 and have upgraded your implementation to support this feature,
+                    you can still access discount data that has not yet been rewritten to the new model by providing
+                    an x-api-version header set to "1". </p>
+                <p>Use the <strong>Facets</strong> resource to manage the facets shoppers use to filter product display results on a
+                    storefront. Facets can include categories, product attributes, or prices, and use either a range of
+                    values or discrete values.</p>
+                <p>Use the <strong>Master Catalog</strong> resource to view details of the master catalogs associated with a tenant and to
+                    manage the product publishing mode for each master catalog.</p>
+                <p>Use the <strong>Price Lists</strong> resources to view and create price lists. You can use price lists to override the
+                    catalog pricing of products for specific customer segments and/or sites.</p>
+                <p>Use the <strong>Products</strong>, <strong>Product Types/Extras/Options/Properties</strong>, and <strong>Product Sort Definitions</strong> resources to create new product definitions in the master catalog and determine which
+                    catalogs will feature products. This current version of the Products API includes localizedContent to
+                    support <a href="/pages/catalog-structure#multi-locale-catalogs">multi-locale catalogs</a>, which was not present in the legacy Products API model. If
+                    you were a client prior to May 2024 and have upgraded your implementation to support this feature,
+                    you can still access product data that has not yet been rewritten to the new model by providing
+                    an x-api-version header set to "1".</p>
+                <p>Use the <strong>Publishing</strong> resource to publish pending product updates together as part of a set.</p>
+                <p>Use the <strong>Search</strong> resource to manage all settings and options for providing product search on your site, as
+                    well as search tuning rules.</p>
+            </div>
   title: Kibo ProductRuntime Service
+  version: v1
 servers:
-- description: TenantPod Host
-  url: "https://{tenantPodHost}/api"
-- description: Tenant Level Api
-  url: "https://t{tenantId}.{env}.mozu.com/api"
-  variables:
-    tenantId:
-      default: "0"
-      description: Id of the Tenant
-    env:
-      default: sandbox
-      enum:
-      - sandbox
-      - tp1
-      - tp2
-      - tp3
-      - tp4
-      - tp5
-      - stg1
-      - stg2
-- description: Site Level Api
-  url: "https://t{tenantId}-s{siteId}.{env}.mozu.com/api"
-  variables:
-    tenantId:
-      default: "0"
-      description: Id of the Tenant
-    siteId:
-      default: "0"
-      description: Id of the Site
-    env:
-      default: sandbox
-      enum:
-      - sandbox
-      - tp1
-      - tp2
-      - tp3
-      - tp4
-      - tp5
-      - stg1
-- description: HomePod Api
-  url: https://home.mozu.com/api
-- description: EURO Tenant Level Api
-  url: "https://t{tenantId}.{env}.euw1.kibocommerce.com/api"
-  variables:
-    tenantId:
-      default: "0"
-      description: Id of the Tenant
-    env:
-      default: sandbox
-      enum:
-      - sb
-      - tp1
-- description: EURO Site Level Api
-  url: "https://t{tenantId}-s{siteId}.{env}.euw1.kibocommerce.com/api"
-  variables:
-    tenantId:
-      default: "0"
-      description: Id of the Tenant
-    siteId:
-      default: "0"
-      description: Id of the Site
-    env:
-      default: sandbox
-      enum:
-      - sb
-      - tp1
-- description: EURO HomePod Api
-  url: https://home.euw1.kibocommerce.com/api
+- url: "https://{tenantPodHost}/api"
 security:
 - bearerAuth: []
-  clientOauth2: []
 paths:
-  /commerce/catalog/admin/searchSchema/fieldTypes/{language}:
-    get:
-      description: Get Field Type Definitions
-      operationId: getFieldTypeDefinitions
-      parameters:
-      - explode: false
-        in: path
-        name: language
-        required: true
-        schema:
-          type: string
-        style: simple
-      responses:
-        "200":
-          content:
-            application/json:
-              schema:
-                items:
-                  $ref: '#/components/schemas/FieldTypeDefinitionRepositoryEntry'
-                type: array
-            text/json:
-              schema:
-                items:
-                  $ref: '#/components/schemas/FieldTypeDefinitionRepositoryEntry'
-                type: array
-            text/plain:
-              schema:
-                items:
-                  $ref: '#/components/schemas/FieldTypeDefinitionRepositoryEntry'
-                type: array
-          description: Success
-      summary: Get Field Type Definitions
-      tags:
-      - FieldTypeDefinition
-      x-accepts: application/json
   /commerce/catalog/admin/searchSchema/definition:
     get:
       description: List Schema Definitions
       operationId: listSchemaDefinitions
+      parameters:
+      - description: limits which fields are returned in the response body
+        explode: true
+        in: query
+        name: responseFields
+        required: false
+        schema:
+          type: string
+        style: form
       responses:
         "200":
           content:
@@ -131,7 +83,7 @@ paths:
                 items:
                   $ref: '#/components/schemas/SchemaDefinition'
                 type: array
-          description: Success
+          description: OK
       summary: List Schema Definitions
       tags:
       - SchemaDefinition
@@ -155,6 +107,14 @@ paths:
         schema:
           type: boolean
         style: form
+      - description: limits which fields are returned in the response body
+        explode: true
+        in: query
+        name: responseFields
+        required: false
+        schema:
+          type: string
+        style: form
       responses:
         "200":
           content:
@@ -167,7 +127,7 @@ paths:
             text/plain:
               schema:
                 $ref: '#/components/schemas/SchemaDefinition'
-          description: Success
+          description: OK
       summary: Get Schema Definition
       tags:
       - SchemaDefinition
@@ -183,9 +143,17 @@ paths:
         schema:
           type: string
         style: simple
+      - description: limits which fields are returned in the response body
+        explode: true
+        in: query
+        name: responseFields
+        required: false
+        schema:
+          type: string
+        style: form
       requestBody:
         content:
-          text/plain:
+          application/json:
             schema:
               $ref: '#/components/schemas/SchemaDefinition'
           application/octet-stream:
@@ -194,7 +162,7 @@ paths:
           application/zip:
             schema:
               $ref: '#/components/schemas/SchemaDefinition'
-          application/json:
+          text/plain:
             schema:
               $ref: '#/components/schemas/SchemaDefinition'
       responses:
@@ -209,40 +177,11 @@ paths:
             text/plain:
               schema:
                 $ref: '#/components/schemas/SchemaDefinition'
-          description: Success
+          description: OK
       summary: Update Schema Definition
       tags:
       - SchemaDefinition
-      x-content-type: text/plain
-      x-accepts: application/json
-  /commerce/catalog/admin/searchSchema/definition/{language}/revert:
-    post:
-      description: Revert
-      operationId: revert
-      parameters:
-      - explode: false
-        in: path
-        name: language
-        required: true
-        schema:
-          type: string
-        style: simple
-      responses:
-        "200":
-          content:
-            application/json:
-              schema:
-                type: boolean
-            text/json:
-              schema:
-                type: boolean
-            text/plain:
-              schema:
-                type: boolean
-          description: Success
-      summary: Revert
-      tags:
-      - SchemaDefinition
+      x-content-type: application/json
       x-accepts: application/json
   /commerce/catalog/admin/searchSchema/definition/{language}/publish:
     post:
@@ -264,6 +203,14 @@ paths:
           default: false
           type: boolean
         style: form
+      - description: limits which fields are returned in the response body
+        explode: true
+        in: query
+        name: responseFields
+        required: false
+        schema:
+          type: string
+        style: form
       responses:
         "200":
           content:
@@ -276,17 +223,98 @@ paths:
             text/plain:
               schema:
                 type: boolean
-          description: Success
+          description: OK
       summary: Publish
       tags:
       - SchemaDefinition
       x-accepts: application/json
-  /commerce/catalog/admin/searchSchema/suggest/{language}:
-    get:
-      description: Downloads the suggest file for the site
-      operationId: downLoadSuggest
+  /commerce/catalog/admin/searchSchema/definition/{language}/revert:
+    post:
+      description: Revert
+      operationId: revert
       parameters:
-      - description: "langage code used by the site (en, es, fr)"
+      - explode: false
+        in: path
+        name: language
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: limits which fields are returned in the response body
+        explode: true
+        in: query
+        name: responseFields
+        required: false
+        schema:
+          type: string
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                type: boolean
+            text/json:
+              schema:
+                type: boolean
+            text/plain:
+              schema:
+                type: boolean
+          description: OK
+      summary: Revert
+      tags:
+      - SchemaDefinition
+      x-accepts: application/json
+  /commerce/catalog/admin/searchSchema/fieldTypes/{language}:
+    get:
+      description: Get Field Type Definitions
+      operationId: getFieldTypeDefinitions
+      parameters:
+      - explode: false
+        in: path
+        name: language
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: limits which fields are returned in the response body
+        explode: true
+        in: query
+        name: responseFields
+        required: false
+        schema:
+          type: string
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/FieldTypeDefinitionRepositoryEntry'
+                type: array
+            text/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/FieldTypeDefinitionRepositoryEntry'
+                type: array
+            text/plain:
+              schema:
+                items:
+                  $ref: '#/components/schemas/FieldTypeDefinitionRepositoryEntry'
+                type: array
+          description: OK
+      summary: Get Field Type Definitions
+      tags:
+      - FieldTypeDefinition
+      x-accepts: application/json
+  /commerce/catalog/admin/searchSchema/stopwords/{language}:
+    get:
+      description: "Downloads the stopwords file for the language. This is a .txt\
+        \ file, not a JSON response."
+      operationId: downLoadStopWords
+      parameters:
+      - description: "Language code (en, es, fr)"
         explode: false
         in: path
         name: language
@@ -294,15 +322,186 @@ paths:
         schema:
           type: string
         style: simple
+      - description: limits which fields are returned in the response body
+        explode: true
+        in: query
+        name: responseFields
+        required: false
+        schema:
+          type: string
+        style: form
       responses:
         "200":
-          description: Success
+          description: OK
+      summary: Get Stopwords
+      tags:
+      - StopWords
+      x-accepts: application/json
+    put:
+      description: "Upload a stopwords file for a language as a list of strings. This\
+        \ should be a .txt file, not JSON."
+      operationId: uploadStopWords
+      parameters:
+      - description: "Language code use by the site (en, es, fr)"
+        explode: false
+        in: path
+        name: language
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: limits which fields are returned in the response body
+        explode: true
+        in: query
+        name: responseFields
+        required: false
+        schema:
+          type: string
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                items:
+                  type: string
+                type: array
+            text/json:
+              schema:
+                items:
+                  type: string
+                type: array
+            text/plain:
+              schema:
+                items:
+                  type: string
+                type: array
+          description: OK
+      summary: Add Stopwords
+      tags:
+      - StopWords
+      x-accepts: application/json
+  /commerce/catalog/admin/searchSchema/suggest/settings/{language}:
+    get:
+      description: Gets the suggester settings for the site
+      operationId: getSuggestSettings
+      parameters:
+      - description: "Language code use by the site (en, es, fr)"
+        explode: false
+        in: path
+        name: language
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: limits which fields are returned in the response body
+        explode: true
+        in: query
+        name: responseFields
+        required: false
+        schema:
+          type: string
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Suggester'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Suggester'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Suggester'
+          description: OK
+      summary: Gets the suggester settings for the site
+      tags:
+      - SuggestDefinition
+      x-accepts: application/json
+    put:
+      description: Updates the suggester settings for the site
+      operationId: updateSuggestSettings
+      parameters:
+      - description: "Language code use by the site (en, es, fr)"
+        explode: false
+        in: path
+        name: language
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: limits which fields are returned in the response body
+        explode: true
+        in: query
+        name: responseFields
+        required: false
+        schema:
+          type: string
+        style: form
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Suggester'
+          application/octet-stream:
+            schema:
+              $ref: '#/components/schemas/Suggester'
+          application/zip:
+            schema:
+              $ref: '#/components/schemas/Suggester'
+          text/plain:
+            schema:
+              $ref: '#/components/schemas/Suggester'
+        description: Suggest definition in
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Suggester'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Suggester'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Suggester'
+          description: OK
+      summary: Updates the suggester settings for the site
+      tags:
+      - SuggestDefinition
+      x-content-type: application/json
+      x-accepts: application/json
+  /commerce/catalog/admin/searchSchema/suggest/{language}:
+    get:
+      description: Downloads the suggest file for the site
+      operationId: downLoadSuggest
+      parameters:
+      - description: "Language code used by the site (en, es, fr)"
+        explode: false
+        in: path
+        name: language
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: limits which fields are returned in the response body
+        explode: true
+        in: query
+        name: responseFields
+        required: false
+        schema:
+          type: string
+        style: form
+      responses:
+        "200":
+          description: OK
       summary: Downloads the suggest file for the site
       tags:
       - SuggestDefinition
       x-accepts: application/json
     put:
-      description: Uploads a suggest file for the site in tab seperated format)
+      description: Uploads a suggest file for the site in tab separated format)
       operationId: uploadSuggest
       parameters:
       - description: "language code use by the site (en, es, fr)"
@@ -313,124 +512,36 @@ paths:
         schema:
           type: string
         style: simple
-      responses:
-        "200":
-          content:
-            application/json:
-              schema:
-                items:
-                  type: string
-                type: array
-            text/json:
-              schema:
-                items:
-                  type: string
-                type: array
-            text/plain:
-              schema:
-                items:
-                  type: string
-                type: array
-          description: Success
-      summary: Uploads a suggest file for the site in tab seperated format)
-      tags:
-      - SuggestDefinition
-      x-accepts: application/json
-  /commerce/catalog/admin/searchSchema/suggest/settings/{language}:
-    get:
-      description: Gets the suggester settings for the site
-      operationId: getSuggestSettings
-      parameters:
-      - description: "language code use by the site (en, es, fr)"
-        explode: false
-        in: path
-        name: language
-        required: true
+      - description: limits which fields are returned in the response body
+        explode: true
+        in: query
+        name: responseFields
+        required: false
         schema:
           type: string
-        style: simple
+        style: form
       responses:
         "200":
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Suggester'
+                items:
+                  type: string
+                type: array
             text/json:
               schema:
-                $ref: '#/components/schemas/Suggester'
+                items:
+                  type: string
+                type: array
             text/plain:
               schema:
-                $ref: '#/components/schemas/Suggester'
-          description: Success
-      summary: Gets the suggester settings for the site
+                items:
+                  type: string
+                type: array
+          description: OK
+      summary: Uploads a suggest file for the site in tab separated format)
       tags:
       - SuggestDefinition
-      x-accepts: application/json
-    put:
-      description: Updates the suggester settings for the site
-      operationId: updateSuggestSettings
-      parameters:
-      - description: "language code use by the site (en, es, fr)"
-        explode: false
-        in: path
-        name: language
-        required: true
-        schema:
-          type: string
-        style: simple
-      requestBody:
-        content:
-          text/plain:
-            schema:
-              $ref: '#/components/schemas/Suggester'
-          application/octet-stream:
-            schema:
-              $ref: '#/components/schemas/Suggester'
-          application/zip:
-            schema:
-              $ref: '#/components/schemas/Suggester'
-          application/json:
-            schema:
-              $ref: '#/components/schemas/Suggester'
-        description: suggset definition in
-      responses:
-        "200":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Suggester'
-            text/json:
-              schema:
-                $ref: '#/components/schemas/Suggester'
-            text/plain:
-              schema:
-                $ref: '#/components/schemas/Suggester'
-          description: Success
-      summary: Updates the suggester settings for the site
-      tags:
-      - SuggestDefinition
-      x-content-type: text/plain
-      x-accepts: application/json
-  /commerce/catalog/admin/searchSchema/synonyms/reload:
-    post:
-      description: Update Synonyms
-      operationId: updateSynonyms
-      responses:
-        "200":
-          content:
-            application/json:
-              schema:
-                type: boolean
-            text/json:
-              schema:
-                type: boolean
-            text/plain:
-              schema:
-                type: boolean
-          description: Success
-      summary: Update Synonyms
-      tags:
-      - Synonym
       x-accepts: application/json
   /commerce/catalog/admin/searchSchema/synonyms:
     get:
@@ -440,6 +551,14 @@ paths:
       - explode: true
         in: query
         name: language
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: limits which fields are returned in the response body
+        explode: true
+        in: query
+        name: responseFields
         required: false
         schema:
           type: string
@@ -456,81 +575,248 @@ paths:
             text/plain:
               schema:
                 type: string
-          description: Success
+          description: OK
       summary: List Synonyms
+      tags:
+      - Synonym
+      x-accepts: application/json
+  /commerce/catalog/admin/searchSchema/synonyms/reload:
+    post:
+      description: Update Synonyms
+      operationId: updateSynonyms
+      parameters:
+      - description: limits which fields are returned in the response body
+        explode: true
+        in: query
+        name: responseFields
+        required: false
+        schema:
+          type: string
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                type: boolean
+            text/json:
+              schema:
+                type: boolean
+            text/plain:
+              schema:
+                type: boolean
+          description: OK
+      summary: Update Synonyms
       tags:
       - Synonym
       x-accepts: application/json
 components:
   schemas:
+    AdminUserAuditInfo:
+      example:
+        createBy: createBy
+        updateDate: 2000-01-23T04:56:07.000+00:00
+        updateBy: updateBy
+        createDate: 2000-01-23T04:56:07.000+00:00
+      properties:
+        createBy:
+          nullable: true
+          type: string
+        createDate:
+          format: date-time
+          nullable: true
+          type: string
+        updateBy:
+          nullable: true
+          type: string
+        updateDate:
+          format: date-time
+          nullable: true
+          type: string
+      type: object
+    AttributeVocabularyValueLocalizedContent:
+      properties:
+        stringValue:
+          minLength: 1
+          nullable: false
+    CatalogAdminsAttributeVocabularyValue:
+      properties:
+        mappedGenericValues:
+          maxItems: 200
+        value:
+          maxLength: 50
+          nullable: false
+          pattern: "^[A-Za-z0-9-_\\.()]*[A-Za-z0-9-_()]"
+    CatalogAdminsBundledProduct:
+      properties:
+        quantity:
+          nullable: false
+    CatalogAdminsDiscount:
+      properties:
+        amount:
+          exclusiveMinimum: true
+          minimum: 0
+        amountType:
+          nullable: false
+        canBeDeleted:
+          nullable: false
+        code:
+          maxLength: 50
+          pattern: "^[A-Za-z0-9-_\\.()]*[A-Za-z0-9-_()]$"
+        hasPurchaseConditions:
+          nullable: false
+        maximumDiscountImpactPerOrder:
+          exclusiveMinimum: true
+          minimum: 0
+        maximumDiscountImpactPerRedemption:
+          exclusiveMinimum: true
+          minimum: 0
+        maximumRedemptionsPerOrder:
+          exclusiveMinimum: true
+          minimum: 0
+        maximumUsesPerUser:
+          exclusiveMinimum: true
+          minimum: 0
+        scope:
+          nullable: false
+    CatalogAdminsDiscountCondition:
+      properties:
+        maxRedemptionCount:
+          exclusiveMinimum: true
+          minimum: 0
+        minimumQuantityProductsRequiredInCategories:
+          exclusiveMinimum: true
+          minimum: 0
+        minimumQuantityRequiredProducts:
+          exclusiveMinimum: true
+          minimum: 0
+        requiresAuthenticatedUser:
+          nullable: false
+        requiresCoupon:
+          nullable: false
+    CatalogAdminsDiscountTarget:
+      properties:
+        maximumQuantityPerRedemption:
+          exclusiveMinimum: true
+          minimum: 0
+        type:
+          nullable: false
+    CatalogAdminsProduct:
+      properties:
+        hasConfigurableOptions:
+          nullable: false
+        hasStandAloneOptions:
+          nullable: false
+        isVariation:
+          nullable: false
+        productCollectionProducts:
+          maxItems: 35
+    CatalogAdminsProductImageGroup:
+      properties:
+        productImageGroupId:
+          nullable: false
+    CatalogAdminsProductImageGroupTag:
+      properties:
+        fqn:
+          nullable: false
+    CatalogAdminsProductPrice:
+      properties:
+        price:
+          minimum: 0
+        salePrice:
+          minimum: 0
+    CatalogAdminsTargetedShippingMethod:
+      properties:
+        code:
+          maxLength: 100
+          nullable: false
+    CatalogAdminsTargetedShippingZone:
+      properties:
+        zone:
+          maxLength: 200
+          nullable: false
+    CatalogAdminsThresholdMessage:
+      properties:
+        discountId:
+          nullable: false
+        isActive:
+          nullable: false
+        requiresCouponCode:
+          nullable: false
+        showInCart:
+          nullable: false
+        showOnCheckout:
+          nullable: false
+        thresholdValue:
+          nullable: false
+    CategoryDiscountCondition:
+      properties:
+        categoryId:
+          nullable: false
+    DiscountLocalizedContent:
+      properties:
+        localeCode:
+          maxLength: 8
+        name:
+          maxLength: 200
+          nullable: false
     FieldTypeDefinitionRepositoryEntry:
-      additionalProperties: false
       description: ""
       example:
         name: name
         description: description
         usageRestrictions: ""
-        suffix: suffix
         solrFieldType: ""
+        suffix: suffix
       properties:
-        name:
+        description:
           nullable: true
           type: string
-        suffix:
+        name:
           nullable: true
           type: string
         solrFieldType:
           nullable: true
-        description:
+        suffix:
           nullable: true
           type: string
         usageRestrictions:
-          description: "Restricts the fields used by specific SOLR analyzer.\r\nOriginally\
-            \ developed for entity entraction/ aka noun_extraction\r\n(e.g. searching\
-            \ for sofa tables should return tables, not sofas)"
+          description: |-
+            Restricts the fields used by specific SOLR analyzer.
+            Originally developed for entity extraction/ aka noun_extraction
+            (e.g. searching for sofa tables should return tables, not sofas)
           nullable: true
       type: object
-    SchemaDefinitionField:
-      additionalProperties: false
-      example:
-        fieldName: fieldName
-        ingestFieldName: ingestFieldName
-        fieldDefinition: fieldDefinition
-        friendlyName: friendlyName
-        searchFieldName: searchFieldName
+    PricingRuntimeCustomerSegment:
       properties:
-        fieldName:
-          type: string
-        fieldDefinition:
-          type: string
-        friendlyName:
-          nullable: true
-          type: string
-        searchFieldName:
-          nullable: true
-          type: string
-        ingestFieldName:
-          nullable: true
-          type: string
-      required:
-      - fieldDefinition
-      - fieldName
-      type: object
-    SpellingSchemaDefinitionField:
-      additionalProperties: false
-      example:
-        ingestFieldName: ingestFieldName
+        id:
+          nullable: false
+    ProductCategory:
       properties:
-        ingestFieldName:
-          nullable: true
-          type: string
-      type: object
+        categoryId:
+          nullable: false
+    ProductExtraValueDeltaPrice:
+      properties:
+        deltaPrice:
+          nullable: false
+    ProductInCatalogInfo:
+      description: "Use the Products resource to create and manage products for your\
+        \ store. You can create products with options that a shopper configures (such\
+        \ as a T-shirt color and size). The system can manage inventory for all combinations\
+        \ of your product options, and can calculate tax and shipping costs."
+      properties:
+        catalogId:
+          nullable: false
+    ProductLocalizedContent:
+      properties:
+        productName:
+          nullable: false
+          pattern: ^(?!\s+).+(?<!\s)$
     SchemaDefinition:
-      additionalProperties: false
       example:
         auditInfo:
-          updateDate: 2000-01-23T04:56:07.000+00:00
           createBy: createBy
+          updateDate: 2000-01-23T04:56:07.000+00:00
           updateBy: updateBy
           createDate: 2000-01-23T04:56:07.000+00:00
         spellingFields:
@@ -551,80 +837,97 @@ components:
           friendlyName: friendlyName
           searchFieldName: searchFieldName
       properties:
-        language:
-          type: string
-        isPublished:
-          type: boolean
+        auditInfo:
+          $ref: '#/components/schemas/AdminUserAuditInfo'
         fields:
           items:
             $ref: '#/components/schemas/SchemaDefinitionField'
           type: array
+        isPublished:
+          readOnly: true
+          type: boolean
+        language:
+          minLength: 1
+          type: string
+        spellCorrectEnabled:
+          description: Returns boolean if contains any SpellingFields members.
+          nullable: true
+          type: boolean
         spellingFields:
           description: List of attributes used in the spelling dictionary
           items:
             $ref: '#/components/schemas/SpellingSchemaDefinitionField'
           nullable: true
           type: array
-        spellCorrectEnabled:
-          description: Returns boolean if contains any SpellingFields members.
-          nullable: true
-          type: boolean
-        auditInfo:
-          $ref: '#/components/schemas/AdminUserAuditInfo'
       required:
       - fields
       - language
       type: object
+    SchemaDefinitionField:
+      example:
+        fieldName: fieldName
+        ingestFieldName: ingestFieldName
+        fieldDefinition: fieldDefinition
+        friendlyName: friendlyName
+        searchFieldName: searchFieldName
+      properties:
+        fieldDefinition:
+          minLength: 1
+          type: string
+        fieldName:
+          minLength: 1
+          type: string
+        friendlyName:
+          nullable: true
+          type: string
+        ingestFieldName:
+          nullable: true
+          readOnly: true
+          type: string
+        searchFieldName:
+          nullable: true
+          readOnly: true
+          type: string
+      required:
+      - fieldDefinition
+      - fieldName
+      type: object
+    SpellingSchemaDefinitionField:
+      example:
+        ingestFieldName: ingestFieldName
+      properties:
+        ingestFieldName:
+          nullable: true
+          type: string
+      type: object
     Suggester:
-      additionalProperties: false
       example:
         highlight: highlight
         allTermsRequired: allTermsRequired
         name: name
       properties:
-        name:
+        allTermsRequired:
           nullable: true
           type: string
         highlight:
           nullable: true
           type: string
-        allTermsRequired:
+        name:
           nullable: true
           type: string
       type: object
-    AdminUserAuditInfo:
-      additionalProperties: false
-      example:
-        updateDate: 2000-01-23T04:56:07.000+00:00
-        createBy: createBy
-        updateBy: updateBy
-        createDate: 2000-01-23T04:56:07.000+00:00
+    ThresholdMessageLocalizedContent:
       properties:
-        updateDate:
-          format: date-time
-          nullable: true
-          type: string
-        createDate:
-          format: date-time
-          nullable: true
-          type: string
-        updateBy:
-          nullable: true
-          type: string
-        createBy:
-          nullable: true
-          type: string
-      type: object
+        localeCode:
+          maxLength: 8
+        messageTemplate:
+          nullable: false
   securitySchemes:
     bearerAuth:
       bearerFormat: JWT
-      description: JWT Authorization header using the Bearer scheme.
+      description: "JWT Authorization header using the Bearer scheme. \r\n\r\n Enter\
+        \ 'Bearer' [space] and then your token in the text input below.\r\n\r\nExample:\
+        \ \"Bearer 12345abcdef\""
       scheme: bearer
       type: http
-    clientOauth2:
-      flows:
-        clientCredentials:
-          scopes: {}
-          tokenUrl: /api/platform/applications/authtickets/oauth
-      type: oauth2
 

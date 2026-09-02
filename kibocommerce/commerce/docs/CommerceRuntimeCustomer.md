@@ -7,7 +7,7 @@
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
-|**customerContact** | [**CommerceRuntimeContact**](CommerceRuntimeContact.md) |  |  [optional] |
+|**customerContact** | [**Contact**](Contact.md) |  |  [optional] |
 |**data** | **Object** | Custom data |  [optional] |
 |**isDestinationCommercial** | **Boolean** | Destination Commercial Flag |  [optional] |
 

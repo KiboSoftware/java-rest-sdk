@@ -12,7 +12,7 @@ All URIs are relative to *http://https:/api*
 
 <a name="addInStockNotificationSubscription"></a>
 # **addInStockNotificationSubscription**
-> InStockNotificationSubscription addInStockNotificationSubscription(inStockNotificationSubscription)
+> InStockNotificationSubscription addInStockNotificationSubscription(responseFields, inStockNotificationSubscription)
 
 Add In Stock Notification Subscription
 
@@ -37,14 +37,11 @@ public class Example {
     HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
     bearerAuth.setBearerToken("BEARER TOKEN");
 
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
-
     InStockNotificationSubscriptionApi apiInstance = new InStockNotificationSubscriptionApi(defaultClient);
+    String responseFields = "responseFields_example"; // String | limits which fields are returned in the response body
     InStockNotificationSubscription inStockNotificationSubscription = new InStockNotificationSubscription(); // InStockNotificationSubscription | 
     try {
-      InStockNotificationSubscription result = apiInstance.addInStockNotificationSubscription(inStockNotificationSubscription);
+      InStockNotificationSubscription result = apiInstance.addInStockNotificationSubscription(responseFields, inStockNotificationSubscription);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling InStockNotificationSubscriptionApi#addInStockNotificationSubscription");
@@ -61,6 +58,7 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
+| **responseFields** | **String**| limits which fields are returned in the response body | [optional] |
 | **inStockNotificationSubscription** | [**InStockNotificationSubscription**](InStockNotificationSubscription.md)|  | [optional] |
 
 ### Return type
@@ -69,7 +67,7 @@ public class Example {
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth), [clientOauth2](../README.md#clientOauth2)
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
@@ -79,7 +77,7 @@ public class Example {
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Success |  -  |
+| **200** | OK |  -  |
 
 <a name="deleteInStockNotificationSubscription"></a>
 # **deleteInStockNotificationSubscription**
@@ -108,10 +106,6 @@ public class Example {
     HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
     bearerAuth.setBearerToken("BEARER TOKEN");
 
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
-
     InStockNotificationSubscriptionApi apiInstance = new InStockNotificationSubscriptionApi(defaultClient);
     Integer id = 56; // Integer | 
     try {
@@ -139,7 +133,7 @@ null (empty response body)
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth), [clientOauth2](../README.md#clientOauth2)
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
@@ -149,11 +143,11 @@ null (empty response body)
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Success |  -  |
+| **200** | OK |  -  |
 
 <a name="getInStockNotificationSubscription"></a>
 # **getInStockNotificationSubscription**
-> InStockNotificationSubscription getInStockNotificationSubscription(id)
+> InStockNotificationSubscription getInStockNotificationSubscription(id, responseFields)
 
 Get In Stock Notification Subscription
 
@@ -178,14 +172,11 @@ public class Example {
     HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
     bearerAuth.setBearerToken("BEARER TOKEN");
 
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
-
     InStockNotificationSubscriptionApi apiInstance = new InStockNotificationSubscriptionApi(defaultClient);
     Integer id = 56; // Integer | 
+    String responseFields = "responseFields_example"; // String | limits which fields are returned in the response body
     try {
-      InStockNotificationSubscription result = apiInstance.getInStockNotificationSubscription(id);
+      InStockNotificationSubscription result = apiInstance.getInStockNotificationSubscription(id, responseFields);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling InStockNotificationSubscriptionApi#getInStockNotificationSubscription");
@@ -203,6 +194,7 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **id** | **Integer**|  | |
+| **responseFields** | **String**| limits which fields are returned in the response body | [optional] |
 
 ### Return type
 
@@ -210,7 +202,7 @@ public class Example {
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth), [clientOauth2](../README.md#clientOauth2)
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
@@ -220,11 +212,11 @@ public class Example {
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Success |  -  |
+| **200** | OK |  -  |
 
 <a name="getInStockNotificationSubscriptions"></a>
 # **getInStockNotificationSubscriptions**
-> InStockNotificationSubscriptionCollection getInStockNotificationSubscriptions(startIndex, pageSize, sortBy, filter)
+> InStockNotificationSubscriptionCollection getInStockNotificationSubscriptions(startIndex, pageSize, sortBy, filter, responseFields)
 
 Get In Stock Notification Subscriptions
 
@@ -249,17 +241,14 @@ public class Example {
     HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
     bearerAuth.setBearerToken("BEARER TOKEN");
 
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
-
     InStockNotificationSubscriptionApi apiInstance = new InStockNotificationSubscriptionApi(defaultClient);
     Integer startIndex = 0; // Integer | 
     Integer pageSize = 0; // Integer | 
     String sortBy = "sortBy_example"; // String | 
     String filter = "filter_example"; // String | 
+    String responseFields = "responseFields_example"; // String | limits which fields are returned in the response body
     try {
-      InStockNotificationSubscriptionCollection result = apiInstance.getInStockNotificationSubscriptions(startIndex, pageSize, sortBy, filter);
+      InStockNotificationSubscriptionCollection result = apiInstance.getInStockNotificationSubscriptions(startIndex, pageSize, sortBy, filter, responseFields);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling InStockNotificationSubscriptionApi#getInStockNotificationSubscriptions");
@@ -280,6 +269,7 @@ public class Example {
 | **pageSize** | **Integer**|  | [optional] [default to 0] |
 | **sortBy** | **String**|  | [optional] |
 | **filter** | **String**|  | [optional] |
+| **responseFields** | **String**| limits which fields are returned in the response body | [optional] |
 
 ### Return type
 
@@ -287,7 +277,7 @@ public class Example {
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth), [clientOauth2](../README.md#clientOauth2)
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
@@ -297,5 +287,5 @@ public class Example {
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Success |  -  |
+| **200** | OK |  -  |
 

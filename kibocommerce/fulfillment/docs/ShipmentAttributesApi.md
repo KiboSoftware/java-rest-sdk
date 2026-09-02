@@ -4,95 +4,21 @@ All URIs are relative to *http://https:/api*
 
 | Method | HTTP request | Description |
 |------------- | ------------- | -------------|
-| [**deleteShipmentAttributeUsingDELETE**](ShipmentAttributesApi.md#deleteShipmentAttributeUsingDELETE) | **DELETE** /commerce/shipments/{shipmentNumber}/attributes/{key} | Delete Shipment Attribute |
-| [**getShipmentAttributeUsingGET**](ShipmentAttributesApi.md#getShipmentAttributeUsingGET) | **GET** /commerce/shipments/{shipmentNumber}/attributes/{key} | Get Shipment Attribute |
-| [**getShipmentAttributesUsingGET**](ShipmentAttributesApi.md#getShipmentAttributesUsingGET) | **GET** /commerce/shipments/{shipmentNumber}/attributes | Get Shipment Attributes |
-| [**setShipmentAttributeUsingPUT**](ShipmentAttributesApi.md#setShipmentAttributeUsingPUT) | **PUT** /commerce/shipments/{shipmentNumber}/attributes/{key} | Set Shipment Attribute |
-| [**setShipmentAttributesUsingPUT**](ShipmentAttributesApi.md#setShipmentAttributesUsingPUT) | **PUT** /commerce/shipments/{shipmentNumber}/attributes | Set Shipment Attributes |
+| [**createShipmentAttributes**](ShipmentAttributesApi.md#createShipmentAttributes) | **POST** /commerce/shipments/{shipmentNumber}/attributes | createShipmentAttributes |
+| [**deleteShipmentAttribute**](ShipmentAttributesApi.md#deleteShipmentAttribute) | **DELETE** /commerce/shipments/{shipmentNumber}/attributes/{key} | deleteShipmentMapAttribute |
+| [**getShipmentAttribute**](ShipmentAttributesApi.md#getShipmentAttribute) | **GET** /commerce/shipments/{shipmentNumber}/attributes/{key} | getShipmentMapAttribute |
+| [**getShipmentAttributes**](ShipmentAttributesApi.md#getShipmentAttributes) | **GET** /commerce/shipments/{shipmentNumber}/attributes | getShipmentMapAttributes |
+| [**setShipmentAttribute**](ShipmentAttributesApi.md#setShipmentAttribute) | **PUT** /commerce/shipments/{shipmentNumber}/attributes/{key} | setShipmentMapAttribute |
+| [**setShipmentAttributes**](ShipmentAttributesApi.md#setShipmentAttributes) | **PUT** /commerce/shipments/{shipmentNumber}/attributes | setShipmentMapAttributes |
 
 
-<a name="deleteShipmentAttributeUsingDELETE"></a>
-# **deleteShipmentAttributeUsingDELETE**
-> deleteShipmentAttributeUsingDELETE(shipmentNumber, key)
+<a name="createShipmentAttributes"></a>
+# **createShipmentAttributes**
+> EntityModelOfShipment createShipmentAttributes(shipmentNumber, xVolTenant, fulfillmentAPIShipmentAttribute, ifMatch, xVolSite, xVolVersion)
 
-Delete Shipment Attribute
+createShipmentAttributes
 
-Delete Shipment Attribute
-
-### Example
-```java
-// Import classes:
-import com.kibocommerce.sdk.fulfillment.ApiClient;
-import com.kibocommerce.sdk.fulfillment.ApiException;
-import com.kibocommerce.sdk.fulfillment.Configuration;
-import com.kibocommerce.sdk.fulfillment.auth.*;
-import com.kibocommerce.sdk.fulfillment.models.*;
-import com.kibocommerce.sdk.fulfillment.api.ShipmentAttributesApi;
-
-public class Example {
-  public static void main(String[] args) {
-    ApiClient defaultClient = Configuration.getDefaultApiClient();
-    defaultClient.setBasePath("http://https:/api");
-    
-    // Configure HTTP bearer authorization: bearerAuth
-    HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
-    bearerAuth.setBearerToken("BEARER TOKEN");
-
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
-
-    ShipmentAttributesApi apiInstance = new ShipmentAttributesApi(defaultClient);
-    Integer shipmentNumber = 56; // Integer | shipmentNumber
-    String key = "key_example"; // String | key
-    try {
-      apiInstance.deleteShipmentAttributeUsingDELETE(shipmentNumber, key);
-    } catch (ApiException e) {
-      System.err.println("Exception when calling ShipmentAttributesApi#deleteShipmentAttributeUsingDELETE");
-      System.err.println("Status code: " + e.getCode());
-      System.err.println("Reason: " + e.getResponseBody());
-      System.err.println("Response headers: " + e.getResponseHeaders());
-      e.printStackTrace();
-    }
-  }
-}
-```
-
-### Parameters
-
-| Name | Type | Description  | Notes |
-|------------- | ------------- | ------------- | -------------|
-| **shipmentNumber** | **Integer**| shipmentNumber | |
-| **key** | **String**| key | |
-
-### Return type
-
-null (empty response body)
-
-### Authorization
-
-[bearerAuth](../README.md#bearerAuth), [clientOauth2](../README.md#clientOauth2)
-
-### HTTP request headers
-
- - **Content-Type**: Not defined
- - **Accept**: Not defined
-
-### HTTP response details
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-| **204** | Success |  -  |
-| **401** | Unauthorized |  -  |
-| **403** | Forbidden |  -  |
-| **404** | Not Found |  -  |
-
-<a name="getShipmentAttributeUsingGET"></a>
-# **getShipmentAttributeUsingGET**
-> ShipmentAttribute getShipmentAttributeUsingGET(shipmentNumber, key)
-
-Get Shipment Attribute
-
-Get Shipment Attribute
+createShipmentAttributes
 
 ### Example
 ```java
@@ -100,7 +26,6 @@ Get Shipment Attribute
 import com.kibocommerce.sdk.fulfillment.ApiClient;
 import com.kibocommerce.sdk.fulfillment.ApiException;
 import com.kibocommerce.sdk.fulfillment.Configuration;
-import com.kibocommerce.sdk.fulfillment.auth.*;
 import com.kibocommerce.sdk.fulfillment.models.*;
 import com.kibocommerce.sdk.fulfillment.api.ShipmentAttributesApi;
 
@@ -108,23 +33,19 @@ public class Example {
   public static void main(String[] args) {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
     defaultClient.setBasePath("http://https:/api");
-    
-    // Configure HTTP bearer authorization: bearerAuth
-    HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
-    bearerAuth.setBearerToken("BEARER TOKEN");
-
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
 
     ShipmentAttributesApi apiInstance = new ShipmentAttributesApi(defaultClient);
     Integer shipmentNumber = 56; // Integer | shipmentNumber
-    String key = "key_example"; // String | key
+    Integer xVolTenant = 56; // Integer | 
+    List<FulfillmentAPIShipmentAttribute> fulfillmentAPIShipmentAttribute = Arrays.asList(); // List<FulfillmentAPIShipmentAttribute> | attributeDtos
+    String ifMatch = "ifMatch_example"; // String | If-Match
+    Integer xVolSite = 56; // Integer | 
+    String xVolVersion = "xVolVersion_example"; // String | x-vol-version
     try {
-      ShipmentAttribute result = apiInstance.getShipmentAttributeUsingGET(shipmentNumber, key);
+      EntityModelOfShipment result = apiInstance.createShipmentAttributes(shipmentNumber, xVolTenant, fulfillmentAPIShipmentAttribute, ifMatch, xVolSite, xVolVersion);
       System.out.println(result);
     } catch (ApiException e) {
-      System.err.println("Exception when calling ShipmentAttributesApi#getShipmentAttributeUsingGET");
+      System.err.println("Exception when calling ShipmentAttributesApi#createShipmentAttributes");
       System.err.println("Status code: " + e.getCode());
       System.err.println("Reason: " + e.getResponseBody());
       System.err.println("Response headers: " + e.getResponseHeaders());
@@ -139,172 +60,24 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **shipmentNumber** | **Integer**| shipmentNumber | |
-| **key** | **String**| key | |
+| **xVolTenant** | **Integer**|  | |
+| **fulfillmentAPIShipmentAttribute** | [**List&lt;FulfillmentAPIShipmentAttribute&gt;**](FulfillmentAPIShipmentAttribute.md)| attributeDtos | |
+| **ifMatch** | **String**| If-Match | [optional] |
+| **xVolSite** | **Integer**|  | [optional] |
+| **xVolVersion** | **String**| x-vol-version | [optional] |
 
 ### Return type
 
-[**ShipmentAttribute**](ShipmentAttribute.md)
+[**EntityModelOfShipment**](EntityModelOfShipment.md)
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth), [clientOauth2](../README.md#clientOauth2)
-
-### HTTP request headers
-
- - **Content-Type**: Not defined
- - **Accept**: application/json, application/xml, application/hal+json
-
-### HTTP response details
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-| **200** | OK |  -  |
-| **401** | Unauthorized |  -  |
-| **403** | Forbidden |  -  |
-| **404** | Not Found |  -  |
-
-<a name="getShipmentAttributesUsingGET"></a>
-# **getShipmentAttributesUsingGET**
-> List&lt;ShipmentAttribute&gt; getShipmentAttributesUsingGET(shipmentNumber)
-
-Get Shipment Attributes
-
-Get Shipment Attributes
-
-### Example
-```java
-// Import classes:
-import com.kibocommerce.sdk.fulfillment.ApiClient;
-import com.kibocommerce.sdk.fulfillment.ApiException;
-import com.kibocommerce.sdk.fulfillment.Configuration;
-import com.kibocommerce.sdk.fulfillment.auth.*;
-import com.kibocommerce.sdk.fulfillment.models.*;
-import com.kibocommerce.sdk.fulfillment.api.ShipmentAttributesApi;
-
-public class Example {
-  public static void main(String[] args) {
-    ApiClient defaultClient = Configuration.getDefaultApiClient();
-    defaultClient.setBasePath("http://https:/api");
-    
-    // Configure HTTP bearer authorization: bearerAuth
-    HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
-    bearerAuth.setBearerToken("BEARER TOKEN");
-
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
-
-    ShipmentAttributesApi apiInstance = new ShipmentAttributesApi(defaultClient);
-    Integer shipmentNumber = 56; // Integer | shipmentNumber
-    try {
-      List<ShipmentAttribute> result = apiInstance.getShipmentAttributesUsingGET(shipmentNumber);
-      System.out.println(result);
-    } catch (ApiException e) {
-      System.err.println("Exception when calling ShipmentAttributesApi#getShipmentAttributesUsingGET");
-      System.err.println("Status code: " + e.getCode());
-      System.err.println("Reason: " + e.getResponseBody());
-      System.err.println("Response headers: " + e.getResponseHeaders());
-      e.printStackTrace();
-    }
-  }
-}
-```
-
-### Parameters
-
-| Name | Type | Description  | Notes |
-|------------- | ------------- | ------------- | -------------|
-| **shipmentNumber** | **Integer**| shipmentNumber | |
-
-### Return type
-
-[**List&lt;ShipmentAttribute&gt;**](ShipmentAttribute.md)
-
-### Authorization
-
-[bearerAuth](../README.md#bearerAuth), [clientOauth2](../README.md#clientOauth2)
-
-### HTTP request headers
-
- - **Content-Type**: Not defined
- - **Accept**: application/json, application/xml, application/hal+json
-
-### HTTP response details
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-| **200** | OK |  -  |
-| **401** | Unauthorized |  -  |
-| **403** | Forbidden |  -  |
-| **404** | Not Found |  -  |
-
-<a name="setShipmentAttributeUsingPUT"></a>
-# **setShipmentAttributeUsingPUT**
-> ShipmentAttribute setShipmentAttributeUsingPUT(shipmentNumber, key, shipmentAttribute)
-
-Set Shipment Attribute
-
-Set Shipment Attribute
-
-### Example
-```java
-// Import classes:
-import com.kibocommerce.sdk.fulfillment.ApiClient;
-import com.kibocommerce.sdk.fulfillment.ApiException;
-import com.kibocommerce.sdk.fulfillment.Configuration;
-import com.kibocommerce.sdk.fulfillment.auth.*;
-import com.kibocommerce.sdk.fulfillment.models.*;
-import com.kibocommerce.sdk.fulfillment.api.ShipmentAttributesApi;
-
-public class Example {
-  public static void main(String[] args) {
-    ApiClient defaultClient = Configuration.getDefaultApiClient();
-    defaultClient.setBasePath("http://https:/api");
-    
-    // Configure HTTP bearer authorization: bearerAuth
-    HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
-    bearerAuth.setBearerToken("BEARER TOKEN");
-
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
-
-    ShipmentAttributesApi apiInstance = new ShipmentAttributesApi(defaultClient);
-    Integer shipmentNumber = 56; // Integer | shipmentNumber
-    String key = "key_example"; // String | key
-    ShipmentAttribute shipmentAttribute = new ShipmentAttribute(); // ShipmentAttribute | 
-    try {
-      ShipmentAttribute result = apiInstance.setShipmentAttributeUsingPUT(shipmentNumber, key, shipmentAttribute);
-      System.out.println(result);
-    } catch (ApiException e) {
-      System.err.println("Exception when calling ShipmentAttributesApi#setShipmentAttributeUsingPUT");
-      System.err.println("Status code: " + e.getCode());
-      System.err.println("Reason: " + e.getResponseBody());
-      System.err.println("Response headers: " + e.getResponseHeaders());
-      e.printStackTrace();
-    }
-  }
-}
-```
-
-### Parameters
-
-| Name | Type | Description  | Notes |
-|------------- | ------------- | ------------- | -------------|
-| **shipmentNumber** | **Integer**| shipmentNumber | |
-| **key** | **String**| key | |
-| **shipmentAttribute** | [**ShipmentAttribute**](ShipmentAttribute.md)|  | [optional] |
-
-### Return type
-
-[**ShipmentAttribute**](ShipmentAttribute.md)
-
-### Authorization
-
-[bearerAuth](../README.md#bearerAuth), [clientOauth2](../README.md#clientOauth2)
+No authorization required
 
 ### HTTP request headers
 
  - **Content-Type**: application/json
- - **Accept**: application/json, application/xml, application/hal+json
+ - **Accept**: application/hal+json, application/json, application/xml
 
 ### HTTP response details
 | Status code | Description | Response headers |
@@ -315,13 +88,13 @@ public class Example {
 | **403** | Forbidden |  -  |
 | **404** | Not Found |  -  |
 
-<a name="setShipmentAttributesUsingPUT"></a>
-# **setShipmentAttributesUsingPUT**
-> List&lt;ShipmentAttribute&gt; setShipmentAttributesUsingPUT(shipmentNumber, shipmentAttribute)
+<a name="deleteShipmentAttribute"></a>
+# **deleteShipmentAttribute**
+> deleteShipmentAttribute(key, shipmentNumber)
 
-Set Shipment Attributes
+deleteShipmentMapAttribute
 
-Set Shipment Attributes
+Delete a shipment attribute.
 
 ### Example
 ```java
@@ -329,7 +102,6 @@ Set Shipment Attributes
 import com.kibocommerce.sdk.fulfillment.ApiClient;
 import com.kibocommerce.sdk.fulfillment.ApiException;
 import com.kibocommerce.sdk.fulfillment.Configuration;
-import com.kibocommerce.sdk.fulfillment.auth.*;
 import com.kibocommerce.sdk.fulfillment.models.*;
 import com.kibocommerce.sdk.fulfillment.api.ShipmentAttributesApi;
 
@@ -337,23 +109,146 @@ public class Example {
   public static void main(String[] args) {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
     defaultClient.setBasePath("http://https:/api");
-    
-    // Configure HTTP bearer authorization: bearerAuth
-    HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
-    bearerAuth.setBearerToken("BEARER TOKEN");
 
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
+    ShipmentAttributesApi apiInstance = new ShipmentAttributesApi(defaultClient);
+    String key = "key_example"; // String | key
+    Integer shipmentNumber = 56; // Integer | shipmentNumber
+    try {
+      apiInstance.deleteShipmentAttribute(key, shipmentNumber);
+    } catch (ApiException e) {
+      System.err.println("Exception when calling ShipmentAttributesApi#deleteShipmentAttribute");
+      System.err.println("Status code: " + e.getCode());
+      System.err.println("Reason: " + e.getResponseBody());
+      System.err.println("Response headers: " + e.getResponseHeaders());
+      e.printStackTrace();
+    }
+  }
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **key** | **String**| key | |
+| **shipmentNumber** | **Integer**| shipmentNumber | |
+
+### Return type
+
+null (empty response body)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: Not defined
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **204** | No Content |  -  |
+| **401** | Unauthorized |  -  |
+| **403** | Forbidden |  -  |
+
+<a name="getShipmentAttribute"></a>
+# **getShipmentAttribute**
+> FulfillmentAPIShipmentAttribute getShipmentAttribute(key, shipmentNumber)
+
+getShipmentMapAttribute
+
+Get a shipment attribute by its key.
+
+### Example
+```java
+// Import classes:
+import com.kibocommerce.sdk.fulfillment.ApiClient;
+import com.kibocommerce.sdk.fulfillment.ApiException;
+import com.kibocommerce.sdk.fulfillment.Configuration;
+import com.kibocommerce.sdk.fulfillment.models.*;
+import com.kibocommerce.sdk.fulfillment.api.ShipmentAttributesApi;
+
+public class Example {
+  public static void main(String[] args) {
+    ApiClient defaultClient = Configuration.getDefaultApiClient();
+    defaultClient.setBasePath("http://https:/api");
+
+    ShipmentAttributesApi apiInstance = new ShipmentAttributesApi(defaultClient);
+    String key = "key_example"; // String | key
+    Integer shipmentNumber = 56; // Integer | shipmentNumber
+    try {
+      FulfillmentAPIShipmentAttribute result = apiInstance.getShipmentAttribute(key, shipmentNumber);
+      System.out.println(result);
+    } catch (ApiException e) {
+      System.err.println("Exception when calling ShipmentAttributesApi#getShipmentAttribute");
+      System.err.println("Status code: " + e.getCode());
+      System.err.println("Reason: " + e.getResponseBody());
+      System.err.println("Response headers: " + e.getResponseHeaders());
+      e.printStackTrace();
+    }
+  }
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **key** | **String**| key | |
+| **shipmentNumber** | **Integer**| shipmentNumber | |
+
+### Return type
+
+[**FulfillmentAPIShipmentAttribute**](FulfillmentAPIShipmentAttribute.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/hal+json, application/json, application/xml
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | OK |  -  |
+| **401** | Unauthorized |  -  |
+| **403** | Forbidden |  -  |
+| **404** | Not Found |  -  |
+
+<a name="getShipmentAttributes"></a>
+# **getShipmentAttributes**
+> List&lt;FulfillmentAPIShipmentAttribute&gt; getShipmentAttributes(shipmentNumber)
+
+getShipmentMapAttributes
+
+Get a shipment&#39;s attributes.
+
+### Example
+```java
+// Import classes:
+import com.kibocommerce.sdk.fulfillment.ApiClient;
+import com.kibocommerce.sdk.fulfillment.ApiException;
+import com.kibocommerce.sdk.fulfillment.Configuration;
+import com.kibocommerce.sdk.fulfillment.models.*;
+import com.kibocommerce.sdk.fulfillment.api.ShipmentAttributesApi;
+
+public class Example {
+  public static void main(String[] args) {
+    ApiClient defaultClient = Configuration.getDefaultApiClient();
+    defaultClient.setBasePath("http://https:/api");
 
     ShipmentAttributesApi apiInstance = new ShipmentAttributesApi(defaultClient);
     Integer shipmentNumber = 56; // Integer | shipmentNumber
-    List<ShipmentAttribute> shipmentAttribute = Arrays.asList(); // List<ShipmentAttribute> | 
     try {
-      List<ShipmentAttribute> result = apiInstance.setShipmentAttributesUsingPUT(shipmentNumber, shipmentAttribute);
+      List<FulfillmentAPIShipmentAttribute> result = apiInstance.getShipmentAttributes(shipmentNumber);
       System.out.println(result);
     } catch (ApiException e) {
-      System.err.println("Exception when calling ShipmentAttributesApi#setShipmentAttributesUsingPUT");
+      System.err.println("Exception when calling ShipmentAttributesApi#getShipmentAttributes");
       System.err.println("Status code: " + e.getCode());
       System.err.println("Reason: " + e.getResponseBody());
       System.err.println("Response headers: " + e.getResponseHeaders());
@@ -368,20 +263,156 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **shipmentNumber** | **Integer**| shipmentNumber | |
-| **shipmentAttribute** | [**List&lt;ShipmentAttribute&gt;**](ShipmentAttribute.md)|  | [optional] |
 
 ### Return type
 
-[**List&lt;ShipmentAttribute&gt;**](ShipmentAttribute.md)
+[**List&lt;FulfillmentAPIShipmentAttribute&gt;**](FulfillmentAPIShipmentAttribute.md)
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth), [clientOauth2](../README.md#clientOauth2)
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/hal+json, application/json, application/xml
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | OK |  -  |
+| **401** | Unauthorized |  -  |
+| **403** | Forbidden |  -  |
+| **404** | Not Found |  -  |
+
+<a name="setShipmentAttribute"></a>
+# **setShipmentAttribute**
+> FulfillmentAPIShipmentAttribute setShipmentAttribute(key, shipmentNumber, attribute)
+
+setShipmentMapAttribute
+
+Set a shipment&#39;s attribute value.
+
+### Example
+```java
+// Import classes:
+import com.kibocommerce.sdk.fulfillment.ApiClient;
+import com.kibocommerce.sdk.fulfillment.ApiException;
+import com.kibocommerce.sdk.fulfillment.Configuration;
+import com.kibocommerce.sdk.fulfillment.models.*;
+import com.kibocommerce.sdk.fulfillment.api.ShipmentAttributesApi;
+
+public class Example {
+  public static void main(String[] args) {
+    ApiClient defaultClient = Configuration.getDefaultApiClient();
+    defaultClient.setBasePath("http://https:/api");
+
+    ShipmentAttributesApi apiInstance = new ShipmentAttributesApi(defaultClient);
+    String key = "key_example"; // String | key
+    Integer shipmentNumber = 56; // Integer | shipmentNumber
+    FulfillmentAPIShipmentAttribute attribute = new FulfillmentAPIShipmentAttribute(); // FulfillmentAPIShipmentAttribute | attribute
+    try {
+      FulfillmentAPIShipmentAttribute result = apiInstance.setShipmentAttribute(key, shipmentNumber, attribute);
+      System.out.println(result);
+    } catch (ApiException e) {
+      System.err.println("Exception when calling ShipmentAttributesApi#setShipmentAttribute");
+      System.err.println("Status code: " + e.getCode());
+      System.err.println("Reason: " + e.getResponseBody());
+      System.err.println("Response headers: " + e.getResponseHeaders());
+      e.printStackTrace();
+    }
+  }
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **key** | **String**| key | |
+| **shipmentNumber** | **Integer**| shipmentNumber | |
+| **attribute** | [**FulfillmentAPIShipmentAttribute**](FulfillmentAPIShipmentAttribute.md)| attribute | |
+
+### Return type
+
+[**FulfillmentAPIShipmentAttribute**](FulfillmentAPIShipmentAttribute.md)
+
+### Authorization
+
+No authorization required
 
 ### HTTP request headers
 
  - **Content-Type**: application/json
- - **Accept**: application/json, application/xml, application/hal+json
+ - **Accept**: application/hal+json, application/json, application/xml
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | OK |  -  |
+| **201** | Created |  -  |
+| **401** | Unauthorized |  -  |
+| **403** | Forbidden |  -  |
+| **404** | Not Found |  -  |
+
+<a name="setShipmentAttributes"></a>
+# **setShipmentAttributes**
+> List&lt;FulfillmentAPIShipmentAttribute&gt; setShipmentAttributes(shipmentNumber, attributes)
+
+setShipmentMapAttributes
+
+Set a shipment&#39;s attributes.
+
+### Example
+```java
+// Import classes:
+import com.kibocommerce.sdk.fulfillment.ApiClient;
+import com.kibocommerce.sdk.fulfillment.ApiException;
+import com.kibocommerce.sdk.fulfillment.Configuration;
+import com.kibocommerce.sdk.fulfillment.models.*;
+import com.kibocommerce.sdk.fulfillment.api.ShipmentAttributesApi;
+
+public class Example {
+  public static void main(String[] args) {
+    ApiClient defaultClient = Configuration.getDefaultApiClient();
+    defaultClient.setBasePath("http://https:/api");
+
+    ShipmentAttributesApi apiInstance = new ShipmentAttributesApi(defaultClient);
+    Integer shipmentNumber = 56; // Integer | shipmentNumber
+    List<FulfillmentAPIShipmentAttribute> attributes = Arrays.asList(); // List<FulfillmentAPIShipmentAttribute> | attributes
+    try {
+      List<FulfillmentAPIShipmentAttribute> result = apiInstance.setShipmentAttributes(shipmentNumber, attributes);
+      System.out.println(result);
+    } catch (ApiException e) {
+      System.err.println("Exception when calling ShipmentAttributesApi#setShipmentAttributes");
+      System.err.println("Status code: " + e.getCode());
+      System.err.println("Reason: " + e.getResponseBody());
+      System.err.println("Response headers: " + e.getResponseHeaders());
+      e.printStackTrace();
+    }
+  }
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **shipmentNumber** | **Integer**| shipmentNumber | |
+| **attributes** | [**List&lt;FulfillmentAPIShipmentAttribute&gt;**](FulfillmentAPIShipmentAttribute.md)| attributes | |
+
+### Return type
+
+[**List&lt;FulfillmentAPIShipmentAttribute&gt;**](FulfillmentAPIShipmentAttribute.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/hal+json, application/json, application/xml
 
 ### HTTP response details
 | Status code | Description | Response headers |

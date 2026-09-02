@@ -9,11 +9,11 @@ All URIs are relative to *http://https:/api*
 
 <a name="getViewDocuments"></a>
 # **getViewDocuments**
-> DocumentCollection getViewDocuments(documentListName, viewName, filter, sortBy, pageSize, startIndex, includeInactive)
+> DocumentCollection getViewDocuments(documentListName, viewName, filter, sortBy, pageSize, startIndex, includeInactive, fullSearch, responseFields)
 
 Get View Documents
 
-Get View Documents
+When fullSearch is &#x60;true&#x60;, performs an exhaustive search to ensure all matching documents are returned. May be slower on very large lists. Returns HTTP 400 if the document list exceeds the configured maximum size (default 100,000). Defaults to &#x60;false&#x60;, which performs a faster search optimized for recently updated documents.
 
 ### Example
 ```java
@@ -34,10 +34,6 @@ public class Example {
     HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
     bearerAuth.setBearerToken("BEARER TOKEN");
 
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
-
     ViewsApi apiInstance = new ViewsApi(defaultClient);
     String documentListName = "documentListName_example"; // String | 
     String viewName = "viewName_example"; // String | 
@@ -46,8 +42,10 @@ public class Example {
     Integer pageSize = 56; // Integer | 
     Integer startIndex = 56; // Integer | 
     Boolean includeInactive = true; // Boolean | 
+    Boolean fullSearch = false; // Boolean | When `true`, performs an exhaustive search guaranteeing all matching documents are returned. Slower than the default on large lists. Returns HTTP 400 if the document list exceeds the configured maximum size threshold (default 100,000). Defaults to `false`, optimizing for speed.
+    String responseFields = "responseFields_example"; // String | limits which fields are returned in the response body
     try {
-      DocumentCollection result = apiInstance.getViewDocuments(documentListName, viewName, filter, sortBy, pageSize, startIndex, includeInactive);
+      DocumentCollection result = apiInstance.getViewDocuments(documentListName, viewName, filter, sortBy, pageSize, startIndex, includeInactive, fullSearch, responseFields);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling ViewsApi#getViewDocuments");
@@ -71,6 +69,8 @@ public class Example {
 | **pageSize** | **Integer**|  | [optional] |
 | **startIndex** | **Integer**|  | [optional] |
 | **includeInactive** | **Boolean**|  | [optional] |
+| **fullSearch** | **Boolean**| When &#x60;true&#x60;, performs an exhaustive search guaranteeing all matching documents are returned. Slower than the default on large lists. Returns HTTP 400 if the document list exceeds the configured maximum size threshold (default 100,000). Defaults to &#x60;false&#x60;, optimizing for speed. | [optional] [default to false] |
+| **responseFields** | **String**| limits which fields are returned in the response body | [optional] |
 
 ### Return type
 
@@ -78,7 +78,7 @@ public class Example {
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth), [clientOauth2](../README.md#clientOauth2)
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
@@ -88,5 +88,5 @@ public class Example {
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Success |  -  |
+| **200** | OK |  -  |
 

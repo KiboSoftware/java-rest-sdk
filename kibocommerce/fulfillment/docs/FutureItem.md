@@ -7,9 +7,9 @@
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
-|**futureDate** | **OffsetDateTime** |  |  |
-|**lineId** | **Integer** |  |  |
-|**quantity** | **Integer** |  |  |
+|**futureDate** | **OffsetDateTime** |  |  [optional] |
+|**lineId** | **Integer** |  |  [optional] |
+|**quantity** | **Integer** |  |  [optional] |
 
 
 ## Implemented Interfaces

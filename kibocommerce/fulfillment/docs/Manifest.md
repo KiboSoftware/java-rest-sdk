@@ -8,15 +8,17 @@
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
 |**attributes** | **Map&lt;String, Object&gt;** |  |  [optional] |
-|**auditInfo** | [**AuditInfo0**](AuditInfo0.md) |  |  [optional] |
+|**auditInfo** | [**FulfillmentAPIAuditInfo**](FulfillmentAPIAuditInfo.md) |  |  [optional] |
 |**carrierId** | **String** |  |  [optional] |
 |**internalId** | **String** |  |  [optional] |
+|**isSuccessfulPreviously** | **Boolean** |  |  [optional] |
 |**locationCode** | **String** |  |  [optional] |
 |**manifestId** | **String** |  |  [optional] |
 |**manifestUrl** | **String** |  |  [optional] |
 |**numberOfPackages** | **Integer** |  |  [optional] |
 |**numberOfShipments** | **Integer** |  |  [optional] |
-|**shipments** | [**List&lt;FulfillmentManifestShipment&gt;**](FulfillmentManifestShipment.md) |  |  [optional] |
+|**shipments** | [**List&lt;ManifestShipment&gt;**](ManifestShipment.md) |  |  [optional] |
+|**shipmentsSuccessfulPreviously** | [**List&lt;ManifestShipment&gt;**](ManifestShipment.md) |  |  [optional] |
 |**tenantId** | **Integer** |  |  [optional] |
 |**userDisplayName** | **String** |  |  [optional] |
 |**userId** | **String** |  |  [optional] |

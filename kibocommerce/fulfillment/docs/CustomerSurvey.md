@@ -8,7 +8,7 @@
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
 |**attributes** | **Map&lt;String, Object&gt;** |  |  [optional] |
-|**auditInfo** | [**FulfillmentAuditInfo**](FulfillmentAuditInfo.md) |  |  [optional] |
+|**auditInfo** | [**FulfillmentAPIAuditInfo**](FulfillmentAPIAuditInfo.md) |  |  [optional] |
 |**entries** | [**List&lt;CustomerSurveyEntry&gt;**](CustomerSurveyEntry.md) |  |  [optional] |
 |**id** | **String** |  |  [optional] |
 |**shipmentNumber** | **Integer** |  |  [optional] |

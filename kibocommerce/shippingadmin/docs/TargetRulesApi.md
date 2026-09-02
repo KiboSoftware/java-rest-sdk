@@ -7,14 +7,14 @@ All URIs are relative to *http://https:/api*
 | [**createTargetRule**](TargetRulesApi.md#createTargetRule) | **POST** /commerce/targetrules | Create Target Rule |
 | [**deleteTargetRule**](TargetRulesApi.md#deleteTargetRule) | **DELETE** /commerce/targetrules/{code} | Delete Target Rule |
 | [**getTargetRule**](TargetRulesApi.md#getTargetRule) | **GET** /commerce/targetrules/{code} | Get Target Rule |
-| [**getTargetRules**](TargetRulesApi.md#getTargetRules) | **GET** /commerce/targetrules | Retrieves a list of TargetRules according to any specified filter criteria and sort options |
+| [**getTargetRules**](TargetRulesApi.md#getTargetRules) | **GET** /commerce/targetrules | Get Target Rules |
 | [**updateTargetRule**](TargetRulesApi.md#updateTargetRule) | **PUT** /commerce/targetrules/{code} | Update Target Rule |
 | [**validateTargetRule**](TargetRulesApi.md#validateTargetRule) | **POST** /commerce/targetrules/validate | Validate Target Rule |
 
 
 <a name="createTargetRule"></a>
 # **createTargetRule**
-> TargetRule createTargetRule(targetRule)
+> TargetRule createTargetRule(responseFields, targetRule)
 
 Create Target Rule
 
@@ -39,14 +39,11 @@ public class Example {
     HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
     bearerAuth.setBearerToken("BEARER TOKEN");
 
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
-
     TargetRulesApi apiInstance = new TargetRulesApi(defaultClient);
+    String responseFields = "responseFields_example"; // String | limits which fields are returned in the response body
     TargetRule targetRule = new TargetRule(); // TargetRule | 
     try {
-      TargetRule result = apiInstance.createTargetRule(targetRule);
+      TargetRule result = apiInstance.createTargetRule(responseFields, targetRule);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling TargetRulesApi#createTargetRule");
@@ -63,6 +60,7 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
+| **responseFields** | **String**| limits which fields are returned in the response body | [optional] |
 | **targetRule** | [**TargetRule**](TargetRule.md)|  | [optional] |
 
 ### Return type
@@ -71,7 +69,7 @@ public class Example {
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth), [clientOauth2](../README.md#clientOauth2)
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
@@ -110,10 +108,6 @@ public class Example {
     HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
     bearerAuth.setBearerToken("BEARER TOKEN");
 
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
-
     TargetRulesApi apiInstance = new TargetRulesApi(defaultClient);
     String code = "code_example"; // String | 
     try {
@@ -141,7 +135,7 @@ null (empty response body)
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth), [clientOauth2](../README.md#clientOauth2)
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
@@ -155,7 +149,7 @@ null (empty response body)
 
 <a name="getTargetRule"></a>
 # **getTargetRule**
-> TargetRule getTargetRule(code)
+> TargetRule getTargetRule(code, responseFields)
 
 Get Target Rule
 
@@ -180,14 +174,11 @@ public class Example {
     HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
     bearerAuth.setBearerToken("BEARER TOKEN");
 
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
-
     TargetRulesApi apiInstance = new TargetRulesApi(defaultClient);
     String code = "code_example"; // String | 
+    String responseFields = "responseFields_example"; // String | limits which fields are returned in the response body
     try {
-      TargetRule result = apiInstance.getTargetRule(code);
+      TargetRule result = apiInstance.getTargetRule(code, responseFields);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling TargetRulesApi#getTargetRule");
@@ -205,6 +196,7 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **code** | **String**|  | |
+| **responseFields** | **String**| limits which fields are returned in the response body | [optional] |
 
 ### Return type
 
@@ -212,7 +204,7 @@ public class Example {
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth), [clientOauth2](../README.md#clientOauth2)
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
@@ -226,11 +218,11 @@ public class Example {
 
 <a name="getTargetRules"></a>
 # **getTargetRules**
-> TargetRuleCollection getTargetRules(startIndex, pageSize, sortBy, filter)
+> TargetRuleCollection getTargetRules(startIndex, pageSize, sortBy, filter, responseFields)
+
+Get Target Rules
 
 Retrieves a list of TargetRules according to any specified filter criteria and sort options
-
-
 
 ### Example
 ```java
@@ -251,17 +243,14 @@ public class Example {
     HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
     bearerAuth.setBearerToken("BEARER TOKEN");
 
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
-
     TargetRulesApi apiInstance = new TargetRulesApi(defaultClient);
     Integer startIndex = 0; // Integer | Used to page results from a query. Indicates the zero-based offset in the complete result set where the returned entities begin. The default value is 0.
     Integer pageSize = 0; // Integer | Used to page results from a query. Indicates the maximum number of entities to return from a query. The default value is 20 and the maximum value is 200.
     String sortBy = "sortBy_example"; // String | The element to sort the results by and the order in which the results appear. Either ascending (a-z) or descending (z-a) order.
     String filter = "filter_example"; // String | A set of filter expressions representing the search parameters for a query: eq=equals, ne=not equals, gt=greater than, lt = less than or equals, gt = greater than or equals, lt = less than or equals, sw = starts with, or cont = contains. Optional.
+    String responseFields = "responseFields_example"; // String | limits which fields are returned in the response body
     try {
-      TargetRuleCollection result = apiInstance.getTargetRules(startIndex, pageSize, sortBy, filter);
+      TargetRuleCollection result = apiInstance.getTargetRules(startIndex, pageSize, sortBy, filter, responseFields);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling TargetRulesApi#getTargetRules");
@@ -282,6 +271,7 @@ public class Example {
 | **pageSize** | **Integer**| Used to page results from a query. Indicates the maximum number of entities to return from a query. The default value is 20 and the maximum value is 200. | [optional] [default to 0] |
 | **sortBy** | **String**| The element to sort the results by and the order in which the results appear. Either ascending (a-z) or descending (z-a) order. | [optional] |
 | **filter** | **String**| A set of filter expressions representing the search parameters for a query: eq&#x3D;equals, ne&#x3D;not equals, gt&#x3D;greater than, lt &#x3D; less than or equals, gt &#x3D; greater than or equals, lt &#x3D; less than or equals, sw &#x3D; starts with, or cont &#x3D; contains. Optional. | [optional] |
+| **responseFields** | **String**| limits which fields are returned in the response body | [optional] |
 
 ### Return type
 
@@ -289,7 +279,7 @@ public class Example {
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth), [clientOauth2](../README.md#clientOauth2)
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
@@ -303,7 +293,7 @@ public class Example {
 
 <a name="updateTargetRule"></a>
 # **updateTargetRule**
-> TargetRule updateTargetRule(code, targetRule)
+> TargetRule updateTargetRule(code, responseFields, targetRule)
 
 Update Target Rule
 
@@ -328,15 +318,12 @@ public class Example {
     HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
     bearerAuth.setBearerToken("BEARER TOKEN");
 
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
-
     TargetRulesApi apiInstance = new TargetRulesApi(defaultClient);
     String code = "code_example"; // String | 
+    String responseFields = "responseFields_example"; // String | limits which fields are returned in the response body
     TargetRule targetRule = new TargetRule(); // TargetRule | 
     try {
-      TargetRule result = apiInstance.updateTargetRule(code, targetRule);
+      TargetRule result = apiInstance.updateTargetRule(code, responseFields, targetRule);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling TargetRulesApi#updateTargetRule");
@@ -354,6 +341,7 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **code** | **String**|  | |
+| **responseFields** | **String**| limits which fields are returned in the response body | [optional] |
 | **targetRule** | [**TargetRule**](TargetRule.md)|  | [optional] |
 
 ### Return type
@@ -362,7 +350,7 @@ public class Example {
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth), [clientOauth2](../README.md#clientOauth2)
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
@@ -376,7 +364,7 @@ public class Example {
 
 <a name="validateTargetRule"></a>
 # **validateTargetRule**
-> validateTargetRule(targetRule)
+> validateTargetRule(responseFields, targetRule)
 
 Validate Target Rule
 
@@ -401,14 +389,11 @@ public class Example {
     HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
     bearerAuth.setBearerToken("BEARER TOKEN");
 
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
-
     TargetRulesApi apiInstance = new TargetRulesApi(defaultClient);
+    String responseFields = "responseFields_example"; // String | limits which fields are returned in the response body
     TargetRule targetRule = new TargetRule(); // TargetRule | 
     try {
-      apiInstance.validateTargetRule(targetRule);
+      apiInstance.validateTargetRule(responseFields, targetRule);
     } catch (ApiException e) {
       System.err.println("Exception when calling TargetRulesApi#validateTargetRule");
       System.err.println("Status code: " + e.getCode());
@@ -424,6 +409,7 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
+| **responseFields** | **String**| limits which fields are returned in the response body | [optional] |
 | **targetRule** | [**TargetRule**](TargetRule.md)|  | [optional] |
 
 ### Return type
@@ -432,7 +418,7 @@ null (empty response body)
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth), [clientOauth2](../README.md#clientOauth2)
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 

@@ -9,6 +9,7 @@
 |------------ | ------------- | ------------- | -------------|
 |**blockAssignment** | **Boolean** |  |  [optional] |
 |**fulfillmentLocationCode** | **String** |  |  [optional] |
+|**holdBlockAssignment** | **Boolean** |  |  [optional] |
 |**isUserAction** | **Boolean** |  |  [optional] |
 |**items** | [**List&lt;TransferItem&gt;**](TransferItem.md) |  |  [optional] |
 |**transferredReason** | [**TransferredReason**](TransferredReason.md) |  |  [optional] |

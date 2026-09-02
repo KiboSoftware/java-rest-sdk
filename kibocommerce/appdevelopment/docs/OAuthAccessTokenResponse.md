@@ -8,9 +8,9 @@
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
 |**accessToken** | **String** |  |  [optional] |
-|**tokenType** | **String** |  |  [optional] |
 |**expiresIn** | **Integer** |  |  [optional] |
 |**refreshToken** | **String** |  |  [optional] |
+|**tokenType** | **String** |  |  [optional] |
 
 
 ## Implemented Interfaces

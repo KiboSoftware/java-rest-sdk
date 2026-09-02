@@ -4,18 +4,18 @@ All URIs are relative to *http://https:/api*
 
 | Method | HTTP request | Description |
 |------------- | ------------- | -------------|
-| [**getMasterCatalog**](MasterCatalogPublishSettingsApi.md#getMasterCatalog) | **GET** /commerce/catalog/admin/mastercatalogs/{masterCatalogId} | Get master catalog |
-| [**getMasterCatalogs**](MasterCatalogPublishSettingsApi.md#getMasterCatalogs) | **GET** /commerce/catalog/admin/mastercatalogs | Get master catalogs |
-| [**updateMasterCatalog**](MasterCatalogPublishSettingsApi.md#updateMasterCatalog) | **PUT** /commerce/catalog/admin/mastercatalogs/{masterCatalogId} | Update master catalog |
+| [**getMasterCatalog**](MasterCatalogPublishSettingsApi.md#getMasterCatalog) | **GET** /commerce/catalog/admin/mastercatalogs/{masterCatalogId} | Get Master Catalog |
+| [**getMasterCatalogs**](MasterCatalogPublishSettingsApi.md#getMasterCatalogs) | **GET** /commerce/catalog/admin/mastercatalogs | Get Master Catalogs |
+| [**updateMasterCatalog**](MasterCatalogPublishSettingsApi.md#updateMasterCatalog) | **PUT** /commerce/catalog/admin/mastercatalogs/{masterCatalogId} | Update Master Catalog |
 
 
 <a name="getMasterCatalog"></a>
 # **getMasterCatalog**
-> CatalogAdminsMasterCatalog getMasterCatalog(masterCatalogId)
+> CatalogAdminsMasterCatalog getMasterCatalog(masterCatalogId, responseFields)
 
-Get master catalog
+Get Master Catalog
 
-Get a MasterCatalog
+Retrieves a specific master catalog by its Id.
 
 ### Example
 ```java
@@ -36,14 +36,11 @@ public class Example {
     HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
     bearerAuth.setBearerToken("BEARER TOKEN");
 
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
-
     MasterCatalogPublishSettingsApi apiInstance = new MasterCatalogPublishSettingsApi(defaultClient);
     Integer masterCatalogId = 56; // Integer | 
+    String responseFields = "responseFields_example"; // String | limits which fields are returned in the response body
     try {
-      CatalogAdminsMasterCatalog result = apiInstance.getMasterCatalog(masterCatalogId);
+      CatalogAdminsMasterCatalog result = apiInstance.getMasterCatalog(masterCatalogId, responseFields);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling MasterCatalogPublishSettingsApi#getMasterCatalog");
@@ -61,6 +58,7 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **masterCatalogId** | **Integer**|  | |
+| **responseFields** | **String**| limits which fields are returned in the response body | [optional] |
 
 ### Return type
 
@@ -68,7 +66,7 @@ public class Example {
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth), [clientOauth2](../README.md#clientOauth2)
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
@@ -78,15 +76,15 @@ public class Example {
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Success |  -  |
+| **200** | OK |  -  |
 
 <a name="getMasterCatalogs"></a>
 # **getMasterCatalogs**
-> MasterCatalogCollection getMasterCatalogs()
+> MasterCatalogCollection getMasterCatalogs(responseFields)
 
-Get master catalogs
+Get Master Catalogs
 
-
+Retrieves all master catalogs.
 
 ### Example
 ```java
@@ -107,13 +105,10 @@ public class Example {
     HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
     bearerAuth.setBearerToken("BEARER TOKEN");
 
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
-
     MasterCatalogPublishSettingsApi apiInstance = new MasterCatalogPublishSettingsApi(defaultClient);
+    String responseFields = "responseFields_example"; // String | limits which fields are returned in the response body
     try {
-      MasterCatalogCollection result = apiInstance.getMasterCatalogs();
+      MasterCatalogCollection result = apiInstance.getMasterCatalogs(responseFields);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling MasterCatalogPublishSettingsApi#getMasterCatalogs");
@@ -127,7 +122,10 @@ public class Example {
 ```
 
 ### Parameters
-This endpoint does not need any parameter.
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **responseFields** | **String**| limits which fields are returned in the response body | [optional] |
 
 ### Return type
 
@@ -135,7 +133,7 @@ This endpoint does not need any parameter.
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth), [clientOauth2](../README.md#clientOauth2)
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
@@ -145,15 +143,15 @@ This endpoint does not need any parameter.
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Success |  -  |
+| **200** | OK |  -  |
 
 <a name="updateMasterCatalog"></a>
 # **updateMasterCatalog**
-> CatalogAdminsMasterCatalog updateMasterCatalog(masterCatalogId, catalogAdminsMasterCatalog)
+> CatalogAdminsMasterCatalog updateMasterCatalog(masterCatalogId, responseFields, catalogAdminsMasterCatalog)
 
-Update master catalog
+Update Master Catalog
 
-Update the publishingMode of a MasterCatalog
+Update the publishing mode of a master catalog
 
 ### Example
 ```java
@@ -174,15 +172,12 @@ public class Example {
     HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
     bearerAuth.setBearerToken("BEARER TOKEN");
 
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
-
     MasterCatalogPublishSettingsApi apiInstance = new MasterCatalogPublishSettingsApi(defaultClient);
     Integer masterCatalogId = 56; // Integer | 
+    String responseFields = "responseFields_example"; // String | limits which fields are returned in the response body
     CatalogAdminsMasterCatalog catalogAdminsMasterCatalog = new CatalogAdminsMasterCatalog(); // CatalogAdminsMasterCatalog | 
     try {
-      CatalogAdminsMasterCatalog result = apiInstance.updateMasterCatalog(masterCatalogId, catalogAdminsMasterCatalog);
+      CatalogAdminsMasterCatalog result = apiInstance.updateMasterCatalog(masterCatalogId, responseFields, catalogAdminsMasterCatalog);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling MasterCatalogPublishSettingsApi#updateMasterCatalog");
@@ -200,6 +195,7 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **masterCatalogId** | **Integer**|  | |
+| **responseFields** | **String**| limits which fields are returned in the response body | [optional] |
 | **catalogAdminsMasterCatalog** | [**CatalogAdminsMasterCatalog**](CatalogAdminsMasterCatalog.md)|  | [optional] |
 
 ### Return type
@@ -208,7 +204,7 @@ public class Example {
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth), [clientOauth2](../README.md#clientOauth2)
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
@@ -218,5 +214,5 @@ public class Example {
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Success |  -  |
+| **200** | OK |  -  |
 

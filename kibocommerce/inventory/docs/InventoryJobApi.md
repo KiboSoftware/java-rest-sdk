@@ -12,7 +12,7 @@ All URIs are relative to *http://https:/api*
 
 <a name="deleteAllOldInventory"></a>
 # **deleteAllOldInventory**
-> List&lt;JobIDResponse&gt; deleteAllOldInventory(xVolTenant, months)
+> List&lt;JobIDResponse&gt; deleteAllOldInventory(months)
 
 Delete All Old Inventory
 
@@ -24,7 +24,6 @@ Deletes older records from inventory table of all silos
 import com.kibocommerce.sdk.inventory.ApiClient;
 import com.kibocommerce.sdk.inventory.ApiException;
 import com.kibocommerce.sdk.inventory.Configuration;
-import com.kibocommerce.sdk.inventory.auth.*;
 import com.kibocommerce.sdk.inventory.models.*;
 import com.kibocommerce.sdk.inventory.api.InventoryJobApi;
 
@@ -32,20 +31,11 @@ public class Example {
   public static void main(String[] args) {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
     defaultClient.setBasePath("http://https:/api");
-    
-    // Configure HTTP bearer authorization: bearerAuth
-    HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
-    bearerAuth.setBearerToken("BEARER TOKEN");
-
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
 
     InventoryJobApi apiInstance = new InventoryJobApi(defaultClient);
-    Integer xVolTenant = 56; // Integer | Tenant ID
     Integer months = 56; // Integer | The x months before which we want the records to get deleted
     try {
-      List<JobIDResponse> result = apiInstance.deleteAllOldInventory(xVolTenant, months);
+      List<JobIDResponse> result = apiInstance.deleteAllOldInventory(months);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling InventoryJobApi#deleteAllOldInventory");
@@ -62,7 +52,6 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **xVolTenant** | **Integer**| Tenant ID | |
 | **months** | **Integer**| The x months before which we want the records to get deleted | |
 
 ### Return type
@@ -71,7 +60,7 @@ public class Example {
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth), [clientOauth2](../README.md#clientOauth2)
+No authorization required
 
 ### HTTP request headers
 
@@ -86,7 +75,7 @@ public class Example {
 
 <a name="deleteOldInventory"></a>
 # **deleteOldInventory**
-> JobIDResponse deleteOldInventory(xVolTenant, months)
+> JobIDResponse deleteOldInventory(months)
 
 Delete Old Inventory
 
@@ -98,7 +87,6 @@ Deletes older records from inventory table
 import com.kibocommerce.sdk.inventory.ApiClient;
 import com.kibocommerce.sdk.inventory.ApiException;
 import com.kibocommerce.sdk.inventory.Configuration;
-import com.kibocommerce.sdk.inventory.auth.*;
 import com.kibocommerce.sdk.inventory.models.*;
 import com.kibocommerce.sdk.inventory.api.InventoryJobApi;
 
@@ -106,20 +94,11 @@ public class Example {
   public static void main(String[] args) {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
     defaultClient.setBasePath("http://https:/api");
-    
-    // Configure HTTP bearer authorization: bearerAuth
-    HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
-    bearerAuth.setBearerToken("BEARER TOKEN");
-
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
 
     InventoryJobApi apiInstance = new InventoryJobApi(defaultClient);
-    Integer xVolTenant = 56; // Integer | Tenant ID
     Integer months = 56; // Integer | The x months before which we want the records to get deleted
     try {
-      JobIDResponse result = apiInstance.deleteOldInventory(xVolTenant, months);
+      JobIDResponse result = apiInstance.deleteOldInventory(months);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling InventoryJobApi#deleteOldInventory");
@@ -136,7 +115,6 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **xVolTenant** | **Integer**| Tenant ID | |
 | **months** | **Integer**| The x months before which we want the records to get deleted | |
 
 ### Return type
@@ -145,7 +123,7 @@ public class Example {
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth), [clientOauth2](../README.md#clientOauth2)
+No authorization required
 
 ### HTTP request headers
 
@@ -160,11 +138,11 @@ public class Example {
 
 <a name="getJob"></a>
 # **getJob**
-> JobQueueResponse getJob(xVolTenant, jobID)
+> JobQueueResponse getJob(jobID)
 
 Get Job
 
-Get the specified job
+Get the specified inventory job. Use this call to monitor the status of inventory upload, refresh, adjust, or deletion jobs. Once you have a job ID — returned by endpoints such as Delete Inventory, Delete Items, Refresh Inventory, or Adjust Inventory — continue polling this endpoint until the job reaches a terminal status (&#x60;SUCCESS&#x60; or &#x60;FAILED&#x60;). For polling patterns and monitoring guidance during bulk inventory deletions, see the &lt;a href&#x3D;\&quot;/pages/bulk-inventory-deletion\&quot;&gt;Bulk Inventory Deletion guide&lt;/a&gt;.
 
 ### Example
 ```java
@@ -172,7 +150,6 @@ Get the specified job
 import com.kibocommerce.sdk.inventory.ApiClient;
 import com.kibocommerce.sdk.inventory.ApiException;
 import com.kibocommerce.sdk.inventory.Configuration;
-import com.kibocommerce.sdk.inventory.auth.*;
 import com.kibocommerce.sdk.inventory.models.*;
 import com.kibocommerce.sdk.inventory.api.InventoryJobApi;
 
@@ -180,20 +157,11 @@ public class Example {
   public static void main(String[] args) {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
     defaultClient.setBasePath("http://https:/api");
-    
-    // Configure HTTP bearer authorization: bearerAuth
-    HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
-    bearerAuth.setBearerToken("BEARER TOKEN");
-
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
 
     InventoryJobApi apiInstance = new InventoryJobApi(defaultClient);
-    Integer xVolTenant = 56; // Integer | Tenant ID
     Long jobID = 56L; // Long | Id of bin to get
     try {
-      JobQueueResponse result = apiInstance.getJob(xVolTenant, jobID);
+      JobQueueResponse result = apiInstance.getJob(jobID);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling InventoryJobApi#getJob");
@@ -210,7 +178,6 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **xVolTenant** | **Integer**| Tenant ID | |
 | **jobID** | **Long**| Id of bin to get | |
 
 ### Return type
@@ -219,7 +186,7 @@ public class Example {
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth), [clientOauth2](../README.md#clientOauth2)
+No authorization required
 
 ### HTTP request headers
 
@@ -234,11 +201,11 @@ public class Example {
 
 <a name="getJobs"></a>
 # **getJobs**
-> List&lt;JobQueueResponse&gt; getJobs(xVolTenant, locationCode, limit, owner, types, originalFilename)
+> List&lt;JobQueueResponse&gt; getJobs(locationCode, limit, owner, types, originalFilename)
 
 Get Jobs
 
-Get the requested jobs
+Get the requested jobs.
 
 ### Example
 ```java
@@ -246,7 +213,6 @@ Get the requested jobs
 import com.kibocommerce.sdk.inventory.ApiClient;
 import com.kibocommerce.sdk.inventory.ApiException;
 import com.kibocommerce.sdk.inventory.Configuration;
-import com.kibocommerce.sdk.inventory.auth.*;
 import com.kibocommerce.sdk.inventory.models.*;
 import com.kibocommerce.sdk.inventory.api.InventoryJobApi;
 
@@ -254,24 +220,15 @@ public class Example {
   public static void main(String[] args) {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
     defaultClient.setBasePath("http://https:/api");
-    
-    // Configure HTTP bearer authorization: bearerAuth
-    HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
-    bearerAuth.setBearerToken("BEARER TOKEN");
-
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
 
     InventoryJobApi apiInstance = new InventoryJobApi(defaultClient);
-    Integer xVolTenant = 56; // Integer | Tenant ID
     String locationCode = "locationCode_example"; // String | Tenant specified unique Identifier of the owning location
     Integer limit = 56; // Integer | The maximum number of results to return, defaults to 100 for most
     String owner = "owner_example"; // String | User that owns the job
     List<String> types = Arrays.asList(); // List<String> | Type of the Job Queue Request
     String originalFilename = "originalFilename_example"; // String | The full name of the file that was picked up at the secure droppoint server before being split up by location.
     try {
-      List<JobQueueResponse> result = apiInstance.getJobs(xVolTenant, locationCode, limit, owner, types, originalFilename);
+      List<JobQueueResponse> result = apiInstance.getJobs(locationCode, limit, owner, types, originalFilename);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling InventoryJobApi#getJobs");
@@ -288,7 +245,6 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **xVolTenant** | **Integer**| Tenant ID | |
 | **locationCode** | **String**| Tenant specified unique Identifier of the owning location | [optional] |
 | **limit** | **Integer**| The maximum number of results to return, defaults to 100 for most | [optional] |
 | **owner** | **String**| User that owns the job | [optional] |
@@ -301,7 +257,7 @@ public class Example {
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth), [clientOauth2](../README.md#clientOauth2)
+No authorization required
 
 ### HTTP request headers
 

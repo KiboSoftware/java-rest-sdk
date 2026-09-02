@@ -7,8 +7,7 @@
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
-|**fqn** | **String** |  |  |
-|**values** | **List&lt;String&gt;** |  |  [optional] |
+|**fqn** | **Object** |  |  [optional] |
 
 
 ## Implemented Interfaces

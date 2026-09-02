@@ -8,7 +8,7 @@ Email address of the user who is requesting a new password.
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
-|**emailAddress** | **String** |  |  [optional] |
+|**emailAddress** | **String** |  |  |
 
 
 ## Implemented Interfaces

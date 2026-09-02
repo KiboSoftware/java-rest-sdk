@@ -7,8 +7,8 @@
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
+|**items** | [**List&lt;ReferenceTimeZone&gt;**](ReferenceTimeZone.md) |  |  [optional] |
 |**totalCount** | **Integer** |  |  [optional] |
-|**items** | [**List&lt;TimeZone&gt;**](TimeZone.md) |  |  [optional] |
 
 
 ## Implemented Interfaces

@@ -8,14 +8,15 @@ Settings to control product search and indexing behavior
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
-|**settingsName** | **String** |  |  [optional] |
+|**auditInfo** | [**AdminUserAuditInfo**](AdminUserAuditInfo.md) |  |  [optional] |
+|**categorySuggestSettings** | [**SuggestSettings**](SuggestSettings.md) |  |  [optional] |
+|**collapseSettings** | [**CollapseSettings**](CollapseSettings.md) |  |  [optional] |
 |**description** | **String** |  |  [optional] |
 |**isDefault** | **Boolean** |  |  [optional] |
-|**siteSearchSettings** | [**SiteSearchSettings**](SiteSearchSettings.md) |  |  [optional] |
-|**productSuggestSettings** | [**ProductSuggestSettings**](ProductSuggestSettings.md) |  |  [optional] |
-|**categorySuggestSettings** | [**SuggestSettings**](SuggestSettings.md) |  |  [optional] |
 |**listingSettings** | [**ListingSettings**](ListingSettings.md) |  |  [optional] |
-|**auditInfo** | [**AdminUserAuditInfo**](AdminUserAuditInfo.md) |  |  [optional] |
+|**productSuggestSettings** | [**ProductSuggestSettings**](ProductSuggestSettings.md) |  |  [optional] |
+|**settingsName** | **String** |  |  [optional] |
+|**siteSearchSettings** | [**SiteSearchSettings**](SiteSearchSettings.md) |  |  [optional] |
 
 
 ## Implemented Interfaces

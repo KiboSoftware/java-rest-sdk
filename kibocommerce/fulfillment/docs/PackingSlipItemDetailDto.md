@@ -11,6 +11,8 @@
 |**lineId** | **Integer** |  |  [optional] |
 |**originalOrderItemId** | **String** |  |  [optional] |
 |**quantity** | **Integer** |  |  [optional] |
+|**receivedQuantity** | **Integer** |  |  [optional] |
+|**substitutedQuantity** | **Integer** |  |  [optional] |
 
 
 ## Implemented Interfaces

@@ -7,8 +7,8 @@
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
-|**oldFullPath** | **String** |  |  [optional] |
 |**newFullPath** | **String** |  |  [optional] |
+|**oldFullPath** | **String** |  |  [optional] |
 
 
 ## Implemented Interfaces

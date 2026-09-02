@@ -4,16 +4,16 @@ All URIs are relative to *http://https:/api*
 
 | Method | HTTP request | Description |
 |------------- | ------------- | -------------|
-| [**deleteProductSuggestSettings**](SearchProductSuggestSettingsApi.md#deleteProductSuggestSettings) | **DELETE** /commerce/catalog/admin/search/{name}/productsuggestsettings | Delete product suggest settings |
-| [**getProductSuggestSettings**](SearchProductSuggestSettingsApi.md#getProductSuggestSettings) | **GET** /commerce/catalog/admin/search/{name}/productsuggestsettings | Get [roduct suggest settings |
-| [**updateProductSuggestSettings**](SearchProductSuggestSettingsApi.md#updateProductSuggestSettings) | **PUT** /commerce/catalog/admin/search/{name}/productsuggestsettings | Add/Update product suggest settings |
+| [**deleteProductSuggestSettings**](SearchProductSuggestSettingsApi.md#deleteProductSuggestSettings) | **DELETE** /commerce/catalog/admin/search/{name}/productsuggestsettings | Delete Product Suggest Settings |
+| [**getProductSuggestSettings**](SearchProductSuggestSettingsApi.md#getProductSuggestSettings) | **GET** /commerce/catalog/admin/search/{name}/productsuggestsettings | Get Product Suggest Settings |
+| [**updateProductSuggestSettings**](SearchProductSuggestSettingsApi.md#updateProductSuggestSettings) | **PUT** /commerce/catalog/admin/search/{name}/productsuggestsettings | Update Product Suggest Settings |
 
 
 <a name="deleteProductSuggestSettings"></a>
 # **deleteProductSuggestSettings**
 > deleteProductSuggestSettings(name)
 
-Delete product suggest settings
+Delete Product Suggest Settings
 
 Deletes the ProductSuggestSettings for a specific SearchSetting by name.
 
@@ -35,10 +35,6 @@ public class Example {
     // Configure HTTP bearer authorization: bearerAuth
     HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
     bearerAuth.setBearerToken("BEARER TOKEN");
-
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
 
     SearchProductSuggestSettingsApi apiInstance = new SearchProductSuggestSettingsApi(defaultClient);
     String name = "name_example"; // String | 
@@ -67,7 +63,7 @@ null (empty response body)
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth), [clientOauth2](../README.md#clientOauth2)
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
@@ -77,13 +73,13 @@ null (empty response body)
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Success |  -  |
+| **200** | OK |  -  |
 
 <a name="getProductSuggestSettings"></a>
 # **getProductSuggestSettings**
-> SuggestSettings getProductSuggestSettings(name)
+> SuggestSettings getProductSuggestSettings(name, responseFields)
 
-Get [roduct suggest settings
+Get Product Suggest Settings
 
 Get ProductSuggestSettings for a specific SearchSettings by name.
 
@@ -106,14 +102,11 @@ public class Example {
     HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
     bearerAuth.setBearerToken("BEARER TOKEN");
 
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
-
     SearchProductSuggestSettingsApi apiInstance = new SearchProductSuggestSettingsApi(defaultClient);
     String name = "name_example"; // String | 
+    String responseFields = "responseFields_example"; // String | limits which fields are returned in the response body
     try {
-      SuggestSettings result = apiInstance.getProductSuggestSettings(name);
+      SuggestSettings result = apiInstance.getProductSuggestSettings(name, responseFields);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling SearchProductSuggestSettingsApi#getProductSuggestSettings");
@@ -131,6 +124,7 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **name** | **String**|  | |
+| **responseFields** | **String**| limits which fields are returned in the response body | [optional] |
 
 ### Return type
 
@@ -138,7 +132,7 @@ public class Example {
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth), [clientOauth2](../README.md#clientOauth2)
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
@@ -148,15 +142,15 @@ public class Example {
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Success |  -  |
+| **200** | OK |  -  |
 
 <a name="updateProductSuggestSettings"></a>
 # **updateProductSuggestSettings**
-> ProductSuggestSettings updateProductSuggestSettings(name, productSuggestSettings)
+> ProductSuggestSettings updateProductSuggestSettings(name, responseFields, productSuggestSettings)
 
-Add/Update product suggest settings
+Update Product Suggest Settings
 
-Adds or Updates (Upsert) the ProductSuggestSettings for a specific SearchSetting by name.
+Adds or updates the ProductSuggestSettings for a specific SearchSetting by name.
 
 ### Example
 ```java
@@ -177,15 +171,12 @@ public class Example {
     HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
     bearerAuth.setBearerToken("BEARER TOKEN");
 
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
-
     SearchProductSuggestSettingsApi apiInstance = new SearchProductSuggestSettingsApi(defaultClient);
     String name = "name_example"; // String | 
+    String responseFields = "responseFields_example"; // String | limits which fields are returned in the response body
     ProductSuggestSettings productSuggestSettings = new ProductSuggestSettings(); // ProductSuggestSettings | 
     try {
-      ProductSuggestSettings result = apiInstance.updateProductSuggestSettings(name, productSuggestSettings);
+      ProductSuggestSettings result = apiInstance.updateProductSuggestSettings(name, responseFields, productSuggestSettings);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling SearchProductSuggestSettingsApi#updateProductSuggestSettings");
@@ -203,6 +194,7 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **name** | **String**|  | |
+| **responseFields** | **String**| limits which fields are returned in the response body | [optional] |
 | **productSuggestSettings** | [**ProductSuggestSettings**](ProductSuggestSettings.md)|  | [optional] |
 
 ### Return type
@@ -211,7 +203,7 @@ public class Example {
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth), [clientOauth2](../README.md#clientOauth2)
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
@@ -221,5 +213,5 @@ public class Example {
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Success |  -  |
+| **200** | OK |  -  |
 

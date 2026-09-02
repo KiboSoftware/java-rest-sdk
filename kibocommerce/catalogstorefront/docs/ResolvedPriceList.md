@@ -7,10 +7,10 @@
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
+|**description** | **String** |  |  [optional] |
+|**name** | **String** |  |  [optional] |
 |**priceListCode** | **String** |  |  [optional] |
 |**priceListId** | **Integer** |  |  [optional] |
-|**name** | **String** |  |  [optional] |
-|**description** | **String** |  |  [optional] |
 
 
 ## Implemented Interfaces

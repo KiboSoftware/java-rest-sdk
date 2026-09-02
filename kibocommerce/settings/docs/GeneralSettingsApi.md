@@ -17,7 +17,7 @@ All URIs are relative to *http://https:/api*
 
 <a name="addTaxableTerritory"></a>
 # **addTaxableTerritory**
-> TaxableTerritory addTaxableTerritory(taxableTerritory)
+> TaxableTerritory addTaxableTerritory(responseFields, taxableTerritory)
 
 Adds Taxable Territory
 
@@ -42,14 +42,11 @@ public class Example {
     HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
     bearerAuth.setBearerToken("BEARER TOKEN");
 
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
-
     GeneralSettingsApi apiInstance = new GeneralSettingsApi(defaultClient);
+    String responseFields = "responseFields_example"; // String | limits which fields are returned in the response body
     TaxableTerritory taxableTerritory = new TaxableTerritory(); // TaxableTerritory | 
     try {
-      TaxableTerritory result = apiInstance.addTaxableTerritory(taxableTerritory);
+      TaxableTerritory result = apiInstance.addTaxableTerritory(responseFields, taxableTerritory);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling GeneralSettingsApi#addTaxableTerritory");
@@ -66,6 +63,7 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
+| **responseFields** | **String**| limits which fields are returned in the response body | [optional] |
 | **taxableTerritory** | [**TaxableTerritory**](TaxableTerritory.md)|  | [optional] |
 
 ### Return type
@@ -74,7 +72,7 @@ public class Example {
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth), [clientOauth2](../README.md#clientOauth2)
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
@@ -84,15 +82,15 @@ public class Example {
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Success |  -  |
+| **200** | OK |  -  |
 
 <a name="createCustomRouteSettings"></a>
 # **createCustomRouteSettings**
-> CustomRouteSettings createCustomRouteSettings(customRouteSettings)
+> CustomRouteSettings createCustomRouteSettings(responseFields, customRouteSettings)
 
 Create Custom Route Settings
 
-Creates Custom Route Settings on a tenant which includes routes, validators and mappings
+Creates a new custom route settings. Custom routing allows you to display SEO-friendly URLs on your site that map behind-the-scenes to resources such as a product page or a search results page. With custom routing, you gain advanced control over the URL structures on your site and can more visibly highlight the products or categories your shoppers are interested in purchasing.
 
 ### Example
 ```java
@@ -113,14 +111,11 @@ public class Example {
     HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
     bearerAuth.setBearerToken("BEARER TOKEN");
 
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
-
     GeneralSettingsApi apiInstance = new GeneralSettingsApi(defaultClient);
+    String responseFields = "responseFields_example"; // String | limits which fields are returned in the response body
     CustomRouteSettings customRouteSettings = new CustomRouteSettings(); // CustomRouteSettings | 
     try {
-      CustomRouteSettings result = apiInstance.createCustomRouteSettings(customRouteSettings);
+      CustomRouteSettings result = apiInstance.createCustomRouteSettings(responseFields, customRouteSettings);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling GeneralSettingsApi#createCustomRouteSettings");
@@ -137,6 +132,7 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
+| **responseFields** | **String**| limits which fields are returned in the response body | [optional] |
 | **customRouteSettings** | [**CustomRouteSettings**](CustomRouteSettings.md)|  | [optional] |
 
 ### Return type
@@ -145,7 +141,7 @@ public class Example {
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth), [clientOauth2](../README.md#clientOauth2)
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
@@ -155,7 +151,7 @@ public class Example {
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Success |  -  |
+| **200** | OK |  -  |
 
 <a name="deleteCustomRouteSettings"></a>
 # **deleteCustomRouteSettings**
@@ -163,7 +159,7 @@ public class Example {
 
 Delete Custom Route Settings
 
-Deletes all existing custom route settings defined on the tenant
+Deletes custom route settings.
 
 ### Example
 ```java
@@ -183,10 +179,6 @@ public class Example {
     // Configure HTTP bearer authorization: bearerAuth
     HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
     bearerAuth.setBearerToken("BEARER TOKEN");
-
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
 
     GeneralSettingsApi apiInstance = new GeneralSettingsApi(defaultClient);
     try {
@@ -211,7 +203,7 @@ null (empty response body)
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth), [clientOauth2](../README.md#clientOauth2)
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
@@ -221,15 +213,15 @@ null (empty response body)
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Success |  -  |
+| **200** | OK |  -  |
 
 <a name="getCustomRouteSettings"></a>
 # **getCustomRouteSettings**
-> CustomRouteSettings getCustomRouteSettings()
+> CustomRouteSettings getCustomRouteSettings(responseFields)
 
 Get Custom Route Settings
 
-Retrieves Custom Route Settings on a tenant which includes routes, validators and mappings
+Gets custom route settings. Custom routing allows you to display SEO-friendly URLs on your site that map behind-the-scenes to resources such as a product page or a search results page. With custom routing, you gain advanced control over the URL structures on your site and can more visibly highlight the products or categories your shoppers are interested in purchasing.
 
 ### Example
 ```java
@@ -250,13 +242,10 @@ public class Example {
     HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
     bearerAuth.setBearerToken("BEARER TOKEN");
 
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
-
     GeneralSettingsApi apiInstance = new GeneralSettingsApi(defaultClient);
+    String responseFields = "responseFields_example"; // String | limits which fields are returned in the response body
     try {
-      CustomRouteSettings result = apiInstance.getCustomRouteSettings();
+      CustomRouteSettings result = apiInstance.getCustomRouteSettings(responseFields);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling GeneralSettingsApi#getCustomRouteSettings");
@@ -270,7 +259,10 @@ public class Example {
 ```
 
 ### Parameters
-This endpoint does not need any parameter.
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **responseFields** | **String**| limits which fields are returned in the response body | [optional] |
 
 ### Return type
 
@@ -278,7 +270,7 @@ This endpoint does not need any parameter.
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth), [clientOauth2](../README.md#clientOauth2)
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
@@ -288,11 +280,11 @@ This endpoint does not need any parameter.
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Success |  -  |
+| **200** | OK |  -  |
 
 <a name="getGeneralSettings"></a>
 # **getGeneralSettings**
-> GeneralSettings getGeneralSettings()
+> GeneralSettings getGeneralSettings(responseFields)
 
 Get General Settings
 
@@ -317,13 +309,10 @@ public class Example {
     HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
     bearerAuth.setBearerToken("BEARER TOKEN");
 
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
-
     GeneralSettingsApi apiInstance = new GeneralSettingsApi(defaultClient);
+    String responseFields = "responseFields_example"; // String | limits which fields are returned in the response body
     try {
-      GeneralSettings result = apiInstance.getGeneralSettings();
+      GeneralSettings result = apiInstance.getGeneralSettings(responseFields);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling GeneralSettingsApi#getGeneralSettings");
@@ -337,7 +326,10 @@ public class Example {
 ```
 
 ### Parameters
-This endpoint does not need any parameter.
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **responseFields** | **String**| limits which fields are returned in the response body | [optional] |
 
 ### Return type
 
@@ -345,7 +337,7 @@ This endpoint does not need any parameter.
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth), [clientOauth2](../README.md#clientOauth2)
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
@@ -355,11 +347,11 @@ This endpoint does not need any parameter.
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Success |  -  |
+| **200** | OK |  -  |
 
 <a name="getTaxableTerritories"></a>
 # **getTaxableTerritories**
-> List&lt;TaxableTerritory&gt; getTaxableTerritories()
+> List&lt;TaxableTerritory&gt; getTaxableTerritories(responseFields)
 
 Get Taxable Territories
 
@@ -384,13 +376,10 @@ public class Example {
     HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
     bearerAuth.setBearerToken("BEARER TOKEN");
 
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
-
     GeneralSettingsApi apiInstance = new GeneralSettingsApi(defaultClient);
+    String responseFields = "responseFields_example"; // String | limits which fields are returned in the response body
     try {
-      List<TaxableTerritory> result = apiInstance.getTaxableTerritories();
+      List<TaxableTerritory> result = apiInstance.getTaxableTerritories(responseFields);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling GeneralSettingsApi#getTaxableTerritories");
@@ -404,7 +393,10 @@ public class Example {
 ```
 
 ### Parameters
-This endpoint does not need any parameter.
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **responseFields** | **String**| limits which fields are returned in the response body | [optional] |
 
 ### Return type
 
@@ -412,7 +404,7 @@ This endpoint does not need any parameter.
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth), [clientOauth2](../README.md#clientOauth2)
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
@@ -422,15 +414,15 @@ This endpoint does not need any parameter.
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Success |  -  |
+| **200** | OK |  -  |
 
 <a name="updateCustomRouteSettings"></a>
 # **updateCustomRouteSettings**
-> CustomRouteSettings updateCustomRouteSettings(customRouteSettings)
+> CustomRouteSettings updateCustomRouteSettings(responseFields, customRouteSettings)
 
 Update Custom Route Settings
 
-Updates existing custom route settings defined on the tenant
+Updates custom route settings. Custom routing allows you to display SEO-friendly URLs on your site that map behind-the-scenes to resources such as a product page or a search results page. With custom routing, you gain advanced control over the URL structures on your site and can more visibly highlight the products or categories your shoppers are interested in purchasing.
 
 ### Example
 ```java
@@ -451,14 +443,11 @@ public class Example {
     HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
     bearerAuth.setBearerToken("BEARER TOKEN");
 
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
-
     GeneralSettingsApi apiInstance = new GeneralSettingsApi(defaultClient);
+    String responseFields = "responseFields_example"; // String | limits which fields are returned in the response body
     CustomRouteSettings customRouteSettings = new CustomRouteSettings(); // CustomRouteSettings | 
     try {
-      CustomRouteSettings result = apiInstance.updateCustomRouteSettings(customRouteSettings);
+      CustomRouteSettings result = apiInstance.updateCustomRouteSettings(responseFields, customRouteSettings);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling GeneralSettingsApi#updateCustomRouteSettings");
@@ -475,6 +464,7 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
+| **responseFields** | **String**| limits which fields are returned in the response body | [optional] |
 | **customRouteSettings** | [**CustomRouteSettings**](CustomRouteSettings.md)|  | [optional] |
 
 ### Return type
@@ -483,7 +473,7 @@ public class Example {
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth), [clientOauth2](../README.md#clientOauth2)
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
@@ -493,11 +483,11 @@ public class Example {
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Success |  -  |
+| **200** | OK |  -  |
 
 <a name="updateGeneralSettings"></a>
 # **updateGeneralSettings**
-> GeneralSettings updateGeneralSettings(generalSettings)
+> GeneralSettings updateGeneralSettings(responseFields, generalSettings)
 
 Update General Settings
 
@@ -522,14 +512,11 @@ public class Example {
     HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
     bearerAuth.setBearerToken("BEARER TOKEN");
 
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
-
     GeneralSettingsApi apiInstance = new GeneralSettingsApi(defaultClient);
-    GeneralSettings generalSettings = new GeneralSettings(); // GeneralSettings | Properties of the updated general settings.  Required properties: WebsiteName, SiteTimeZone, SiteTimeFormat, SenderEmailAddress, and ReplyEmailAddress.
+    String responseFields = "responseFields_example"; // String | limits which fields are returned in the response body
+    GeneralSettings generalSettings = new GeneralSettings(); // GeneralSettings | Properties of the updated general settings. Required properties: WebsiteName, SiteTimeZone, SiteTimeFormat, SenderEmailAddress, and ReplyEmailAddress.
     try {
-      GeneralSettings result = apiInstance.updateGeneralSettings(generalSettings);
+      GeneralSettings result = apiInstance.updateGeneralSettings(responseFields, generalSettings);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling GeneralSettingsApi#updateGeneralSettings");
@@ -546,7 +533,8 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **generalSettings** | [**GeneralSettings**](GeneralSettings.md)| Properties of the updated general settings.  Required properties: WebsiteName, SiteTimeZone, SiteTimeFormat, SenderEmailAddress, and ReplyEmailAddress. | [optional] |
+| **responseFields** | **String**| limits which fields are returned in the response body | [optional] |
+| **generalSettings** | [**GeneralSettings**](GeneralSettings.md)| Properties of the updated general settings. Required properties: WebsiteName, SiteTimeZone, SiteTimeFormat, SenderEmailAddress, and ReplyEmailAddress. | [optional] |
 
 ### Return type
 
@@ -554,7 +542,7 @@ public class Example {
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth), [clientOauth2](../README.md#clientOauth2)
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
@@ -564,11 +552,11 @@ public class Example {
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Success |  -  |
+| **200** | OK |  -  |
 
 <a name="updateTaxableTerritories"></a>
 # **updateTaxableTerritories**
-> List&lt;TaxableTerritory&gt; updateTaxableTerritories(taxableTerritory)
+> List&lt;TaxableTerritory&gt; updateTaxableTerritories(responseFields, taxableTerritory)
 
 Update Taxable Territories
 
@@ -593,14 +581,11 @@ public class Example {
     HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
     bearerAuth.setBearerToken("BEARER TOKEN");
 
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
-
     GeneralSettingsApi apiInstance = new GeneralSettingsApi(defaultClient);
+    String responseFields = "responseFields_example"; // String | limits which fields are returned in the response body
     List<TaxableTerritory> taxableTerritory = Arrays.asList(); // List<TaxableTerritory> | 
     try {
-      List<TaxableTerritory> result = apiInstance.updateTaxableTerritories(taxableTerritory);
+      List<TaxableTerritory> result = apiInstance.updateTaxableTerritories(responseFields, taxableTerritory);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling GeneralSettingsApi#updateTaxableTerritories");
@@ -617,6 +602,7 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
+| **responseFields** | **String**| limits which fields are returned in the response body | [optional] |
 | **taxableTerritory** | [**List&lt;TaxableTerritory&gt;**](TaxableTerritory.md)|  | [optional] |
 
 ### Return type
@@ -625,7 +611,7 @@ public class Example {
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth), [clientOauth2](../README.md#clientOauth2)
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
@@ -635,5 +621,5 @@ public class Example {
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Success |  -  |
+| **200** | OK |  -  |
 

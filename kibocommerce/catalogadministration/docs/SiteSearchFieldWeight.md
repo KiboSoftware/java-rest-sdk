@@ -8,9 +8,9 @@ A custom field and weight value for search relevancy
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
-|**phraseWeight** | **Integer** | weight to apply in phrase boosting |  [optional] |
 |**searchFieldName** | **String** | field in the index to target |  [optional] |
 |**weight** | **Integer** | weight to apply to boost field |  [optional] |
+|**phraseWeight** | **Integer** | weight to apply in phrase boosting |  [optional] |
 
 
 ## Implemented Interfaces

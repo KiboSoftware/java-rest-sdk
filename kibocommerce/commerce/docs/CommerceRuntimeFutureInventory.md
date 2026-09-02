@@ -7,13 +7,13 @@
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
+|**allocated** | **Integer** |  |  [optional] |
+|**available** | **Integer** |  |  [optional] |
+|**createDate** | **OffsetDateTime** |  |  [optional] |
+|**deliveryDate** | **OffsetDateTime** |  |  [optional] |
 |**futureInventoryID** | **Integer** |  |  [optional] |
 |**onhand** | **Integer** |  |  [optional] |
-|**available** | **Integer** |  |  [optional] |
-|**allocated** | **Integer** |  |  [optional] |
 |**pending** | **Integer** |  |  [optional] |
-|**deliveryDate** | **OffsetDateTime** |  |  [optional] |
-|**createDate** | **OffsetDateTime** |  |  [optional] |
 
 
 ## Implemented Interfaces

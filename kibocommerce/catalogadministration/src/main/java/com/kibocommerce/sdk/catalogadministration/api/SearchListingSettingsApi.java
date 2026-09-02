@@ -1,8 +1,8 @@
 /*
  * Kibo Catalog Admin Services
- * OpenAPI Spec for Kibo Catalog Admin Services
+ * <div id=\"overview_CATALOG_ADMIN\">             <h2>CATALOG ADMINISTRATION</h2>             <p>The Catalog Administration APIs are a collection of resources for configuring the catalogs and products offered to your shoppers, including                 discounts and coupon sets, faceting, price lists, and different types or variations of products. See the                 <a href=\"/concept-guides/catalog\">Catalog user guides</a>                 for information about the related features in the Unified Commerce Admin.</p>             <p>Use the <strong>Attributes</strong> resource to manage localization and attribute configurations for your catalogs. This current version of the Attributes API includes localizedContent to                 support <a href=\"/pages/catalog-structure#multi-locale-catalogs\">multi-locale catalogs</a>, which was not present in the legacy API model. If                 you were a client prior to May 2024 and have upgraded your implementation to support this feature,                 you can still access attribute data that has not yet been rewritten to the new model by providing                 an x-api-version header set to \"1\". </p>             <p>Use the <strong>Categories</strong> resource to organize products and control where they appear on the storefront. Create                 and maintain a hierarchy of categories and subcategories where the site will store properties. This current version of the Categories API includes localizedContent to                 support <a href=\"/pages/catalog-structure#multi-locale-catalogs\">multi-locale catalogs</a>, which was not present in the legacy API model. If                 you were a client prior to May 2024 and have upgraded your implementation to support this feature,                 you can still access category data that has not yet been rewritten to the new model by providing                 an x-api-version header set to \"1\". </p>             <p>Use the <strong>Coupon Sets</strong> resource to view and create coupon sets. You can use coupon sets to group multiple                 coupon codes together and associate them with one or more discounts.</p>             <p>Use the <strong>Currency</strong> resource to manage the currency localization rules and exchange rates for any of the                 currencies that are supported for placing orders in.</p>             <p>Use the <strong>Discounts</strong> and <strong>Discount Settings</strong> resources to define and manage discounts to apply to products, product categories, or                 orders. This current version of the Discounts API includes localizedContent to                 support <a href=\"/pages/catalog-structure#multi-locale-catalogs\">multi-locale catalogs</a>, which was not present in the legacy Products API model. If                 you were a client prior to May 2024 and have upgraded your implementation to support this feature,                 you can still access discount data that has not yet been rewritten to the new model by providing                 an x-api-version header set to \"1\". </p>             <p>Use the <strong>Facets</strong> resource to manage the facets shoppers use to filter product display results on a                 storefront. Facets can include categories, product attributes, or prices, and use either a range of                 values or discrete values.</p>             <p>Use the <strong>Master Catalog</strong> resource to view details of the master catalogs associated with a tenant and to                 manage the product publishing mode for each master catalog.</p>             <p>Use the <strong>Price Lists</strong> resources to view and create price lists. You can use price lists to override the                 catalog pricing of products for specific customer segments and/or sites.</p>             <p>Use the <strong>Products</strong>, <strong>Product Types/Extras/Options/Properties</strong>, and <strong>Product Sort Definitions</strong> resources to create new product definitions in the master catalog and determine which                 catalogs will feature products. This current version of the Products API includes localizedContent to                 support <a href=\"/pages/catalog-structure#multi-locale-catalogs\">multi-locale catalogs</a>, which was not present in the legacy Products API model. If                 you were a client prior to May 2024 and have upgraded your implementation to support this feature,                 you can still access product data that has not yet been rewritten to the new model by providing                 an x-api-version header set to \"1\".</p>             <p>Use the <strong>Publishing</strong> resource to publish pending product updates together as part of a set.</p>             <p>Use the <strong>Search</strong> resource to manage all settings and options for providing product search on your site, as                 well as search tuning rules.</p>         </div>
  *
- * The version of the OpenAPI document: 1.0.0
+ * The version of the OpenAPI document: v1
  * 
  *
  * NOTE: This class is auto generated by OpenAPI Generator (https://openapi-generator.tech).
@@ -101,7 +101,7 @@ public class SearchListingSettingsApi {
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
      </table>
      */
     public okhttp3.Call deleteListingSettingsCall(String name, final ApiCallback _callback) throws ApiException {
@@ -146,7 +146,7 @@ public class SearchListingSettingsApi {
             localVarHeaderParams.put("Content-Type", localVarContentType);
         }
 
-        String[] localVarAuthNames = new String[] { "bearerAuth", "clientOauth2" };
+        String[] localVarAuthNames = new String[] { "bearerAuth" };
         return localVarApiClient.buildCall(basePath, localVarPath, "DELETE", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
     }
 
@@ -165,14 +165,14 @@ public class SearchListingSettingsApi {
     }
 
     /**
-     * Delete search listing settings
+     * Delete Search Listing Settings
      * Deletes the ListingSettings for a specific SearchSetting by name.
      * @param name  (required)
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
      </table>
      */
     public void deleteListingSettings(String name) throws ApiException {
@@ -180,7 +180,7 @@ public class SearchListingSettingsApi {
     }
 
     /**
-     * Delete search listing settings
+     * Delete Search Listing Settings
      * Deletes the ListingSettings for a specific SearchSetting by name.
      * @param name  (required)
      * @return ApiResponse&lt;Void&gt;
@@ -188,7 +188,7 @@ public class SearchListingSettingsApi {
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
      </table>
      */
     public ApiResponse<Void> deleteListingSettingsWithHttpInfo(String name) throws ApiException {
@@ -197,7 +197,7 @@ public class SearchListingSettingsApi {
     }
 
     /**
-     * Delete search listing settings (asynchronously)
+     * Delete Search Listing Settings (asynchronously)
      * Deletes the ListingSettings for a specific SearchSetting by name.
      * @param name  (required)
      * @param _callback The callback to be executed when the API call finishes
@@ -206,7 +206,7 @@ public class SearchListingSettingsApi {
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
      </table>
      */
     public okhttp3.Call deleteListingSettingsAsync(String name, final ApiCallback<Void> _callback) throws ApiException {
@@ -218,16 +218,17 @@ public class SearchListingSettingsApi {
     /**
      * Build call for getListingSettings
      * @param name  (required)
+     * @param responseFields limits which fields are returned in the response body (optional)
      * @param _callback Callback for upload/download progress
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call getListingSettingsCall(String name, final ApiCallback _callback) throws ApiException {
+    public okhttp3.Call getListingSettingsCall(String name, String responseFields, final ApiCallback _callback) throws ApiException {
         String basePath = null;
         // Operation Servers
         String[] localBasePaths = new String[] {  };
@@ -253,6 +254,10 @@ public class SearchListingSettingsApi {
         Map<String, String> localVarCookieParams = new HashMap<String, String>();
         Map<String, Object> localVarFormParams = new HashMap<String, Object>();
 
+        if (responseFields != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("responseFields", responseFields));
+        }
+
         final String[] localVarAccepts = {
             "application/json", "text/json", "text/plain"
         };
@@ -269,12 +274,12 @@ public class SearchListingSettingsApi {
             localVarHeaderParams.put("Content-Type", localVarContentType);
         }
 
-        String[] localVarAuthNames = new String[] { "bearerAuth", "clientOauth2" };
+        String[] localVarAuthNames = new String[] { "bearerAuth" };
         return localVarApiClient.buildCall(basePath, localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call getListingSettingsValidateBeforeCall(String name, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call getListingSettingsValidateBeforeCall(String name, String responseFields, final ApiCallback _callback) throws ApiException {
         
         // verify the required parameter 'name' is set
         if (name == null) {
@@ -282,62 +287,65 @@ public class SearchListingSettingsApi {
         }
         
 
-        okhttp3.Call localVarCall = getListingSettingsCall(name, _callback);
+        okhttp3.Call localVarCall = getListingSettingsCall(name, responseFields, _callback);
         return localVarCall;
 
     }
 
     /**
-     * Get search listing settings
+     * Get Search Listing Settings
      * Get ListingSettings for a specific SearchSettings by name.
      * @param name  (required)
+     * @param responseFields limits which fields are returned in the response body (optional)
      * @return ListingSettings
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
      </table>
      */
-    public ListingSettings getListingSettings(String name) throws ApiException {
-        ApiResponse<ListingSettings> localVarResp = getListingSettingsWithHttpInfo(name);
+    public ListingSettings getListingSettings(String name, String responseFields) throws ApiException {
+        ApiResponse<ListingSettings> localVarResp = getListingSettingsWithHttpInfo(name, responseFields);
         return localVarResp.getData();
     }
 
     /**
-     * Get search listing settings
+     * Get Search Listing Settings
      * Get ListingSettings for a specific SearchSettings by name.
      * @param name  (required)
+     * @param responseFields limits which fields are returned in the response body (optional)
      * @return ApiResponse&lt;ListingSettings&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<ListingSettings> getListingSettingsWithHttpInfo(String name) throws ApiException {
-        okhttp3.Call localVarCall = getListingSettingsValidateBeforeCall(name, null);
+    public ApiResponse<ListingSettings> getListingSettingsWithHttpInfo(String name, String responseFields) throws ApiException {
+        okhttp3.Call localVarCall = getListingSettingsValidateBeforeCall(name, responseFields, null);
         Type localVarReturnType = new TypeToken<ListingSettings>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
 
     /**
-     * Get search listing settings (asynchronously)
+     * Get Search Listing Settings (asynchronously)
      * Get ListingSettings for a specific SearchSettings by name.
      * @param name  (required)
+     * @param responseFields limits which fields are returned in the response body (optional)
      * @param _callback The callback to be executed when the API call finishes
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call getListingSettingsAsync(String name, final ApiCallback<ListingSettings> _callback) throws ApiException {
+    public okhttp3.Call getListingSettingsAsync(String name, String responseFields, final ApiCallback<ListingSettings> _callback) throws ApiException {
 
-        okhttp3.Call localVarCall = getListingSettingsValidateBeforeCall(name, _callback);
+        okhttp3.Call localVarCall = getListingSettingsValidateBeforeCall(name, responseFields, _callback);
         Type localVarReturnType = new TypeToken<ListingSettings>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
@@ -345,6 +353,7 @@ public class SearchListingSettingsApi {
     /**
      * Build call for updateListingSettings
      * @param name  (required)
+     * @param responseFields limits which fields are returned in the response body (optional)
      * @param listingSettings  (optional)
      * @param _callback Callback for upload/download progress
      * @return Call to execute
@@ -352,10 +361,10 @@ public class SearchListingSettingsApi {
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call updateListingSettingsCall(String name, ListingSettings listingSettings, final ApiCallback _callback) throws ApiException {
+    public okhttp3.Call updateListingSettingsCall(String name, String responseFields, ListingSettings listingSettings, final ApiCallback _callback) throws ApiException {
         String basePath = null;
         // Operation Servers
         String[] localBasePaths = new String[] {  };
@@ -381,6 +390,10 @@ public class SearchListingSettingsApi {
         Map<String, String> localVarCookieParams = new HashMap<String, String>();
         Map<String, Object> localVarFormParams = new HashMap<String, Object>();
 
+        if (responseFields != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("responseFields", responseFields));
+        }
+
         final String[] localVarAccepts = {
             "application/json", "text/json", "text/plain"
         };
@@ -397,12 +410,12 @@ public class SearchListingSettingsApi {
             localVarHeaderParams.put("Content-Type", localVarContentType);
         }
 
-        String[] localVarAuthNames = new String[] { "bearerAuth", "clientOauth2" };
+        String[] localVarAuthNames = new String[] { "bearerAuth" };
         return localVarApiClient.buildCall(basePath, localVarPath, "PUT", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call updateListingSettingsValidateBeforeCall(String name, ListingSettings listingSettings, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call updateListingSettingsValidateBeforeCall(String name, String responseFields, ListingSettings listingSettings, final ApiCallback _callback) throws ApiException {
         
         // verify the required parameter 'name' is set
         if (name == null) {
@@ -410,52 +423,55 @@ public class SearchListingSettingsApi {
         }
         
 
-        okhttp3.Call localVarCall = updateListingSettingsCall(name, listingSettings, _callback);
+        okhttp3.Call localVarCall = updateListingSettingsCall(name, responseFields, listingSettings, _callback);
         return localVarCall;
 
     }
 
     /**
-     * Add/Update search listing settings
-     * Adds or Updates (Upsert) the ListingSettings for a specific SearchSetting by name.
+     * Update Search Listing Settings
+     * Adds or updates the ListingSettings for a specific SearchSetting by name.
      * @param name  (required)
+     * @param responseFields limits which fields are returned in the response body (optional)
      * @param listingSettings  (optional)
      * @return ListingSettings
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
      </table>
      */
-    public ListingSettings updateListingSettings(String name, ListingSettings listingSettings) throws ApiException {
-        ApiResponse<ListingSettings> localVarResp = updateListingSettingsWithHttpInfo(name, listingSettings);
+    public ListingSettings updateListingSettings(String name, String responseFields, ListingSettings listingSettings) throws ApiException {
+        ApiResponse<ListingSettings> localVarResp = updateListingSettingsWithHttpInfo(name, responseFields, listingSettings);
         return localVarResp.getData();
     }
 
     /**
-     * Add/Update search listing settings
-     * Adds or Updates (Upsert) the ListingSettings for a specific SearchSetting by name.
+     * Update Search Listing Settings
+     * Adds or updates the ListingSettings for a specific SearchSetting by name.
      * @param name  (required)
+     * @param responseFields limits which fields are returned in the response body (optional)
      * @param listingSettings  (optional)
      * @return ApiResponse&lt;ListingSettings&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<ListingSettings> updateListingSettingsWithHttpInfo(String name, ListingSettings listingSettings) throws ApiException {
-        okhttp3.Call localVarCall = updateListingSettingsValidateBeforeCall(name, listingSettings, null);
+    public ApiResponse<ListingSettings> updateListingSettingsWithHttpInfo(String name, String responseFields, ListingSettings listingSettings) throws ApiException {
+        okhttp3.Call localVarCall = updateListingSettingsValidateBeforeCall(name, responseFields, listingSettings, null);
         Type localVarReturnType = new TypeToken<ListingSettings>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
 
     /**
-     * Add/Update search listing settings (asynchronously)
-     * Adds or Updates (Upsert) the ListingSettings for a specific SearchSetting by name.
+     * Update Search Listing Settings (asynchronously)
+     * Adds or updates the ListingSettings for a specific SearchSetting by name.
      * @param name  (required)
+     * @param responseFields limits which fields are returned in the response body (optional)
      * @param listingSettings  (optional)
      * @param _callback The callback to be executed when the API call finishes
      * @return The request call
@@ -463,12 +479,12 @@ public class SearchListingSettingsApi {
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call updateListingSettingsAsync(String name, ListingSettings listingSettings, final ApiCallback<ListingSettings> _callback) throws ApiException {
+    public okhttp3.Call updateListingSettingsAsync(String name, String responseFields, ListingSettings listingSettings, final ApiCallback<ListingSettings> _callback) throws ApiException {
 
-        okhttp3.Call localVarCall = updateListingSettingsValidateBeforeCall(name, listingSettings, _callback);
+        okhttp3.Call localVarCall = updateListingSettingsValidateBeforeCall(name, responseFields, listingSettings, _callback);
         Type localVarReturnType = new TypeToken<ListingSettings>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;

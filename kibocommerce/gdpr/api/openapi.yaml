@@ -1,0 +1,773 @@
+openapi: 3.0.1
+info:
+  description: OpenAPI Spec for Kibo Redaction Service
+  title: Kibo Redaction Service
+  version: v1
+servers:
+- url: "https://{tenantPodHost}/api"
+security:
+- bearerAuth: []
+paths:
+  /platform/data/redaction/execute/{reportId}:
+    post:
+      description: Executes an approved draft redaction report. This action is irreversible
+        — it permanently removes or overwrites all PII identified in the report. The
+        report status changes from Draft to Executed and operationLog is populated.
+        See the <a href="/developer-guides/redaction-services">Redaction Services
+        Developer Guide</a> for the complete workflow and warnings.
+      operationId: executeRedaction
+      parameters:
+      - explode: false
+        in: path
+        name: reportId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: limits which fields are returned in the response body
+        explode: true
+        in: query
+        name: responseFields
+        required: false
+        schema:
+          type: string
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RedactionReportResponse'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/RedactionReportResponse'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/RedactionReportResponse'
+          description: OK
+      summary: Execute Redaction
+      tags:
+      - Redaction
+      x-accepts: application/json
+  /platform/data/redaction/report:
+    get:
+      description: "Lists redaction reports for the tenant, with optional filtering\
+        \ by status (Draft or Executed) and date range. Returns summary objects without\
+        \ affectedEntities or operationLog; retrieve individual reports by ID for\
+        \ full details. See the <a href=\"/developer-guides/redaction-services\">Redaction\
+        \ Services Developer Guide</a> for auditing guidance."
+      operationId: listRedactionReports
+      parameters:
+      - explode: true
+        in: query
+        name: status
+        required: false
+        schema:
+          type: string
+        style: form
+      - explode: true
+        in: query
+        name: page
+        required: false
+        schema:
+          format: int32
+          type: integer
+        style: form
+      - explode: true
+        in: query
+        name: pageSize
+        required: false
+        schema:
+          format: int32
+          type: integer
+        style: form
+      - explode: true
+        in: query
+        name: from
+        required: false
+        schema:
+          format: date-time
+          type: string
+        style: form
+      - explode: true
+        in: query
+        name: to
+        required: false
+        schema:
+          format: date-time
+          type: string
+        style: form
+      - description: limits which fields are returned in the response body
+        explode: true
+        in: query
+        name: responseFields
+        required: false
+        schema:
+          type: string
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RedactionReportSummaryListResponse'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/RedactionReportSummaryListResponse'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/RedactionReportSummaryListResponse'
+          description: OK
+      summary: List Redaction Reports
+      tags:
+      - Redaction
+      x-accepts: application/json
+    post:
+      description: Creates a draft redaction report by scanning tenant data for all
+        PII associated with the specified data subject. No data is modified at this
+        stage. Review the returned report before executing. See the <a href="/developer-guides/redaction-services">Redaction
+        Services Developer Guide</a> for the complete two-phase workflow.
+      operationId: generateRedactionReport
+      parameters:
+      - description: limits which fields are returned in the response body
+        explode: true
+        in: query
+        name: responseFields
+        required: false
+        schema:
+          type: string
+        style: form
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateReportRequest'
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RedactionReportResponse'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/RedactionReportResponse'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/RedactionReportResponse'
+          description: OK
+      summary: Generate Redaction Report
+      tags:
+      - Redaction
+      x-content-type: application/json
+      x-accepts: application/json
+  /platform/data/redaction/report/{reportId}:
+    get:
+      description: "Retrieves a single redaction report by ID. Returns the full report\
+        \ including affectedEntities and, after execution, the operationLog. Use this\
+        \ to review a draft before executing or to audit a completed redaction. See\
+        \ the <a href=\"/developer-guides/redaction-services\">Redaction Services\
+        \ Developer Guide</a> for field descriptions."
+      operationId: getRedactionReport
+      parameters:
+      - explode: false
+        in: path
+        name: reportId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: limits which fields are returned in the response body
+        explode: true
+        in: query
+        name: responseFields
+        required: false
+        schema:
+          type: string
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RedactionReportResponse'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/RedactionReportResponse'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/RedactionReportResponse'
+          description: OK
+      summary: Get Redaction Report
+      tags:
+      - Redaction
+      x-accepts: application/json
+components:
+  schemas:
+    AffectedEntitiesResponse:
+      example:
+        checkouts:
+          count: 0
+          ids:
+          - ids
+          - ids
+        customerAccountId: 6
+        payments:
+          count: 0
+          ids:
+          - ids
+          - ids
+        orders:
+          count: 0
+          ids:
+          - ids
+          - ids
+        returns:
+          count: 0
+          ids:
+          - ids
+          - ids
+        shipments:
+          count: 0
+          ids:
+          - ids
+          - ids
+        wishlists:
+          count: 0
+          ids:
+          - ids
+          - ids
+      properties:
+        checkouts:
+          $ref: '#/components/schemas/EntityGroupResponse'
+        customerAccountId:
+          format: int32
+          type: integer
+        orders:
+          $ref: '#/components/schemas/EntityGroupResponse'
+        payments:
+          $ref: '#/components/schemas/EntityGroupResponse'
+        returns:
+          $ref: '#/components/schemas/EntityGroupResponse'
+        shipments:
+          $ref: '#/components/schemas/EntityGroupResponse'
+        wishlists:
+          $ref: '#/components/schemas/EntityGroupResponse'
+      type: object
+    AttributeFqnsRequest:
+      example:
+        shipment:
+        - shipment
+        - shipment
+        return:
+        - return
+        - return
+        customer:
+        - customer
+        - customer
+        order:
+        - order
+        - order
+      properties:
+        customer:
+          items:
+            type: string
+          nullable: true
+          type: array
+        order:
+          items:
+            type: string
+          nullable: true
+          type: array
+        return:
+          items:
+            type: string
+          nullable: true
+          type: array
+        shipment:
+          items:
+            type: string
+          nullable: true
+          type: array
+      type: object
+    AttributeFqnsResponse:
+      example:
+        shipment:
+        - shipment
+        - shipment
+        return:
+        - return
+        - return
+        customer:
+        - customer
+        - customer
+        order:
+        - order
+        - order
+      properties:
+        customer:
+          items:
+            type: string
+          nullable: true
+          type: array
+        order:
+          items:
+            type: string
+          nullable: true
+          type: array
+        return:
+          items:
+            type: string
+          nullable: true
+          type: array
+        shipment:
+          items:
+            type: string
+          nullable: true
+          type: array
+      type: object
+    AuditInfoResponse:
+      example:
+        createBy: createBy
+        updateDate: 2000-01-23T04:56:07.000+00:00
+        updateBy: updateBy
+        createDate: 2000-01-23T04:56:07.000+00:00
+      properties:
+        createBy:
+          nullable: true
+          type: string
+        createDate:
+          format: date-time
+          type: string
+        updateBy:
+          nullable: true
+          type: string
+        updateDate:
+          format: date-time
+          nullable: true
+          type: string
+      type: object
+    ClearDataNodesRequest:
+      example:
+        checkouts: true
+        orders: true
+        shipments: true
+      properties:
+        checkouts:
+          nullable: true
+          type: boolean
+        orders:
+          nullable: true
+          type: boolean
+        shipments:
+          nullable: true
+          type: boolean
+      type: object
+    ClearDataNodesResponse:
+      example:
+        checkouts: true
+        orders: true
+        shipments: true
+      properties:
+        checkouts:
+          type: boolean
+        orders:
+          type: boolean
+        shipments:
+          type: boolean
+      type: object
+    CreateReportRequest:
+      example:
+        customerAccountId: 0
+        attributeFqns:
+          shipment:
+          - shipment
+          - shipment
+          return:
+          - return
+          - return
+          customer:
+          - customer
+          - customer
+          order:
+          - order
+          - order
+        userId: userId
+        clearDataNodes:
+          checkouts: true
+          orders: true
+          shipments: true
+      properties:
+        attributeFqns:
+          $ref: '#/components/schemas/AttributeFqnsRequest'
+        clearDataNodes:
+          $ref: '#/components/schemas/ClearDataNodesRequest'
+        customerAccountId:
+          format: int32
+          nullable: true
+          type: integer
+        userId:
+          nullable: true
+          type: string
+      type: object
+    EntityGroupResponse:
+      example:
+        count: 0
+        ids:
+        - ids
+        - ids
+      properties:
+        count:
+          format: int32
+          type: integer
+        ids:
+          items:
+            type: string
+          nullable: true
+          type: array
+      type: object
+    OperationLogEntry:
+      example:
+        phase: phase
+        recordsAffected: 5
+        entityType: entityType
+        errorMessage: errorMessage
+        entityId: entityId
+        store: store
+        durationMs: 1
+        operation: operation
+        status: status
+        timestamp: 2000-01-23T04:56:07.000+00:00
+      properties:
+        durationMs:
+          format: int64
+          type: integer
+        entityId:
+          nullable: true
+          type: string
+        entityType:
+          nullable: true
+          type: string
+        errorMessage:
+          nullable: true
+          type: string
+        operation:
+          nullable: true
+          type: string
+        phase:
+          nullable: true
+          type: string
+        recordsAffected:
+          format: int32
+          type: integer
+        status:
+          nullable: true
+          type: string
+        store:
+          nullable: true
+          type: string
+        timestamp:
+          format: date-time
+          type: string
+      type: object
+    RedactionReportResponse:
+      example:
+        request:
+          attributeFqns:
+            shipment:
+            - shipment
+            - shipment
+            return:
+            - return
+            - return
+            customer:
+            - customer
+            - customer
+            order:
+            - order
+            - order
+          correlationId: correlationId
+          clearDataNodes:
+            checkouts: true
+            orders: true
+            shipments: true
+        schemaVersion: 5
+        reportId: reportId
+        subject:
+          resolvedEmailAddresses:
+          - resolvedEmailAddresses
+          - resolvedEmailAddresses
+          customerAccountId: 2
+          userId: userId
+        executionCompletedAt: 2000-01-23T04:56:07.000+00:00
+        executionStartedAt: 2000-01-23T04:56:07.000+00:00
+        affectedEntities:
+          checkouts:
+            count: 0
+            ids:
+            - ids
+            - ids
+          customerAccountId: 6
+          payments:
+            count: 0
+            ids:
+            - ids
+            - ids
+          orders:
+            count: 0
+            ids:
+            - ids
+            - ids
+          returns:
+            count: 0
+            ids:
+            - ids
+            - ids
+          shipments:
+            count: 0
+            ids:
+            - ids
+            - ids
+          wishlists:
+            count: 0
+            ids:
+            - ids
+            - ids
+        errorSummary: errorSummary
+        auditInfo:
+          createBy: createBy
+          updateDate: 2000-01-23T04:56:07.000+00:00
+          updateBy: updateBy
+          createDate: 2000-01-23T04:56:07.000+00:00
+        createdAt: 2000-01-23T04:56:07.000+00:00
+        operationLog:
+        - phase: phase
+          recordsAffected: 5
+          entityType: entityType
+          errorMessage: errorMessage
+          entityId: entityId
+          store: store
+          durationMs: 1
+          operation: operation
+          status: status
+          timestamp: 2000-01-23T04:56:07.000+00:00
+        - phase: phase
+          recordsAffected: 5
+          entityType: entityType
+          errorMessage: errorMessage
+          entityId: entityId
+          store: store
+          durationMs: 1
+          operation: operation
+          status: status
+          timestamp: 2000-01-23T04:56:07.000+00:00
+        tenantId: 7
+        status: status
+      properties:
+        affectedEntities:
+          $ref: '#/components/schemas/AffectedEntitiesResponse'
+        auditInfo:
+          $ref: '#/components/schemas/AuditInfoResponse'
+        createdAt:
+          format: date-time
+          type: string
+        errorSummary:
+          nullable: true
+          type: string
+        executionCompletedAt:
+          format: date-time
+          nullable: true
+          type: string
+        executionStartedAt:
+          format: date-time
+          nullable: true
+          type: string
+        operationLog:
+          items:
+            $ref: '#/components/schemas/OperationLogEntry'
+          nullable: true
+          type: array
+        reportId:
+          nullable: true
+          type: string
+        request:
+          $ref: '#/components/schemas/RequestResponse'
+        schemaVersion:
+          format: int32
+          type: integer
+        status:
+          nullable: true
+          type: string
+        subject:
+          $ref: '#/components/schemas/SubjectResponse'
+        tenantId:
+          format: int32
+          type: integer
+      type: object
+    RedactionReportSummaryListResponse:
+      example:
+        startIndex: 5
+        pageSize: 1
+        items:
+        - auditInfo:
+            createBy: createBy
+            updateDate: 2000-01-23T04:56:07.000+00:00
+            updateBy: updateBy
+            createDate: 2000-01-23T04:56:07.000+00:00
+          createdAt: 2000-01-23T04:56:07.000+00:00
+          schemaVersion: 0
+          reportId: reportId
+          subject:
+            resolvedEmailAddresses:
+            - resolvedEmailAddresses
+            - resolvedEmailAddresses
+            customerAccountId: 2
+            userId: userId
+          tenantId: 6
+          executionCompletedAt: 2000-01-23T04:56:07.000+00:00
+          executionStartedAt: 2000-01-23T04:56:07.000+00:00
+          errorSummary: errorSummary
+          status: status
+        - auditInfo:
+            createBy: createBy
+            updateDate: 2000-01-23T04:56:07.000+00:00
+            updateBy: updateBy
+            createDate: 2000-01-23T04:56:07.000+00:00
+          createdAt: 2000-01-23T04:56:07.000+00:00
+          schemaVersion: 0
+          reportId: reportId
+          subject:
+            resolvedEmailAddresses:
+            - resolvedEmailAddresses
+            - resolvedEmailAddresses
+            customerAccountId: 2
+            userId: userId
+          tenantId: 6
+          executionCompletedAt: 2000-01-23T04:56:07.000+00:00
+          executionStartedAt: 2000-01-23T04:56:07.000+00:00
+          errorSummary: errorSummary
+          status: status
+      properties:
+        items:
+          items:
+            $ref: '#/components/schemas/RedactionReportSummaryResponse'
+          nullable: true
+          type: array
+        pageSize:
+          format: int32
+          type: integer
+        startIndex:
+          format: int32
+          type: integer
+      type: object
+    RedactionReportSummaryResponse:
+      example:
+        auditInfo:
+          createBy: createBy
+          updateDate: 2000-01-23T04:56:07.000+00:00
+          updateBy: updateBy
+          createDate: 2000-01-23T04:56:07.000+00:00
+        createdAt: 2000-01-23T04:56:07.000+00:00
+        schemaVersion: 0
+        reportId: reportId
+        subject:
+          resolvedEmailAddresses:
+          - resolvedEmailAddresses
+          - resolvedEmailAddresses
+          customerAccountId: 2
+          userId: userId
+        tenantId: 6
+        executionCompletedAt: 2000-01-23T04:56:07.000+00:00
+        executionStartedAt: 2000-01-23T04:56:07.000+00:00
+        errorSummary: errorSummary
+        status: status
+      properties:
+        auditInfo:
+          $ref: '#/components/schemas/AuditInfoResponse'
+        createdAt:
+          format: date-time
+          type: string
+        errorSummary:
+          nullable: true
+          type: string
+        executionCompletedAt:
+          format: date-time
+          nullable: true
+          type: string
+        executionStartedAt:
+          format: date-time
+          nullable: true
+          type: string
+        reportId:
+          nullable: true
+          type: string
+        schemaVersion:
+          format: int32
+          type: integer
+        status:
+          nullable: true
+          type: string
+        subject:
+          $ref: '#/components/schemas/SubjectResponse'
+        tenantId:
+          format: int32
+          type: integer
+      type: object
+    RequestResponse:
+      example:
+        attributeFqns:
+          shipment:
+          - shipment
+          - shipment
+          return:
+          - return
+          - return
+          customer:
+          - customer
+          - customer
+          order:
+          - order
+          - order
+        correlationId: correlationId
+        clearDataNodes:
+          checkouts: true
+          orders: true
+          shipments: true
+      properties:
+        attributeFqns:
+          $ref: '#/components/schemas/AttributeFqnsResponse'
+        clearDataNodes:
+          $ref: '#/components/schemas/ClearDataNodesResponse'
+        correlationId:
+          nullable: true
+          type: string
+      type: object
+    SubjectResponse:
+      example:
+        resolvedEmailAddresses:
+        - resolvedEmailAddresses
+        - resolvedEmailAddresses
+        customerAccountId: 2
+        userId: userId
+      properties:
+        customerAccountId:
+          format: int32
+          nullable: true
+          type: integer
+        resolvedEmailAddresses:
+          items:
+            type: string
+          nullable: true
+          type: array
+        userId:
+          nullable: true
+          type: string
+      type: object
+  securitySchemes:
+    bearerAuth:
+      bearerFormat: JWT
+      description: "JWT Authorization header using the Bearer scheme. \r\n\r\n Enter\
+        \ 'Bearer' [space] and then your token in the text input below.\r\n\r\nExample:\
+        \ \"Bearer 12345abcdef\""
+      scheme: bearer
+      type: http
+

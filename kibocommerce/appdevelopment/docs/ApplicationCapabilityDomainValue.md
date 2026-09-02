@@ -8,11 +8,11 @@
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
-|**applicationCapabilityDomainValueId** | **Integer** |  |  [optional] |
 |**applicationCapabilityDomainId1** | **Integer** |  |  [optional] |
 |**applicationCapabilityDomainId2** | **Integer** |  |  [optional] |
-|**valueName** | **String** |  |  [optional] |
+|**applicationCapabilityDomainValueId** | **Integer** |  |  [optional] |
 |**displayName** | **String** |  |  [optional] |
+|**valueName** | **String** |  |  [optional] |
 
 
 ## Implemented Interfaces

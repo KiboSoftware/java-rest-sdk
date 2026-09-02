@@ -4,19 +4,19 @@ All URIs are relative to *http://https:/api*
 
 | Method | HTTP request | Description |
 |------------- | ------------- | -------------|
-| [**createCustomDataListUsingPOST**](OrderRoutingDataListApi.md#createCustomDataListUsingPOST) | **POST** /commerce/orders/orderrouting/api/v1/dataList | createCustomDataList |
-| [**deleteCustomDataListUsingDELETE**](OrderRoutingDataListApi.md#deleteCustomDataListUsingDELETE) | **DELETE** /commerce/orders/orderrouting/api/v1/dataList/{dataListID} | deleteCustomDataList |
-| [**getCustomDataListUsingGET**](OrderRoutingDataListApi.md#getCustomDataListUsingGET) | **GET** /commerce/orders/orderrouting/api/v1/dataList/{dataListID} | getCustomDataList |
-| [**updateCustomDataListUsingPUT**](OrderRoutingDataListApi.md#updateCustomDataListUsingPUT) | **PUT** /commerce/orders/orderrouting/api/v1/dataList/{dataListID} | updateCustomDataList |
+| [**createCustomDataList**](OrderRoutingDataListApi.md#createCustomDataList) | **POST** /commerce/orders/orderrouting/api/v1/dataList | Create Custom Data List |
+| [**deleteCustomDataList1**](OrderRoutingDataListApi.md#deleteCustomDataList1) | **DELETE** /commerce/orders/orderrouting/api/v1/dataList/{dataListID} | Delete Custom Data List |
+| [**getCustomDataList**](OrderRoutingDataListApi.md#getCustomDataList) | **GET** /commerce/orders/orderrouting/api/v1/dataList/{dataListID} | Get Custom Data List |
+| [**updateCustomDataList**](OrderRoutingDataListApi.md#updateCustomDataList) | **PUT** /commerce/orders/orderrouting/api/v1/dataList/{dataListID} | Update Custom Data List |
 
 
-<a name="createCustomDataListUsingPOST"></a>
-# **createCustomDataListUsingPOST**
-> CustomDataListResponse createCustomDataListUsingPOST(xVolSite, xVolTenant, customDataList)
+<a name="createCustomDataList"></a>
+# **createCustomDataList**
+> CustomDataListResponse createCustomDataList(xVolTenant, xVolSite, customDataList)
 
-createCustomDataList
+Create Custom Data List
 
-createCustomDataList
+Create Custom Data List
 
 ### Example
 ```java
@@ -37,19 +37,15 @@ public class Example {
     HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
     bearerAuth.setBearerToken("BEARER TOKEN");
 
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
-
     OrderRoutingDataListApi apiInstance = new OrderRoutingDataListApi(defaultClient);
-    Integer xVolSite = 56; // Integer | 
-    Integer xVolTenant = 56; // Integer | 
-    CustomDataList customDataList = new CustomDataList(); // CustomDataList | customDataList
+    Integer xVolTenant = 56; // Integer | Tenant
+    Integer xVolSite = 56; // Integer | Site
+    CustomDataList customDataList = new CustomDataList(); // CustomDataList | 
     try {
-      CustomDataListResponse result = apiInstance.createCustomDataListUsingPOST(xVolSite, xVolTenant, customDataList);
+      CustomDataListResponse result = apiInstance.createCustomDataList(xVolTenant, xVolSite, customDataList);
       System.out.println(result);
     } catch (ApiException e) {
-      System.err.println("Exception when calling OrderRoutingDataListApi#createCustomDataListUsingPOST");
+      System.err.println("Exception when calling OrderRoutingDataListApi#createCustomDataList");
       System.err.println("Status code: " + e.getCode());
       System.err.println("Reason: " + e.getResponseBody());
       System.err.println("Response headers: " + e.getResponseHeaders());
@@ -63,9 +59,9 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **xVolSite** | **Integer**|  | |
-| **xVolTenant** | **Integer**|  | |
-| **customDataList** | [**CustomDataList**](CustomDataList.md)| customDataList | |
+| **xVolTenant** | **Integer**| Tenant | |
+| **xVolSite** | **Integer**| Site | |
+| **customDataList** | [**CustomDataList**](CustomDataList.md)|  | |
 
 ### Return type
 
@@ -73,29 +69,30 @@ public class Example {
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth), [clientOauth2](../README.md#clientOauth2)
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
  - **Content-Type**: application/json
- - **Accept**: application/json
+ - **Accept**: application/json, */*
 
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | OK |  -  |
-| **201** | Created |  -  |
-| **401** | Unauthorized |  -  |
+| **400** | Bad Request |  -  |
 | **403** | Forbidden |  -  |
-| **404** | Not Found |  -  |
+| **409** | Conflict |  -  |
+| **410** | Gone |  -  |
+| **500** | Internal Server Error |  -  |
 
-<a name="deleteCustomDataListUsingDELETE"></a>
-# **deleteCustomDataListUsingDELETE**
-> deleteCustomDataListUsingDELETE(dataListID, xVolSite, xVolTenant)
+<a name="deleteCustomDataList1"></a>
+# **deleteCustomDataList1**
+> deleteCustomDataList1(dataListID)
 
-deleteCustomDataList
+Delete Custom Data List
 
-deleteCustomDataList
+Deletes a custom data list.
 
 ### Example
 ```java
@@ -116,18 +113,12 @@ public class Example {
     HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
     bearerAuth.setBearerToken("BEARER TOKEN");
 
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
-
     OrderRoutingDataListApi apiInstance = new OrderRoutingDataListApi(defaultClient);
     Integer dataListID = 56; // Integer | dataListID
-    Integer xVolSite = 56; // Integer | 
-    Integer xVolTenant = 56; // Integer | 
     try {
-      apiInstance.deleteCustomDataListUsingDELETE(dataListID, xVolSite, xVolTenant);
+      apiInstance.deleteCustomDataList1(dataListID);
     } catch (ApiException e) {
-      System.err.println("Exception when calling OrderRoutingDataListApi#deleteCustomDataListUsingDELETE");
+      System.err.println("Exception when calling OrderRoutingDataListApi#deleteCustomDataList1");
       System.err.println("Status code: " + e.getCode());
       System.err.println("Reason: " + e.getResponseBody());
       System.err.println("Response headers: " + e.getResponseHeaders());
@@ -142,8 +133,6 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **dataListID** | **Integer**| dataListID | |
-| **xVolSite** | **Integer**|  | |
-| **xVolTenant** | **Integer**|  | |
 
 ### Return type
 
@@ -151,27 +140,30 @@ null (empty response body)
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth), [clientOauth2](../README.md#clientOauth2)
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: Not defined
+ - **Accept**: */*
 
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **204** | No Content |  -  |
-| **401** | Unauthorized |  -  |
+| **400** | Bad Request |  -  |
 | **403** | Forbidden |  -  |
+| **409** | Conflict |  -  |
+| **410** | Gone |  -  |
+| **500** | Internal Server Error |  -  |
 
-<a name="getCustomDataListUsingGET"></a>
-# **getCustomDataListUsingGET**
-> CustomDataListResponse getCustomDataListUsingGET(dataListID, xVolSite, xVolTenant)
+<a name="getCustomDataList"></a>
+# **getCustomDataList**
+> CustomDataListResponse getCustomDataList(dataListID, xVolTenant, xVolSite)
 
-getCustomDataList
+Get Custom Data List
 
-getCustomDataList
+Get Custom Data List
 
 ### Example
 ```java
@@ -192,19 +184,15 @@ public class Example {
     HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
     bearerAuth.setBearerToken("BEARER TOKEN");
 
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
-
     OrderRoutingDataListApi apiInstance = new OrderRoutingDataListApi(defaultClient);
-    Integer dataListID = 56; // Integer | dataListID
-    Integer xVolSite = 56; // Integer | 
-    Integer xVolTenant = 56; // Integer | 
+    Integer dataListID = 56; // Integer | 
+    Integer xVolTenant = 56; // Integer | Tenant
+    Integer xVolSite = 56; // Integer | Site
     try {
-      CustomDataListResponse result = apiInstance.getCustomDataListUsingGET(dataListID, xVolSite, xVolTenant);
+      CustomDataListResponse result = apiInstance.getCustomDataList(dataListID, xVolTenant, xVolSite);
       System.out.println(result);
     } catch (ApiException e) {
-      System.err.println("Exception when calling OrderRoutingDataListApi#getCustomDataListUsingGET");
+      System.err.println("Exception when calling OrderRoutingDataListApi#getCustomDataList");
       System.err.println("Status code: " + e.getCode());
       System.err.println("Reason: " + e.getResponseBody());
       System.err.println("Response headers: " + e.getResponseHeaders());
@@ -218,9 +206,9 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **dataListID** | **Integer**| dataListID | |
-| **xVolSite** | **Integer**|  | |
-| **xVolTenant** | **Integer**|  | |
+| **dataListID** | **Integer**|  | |
+| **xVolTenant** | **Integer**| Tenant | |
+| **xVolSite** | **Integer**| Site | |
 
 ### Return type
 
@@ -228,28 +216,30 @@ public class Example {
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth), [clientOauth2](../README.md#clientOauth2)
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: application/json
+ - **Accept**: application/json, */*
 
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | OK |  -  |
-| **401** | Unauthorized |  -  |
+| **400** | Bad Request |  -  |
 | **403** | Forbidden |  -  |
-| **404** | Not Found |  -  |
+| **409** | Conflict |  -  |
+| **410** | Gone |  -  |
+| **500** | Internal Server Error |  -  |
 
-<a name="updateCustomDataListUsingPUT"></a>
-# **updateCustomDataListUsingPUT**
-> CustomDataListResponse updateCustomDataListUsingPUT(dataListID, xVolSite, xVolTenant, newDataList)
+<a name="updateCustomDataList"></a>
+# **updateCustomDataList**
+> CustomDataListResponse updateCustomDataList(dataListID, xVolTenant, xVolSite, customDataList)
 
-updateCustomDataList
+Update Custom Data List
 
-updateCustomDataList
+Update Custom Data List
 
 ### Example
 ```java
@@ -270,20 +260,16 @@ public class Example {
     HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
     bearerAuth.setBearerToken("BEARER TOKEN");
 
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
-
     OrderRoutingDataListApi apiInstance = new OrderRoutingDataListApi(defaultClient);
-    Integer dataListID = 56; // Integer | dataListID
-    Integer xVolSite = 56; // Integer | 
-    Integer xVolTenant = 56; // Integer | 
-    CustomDataList newDataList = new CustomDataList(); // CustomDataList | newDataList
+    Integer dataListID = 56; // Integer | 
+    Integer xVolTenant = 56; // Integer | Tenant
+    Integer xVolSite = 56; // Integer | Site
+    CustomDataList customDataList = new CustomDataList(); // CustomDataList | 
     try {
-      CustomDataListResponse result = apiInstance.updateCustomDataListUsingPUT(dataListID, xVolSite, xVolTenant, newDataList);
+      CustomDataListResponse result = apiInstance.updateCustomDataList(dataListID, xVolTenant, xVolSite, customDataList);
       System.out.println(result);
     } catch (ApiException e) {
-      System.err.println("Exception when calling OrderRoutingDataListApi#updateCustomDataListUsingPUT");
+      System.err.println("Exception when calling OrderRoutingDataListApi#updateCustomDataList");
       System.err.println("Status code: " + e.getCode());
       System.err.println("Reason: " + e.getResponseBody());
       System.err.println("Response headers: " + e.getResponseHeaders());
@@ -297,10 +283,10 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **dataListID** | **Integer**| dataListID | |
-| **xVolSite** | **Integer**|  | |
-| **xVolTenant** | **Integer**|  | |
-| **newDataList** | [**CustomDataList**](CustomDataList.md)| newDataList | |
+| **dataListID** | **Integer**|  | |
+| **xVolTenant** | **Integer**| Tenant | |
+| **xVolSite** | **Integer**| Site | |
+| **customDataList** | [**CustomDataList**](CustomDataList.md)|  | |
 
 ### Return type
 
@@ -308,19 +294,20 @@ public class Example {
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth), [clientOauth2](../README.md#clientOauth2)
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
  - **Content-Type**: application/json
- - **Accept**: application/json
+ - **Accept**: application/json, */*
 
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | OK |  -  |
-| **201** | Created |  -  |
-| **401** | Unauthorized |  -  |
+| **400** | Bad Request |  -  |
 | **403** | Forbidden |  -  |
-| **404** | Not Found |  -  |
+| **409** | Conflict |  -  |
+| **410** | Gone |  -  |
+| **500** | Internal Server Error |  -  |
 

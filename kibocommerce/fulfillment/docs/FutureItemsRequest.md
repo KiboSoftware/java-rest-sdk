@@ -9,6 +9,7 @@
 |------------ | ------------- | ------------- | -------------|
 |**isUserAction** | **Boolean** |  |  [optional] |
 |**items** | [**List&lt;FutureItem&gt;**](FutureItem.md) |  |  [optional] |
+|**runId** | **String** |  |  [optional] |
 
 
 ## Implemented Interfaces

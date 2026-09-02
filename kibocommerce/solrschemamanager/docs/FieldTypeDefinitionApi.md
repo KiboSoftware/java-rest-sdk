@@ -9,7 +9,7 @@ All URIs are relative to *http://https:/api*
 
 <a name="getFieldTypeDefinitions"></a>
 # **getFieldTypeDefinitions**
-> List&lt;FieldTypeDefinitionRepositoryEntry&gt; getFieldTypeDefinitions(language)
+> List&lt;FieldTypeDefinitionRepositoryEntry&gt; getFieldTypeDefinitions(language, responseFields)
 
 Get Field Type Definitions
 
@@ -34,14 +34,11 @@ public class Example {
     HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
     bearerAuth.setBearerToken("BEARER TOKEN");
 
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
-
     FieldTypeDefinitionApi apiInstance = new FieldTypeDefinitionApi(defaultClient);
     String language = "language_example"; // String | 
+    String responseFields = "responseFields_example"; // String | limits which fields are returned in the response body
     try {
-      List<FieldTypeDefinitionRepositoryEntry> result = apiInstance.getFieldTypeDefinitions(language);
+      List<FieldTypeDefinitionRepositoryEntry> result = apiInstance.getFieldTypeDefinitions(language, responseFields);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling FieldTypeDefinitionApi#getFieldTypeDefinitions");
@@ -59,6 +56,7 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **language** | **String**|  | |
+| **responseFields** | **String**| limits which fields are returned in the response body | [optional] |
 
 ### Return type
 
@@ -66,7 +64,7 @@ public class Example {
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth), [clientOauth2](../README.md#clientOauth2)
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
@@ -76,5 +74,5 @@ public class Example {
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Success |  -  |
+| **200** | OK |  -  |
 

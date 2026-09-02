@@ -1,8 +1,8 @@
 /*
  * Kibo Catalog Admin Services
- * OpenAPI Spec for Kibo Catalog Admin Services
+ * <div id=\"overview_CATALOG_ADMIN\">             <h2>CATALOG ADMINISTRATION</h2>             <p>The Catalog Administration APIs are a collection of resources for configuring the catalogs and products offered to your shoppers, including                 discounts and coupon sets, faceting, price lists, and different types or variations of products. See the                 <a href=\"/concept-guides/catalog\">Catalog user guides</a>                 for information about the related features in the Unified Commerce Admin.</p>             <p>Use the <strong>Attributes</strong> resource to manage localization and attribute configurations for your catalogs. This current version of the Attributes API includes localizedContent to                 support <a href=\"/pages/catalog-structure#multi-locale-catalogs\">multi-locale catalogs</a>, which was not present in the legacy API model. If                 you were a client prior to May 2024 and have upgraded your implementation to support this feature,                 you can still access attribute data that has not yet been rewritten to the new model by providing                 an x-api-version header set to \"1\". </p>             <p>Use the <strong>Categories</strong> resource to organize products and control where they appear on the storefront. Create                 and maintain a hierarchy of categories and subcategories where the site will store properties. This current version of the Categories API includes localizedContent to                 support <a href=\"/pages/catalog-structure#multi-locale-catalogs\">multi-locale catalogs</a>, which was not present in the legacy API model. If                 you were a client prior to May 2024 and have upgraded your implementation to support this feature,                 you can still access category data that has not yet been rewritten to the new model by providing                 an x-api-version header set to \"1\". </p>             <p>Use the <strong>Coupon Sets</strong> resource to view and create coupon sets. You can use coupon sets to group multiple                 coupon codes together and associate them with one or more discounts.</p>             <p>Use the <strong>Currency</strong> resource to manage the currency localization rules and exchange rates for any of the                 currencies that are supported for placing orders in.</p>             <p>Use the <strong>Discounts</strong> and <strong>Discount Settings</strong> resources to define and manage discounts to apply to products, product categories, or                 orders. This current version of the Discounts API includes localizedContent to                 support <a href=\"/pages/catalog-structure#multi-locale-catalogs\">multi-locale catalogs</a>, which was not present in the legacy Products API model. If                 you were a client prior to May 2024 and have upgraded your implementation to support this feature,                 you can still access discount data that has not yet been rewritten to the new model by providing                 an x-api-version header set to \"1\". </p>             <p>Use the <strong>Facets</strong> resource to manage the facets shoppers use to filter product display results on a                 storefront. Facets can include categories, product attributes, or prices, and use either a range of                 values or discrete values.</p>             <p>Use the <strong>Master Catalog</strong> resource to view details of the master catalogs associated with a tenant and to                 manage the product publishing mode for each master catalog.</p>             <p>Use the <strong>Price Lists</strong> resources to view and create price lists. You can use price lists to override the                 catalog pricing of products for specific customer segments and/or sites.</p>             <p>Use the <strong>Products</strong>, <strong>Product Types/Extras/Options/Properties</strong>, and <strong>Product Sort Definitions</strong> resources to create new product definitions in the master catalog and determine which                 catalogs will feature products. This current version of the Products API includes localizedContent to                 support <a href=\"/pages/catalog-structure#multi-locale-catalogs\">multi-locale catalogs</a>, which was not present in the legacy Products API model. If                 you were a client prior to May 2024 and have upgraded your implementation to support this feature,                 you can still access product data that has not yet been rewritten to the new model by providing                 an x-api-version header set to \"1\".</p>             <p>Use the <strong>Publishing</strong> resource to publish pending product updates together as part of a set.</p>             <p>Use the <strong>Search</strong> resource to manage all settings and options for providing product search on your site, as                 well as search tuning rules.</p>         </div>
  *
- * The version of the OpenAPI document: 1.0.0
+ * The version of the OpenAPI document: v1
  * 
  *
  * NOTE: This class is auto generated by OpenAPI Generator (https://openapi-generator.tech).
@@ -55,47 +55,24 @@ import com.kibocommerce.sdk.common.JSON;
 public class AttributeTypeRule implements Serializable {
   private static final long serialVersionUID = 1L;
 
-  public static final String SERIALIZED_NAME_ATTRIBUTE_INPUT_TYPE = "attributeInputType";
-  @SerializedName(SERIALIZED_NAME_ATTRIBUTE_INPUT_TYPE)
-  private String attributeInputType;
-
   public static final String SERIALIZED_NAME_ATTRIBUTE_DATA_TYPE = "attributeDataType";
   @SerializedName(SERIALIZED_NAME_ATTRIBUTE_DATA_TYPE)
   private String attributeDataType;
 
-  public static final String SERIALIZED_NAME_ATTRIBUTE_VALUE_TYPE = "attributeValueType";
-  @SerializedName(SERIALIZED_NAME_ATTRIBUTE_VALUE_TYPE)
-  private String attributeValueType;
+  public static final String SERIALIZED_NAME_ATTRIBUTE_INPUT_TYPE = "attributeInputType";
+  @SerializedName(SERIALIZED_NAME_ATTRIBUTE_INPUT_TYPE)
+  private String attributeInputType;
 
   public static final String SERIALIZED_NAME_ATTRIBUTE_USAGE_TYPE = "attributeUsageType";
   @SerializedName(SERIALIZED_NAME_ATTRIBUTE_USAGE_TYPE)
   private String attributeUsageType;
 
+  public static final String SERIALIZED_NAME_ATTRIBUTE_VALUE_TYPE = "attributeValueType";
+  @SerializedName(SERIALIZED_NAME_ATTRIBUTE_VALUE_TYPE)
+  private String attributeValueType;
+
   public AttributeTypeRule() {
   }
-
-  public AttributeTypeRule attributeInputType(String attributeInputType) {
-    
-    this.attributeInputType = attributeInputType;
-    return this;
-  }
-
-   /**
-   * AttributeInputType identifier
-   * @return attributeInputType
-  **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(value = "AttributeInputType identifier")
-
-  public String getAttributeInputType() {
-    return attributeInputType;
-  }
-
-
-  public void setAttributeInputType(String attributeInputType) {
-    this.attributeInputType = attributeInputType;
-  }
-
 
   public AttributeTypeRule attributeDataType(String attributeDataType) {
     
@@ -120,26 +97,26 @@ public class AttributeTypeRule implements Serializable {
   }
 
 
-  public AttributeTypeRule attributeValueType(String attributeValueType) {
+  public AttributeTypeRule attributeInputType(String attributeInputType) {
     
-    this.attributeValueType = attributeValueType;
+    this.attributeInputType = attributeInputType;
     return this;
   }
 
    /**
-   * AttributeValueType identifier
-   * @return attributeValueType
+   * AttributeInputType identifier
+   * @return attributeInputType
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "AttributeValueType identifier")
+  @ApiModelProperty(value = "AttributeInputType identifier")
 
-  public String getAttributeValueType() {
-    return attributeValueType;
+  public String getAttributeInputType() {
+    return attributeInputType;
   }
 
 
-  public void setAttributeValueType(String attributeValueType) {
-    this.attributeValueType = attributeValueType;
+  public void setAttributeInputType(String attributeInputType) {
+    this.attributeInputType = attributeInputType;
   }
 
 
@@ -166,6 +143,29 @@ public class AttributeTypeRule implements Serializable {
   }
 
 
+  public AttributeTypeRule attributeValueType(String attributeValueType) {
+    
+    this.attributeValueType = attributeValueType;
+    return this;
+  }
+
+   /**
+   * AttributeValueType identifier
+   * @return attributeValueType
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "AttributeValueType identifier")
+
+  public String getAttributeValueType() {
+    return attributeValueType;
+  }
+
+
+  public void setAttributeValueType(String attributeValueType) {
+    this.attributeValueType = attributeValueType;
+  }
+
+
 
   @Override
   public boolean equals(Object o) {
@@ -176,10 +176,10 @@ public class AttributeTypeRule implements Serializable {
       return false;
     }
     AttributeTypeRule attributeTypeRule = (AttributeTypeRule) o;
-    return Objects.equals(this.attributeInputType, attributeTypeRule.attributeInputType) &&
-        Objects.equals(this.attributeDataType, attributeTypeRule.attributeDataType) &&
-        Objects.equals(this.attributeValueType, attributeTypeRule.attributeValueType) &&
-        Objects.equals(this.attributeUsageType, attributeTypeRule.attributeUsageType);
+    return Objects.equals(this.attributeDataType, attributeTypeRule.attributeDataType) &&
+        Objects.equals(this.attributeInputType, attributeTypeRule.attributeInputType) &&
+        Objects.equals(this.attributeUsageType, attributeTypeRule.attributeUsageType) &&
+        Objects.equals(this.attributeValueType, attributeTypeRule.attributeValueType);
   }
 
   private static <T> boolean equalsNullable(JsonNullable<T> a, JsonNullable<T> b) {
@@ -188,7 +188,7 @@ public class AttributeTypeRule implements Serializable {
 
   @Override
   public int hashCode() {
-    return Objects.hash(attributeInputType, attributeDataType, attributeValueType, attributeUsageType);
+    return Objects.hash(attributeDataType, attributeInputType, attributeUsageType, attributeValueType);
   }
 
   private static <T> int hashCodeNullable(JsonNullable<T> a) {
@@ -202,10 +202,10 @@ public class AttributeTypeRule implements Serializable {
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class AttributeTypeRule {\n");
-    sb.append("    attributeInputType: ").append(toIndentedString(attributeInputType)).append("\n");
     sb.append("    attributeDataType: ").append(toIndentedString(attributeDataType)).append("\n");
-    sb.append("    attributeValueType: ").append(toIndentedString(attributeValueType)).append("\n");
+    sb.append("    attributeInputType: ").append(toIndentedString(attributeInputType)).append("\n");
     sb.append("    attributeUsageType: ").append(toIndentedString(attributeUsageType)).append("\n");
+    sb.append("    attributeValueType: ").append(toIndentedString(attributeValueType)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -228,10 +228,10 @@ public class AttributeTypeRule implements Serializable {
   static {
     // a set of all properties/fields (JSON key names)
     openapiFields = new HashSet<String>();
-    openapiFields.add("attributeInputType");
     openapiFields.add("attributeDataType");
-    openapiFields.add("attributeValueType");
+    openapiFields.add("attributeInputType");
     openapiFields.add("attributeUsageType");
+    openapiFields.add("attributeValueType");
 
     // a set of required properties/fields (JSON key names)
     openapiRequiredFields = new HashSet<String>();
@@ -258,17 +258,17 @@ public class AttributeTypeRule implements Serializable {
       //    }
       //  }
       
-      if ((jsonObj.get("attributeInputType") != null && !jsonObj.get("attributeInputType").isJsonNull()) && !jsonObj.get("attributeInputType").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `attributeInputType` to be a primitive type in the JSON string but got `%s`", jsonObj.get("attributeInputType").toString()));
-      }
       if ((jsonObj.get("attributeDataType") != null && !jsonObj.get("attributeDataType").isJsonNull()) && !jsonObj.get("attributeDataType").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format("Expected the field `attributeDataType` to be a primitive type in the JSON string but got `%s`", jsonObj.get("attributeDataType").toString()));
       }
-      if ((jsonObj.get("attributeValueType") != null && !jsonObj.get("attributeValueType").isJsonNull()) && !jsonObj.get("attributeValueType").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `attributeValueType` to be a primitive type in the JSON string but got `%s`", jsonObj.get("attributeValueType").toString()));
+      if ((jsonObj.get("attributeInputType") != null && !jsonObj.get("attributeInputType").isJsonNull()) && !jsonObj.get("attributeInputType").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `attributeInputType` to be a primitive type in the JSON string but got `%s`", jsonObj.get("attributeInputType").toString()));
       }
       if ((jsonObj.get("attributeUsageType") != null && !jsonObj.get("attributeUsageType").isJsonNull()) && !jsonObj.get("attributeUsageType").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format("Expected the field `attributeUsageType` to be a primitive type in the JSON string but got `%s`", jsonObj.get("attributeUsageType").toString()));
+      }
+      if ((jsonObj.get("attributeValueType") != null && !jsonObj.get("attributeValueType").isJsonNull()) && !jsonObj.get("attributeValueType").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `attributeValueType` to be a primitive type in the JSON string but got `%s`", jsonObj.get("attributeValueType").toString()));
       }
   }
 

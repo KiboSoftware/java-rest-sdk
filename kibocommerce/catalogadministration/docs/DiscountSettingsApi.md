@@ -4,17 +4,17 @@ All URIs are relative to *http://https:/api*
 
 | Method | HTTP request | Description |
 |------------- | ------------- | -------------|
-| [**getDiscountSettings**](DiscountSettingsApi.md#getDiscountSettings) | **GET** /commerce/catalog/admin/discountsettings/{catalogId} | Get discount settings |
-| [**updateDiscountSettings**](DiscountSettingsApi.md#updateDiscountSettings) | **PUT** /commerce/catalog/admin/discountsettings/{catalogId} | Update discount settings |
+| [**getDiscountSettings**](DiscountSettingsApi.md#getDiscountSettings) | **GET** /commerce/catalog/admin/discountsettings/{catalogId} | Get Discount Settings |
+| [**updateDiscountSettings**](DiscountSettingsApi.md#updateDiscountSettings) | **PUT** /commerce/catalog/admin/discountsettings/{catalogId} | Update Discount Settings |
 
 
 <a name="getDiscountSettings"></a>
 # **getDiscountSettings**
-> DiscountSettings getDiscountSettings(catalogId)
+> DiscountSettings getDiscountSettings(catalogId, responseFields)
 
-Get discount settings
+Get Discount Settings
 
-
+Retrieves the discount settings of a particular catalog.
 
 ### Example
 ```java
@@ -35,14 +35,11 @@ public class Example {
     HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
     bearerAuth.setBearerToken("BEARER TOKEN");
 
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
-
     DiscountSettingsApi apiInstance = new DiscountSettingsApi(defaultClient);
     Integer catalogId = 56; // Integer | 
+    String responseFields = "responseFields_example"; // String | limits which fields are returned in the response body
     try {
-      DiscountSettings result = apiInstance.getDiscountSettings(catalogId);
+      DiscountSettings result = apiInstance.getDiscountSettings(catalogId, responseFields);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling DiscountSettingsApi#getDiscountSettings");
@@ -60,6 +57,7 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **catalogId** | **Integer**|  | |
+| **responseFields** | **String**| limits which fields are returned in the response body | [optional] |
 
 ### Return type
 
@@ -67,7 +65,7 @@ public class Example {
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth), [clientOauth2](../README.md#clientOauth2)
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
@@ -77,15 +75,15 @@ public class Example {
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Success |  -  |
+| **200** | OK |  -  |
 
 <a name="updateDiscountSettings"></a>
 # **updateDiscountSettings**
-> DiscountSettings updateDiscountSettings(catalogId, discountSettings)
+> DiscountSettings updateDiscountSettings(catalogId, responseFields, discountSettings)
 
-Update discount settings
+Update Discount Settings
 
-
+Updates the discount settings of a particular catalog.
 
 ### Example
 ```java
@@ -106,15 +104,12 @@ public class Example {
     HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
     bearerAuth.setBearerToken("BEARER TOKEN");
 
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
-
     DiscountSettingsApi apiInstance = new DiscountSettingsApi(defaultClient);
     Integer catalogId = 56; // Integer | 
+    String responseFields = "responseFields_example"; // String | limits which fields are returned in the response body
     DiscountSettings discountSettings = new DiscountSettings(); // DiscountSettings | 
     try {
-      DiscountSettings result = apiInstance.updateDiscountSettings(catalogId, discountSettings);
+      DiscountSettings result = apiInstance.updateDiscountSettings(catalogId, responseFields, discountSettings);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling DiscountSettingsApi#updateDiscountSettings");
@@ -132,6 +127,7 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **catalogId** | **Integer**|  | |
+| **responseFields** | **String**| limits which fields are returned in the response body | [optional] |
 | **discountSettings** | [**DiscountSettings**](DiscountSettings.md)|  | [optional] |
 
 ### Return type
@@ -140,7 +136,7 @@ public class Example {
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth), [clientOauth2](../README.md#clientOauth2)
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
@@ -150,5 +146,5 @@ public class Example {
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Success |  -  |
+| **200** | OK |  -  |
 

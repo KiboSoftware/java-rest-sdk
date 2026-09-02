@@ -7,8 +7,8 @@
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
-|**key** | **String** |  |  [optional] |
 |**contents** | [**List&lt;LocalizedContent&gt;**](LocalizedContent.md) |  |  [optional] |
+|**key** | **String** |  |  [optional] |
 
 
 ## Implemented Interfaces

@@ -8,9 +8,9 @@ Hierarchical tree for Tags
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
-|**total** | **Integer** |  |  [optional] |
-|**success** | **Boolean** |  |  [optional] |
 |**items** | [**TagNode**](TagNode.md) |  |  [optional] |
+|**success** | **Boolean** |  |  [optional] |
+|**total** | **Integer** |  |  [optional] |
 
 
 ## Implemented Interfaces

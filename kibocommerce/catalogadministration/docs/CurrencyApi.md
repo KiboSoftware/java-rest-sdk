@@ -4,25 +4,25 @@ All URIs are relative to *http://https:/api*
 
 | Method | HTTP request | Description |
 |------------- | ------------- | -------------|
-| [**addCurrencyExchangeRates**](CurrencyApi.md#addCurrencyExchangeRates) | **POST** /commerce/catalog/admin/currency/{currencyCode}/exchangerates | Update currency localization |
-| [**addCurrencyLocalization**](CurrencyApi.md#addCurrencyLocalization) | **POST** /commerce/catalog/admin/currency | Add currency localization |
-| [**deleteCurrencyExchangeRate**](CurrencyApi.md#deleteCurrencyExchangeRate) | **DELETE** /commerce/catalog/admin/currency/{currencyCode}/exchangerates/{toCurrencyCode} | Delete currency exchange rate |
-| [**deleteCurrencyLocalization**](CurrencyApi.md#deleteCurrencyLocalization) | **DELETE** /commerce/catalog/admin/currency/{currencyCode} | Delete currency localization |
-| [**getCurrencyExchangeRate**](CurrencyApi.md#getCurrencyExchangeRate) | **GET** /commerce/catalog/admin/currency/{currencyCode}/exchangerates/{toCurrencyCode} | Get currency exchange rate |
-| [**getCurrencyExchangeRates**](CurrencyApi.md#getCurrencyExchangeRates) | **GET** /commerce/catalog/admin/currency/{currencyCode}/exchangerates | Get currency exchange rates |
-| [**getCurrencyLocalization**](CurrencyApi.md#getCurrencyLocalization) | **GET** /commerce/catalog/admin/currency/{currencyCode} | Get currency localization |
-| [**getCurrencyLocalizations**](CurrencyApi.md#getCurrencyLocalizations) | **GET** /commerce/catalog/admin/currency | Get currency localizations |
-| [**updateCurrencyExchangeRates**](CurrencyApi.md#updateCurrencyExchangeRates) | **PUT** /commerce/catalog/admin/currency/{currencyCode}/exchangerates | Update currency exchange rates |
-| [**updateCurrencyLocalization**](CurrencyApi.md#updateCurrencyLocalization) | **PUT** /commerce/catalog/admin/currency/{currencyCode} | Update currency localization |
+| [**addCurrencyExchangeRates**](CurrencyApi.md#addCurrencyExchangeRates) | **POST** /commerce/catalog/admin/currency/{currencyCode}/exchangerates | Update Currency Exchange Rates |
+| [**addCurrencyLocalization**](CurrencyApi.md#addCurrencyLocalization) | **POST** /commerce/catalog/admin/currency | Add Currency Localization |
+| [**deleteCurrencyExchangeRate**](CurrencyApi.md#deleteCurrencyExchangeRate) | **DELETE** /commerce/catalog/admin/currency/{currencyCode}/exchangerates/{toCurrencyCode} | Delete Currency Exchange Rate |
+| [**deleteCurrencyLocalization**](CurrencyApi.md#deleteCurrencyLocalization) | **DELETE** /commerce/catalog/admin/currency/{currencyCode} | Delete Currency Localization |
+| [**getCurrencyExchangeRate**](CurrencyApi.md#getCurrencyExchangeRate) | **GET** /commerce/catalog/admin/currency/{currencyCode}/exchangerates/{toCurrencyCode} | Get Currency Exchange Rate |
+| [**getCurrencyExchangeRates**](CurrencyApi.md#getCurrencyExchangeRates) | **GET** /commerce/catalog/admin/currency/{currencyCode}/exchangerates | Get Currency Exchange Rates |
+| [**getCurrencyLocalization**](CurrencyApi.md#getCurrencyLocalization) | **GET** /commerce/catalog/admin/currency/{currencyCode} | Get Currency Localization |
+| [**getCurrencyLocalizations**](CurrencyApi.md#getCurrencyLocalizations) | **GET** /commerce/catalog/admin/currency | Get Currency Localizations |
+| [**updateCurrencyExchangeRates**](CurrencyApi.md#updateCurrencyExchangeRates) | **PUT** /commerce/catalog/admin/currency/{currencyCode}/exchangerates | Bulk Update Currency Exchange Rates |
+| [**updateCurrencyLocalization**](CurrencyApi.md#updateCurrencyLocalization) | **PUT** /commerce/catalog/admin/currency/{currencyCode} | Update Currency Localization |
 
 
 <a name="addCurrencyExchangeRates"></a>
 # **addCurrencyExchangeRates**
-> addCurrencyExchangeRates(currencyCode, catalogAdminsCurrencyExchangeRate)
+> addCurrencyExchangeRates(currencyCode, responseFields, catalogAdminsCurrencyExchangeRate)
 
-Update currency localization
+Update Currency Exchange Rates
 
-Updates the details of a currency-localization.
+Updates the details of a currency localization.
 
 ### Example
 ```java
@@ -43,15 +43,12 @@ public class Example {
     HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
     bearerAuth.setBearerToken("BEARER TOKEN");
 
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
-
     CurrencyApi apiInstance = new CurrencyApi(defaultClient);
     String currencyCode = "currencyCode_example"; // String | Currency code
+    String responseFields = "responseFields_example"; // String | limits which fields are returned in the response body
     List<CatalogAdminsCurrencyExchangeRate> catalogAdminsCurrencyExchangeRate = Arrays.asList(); // List<CatalogAdminsCurrencyExchangeRate> | Exchange rates for the currency
     try {
-      apiInstance.addCurrencyExchangeRates(currencyCode, catalogAdminsCurrencyExchangeRate);
+      apiInstance.addCurrencyExchangeRates(currencyCode, responseFields, catalogAdminsCurrencyExchangeRate);
     } catch (ApiException e) {
       System.err.println("Exception when calling CurrencyApi#addCurrencyExchangeRates");
       System.err.println("Status code: " + e.getCode());
@@ -68,6 +65,7 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **currencyCode** | **String**| Currency code | |
+| **responseFields** | **String**| limits which fields are returned in the response body | [optional] |
 | **catalogAdminsCurrencyExchangeRate** | [**List&lt;CatalogAdminsCurrencyExchangeRate&gt;**](CatalogAdminsCurrencyExchangeRate.md)| Exchange rates for the currency | [optional] |
 
 ### Return type
@@ -76,7 +74,7 @@ null (empty response body)
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth), [clientOauth2](../README.md#clientOauth2)
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
@@ -86,15 +84,15 @@ null (empty response body)
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Success |  -  |
+| **200** | OK |  -  |
 
 <a name="addCurrencyLocalization"></a>
 # **addCurrencyLocalization**
-> CurrencyLocalization addCurrencyLocalization(currencyLocalization)
+> CurrencyLocalization addCurrencyLocalization(responseFields, currencyLocalization)
 
-Add currency localization
+Add Currency Localization
 
-Adds a new currency localization
+Adds a new currency localization.
 
 ### Example
 ```java
@@ -115,14 +113,11 @@ public class Example {
     HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
     bearerAuth.setBearerToken("BEARER TOKEN");
 
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
-
     CurrencyApi apiInstance = new CurrencyApi(defaultClient);
-    CurrencyLocalization currencyLocalization = new CurrencyLocalization(); // CurrencyLocalization | Properties of the currency-localization to create.  Required properties: CurrencyCode
+    String responseFields = "responseFields_example"; // String | limits which fields are returned in the response body
+    CurrencyLocalization currencyLocalization = new CurrencyLocalization(); // CurrencyLocalization | Properties of the currency-localization to create. Required properties: CurrencyCode
     try {
-      CurrencyLocalization result = apiInstance.addCurrencyLocalization(currencyLocalization);
+      CurrencyLocalization result = apiInstance.addCurrencyLocalization(responseFields, currencyLocalization);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling CurrencyApi#addCurrencyLocalization");
@@ -139,7 +134,8 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **currencyLocalization** | [**CurrencyLocalization**](CurrencyLocalization.md)| Properties of the currency-localization to create.  Required properties: CurrencyCode | [optional] |
+| **responseFields** | **String**| limits which fields are returned in the response body | [optional] |
+| **currencyLocalization** | [**CurrencyLocalization**](CurrencyLocalization.md)| Properties of the currency-localization to create. Required properties: CurrencyCode | [optional] |
 
 ### Return type
 
@@ -147,7 +143,7 @@ public class Example {
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth), [clientOauth2](../README.md#clientOauth2)
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
@@ -157,15 +153,15 @@ public class Example {
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Success |  -  |
+| **200** | OK |  -  |
 
 <a name="deleteCurrencyExchangeRate"></a>
 # **deleteCurrencyExchangeRate**
 > deleteCurrencyExchangeRate(currencyCode, toCurrencyCode)
 
-Delete currency exchange rate
+Delete Currency Exchange Rate
 
-Delete a single exchange rate for a specified currency-code and target currency-code.
+Delete a single exchange rate for a specified currency code and target currency code.
 
 ### Example
 ```java
@@ -185,10 +181,6 @@ public class Example {
     // Configure HTTP bearer authorization: bearerAuth
     HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
     bearerAuth.setBearerToken("BEARER TOKEN");
-
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
 
     CurrencyApi apiInstance = new CurrencyApi(defaultClient);
     String currencyCode = "currencyCode_example"; // String | Currency code
@@ -219,7 +211,7 @@ null (empty response body)
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth), [clientOauth2](../README.md#clientOauth2)
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
@@ -229,15 +221,15 @@ null (empty response body)
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Success |  -  |
+| **200** | OK |  -  |
 
 <a name="deleteCurrencyLocalization"></a>
 # **deleteCurrencyLocalization**
 > deleteCurrencyLocalization(currencyCode)
 
-Delete currency localization
+Delete Currency Localization
 
-Deletes the currency-localization specified by its currency code.
+Deletes the currency localization specified by its currency code.
 
 ### Example
 ```java
@@ -257,10 +249,6 @@ public class Example {
     // Configure HTTP bearer authorization: bearerAuth
     HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
     bearerAuth.setBearerToken("BEARER TOKEN");
-
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
 
     CurrencyApi apiInstance = new CurrencyApi(defaultClient);
     String currencyCode = "currencyCode_example"; // String | Currency code.
@@ -289,7 +277,7 @@ null (empty response body)
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth), [clientOauth2](../README.md#clientOauth2)
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
@@ -299,15 +287,15 @@ null (empty response body)
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Success |  -  |
+| **200** | OK |  -  |
 
 <a name="getCurrencyExchangeRate"></a>
 # **getCurrencyExchangeRate**
-> CatalogAdminsCurrencyExchangeRate getCurrencyExchangeRate(currencyCode, toCurrencyCode)
+> CatalogAdminsCurrencyExchangeRate getCurrencyExchangeRate(currencyCode, toCurrencyCode, responseFields)
 
-Get currency exchange rate
+Get Currency Exchange Rate
 
-Retrieves a single exchange rate for a specified currency-code and target-currency-code.
+Retrieves a single exchange rate for a specified currency code and target currency code.
 
 ### Example
 ```java
@@ -328,15 +316,12 @@ public class Example {
     HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
     bearerAuth.setBearerToken("BEARER TOKEN");
 
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
-
     CurrencyApi apiInstance = new CurrencyApi(defaultClient);
     String currencyCode = "currencyCode_example"; // String | Currency code
     String toCurrencyCode = "toCurrencyCode_example"; // String | Target currency code
+    String responseFields = "responseFields_example"; // String | limits which fields are returned in the response body
     try {
-      CatalogAdminsCurrencyExchangeRate result = apiInstance.getCurrencyExchangeRate(currencyCode, toCurrencyCode);
+      CatalogAdminsCurrencyExchangeRate result = apiInstance.getCurrencyExchangeRate(currencyCode, toCurrencyCode, responseFields);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling CurrencyApi#getCurrencyExchangeRate");
@@ -355,6 +340,7 @@ public class Example {
 |------------- | ------------- | ------------- | -------------|
 | **currencyCode** | **String**| Currency code | |
 | **toCurrencyCode** | **String**| Target currency code | |
+| **responseFields** | **String**| limits which fields are returned in the response body | [optional] |
 
 ### Return type
 
@@ -362,7 +348,7 @@ public class Example {
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth), [clientOauth2](../README.md#clientOauth2)
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
@@ -372,15 +358,15 @@ public class Example {
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Success |  -  |
+| **200** | OK |  -  |
 
 <a name="getCurrencyExchangeRates"></a>
 # **getCurrencyExchangeRates**
-> CurrencyExchangeRateCollection getCurrencyExchangeRates(currencyCode)
+> CurrencyExchangeRateCollection getCurrencyExchangeRates(currencyCode, responseFields)
 
-Get currency exchange rates
+Get Currency Exchange Rates
 
-Retrieves a list of exchange rates for a specified currency-code and filter criteria.
+Retrieves a list of exchange rates for a specified currency code and filter criteria.
 
 ### Example
 ```java
@@ -401,14 +387,11 @@ public class Example {
     HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
     bearerAuth.setBearerToken("BEARER TOKEN");
 
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
-
     CurrencyApi apiInstance = new CurrencyApi(defaultClient);
     String currencyCode = "currencyCode_example"; // String | Currency code
+    String responseFields = "responseFields_example"; // String | limits which fields are returned in the response body
     try {
-      CurrencyExchangeRateCollection result = apiInstance.getCurrencyExchangeRates(currencyCode);
+      CurrencyExchangeRateCollection result = apiInstance.getCurrencyExchangeRates(currencyCode, responseFields);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling CurrencyApi#getCurrencyExchangeRates");
@@ -426,6 +409,7 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **currencyCode** | **String**| Currency code | |
+| **responseFields** | **String**| limits which fields are returned in the response body | [optional] |
 
 ### Return type
 
@@ -433,7 +417,7 @@ public class Example {
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth), [clientOauth2](../README.md#clientOauth2)
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
@@ -443,15 +427,15 @@ public class Example {
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Success |  -  |
+| **200** | OK |  -  |
 
 <a name="getCurrencyLocalization"></a>
 # **getCurrencyLocalization**
-> CurrencyLocalization getCurrencyLocalization(currencyCode)
+> CurrencyLocalization getCurrencyLocalization(currencyCode, responseFields)
 
-Get currency localization
+Get Currency Localization
 
-Gets a single currency-localization.
+Gets a single currency localization.
 
 ### Example
 ```java
@@ -472,14 +456,11 @@ public class Example {
     HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
     bearerAuth.setBearerToken("BEARER TOKEN");
 
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
-
     CurrencyApi apiInstance = new CurrencyApi(defaultClient);
     String currencyCode = "currencyCode_example"; // String | Currency code.
+    String responseFields = "responseFields_example"; // String | limits which fields are returned in the response body
     try {
-      CurrencyLocalization result = apiInstance.getCurrencyLocalization(currencyCode);
+      CurrencyLocalization result = apiInstance.getCurrencyLocalization(currencyCode, responseFields);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling CurrencyApi#getCurrencyLocalization");
@@ -497,6 +478,7 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **currencyCode** | **String**| Currency code. | |
+| **responseFields** | **String**| limits which fields are returned in the response body | [optional] |
 
 ### Return type
 
@@ -504,7 +486,7 @@ public class Example {
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth), [clientOauth2](../README.md#clientOauth2)
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
@@ -514,15 +496,15 @@ public class Example {
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Success |  -  |
+| **200** | OK |  -  |
 
 <a name="getCurrencyLocalizations"></a>
 # **getCurrencyLocalizations**
-> CurrencyLocalizationCollection getCurrencyLocalizations()
+> CurrencyLocalizationCollection getCurrencyLocalizations(responseFields)
 
-Get currency localizations
+Get Currency Localizations
 
-Gets all currency-localizations.
+Gets all currency localizations.
 
 ### Example
 ```java
@@ -543,13 +525,10 @@ public class Example {
     HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
     bearerAuth.setBearerToken("BEARER TOKEN");
 
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
-
     CurrencyApi apiInstance = new CurrencyApi(defaultClient);
+    String responseFields = "responseFields_example"; // String | limits which fields are returned in the response body
     try {
-      CurrencyLocalizationCollection result = apiInstance.getCurrencyLocalizations();
+      CurrencyLocalizationCollection result = apiInstance.getCurrencyLocalizations(responseFields);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling CurrencyApi#getCurrencyLocalizations");
@@ -563,7 +542,10 @@ public class Example {
 ```
 
 ### Parameters
-This endpoint does not need any parameter.
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **responseFields** | **String**| limits which fields are returned in the response body | [optional] |
 
 ### Return type
 
@@ -571,7 +553,7 @@ This endpoint does not need any parameter.
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth), [clientOauth2](../README.md#clientOauth2)
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
@@ -581,15 +563,15 @@ This endpoint does not need any parameter.
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Success |  -  |
+| **200** | OK |  -  |
 
 <a name="updateCurrencyExchangeRates"></a>
 # **updateCurrencyExchangeRates**
-> updateCurrencyExchangeRates(currencyCode, catalogAdminsCurrencyExchangeRate)
+> updateCurrencyExchangeRates(currencyCode, responseFields, catalogAdminsCurrencyExchangeRate)
 
-Update currency exchange rates
+Bulk Update Currency Exchange Rates
 
-Update multiple exchange rates for a specified currency-code.
+Update multiple exchange rates for a specified currency code.
 
 ### Example
 ```java
@@ -610,15 +592,12 @@ public class Example {
     HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
     bearerAuth.setBearerToken("BEARER TOKEN");
 
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
-
     CurrencyApi apiInstance = new CurrencyApi(defaultClient);
     String currencyCode = "currencyCode_example"; // String | Currency code
+    String responseFields = "responseFields_example"; // String | limits which fields are returned in the response body
     List<CatalogAdminsCurrencyExchangeRate> catalogAdminsCurrencyExchangeRate = Arrays.asList(); // List<CatalogAdminsCurrencyExchangeRate> | Exchange rates for the currency
     try {
-      apiInstance.updateCurrencyExchangeRates(currencyCode, catalogAdminsCurrencyExchangeRate);
+      apiInstance.updateCurrencyExchangeRates(currencyCode, responseFields, catalogAdminsCurrencyExchangeRate);
     } catch (ApiException e) {
       System.err.println("Exception when calling CurrencyApi#updateCurrencyExchangeRates");
       System.err.println("Status code: " + e.getCode());
@@ -635,6 +614,7 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **currencyCode** | **String**| Currency code | |
+| **responseFields** | **String**| limits which fields are returned in the response body | [optional] |
 | **catalogAdminsCurrencyExchangeRate** | [**List&lt;CatalogAdminsCurrencyExchangeRate&gt;**](CatalogAdminsCurrencyExchangeRate.md)| Exchange rates for the currency | [optional] |
 
 ### Return type
@@ -643,7 +623,7 @@ null (empty response body)
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth), [clientOauth2](../README.md#clientOauth2)
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
@@ -653,15 +633,15 @@ null (empty response body)
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Success |  -  |
+| **200** | OK |  -  |
 
 <a name="updateCurrencyLocalization"></a>
 # **updateCurrencyLocalization**
-> CurrencyLocalization updateCurrencyLocalization(currencyCode, currencyLocalization)
+> CurrencyLocalization updateCurrencyLocalization(currencyCode, responseFields, currencyLocalization)
 
-Update currency localization
+Update Currency Localization
 
-Updates the details of a currency-localization.
+Updates the details of a currency localization.
 
 ### Example
 ```java
@@ -682,15 +662,12 @@ public class Example {
     HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
     bearerAuth.setBearerToken("BEARER TOKEN");
 
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
-
     CurrencyApi apiInstance = new CurrencyApi(defaultClient);
     String currencyCode = "currencyCode_example"; // String | Currency code.
+    String responseFields = "responseFields_example"; // String | limits which fields are returned in the response body
     CurrencyLocalization currencyLocalization = new CurrencyLocalization(); // CurrencyLocalization | Properties of the currency-localization to update.
     try {
-      CurrencyLocalization result = apiInstance.updateCurrencyLocalization(currencyCode, currencyLocalization);
+      CurrencyLocalization result = apiInstance.updateCurrencyLocalization(currencyCode, responseFields, currencyLocalization);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling CurrencyApi#updateCurrencyLocalization");
@@ -708,6 +685,7 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **currencyCode** | **String**| Currency code. | |
+| **responseFields** | **String**| limits which fields are returned in the response body | [optional] |
 | **currencyLocalization** | [**CurrencyLocalization**](CurrencyLocalization.md)| Properties of the currency-localization to update. | [optional] |
 
 ### Return type
@@ -716,7 +694,7 @@ public class Example {
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth), [clientOauth2](../README.md#clientOauth2)
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
@@ -726,5 +704,5 @@ public class Example {
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Success |  -  |
+| **200** | OK |  -  |
 

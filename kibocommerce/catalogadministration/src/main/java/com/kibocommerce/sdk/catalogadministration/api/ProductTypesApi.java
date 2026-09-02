@@ -1,8 +1,8 @@
 /*
  * Kibo Catalog Admin Services
- * OpenAPI Spec for Kibo Catalog Admin Services
+ * <div id=\"overview_CATALOG_ADMIN\">             <h2>CATALOG ADMINISTRATION</h2>             <p>The Catalog Administration APIs are a collection of resources for configuring the catalogs and products offered to your shoppers, including                 discounts and coupon sets, faceting, price lists, and different types or variations of products. See the                 <a href=\"/concept-guides/catalog\">Catalog user guides</a>                 for information about the related features in the Unified Commerce Admin.</p>             <p>Use the <strong>Attributes</strong> resource to manage localization and attribute configurations for your catalogs. This current version of the Attributes API includes localizedContent to                 support <a href=\"/pages/catalog-structure#multi-locale-catalogs\">multi-locale catalogs</a>, which was not present in the legacy API model. If                 you were a client prior to May 2024 and have upgraded your implementation to support this feature,                 you can still access attribute data that has not yet been rewritten to the new model by providing                 an x-api-version header set to \"1\". </p>             <p>Use the <strong>Categories</strong> resource to organize products and control where they appear on the storefront. Create                 and maintain a hierarchy of categories and subcategories where the site will store properties. This current version of the Categories API includes localizedContent to                 support <a href=\"/pages/catalog-structure#multi-locale-catalogs\">multi-locale catalogs</a>, which was not present in the legacy API model. If                 you were a client prior to May 2024 and have upgraded your implementation to support this feature,                 you can still access category data that has not yet been rewritten to the new model by providing                 an x-api-version header set to \"1\". </p>             <p>Use the <strong>Coupon Sets</strong> resource to view and create coupon sets. You can use coupon sets to group multiple                 coupon codes together and associate them with one or more discounts.</p>             <p>Use the <strong>Currency</strong> resource to manage the currency localization rules and exchange rates for any of the                 currencies that are supported for placing orders in.</p>             <p>Use the <strong>Discounts</strong> and <strong>Discount Settings</strong> resources to define and manage discounts to apply to products, product categories, or                 orders. This current version of the Discounts API includes localizedContent to                 support <a href=\"/pages/catalog-structure#multi-locale-catalogs\">multi-locale catalogs</a>, which was not present in the legacy Products API model. If                 you were a client prior to May 2024 and have upgraded your implementation to support this feature,                 you can still access discount data that has not yet been rewritten to the new model by providing                 an x-api-version header set to \"1\". </p>             <p>Use the <strong>Facets</strong> resource to manage the facets shoppers use to filter product display results on a                 storefront. Facets can include categories, product attributes, or prices, and use either a range of                 values or discrete values.</p>             <p>Use the <strong>Master Catalog</strong> resource to view details of the master catalogs associated with a tenant and to                 manage the product publishing mode for each master catalog.</p>             <p>Use the <strong>Price Lists</strong> resources to view and create price lists. You can use price lists to override the                 catalog pricing of products for specific customer segments and/or sites.</p>             <p>Use the <strong>Products</strong>, <strong>Product Types/Extras/Options/Properties</strong>, and <strong>Product Sort Definitions</strong> resources to create new product definitions in the master catalog and determine which                 catalogs will feature products. This current version of the Products API includes localizedContent to                 support <a href=\"/pages/catalog-structure#multi-locale-catalogs\">multi-locale catalogs</a>, which was not present in the legacy Products API model. If                 you were a client prior to May 2024 and have upgraded your implementation to support this feature,                 you can still access product data that has not yet been rewritten to the new model by providing                 an x-api-version header set to \"1\".</p>             <p>Use the <strong>Publishing</strong> resource to publish pending product updates together as part of a set.</p>             <p>Use the <strong>Search</strong> resource to manage all settings and options for providing product search on your site, as                 well as search tuning rules.</p>         </div>
  *
- * The version of the OpenAPI document: 1.0.0
+ * The version of the OpenAPI document: v1
  * 
  *
  * NOTE: This class is auto generated by OpenAPI Generator (https://openapi-generator.tech).
@@ -99,6 +99,7 @@ public class ProductTypesApi {
     /**
      * Build call for addExtra
      * @param productTypeId  (required)
+     * @param responseFields limits which fields are returned in the response body (optional)
      * @param attributeInProductType  (optional)
      * @param _callback Callback for upload/download progress
      * @return Call to execute
@@ -106,10 +107,10 @@ public class ProductTypesApi {
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call addExtraCall(Integer productTypeId, AttributeInProductType attributeInProductType, final ApiCallback _callback) throws ApiException {
+    public okhttp3.Call addExtraCall(Integer productTypeId, String responseFields, AttributeInProductType attributeInProductType, final ApiCallback _callback) throws ApiException {
         String basePath = null;
         // Operation Servers
         String[] localBasePaths = new String[] {  };
@@ -135,6 +136,10 @@ public class ProductTypesApi {
         Map<String, String> localVarCookieParams = new HashMap<String, String>();
         Map<String, Object> localVarFormParams = new HashMap<String, Object>();
 
+        if (responseFields != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("responseFields", responseFields));
+        }
+
         final String[] localVarAccepts = {
             "application/json", "text/json", "text/plain"
         };
@@ -151,12 +156,12 @@ public class ProductTypesApi {
             localVarHeaderParams.put("Content-Type", localVarContentType);
         }
 
-        String[] localVarAuthNames = new String[] { "bearerAuth", "clientOauth2" };
+        String[] localVarAuthNames = new String[] { "bearerAuth" };
         return localVarApiClient.buildCall(basePath, localVarPath, "POST", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call addExtraValidateBeforeCall(Integer productTypeId, AttributeInProductType attributeInProductType, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call addExtraValidateBeforeCall(Integer productTypeId, String responseFields, AttributeInProductType attributeInProductType, final ApiCallback _callback) throws ApiException {
         
         // verify the required parameter 'productTypeId' is set
         if (productTypeId == null) {
@@ -164,52 +169,55 @@ public class ProductTypesApi {
         }
         
 
-        okhttp3.Call localVarCall = addExtraCall(productTypeId, attributeInProductType, _callback);
+        okhttp3.Call localVarCall = addExtraCall(productTypeId, responseFields, attributeInProductType, _callback);
         return localVarCall;
 
     }
 
     /**
-     * Add extra
-     * Add extra.
+     * Add Product Type Extra
+     * Add a product type extra.
      * @param productTypeId  (required)
+     * @param responseFields limits which fields are returned in the response body (optional)
      * @param attributeInProductType  (optional)
      * @return AttributeInProductType
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
      </table>
      */
-    public AttributeInProductType addExtra(Integer productTypeId, AttributeInProductType attributeInProductType) throws ApiException {
-        ApiResponse<AttributeInProductType> localVarResp = addExtraWithHttpInfo(productTypeId, attributeInProductType);
+    public AttributeInProductType addExtra(Integer productTypeId, String responseFields, AttributeInProductType attributeInProductType) throws ApiException {
+        ApiResponse<AttributeInProductType> localVarResp = addExtraWithHttpInfo(productTypeId, responseFields, attributeInProductType);
         return localVarResp.getData();
     }
 
     /**
-     * Add extra
-     * Add extra.
+     * Add Product Type Extra
+     * Add a product type extra.
      * @param productTypeId  (required)
+     * @param responseFields limits which fields are returned in the response body (optional)
      * @param attributeInProductType  (optional)
      * @return ApiResponse&lt;AttributeInProductType&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<AttributeInProductType> addExtraWithHttpInfo(Integer productTypeId, AttributeInProductType attributeInProductType) throws ApiException {
-        okhttp3.Call localVarCall = addExtraValidateBeforeCall(productTypeId, attributeInProductType, null);
+    public ApiResponse<AttributeInProductType> addExtraWithHttpInfo(Integer productTypeId, String responseFields, AttributeInProductType attributeInProductType) throws ApiException {
+        okhttp3.Call localVarCall = addExtraValidateBeforeCall(productTypeId, responseFields, attributeInProductType, null);
         Type localVarReturnType = new TypeToken<AttributeInProductType>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
 
     /**
-     * Add extra (asynchronously)
-     * Add extra.
+     * Add Product Type Extra (asynchronously)
+     * Add a product type extra.
      * @param productTypeId  (required)
+     * @param responseFields limits which fields are returned in the response body (optional)
      * @param attributeInProductType  (optional)
      * @param _callback The callback to be executed when the API call finishes
      * @return The request call
@@ -217,12 +225,12 @@ public class ProductTypesApi {
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call addExtraAsync(Integer productTypeId, AttributeInProductType attributeInProductType, final ApiCallback<AttributeInProductType> _callback) throws ApiException {
+    public okhttp3.Call addExtraAsync(Integer productTypeId, String responseFields, AttributeInProductType attributeInProductType, final ApiCallback<AttributeInProductType> _callback) throws ApiException {
 
-        okhttp3.Call localVarCall = addExtraValidateBeforeCall(productTypeId, attributeInProductType, _callback);
+        okhttp3.Call localVarCall = addExtraValidateBeforeCall(productTypeId, responseFields, attributeInProductType, _callback);
         Type localVarReturnType = new TypeToken<AttributeInProductType>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
@@ -230,6 +238,7 @@ public class ProductTypesApi {
     /**
      * Build call for addOption
      * @param productTypeId  (required)
+     * @param responseFields limits which fields are returned in the response body (optional)
      * @param attributeInProductType  (optional)
      * @param _callback Callback for upload/download progress
      * @return Call to execute
@@ -237,10 +246,10 @@ public class ProductTypesApi {
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call addOptionCall(Integer productTypeId, AttributeInProductType attributeInProductType, final ApiCallback _callback) throws ApiException {
+    public okhttp3.Call addOptionCall(Integer productTypeId, String responseFields, AttributeInProductType attributeInProductType, final ApiCallback _callback) throws ApiException {
         String basePath = null;
         // Operation Servers
         String[] localBasePaths = new String[] {  };
@@ -266,6 +275,10 @@ public class ProductTypesApi {
         Map<String, String> localVarCookieParams = new HashMap<String, String>();
         Map<String, Object> localVarFormParams = new HashMap<String, Object>();
 
+        if (responseFields != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("responseFields", responseFields));
+        }
+
         final String[] localVarAccepts = {
             "application/json", "text/json", "text/plain"
         };
@@ -282,12 +295,12 @@ public class ProductTypesApi {
             localVarHeaderParams.put("Content-Type", localVarContentType);
         }
 
-        String[] localVarAuthNames = new String[] { "bearerAuth", "clientOauth2" };
+        String[] localVarAuthNames = new String[] { "bearerAuth" };
         return localVarApiClient.buildCall(basePath, localVarPath, "POST", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call addOptionValidateBeforeCall(Integer productTypeId, AttributeInProductType attributeInProductType, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call addOptionValidateBeforeCall(Integer productTypeId, String responseFields, AttributeInProductType attributeInProductType, final ApiCallback _callback) throws ApiException {
         
         // verify the required parameter 'productTypeId' is set
         if (productTypeId == null) {
@@ -295,52 +308,55 @@ public class ProductTypesApi {
         }
         
 
-        okhttp3.Call localVarCall = addOptionCall(productTypeId, attributeInProductType, _callback);
+        okhttp3.Call localVarCall = addOptionCall(productTypeId, responseFields, attributeInProductType, _callback);
         return localVarCall;
 
     }
 
     /**
-     * Add option
-     * Add option.
+     * Add Product Type Option
+     * Add a product option to a product type.
      * @param productTypeId  (required)
+     * @param responseFields limits which fields are returned in the response body (optional)
      * @param attributeInProductType  (optional)
      * @return AttributeInProductType
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
      </table>
      */
-    public AttributeInProductType addOption(Integer productTypeId, AttributeInProductType attributeInProductType) throws ApiException {
-        ApiResponse<AttributeInProductType> localVarResp = addOptionWithHttpInfo(productTypeId, attributeInProductType);
+    public AttributeInProductType addOption(Integer productTypeId, String responseFields, AttributeInProductType attributeInProductType) throws ApiException {
+        ApiResponse<AttributeInProductType> localVarResp = addOptionWithHttpInfo(productTypeId, responseFields, attributeInProductType);
         return localVarResp.getData();
     }
 
     /**
-     * Add option
-     * Add option.
+     * Add Product Type Option
+     * Add a product option to a product type.
      * @param productTypeId  (required)
+     * @param responseFields limits which fields are returned in the response body (optional)
      * @param attributeInProductType  (optional)
      * @return ApiResponse&lt;AttributeInProductType&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<AttributeInProductType> addOptionWithHttpInfo(Integer productTypeId, AttributeInProductType attributeInProductType) throws ApiException {
-        okhttp3.Call localVarCall = addOptionValidateBeforeCall(productTypeId, attributeInProductType, null);
+    public ApiResponse<AttributeInProductType> addOptionWithHttpInfo(Integer productTypeId, String responseFields, AttributeInProductType attributeInProductType) throws ApiException {
+        okhttp3.Call localVarCall = addOptionValidateBeforeCall(productTypeId, responseFields, attributeInProductType, null);
         Type localVarReturnType = new TypeToken<AttributeInProductType>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
 
     /**
-     * Add option (asynchronously)
-     * Add option.
+     * Add Product Type Option (asynchronously)
+     * Add a product option to a product type.
      * @param productTypeId  (required)
+     * @param responseFields limits which fields are returned in the response body (optional)
      * @param attributeInProductType  (optional)
      * @param _callback The callback to be executed when the API call finishes
      * @return The request call
@@ -348,18 +364,19 @@ public class ProductTypesApi {
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call addOptionAsync(Integer productTypeId, AttributeInProductType attributeInProductType, final ApiCallback<AttributeInProductType> _callback) throws ApiException {
+    public okhttp3.Call addOptionAsync(Integer productTypeId, String responseFields, AttributeInProductType attributeInProductType, final ApiCallback<AttributeInProductType> _callback) throws ApiException {
 
-        okhttp3.Call localVarCall = addOptionValidateBeforeCall(productTypeId, attributeInProductType, _callback);
+        okhttp3.Call localVarCall = addOptionValidateBeforeCall(productTypeId, responseFields, attributeInProductType, _callback);
         Type localVarReturnType = new TypeToken<AttributeInProductType>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
     }
     /**
      * Build call for addProductType
+     * @param responseFields limits which fields are returned in the response body (optional)
      * @param productType  (optional)
      * @param _callback Callback for upload/download progress
      * @return Call to execute
@@ -367,10 +384,10 @@ public class ProductTypesApi {
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call addProductTypeCall(ProductType productType, final ApiCallback _callback) throws ApiException {
+    public okhttp3.Call addProductTypeCall(String responseFields, ProductType productType, final ApiCallback _callback) throws ApiException {
         String basePath = null;
         // Operation Servers
         String[] localBasePaths = new String[] {  };
@@ -395,6 +412,10 @@ public class ProductTypesApi {
         Map<String, String> localVarCookieParams = new HashMap<String, String>();
         Map<String, Object> localVarFormParams = new HashMap<String, Object>();
 
+        if (responseFields != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("responseFields", responseFields));
+        }
+
         final String[] localVarAccepts = {
             "application/json", "text/json", "text/plain"
         };
@@ -411,57 +432,60 @@ public class ProductTypesApi {
             localVarHeaderParams.put("Content-Type", localVarContentType);
         }
 
-        String[] localVarAuthNames = new String[] { "bearerAuth", "clientOauth2" };
+        String[] localVarAuthNames = new String[] { "bearerAuth" };
         return localVarApiClient.buildCall(basePath, localVarPath, "POST", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call addProductTypeValidateBeforeCall(ProductType productType, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call addProductTypeValidateBeforeCall(String responseFields, ProductType productType, final ApiCallback _callback) throws ApiException {
         
 
-        okhttp3.Call localVarCall = addProductTypeCall(productType, _callback);
+        okhttp3.Call localVarCall = addProductTypeCall(responseFields, productType, _callback);
         return localVarCall;
 
     }
 
     /**
-     * Add product type
+     * Add Product Type
      * Get product type by Id.
+     * @param responseFields limits which fields are returned in the response body (optional)
      * @param productType  (optional)
      * @return ProductType
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
      </table>
      */
-    public ProductType addProductType(ProductType productType) throws ApiException {
-        ApiResponse<ProductType> localVarResp = addProductTypeWithHttpInfo(productType);
+    public ProductType addProductType(String responseFields, ProductType productType) throws ApiException {
+        ApiResponse<ProductType> localVarResp = addProductTypeWithHttpInfo(responseFields, productType);
         return localVarResp.getData();
     }
 
     /**
-     * Add product type
+     * Add Product Type
      * Get product type by Id.
+     * @param responseFields limits which fields are returned in the response body (optional)
      * @param productType  (optional)
      * @return ApiResponse&lt;ProductType&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<ProductType> addProductTypeWithHttpInfo(ProductType productType) throws ApiException {
-        okhttp3.Call localVarCall = addProductTypeValidateBeforeCall(productType, null);
+    public ApiResponse<ProductType> addProductTypeWithHttpInfo(String responseFields, ProductType productType) throws ApiException {
+        okhttp3.Call localVarCall = addProductTypeValidateBeforeCall(responseFields, productType, null);
         Type localVarReturnType = new TypeToken<ProductType>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
 
     /**
-     * Add product type (asynchronously)
+     * Add Product Type (asynchronously)
      * Get product type by Id.
+     * @param responseFields limits which fields are returned in the response body (optional)
      * @param productType  (optional)
      * @param _callback The callback to be executed when the API call finishes
      * @return The request call
@@ -469,12 +493,12 @@ public class ProductTypesApi {
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call addProductTypeAsync(ProductType productType, final ApiCallback<ProductType> _callback) throws ApiException {
+    public okhttp3.Call addProductTypeAsync(String responseFields, ProductType productType, final ApiCallback<ProductType> _callback) throws ApiException {
 
-        okhttp3.Call localVarCall = addProductTypeValidateBeforeCall(productType, _callback);
+        okhttp3.Call localVarCall = addProductTypeValidateBeforeCall(responseFields, productType, _callback);
         Type localVarReturnType = new TypeToken<ProductType>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
@@ -482,6 +506,7 @@ public class ProductTypesApi {
     /**
      * Build call for addProperty
      * @param productTypeId  (required)
+     * @param responseFields limits which fields are returned in the response body (optional)
      * @param attributeInProductType  (optional)
      * @param _callback Callback for upload/download progress
      * @return Call to execute
@@ -489,10 +514,10 @@ public class ProductTypesApi {
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call addPropertyCall(Integer productTypeId, AttributeInProductType attributeInProductType, final ApiCallback _callback) throws ApiException {
+    public okhttp3.Call addPropertyCall(Integer productTypeId, String responseFields, AttributeInProductType attributeInProductType, final ApiCallback _callback) throws ApiException {
         String basePath = null;
         // Operation Servers
         String[] localBasePaths = new String[] {  };
@@ -518,6 +543,10 @@ public class ProductTypesApi {
         Map<String, String> localVarCookieParams = new HashMap<String, String>();
         Map<String, Object> localVarFormParams = new HashMap<String, Object>();
 
+        if (responseFields != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("responseFields", responseFields));
+        }
+
         final String[] localVarAccepts = {
             "application/json", "text/json", "text/plain"
         };
@@ -534,12 +563,12 @@ public class ProductTypesApi {
             localVarHeaderParams.put("Content-Type", localVarContentType);
         }
 
-        String[] localVarAuthNames = new String[] { "bearerAuth", "clientOauth2" };
+        String[] localVarAuthNames = new String[] { "bearerAuth" };
         return localVarApiClient.buildCall(basePath, localVarPath, "POST", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call addPropertyValidateBeforeCall(Integer productTypeId, AttributeInProductType attributeInProductType, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call addPropertyValidateBeforeCall(Integer productTypeId, String responseFields, AttributeInProductType attributeInProductType, final ApiCallback _callback) throws ApiException {
         
         // verify the required parameter 'productTypeId' is set
         if (productTypeId == null) {
@@ -547,52 +576,55 @@ public class ProductTypesApi {
         }
         
 
-        okhttp3.Call localVarCall = addPropertyCall(productTypeId, attributeInProductType, _callback);
+        okhttp3.Call localVarCall = addPropertyCall(productTypeId, responseFields, attributeInProductType, _callback);
         return localVarCall;
 
     }
 
     /**
-     * Add product type property
-     * Add property.
+     * Add Product Type Property
+     * Add a property to a product type.
      * @param productTypeId  (required)
+     * @param responseFields limits which fields are returned in the response body (optional)
      * @param attributeInProductType  (optional)
      * @return AttributeInProductType
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
      </table>
      */
-    public AttributeInProductType addProperty(Integer productTypeId, AttributeInProductType attributeInProductType) throws ApiException {
-        ApiResponse<AttributeInProductType> localVarResp = addPropertyWithHttpInfo(productTypeId, attributeInProductType);
+    public AttributeInProductType addProperty(Integer productTypeId, String responseFields, AttributeInProductType attributeInProductType) throws ApiException {
+        ApiResponse<AttributeInProductType> localVarResp = addPropertyWithHttpInfo(productTypeId, responseFields, attributeInProductType);
         return localVarResp.getData();
     }
 
     /**
-     * Add product type property
-     * Add property.
+     * Add Product Type Property
+     * Add a property to a product type.
      * @param productTypeId  (required)
+     * @param responseFields limits which fields are returned in the response body (optional)
      * @param attributeInProductType  (optional)
      * @return ApiResponse&lt;AttributeInProductType&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<AttributeInProductType> addPropertyWithHttpInfo(Integer productTypeId, AttributeInProductType attributeInProductType) throws ApiException {
-        okhttp3.Call localVarCall = addPropertyValidateBeforeCall(productTypeId, attributeInProductType, null);
+    public ApiResponse<AttributeInProductType> addPropertyWithHttpInfo(Integer productTypeId, String responseFields, AttributeInProductType attributeInProductType) throws ApiException {
+        okhttp3.Call localVarCall = addPropertyValidateBeforeCall(productTypeId, responseFields, attributeInProductType, null);
         Type localVarReturnType = new TypeToken<AttributeInProductType>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
 
     /**
-     * Add product type property (asynchronously)
-     * Add property.
+     * Add Product Type Property (asynchronously)
+     * Add a property to a product type.
      * @param productTypeId  (required)
+     * @param responseFields limits which fields are returned in the response body (optional)
      * @param attributeInProductType  (optional)
      * @param _callback The callback to be executed when the API call finishes
      * @return The request call
@@ -600,12 +632,12 @@ public class ProductTypesApi {
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call addPropertyAsync(Integer productTypeId, AttributeInProductType attributeInProductType, final ApiCallback<AttributeInProductType> _callback) throws ApiException {
+    public okhttp3.Call addPropertyAsync(Integer productTypeId, String responseFields, AttributeInProductType attributeInProductType, final ApiCallback<AttributeInProductType> _callback) throws ApiException {
 
-        okhttp3.Call localVarCall = addPropertyValidateBeforeCall(productTypeId, attributeInProductType, _callback);
+        okhttp3.Call localVarCall = addPropertyValidateBeforeCall(productTypeId, responseFields, attributeInProductType, _callback);
         Type localVarReturnType = new TypeToken<AttributeInProductType>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
@@ -613,6 +645,7 @@ public class ProductTypesApi {
     /**
      * Build call for addVariantProperty
      * @param productTypeId  (required)
+     * @param responseFields limits which fields are returned in the response body (optional)
      * @param attributeInProductType  (optional)
      * @param _callback Callback for upload/download progress
      * @return Call to execute
@@ -620,10 +653,10 @@ public class ProductTypesApi {
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call addVariantPropertyCall(Integer productTypeId, AttributeInProductType attributeInProductType, final ApiCallback _callback) throws ApiException {
+    public okhttp3.Call addVariantPropertyCall(Integer productTypeId, String responseFields, AttributeInProductType attributeInProductType, final ApiCallback _callback) throws ApiException {
         String basePath = null;
         // Operation Servers
         String[] localBasePaths = new String[] {  };
@@ -649,6 +682,10 @@ public class ProductTypesApi {
         Map<String, String> localVarCookieParams = new HashMap<String, String>();
         Map<String, Object> localVarFormParams = new HashMap<String, Object>();
 
+        if (responseFields != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("responseFields", responseFields));
+        }
+
         final String[] localVarAccepts = {
             "application/json", "text/json", "text/plain"
         };
@@ -665,12 +702,12 @@ public class ProductTypesApi {
             localVarHeaderParams.put("Content-Type", localVarContentType);
         }
 
-        String[] localVarAuthNames = new String[] { "bearerAuth", "clientOauth2" };
+        String[] localVarAuthNames = new String[] { "bearerAuth" };
         return localVarApiClient.buildCall(basePath, localVarPath, "POST", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call addVariantPropertyValidateBeforeCall(Integer productTypeId, AttributeInProductType attributeInProductType, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call addVariantPropertyValidateBeforeCall(Integer productTypeId, String responseFields, AttributeInProductType attributeInProductType, final ApiCallback _callback) throws ApiException {
         
         // verify the required parameter 'productTypeId' is set
         if (productTypeId == null) {
@@ -678,52 +715,55 @@ public class ProductTypesApi {
         }
         
 
-        okhttp3.Call localVarCall = addVariantPropertyCall(productTypeId, attributeInProductType, _callback);
+        okhttp3.Call localVarCall = addVariantPropertyCall(productTypeId, responseFields, attributeInProductType, _callback);
         return localVarCall;
 
     }
 
     /**
-     * Add variant property
-     * Add variant property.
+     * Add Variant Product Type Property
+     * Add a variant property to a product type.
      * @param productTypeId  (required)
+     * @param responseFields limits which fields are returned in the response body (optional)
      * @param attributeInProductType  (optional)
      * @return AttributeInProductType
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
      </table>
      */
-    public AttributeInProductType addVariantProperty(Integer productTypeId, AttributeInProductType attributeInProductType) throws ApiException {
-        ApiResponse<AttributeInProductType> localVarResp = addVariantPropertyWithHttpInfo(productTypeId, attributeInProductType);
+    public AttributeInProductType addVariantProperty(Integer productTypeId, String responseFields, AttributeInProductType attributeInProductType) throws ApiException {
+        ApiResponse<AttributeInProductType> localVarResp = addVariantPropertyWithHttpInfo(productTypeId, responseFields, attributeInProductType);
         return localVarResp.getData();
     }
 
     /**
-     * Add variant property
-     * Add variant property.
+     * Add Variant Product Type Property
+     * Add a variant property to a product type.
      * @param productTypeId  (required)
+     * @param responseFields limits which fields are returned in the response body (optional)
      * @param attributeInProductType  (optional)
      * @return ApiResponse&lt;AttributeInProductType&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<AttributeInProductType> addVariantPropertyWithHttpInfo(Integer productTypeId, AttributeInProductType attributeInProductType) throws ApiException {
-        okhttp3.Call localVarCall = addVariantPropertyValidateBeforeCall(productTypeId, attributeInProductType, null);
+    public ApiResponse<AttributeInProductType> addVariantPropertyWithHttpInfo(Integer productTypeId, String responseFields, AttributeInProductType attributeInProductType) throws ApiException {
+        okhttp3.Call localVarCall = addVariantPropertyValidateBeforeCall(productTypeId, responseFields, attributeInProductType, null);
         Type localVarReturnType = new TypeToken<AttributeInProductType>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
 
     /**
-     * Add variant property (asynchronously)
-     * Add variant property.
+     * Add Variant Product Type Property (asynchronously)
+     * Add a variant property to a product type.
      * @param productTypeId  (required)
+     * @param responseFields limits which fields are returned in the response body (optional)
      * @param attributeInProductType  (optional)
      * @param _callback The callback to be executed when the API call finishes
      * @return The request call
@@ -731,12 +771,12 @@ public class ProductTypesApi {
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call addVariantPropertyAsync(Integer productTypeId, AttributeInProductType attributeInProductType, final ApiCallback<AttributeInProductType> _callback) throws ApiException {
+    public okhttp3.Call addVariantPropertyAsync(Integer productTypeId, String responseFields, AttributeInProductType attributeInProductType, final ApiCallback<AttributeInProductType> _callback) throws ApiException {
 
-        okhttp3.Call localVarCall = addVariantPropertyValidateBeforeCall(productTypeId, attributeInProductType, _callback);
+        okhttp3.Call localVarCall = addVariantPropertyValidateBeforeCall(productTypeId, responseFields, attributeInProductType, _callback);
         Type localVarReturnType = new TypeToken<AttributeInProductType>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
@@ -751,7 +791,7 @@ public class ProductTypesApi {
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
      </table>
      */
     public okhttp3.Call deleteExtraCall(Integer productTypeId, String attributeFQN, final ApiCallback _callback) throws ApiException {
@@ -797,7 +837,7 @@ public class ProductTypesApi {
             localVarHeaderParams.put("Content-Type", localVarContentType);
         }
 
-        String[] localVarAuthNames = new String[] { "bearerAuth", "clientOauth2" };
+        String[] localVarAuthNames = new String[] { "bearerAuth" };
         return localVarApiClient.buildCall(basePath, localVarPath, "DELETE", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
     }
 
@@ -821,15 +861,15 @@ public class ProductTypesApi {
     }
 
     /**
-     * Delete extra
-     * Delete extra.
+     * Delete Product Type Extra
+     * Delete a product type extra.
      * @param productTypeId  (required)
      * @param attributeFQN  (required)
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
      </table>
      */
     public void deleteExtra(Integer productTypeId, String attributeFQN) throws ApiException {
@@ -837,8 +877,8 @@ public class ProductTypesApi {
     }
 
     /**
-     * Delete extra
-     * Delete extra.
+     * Delete Product Type Extra
+     * Delete a product type extra.
      * @param productTypeId  (required)
      * @param attributeFQN  (required)
      * @return ApiResponse&lt;Void&gt;
@@ -846,7 +886,7 @@ public class ProductTypesApi {
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
      </table>
      */
     public ApiResponse<Void> deleteExtraWithHttpInfo(Integer productTypeId, String attributeFQN) throws ApiException {
@@ -855,8 +895,8 @@ public class ProductTypesApi {
     }
 
     /**
-     * Delete extra (asynchronously)
-     * Delete extra.
+     * Delete Product Type Extra (asynchronously)
+     * Delete a product type extra.
      * @param productTypeId  (required)
      * @param attributeFQN  (required)
      * @param _callback The callback to be executed when the API call finishes
@@ -865,7 +905,7 @@ public class ProductTypesApi {
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
      </table>
      */
     public okhttp3.Call deleteExtraAsync(Integer productTypeId, String attributeFQN, final ApiCallback<Void> _callback) throws ApiException {
@@ -884,7 +924,7 @@ public class ProductTypesApi {
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
      </table>
      */
     public okhttp3.Call deleteOptionCall(Integer productTypeId, String attributeFQN, final ApiCallback _callback) throws ApiException {
@@ -930,7 +970,7 @@ public class ProductTypesApi {
             localVarHeaderParams.put("Content-Type", localVarContentType);
         }
 
-        String[] localVarAuthNames = new String[] { "bearerAuth", "clientOauth2" };
+        String[] localVarAuthNames = new String[] { "bearerAuth" };
         return localVarApiClient.buildCall(basePath, localVarPath, "DELETE", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
     }
 
@@ -954,15 +994,15 @@ public class ProductTypesApi {
     }
 
     /**
-     * Delete option
-     * Delete option.
+     * Delete Product Type Option
+     * Delete a product type option by its FQN.
      * @param productTypeId  (required)
      * @param attributeFQN  (required)
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
      </table>
      */
     public void deleteOption(Integer productTypeId, String attributeFQN) throws ApiException {
@@ -970,8 +1010,8 @@ public class ProductTypesApi {
     }
 
     /**
-     * Delete option
-     * Delete option.
+     * Delete Product Type Option
+     * Delete a product type option by its FQN.
      * @param productTypeId  (required)
      * @param attributeFQN  (required)
      * @return ApiResponse&lt;Void&gt;
@@ -979,7 +1019,7 @@ public class ProductTypesApi {
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
      </table>
      */
     public ApiResponse<Void> deleteOptionWithHttpInfo(Integer productTypeId, String attributeFQN) throws ApiException {
@@ -988,8 +1028,8 @@ public class ProductTypesApi {
     }
 
     /**
-     * Delete option (asynchronously)
-     * Delete option.
+     * Delete Product Type Option (asynchronously)
+     * Delete a product type option by its FQN.
      * @param productTypeId  (required)
      * @param attributeFQN  (required)
      * @param _callback The callback to be executed when the API call finishes
@@ -998,7 +1038,7 @@ public class ProductTypesApi {
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
      </table>
      */
     public okhttp3.Call deleteOptionAsync(Integer productTypeId, String attributeFQN, final ApiCallback<Void> _callback) throws ApiException {
@@ -1016,7 +1056,7 @@ public class ProductTypesApi {
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
      </table>
      */
     public okhttp3.Call deleteProductTypeCall(Integer productTypeId, final ApiCallback _callback) throws ApiException {
@@ -1061,7 +1101,7 @@ public class ProductTypesApi {
             localVarHeaderParams.put("Content-Type", localVarContentType);
         }
 
-        String[] localVarAuthNames = new String[] { "bearerAuth", "clientOauth2" };
+        String[] localVarAuthNames = new String[] { "bearerAuth" };
         return localVarApiClient.buildCall(basePath, localVarPath, "DELETE", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
     }
 
@@ -1080,14 +1120,14 @@ public class ProductTypesApi {
     }
 
     /**
-     * Delete product type
+     * Delete Product Type
      * Delete product type.
      * @param productTypeId  (required)
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
      </table>
      */
     public void deleteProductType(Integer productTypeId) throws ApiException {
@@ -1095,7 +1135,7 @@ public class ProductTypesApi {
     }
 
     /**
-     * Delete product type
+     * Delete Product Type
      * Delete product type.
      * @param productTypeId  (required)
      * @return ApiResponse&lt;Void&gt;
@@ -1103,7 +1143,7 @@ public class ProductTypesApi {
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
      </table>
      */
     public ApiResponse<Void> deleteProductTypeWithHttpInfo(Integer productTypeId) throws ApiException {
@@ -1112,7 +1152,7 @@ public class ProductTypesApi {
     }
 
     /**
-     * Delete product type (asynchronously)
+     * Delete Product Type (asynchronously)
      * Delete product type.
      * @param productTypeId  (required)
      * @param _callback The callback to be executed when the API call finishes
@@ -1121,7 +1161,7 @@ public class ProductTypesApi {
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
      </table>
      */
     public okhttp3.Call deleteProductTypeAsync(Integer productTypeId, final ApiCallback<Void> _callback) throws ApiException {
@@ -1140,7 +1180,7 @@ public class ProductTypesApi {
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
      </table>
      */
     public okhttp3.Call deletePropertyCall(Integer productTypeId, String attributeFQN, final ApiCallback _callback) throws ApiException {
@@ -1186,7 +1226,7 @@ public class ProductTypesApi {
             localVarHeaderParams.put("Content-Type", localVarContentType);
         }
 
-        String[] localVarAuthNames = new String[] { "bearerAuth", "clientOauth2" };
+        String[] localVarAuthNames = new String[] { "bearerAuth" };
         return localVarApiClient.buildCall(basePath, localVarPath, "DELETE", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
     }
 
@@ -1210,15 +1250,15 @@ public class ProductTypesApi {
     }
 
     /**
-     * Delete product type property
-     * Delete property.
+     * Delete Product Type Property
+     * Delete a product type property by its FQN.
      * @param productTypeId  (required)
      * @param attributeFQN  (required)
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
      </table>
      */
     public void deleteProperty(Integer productTypeId, String attributeFQN) throws ApiException {
@@ -1226,8 +1266,8 @@ public class ProductTypesApi {
     }
 
     /**
-     * Delete product type property
-     * Delete property.
+     * Delete Product Type Property
+     * Delete a product type property by its FQN.
      * @param productTypeId  (required)
      * @param attributeFQN  (required)
      * @return ApiResponse&lt;Void&gt;
@@ -1235,7 +1275,7 @@ public class ProductTypesApi {
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
      </table>
      */
     public ApiResponse<Void> deletePropertyWithHttpInfo(Integer productTypeId, String attributeFQN) throws ApiException {
@@ -1244,8 +1284,8 @@ public class ProductTypesApi {
     }
 
     /**
-     * Delete product type property (asynchronously)
-     * Delete property.
+     * Delete Product Type Property (asynchronously)
+     * Delete a product type property by its FQN.
      * @param productTypeId  (required)
      * @param attributeFQN  (required)
      * @param _callback The callback to be executed when the API call finishes
@@ -1254,7 +1294,7 @@ public class ProductTypesApi {
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
      </table>
      */
     public okhttp3.Call deletePropertyAsync(Integer productTypeId, String attributeFQN, final ApiCallback<Void> _callback) throws ApiException {
@@ -1273,7 +1313,7 @@ public class ProductTypesApi {
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
      </table>
      */
     public okhttp3.Call deleteVariantPropertyCall(Integer productTypeId, String attributeFQN, final ApiCallback _callback) throws ApiException {
@@ -1319,7 +1359,7 @@ public class ProductTypesApi {
             localVarHeaderParams.put("Content-Type", localVarContentType);
         }
 
-        String[] localVarAuthNames = new String[] { "bearerAuth", "clientOauth2" };
+        String[] localVarAuthNames = new String[] { "bearerAuth" };
         return localVarApiClient.buildCall(basePath, localVarPath, "DELETE", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
     }
 
@@ -1343,15 +1383,15 @@ public class ProductTypesApi {
     }
 
     /**
-     * Delete variant property
-     * Delete variant property.
+     * Delete Variant Product Type Property
+     * Delete a variant property by its FQN.
      * @param productTypeId  (required)
      * @param attributeFQN  (required)
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
      </table>
      */
     public void deleteVariantProperty(Integer productTypeId, String attributeFQN) throws ApiException {
@@ -1359,8 +1399,8 @@ public class ProductTypesApi {
     }
 
     /**
-     * Delete variant property
-     * Delete variant property.
+     * Delete Variant Product Type Property
+     * Delete a variant property by its FQN.
      * @param productTypeId  (required)
      * @param attributeFQN  (required)
      * @return ApiResponse&lt;Void&gt;
@@ -1368,7 +1408,7 @@ public class ProductTypesApi {
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
      </table>
      */
     public ApiResponse<Void> deleteVariantPropertyWithHttpInfo(Integer productTypeId, String attributeFQN) throws ApiException {
@@ -1377,8 +1417,8 @@ public class ProductTypesApi {
     }
 
     /**
-     * Delete variant property (asynchronously)
-     * Delete variant property.
+     * Delete Variant Product Type Property (asynchronously)
+     * Delete a variant property by its FQN.
      * @param productTypeId  (required)
      * @param attributeFQN  (required)
      * @param _callback The callback to be executed when the API call finishes
@@ -1387,7 +1427,7 @@ public class ProductTypesApi {
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
      </table>
      */
     public okhttp3.Call deleteVariantPropertyAsync(Integer productTypeId, String attributeFQN, final ApiCallback<Void> _callback) throws ApiException {
@@ -1404,6 +1444,7 @@ public class ProductTypesApi {
      * @param pageSize  (optional, default to 0)
      * @param sortBy  (optional)
      * @param filter  (optional)
+     * @param responseFields limits which fields are returned in the response body (optional)
      * @param catalogAdminsProductOption  (optional)
      * @param _callback Callback for upload/download progress
      * @return Call to execute
@@ -1411,10 +1452,10 @@ public class ProductTypesApi {
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call generateProductVariationsCall(Integer productTypeId, String productCode, Integer startIndex, Integer pageSize, String sortBy, String filter, List<CatalogAdminsProductOption> catalogAdminsProductOption, final ApiCallback _callback) throws ApiException {
+    public okhttp3.Call generateProductVariationsCall(Integer productTypeId, String productCode, Integer startIndex, Integer pageSize, String sortBy, String filter, String responseFields, List<CatalogAdminsProductOption> catalogAdminsProductOption, final ApiCallback _callback) throws ApiException {
         String basePath = null;
         // Operation Servers
         String[] localBasePaths = new String[] {  };
@@ -1460,6 +1501,10 @@ public class ProductTypesApi {
             localVarQueryParams.addAll(localVarApiClient.parameterToPair("filter", filter));
         }
 
+        if (responseFields != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("responseFields", responseFields));
+        }
+
         final String[] localVarAccepts = {
             "application/json", "text/json", "text/plain"
         };
@@ -1476,12 +1521,12 @@ public class ProductTypesApi {
             localVarHeaderParams.put("Content-Type", localVarContentType);
         }
 
-        String[] localVarAuthNames = new String[] { "bearerAuth", "clientOauth2" };
+        String[] localVarAuthNames = new String[] { "bearerAuth" };
         return localVarApiClient.buildCall(basePath, localVarPath, "POST", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call generateProductVariationsValidateBeforeCall(Integer productTypeId, String productCode, Integer startIndex, Integer pageSize, String sortBy, String filter, List<CatalogAdminsProductOption> catalogAdminsProductOption, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call generateProductVariationsValidateBeforeCall(Integer productTypeId, String productCode, Integer startIndex, Integer pageSize, String sortBy, String filter, String responseFields, List<CatalogAdminsProductOption> catalogAdminsProductOption, final ApiCallback _callback) throws ApiException {
         
         // verify the required parameter 'productTypeId' is set
         if (productTypeId == null) {
@@ -1489,67 +1534,70 @@ public class ProductTypesApi {
         }
         
 
-        okhttp3.Call localVarCall = generateProductVariationsCall(productTypeId, productCode, startIndex, pageSize, sortBy, filter, catalogAdminsProductOption, _callback);
+        okhttp3.Call localVarCall = generateProductVariationsCall(productTypeId, productCode, startIndex, pageSize, sortBy, filter, responseFields, catalogAdminsProductOption, _callback);
         return localVarCall;
 
     }
 
     /**
-     * Generate product variations
-     * 
+     * Generate Product Variations
+     * Generate product variations for a product type.
      * @param productTypeId  (required)
      * @param productCode  (optional)
      * @param startIndex  (optional, default to 0)
      * @param pageSize  (optional, default to 0)
      * @param sortBy  (optional)
      * @param filter  (optional)
+     * @param responseFields limits which fields are returned in the response body (optional)
      * @param catalogAdminsProductOption  (optional)
      * @return ProductVariationPagedCollection
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
      </table>
      */
-    public ProductVariationPagedCollection generateProductVariations(Integer productTypeId, String productCode, Integer startIndex, Integer pageSize, String sortBy, String filter, List<CatalogAdminsProductOption> catalogAdminsProductOption) throws ApiException {
-        ApiResponse<ProductVariationPagedCollection> localVarResp = generateProductVariationsWithHttpInfo(productTypeId, productCode, startIndex, pageSize, sortBy, filter, catalogAdminsProductOption);
+    public ProductVariationPagedCollection generateProductVariations(Integer productTypeId, String productCode, Integer startIndex, Integer pageSize, String sortBy, String filter, String responseFields, List<CatalogAdminsProductOption> catalogAdminsProductOption) throws ApiException {
+        ApiResponse<ProductVariationPagedCollection> localVarResp = generateProductVariationsWithHttpInfo(productTypeId, productCode, startIndex, pageSize, sortBy, filter, responseFields, catalogAdminsProductOption);
         return localVarResp.getData();
     }
 
     /**
-     * Generate product variations
-     * 
+     * Generate Product Variations
+     * Generate product variations for a product type.
      * @param productTypeId  (required)
      * @param productCode  (optional)
      * @param startIndex  (optional, default to 0)
      * @param pageSize  (optional, default to 0)
      * @param sortBy  (optional)
      * @param filter  (optional)
+     * @param responseFields limits which fields are returned in the response body (optional)
      * @param catalogAdminsProductOption  (optional)
      * @return ApiResponse&lt;ProductVariationPagedCollection&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<ProductVariationPagedCollection> generateProductVariationsWithHttpInfo(Integer productTypeId, String productCode, Integer startIndex, Integer pageSize, String sortBy, String filter, List<CatalogAdminsProductOption> catalogAdminsProductOption) throws ApiException {
-        okhttp3.Call localVarCall = generateProductVariationsValidateBeforeCall(productTypeId, productCode, startIndex, pageSize, sortBy, filter, catalogAdminsProductOption, null);
+    public ApiResponse<ProductVariationPagedCollection> generateProductVariationsWithHttpInfo(Integer productTypeId, String productCode, Integer startIndex, Integer pageSize, String sortBy, String filter, String responseFields, List<CatalogAdminsProductOption> catalogAdminsProductOption) throws ApiException {
+        okhttp3.Call localVarCall = generateProductVariationsValidateBeforeCall(productTypeId, productCode, startIndex, pageSize, sortBy, filter, responseFields, catalogAdminsProductOption, null);
         Type localVarReturnType = new TypeToken<ProductVariationPagedCollection>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
 
     /**
-     * Generate product variations (asynchronously)
-     * 
+     * Generate Product Variations (asynchronously)
+     * Generate product variations for a product type.
      * @param productTypeId  (required)
      * @param productCode  (optional)
      * @param startIndex  (optional, default to 0)
      * @param pageSize  (optional, default to 0)
      * @param sortBy  (optional)
      * @param filter  (optional)
+     * @param responseFields limits which fields are returned in the response body (optional)
      * @param catalogAdminsProductOption  (optional)
      * @param _callback The callback to be executed when the API call finishes
      * @return The request call
@@ -1557,12 +1605,12 @@ public class ProductTypesApi {
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call generateProductVariationsAsync(Integer productTypeId, String productCode, Integer startIndex, Integer pageSize, String sortBy, String filter, List<CatalogAdminsProductOption> catalogAdminsProductOption, final ApiCallback<ProductVariationPagedCollection> _callback) throws ApiException {
+    public okhttp3.Call generateProductVariationsAsync(Integer productTypeId, String productCode, Integer startIndex, Integer pageSize, String sortBy, String filter, String responseFields, List<CatalogAdminsProductOption> catalogAdminsProductOption, final ApiCallback<ProductVariationPagedCollection> _callback) throws ApiException {
 
-        okhttp3.Call localVarCall = generateProductVariationsValidateBeforeCall(productTypeId, productCode, startIndex, pageSize, sortBy, filter, catalogAdminsProductOption, _callback);
+        okhttp3.Call localVarCall = generateProductVariationsValidateBeforeCall(productTypeId, productCode, startIndex, pageSize, sortBy, filter, responseFields, catalogAdminsProductOption, _callback);
         Type localVarReturnType = new TypeToken<ProductVariationPagedCollection>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
@@ -1571,16 +1619,17 @@ public class ProductTypesApi {
      * Build call for getExtra
      * @param productTypeId  (required)
      * @param attributeFQN  (required)
+     * @param responseFields limits which fields are returned in the response body (optional)
      * @param _callback Callback for upload/download progress
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call getExtraCall(Integer productTypeId, String attributeFQN, final ApiCallback _callback) throws ApiException {
+    public okhttp3.Call getExtraCall(Integer productTypeId, String attributeFQN, String responseFields, final ApiCallback _callback) throws ApiException {
         String basePath = null;
         // Operation Servers
         String[] localBasePaths = new String[] {  };
@@ -1607,6 +1656,10 @@ public class ProductTypesApi {
         Map<String, String> localVarCookieParams = new HashMap<String, String>();
         Map<String, Object> localVarFormParams = new HashMap<String, Object>();
 
+        if (responseFields != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("responseFields", responseFields));
+        }
+
         final String[] localVarAccepts = {
             "application/json", "text/json", "text/plain"
         };
@@ -1623,12 +1676,12 @@ public class ProductTypesApi {
             localVarHeaderParams.put("Content-Type", localVarContentType);
         }
 
-        String[] localVarAuthNames = new String[] { "bearerAuth", "clientOauth2" };
+        String[] localVarAuthNames = new String[] { "bearerAuth" };
         return localVarApiClient.buildCall(basePath, localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call getExtraValidateBeforeCall(Integer productTypeId, String attributeFQN, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call getExtraValidateBeforeCall(Integer productTypeId, String attributeFQN, String responseFields, final ApiCallback _callback) throws ApiException {
         
         // verify the required parameter 'productTypeId' is set
         if (productTypeId == null) {
@@ -1641,65 +1694,68 @@ public class ProductTypesApi {
         }
         
 
-        okhttp3.Call localVarCall = getExtraCall(productTypeId, attributeFQN, _callback);
+        okhttp3.Call localVarCall = getExtraCall(productTypeId, attributeFQN, responseFields, _callback);
         return localVarCall;
 
     }
 
     /**
-     * Get extra
-     * Get extra.
+     * Get Product Type Extra
+     * Get a product type extra.
      * @param productTypeId  (required)
      * @param attributeFQN  (required)
+     * @param responseFields limits which fields are returned in the response body (optional)
      * @return AttributeInProductType
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
      </table>
      */
-    public AttributeInProductType getExtra(Integer productTypeId, String attributeFQN) throws ApiException {
-        ApiResponse<AttributeInProductType> localVarResp = getExtraWithHttpInfo(productTypeId, attributeFQN);
+    public AttributeInProductType getExtra(Integer productTypeId, String attributeFQN, String responseFields) throws ApiException {
+        ApiResponse<AttributeInProductType> localVarResp = getExtraWithHttpInfo(productTypeId, attributeFQN, responseFields);
         return localVarResp.getData();
     }
 
     /**
-     * Get extra
-     * Get extra.
+     * Get Product Type Extra
+     * Get a product type extra.
      * @param productTypeId  (required)
      * @param attributeFQN  (required)
+     * @param responseFields limits which fields are returned in the response body (optional)
      * @return ApiResponse&lt;AttributeInProductType&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<AttributeInProductType> getExtraWithHttpInfo(Integer productTypeId, String attributeFQN) throws ApiException {
-        okhttp3.Call localVarCall = getExtraValidateBeforeCall(productTypeId, attributeFQN, null);
+    public ApiResponse<AttributeInProductType> getExtraWithHttpInfo(Integer productTypeId, String attributeFQN, String responseFields) throws ApiException {
+        okhttp3.Call localVarCall = getExtraValidateBeforeCall(productTypeId, attributeFQN, responseFields, null);
         Type localVarReturnType = new TypeToken<AttributeInProductType>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
 
     /**
-     * Get extra (asynchronously)
-     * Get extra.
+     * Get Product Type Extra (asynchronously)
+     * Get a product type extra.
      * @param productTypeId  (required)
      * @param attributeFQN  (required)
+     * @param responseFields limits which fields are returned in the response body (optional)
      * @param _callback The callback to be executed when the API call finishes
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call getExtraAsync(Integer productTypeId, String attributeFQN, final ApiCallback<AttributeInProductType> _callback) throws ApiException {
+    public okhttp3.Call getExtraAsync(Integer productTypeId, String attributeFQN, String responseFields, final ApiCallback<AttributeInProductType> _callback) throws ApiException {
 
-        okhttp3.Call localVarCall = getExtraValidateBeforeCall(productTypeId, attributeFQN, _callback);
+        okhttp3.Call localVarCall = getExtraValidateBeforeCall(productTypeId, attributeFQN, responseFields, _callback);
         Type localVarReturnType = new TypeToken<AttributeInProductType>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
@@ -1707,16 +1763,17 @@ public class ProductTypesApi {
     /**
      * Build call for getExtras
      * @param productTypeId  (required)
+     * @param responseFields limits which fields are returned in the response body (optional)
      * @param _callback Callback for upload/download progress
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call getExtrasCall(Integer productTypeId, final ApiCallback _callback) throws ApiException {
+    public okhttp3.Call getExtrasCall(Integer productTypeId, String responseFields, final ApiCallback _callback) throws ApiException {
         String basePath = null;
         // Operation Servers
         String[] localBasePaths = new String[] {  };
@@ -1742,6 +1799,10 @@ public class ProductTypesApi {
         Map<String, String> localVarCookieParams = new HashMap<String, String>();
         Map<String, Object> localVarFormParams = new HashMap<String, Object>();
 
+        if (responseFields != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("responseFields", responseFields));
+        }
+
         final String[] localVarAccepts = {
             "application/json", "text/json", "text/plain"
         };
@@ -1758,12 +1819,12 @@ public class ProductTypesApi {
             localVarHeaderParams.put("Content-Type", localVarContentType);
         }
 
-        String[] localVarAuthNames = new String[] { "bearerAuth", "clientOauth2" };
+        String[] localVarAuthNames = new String[] { "bearerAuth" };
         return localVarApiClient.buildCall(basePath, localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call getExtrasValidateBeforeCall(Integer productTypeId, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call getExtrasValidateBeforeCall(Integer productTypeId, String responseFields, final ApiCallback _callback) throws ApiException {
         
         // verify the required parameter 'productTypeId' is set
         if (productTypeId == null) {
@@ -1771,62 +1832,65 @@ public class ProductTypesApi {
         }
         
 
-        okhttp3.Call localVarCall = getExtrasCall(productTypeId, _callback);
+        okhttp3.Call localVarCall = getExtrasCall(productTypeId, responseFields, _callback);
         return localVarCall;
 
     }
 
     /**
-     * Get extras
-     * Get extras.
+     * Get Product Type Extras
+     * Get a list of product type extras.
      * @param productTypeId  (required)
+     * @param responseFields limits which fields are returned in the response body (optional)
      * @return List&lt;AttributeInProductType&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
      </table>
      */
-    public List<AttributeInProductType> getExtras(Integer productTypeId) throws ApiException {
-        ApiResponse<List<AttributeInProductType>> localVarResp = getExtrasWithHttpInfo(productTypeId);
+    public List<AttributeInProductType> getExtras(Integer productTypeId, String responseFields) throws ApiException {
+        ApiResponse<List<AttributeInProductType>> localVarResp = getExtrasWithHttpInfo(productTypeId, responseFields);
         return localVarResp.getData();
     }
 
     /**
-     * Get extras
-     * Get extras.
+     * Get Product Type Extras
+     * Get a list of product type extras.
      * @param productTypeId  (required)
+     * @param responseFields limits which fields are returned in the response body (optional)
      * @return ApiResponse&lt;List&lt;AttributeInProductType&gt;&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<List<AttributeInProductType>> getExtrasWithHttpInfo(Integer productTypeId) throws ApiException {
-        okhttp3.Call localVarCall = getExtrasValidateBeforeCall(productTypeId, null);
+    public ApiResponse<List<AttributeInProductType>> getExtrasWithHttpInfo(Integer productTypeId, String responseFields) throws ApiException {
+        okhttp3.Call localVarCall = getExtrasValidateBeforeCall(productTypeId, responseFields, null);
         Type localVarReturnType = new TypeToken<List<AttributeInProductType>>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
 
     /**
-     * Get extras (asynchronously)
-     * Get extras.
+     * Get Product Type Extras (asynchronously)
+     * Get a list of product type extras.
      * @param productTypeId  (required)
+     * @param responseFields limits which fields are returned in the response body (optional)
      * @param _callback The callback to be executed when the API call finishes
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call getExtrasAsync(Integer productTypeId, final ApiCallback<List<AttributeInProductType>> _callback) throws ApiException {
+    public okhttp3.Call getExtrasAsync(Integer productTypeId, String responseFields, final ApiCallback<List<AttributeInProductType>> _callback) throws ApiException {
 
-        okhttp3.Call localVarCall = getExtrasValidateBeforeCall(productTypeId, _callback);
+        okhttp3.Call localVarCall = getExtrasValidateBeforeCall(productTypeId, responseFields, _callback);
         Type localVarReturnType = new TypeToken<List<AttributeInProductType>>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
@@ -1835,16 +1899,17 @@ public class ProductTypesApi {
      * Build call for getOption
      * @param productTypeId  (required)
      * @param attributeFQN  (required)
+     * @param responseFields limits which fields are returned in the response body (optional)
      * @param _callback Callback for upload/download progress
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call getOptionCall(Integer productTypeId, String attributeFQN, final ApiCallback _callback) throws ApiException {
+    public okhttp3.Call getOptionCall(Integer productTypeId, String attributeFQN, String responseFields, final ApiCallback _callback) throws ApiException {
         String basePath = null;
         // Operation Servers
         String[] localBasePaths = new String[] {  };
@@ -1871,6 +1936,10 @@ public class ProductTypesApi {
         Map<String, String> localVarCookieParams = new HashMap<String, String>();
         Map<String, Object> localVarFormParams = new HashMap<String, Object>();
 
+        if (responseFields != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("responseFields", responseFields));
+        }
+
         final String[] localVarAccepts = {
             "application/json", "text/json", "text/plain"
         };
@@ -1887,12 +1956,12 @@ public class ProductTypesApi {
             localVarHeaderParams.put("Content-Type", localVarContentType);
         }
 
-        String[] localVarAuthNames = new String[] { "bearerAuth", "clientOauth2" };
+        String[] localVarAuthNames = new String[] { "bearerAuth" };
         return localVarApiClient.buildCall(basePath, localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call getOptionValidateBeforeCall(Integer productTypeId, String attributeFQN, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call getOptionValidateBeforeCall(Integer productTypeId, String attributeFQN, String responseFields, final ApiCallback _callback) throws ApiException {
         
         // verify the required parameter 'productTypeId' is set
         if (productTypeId == null) {
@@ -1905,65 +1974,68 @@ public class ProductTypesApi {
         }
         
 
-        okhttp3.Call localVarCall = getOptionCall(productTypeId, attributeFQN, _callback);
+        okhttp3.Call localVarCall = getOptionCall(productTypeId, attributeFQN, responseFields, _callback);
         return localVarCall;
 
     }
 
     /**
-     * Get option
-     * Get individual option.
+     * Get Product Type Option
+     * Get an individual product type option by its FQN.
      * @param productTypeId  (required)
      * @param attributeFQN  (required)
+     * @param responseFields limits which fields are returned in the response body (optional)
      * @return AttributeInProductType
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
      </table>
      */
-    public AttributeInProductType getOption(Integer productTypeId, String attributeFQN) throws ApiException {
-        ApiResponse<AttributeInProductType> localVarResp = getOptionWithHttpInfo(productTypeId, attributeFQN);
+    public AttributeInProductType getOption(Integer productTypeId, String attributeFQN, String responseFields) throws ApiException {
+        ApiResponse<AttributeInProductType> localVarResp = getOptionWithHttpInfo(productTypeId, attributeFQN, responseFields);
         return localVarResp.getData();
     }
 
     /**
-     * Get option
-     * Get individual option.
+     * Get Product Type Option
+     * Get an individual product type option by its FQN.
      * @param productTypeId  (required)
      * @param attributeFQN  (required)
+     * @param responseFields limits which fields are returned in the response body (optional)
      * @return ApiResponse&lt;AttributeInProductType&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<AttributeInProductType> getOptionWithHttpInfo(Integer productTypeId, String attributeFQN) throws ApiException {
-        okhttp3.Call localVarCall = getOptionValidateBeforeCall(productTypeId, attributeFQN, null);
+    public ApiResponse<AttributeInProductType> getOptionWithHttpInfo(Integer productTypeId, String attributeFQN, String responseFields) throws ApiException {
+        okhttp3.Call localVarCall = getOptionValidateBeforeCall(productTypeId, attributeFQN, responseFields, null);
         Type localVarReturnType = new TypeToken<AttributeInProductType>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
 
     /**
-     * Get option (asynchronously)
-     * Get individual option.
+     * Get Product Type Option (asynchronously)
+     * Get an individual product type option by its FQN.
      * @param productTypeId  (required)
      * @param attributeFQN  (required)
+     * @param responseFields limits which fields are returned in the response body (optional)
      * @param _callback The callback to be executed when the API call finishes
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call getOptionAsync(Integer productTypeId, String attributeFQN, final ApiCallback<AttributeInProductType> _callback) throws ApiException {
+    public okhttp3.Call getOptionAsync(Integer productTypeId, String attributeFQN, String responseFields, final ApiCallback<AttributeInProductType> _callback) throws ApiException {
 
-        okhttp3.Call localVarCall = getOptionValidateBeforeCall(productTypeId, attributeFQN, _callback);
+        okhttp3.Call localVarCall = getOptionValidateBeforeCall(productTypeId, attributeFQN, responseFields, _callback);
         Type localVarReturnType = new TypeToken<AttributeInProductType>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
@@ -1971,16 +2043,17 @@ public class ProductTypesApi {
     /**
      * Build call for getOptions
      * @param productTypeId  (required)
+     * @param responseFields limits which fields are returned in the response body (optional)
      * @param _callback Callback for upload/download progress
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call getOptionsCall(Integer productTypeId, final ApiCallback _callback) throws ApiException {
+    public okhttp3.Call getOptionsCall(Integer productTypeId, String responseFields, final ApiCallback _callback) throws ApiException {
         String basePath = null;
         // Operation Servers
         String[] localBasePaths = new String[] {  };
@@ -2006,6 +2079,10 @@ public class ProductTypesApi {
         Map<String, String> localVarCookieParams = new HashMap<String, String>();
         Map<String, Object> localVarFormParams = new HashMap<String, Object>();
 
+        if (responseFields != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("responseFields", responseFields));
+        }
+
         final String[] localVarAccepts = {
             "application/json", "text/json", "text/plain"
         };
@@ -2022,12 +2099,12 @@ public class ProductTypesApi {
             localVarHeaderParams.put("Content-Type", localVarContentType);
         }
 
-        String[] localVarAuthNames = new String[] { "bearerAuth", "clientOauth2" };
+        String[] localVarAuthNames = new String[] { "bearerAuth" };
         return localVarApiClient.buildCall(basePath, localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call getOptionsValidateBeforeCall(Integer productTypeId, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call getOptionsValidateBeforeCall(Integer productTypeId, String responseFields, final ApiCallback _callback) throws ApiException {
         
         // verify the required parameter 'productTypeId' is set
         if (productTypeId == null) {
@@ -2035,62 +2112,65 @@ public class ProductTypesApi {
         }
         
 
-        okhttp3.Call localVarCall = getOptionsCall(productTypeId, _callback);
+        okhttp3.Call localVarCall = getOptionsCall(productTypeId, responseFields, _callback);
         return localVarCall;
 
     }
 
     /**
-     * Get options
+     * Get Product Type Options
      * Get options for the product type.
      * @param productTypeId  (required)
+     * @param responseFields limits which fields are returned in the response body (optional)
      * @return List&lt;AttributeInProductType&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
      </table>
      */
-    public List<AttributeInProductType> getOptions(Integer productTypeId) throws ApiException {
-        ApiResponse<List<AttributeInProductType>> localVarResp = getOptionsWithHttpInfo(productTypeId);
+    public List<AttributeInProductType> getOptions(Integer productTypeId, String responseFields) throws ApiException {
+        ApiResponse<List<AttributeInProductType>> localVarResp = getOptionsWithHttpInfo(productTypeId, responseFields);
         return localVarResp.getData();
     }
 
     /**
-     * Get options
+     * Get Product Type Options
      * Get options for the product type.
      * @param productTypeId  (required)
+     * @param responseFields limits which fields are returned in the response body (optional)
      * @return ApiResponse&lt;List&lt;AttributeInProductType&gt;&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<List<AttributeInProductType>> getOptionsWithHttpInfo(Integer productTypeId) throws ApiException {
-        okhttp3.Call localVarCall = getOptionsValidateBeforeCall(productTypeId, null);
+    public ApiResponse<List<AttributeInProductType>> getOptionsWithHttpInfo(Integer productTypeId, String responseFields) throws ApiException {
+        okhttp3.Call localVarCall = getOptionsValidateBeforeCall(productTypeId, responseFields, null);
         Type localVarReturnType = new TypeToken<List<AttributeInProductType>>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
 
     /**
-     * Get options (asynchronously)
+     * Get Product Type Options (asynchronously)
      * Get options for the product type.
      * @param productTypeId  (required)
+     * @param responseFields limits which fields are returned in the response body (optional)
      * @param _callback The callback to be executed when the API call finishes
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call getOptionsAsync(Integer productTypeId, final ApiCallback<List<AttributeInProductType>> _callback) throws ApiException {
+    public okhttp3.Call getOptionsAsync(Integer productTypeId, String responseFields, final ApiCallback<List<AttributeInProductType>> _callback) throws ApiException {
 
-        okhttp3.Call localVarCall = getOptionsValidateBeforeCall(productTypeId, _callback);
+        okhttp3.Call localVarCall = getOptionsValidateBeforeCall(productTypeId, responseFields, _callback);
         Type localVarReturnType = new TypeToken<List<AttributeInProductType>>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
@@ -2098,16 +2178,17 @@ public class ProductTypesApi {
     /**
      * Build call for getProductType
      * @param productTypeId  (required)
+     * @param responseFields limits which fields are returned in the response body (optional)
      * @param _callback Callback for upload/download progress
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call getProductTypeCall(Integer productTypeId, final ApiCallback _callback) throws ApiException {
+    public okhttp3.Call getProductTypeCall(Integer productTypeId, String responseFields, final ApiCallback _callback) throws ApiException {
         String basePath = null;
         // Operation Servers
         String[] localBasePaths = new String[] {  };
@@ -2133,6 +2214,10 @@ public class ProductTypesApi {
         Map<String, String> localVarCookieParams = new HashMap<String, String>();
         Map<String, Object> localVarFormParams = new HashMap<String, Object>();
 
+        if (responseFields != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("responseFields", responseFields));
+        }
+
         final String[] localVarAccepts = {
             "application/json", "text/json", "text/plain"
         };
@@ -2149,12 +2234,12 @@ public class ProductTypesApi {
             localVarHeaderParams.put("Content-Type", localVarContentType);
         }
 
-        String[] localVarAuthNames = new String[] { "bearerAuth", "clientOauth2" };
+        String[] localVarAuthNames = new String[] { "bearerAuth" };
         return localVarApiClient.buildCall(basePath, localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call getProductTypeValidateBeforeCall(Integer productTypeId, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call getProductTypeValidateBeforeCall(Integer productTypeId, String responseFields, final ApiCallback _callback) throws ApiException {
         
         // verify the required parameter 'productTypeId' is set
         if (productTypeId == null) {
@@ -2162,62 +2247,65 @@ public class ProductTypesApi {
         }
         
 
-        okhttp3.Call localVarCall = getProductTypeCall(productTypeId, _callback);
+        okhttp3.Call localVarCall = getProductTypeCall(productTypeId, responseFields, _callback);
         return localVarCall;
 
     }
 
     /**
-     * Get product type
+     * Get Product Type
      * Get product type by Id.
      * @param productTypeId  (required)
+     * @param responseFields limits which fields are returned in the response body (optional)
      * @return ProductType
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
      </table>
      */
-    public ProductType getProductType(Integer productTypeId) throws ApiException {
-        ApiResponse<ProductType> localVarResp = getProductTypeWithHttpInfo(productTypeId);
+    public ProductType getProductType(Integer productTypeId, String responseFields) throws ApiException {
+        ApiResponse<ProductType> localVarResp = getProductTypeWithHttpInfo(productTypeId, responseFields);
         return localVarResp.getData();
     }
 
     /**
-     * Get product type
+     * Get Product Type
      * Get product type by Id.
      * @param productTypeId  (required)
+     * @param responseFields limits which fields are returned in the response body (optional)
      * @return ApiResponse&lt;ProductType&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<ProductType> getProductTypeWithHttpInfo(Integer productTypeId) throws ApiException {
-        okhttp3.Call localVarCall = getProductTypeValidateBeforeCall(productTypeId, null);
+    public ApiResponse<ProductType> getProductTypeWithHttpInfo(Integer productTypeId, String responseFields) throws ApiException {
+        okhttp3.Call localVarCall = getProductTypeValidateBeforeCall(productTypeId, responseFields, null);
         Type localVarReturnType = new TypeToken<ProductType>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
 
     /**
-     * Get product type (asynchronously)
+     * Get Product Type (asynchronously)
      * Get product type by Id.
      * @param productTypeId  (required)
+     * @param responseFields limits which fields are returned in the response body (optional)
      * @param _callback The callback to be executed when the API call finishes
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call getProductTypeAsync(Integer productTypeId, final ApiCallback<ProductType> _callback) throws ApiException {
+    public okhttp3.Call getProductTypeAsync(Integer productTypeId, String responseFields, final ApiCallback<ProductType> _callback) throws ApiException {
 
-        okhttp3.Call localVarCall = getProductTypeValidateBeforeCall(productTypeId, _callback);
+        okhttp3.Call localVarCall = getProductTypeValidateBeforeCall(productTypeId, responseFields, _callback);
         Type localVarReturnType = new TypeToken<ProductType>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
@@ -2229,16 +2317,17 @@ public class ProductTypesApi {
      * @param sortBy The element to sort the results by and the order in which the results appear. Either ascending or descending order. For example, to sort the results by “ID” ascending then by “CreateDate” descending, use: id asc,createdate desc. (optional)
      * @param filter A set of filter expressions representing the search parameters for a query: eq&#x3D;equals, ne&#x3D;not equals, gt&#x3D;greater than, lt &#x3D; less than or equals, gt &#x3D; greater than or equals, lt &#x3D; less than or equals, sw &#x3D; starts with, or cont &#x3D; contains. Optional. (optional)
      * @param responseGroups Used to get more specific information from the request. For example to get discounts applied to a product use the AppliedProducts response group. Available response groups: ApplicableDiscounts, VariationOptions, and BaseProductCode. (optional)
+     * @param responseFields limits which fields are returned in the response body (optional)
      * @param _callback Callback for upload/download progress
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call getProductTypesCall(Integer startIndex, Integer pageSize, String sortBy, String filter, String responseGroups, final ApiCallback _callback) throws ApiException {
+    public okhttp3.Call getProductTypesCall(Integer startIndex, Integer pageSize, String sortBy, String filter, String responseGroups, String responseFields, final ApiCallback _callback) throws ApiException {
         String basePath = null;
         // Operation Servers
         String[] localBasePaths = new String[] {  };
@@ -2283,6 +2372,10 @@ public class ProductTypesApi {
             localVarQueryParams.addAll(localVarApiClient.parameterToPair("responseGroups", responseGroups));
         }
 
+        if (responseFields != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("responseFields", responseFields));
+        }
+
         final String[] localVarAccepts = {
             "application/json", "text/json", "text/plain"
         };
@@ -2299,82 +2392,85 @@ public class ProductTypesApi {
             localVarHeaderParams.put("Content-Type", localVarContentType);
         }
 
-        String[] localVarAuthNames = new String[] { "bearerAuth", "clientOauth2" };
+        String[] localVarAuthNames = new String[] { "bearerAuth" };
         return localVarApiClient.buildCall(basePath, localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call getProductTypesValidateBeforeCall(Integer startIndex, Integer pageSize, String sortBy, String filter, String responseGroups, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call getProductTypesValidateBeforeCall(Integer startIndex, Integer pageSize, String sortBy, String filter, String responseGroups, String responseFields, final ApiCallback _callback) throws ApiException {
         
 
-        okhttp3.Call localVarCall = getProductTypesCall(startIndex, pageSize, sortBy, filter, responseGroups, _callback);
+        okhttp3.Call localVarCall = getProductTypesCall(startIndex, pageSize, sortBy, filter, responseGroups, responseFields, _callback);
         return localVarCall;
 
     }
 
     /**
-     * Get product types
+     * Get Product Types
      * Retrieves a list of product types according to any specified filter criteria and sort options.
      * @param startIndex Used to page results from a query. Indicates the zero-based offset in the complete result set where the returned entities begin. For example, with a PageSize of 25, to get the 51st through the 75th items, startIndex&#x3D;3. The default value is 0. (optional, default to 0)
      * @param pageSize Used to page results from a query. Indicates the maximum number of entities to return from a single query. The default value is 20 and the maximum value is 200. (optional, default to 0)
      * @param sortBy The element to sort the results by and the order in which the results appear. Either ascending or descending order. For example, to sort the results by “ID” ascending then by “CreateDate” descending, use: id asc,createdate desc. (optional)
      * @param filter A set of filter expressions representing the search parameters for a query: eq&#x3D;equals, ne&#x3D;not equals, gt&#x3D;greater than, lt &#x3D; less than or equals, gt &#x3D; greater than or equals, lt &#x3D; less than or equals, sw &#x3D; starts with, or cont &#x3D; contains. Optional. (optional)
      * @param responseGroups Used to get more specific information from the request. For example to get discounts applied to a product use the AppliedProducts response group. Available response groups: ApplicableDiscounts, VariationOptions, and BaseProductCode. (optional)
+     * @param responseFields limits which fields are returned in the response body (optional)
      * @return ProductTypeCollection
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
      </table>
      */
-    public ProductTypeCollection getProductTypes(Integer startIndex, Integer pageSize, String sortBy, String filter, String responseGroups) throws ApiException {
-        ApiResponse<ProductTypeCollection> localVarResp = getProductTypesWithHttpInfo(startIndex, pageSize, sortBy, filter, responseGroups);
+    public ProductTypeCollection getProductTypes(Integer startIndex, Integer pageSize, String sortBy, String filter, String responseGroups, String responseFields) throws ApiException {
+        ApiResponse<ProductTypeCollection> localVarResp = getProductTypesWithHttpInfo(startIndex, pageSize, sortBy, filter, responseGroups, responseFields);
         return localVarResp.getData();
     }
 
     /**
-     * Get product types
+     * Get Product Types
      * Retrieves a list of product types according to any specified filter criteria and sort options.
      * @param startIndex Used to page results from a query. Indicates the zero-based offset in the complete result set where the returned entities begin. For example, with a PageSize of 25, to get the 51st through the 75th items, startIndex&#x3D;3. The default value is 0. (optional, default to 0)
      * @param pageSize Used to page results from a query. Indicates the maximum number of entities to return from a single query. The default value is 20 and the maximum value is 200. (optional, default to 0)
      * @param sortBy The element to sort the results by and the order in which the results appear. Either ascending or descending order. For example, to sort the results by “ID” ascending then by “CreateDate” descending, use: id asc,createdate desc. (optional)
      * @param filter A set of filter expressions representing the search parameters for a query: eq&#x3D;equals, ne&#x3D;not equals, gt&#x3D;greater than, lt &#x3D; less than or equals, gt &#x3D; greater than or equals, lt &#x3D; less than or equals, sw &#x3D; starts with, or cont &#x3D; contains. Optional. (optional)
      * @param responseGroups Used to get more specific information from the request. For example to get discounts applied to a product use the AppliedProducts response group. Available response groups: ApplicableDiscounts, VariationOptions, and BaseProductCode. (optional)
+     * @param responseFields limits which fields are returned in the response body (optional)
      * @return ApiResponse&lt;ProductTypeCollection&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<ProductTypeCollection> getProductTypesWithHttpInfo(Integer startIndex, Integer pageSize, String sortBy, String filter, String responseGroups) throws ApiException {
-        okhttp3.Call localVarCall = getProductTypesValidateBeforeCall(startIndex, pageSize, sortBy, filter, responseGroups, null);
+    public ApiResponse<ProductTypeCollection> getProductTypesWithHttpInfo(Integer startIndex, Integer pageSize, String sortBy, String filter, String responseGroups, String responseFields) throws ApiException {
+        okhttp3.Call localVarCall = getProductTypesValidateBeforeCall(startIndex, pageSize, sortBy, filter, responseGroups, responseFields, null);
         Type localVarReturnType = new TypeToken<ProductTypeCollection>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
 
     /**
-     * Get product types (asynchronously)
+     * Get Product Types (asynchronously)
      * Retrieves a list of product types according to any specified filter criteria and sort options.
      * @param startIndex Used to page results from a query. Indicates the zero-based offset in the complete result set where the returned entities begin. For example, with a PageSize of 25, to get the 51st through the 75th items, startIndex&#x3D;3. The default value is 0. (optional, default to 0)
      * @param pageSize Used to page results from a query. Indicates the maximum number of entities to return from a single query. The default value is 20 and the maximum value is 200. (optional, default to 0)
      * @param sortBy The element to sort the results by and the order in which the results appear. Either ascending or descending order. For example, to sort the results by “ID” ascending then by “CreateDate” descending, use: id asc,createdate desc. (optional)
      * @param filter A set of filter expressions representing the search parameters for a query: eq&#x3D;equals, ne&#x3D;not equals, gt&#x3D;greater than, lt &#x3D; less than or equals, gt &#x3D; greater than or equals, lt &#x3D; less than or equals, sw &#x3D; starts with, or cont &#x3D; contains. Optional. (optional)
      * @param responseGroups Used to get more specific information from the request. For example to get discounts applied to a product use the AppliedProducts response group. Available response groups: ApplicableDiscounts, VariationOptions, and BaseProductCode. (optional)
+     * @param responseFields limits which fields are returned in the response body (optional)
      * @param _callback The callback to be executed when the API call finishes
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call getProductTypesAsync(Integer startIndex, Integer pageSize, String sortBy, String filter, String responseGroups, final ApiCallback<ProductTypeCollection> _callback) throws ApiException {
+    public okhttp3.Call getProductTypesAsync(Integer startIndex, Integer pageSize, String sortBy, String filter, String responseGroups, String responseFields, final ApiCallback<ProductTypeCollection> _callback) throws ApiException {
 
-        okhttp3.Call localVarCall = getProductTypesValidateBeforeCall(startIndex, pageSize, sortBy, filter, responseGroups, _callback);
+        okhttp3.Call localVarCall = getProductTypesValidateBeforeCall(startIndex, pageSize, sortBy, filter, responseGroups, responseFields, _callback);
         Type localVarReturnType = new TypeToken<ProductTypeCollection>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
@@ -2382,16 +2478,17 @@ public class ProductTypesApi {
     /**
      * Build call for getProperties
      * @param productTypeId  (required)
+     * @param responseFields limits which fields are returned in the response body (optional)
      * @param _callback Callback for upload/download progress
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call getPropertiesCall(Integer productTypeId, final ApiCallback _callback) throws ApiException {
+    public okhttp3.Call getPropertiesCall(Integer productTypeId, String responseFields, final ApiCallback _callback) throws ApiException {
         String basePath = null;
         // Operation Servers
         String[] localBasePaths = new String[] {  };
@@ -2417,6 +2514,10 @@ public class ProductTypesApi {
         Map<String, String> localVarCookieParams = new HashMap<String, String>();
         Map<String, Object> localVarFormParams = new HashMap<String, Object>();
 
+        if (responseFields != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("responseFields", responseFields));
+        }
+
         final String[] localVarAccepts = {
             "application/json", "text/json", "text/plain"
         };
@@ -2433,12 +2534,12 @@ public class ProductTypesApi {
             localVarHeaderParams.put("Content-Type", localVarContentType);
         }
 
-        String[] localVarAuthNames = new String[] { "bearerAuth", "clientOauth2" };
+        String[] localVarAuthNames = new String[] { "bearerAuth" };
         return localVarApiClient.buildCall(basePath, localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call getPropertiesValidateBeforeCall(Integer productTypeId, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call getPropertiesValidateBeforeCall(Integer productTypeId, String responseFields, final ApiCallback _callback) throws ApiException {
         
         // verify the required parameter 'productTypeId' is set
         if (productTypeId == null) {
@@ -2446,62 +2547,65 @@ public class ProductTypesApi {
         }
         
 
-        okhttp3.Call localVarCall = getPropertiesCall(productTypeId, _callback);
+        okhttp3.Call localVarCall = getPropertiesCall(productTypeId, responseFields, _callback);
         return localVarCall;
 
     }
 
     /**
-     * Get product type properties
-     * Get properties.
+     * Get Product Type Properties
+     * Get properties of a product type.
      * @param productTypeId  (required)
+     * @param responseFields limits which fields are returned in the response body (optional)
      * @return List&lt;AttributeInProductType&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
      </table>
      */
-    public List<AttributeInProductType> getProperties(Integer productTypeId) throws ApiException {
-        ApiResponse<List<AttributeInProductType>> localVarResp = getPropertiesWithHttpInfo(productTypeId);
+    public List<AttributeInProductType> getProperties(Integer productTypeId, String responseFields) throws ApiException {
+        ApiResponse<List<AttributeInProductType>> localVarResp = getPropertiesWithHttpInfo(productTypeId, responseFields);
         return localVarResp.getData();
     }
 
     /**
-     * Get product type properties
-     * Get properties.
+     * Get Product Type Properties
+     * Get properties of a product type.
      * @param productTypeId  (required)
+     * @param responseFields limits which fields are returned in the response body (optional)
      * @return ApiResponse&lt;List&lt;AttributeInProductType&gt;&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<List<AttributeInProductType>> getPropertiesWithHttpInfo(Integer productTypeId) throws ApiException {
-        okhttp3.Call localVarCall = getPropertiesValidateBeforeCall(productTypeId, null);
+    public ApiResponse<List<AttributeInProductType>> getPropertiesWithHttpInfo(Integer productTypeId, String responseFields) throws ApiException {
+        okhttp3.Call localVarCall = getPropertiesValidateBeforeCall(productTypeId, responseFields, null);
         Type localVarReturnType = new TypeToken<List<AttributeInProductType>>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
 
     /**
-     * Get product type properties (asynchronously)
-     * Get properties.
+     * Get Product Type Properties (asynchronously)
+     * Get properties of a product type.
      * @param productTypeId  (required)
+     * @param responseFields limits which fields are returned in the response body (optional)
      * @param _callback The callback to be executed when the API call finishes
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call getPropertiesAsync(Integer productTypeId, final ApiCallback<List<AttributeInProductType>> _callback) throws ApiException {
+    public okhttp3.Call getPropertiesAsync(Integer productTypeId, String responseFields, final ApiCallback<List<AttributeInProductType>> _callback) throws ApiException {
 
-        okhttp3.Call localVarCall = getPropertiesValidateBeforeCall(productTypeId, _callback);
+        okhttp3.Call localVarCall = getPropertiesValidateBeforeCall(productTypeId, responseFields, _callback);
         Type localVarReturnType = new TypeToken<List<AttributeInProductType>>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
@@ -2510,16 +2614,17 @@ public class ProductTypesApi {
      * Build call for getProperty
      * @param productTypeId  (required)
      * @param attributeFQN  (required)
+     * @param responseFields limits which fields are returned in the response body (optional)
      * @param _callback Callback for upload/download progress
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call getPropertyCall(Integer productTypeId, String attributeFQN, final ApiCallback _callback) throws ApiException {
+    public okhttp3.Call getPropertyCall(Integer productTypeId, String attributeFQN, String responseFields, final ApiCallback _callback) throws ApiException {
         String basePath = null;
         // Operation Servers
         String[] localBasePaths = new String[] {  };
@@ -2546,6 +2651,10 @@ public class ProductTypesApi {
         Map<String, String> localVarCookieParams = new HashMap<String, String>();
         Map<String, Object> localVarFormParams = new HashMap<String, Object>();
 
+        if (responseFields != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("responseFields", responseFields));
+        }
+
         final String[] localVarAccepts = {
             "application/json", "text/json", "text/plain"
         };
@@ -2562,12 +2671,12 @@ public class ProductTypesApi {
             localVarHeaderParams.put("Content-Type", localVarContentType);
         }
 
-        String[] localVarAuthNames = new String[] { "bearerAuth", "clientOauth2" };
+        String[] localVarAuthNames = new String[] { "bearerAuth" };
         return localVarApiClient.buildCall(basePath, localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call getPropertyValidateBeforeCall(Integer productTypeId, String attributeFQN, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call getPropertyValidateBeforeCall(Integer productTypeId, String attributeFQN, String responseFields, final ApiCallback _callback) throws ApiException {
         
         // verify the required parameter 'productTypeId' is set
         if (productTypeId == null) {
@@ -2580,65 +2689,68 @@ public class ProductTypesApi {
         }
         
 
-        okhttp3.Call localVarCall = getPropertyCall(productTypeId, attributeFQN, _callback);
+        okhttp3.Call localVarCall = getPropertyCall(productTypeId, attributeFQN, responseFields, _callback);
         return localVarCall;
 
     }
 
     /**
-     * Get product type property
-     * Get property.
+     * Get Product Type Property
+     * Get a product type property by its FQN.
      * @param productTypeId  (required)
      * @param attributeFQN  (required)
+     * @param responseFields limits which fields are returned in the response body (optional)
      * @return AttributeInProductType
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
      </table>
      */
-    public AttributeInProductType getProperty(Integer productTypeId, String attributeFQN) throws ApiException {
-        ApiResponse<AttributeInProductType> localVarResp = getPropertyWithHttpInfo(productTypeId, attributeFQN);
+    public AttributeInProductType getProperty(Integer productTypeId, String attributeFQN, String responseFields) throws ApiException {
+        ApiResponse<AttributeInProductType> localVarResp = getPropertyWithHttpInfo(productTypeId, attributeFQN, responseFields);
         return localVarResp.getData();
     }
 
     /**
-     * Get product type property
-     * Get property.
+     * Get Product Type Property
+     * Get a product type property by its FQN.
      * @param productTypeId  (required)
      * @param attributeFQN  (required)
+     * @param responseFields limits which fields are returned in the response body (optional)
      * @return ApiResponse&lt;AttributeInProductType&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<AttributeInProductType> getPropertyWithHttpInfo(Integer productTypeId, String attributeFQN) throws ApiException {
-        okhttp3.Call localVarCall = getPropertyValidateBeforeCall(productTypeId, attributeFQN, null);
+    public ApiResponse<AttributeInProductType> getPropertyWithHttpInfo(Integer productTypeId, String attributeFQN, String responseFields) throws ApiException {
+        okhttp3.Call localVarCall = getPropertyValidateBeforeCall(productTypeId, attributeFQN, responseFields, null);
         Type localVarReturnType = new TypeToken<AttributeInProductType>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
 
     /**
-     * Get product type property (asynchronously)
-     * Get property.
+     * Get Product Type Property (asynchronously)
+     * Get a product type property by its FQN.
      * @param productTypeId  (required)
      * @param attributeFQN  (required)
+     * @param responseFields limits which fields are returned in the response body (optional)
      * @param _callback The callback to be executed when the API call finishes
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call getPropertyAsync(Integer productTypeId, String attributeFQN, final ApiCallback<AttributeInProductType> _callback) throws ApiException {
+    public okhttp3.Call getPropertyAsync(Integer productTypeId, String attributeFQN, String responseFields, final ApiCallback<AttributeInProductType> _callback) throws ApiException {
 
-        okhttp3.Call localVarCall = getPropertyValidateBeforeCall(productTypeId, attributeFQN, _callback);
+        okhttp3.Call localVarCall = getPropertyValidateBeforeCall(productTypeId, attributeFQN, responseFields, _callback);
         Type localVarReturnType = new TypeToken<AttributeInProductType>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
@@ -2646,16 +2758,17 @@ public class ProductTypesApi {
     /**
      * Build call for getVariantProperties
      * @param productTypeId  (required)
+     * @param responseFields limits which fields are returned in the response body (optional)
      * @param _callback Callback for upload/download progress
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call getVariantPropertiesCall(Integer productTypeId, final ApiCallback _callback) throws ApiException {
+    public okhttp3.Call getVariantPropertiesCall(Integer productTypeId, String responseFields, final ApiCallback _callback) throws ApiException {
         String basePath = null;
         // Operation Servers
         String[] localBasePaths = new String[] {  };
@@ -2681,6 +2794,10 @@ public class ProductTypesApi {
         Map<String, String> localVarCookieParams = new HashMap<String, String>();
         Map<String, Object> localVarFormParams = new HashMap<String, Object>();
 
+        if (responseFields != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("responseFields", responseFields));
+        }
+
         final String[] localVarAccepts = {
             "application/json", "text/json", "text/plain"
         };
@@ -2697,12 +2814,12 @@ public class ProductTypesApi {
             localVarHeaderParams.put("Content-Type", localVarContentType);
         }
 
-        String[] localVarAuthNames = new String[] { "bearerAuth", "clientOauth2" };
+        String[] localVarAuthNames = new String[] { "bearerAuth" };
         return localVarApiClient.buildCall(basePath, localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call getVariantPropertiesValidateBeforeCall(Integer productTypeId, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call getVariantPropertiesValidateBeforeCall(Integer productTypeId, String responseFields, final ApiCallback _callback) throws ApiException {
         
         // verify the required parameter 'productTypeId' is set
         if (productTypeId == null) {
@@ -2710,62 +2827,65 @@ public class ProductTypesApi {
         }
         
 
-        okhttp3.Call localVarCall = getVariantPropertiesCall(productTypeId, _callback);
+        okhttp3.Call localVarCall = getVariantPropertiesCall(productTypeId, responseFields, _callback);
         return localVarCall;
 
     }
 
     /**
-     * Get variant properties
-     * Get variant properties.
+     * Get Variant Product Type Properties
+     * Get variant properties for a product type.
      * @param productTypeId  (required)
+     * @param responseFields limits which fields are returned in the response body (optional)
      * @return List&lt;AttributeInProductType&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
      </table>
      */
-    public List<AttributeInProductType> getVariantProperties(Integer productTypeId) throws ApiException {
-        ApiResponse<List<AttributeInProductType>> localVarResp = getVariantPropertiesWithHttpInfo(productTypeId);
+    public List<AttributeInProductType> getVariantProperties(Integer productTypeId, String responseFields) throws ApiException {
+        ApiResponse<List<AttributeInProductType>> localVarResp = getVariantPropertiesWithHttpInfo(productTypeId, responseFields);
         return localVarResp.getData();
     }
 
     /**
-     * Get variant properties
-     * Get variant properties.
+     * Get Variant Product Type Properties
+     * Get variant properties for a product type.
      * @param productTypeId  (required)
+     * @param responseFields limits which fields are returned in the response body (optional)
      * @return ApiResponse&lt;List&lt;AttributeInProductType&gt;&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<List<AttributeInProductType>> getVariantPropertiesWithHttpInfo(Integer productTypeId) throws ApiException {
-        okhttp3.Call localVarCall = getVariantPropertiesValidateBeforeCall(productTypeId, null);
+    public ApiResponse<List<AttributeInProductType>> getVariantPropertiesWithHttpInfo(Integer productTypeId, String responseFields) throws ApiException {
+        okhttp3.Call localVarCall = getVariantPropertiesValidateBeforeCall(productTypeId, responseFields, null);
         Type localVarReturnType = new TypeToken<List<AttributeInProductType>>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
 
     /**
-     * Get variant properties (asynchronously)
-     * Get variant properties.
+     * Get Variant Product Type Properties (asynchronously)
+     * Get variant properties for a product type.
      * @param productTypeId  (required)
+     * @param responseFields limits which fields are returned in the response body (optional)
      * @param _callback The callback to be executed when the API call finishes
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call getVariantPropertiesAsync(Integer productTypeId, final ApiCallback<List<AttributeInProductType>> _callback) throws ApiException {
+    public okhttp3.Call getVariantPropertiesAsync(Integer productTypeId, String responseFields, final ApiCallback<List<AttributeInProductType>> _callback) throws ApiException {
 
-        okhttp3.Call localVarCall = getVariantPropertiesValidateBeforeCall(productTypeId, _callback);
+        okhttp3.Call localVarCall = getVariantPropertiesValidateBeforeCall(productTypeId, responseFields, _callback);
         Type localVarReturnType = new TypeToken<List<AttributeInProductType>>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
@@ -2774,16 +2894,17 @@ public class ProductTypesApi {
      * Build call for getVariantProperty
      * @param productTypeId  (required)
      * @param attributeFQN  (required)
+     * @param responseFields limits which fields are returned in the response body (optional)
      * @param _callback Callback for upload/download progress
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call getVariantPropertyCall(Integer productTypeId, String attributeFQN, final ApiCallback _callback) throws ApiException {
+    public okhttp3.Call getVariantPropertyCall(Integer productTypeId, String attributeFQN, String responseFields, final ApiCallback _callback) throws ApiException {
         String basePath = null;
         // Operation Servers
         String[] localBasePaths = new String[] {  };
@@ -2810,6 +2931,10 @@ public class ProductTypesApi {
         Map<String, String> localVarCookieParams = new HashMap<String, String>();
         Map<String, Object> localVarFormParams = new HashMap<String, Object>();
 
+        if (responseFields != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("responseFields", responseFields));
+        }
+
         final String[] localVarAccepts = {
             "application/json", "text/json", "text/plain"
         };
@@ -2826,12 +2951,12 @@ public class ProductTypesApi {
             localVarHeaderParams.put("Content-Type", localVarContentType);
         }
 
-        String[] localVarAuthNames = new String[] { "bearerAuth", "clientOauth2" };
+        String[] localVarAuthNames = new String[] { "bearerAuth" };
         return localVarApiClient.buildCall(basePath, localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call getVariantPropertyValidateBeforeCall(Integer productTypeId, String attributeFQN, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call getVariantPropertyValidateBeforeCall(Integer productTypeId, String attributeFQN, String responseFields, final ApiCallback _callback) throws ApiException {
         
         // verify the required parameter 'productTypeId' is set
         if (productTypeId == null) {
@@ -2844,65 +2969,68 @@ public class ProductTypesApi {
         }
         
 
-        okhttp3.Call localVarCall = getVariantPropertyCall(productTypeId, attributeFQN, _callback);
+        okhttp3.Call localVarCall = getVariantPropertyCall(productTypeId, attributeFQN, responseFields, _callback);
         return localVarCall;
 
     }
 
     /**
-     * Get variant property
-     * Get variant property.
+     * Get Variant Product Type Property
+     * Get a variant property by its FQN.
      * @param productTypeId  (required)
      * @param attributeFQN  (required)
+     * @param responseFields limits which fields are returned in the response body (optional)
      * @return AttributeInProductType
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
      </table>
      */
-    public AttributeInProductType getVariantProperty(Integer productTypeId, String attributeFQN) throws ApiException {
-        ApiResponse<AttributeInProductType> localVarResp = getVariantPropertyWithHttpInfo(productTypeId, attributeFQN);
+    public AttributeInProductType getVariantProperty(Integer productTypeId, String attributeFQN, String responseFields) throws ApiException {
+        ApiResponse<AttributeInProductType> localVarResp = getVariantPropertyWithHttpInfo(productTypeId, attributeFQN, responseFields);
         return localVarResp.getData();
     }
 
     /**
-     * Get variant property
-     * Get variant property.
+     * Get Variant Product Type Property
+     * Get a variant property by its FQN.
      * @param productTypeId  (required)
      * @param attributeFQN  (required)
+     * @param responseFields limits which fields are returned in the response body (optional)
      * @return ApiResponse&lt;AttributeInProductType&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<AttributeInProductType> getVariantPropertyWithHttpInfo(Integer productTypeId, String attributeFQN) throws ApiException {
-        okhttp3.Call localVarCall = getVariantPropertyValidateBeforeCall(productTypeId, attributeFQN, null);
+    public ApiResponse<AttributeInProductType> getVariantPropertyWithHttpInfo(Integer productTypeId, String attributeFQN, String responseFields) throws ApiException {
+        okhttp3.Call localVarCall = getVariantPropertyValidateBeforeCall(productTypeId, attributeFQN, responseFields, null);
         Type localVarReturnType = new TypeToken<AttributeInProductType>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
 
     /**
-     * Get variant property (asynchronously)
-     * Get variant property.
+     * Get Variant Product Type Property (asynchronously)
+     * Get a variant property by its FQN.
      * @param productTypeId  (required)
      * @param attributeFQN  (required)
+     * @param responseFields limits which fields are returned in the response body (optional)
      * @param _callback The callback to be executed when the API call finishes
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call getVariantPropertyAsync(Integer productTypeId, String attributeFQN, final ApiCallback<AttributeInProductType> _callback) throws ApiException {
+    public okhttp3.Call getVariantPropertyAsync(Integer productTypeId, String attributeFQN, String responseFields, final ApiCallback<AttributeInProductType> _callback) throws ApiException {
 
-        okhttp3.Call localVarCall = getVariantPropertyValidateBeforeCall(productTypeId, attributeFQN, _callback);
+        okhttp3.Call localVarCall = getVariantPropertyValidateBeforeCall(productTypeId, attributeFQN, responseFields, _callback);
         Type localVarReturnType = new TypeToken<AttributeInProductType>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
@@ -2911,6 +3039,7 @@ public class ProductTypesApi {
      * Build call for updateExtra
      * @param productTypeId  (required)
      * @param attributeFQN  (required)
+     * @param responseFields limits which fields are returned in the response body (optional)
      * @param attributeInProductType  (optional)
      * @param _callback Callback for upload/download progress
      * @return Call to execute
@@ -2918,10 +3047,10 @@ public class ProductTypesApi {
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call updateExtraCall(Integer productTypeId, String attributeFQN, AttributeInProductType attributeInProductType, final ApiCallback _callback) throws ApiException {
+    public okhttp3.Call updateExtraCall(Integer productTypeId, String attributeFQN, String responseFields, AttributeInProductType attributeInProductType, final ApiCallback _callback) throws ApiException {
         String basePath = null;
         // Operation Servers
         String[] localBasePaths = new String[] {  };
@@ -2948,6 +3077,10 @@ public class ProductTypesApi {
         Map<String, String> localVarCookieParams = new HashMap<String, String>();
         Map<String, Object> localVarFormParams = new HashMap<String, Object>();
 
+        if (responseFields != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("responseFields", responseFields));
+        }
+
         final String[] localVarAccepts = {
             "application/json", "text/json", "text/plain"
         };
@@ -2964,12 +3097,12 @@ public class ProductTypesApi {
             localVarHeaderParams.put("Content-Type", localVarContentType);
         }
 
-        String[] localVarAuthNames = new String[] { "bearerAuth", "clientOauth2" };
+        String[] localVarAuthNames = new String[] { "bearerAuth" };
         return localVarApiClient.buildCall(basePath, localVarPath, "PUT", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call updateExtraValidateBeforeCall(Integer productTypeId, String attributeFQN, AttributeInProductType attributeInProductType, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call updateExtraValidateBeforeCall(Integer productTypeId, String attributeFQN, String responseFields, AttributeInProductType attributeInProductType, final ApiCallback _callback) throws ApiException {
         
         // verify the required parameter 'productTypeId' is set
         if (productTypeId == null) {
@@ -2982,55 +3115,58 @@ public class ProductTypesApi {
         }
         
 
-        okhttp3.Call localVarCall = updateExtraCall(productTypeId, attributeFQN, attributeInProductType, _callback);
+        okhttp3.Call localVarCall = updateExtraCall(productTypeId, attributeFQN, responseFields, attributeInProductType, _callback);
         return localVarCall;
 
     }
 
     /**
-     * Update extra
-     * Update extra.
+     * Update Product Type Extra
+     * Update a product type extra
      * @param productTypeId  (required)
      * @param attributeFQN  (required)
+     * @param responseFields limits which fields are returned in the response body (optional)
      * @param attributeInProductType  (optional)
      * @return AttributeInProductType
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
      </table>
      */
-    public AttributeInProductType updateExtra(Integer productTypeId, String attributeFQN, AttributeInProductType attributeInProductType) throws ApiException {
-        ApiResponse<AttributeInProductType> localVarResp = updateExtraWithHttpInfo(productTypeId, attributeFQN, attributeInProductType);
+    public AttributeInProductType updateExtra(Integer productTypeId, String attributeFQN, String responseFields, AttributeInProductType attributeInProductType) throws ApiException {
+        ApiResponse<AttributeInProductType> localVarResp = updateExtraWithHttpInfo(productTypeId, attributeFQN, responseFields, attributeInProductType);
         return localVarResp.getData();
     }
 
     /**
-     * Update extra
-     * Update extra.
+     * Update Product Type Extra
+     * Update a product type extra
      * @param productTypeId  (required)
      * @param attributeFQN  (required)
+     * @param responseFields limits which fields are returned in the response body (optional)
      * @param attributeInProductType  (optional)
      * @return ApiResponse&lt;AttributeInProductType&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<AttributeInProductType> updateExtraWithHttpInfo(Integer productTypeId, String attributeFQN, AttributeInProductType attributeInProductType) throws ApiException {
-        okhttp3.Call localVarCall = updateExtraValidateBeforeCall(productTypeId, attributeFQN, attributeInProductType, null);
+    public ApiResponse<AttributeInProductType> updateExtraWithHttpInfo(Integer productTypeId, String attributeFQN, String responseFields, AttributeInProductType attributeInProductType) throws ApiException {
+        okhttp3.Call localVarCall = updateExtraValidateBeforeCall(productTypeId, attributeFQN, responseFields, attributeInProductType, null);
         Type localVarReturnType = new TypeToken<AttributeInProductType>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
 
     /**
-     * Update extra (asynchronously)
-     * Update extra.
+     * Update Product Type Extra (asynchronously)
+     * Update a product type extra
      * @param productTypeId  (required)
      * @param attributeFQN  (required)
+     * @param responseFields limits which fields are returned in the response body (optional)
      * @param attributeInProductType  (optional)
      * @param _callback The callback to be executed when the API call finishes
      * @return The request call
@@ -3038,12 +3174,12 @@ public class ProductTypesApi {
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call updateExtraAsync(Integer productTypeId, String attributeFQN, AttributeInProductType attributeInProductType, final ApiCallback<AttributeInProductType> _callback) throws ApiException {
+    public okhttp3.Call updateExtraAsync(Integer productTypeId, String attributeFQN, String responseFields, AttributeInProductType attributeInProductType, final ApiCallback<AttributeInProductType> _callback) throws ApiException {
 
-        okhttp3.Call localVarCall = updateExtraValidateBeforeCall(productTypeId, attributeFQN, attributeInProductType, _callback);
+        okhttp3.Call localVarCall = updateExtraValidateBeforeCall(productTypeId, attributeFQN, responseFields, attributeInProductType, _callback);
         Type localVarReturnType = new TypeToken<AttributeInProductType>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
@@ -3052,6 +3188,7 @@ public class ProductTypesApi {
      * Build call for updateOption
      * @param productTypeId  (required)
      * @param attributeFQN  (required)
+     * @param responseFields limits which fields are returned in the response body (optional)
      * @param attributeInProductType  (optional)
      * @param _callback Callback for upload/download progress
      * @return Call to execute
@@ -3059,10 +3196,10 @@ public class ProductTypesApi {
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call updateOptionCall(Integer productTypeId, String attributeFQN, AttributeInProductType attributeInProductType, final ApiCallback _callback) throws ApiException {
+    public okhttp3.Call updateOptionCall(Integer productTypeId, String attributeFQN, String responseFields, AttributeInProductType attributeInProductType, final ApiCallback _callback) throws ApiException {
         String basePath = null;
         // Operation Servers
         String[] localBasePaths = new String[] {  };
@@ -3089,6 +3226,10 @@ public class ProductTypesApi {
         Map<String, String> localVarCookieParams = new HashMap<String, String>();
         Map<String, Object> localVarFormParams = new HashMap<String, Object>();
 
+        if (responseFields != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("responseFields", responseFields));
+        }
+
         final String[] localVarAccepts = {
             "application/json", "text/json", "text/plain"
         };
@@ -3105,12 +3246,12 @@ public class ProductTypesApi {
             localVarHeaderParams.put("Content-Type", localVarContentType);
         }
 
-        String[] localVarAuthNames = new String[] { "bearerAuth", "clientOauth2" };
+        String[] localVarAuthNames = new String[] { "bearerAuth" };
         return localVarApiClient.buildCall(basePath, localVarPath, "PUT", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call updateOptionValidateBeforeCall(Integer productTypeId, String attributeFQN, AttributeInProductType attributeInProductType, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call updateOptionValidateBeforeCall(Integer productTypeId, String attributeFQN, String responseFields, AttributeInProductType attributeInProductType, final ApiCallback _callback) throws ApiException {
         
         // verify the required parameter 'productTypeId' is set
         if (productTypeId == null) {
@@ -3123,55 +3264,58 @@ public class ProductTypesApi {
         }
         
 
-        okhttp3.Call localVarCall = updateOptionCall(productTypeId, attributeFQN, attributeInProductType, _callback);
+        okhttp3.Call localVarCall = updateOptionCall(productTypeId, attributeFQN, responseFields, attributeInProductType, _callback);
         return localVarCall;
 
     }
 
     /**
-     * Update option
-     * Update option.
+     * Update Product Type Option
+     * Update a product option type by its FQN.
      * @param productTypeId  (required)
      * @param attributeFQN  (required)
+     * @param responseFields limits which fields are returned in the response body (optional)
      * @param attributeInProductType  (optional)
      * @return AttributeInProductType
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
      </table>
      */
-    public AttributeInProductType updateOption(Integer productTypeId, String attributeFQN, AttributeInProductType attributeInProductType) throws ApiException {
-        ApiResponse<AttributeInProductType> localVarResp = updateOptionWithHttpInfo(productTypeId, attributeFQN, attributeInProductType);
+    public AttributeInProductType updateOption(Integer productTypeId, String attributeFQN, String responseFields, AttributeInProductType attributeInProductType) throws ApiException {
+        ApiResponse<AttributeInProductType> localVarResp = updateOptionWithHttpInfo(productTypeId, attributeFQN, responseFields, attributeInProductType);
         return localVarResp.getData();
     }
 
     /**
-     * Update option
-     * Update option.
+     * Update Product Type Option
+     * Update a product option type by its FQN.
      * @param productTypeId  (required)
      * @param attributeFQN  (required)
+     * @param responseFields limits which fields are returned in the response body (optional)
      * @param attributeInProductType  (optional)
      * @return ApiResponse&lt;AttributeInProductType&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<AttributeInProductType> updateOptionWithHttpInfo(Integer productTypeId, String attributeFQN, AttributeInProductType attributeInProductType) throws ApiException {
-        okhttp3.Call localVarCall = updateOptionValidateBeforeCall(productTypeId, attributeFQN, attributeInProductType, null);
+    public ApiResponse<AttributeInProductType> updateOptionWithHttpInfo(Integer productTypeId, String attributeFQN, String responseFields, AttributeInProductType attributeInProductType) throws ApiException {
+        okhttp3.Call localVarCall = updateOptionValidateBeforeCall(productTypeId, attributeFQN, responseFields, attributeInProductType, null);
         Type localVarReturnType = new TypeToken<AttributeInProductType>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
 
     /**
-     * Update option (asynchronously)
-     * Update option.
+     * Update Product Type Option (asynchronously)
+     * Update a product option type by its FQN.
      * @param productTypeId  (required)
      * @param attributeFQN  (required)
+     * @param responseFields limits which fields are returned in the response body (optional)
      * @param attributeInProductType  (optional)
      * @param _callback The callback to be executed when the API call finishes
      * @return The request call
@@ -3179,12 +3323,12 @@ public class ProductTypesApi {
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call updateOptionAsync(Integer productTypeId, String attributeFQN, AttributeInProductType attributeInProductType, final ApiCallback<AttributeInProductType> _callback) throws ApiException {
+    public okhttp3.Call updateOptionAsync(Integer productTypeId, String attributeFQN, String responseFields, AttributeInProductType attributeInProductType, final ApiCallback<AttributeInProductType> _callback) throws ApiException {
 
-        okhttp3.Call localVarCall = updateOptionValidateBeforeCall(productTypeId, attributeFQN, attributeInProductType, _callback);
+        okhttp3.Call localVarCall = updateOptionValidateBeforeCall(productTypeId, attributeFQN, responseFields, attributeInProductType, _callback);
         Type localVarReturnType = new TypeToken<AttributeInProductType>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
@@ -3192,6 +3336,7 @@ public class ProductTypesApi {
     /**
      * Build call for updateProductType
      * @param productTypeId  (required)
+     * @param responseFields limits which fields are returned in the response body (optional)
      * @param productType  (optional)
      * @param _callback Callback for upload/download progress
      * @return Call to execute
@@ -3199,10 +3344,10 @@ public class ProductTypesApi {
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call updateProductTypeCall(Integer productTypeId, ProductType productType, final ApiCallback _callback) throws ApiException {
+    public okhttp3.Call updateProductTypeCall(Integer productTypeId, String responseFields, ProductType productType, final ApiCallback _callback) throws ApiException {
         String basePath = null;
         // Operation Servers
         String[] localBasePaths = new String[] {  };
@@ -3228,6 +3373,10 @@ public class ProductTypesApi {
         Map<String, String> localVarCookieParams = new HashMap<String, String>();
         Map<String, Object> localVarFormParams = new HashMap<String, Object>();
 
+        if (responseFields != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("responseFields", responseFields));
+        }
+
         final String[] localVarAccepts = {
             "application/json", "text/json", "text/plain"
         };
@@ -3244,12 +3393,12 @@ public class ProductTypesApi {
             localVarHeaderParams.put("Content-Type", localVarContentType);
         }
 
-        String[] localVarAuthNames = new String[] { "bearerAuth", "clientOauth2" };
+        String[] localVarAuthNames = new String[] { "bearerAuth" };
         return localVarApiClient.buildCall(basePath, localVarPath, "PUT", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call updateProductTypeValidateBeforeCall(Integer productTypeId, ProductType productType, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call updateProductTypeValidateBeforeCall(Integer productTypeId, String responseFields, ProductType productType, final ApiCallback _callback) throws ApiException {
         
         // verify the required parameter 'productTypeId' is set
         if (productTypeId == null) {
@@ -3257,52 +3406,55 @@ public class ProductTypesApi {
         }
         
 
-        okhttp3.Call localVarCall = updateProductTypeCall(productTypeId, productType, _callback);
+        okhttp3.Call localVarCall = updateProductTypeCall(productTypeId, responseFields, productType, _callback);
         return localVarCall;
 
     }
 
     /**
-     * Update product type
+     * Update Product Type
      * Update product type.
      * @param productTypeId  (required)
+     * @param responseFields limits which fields are returned in the response body (optional)
      * @param productType  (optional)
      * @return ProductType
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
      </table>
      */
-    public ProductType updateProductType(Integer productTypeId, ProductType productType) throws ApiException {
-        ApiResponse<ProductType> localVarResp = updateProductTypeWithHttpInfo(productTypeId, productType);
+    public ProductType updateProductType(Integer productTypeId, String responseFields, ProductType productType) throws ApiException {
+        ApiResponse<ProductType> localVarResp = updateProductTypeWithHttpInfo(productTypeId, responseFields, productType);
         return localVarResp.getData();
     }
 
     /**
-     * Update product type
+     * Update Product Type
      * Update product type.
      * @param productTypeId  (required)
+     * @param responseFields limits which fields are returned in the response body (optional)
      * @param productType  (optional)
      * @return ApiResponse&lt;ProductType&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<ProductType> updateProductTypeWithHttpInfo(Integer productTypeId, ProductType productType) throws ApiException {
-        okhttp3.Call localVarCall = updateProductTypeValidateBeforeCall(productTypeId, productType, null);
+    public ApiResponse<ProductType> updateProductTypeWithHttpInfo(Integer productTypeId, String responseFields, ProductType productType) throws ApiException {
+        okhttp3.Call localVarCall = updateProductTypeValidateBeforeCall(productTypeId, responseFields, productType, null);
         Type localVarReturnType = new TypeToken<ProductType>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
 
     /**
-     * Update product type (asynchronously)
+     * Update Product Type (asynchronously)
      * Update product type.
      * @param productTypeId  (required)
+     * @param responseFields limits which fields are returned in the response body (optional)
      * @param productType  (optional)
      * @param _callback The callback to be executed when the API call finishes
      * @return The request call
@@ -3310,12 +3462,12 @@ public class ProductTypesApi {
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call updateProductTypeAsync(Integer productTypeId, ProductType productType, final ApiCallback<ProductType> _callback) throws ApiException {
+    public okhttp3.Call updateProductTypeAsync(Integer productTypeId, String responseFields, ProductType productType, final ApiCallback<ProductType> _callback) throws ApiException {
 
-        okhttp3.Call localVarCall = updateProductTypeValidateBeforeCall(productTypeId, productType, _callback);
+        okhttp3.Call localVarCall = updateProductTypeValidateBeforeCall(productTypeId, responseFields, productType, _callback);
         Type localVarReturnType = new TypeToken<ProductType>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
@@ -3324,6 +3476,7 @@ public class ProductTypesApi {
      * Build call for updateProperty
      * @param productTypeId  (required)
      * @param attributeFQN  (required)
+     * @param responseFields limits which fields are returned in the response body (optional)
      * @param attributeInProductType  (optional)
      * @param _callback Callback for upload/download progress
      * @return Call to execute
@@ -3331,10 +3484,10 @@ public class ProductTypesApi {
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call updatePropertyCall(Integer productTypeId, String attributeFQN, AttributeInProductType attributeInProductType, final ApiCallback _callback) throws ApiException {
+    public okhttp3.Call updatePropertyCall(Integer productTypeId, String attributeFQN, String responseFields, AttributeInProductType attributeInProductType, final ApiCallback _callback) throws ApiException {
         String basePath = null;
         // Operation Servers
         String[] localBasePaths = new String[] {  };
@@ -3361,6 +3514,10 @@ public class ProductTypesApi {
         Map<String, String> localVarCookieParams = new HashMap<String, String>();
         Map<String, Object> localVarFormParams = new HashMap<String, Object>();
 
+        if (responseFields != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("responseFields", responseFields));
+        }
+
         final String[] localVarAccepts = {
             "application/json", "text/json", "text/plain"
         };
@@ -3377,12 +3534,12 @@ public class ProductTypesApi {
             localVarHeaderParams.put("Content-Type", localVarContentType);
         }
 
-        String[] localVarAuthNames = new String[] { "bearerAuth", "clientOauth2" };
+        String[] localVarAuthNames = new String[] { "bearerAuth" };
         return localVarApiClient.buildCall(basePath, localVarPath, "PUT", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call updatePropertyValidateBeforeCall(Integer productTypeId, String attributeFQN, AttributeInProductType attributeInProductType, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call updatePropertyValidateBeforeCall(Integer productTypeId, String attributeFQN, String responseFields, AttributeInProductType attributeInProductType, final ApiCallback _callback) throws ApiException {
         
         // verify the required parameter 'productTypeId' is set
         if (productTypeId == null) {
@@ -3395,55 +3552,58 @@ public class ProductTypesApi {
         }
         
 
-        okhttp3.Call localVarCall = updatePropertyCall(productTypeId, attributeFQN, attributeInProductType, _callback);
+        okhttp3.Call localVarCall = updatePropertyCall(productTypeId, attributeFQN, responseFields, attributeInProductType, _callback);
         return localVarCall;
 
     }
 
     /**
-     * Update product type property
-     * Update property.
+     * Update Product Type Property
+     * Update a product type property by its FQN.
      * @param productTypeId  (required)
      * @param attributeFQN  (required)
+     * @param responseFields limits which fields are returned in the response body (optional)
      * @param attributeInProductType  (optional)
      * @return AttributeInProductType
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
      </table>
      */
-    public AttributeInProductType updateProperty(Integer productTypeId, String attributeFQN, AttributeInProductType attributeInProductType) throws ApiException {
-        ApiResponse<AttributeInProductType> localVarResp = updatePropertyWithHttpInfo(productTypeId, attributeFQN, attributeInProductType);
+    public AttributeInProductType updateProperty(Integer productTypeId, String attributeFQN, String responseFields, AttributeInProductType attributeInProductType) throws ApiException {
+        ApiResponse<AttributeInProductType> localVarResp = updatePropertyWithHttpInfo(productTypeId, attributeFQN, responseFields, attributeInProductType);
         return localVarResp.getData();
     }
 
     /**
-     * Update product type property
-     * Update property.
+     * Update Product Type Property
+     * Update a product type property by its FQN.
      * @param productTypeId  (required)
      * @param attributeFQN  (required)
+     * @param responseFields limits which fields are returned in the response body (optional)
      * @param attributeInProductType  (optional)
      * @return ApiResponse&lt;AttributeInProductType&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<AttributeInProductType> updatePropertyWithHttpInfo(Integer productTypeId, String attributeFQN, AttributeInProductType attributeInProductType) throws ApiException {
-        okhttp3.Call localVarCall = updatePropertyValidateBeforeCall(productTypeId, attributeFQN, attributeInProductType, null);
+    public ApiResponse<AttributeInProductType> updatePropertyWithHttpInfo(Integer productTypeId, String attributeFQN, String responseFields, AttributeInProductType attributeInProductType) throws ApiException {
+        okhttp3.Call localVarCall = updatePropertyValidateBeforeCall(productTypeId, attributeFQN, responseFields, attributeInProductType, null);
         Type localVarReturnType = new TypeToken<AttributeInProductType>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
 
     /**
-     * Update product type property (asynchronously)
-     * Update property.
+     * Update Product Type Property (asynchronously)
+     * Update a product type property by its FQN.
      * @param productTypeId  (required)
      * @param attributeFQN  (required)
+     * @param responseFields limits which fields are returned in the response body (optional)
      * @param attributeInProductType  (optional)
      * @param _callback The callback to be executed when the API call finishes
      * @return The request call
@@ -3451,12 +3611,12 @@ public class ProductTypesApi {
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call updatePropertyAsync(Integer productTypeId, String attributeFQN, AttributeInProductType attributeInProductType, final ApiCallback<AttributeInProductType> _callback) throws ApiException {
+    public okhttp3.Call updatePropertyAsync(Integer productTypeId, String attributeFQN, String responseFields, AttributeInProductType attributeInProductType, final ApiCallback<AttributeInProductType> _callback) throws ApiException {
 
-        okhttp3.Call localVarCall = updatePropertyValidateBeforeCall(productTypeId, attributeFQN, attributeInProductType, _callback);
+        okhttp3.Call localVarCall = updatePropertyValidateBeforeCall(productTypeId, attributeFQN, responseFields, attributeInProductType, _callback);
         Type localVarReturnType = new TypeToken<AttributeInProductType>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
@@ -3465,6 +3625,7 @@ public class ProductTypesApi {
      * Build call for updateVariantProperty
      * @param productTypeId  (required)
      * @param attributeFQN  (required)
+     * @param responseFields limits which fields are returned in the response body (optional)
      * @param attributeInProductType  (optional)
      * @param _callback Callback for upload/download progress
      * @return Call to execute
@@ -3472,10 +3633,10 @@ public class ProductTypesApi {
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call updateVariantPropertyCall(Integer productTypeId, String attributeFQN, AttributeInProductType attributeInProductType, final ApiCallback _callback) throws ApiException {
+    public okhttp3.Call updateVariantPropertyCall(Integer productTypeId, String attributeFQN, String responseFields, AttributeInProductType attributeInProductType, final ApiCallback _callback) throws ApiException {
         String basePath = null;
         // Operation Servers
         String[] localBasePaths = new String[] {  };
@@ -3502,6 +3663,10 @@ public class ProductTypesApi {
         Map<String, String> localVarCookieParams = new HashMap<String, String>();
         Map<String, Object> localVarFormParams = new HashMap<String, Object>();
 
+        if (responseFields != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("responseFields", responseFields));
+        }
+
         final String[] localVarAccepts = {
             "application/json", "text/json", "text/plain"
         };
@@ -3518,12 +3683,12 @@ public class ProductTypesApi {
             localVarHeaderParams.put("Content-Type", localVarContentType);
         }
 
-        String[] localVarAuthNames = new String[] { "bearerAuth", "clientOauth2" };
+        String[] localVarAuthNames = new String[] { "bearerAuth" };
         return localVarApiClient.buildCall(basePath, localVarPath, "PUT", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call updateVariantPropertyValidateBeforeCall(Integer productTypeId, String attributeFQN, AttributeInProductType attributeInProductType, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call updateVariantPropertyValidateBeforeCall(Integer productTypeId, String attributeFQN, String responseFields, AttributeInProductType attributeInProductType, final ApiCallback _callback) throws ApiException {
         
         // verify the required parameter 'productTypeId' is set
         if (productTypeId == null) {
@@ -3536,55 +3701,58 @@ public class ProductTypesApi {
         }
         
 
-        okhttp3.Call localVarCall = updateVariantPropertyCall(productTypeId, attributeFQN, attributeInProductType, _callback);
+        okhttp3.Call localVarCall = updateVariantPropertyCall(productTypeId, attributeFQN, responseFields, attributeInProductType, _callback);
         return localVarCall;
 
     }
 
     /**
-     * Update variant property
-     * Update variant property.
+     * Update Variant Product Type Property
+     * Update a variant property by its FQN.
      * @param productTypeId  (required)
      * @param attributeFQN  (required)
+     * @param responseFields limits which fields are returned in the response body (optional)
      * @param attributeInProductType  (optional)
      * @return AttributeInProductType
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
      </table>
      */
-    public AttributeInProductType updateVariantProperty(Integer productTypeId, String attributeFQN, AttributeInProductType attributeInProductType) throws ApiException {
-        ApiResponse<AttributeInProductType> localVarResp = updateVariantPropertyWithHttpInfo(productTypeId, attributeFQN, attributeInProductType);
+    public AttributeInProductType updateVariantProperty(Integer productTypeId, String attributeFQN, String responseFields, AttributeInProductType attributeInProductType) throws ApiException {
+        ApiResponse<AttributeInProductType> localVarResp = updateVariantPropertyWithHttpInfo(productTypeId, attributeFQN, responseFields, attributeInProductType);
         return localVarResp.getData();
     }
 
     /**
-     * Update variant property
-     * Update variant property.
+     * Update Variant Product Type Property
+     * Update a variant property by its FQN.
      * @param productTypeId  (required)
      * @param attributeFQN  (required)
+     * @param responseFields limits which fields are returned in the response body (optional)
      * @param attributeInProductType  (optional)
      * @return ApiResponse&lt;AttributeInProductType&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<AttributeInProductType> updateVariantPropertyWithHttpInfo(Integer productTypeId, String attributeFQN, AttributeInProductType attributeInProductType) throws ApiException {
-        okhttp3.Call localVarCall = updateVariantPropertyValidateBeforeCall(productTypeId, attributeFQN, attributeInProductType, null);
+    public ApiResponse<AttributeInProductType> updateVariantPropertyWithHttpInfo(Integer productTypeId, String attributeFQN, String responseFields, AttributeInProductType attributeInProductType) throws ApiException {
+        okhttp3.Call localVarCall = updateVariantPropertyValidateBeforeCall(productTypeId, attributeFQN, responseFields, attributeInProductType, null);
         Type localVarReturnType = new TypeToken<AttributeInProductType>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
 
     /**
-     * Update variant property (asynchronously)
-     * Update variant property.
+     * Update Variant Product Type Property (asynchronously)
+     * Update a variant property by its FQN.
      * @param productTypeId  (required)
      * @param attributeFQN  (required)
+     * @param responseFields limits which fields are returned in the response body (optional)
      * @param attributeInProductType  (optional)
      * @param _callback The callback to be executed when the API call finishes
      * @return The request call
@@ -3592,12 +3760,12 @@ public class ProductTypesApi {
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call updateVariantPropertyAsync(Integer productTypeId, String attributeFQN, AttributeInProductType attributeInProductType, final ApiCallback<AttributeInProductType> _callback) throws ApiException {
+    public okhttp3.Call updateVariantPropertyAsync(Integer productTypeId, String attributeFQN, String responseFields, AttributeInProductType attributeInProductType, final ApiCallback<AttributeInProductType> _callback) throws ApiException {
 
-        okhttp3.Call localVarCall = updateVariantPropertyValidateBeforeCall(productTypeId, attributeFQN, attributeInProductType, _callback);
+        okhttp3.Call localVarCall = updateVariantPropertyValidateBeforeCall(productTypeId, attributeFQN, responseFields, attributeInProductType, _callback);
         Type localVarReturnType = new TypeToken<AttributeInProductType>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;

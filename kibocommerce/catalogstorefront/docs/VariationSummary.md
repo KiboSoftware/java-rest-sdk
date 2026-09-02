@@ -8,9 +8,10 @@ Details of a product, including its product code, name, description, options (if
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
-|**productCode** | **String** | Merchant-created code associated with the variation product, for example, a SKU. |  [optional] |
-|**options** | [**List&lt;VariationOption&gt;**](VariationOption.md) | The combination of options that resolve to this variation product |  [optional] |
 |**inventoryInfo** | [**CatalogRuntimesProductInventoryInfo**](CatalogRuntimesProductInventoryInfo.md) |  |  [optional] |
+|**options** | [**List&lt;VariationOption&gt;**](VariationOption.md) | The combination of options that resolve to this variation product |  [optional] |
+|**productCode** | **String** | Merchant-created code associated with the variation product, for example, a SKU. |  [optional] |
+|**upc** | **String** | UPC code of the variant product |  [optional] |
 
 
 ## Implemented Interfaces

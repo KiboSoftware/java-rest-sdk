@@ -8,10 +8,10 @@ Spellcheck related results
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
-|**candidateCorrections** | [**List&lt;CandidateCorrection&gt;**](CandidateCorrection.md) |  |  [optional] |
 |**autoCorrected** | **Boolean** |  |  [optional] |
-|**originalQuery** | **String** |  |  [optional] |
+|**candidateCorrections** | [**List&lt;CandidateCorrection&gt;**](CandidateCorrection.md) |  |  [optional] |
 |**correctedQuery** | **String** |  |  [optional] |
+|**originalQuery** | **String** |  |  [optional] |
 
 
 ## Implemented Interfaces

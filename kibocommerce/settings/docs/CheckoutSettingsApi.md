@@ -15,11 +15,11 @@ All URIs are relative to *http://https:/api*
 
 <a name="addThirdPartyPaymentWorkflow"></a>
 # **addThirdPartyPaymentWorkflow**
-> addThirdPartyPaymentWorkflow(externalPaymentWorkflowDefinition)
+> addThirdPartyPaymentWorkflow(responseFields, externalPaymentWorkflowDefinition)
 
 Add Third Party Payment Workflow
 
-Adds a third party payment workflow definition in the context of a site
+Adds a third party payment workflow definition. A third-party payment workflow is a definition of a process by which a third-party payment provider (such as Amazon Payments or PayPal Express) interacts with the Unified eCommerce platform.
 
 ### Example
 ```java
@@ -40,14 +40,11 @@ public class Example {
     HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
     bearerAuth.setBearerToken("BEARER TOKEN");
 
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
-
     CheckoutSettingsApi apiInstance = new CheckoutSettingsApi(defaultClient);
+    String responseFields = "responseFields_example"; // String | limits which fields are returned in the response body
     ExternalPaymentWorkflowDefinition externalPaymentWorkflowDefinition = new ExternalPaymentWorkflowDefinition(); // ExternalPaymentWorkflowDefinition | 
     try {
-      apiInstance.addThirdPartyPaymentWorkflow(externalPaymentWorkflowDefinition);
+      apiInstance.addThirdPartyPaymentWorkflow(responseFields, externalPaymentWorkflowDefinition);
     } catch (ApiException e) {
       System.err.println("Exception when calling CheckoutSettingsApi#addThirdPartyPaymentWorkflow");
       System.err.println("Status code: " + e.getCode());
@@ -63,6 +60,7 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
+| **responseFields** | **String**| limits which fields are returned in the response body | [optional] |
 | **externalPaymentWorkflowDefinition** | [**ExternalPaymentWorkflowDefinition**](ExternalPaymentWorkflowDefinition.md)|  | [optional] |
 
 ### Return type
@@ -71,7 +69,7 @@ null (empty response body)
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth), [clientOauth2](../README.md#clientOauth2)
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
@@ -81,7 +79,7 @@ null (empty response body)
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Success |  -  |
+| **200** | OK |  -  |
 
 <a name="deleteThirdPartyPaymentWorkflow"></a>
 # **deleteThirdPartyPaymentWorkflow**
@@ -110,10 +108,6 @@ public class Example {
     HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
     bearerAuth.setBearerToken("BEARER TOKEN");
 
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
-
     CheckoutSettingsApi apiInstance = new CheckoutSettingsApi(defaultClient);
     String fullyQualifiedName = "fullyQualifiedName_example"; // String | 
     try {
@@ -141,7 +135,7 @@ null (empty response body)
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth), [clientOauth2](../README.md#clientOauth2)
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
@@ -151,15 +145,15 @@ null (empty response body)
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Success |  -  |
+| **200** | OK |  -  |
 
 <a name="getCheckoutSettings"></a>
 # **getCheckoutSettings**
-> CheckoutSettings getCheckoutSettings()
+> CheckoutSettings getCheckoutSettings(responseFields)
 
 Get Checkout Settings
 
-Retrieves all checkout settings defined for the site: Payment settings, such as the payment gateway ID and credentials,   supported credit cards, and more; Customer Checkout settings, such as whether login is required, and any   custom attributes; and Order Processing settings, such as when payment is authorized and captured, and any custom attributes.
+Retrieves all checkout settings defined for the site: Payment settings, such as the payment gateway ID and credentials,supported credit cards,Customer Checkout settings whether login is required and any custom attributes; and Order Processing settings, such as when payment is authorized and captured, and any custom attributes.
 
 ### Example
 ```java
@@ -180,13 +174,10 @@ public class Example {
     HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
     bearerAuth.setBearerToken("BEARER TOKEN");
 
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
-
     CheckoutSettingsApi apiInstance = new CheckoutSettingsApi(defaultClient);
+    String responseFields = "responseFields_example"; // String | limits which fields are returned in the response body
     try {
-      CheckoutSettings result = apiInstance.getCheckoutSettings();
+      CheckoutSettings result = apiInstance.getCheckoutSettings(responseFields);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling CheckoutSettingsApi#getCheckoutSettings");
@@ -200,7 +191,10 @@ public class Example {
 ```
 
 ### Parameters
-This endpoint does not need any parameter.
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **responseFields** | **String**| limits which fields are returned in the response body | [optional] |
 
 ### Return type
 
@@ -208,7 +202,7 @@ This endpoint does not need any parameter.
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth), [clientOauth2](../README.md#clientOauth2)
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
@@ -218,15 +212,15 @@ This endpoint does not need any parameter.
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Success |  -  |
+| **200** | OK |  -  |
 
 <a name="getCustomerCheckoutSettings"></a>
 # **getCustomerCheckoutSettings**
-> CustomerCheckoutSettings getCustomerCheckoutSettings()
+> CustomerCheckoutSettings getCustomerCheckoutSettings(responseFields)
 
 Get Customer Checkout Settings
 
-Retrieves existing customer checkout settings including the checkout type, which determines whether the   customer must be logged in when placing an order. Also lists any custom customer checkout attributes.
+Retrieves existing customer checkout settings including the checkout type, which determines whether the customer must be logged in when placing an order. Also lists any custom customer checkout attributes.
 
 ### Example
 ```java
@@ -247,13 +241,10 @@ public class Example {
     HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
     bearerAuth.setBearerToken("BEARER TOKEN");
 
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
-
     CheckoutSettingsApi apiInstance = new CheckoutSettingsApi(defaultClient);
+    String responseFields = "responseFields_example"; // String | limits which fields are returned in the response body
     try {
-      CustomerCheckoutSettings result = apiInstance.getCustomerCheckoutSettings();
+      CustomerCheckoutSettings result = apiInstance.getCustomerCheckoutSettings(responseFields);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling CheckoutSettingsApi#getCustomerCheckoutSettings");
@@ -267,7 +258,10 @@ public class Example {
 ```
 
 ### Parameters
-This endpoint does not need any parameter.
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **responseFields** | **String**| limits which fields are returned in the response body | [optional] |
 
 ### Return type
 
@@ -275,7 +269,7 @@ This endpoint does not need any parameter.
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth), [clientOauth2](../README.md#clientOauth2)
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
@@ -285,15 +279,15 @@ This endpoint does not need any parameter.
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Success |  -  |
+| **200** | OK |  -  |
 
 <a name="getThirdPartyPaymentWorkflowWithValues"></a>
 # **getThirdPartyPaymentWorkflowWithValues**
-> ExternalPaymentWorkflowDefinition getThirdPartyPaymentWorkflowWithValues(fullyQualifiedName)
+> ExternalPaymentWorkflowDefinition getThirdPartyPaymentWorkflowWithValues(fullyQualifiedName, responseFields)
 
 Get Third Party Payment Workflow With Values
 
-Gets a third party payment workflow specified by workflow definition which includes credential values
+Gets a third party payment workflow specified by workflow definition. A third-party payment workflow is a definition of a process by which a third-party payment provider (such as Amazon Payments or PayPal Express) interacts with the Unified eCommerce platform.
 
 ### Example
 ```java
@@ -314,14 +308,11 @@ public class Example {
     HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
     bearerAuth.setBearerToken("BEARER TOKEN");
 
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
-
     CheckoutSettingsApi apiInstance = new CheckoutSettingsApi(defaultClient);
     String fullyQualifiedName = "fullyQualifiedName_example"; // String | 
+    String responseFields = "responseFields_example"; // String | limits which fields are returned in the response body
     try {
-      ExternalPaymentWorkflowDefinition result = apiInstance.getThirdPartyPaymentWorkflowWithValues(fullyQualifiedName);
+      ExternalPaymentWorkflowDefinition result = apiInstance.getThirdPartyPaymentWorkflowWithValues(fullyQualifiedName, responseFields);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling CheckoutSettingsApi#getThirdPartyPaymentWorkflowWithValues");
@@ -339,6 +330,7 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **fullyQualifiedName** | **String**|  | |
+| **responseFields** | **String**| limits which fields are returned in the response body | [optional] |
 
 ### Return type
 
@@ -346,7 +338,7 @@ public class Example {
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth), [clientOauth2](../README.md#clientOauth2)
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
@@ -356,15 +348,15 @@ public class Example {
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Success |  -  |
+| **200** | OK |  -  |
 
 <a name="getThirdPartyPaymentWorkflows"></a>
 # **getThirdPartyPaymentWorkflows**
-> List&lt;ExternalPaymentWorkflowDefinition&gt; getThirdPartyPaymentWorkflows()
+> List&lt;ExternalPaymentWorkflowDefinition&gt; getThirdPartyPaymentWorkflows(responseFields)
 
 Get Third Party Payment Workflows
 
-Retrieves list of external payment workflow definitions.
+Retrieves list of external payment workflow definitions. A third-party payment workflow is a definition of a process by which a third-party payment provider (such as Amazon Payments or PayPal Express) interacts with the Unified eCommerce platform.
 
 ### Example
 ```java
@@ -385,13 +377,10 @@ public class Example {
     HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
     bearerAuth.setBearerToken("BEARER TOKEN");
 
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
-
     CheckoutSettingsApi apiInstance = new CheckoutSettingsApi(defaultClient);
+    String responseFields = "responseFields_example"; // String | limits which fields are returned in the response body
     try {
-      List<ExternalPaymentWorkflowDefinition> result = apiInstance.getThirdPartyPaymentWorkflows();
+      List<ExternalPaymentWorkflowDefinition> result = apiInstance.getThirdPartyPaymentWorkflows(responseFields);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling CheckoutSettingsApi#getThirdPartyPaymentWorkflows");
@@ -405,7 +394,10 @@ public class Example {
 ```
 
 ### Parameters
-This endpoint does not need any parameter.
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **responseFields** | **String**| limits which fields are returned in the response body | [optional] |
 
 ### Return type
 
@@ -413,7 +405,7 @@ This endpoint does not need any parameter.
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth), [clientOauth2](../README.md#clientOauth2)
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
@@ -423,15 +415,15 @@ This endpoint does not need any parameter.
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Success |  -  |
+| **200** | OK |  -  |
 
 <a name="updateCustomerCheckoutSettings"></a>
 # **updateCustomerCheckoutSettings**
-> CustomerCheckoutSettings updateCustomerCheckoutSettings(customerCheckoutSettings)
+> CustomerCheckoutSettings updateCustomerCheckoutSettings(responseFields, customerCheckoutSettings)
 
 Update Customer Checkout Settings
 
-Modifies existing customer checkout settings. When a shopper starts the process of checking out,   the Checkout Service checks these settings to render the checkout page.   This is where you can specify whether shoppers must be logged in \&quot;LoginRequired\&quot;  or not \&quot;LoginOptional\&quot; to checkout. You can also update your own customer checkout requirements, for example, to add a tracking code.
+Modifies existing customer checkout settings. When a shopper starts the process of checking out,the Checkout Service checks these settings to render the checkout page.This is where you can specify whether shoppers must be logged in &#39;LoginRequired&#39; or not &#39;LoginOptional&#39; to checkout. You can also update your own customer checkout requirements, for example, to add a tracking code.
 
 ### Example
 ```java
@@ -452,14 +444,11 @@ public class Example {
     HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
     bearerAuth.setBearerToken("BEARER TOKEN");
 
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
-
     CheckoutSettingsApi apiInstance = new CheckoutSettingsApi(defaultClient);
+    String responseFields = "responseFields_example"; // String | limits which fields are returned in the response body
     CustomerCheckoutSettings customerCheckoutSettings = new CustomerCheckoutSettings(); // CustomerCheckoutSettings | Properties of the customer checkout settings to update.
     try {
-      CustomerCheckoutSettings result = apiInstance.updateCustomerCheckoutSettings(customerCheckoutSettings);
+      CustomerCheckoutSettings result = apiInstance.updateCustomerCheckoutSettings(responseFields, customerCheckoutSettings);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling CheckoutSettingsApi#updateCustomerCheckoutSettings");
@@ -476,6 +465,7 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
+| **responseFields** | **String**| limits which fields are returned in the response body | [optional] |
 | **customerCheckoutSettings** | [**CustomerCheckoutSettings**](CustomerCheckoutSettings.md)| Properties of the customer checkout settings to update. | [optional] |
 
 ### Return type
@@ -484,7 +474,7 @@ public class Example {
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth), [clientOauth2](../README.md#clientOauth2)
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
@@ -494,5 +484,5 @@ public class Example {
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Success |  -  |
+| **200** | OK |  -  |
 

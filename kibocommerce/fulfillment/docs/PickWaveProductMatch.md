@@ -8,8 +8,8 @@
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
 |**attributes** | **Map&lt;String, Object&gt;** |  |  [optional] |
-|**identifier** | [**IdentifierEnum**](#IdentifierEnum) |  |  |
-|**matchType** | [**MatchTypeEnum**](#MatchTypeEnum) |  |  |
+|**identifier** | [**IdentifierEnum**](#IdentifierEnum) |  |  [optional] |
+|**matchType** | [**MatchTypeEnum**](#MatchTypeEnum) |  |  [optional] |
 |**value** | **String** |  |  [optional] |
 
 
@@ -18,8 +18,8 @@
 
 | Name | Value |
 |---- | -----|
-| PRODUCT_CODE | &quot;PRODUCT_CODE&quot; |
 | UPC | &quot;UPC&quot; |
+| PRODUCT_CODE | &quot;PRODUCT_CODE&quot; |
 
 
 
@@ -27,10 +27,10 @@
 
 | Name | Value |
 |---- | -----|
-| CONTAINS | &quot;CONTAINS&quot; |
-| ENDS_WITH | &quot;ENDS_WITH&quot; |
 | EXACT | &quot;EXACT&quot; |
+| CONTAINS | &quot;CONTAINS&quot; |
 | STARTS_WITH | &quot;STARTS_WITH&quot; |
+| ENDS_WITH | &quot;ENDS_WITH&quot; |
 
 
 ## Implemented Interfaces

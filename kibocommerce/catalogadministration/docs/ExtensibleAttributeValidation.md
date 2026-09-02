@@ -7,13 +7,13 @@
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
-|**regularExpression** | **String** |  |  [optional] |
-|**minStringLength** | **Integer** |  |  [optional] |
-|**maxStringLength** | **Integer** |  |  [optional] |
-|**minNumericValue** | **Double** |  |  [optional] |
-|**maxNumericValue** | **Double** |  |  [optional] |
-|**minDateTime** | **OffsetDateTime** |  |  [optional] |
 |**maxDateTime** | **OffsetDateTime** |  |  [optional] |
+|**maxNumericValue** | **Double** |  |  [optional] |
+|**maxStringLength** | **Integer** |  |  [optional] |
+|**minDateTime** | **OffsetDateTime** |  |  [optional] |
+|**minNumericValue** | **Double** |  |  [optional] |
+|**minStringLength** | **Integer** |  |  [optional] |
+|**regularExpression** | **String** |  |  [optional] |
 
 
 ## Implemented Interfaces

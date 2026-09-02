@@ -8,10 +8,10 @@ Used to group channels together to manage common channel information.
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
-|**tenantId** | **Integer** | Tenant that owns the channel. |  [optional] |
+|**auditInfo** | [**CoreApiContractsAuditInfo**](CoreApiContractsAuditInfo.md) |  |  [optional] |
 |**code** | **String** | Code to uniquely identify the channel. |  [optional] |
 |**name** | **String** | Friendly name of the channel. |  [optional] |
-|**auditInfo** | [**AdminUserAuditInfo**](AdminUserAuditInfo.md) |  |  [optional] |
+|**tenantId** | **Integer** | Tenant that owns the channel. |  [optional] |
 
 
 ## Implemented Interfaces

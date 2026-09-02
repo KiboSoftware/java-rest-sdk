@@ -12,7 +12,7 @@ All URIs are relative to *http://https:/api*
 
 <a name="authenticateApp"></a>
 # **authenticateApp**
-> AuthTicket authenticateApp(appAuthInfo)
+> AuthTicket authenticateApp(responseFields, appAuthInfo)
 
 App Authenticate
 
@@ -24,7 +24,6 @@ Authenticates an application using shared secret and application id. The method 
 import com.kibocommerce.sdk.appdevelopment.ApiClient;
 import com.kibocommerce.sdk.appdevelopment.ApiException;
 import com.kibocommerce.sdk.appdevelopment.Configuration;
-import com.kibocommerce.sdk.appdevelopment.auth.*;
 import com.kibocommerce.sdk.appdevelopment.models.*;
 import com.kibocommerce.sdk.appdevelopment.api.AppAuthTicketsApi;
 
@@ -32,19 +31,12 @@ public class Example {
   public static void main(String[] args) {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
     defaultClient.setBasePath("http://https:/api");
-    
-    // Configure HTTP bearer authorization: bearerAuth
-    HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
-    bearerAuth.setBearerToken("BEARER TOKEN");
-
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
 
     AppAuthTicketsApi apiInstance = new AppAuthTicketsApi(defaultClient);
+    String responseFields = "responseFields_example"; // String | limits which fields are returned in the response body
     AppAuthInfo appAuthInfo = new AppAuthInfo(); // AppAuthInfo | 
     try {
-      AuthTicket result = apiInstance.authenticateApp(appAuthInfo);
+      AuthTicket result = apiInstance.authenticateApp(responseFields, appAuthInfo);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling AppAuthTicketsApi#authenticateApp");
@@ -61,6 +53,7 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
+| **responseFields** | **String**| limits which fields are returned in the response body | [optional] |
 | **appAuthInfo** | [**AppAuthInfo**](AppAuthInfo.md)|  | [optional] |
 
 ### Return type
@@ -69,17 +62,17 @@ public class Example {
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth), [clientOauth2](../README.md#clientOauth2)
+No authorization required
 
 ### HTTP request headers
 
  - **Content-Type**: application/json
- - **Accept**: text/plain, application/json, text/json
+ - **Accept**: application/json, text/json, text/plain
 
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Success |  -  |
+| **200** | OK |  -  |
 
 <a name="deleteAppAuthTicket"></a>
 # **deleteAppAuthTicket**
@@ -87,7 +80,7 @@ public class Example {
 
 Delete App Auth Ticket
 
-This method is used to expire an application&#39;s current refresh token which   will force the application to reauthenticate once the current access token expires.
+This method is used to expire an application&#39;s current refresh token which \\r\\nwill force the application to reauthenticate once the current access token expires.
 
 ### Example
 ```java
@@ -107,10 +100,6 @@ public class Example {
     // Configure HTTP bearer authorization: bearerAuth
     HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
     bearerAuth.setBearerToken("BEARER TOKEN");
-
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
 
     AppAuthTicketsApi apiInstance = new AppAuthTicketsApi(defaultClient);
     String refreshToken = "refreshToken_example"; // String | 
@@ -139,7 +128,7 @@ null (empty response body)
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth), [clientOauth2](../README.md#clientOauth2)
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
@@ -149,15 +138,15 @@ null (empty response body)
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Success |  -  |
+| **200** | OK |  -  |
 
 <a name="oauthAuthenticateApp"></a>
 # **oauthAuthenticateApp**
-> OAuthAccessTokenResponse oauthAuthenticateApp(oauthAuthRequest)
+> OAuthAccessTokenResponse oauthAuthenticateApp(responseFields, oauthAuthRequest)
 
 Oauth Authenticate App
 
-Oauth Authenticate App
+Authenticate an application using OAuth.
 
 ### Example
 ```java
@@ -165,7 +154,6 @@ Oauth Authenticate App
 import com.kibocommerce.sdk.appdevelopment.ApiClient;
 import com.kibocommerce.sdk.appdevelopment.ApiException;
 import com.kibocommerce.sdk.appdevelopment.Configuration;
-import com.kibocommerce.sdk.appdevelopment.auth.*;
 import com.kibocommerce.sdk.appdevelopment.models.*;
 import com.kibocommerce.sdk.appdevelopment.api.AppAuthTicketsApi;
 
@@ -173,19 +161,12 @@ public class Example {
   public static void main(String[] args) {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
     defaultClient.setBasePath("http://https:/api");
-    
-    // Configure HTTP bearer authorization: bearerAuth
-    HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
-    bearerAuth.setBearerToken("BEARER TOKEN");
-
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
 
     AppAuthTicketsApi apiInstance = new AppAuthTicketsApi(defaultClient);
+    String responseFields = "responseFields_example"; // String | limits which fields are returned in the response body
     OauthAuthRequest oauthAuthRequest = new OauthAuthRequest(); // OauthAuthRequest | 
     try {
-      OAuthAccessTokenResponse result = apiInstance.oauthAuthenticateApp(oauthAuthRequest);
+      OAuthAccessTokenResponse result = apiInstance.oauthAuthenticateApp(responseFields, oauthAuthRequest);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling AppAuthTicketsApi#oauthAuthenticateApp");
@@ -202,6 +183,7 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
+| **responseFields** | **String**| limits which fields are returned in the response body | [optional] |
 | **oauthAuthRequest** | [**OauthAuthRequest**](OauthAuthRequest.md)|  | [optional] |
 
 ### Return type
@@ -210,21 +192,21 @@ public class Example {
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth), [clientOauth2](../README.md#clientOauth2)
+No authorization required
 
 ### HTTP request headers
 
  - **Content-Type**: application/json
- - **Accept**: text/plain, application/json, text/json
+ - **Accept**: application/json, text/json, text/plain
 
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Success |  -  |
+| **200** | OK |  -  |
 
 <a name="refreshAppAuthTicket"></a>
 # **refreshAppAuthTicket**
-> AuthTicket refreshAppAuthTicket(authTicketRequest)
+> AuthTicket refreshAppAuthTicket(responseFields, authTicketRequest)
 
 Refresh App Auth Ticket
 
@@ -249,14 +231,11 @@ public class Example {
     HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
     bearerAuth.setBearerToken("BEARER TOKEN");
 
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
-
     AppAuthTicketsApi apiInstance = new AppAuthTicketsApi(defaultClient);
+    String responseFields = "responseFields_example"; // String | limits which fields are returned in the response body
     AuthTicketRequest authTicketRequest = new AuthTicketRequest(); // AuthTicketRequest | 
     try {
-      AuthTicket result = apiInstance.refreshAppAuthTicket(authTicketRequest);
+      AuthTicket result = apiInstance.refreshAppAuthTicket(responseFields, authTicketRequest);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling AppAuthTicketsApi#refreshAppAuthTicket");
@@ -273,6 +252,7 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
+| **responseFields** | **String**| limits which fields are returned in the response body | [optional] |
 | **authTicketRequest** | [**AuthTicketRequest**](AuthTicketRequest.md)|  | [optional] |
 
 ### Return type
@@ -281,15 +261,15 @@ public class Example {
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth), [clientOauth2](../README.md#clientOauth2)
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
  - **Content-Type**: application/json
- - **Accept**: text/plain, application/json, text/json
+ - **Accept**: application/json, text/json, text/plain
 
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Success |  -  |
+| **200** | OK |  -  |
 

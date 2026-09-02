@@ -4,22 +4,22 @@ All URIs are relative to *http://https:/api*
 
 | Method | HTTP request | Description |
 |------------- | ------------- | -------------|
-| [**deleteAlternateContactUsingDELETE**](ShipmentContactApi.md#deleteAlternateContactUsingDELETE) | **DELETE** /commerce/shipments/{shipmentNumber}/alternateContact | Delete Alternate Contact |
-| [**getAlternateContactUsingGET**](ShipmentContactApi.md#getAlternateContactUsingGET) | **GET** /commerce/shipments/{shipmentNumber}/alternateContact | Get Alternate Contact |
-| [**getCustomerContactUsingGET**](ShipmentContactApi.md#getCustomerContactUsingGET) | **GET** /commerce/shipments/{shipmentNumber}/customerContact | Get Customer Contact |
-| [**getDestinationContactUsingGET**](ShipmentContactApi.md#getDestinationContactUsingGET) | **GET** /commerce/shipments/{shipmentNumber}/destinationContact | Get Destination Contact |
-| [**updateAlternateContactUsingPUT**](ShipmentContactApi.md#updateAlternateContactUsingPUT) | **PUT** /commerce/shipments/{shipmentNumber}/alternateContact | Update Alternate Contact |
-| [**updateCustomerContactUsingPUT**](ShipmentContactApi.md#updateCustomerContactUsingPUT) | **PUT** /commerce/shipments/{shipmentNumber}/customerContact | Update Customer Contact |
-| [**updateDestinationContactUsingPUT**](ShipmentContactApi.md#updateDestinationContactUsingPUT) | **PUT** /commerce/shipments/{shipmentNumber}/destinationContact | Update Destination Contact |
+| [**deleteAlternateContact**](ShipmentContactApi.md#deleteAlternateContact) | **DELETE** /commerce/shipments/{shipmentNumber}/alternateContact | deleteAlternateContact |
+| [**getAlternateContact**](ShipmentContactApi.md#getAlternateContact) | **GET** /commerce/shipments/{shipmentNumber}/alternateContact | getAlternateContact |
+| [**getCustomerContact**](ShipmentContactApi.md#getCustomerContact) | **GET** /commerce/shipments/{shipmentNumber}/customerContact | getCustomerContact |
+| [**getDestinationContact**](ShipmentContactApi.md#getDestinationContact) | **GET** /commerce/shipments/{shipmentNumber}/destinationContact | getDestinationContact |
+| [**updateAlternateContact**](ShipmentContactApi.md#updateAlternateContact) | **PUT** /commerce/shipments/{shipmentNumber}/alternateContact | updateAlternateContact |
+| [**updateCustomerContact**](ShipmentContactApi.md#updateCustomerContact) | **PUT** /commerce/shipments/{shipmentNumber}/customerContact | updateCustomerContact |
+| [**updateDestinationContact**](ShipmentContactApi.md#updateDestinationContact) | **PUT** /commerce/shipments/{shipmentNumber}/destinationContact | updateDestinationContact |
 
 
-<a name="deleteAlternateContactUsingDELETE"></a>
-# **deleteAlternateContactUsingDELETE**
-> deleteAlternateContactUsingDELETE(shipmentNumber, ifMatch)
+<a name="deleteAlternateContact"></a>
+# **deleteAlternateContact**
+> deleteAlternateContact(shipmentNumber, ifMatch)
 
-Delete Alternate Contact
+deleteAlternateContact
 
-Delete Alternate Contact
+Delete a shipment&#39;s alternate contact details.
 
 ### Example
 ```java
@@ -27,7 +27,6 @@ Delete Alternate Contact
 import com.kibocommerce.sdk.fulfillment.ApiClient;
 import com.kibocommerce.sdk.fulfillment.ApiException;
 import com.kibocommerce.sdk.fulfillment.Configuration;
-import com.kibocommerce.sdk.fulfillment.auth.*;
 import com.kibocommerce.sdk.fulfillment.models.*;
 import com.kibocommerce.sdk.fulfillment.api.ShipmentContactApi;
 
@@ -35,22 +34,14 @@ public class Example {
   public static void main(String[] args) {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
     defaultClient.setBasePath("http://https:/api");
-    
-    // Configure HTTP bearer authorization: bearerAuth
-    HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
-    bearerAuth.setBearerToken("BEARER TOKEN");
-
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
 
     ShipmentContactApi apiInstance = new ShipmentContactApi(defaultClient);
     Integer shipmentNumber = 56; // Integer | shipmentNumber
     String ifMatch = "ifMatch_example"; // String | If-Match
     try {
-      apiInstance.deleteAlternateContactUsingDELETE(shipmentNumber, ifMatch);
+      apiInstance.deleteAlternateContact(shipmentNumber, ifMatch);
     } catch (ApiException e) {
-      System.err.println("Exception when calling ShipmentContactApi#deleteAlternateContactUsingDELETE");
+      System.err.println("Exception when calling ShipmentContactApi#deleteAlternateContact");
       System.err.println("Status code: " + e.getCode());
       System.err.println("Reason: " + e.getResponseBody());
       System.err.println("Response headers: " + e.getResponseHeaders());
@@ -73,7 +64,7 @@ null (empty response body)
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth), [clientOauth2](../README.md#clientOauth2)
+No authorization required
 
 ### HTTP request headers
 
@@ -83,18 +74,17 @@ null (empty response body)
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **204** | Success |  -  |
+| **204** | No Content |  -  |
 | **401** | Unauthorized |  -  |
 | **403** | Forbidden |  -  |
-| **404** | Not Found |  -  |
 
-<a name="getAlternateContactUsingGET"></a>
-# **getAlternateContactUsingGET**
-> EntityModelOfContact getAlternateContactUsingGET(shipmentNumber)
+<a name="getAlternateContact"></a>
+# **getAlternateContact**
+> EntityModelOfContact getAlternateContact(shipmentNumber)
 
-Get Alternate Contact
+getAlternateContact
 
-Get Alternate Contact
+Get the designated alternate contact for a shipment.
 
 ### Example
 ```java
@@ -102,7 +92,6 @@ Get Alternate Contact
 import com.kibocommerce.sdk.fulfillment.ApiClient;
 import com.kibocommerce.sdk.fulfillment.ApiException;
 import com.kibocommerce.sdk.fulfillment.Configuration;
-import com.kibocommerce.sdk.fulfillment.auth.*;
 import com.kibocommerce.sdk.fulfillment.models.*;
 import com.kibocommerce.sdk.fulfillment.api.ShipmentContactApi;
 
@@ -110,22 +99,14 @@ public class Example {
   public static void main(String[] args) {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
     defaultClient.setBasePath("http://https:/api");
-    
-    // Configure HTTP bearer authorization: bearerAuth
-    HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
-    bearerAuth.setBearerToken("BEARER TOKEN");
-
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
 
     ShipmentContactApi apiInstance = new ShipmentContactApi(defaultClient);
     Integer shipmentNumber = 56; // Integer | shipmentNumber
     try {
-      EntityModelOfContact result = apiInstance.getAlternateContactUsingGET(shipmentNumber);
+      EntityModelOfContact result = apiInstance.getAlternateContact(shipmentNumber);
       System.out.println(result);
     } catch (ApiException e) {
-      System.err.println("Exception when calling ShipmentContactApi#getAlternateContactUsingGET");
+      System.err.println("Exception when calling ShipmentContactApi#getAlternateContact");
       System.err.println("Status code: " + e.getCode());
       System.err.println("Reason: " + e.getResponseBody());
       System.err.println("Response headers: " + e.getResponseHeaders());
@@ -147,28 +128,28 @@ public class Example {
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth), [clientOauth2](../README.md#clientOauth2)
+No authorization required
 
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: application/json, application/xml, application/hal+json
+ - **Accept**: application/hal+json, application/json, application/xml
 
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Success |  -  |
+| **200** | OK |  -  |
 | **401** | Unauthorized |  -  |
 | **403** | Forbidden |  -  |
 | **404** | Not Found |  -  |
 
-<a name="getCustomerContactUsingGET"></a>
-# **getCustomerContactUsingGET**
-> EntityModelOfContact getCustomerContactUsingGET(shipmentNumber)
+<a name="getCustomerContact"></a>
+# **getCustomerContact**
+> EntityModelOfContact getCustomerContact(shipmentNumber)
 
-Get Customer Contact
+getCustomerContact
 
-Get Customer Contact
+Get the customer contact information of a shipment.
 
 ### Example
 ```java
@@ -176,7 +157,6 @@ Get Customer Contact
 import com.kibocommerce.sdk.fulfillment.ApiClient;
 import com.kibocommerce.sdk.fulfillment.ApiException;
 import com.kibocommerce.sdk.fulfillment.Configuration;
-import com.kibocommerce.sdk.fulfillment.auth.*;
 import com.kibocommerce.sdk.fulfillment.models.*;
 import com.kibocommerce.sdk.fulfillment.api.ShipmentContactApi;
 
@@ -184,22 +164,14 @@ public class Example {
   public static void main(String[] args) {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
     defaultClient.setBasePath("http://https:/api");
-    
-    // Configure HTTP bearer authorization: bearerAuth
-    HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
-    bearerAuth.setBearerToken("BEARER TOKEN");
-
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
 
     ShipmentContactApi apiInstance = new ShipmentContactApi(defaultClient);
     Integer shipmentNumber = 56; // Integer | shipmentNumber
     try {
-      EntityModelOfContact result = apiInstance.getCustomerContactUsingGET(shipmentNumber);
+      EntityModelOfContact result = apiInstance.getCustomerContact(shipmentNumber);
       System.out.println(result);
     } catch (ApiException e) {
-      System.err.println("Exception when calling ShipmentContactApi#getCustomerContactUsingGET");
+      System.err.println("Exception when calling ShipmentContactApi#getCustomerContact");
       System.err.println("Status code: " + e.getCode());
       System.err.println("Reason: " + e.getResponseBody());
       System.err.println("Response headers: " + e.getResponseHeaders());
@@ -221,28 +193,28 @@ public class Example {
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth), [clientOauth2](../README.md#clientOauth2)
+No authorization required
 
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: application/json, application/xml, application/hal+json
+ - **Accept**: application/hal+json, application/json, application/xml
 
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Success |  -  |
+| **200** | OK |  -  |
 | **401** | Unauthorized |  -  |
 | **403** | Forbidden |  -  |
 | **404** | Not Found |  -  |
 
-<a name="getDestinationContactUsingGET"></a>
-# **getDestinationContactUsingGET**
-> EntityModelOfContact getDestinationContactUsingGET(shipmentNumber)
+<a name="getDestinationContact"></a>
+# **getDestinationContact**
+> EntityModelOfContact getDestinationContact(shipmentNumber)
 
-Get Destination Contact
+getDestinationContact
 
-Get Destination Contact
+Get the destination contact for a shipment.
 
 ### Example
 ```java
@@ -250,7 +222,6 @@ Get Destination Contact
 import com.kibocommerce.sdk.fulfillment.ApiClient;
 import com.kibocommerce.sdk.fulfillment.ApiException;
 import com.kibocommerce.sdk.fulfillment.Configuration;
-import com.kibocommerce.sdk.fulfillment.auth.*;
 import com.kibocommerce.sdk.fulfillment.models.*;
 import com.kibocommerce.sdk.fulfillment.api.ShipmentContactApi;
 
@@ -258,22 +229,14 @@ public class Example {
   public static void main(String[] args) {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
     defaultClient.setBasePath("http://https:/api");
-    
-    // Configure HTTP bearer authorization: bearerAuth
-    HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
-    bearerAuth.setBearerToken("BEARER TOKEN");
-
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
 
     ShipmentContactApi apiInstance = new ShipmentContactApi(defaultClient);
     Integer shipmentNumber = 56; // Integer | shipmentNumber
     try {
-      EntityModelOfContact result = apiInstance.getDestinationContactUsingGET(shipmentNumber);
+      EntityModelOfContact result = apiInstance.getDestinationContact(shipmentNumber);
       System.out.println(result);
     } catch (ApiException e) {
-      System.err.println("Exception when calling ShipmentContactApi#getDestinationContactUsingGET");
+      System.err.println("Exception when calling ShipmentContactApi#getDestinationContact");
       System.err.println("Status code: " + e.getCode());
       System.err.println("Reason: " + e.getResponseBody());
       System.err.println("Response headers: " + e.getResponseHeaders());
@@ -295,28 +258,28 @@ public class Example {
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth), [clientOauth2](../README.md#clientOauth2)
+No authorization required
 
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: application/json, application/xml, application/hal+json
+ - **Accept**: application/hal+json, application/json, application/xml
 
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Success |  -  |
+| **200** | OK |  -  |
 | **401** | Unauthorized |  -  |
 | **403** | Forbidden |  -  |
 | **404** | Not Found |  -  |
 
-<a name="updateAlternateContactUsingPUT"></a>
-# **updateAlternateContactUsingPUT**
-> EntityModelOfContact updateAlternateContactUsingPUT(shipmentNumber, ifMatch, updateContactRequest)
+<a name="updateAlternateContact"></a>
+# **updateAlternateContact**
+> EntityModelOfContact updateAlternateContact(shipmentNumber, updateContactRequest, ifMatch)
 
-Update Alternate Contact
+updateAlternateContact
 
-Update Alternate Contact
+Update the designated alternate contact of a shipment.
 
 ### Example
 ```java
@@ -324,7 +287,6 @@ Update Alternate Contact
 import com.kibocommerce.sdk.fulfillment.ApiClient;
 import com.kibocommerce.sdk.fulfillment.ApiException;
 import com.kibocommerce.sdk.fulfillment.Configuration;
-import com.kibocommerce.sdk.fulfillment.auth.*;
 import com.kibocommerce.sdk.fulfillment.models.*;
 import com.kibocommerce.sdk.fulfillment.api.ShipmentContactApi;
 
@@ -332,24 +294,16 @@ public class Example {
   public static void main(String[] args) {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
     defaultClient.setBasePath("http://https:/api");
-    
-    // Configure HTTP bearer authorization: bearerAuth
-    HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
-    bearerAuth.setBearerToken("BEARER TOKEN");
-
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
 
     ShipmentContactApi apiInstance = new ShipmentContactApi(defaultClient);
     Integer shipmentNumber = 56; // Integer | shipmentNumber
+    UpdateContactRequest updateContactRequest = new UpdateContactRequest(); // UpdateContactRequest | updateContactRequest
     String ifMatch = "ifMatch_example"; // String | If-Match
-    UpdateContactRequest updateContactRequest = new UpdateContactRequest(); // UpdateContactRequest | 
     try {
-      EntityModelOfContact result = apiInstance.updateAlternateContactUsingPUT(shipmentNumber, ifMatch, updateContactRequest);
+      EntityModelOfContact result = apiInstance.updateAlternateContact(shipmentNumber, updateContactRequest, ifMatch);
       System.out.println(result);
     } catch (ApiException e) {
-      System.err.println("Exception when calling ShipmentContactApi#updateAlternateContactUsingPUT");
+      System.err.println("Exception when calling ShipmentContactApi#updateAlternateContact");
       System.err.println("Status code: " + e.getCode());
       System.err.println("Reason: " + e.getResponseBody());
       System.err.println("Response headers: " + e.getResponseHeaders());
@@ -364,8 +318,8 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **shipmentNumber** | **Integer**| shipmentNumber | |
+| **updateContactRequest** | [**UpdateContactRequest**](UpdateContactRequest.md)| updateContactRequest | |
 | **ifMatch** | **String**| If-Match | [optional] |
-| **updateContactRequest** | [**UpdateContactRequest**](UpdateContactRequest.md)|  | [optional] |
 
 ### Return type
 
@@ -373,30 +327,29 @@ public class Example {
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth), [clientOauth2](../README.md#clientOauth2)
+No authorization required
 
 ### HTTP request headers
 
  - **Content-Type**: application/json
- - **Accept**: application/json, application/xml, application/hal+json
+ - **Accept**: application/hal+json, application/json, application/xml
 
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Success |  -  |
+| **200** | OK |  -  |
 | **201** | Created |  -  |
-| **400** | Invalid Input |  -  |
 | **401** | Unauthorized |  -  |
 | **403** | Forbidden |  -  |
 | **404** | Not Found |  -  |
 
-<a name="updateCustomerContactUsingPUT"></a>
-# **updateCustomerContactUsingPUT**
-> EntityModelOfContact updateCustomerContactUsingPUT(shipmentNumber, ifMatch, updateContactRequest)
+<a name="updateCustomerContact"></a>
+# **updateCustomerContact**
+> EntityModelOfContact updateCustomerContact(shipmentNumber, updateContactRequest, ifMatch)
 
-Update Customer Contact
+updateCustomerContact
 
-Update Customer Contact
+Update the customer contact information of a shipment.
 
 ### Example
 ```java
@@ -404,7 +357,6 @@ Update Customer Contact
 import com.kibocommerce.sdk.fulfillment.ApiClient;
 import com.kibocommerce.sdk.fulfillment.ApiException;
 import com.kibocommerce.sdk.fulfillment.Configuration;
-import com.kibocommerce.sdk.fulfillment.auth.*;
 import com.kibocommerce.sdk.fulfillment.models.*;
 import com.kibocommerce.sdk.fulfillment.api.ShipmentContactApi;
 
@@ -412,24 +364,16 @@ public class Example {
   public static void main(String[] args) {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
     defaultClient.setBasePath("http://https:/api");
-    
-    // Configure HTTP bearer authorization: bearerAuth
-    HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
-    bearerAuth.setBearerToken("BEARER TOKEN");
-
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
 
     ShipmentContactApi apiInstance = new ShipmentContactApi(defaultClient);
     Integer shipmentNumber = 56; // Integer | shipmentNumber
+    UpdateContactRequest updateContactRequest = new UpdateContactRequest(); // UpdateContactRequest | updateContactRequest
     String ifMatch = "ifMatch_example"; // String | If-Match
-    UpdateContactRequest updateContactRequest = new UpdateContactRequest(); // UpdateContactRequest | 
     try {
-      EntityModelOfContact result = apiInstance.updateCustomerContactUsingPUT(shipmentNumber, ifMatch, updateContactRequest);
+      EntityModelOfContact result = apiInstance.updateCustomerContact(shipmentNumber, updateContactRequest, ifMatch);
       System.out.println(result);
     } catch (ApiException e) {
-      System.err.println("Exception when calling ShipmentContactApi#updateCustomerContactUsingPUT");
+      System.err.println("Exception when calling ShipmentContactApi#updateCustomerContact");
       System.err.println("Status code: " + e.getCode());
       System.err.println("Reason: " + e.getResponseBody());
       System.err.println("Response headers: " + e.getResponseHeaders());
@@ -444,8 +388,8 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **shipmentNumber** | **Integer**| shipmentNumber | |
+| **updateContactRequest** | [**UpdateContactRequest**](UpdateContactRequest.md)| updateContactRequest | |
 | **ifMatch** | **String**| If-Match | [optional] |
-| **updateContactRequest** | [**UpdateContactRequest**](UpdateContactRequest.md)|  | [optional] |
 
 ### Return type
 
@@ -453,30 +397,29 @@ public class Example {
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth), [clientOauth2](../README.md#clientOauth2)
+No authorization required
 
 ### HTTP request headers
 
  - **Content-Type**: application/json
- - **Accept**: application/json, application/xml, application/hal+json
+ - **Accept**: application/hal+json, application/json, application/xml
 
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Success |  -  |
+| **200** | OK |  -  |
 | **201** | Created |  -  |
-| **400** | Invalid Input |  -  |
 | **401** | Unauthorized |  -  |
 | **403** | Forbidden |  -  |
 | **404** | Not Found |  -  |
 
-<a name="updateDestinationContactUsingPUT"></a>
-# **updateDestinationContactUsingPUT**
-> EntityModelOfContact updateDestinationContactUsingPUT(shipmentNumber, ifMatch, updateContactRequest)
+<a name="updateDestinationContact"></a>
+# **updateDestinationContact**
+> EntityModelOfContact updateDestinationContact(shipmentNumber, updateContactRequest, ifMatch)
 
-Update Destination Contact
+updateDestinationContact
 
-Update Destination Contact
+Update the destination contact of a shipment.
 
 ### Example
 ```java
@@ -484,7 +427,6 @@ Update Destination Contact
 import com.kibocommerce.sdk.fulfillment.ApiClient;
 import com.kibocommerce.sdk.fulfillment.ApiException;
 import com.kibocommerce.sdk.fulfillment.Configuration;
-import com.kibocommerce.sdk.fulfillment.auth.*;
 import com.kibocommerce.sdk.fulfillment.models.*;
 import com.kibocommerce.sdk.fulfillment.api.ShipmentContactApi;
 
@@ -492,24 +434,16 @@ public class Example {
   public static void main(String[] args) {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
     defaultClient.setBasePath("http://https:/api");
-    
-    // Configure HTTP bearer authorization: bearerAuth
-    HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
-    bearerAuth.setBearerToken("BEARER TOKEN");
-
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
 
     ShipmentContactApi apiInstance = new ShipmentContactApi(defaultClient);
     Integer shipmentNumber = 56; // Integer | shipmentNumber
+    UpdateContactRequest updateContactRequest = new UpdateContactRequest(); // UpdateContactRequest | updateContactRequest
     String ifMatch = "ifMatch_example"; // String | If-Match
-    UpdateContactRequest updateContactRequest = new UpdateContactRequest(); // UpdateContactRequest | 
     try {
-      EntityModelOfContact result = apiInstance.updateDestinationContactUsingPUT(shipmentNumber, ifMatch, updateContactRequest);
+      EntityModelOfContact result = apiInstance.updateDestinationContact(shipmentNumber, updateContactRequest, ifMatch);
       System.out.println(result);
     } catch (ApiException e) {
-      System.err.println("Exception when calling ShipmentContactApi#updateDestinationContactUsingPUT");
+      System.err.println("Exception when calling ShipmentContactApi#updateDestinationContact");
       System.err.println("Status code: " + e.getCode());
       System.err.println("Reason: " + e.getResponseBody());
       System.err.println("Response headers: " + e.getResponseHeaders());
@@ -524,8 +458,8 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **shipmentNumber** | **Integer**| shipmentNumber | |
+| **updateContactRequest** | [**UpdateContactRequest**](UpdateContactRequest.md)| updateContactRequest | |
 | **ifMatch** | **String**| If-Match | [optional] |
-| **updateContactRequest** | [**UpdateContactRequest**](UpdateContactRequest.md)|  | [optional] |
 
 ### Return type
 
@@ -533,19 +467,18 @@ public class Example {
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth), [clientOauth2](../README.md#clientOauth2)
+No authorization required
 
 ### HTTP request headers
 
  - **Content-Type**: application/json
- - **Accept**: application/json, application/xml, application/hal+json
+ - **Accept**: application/hal+json, application/json, application/xml
 
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Success |  -  |
+| **200** | OK |  -  |
 | **201** | Created |  -  |
-| **400** | Invalid Input |  -  |
 | **401** | Unauthorized |  -  |
 | **403** | Forbidden |  -  |
 | **404** | Not Found |  -  |

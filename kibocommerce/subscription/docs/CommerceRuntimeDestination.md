@@ -7,10 +7,10 @@
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
-|**id** | **String** | An identifier for this entry. |  [optional] |
-|**destinationContact** | [**CommerceRuntimeContact**](CommerceRuntimeContact.md) |  |  [optional] |
-|**isDestinationCommercial** | **Boolean** | Indicates that the destination is commercial |  [optional] |
 |**data** | **Object** | Custom data |  [optional] |
+|**destinationContact** | [**CommerceRuntimeContact**](CommerceRuntimeContact.md) |  |  [optional] |
+|**id** | **String** | An identifier for this entry. |  [optional] |
+|**isDestinationCommercial** | **Boolean** | Indicates that the destination is commercial |  [optional] |
 
 
 ## Implemented Interfaces

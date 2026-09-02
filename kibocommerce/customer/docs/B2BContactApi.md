@@ -9,7 +9,7 @@ All URIs are relative to *http://https:/api*
 
 <a name="getB2BContacts"></a>
 # **getB2BContacts**
-> ExtendedCustomerContactCollection getB2BContacts(startIndex, pageSize, sortBy, filter, q, qLimit)
+> ExtendedCustomerContactCollection getB2BContacts(startIndex, pageSize, sortBy, filter, q, qLimit, responseFields)
 
 Get B2B Contacts
 
@@ -34,10 +34,6 @@ public class Example {
     HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
     bearerAuth.setBearerToken("BEARER TOKEN");
 
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
-
     B2BContactApi apiInstance = new B2BContactApi(defaultClient);
     Integer startIndex = 0; // Integer | Used to page results from a query. Indicates the zero-based offset in the complete result set where the returned entities begin. For example, with a PageSize of 25, to get the 51st through the 75th items, startIndex=3. The default value is 0. Optional.
     Integer pageSize = 20; // Integer | Used to page results from a query. Indicates the maximum number of entities to return from a query. The default value is 20 and the maximum value is 200. Optional.
@@ -45,8 +41,9 @@ public class Example {
     String filter = "filter_example"; // String | A set of filter expressions representing the search parameters for a query: eq=equals, ne=not equals, gt=greater than, lt = less than or equals, gt = greater than or equals, lt = less than or equals, sw = starts with, or cont = contains. Optional.
     String q = "q_example"; // String | 
     Integer qLimit = 56; // Integer | 
+    String responseFields = "responseFields_example"; // String | limits which fields are returned in the response body
     try {
-      ExtendedCustomerContactCollection result = apiInstance.getB2BContacts(startIndex, pageSize, sortBy, filter, q, qLimit);
+      ExtendedCustomerContactCollection result = apiInstance.getB2BContacts(startIndex, pageSize, sortBy, filter, q, qLimit, responseFields);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling B2BContactApi#getB2BContacts");
@@ -69,6 +66,7 @@ public class Example {
 | **filter** | **String**| A set of filter expressions representing the search parameters for a query: eq&#x3D;equals, ne&#x3D;not equals, gt&#x3D;greater than, lt &#x3D; less than or equals, gt &#x3D; greater than or equals, lt &#x3D; less than or equals, sw &#x3D; starts with, or cont &#x3D; contains. Optional. | [optional] |
 | **q** | **String**|  | [optional] |
 | **qLimit** | **Integer**|  | [optional] |
+| **responseFields** | **String**| limits which fields are returned in the response body | [optional] |
 
 ### Return type
 
@@ -76,7 +74,7 @@ public class Example {
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth), [clientOauth2](../README.md#clientOauth2)
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
@@ -86,5 +84,5 @@ public class Example {
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Success |  -  |
+| **200** | OK |  -  |
 

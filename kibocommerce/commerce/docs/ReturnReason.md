@@ -8,8 +8,8 @@ Represents a quantity associated with a given reason for a return
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
-|**reason** | **String** | The reason this item has been returned. |  [optional] |
 |**quantity** | **Integer** | The quantity associated with this Reason. |  [optional] |
+|**reason** | **String** | The reason this item has been returned. |  [optional] |
 
 
 ## Implemented Interfaces

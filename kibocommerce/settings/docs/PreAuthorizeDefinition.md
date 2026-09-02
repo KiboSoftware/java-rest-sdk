@@ -8,8 +8,8 @@
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
 |**id** | **Integer** |  |  [optional] |
-|**preAuthorizeTestUrl** | **String** |  |  [optional] |
 |**preAuthorizeProdUrl** | **String** |  |  [optional] |
+|**preAuthorizeTestUrl** | **String** |  |  [optional] |
 |**type** | [**PreAuthorizeTransactionTypeDataContract**](PreAuthorizeTransactionTypeDataContract.md) |  |  [optional] |
 
 

@@ -7,17 +7,19 @@
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
-|**columnDefinitions** | [**List&lt;LocationCriteriaSetDataDefinition&gt;**](LocationCriteriaSetDataDefinition.md) |  |  [optional] |
+|**columnDefinitions** | [**Set&lt;LocationCriteriaSetDataDefinition&gt;**](LocationCriteriaSetDataDefinition.md) |  |  [optional] |
 |**created** | **OffsetDateTime** |  |  [optional] |
 |**creatorUsername** | **String** |  |  [optional] |
-|**environmentID** | **Integer** |  |  [optional] |
-|**fileName** | **String** |  |  [optional] |
+|**environmentID** | **Integer** |  |  |
+|**fileName** | **String** |  |  |
 |**locationCriteriaSetID** | **Integer** |  |  [optional] |
+|**locationCriteriaSetMap** | [**SetMultimapIntegerLocationCriteriaSetRow**](SetMultimapIntegerLocationCriteriaSetRow.md) |  |  [optional] |
+|**locationCriteriaSetRows** | [**SetMultimapIntegerLocationCriteriaSetRow**](SetMultimapIntegerLocationCriteriaSetRow.md) |  |  [optional] |
 |**pathString** | **String** |  |  [optional] |
 |**persisted** | **Boolean** |  |  [optional] |
 |**readyState** | [**ReadyStateEnum**](#ReadyStateEnum) |  |  [optional] |
-|**siteID** | **Integer** |  |  [optional] |
-|**tenantID** | **Integer** |  |  [optional] |
+|**siteID** | **Integer** |  |  |
+|**tenantID** | **Integer** |  |  |
 |**updated** | **OffsetDateTime** |  |  [optional] |
 |**updaterUsername** | **String** |  |  [optional] |
 |**userContext** | [**UserContextInformation**](UserContextInformation.md) |  |  [optional] |

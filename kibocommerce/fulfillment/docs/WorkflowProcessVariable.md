@@ -16,12 +16,12 @@
 
 | Name | Value |
 |---- | -----|
-| BOOLEAN | &quot;BOOLEAN&quot; |
-| INTEGER | &quot;INTEGER&quot; |
-| LIST | &quot;LIST&quot; |
-| NUMBER | &quot;NUMBER&quot; |
-| OBJECT | &quot;OBJECT&quot; |
 | STRING | &quot;STRING&quot; |
+| INTEGER | &quot;INTEGER&quot; |
+| NUMBER | &quot;NUMBER&quot; |
+| BOOLEAN | &quot;BOOLEAN&quot; |
+| OBJECT | &quot;OBJECT&quot; |
+| LIST | &quot;LIST&quot; |
 | UNKNOWN | &quot;UNKNOWN&quot; |
 
 

@@ -7,7 +7,7 @@
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
-|**attributes** | [**List&lt;ApiDocumentationAttribute&gt;**](ApiDocumentationAttribute.md) |  |  [optional] |
+|**attributes** | [**List&lt;OrderRoutingAttribute&gt;**](OrderRoutingAttribute.md) |  |  [optional] |
 |**orderId** | **String** |  |  [optional] |
 |**type** | **String** |  |  [optional] |
 

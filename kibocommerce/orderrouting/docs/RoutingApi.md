@@ -4,20 +4,22 @@ All URIs are relative to *http://https:/api*
 
 | Method | HTTP request | Description |
 |------------- | ------------- | -------------|
-| [**getSampleRequestUsingGET**](RoutingApi.md#getSampleRequestUsingGET) | **GET** /commerce/orders/orderrouting/api/v1/routing/samplerequest | getSampleRequest |
-| [**getSuggestionLogUsingGET**](RoutingApi.md#getSuggestionLogUsingGET) | **GET** /commerce/orders/orderrouting/api/v1/routing/suggestionLog | getSuggestionLog |
-| [**suggestCandidatesUsingPOST**](RoutingApi.md#suggestCandidatesUsingPOST) | **POST** /commerce/orders/orderrouting/api/v1/routing/candidates | suggestCandidates |
-| [**suggestRoutingTestUsingPOST**](RoutingApi.md#suggestRoutingTestUsingPOST) | **POST** /commerce/orders/orderrouting/api/v1/routing/suggestionTest | suggestRoutingTest |
-| [**suggestRoutingUsingPOST**](RoutingApi.md#suggestRoutingUsingPOST) | **POST** /commerce/orders/orderrouting/api/v1/routing/suggestion | suggestRouting |
+| [**getEddCalculationLog1**](RoutingApi.md#getEddCalculationLog1) | **GET** /commerce/orders/orderrouting/api/v1/routing/eddCalculationLog | Get Edd Calculation Log |
+| [**getSampleRequest**](RoutingApi.md#getSampleRequest) | **GET** /commerce/orders/orderrouting/api/v1/routing/samplerequest | Get Sample Request |
+| [**getSuggestionLog2**](RoutingApi.md#getSuggestionLog2) | **GET** /commerce/orders/orderrouting/api/v1/routing/suggestionLog | Get Suggestion Log |
+| [**reverseLogisticsSuggestions**](RoutingApi.md#reverseLogisticsSuggestions) | **POST** /commerce/orders/orderrouting/api/v1/routing/reverseLogisticsSuggestion | Reverse Logistics Suggestions |
+| [**suggestCandidates**](RoutingApi.md#suggestCandidates) | **POST** /commerce/orders/orderrouting/api/v1/routing/candidates | Suggest Candidates |
+| [**suggestRouting**](RoutingApi.md#suggestRouting) | **POST** /commerce/orders/orderrouting/api/v1/routing/suggestion | Suggest Routing |
+| [**suggestRoutingTest**](RoutingApi.md#suggestRoutingTest) | **POST** /commerce/orders/orderrouting/api/v1/routing/suggestionTest | Suggest Routing Test |
 
 
-<a name="getSampleRequestUsingGET"></a>
-# **getSampleRequestUsingGET**
-> SuggestionRequest getSampleRequestUsingGET(xVolSite, xVolTenant)
+<a name="getEddCalculationLog1"></a>
+# **getEddCalculationLog1**
+> List&lt;Object&gt; getEddCalculationLog1(xVolTenant, xVolSite, eddCalculationLogID, orderID, suggestionID)
 
-getSampleRequest
+Get Edd Calculation Log
 
-getSampleRequest
+Get Edd Calculation Log
 
 ### Example
 ```java
@@ -38,18 +40,17 @@ public class Example {
     HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
     bearerAuth.setBearerToken("BEARER TOKEN");
 
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
-
     RoutingApi apiInstance = new RoutingApi(defaultClient);
-    Integer xVolSite = 56; // Integer | 
-    Integer xVolTenant = 56; // Integer | 
+    Integer xVolTenant = 56; // Integer | Tenant
+    Integer xVolSite = 56; // Integer | Site
+    Integer eddCalculationLogID = 56; // Integer | 
+    Integer orderID = 56; // Integer | 
+    Integer suggestionID = 56; // Integer | 
     try {
-      SuggestionRequest result = apiInstance.getSampleRequestUsingGET(xVolSite, xVolTenant);
+      List<Object> result = apiInstance.getEddCalculationLog1(xVolTenant, xVolSite, eddCalculationLogID, orderID, suggestionID);
       System.out.println(result);
     } catch (ApiException e) {
-      System.err.println("Exception when calling RoutingApi#getSampleRequestUsingGET");
+      System.err.println("Exception when calling RoutingApi#getEddCalculationLog1");
       System.err.println("Status code: " + e.getCode());
       System.err.println("Reason: " + e.getResponseBody());
       System.err.println("Response headers: " + e.getResponseHeaders());
@@ -63,8 +64,79 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **xVolSite** | **Integer**|  | |
-| **xVolTenant** | **Integer**|  | |
+| **xVolTenant** | **Integer**| Tenant | |
+| **xVolSite** | **Integer**| Site | |
+| **eddCalculationLogID** | **Integer**|  | [optional] |
+| **orderID** | **Integer**|  | [optional] |
+| **suggestionID** | **Integer**|  | [optional] |
+
+### Return type
+
+**List&lt;Object&gt;**
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json, */*
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | OK |  -  |
+| **400** | Bad Request |  -  |
+| **403** | Forbidden |  -  |
+| **409** | Conflict |  -  |
+| **410** | Gone |  -  |
+| **500** | Internal Server Error |  -  |
+
+<a name="getSampleRequest"></a>
+# **getSampleRequest**
+> SuggestionRequest getSampleRequest()
+
+Get Sample Request
+
+Retrieves a sample request.
+
+### Example
+```java
+// Import classes:
+import com.kibocommerce.sdk.orderrouting.ApiClient;
+import com.kibocommerce.sdk.orderrouting.ApiException;
+import com.kibocommerce.sdk.orderrouting.Configuration;
+import com.kibocommerce.sdk.orderrouting.auth.*;
+import com.kibocommerce.sdk.orderrouting.models.*;
+import com.kibocommerce.sdk.orderrouting.api.RoutingApi;
+
+public class Example {
+  public static void main(String[] args) {
+    ApiClient defaultClient = Configuration.getDefaultApiClient();
+    defaultClient.setBasePath("http://https:/api");
+    
+    // Configure HTTP bearer authorization: bearerAuth
+    HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+    bearerAuth.setBearerToken("BEARER TOKEN");
+
+    RoutingApi apiInstance = new RoutingApi(defaultClient);
+    try {
+      SuggestionRequest result = apiInstance.getSampleRequest();
+      System.out.println(result);
+    } catch (ApiException e) {
+      System.err.println("Exception when calling RoutingApi#getSampleRequest");
+      System.err.println("Status code: " + e.getCode());
+      System.err.println("Reason: " + e.getResponseBody());
+      System.err.println("Response headers: " + e.getResponseHeaders());
+      e.printStackTrace();
+    }
+  }
+}
+```
+
+### Parameters
+This endpoint does not need any parameter.
 
 ### Return type
 
@@ -72,28 +144,30 @@ public class Example {
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth), [clientOauth2](../README.md#clientOauth2)
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: application/json
+ - **Accept**: application/json, */*
 
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | OK |  -  |
-| **401** | Unauthorized |  -  |
+| **400** | Bad Request |  -  |
 | **403** | Forbidden |  -  |
-| **404** | Not Found |  -  |
+| **409** | Conflict |  -  |
+| **410** | Gone |  -  |
+| **500** | Internal Server Error |  -  |
 
-<a name="getSuggestionLogUsingGET"></a>
-# **getSuggestionLogUsingGET**
-> List&lt;SuggestionLog&gt; getSuggestionLogUsingGET(xVolSite, xVolTenant, externalResponseID, orderID, responseID, suggestionID)
+<a name="getSuggestionLog2"></a>
+# **getSuggestionLog2**
+> List&lt;Object&gt; getSuggestionLog2(xVolTenant, xVolSite, orderID, suggestionID, responseID, externalResponseID, returnID, includeReturnLogs)
 
-getSuggestionLog
+Get Suggestion Log
 
-getSuggestionLog
+Retrieves a log of routing suggestions for an order. You can also view suggestion logs through the &lt;a href&#x3D;\&quot;/pages/suggestion-logs-and-debug\&quot;&gt;Order Routing user interface&lt;/a&gt;.
 
 ### Example
 ```java
@@ -114,22 +188,20 @@ public class Example {
     HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
     bearerAuth.setBearerToken("BEARER TOKEN");
 
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
-
     RoutingApi apiInstance = new RoutingApi(defaultClient);
-    Integer xVolSite = 56; // Integer | 
-    Integer xVolTenant = 56; // Integer | 
-    String externalResponseID = "externalResponseID_example"; // String | externalResponseID
-    Integer orderID = 56; // Integer | orderID
-    Integer responseID = 56; // Integer | responseID
-    Integer suggestionID = 56; // Integer | suggestionID
+    Integer xVolTenant = 56; // Integer | Tenant
+    Integer xVolSite = 56; // Integer | Site
+    Integer orderID = 56; // Integer | 
+    Integer suggestionID = 56; // Integer | 
+    Integer responseID = 56; // Integer | 
+    String externalResponseID = "externalResponseID_example"; // String | 
+    Integer returnID = 56; // Integer | 
+    Boolean includeReturnLogs = true; // Boolean | 
     try {
-      List<SuggestionLog> result = apiInstance.getSuggestionLogUsingGET(xVolSite, xVolTenant, externalResponseID, orderID, responseID, suggestionID);
+      List<Object> result = apiInstance.getSuggestionLog2(xVolTenant, xVolSite, orderID, suggestionID, responseID, externalResponseID, returnID, includeReturnLogs);
       System.out.println(result);
     } catch (ApiException e) {
-      System.err.println("Exception when calling RoutingApi#getSuggestionLogUsingGET");
+      System.err.println("Exception when calling RoutingApi#getSuggestionLog2");
       System.err.println("Status code: " + e.getCode());
       System.err.println("Reason: " + e.getResponseBody());
       System.err.println("Response headers: " + e.getResponseHeaders());
@@ -143,41 +215,45 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **xVolSite** | **Integer**|  | |
-| **xVolTenant** | **Integer**|  | |
-| **externalResponseID** | **String**| externalResponseID | [optional] |
-| **orderID** | **Integer**| orderID | [optional] |
-| **responseID** | **Integer**| responseID | [optional] |
-| **suggestionID** | **Integer**| suggestionID | [optional] |
+| **xVolTenant** | **Integer**| Tenant | |
+| **xVolSite** | **Integer**| Site | |
+| **orderID** | **Integer**|  | [optional] |
+| **suggestionID** | **Integer**|  | [optional] |
+| **responseID** | **Integer**|  | [optional] |
+| **externalResponseID** | **String**|  | [optional] |
+| **returnID** | **Integer**|  | [optional] |
+| **includeReturnLogs** | **Boolean**|  | [optional] |
 
 ### Return type
 
-[**List&lt;SuggestionLog&gt;**](SuggestionLog.md)
+**List&lt;Object&gt;**
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth), [clientOauth2](../README.md#clientOauth2)
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: application/json
+ - **Accept**: application/json, */*
 
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | OK |  -  |
-| **401** | Unauthorized |  -  |
+| **400** | Bad Request |  -  |
 | **403** | Forbidden |  -  |
-| **404** | Not Found |  -  |
+| **409** | Conflict |  -  |
+| **410** | Gone |  -  |
+| **500** | Internal Server Error |  -  |
 
-<a name="suggestCandidatesUsingPOST"></a>
-# **suggestCandidatesUsingPOST**
-> CandidateSuggestionsResponse suggestCandidatesUsingPOST(xVolSite, xVolTenant, request)
+<a name="reverseLogisticsSuggestions"></a>
+# **reverseLogisticsSuggestions**
+> ReverseLogisticsSuggestionResponse reverseLogisticsSuggestions(xVolTenant, xVolSite, returnSuggestionRequest, returnSuggestionLog)
 
-suggestCandidates
+Reverse Logistics Suggestions
 
-suggestCandidates
+Reverse Logistics Suggestions
 
 ### Example
 ```java
@@ -198,19 +274,16 @@ public class Example {
     HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
     bearerAuth.setBearerToken("BEARER TOKEN");
 
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
-
     RoutingApi apiInstance = new RoutingApi(defaultClient);
-    Integer xVolSite = 56; // Integer | 
-    Integer xVolTenant = 56; // Integer | 
-    CandidateSuggestionsRequest request = new CandidateSuggestionsRequest(); // CandidateSuggestionsRequest | request
+    Integer xVolTenant = 56; // Integer | Tenant
+    Integer xVolSite = 56; // Integer | Site
+    ReturnSuggestionRequest returnSuggestionRequest = new ReturnSuggestionRequest(); // ReturnSuggestionRequest | 
+    Boolean returnSuggestionLog = false; // Boolean | 
     try {
-      CandidateSuggestionsResponse result = apiInstance.suggestCandidatesUsingPOST(xVolSite, xVolTenant, request);
+      ReverseLogisticsSuggestionResponse result = apiInstance.reverseLogisticsSuggestions(xVolTenant, xVolSite, returnSuggestionRequest, returnSuggestionLog);
       System.out.println(result);
     } catch (ApiException e) {
-      System.err.println("Exception when calling RoutingApi#suggestCandidatesUsingPOST");
+      System.err.println("Exception when calling RoutingApi#reverseLogisticsSuggestions");
       System.err.println("Status code: " + e.getCode());
       System.err.println("Reason: " + e.getResponseBody());
       System.err.println("Response headers: " + e.getResponseHeaders());
@@ -224,9 +297,82 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **xVolSite** | **Integer**|  | |
-| **xVolTenant** | **Integer**|  | |
-| **request** | [**CandidateSuggestionsRequest**](CandidateSuggestionsRequest.md)| request | |
+| **xVolTenant** | **Integer**| Tenant | |
+| **xVolSite** | **Integer**| Site | |
+| **returnSuggestionRequest** | [**ReturnSuggestionRequest**](ReturnSuggestionRequest.md)|  | |
+| **returnSuggestionLog** | **Boolean**|  | [optional] [default to false] |
+
+### Return type
+
+[**ReverseLogisticsSuggestionResponse**](ReverseLogisticsSuggestionResponse.md)
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json, */*
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | OK |  -  |
+| **400** | Bad Request |  -  |
+| **403** | Forbidden |  -  |
+| **409** | Conflict |  -  |
+| **410** | Gone |  -  |
+| **500** | Internal Server Error |  -  |
+
+<a name="suggestCandidates"></a>
+# **suggestCandidates**
+> CandidateSuggestionsResponse suggestCandidates(candidateSuggestionsRequest)
+
+Suggest Candidates
+
+Suggests the routing candidates for an order.
+
+### Example
+```java
+// Import classes:
+import com.kibocommerce.sdk.orderrouting.ApiClient;
+import com.kibocommerce.sdk.orderrouting.ApiException;
+import com.kibocommerce.sdk.orderrouting.Configuration;
+import com.kibocommerce.sdk.orderrouting.auth.*;
+import com.kibocommerce.sdk.orderrouting.models.*;
+import com.kibocommerce.sdk.orderrouting.api.RoutingApi;
+
+public class Example {
+  public static void main(String[] args) {
+    ApiClient defaultClient = Configuration.getDefaultApiClient();
+    defaultClient.setBasePath("http://https:/api");
+    
+    // Configure HTTP bearer authorization: bearerAuth
+    HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+    bearerAuth.setBearerToken("BEARER TOKEN");
+
+    RoutingApi apiInstance = new RoutingApi(defaultClient);
+    CandidateSuggestionsRequest candidateSuggestionsRequest = new CandidateSuggestionsRequest(); // CandidateSuggestionsRequest | 
+    try {
+      CandidateSuggestionsResponse result = apiInstance.suggestCandidates(candidateSuggestionsRequest);
+      System.out.println(result);
+    } catch (ApiException e) {
+      System.err.println("Exception when calling RoutingApi#suggestCandidates");
+      System.err.println("Status code: " + e.getCode());
+      System.err.println("Reason: " + e.getResponseBody());
+      System.err.println("Response headers: " + e.getResponseHeaders());
+      e.printStackTrace();
+    }
+  }
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **candidateSuggestionsRequest** | [**CandidateSuggestionsRequest**](CandidateSuggestionsRequest.md)|  | |
 
 ### Return type
 
@@ -234,29 +380,30 @@ public class Example {
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth), [clientOauth2](../README.md#clientOauth2)
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
  - **Content-Type**: application/json
- - **Accept**: application/json
+ - **Accept**: application/json, */*
 
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | OK |  -  |
-| **201** | Created |  -  |
-| **401** | Unauthorized |  -  |
+| **400** | Bad Request |  -  |
 | **403** | Forbidden |  -  |
-| **404** | Not Found |  -  |
+| **409** | Conflict |  -  |
+| **410** | Gone |  -  |
+| **500** | Internal Server Error |  -  |
 
-<a name="suggestRoutingTestUsingPOST"></a>
-# **suggestRoutingTestUsingPOST**
-> SuggestionResponse suggestRoutingTestUsingPOST(xVolSite, xVolTenant, request, returnSuggestionLog)
+<a name="suggestRouting"></a>
+# **suggestRouting**
+> SuggestionResponse suggestRouting(xVolTenant, xVolSite, suggestionRequest, returnSuggestionLog)
 
-suggestRoutingTest
+Suggest Routing
 
-suggestRoutingTest
+Suggests the routing assignment for an order.
 
 ### Example
 ```java
@@ -277,20 +424,16 @@ public class Example {
     HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
     bearerAuth.setBearerToken("BEARER TOKEN");
 
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
-
     RoutingApi apiInstance = new RoutingApi(defaultClient);
-    Integer xVolSite = 56; // Integer | 
-    Integer xVolTenant = 56; // Integer | 
-    SuggestionTestRequest request = new SuggestionTestRequest(); // SuggestionTestRequest | request
-    Boolean returnSuggestionLog = true; // Boolean | returnSuggestionLog
+    Integer xVolTenant = 56; // Integer | Tenant
+    Integer xVolSite = 56; // Integer | Site
+    SuggestionRequest suggestionRequest = new SuggestionRequest(); // SuggestionRequest | 
+    Boolean returnSuggestionLog = false; // Boolean | 
     try {
-      SuggestionResponse result = apiInstance.suggestRoutingTestUsingPOST(xVolSite, xVolTenant, request, returnSuggestionLog);
+      SuggestionResponse result = apiInstance.suggestRouting(xVolTenant, xVolSite, suggestionRequest, returnSuggestionLog);
       System.out.println(result);
     } catch (ApiException e) {
-      System.err.println("Exception when calling RoutingApi#suggestRoutingTestUsingPOST");
+      System.err.println("Exception when calling RoutingApi#suggestRouting");
       System.err.println("Status code: " + e.getCode());
       System.err.println("Reason: " + e.getResponseBody());
       System.err.println("Response headers: " + e.getResponseHeaders());
@@ -304,10 +447,10 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **xVolSite** | **Integer**|  | |
-| **xVolTenant** | **Integer**|  | |
-| **request** | [**SuggestionTestRequest**](SuggestionTestRequest.md)| request | |
-| **returnSuggestionLog** | **Boolean**| returnSuggestionLog | [optional] [default to true] |
+| **xVolTenant** | **Integer**| Tenant | |
+| **xVolSite** | **Integer**| Site | |
+| **suggestionRequest** | [**SuggestionRequest**](SuggestionRequest.md)|  | |
+| **returnSuggestionLog** | **Boolean**|  | [optional] [default to false] |
 
 ### Return type
 
@@ -315,29 +458,30 @@ public class Example {
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth), [clientOauth2](../README.md#clientOauth2)
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
  - **Content-Type**: application/json
- - **Accept**: application/json
+ - **Accept**: application/json, */*
 
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | OK |  -  |
-| **201** | Created |  -  |
-| **401** | Unauthorized |  -  |
+| **400** | Bad Request |  -  |
 | **403** | Forbidden |  -  |
-| **404** | Not Found |  -  |
+| **409** | Conflict |  -  |
+| **410** | Gone |  -  |
+| **500** | Internal Server Error |  -  |
 
-<a name="suggestRoutingUsingPOST"></a>
-# **suggestRoutingUsingPOST**
-> SuggestionResponse suggestRoutingUsingPOST(xVolSite, xVolTenant, request, returnSuggestionLog)
+<a name="suggestRoutingTest"></a>
+# **suggestRoutingTest**
+> SuggestionResponse suggestRoutingTest(xVolTenant, xVolSite, suggestionTestRequest, returnSuggestionLog)
 
-suggestRouting
+Suggest Routing Test
 
-suggestRouting
+Tests the routing suggestion logic.
 
 ### Example
 ```java
@@ -358,20 +502,16 @@ public class Example {
     HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
     bearerAuth.setBearerToken("BEARER TOKEN");
 
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
-
     RoutingApi apiInstance = new RoutingApi(defaultClient);
-    Integer xVolSite = 56; // Integer | 
-    Integer xVolTenant = 56; // Integer | 
-    SuggestionRequest request = new SuggestionRequest(); // SuggestionRequest | request
-    Boolean returnSuggestionLog = false; // Boolean | returnSuggestionLog
+    Integer xVolTenant = 56; // Integer | Tenant
+    Integer xVolSite = 56; // Integer | Site
+    SuggestionTestRequest suggestionTestRequest = new SuggestionTestRequest(); // SuggestionTestRequest | 
+    Boolean returnSuggestionLog = true; // Boolean | 
     try {
-      SuggestionResponse result = apiInstance.suggestRoutingUsingPOST(xVolSite, xVolTenant, request, returnSuggestionLog);
+      SuggestionResponse result = apiInstance.suggestRoutingTest(xVolTenant, xVolSite, suggestionTestRequest, returnSuggestionLog);
       System.out.println(result);
     } catch (ApiException e) {
-      System.err.println("Exception when calling RoutingApi#suggestRoutingUsingPOST");
+      System.err.println("Exception when calling RoutingApi#suggestRoutingTest");
       System.err.println("Status code: " + e.getCode());
       System.err.println("Reason: " + e.getResponseBody());
       System.err.println("Response headers: " + e.getResponseHeaders());
@@ -385,10 +525,10 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **xVolSite** | **Integer**|  | |
-| **xVolTenant** | **Integer**|  | |
-| **request** | [**SuggestionRequest**](SuggestionRequest.md)| request | |
-| **returnSuggestionLog** | **Boolean**| returnSuggestionLog | [optional] [default to false] |
+| **xVolTenant** | **Integer**| Tenant | |
+| **xVolSite** | **Integer**| Site | |
+| **suggestionTestRequest** | [**SuggestionTestRequest**](SuggestionTestRequest.md)|  | |
+| **returnSuggestionLog** | **Boolean**|  | [optional] [default to true] |
 
 ### Return type
 
@@ -396,19 +536,20 @@ public class Example {
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth), [clientOauth2](../README.md#clientOauth2)
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
  - **Content-Type**: application/json
- - **Accept**: application/json
+ - **Accept**: application/json, */*
 
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | OK |  -  |
-| **201** | Created |  -  |
-| **401** | Unauthorized |  -  |
+| **400** | Bad Request |  -  |
 | **403** | Forbidden |  -  |
-| **404** | Not Found |  -  |
+| **409** | Conflict |  -  |
+| **410** | Gone |  -  |
+| **500** | Internal Server Error |  -  |
 

@@ -7,9 +7,9 @@
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
-|**type** | **String** |  |  [optional] |
 |**friendlyName** | **String** |  |  [optional] |
 |**paymentType** | **String** |  |  [optional] |
+|**type** | **String** |  |  [optional] |
 
 
 ## Implemented Interfaces

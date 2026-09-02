@@ -7,8 +7,10 @@
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
-|**isEnabled** | **Boolean** |  |  [optional] |
 |**interval** | **Integer** |  |  [optional] |
+|**isEnabled** | **Boolean** |  |  [optional] |
+|**partialReleaseEnabled** | **Boolean** |  |  [optional] |
+|**partialReleaseType** | **String** |  |  [optional] |
 
 
 ## Implemented Interfaces

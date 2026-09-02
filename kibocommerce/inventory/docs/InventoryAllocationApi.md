@@ -12,7 +12,7 @@ All URIs are relative to *http://https:/api*
 
 <a name="allocateInventory"></a>
 # **allocateInventory**
-> JobQueueResponse allocateInventory(xVolTenant, allocateInventoryRequest)
+> JobQueueResponse allocateInventory(allocateInventoryRequest)
 
 Allocate Inventory
 
@@ -24,7 +24,6 @@ Allocates inventory based on the given request
 import com.kibocommerce.sdk.inventory.ApiClient;
 import com.kibocommerce.sdk.inventory.ApiException;
 import com.kibocommerce.sdk.inventory.Configuration;
-import com.kibocommerce.sdk.inventory.auth.*;
 import com.kibocommerce.sdk.inventory.models.*;
 import com.kibocommerce.sdk.inventory.api.InventoryAllocationApi;
 
@@ -32,20 +31,11 @@ public class Example {
   public static void main(String[] args) {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
     defaultClient.setBasePath("http://https:/api");
-    
-    // Configure HTTP bearer authorization: bearerAuth
-    HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
-    bearerAuth.setBearerToken("BEARER TOKEN");
-
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
 
     InventoryAllocationApi apiInstance = new InventoryAllocationApi(defaultClient);
-    Integer xVolTenant = 56; // Integer | Tenant ID
     AllocateInventoryRequest allocateInventoryRequest = new AllocateInventoryRequest(); // AllocateInventoryRequest | Request to allocate inventory
     try {
-      JobQueueResponse result = apiInstance.allocateInventory(xVolTenant, allocateInventoryRequest);
+      JobQueueResponse result = apiInstance.allocateInventory(allocateInventoryRequest);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling InventoryAllocationApi#allocateInventory");
@@ -62,7 +52,6 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **xVolTenant** | **Integer**| Tenant ID | |
 | **allocateInventoryRequest** | [**AllocateInventoryRequest**](AllocateInventoryRequest.md)| Request to allocate inventory | |
 
 ### Return type
@@ -71,7 +60,7 @@ public class Example {
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth), [clientOauth2](../README.md#clientOauth2)
+No authorization required
 
 ### HTTP request headers
 
@@ -86,11 +75,11 @@ public class Example {
 
 <a name="deallocateInventory"></a>
 # **deallocateInventory**
-> BaseResponse deallocateInventory(xVolTenant, allocateInventoryRequest)
+> BaseResponse deallocateInventory(allocateInventoryRequest)
 
 Deallocate Inventory
 
-Deallocates inventory based on the given request
+As the Refresh Inventory call does not clear allocated inventory, you can use this Deallocate Inventory call if you have items stuck in \&quot;Allocated\&quot; status. This requires details about the shipment and which specific line items need to be deallocated. For examples on how to find shipments with allocated inventory and perform a deallocation on them, see the &lt;a href&#x3D;\&quot;/pages/inventory-api-overview\&quot;&gt;Inventory API guide&lt;/a&gt;.
 
 ### Example
 ```java
@@ -98,7 +87,6 @@ Deallocates inventory based on the given request
 import com.kibocommerce.sdk.inventory.ApiClient;
 import com.kibocommerce.sdk.inventory.ApiException;
 import com.kibocommerce.sdk.inventory.Configuration;
-import com.kibocommerce.sdk.inventory.auth.*;
 import com.kibocommerce.sdk.inventory.models.*;
 import com.kibocommerce.sdk.inventory.api.InventoryAllocationApi;
 
@@ -106,20 +94,11 @@ public class Example {
   public static void main(String[] args) {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
     defaultClient.setBasePath("http://https:/api");
-    
-    // Configure HTTP bearer authorization: bearerAuth
-    HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
-    bearerAuth.setBearerToken("BEARER TOKEN");
-
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
 
     InventoryAllocationApi apiInstance = new InventoryAllocationApi(defaultClient);
-    Integer xVolTenant = 56; // Integer | Tenant ID
     AllocateInventoryRequest allocateInventoryRequest = new AllocateInventoryRequest(); // AllocateInventoryRequest | Request to allocate inventory
     try {
-      BaseResponse result = apiInstance.deallocateInventory(xVolTenant, allocateInventoryRequest);
+      BaseResponse result = apiInstance.deallocateInventory(allocateInventoryRequest);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling InventoryAllocationApi#deallocateInventory");
@@ -136,7 +115,6 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **xVolTenant** | **Integer**| Tenant ID | |
 | **allocateInventoryRequest** | [**AllocateInventoryRequest**](AllocateInventoryRequest.md)| Request to allocate inventory | |
 
 ### Return type
@@ -145,7 +123,7 @@ public class Example {
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth), [clientOauth2](../README.md#clientOauth2)
+No authorization required
 
 ### HTTP request headers
 
@@ -160,7 +138,7 @@ public class Example {
 
 <a name="fulfillInventory"></a>
 # **fulfillInventory**
-> BaseResponse fulfillInventory(xVolTenant, allocateInventoryRequest)
+> BaseResponse fulfillInventory(allocateInventoryRequest)
 
 Fulfill Inventory
 
@@ -172,7 +150,6 @@ Fulfills inventory based on the given request
 import com.kibocommerce.sdk.inventory.ApiClient;
 import com.kibocommerce.sdk.inventory.ApiException;
 import com.kibocommerce.sdk.inventory.Configuration;
-import com.kibocommerce.sdk.inventory.auth.*;
 import com.kibocommerce.sdk.inventory.models.*;
 import com.kibocommerce.sdk.inventory.api.InventoryAllocationApi;
 
@@ -180,20 +157,11 @@ public class Example {
   public static void main(String[] args) {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
     defaultClient.setBasePath("http://https:/api");
-    
-    // Configure HTTP bearer authorization: bearerAuth
-    HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
-    bearerAuth.setBearerToken("BEARER TOKEN");
-
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
 
     InventoryAllocationApi apiInstance = new InventoryAllocationApi(defaultClient);
-    Integer xVolTenant = 56; // Integer | Tenant ID
     AllocateInventoryRequest allocateInventoryRequest = new AllocateInventoryRequest(); // AllocateInventoryRequest | Request to allocate inventory
     try {
-      BaseResponse result = apiInstance.fulfillInventory(xVolTenant, allocateInventoryRequest);
+      BaseResponse result = apiInstance.fulfillInventory(allocateInventoryRequest);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling InventoryAllocationApi#fulfillInventory");
@@ -210,7 +178,6 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **xVolTenant** | **Integer**| Tenant ID | |
 | **allocateInventoryRequest** | [**AllocateInventoryRequest**](AllocateInventoryRequest.md)| Request to allocate inventory | |
 
 ### Return type
@@ -219,7 +186,7 @@ public class Example {
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth), [clientOauth2](../README.md#clientOauth2)
+No authorization required
 
 ### HTTP request headers
 
@@ -234,7 +201,7 @@ public class Example {
 
 <a name="transitionCart"></a>
 # **transitionCart**
-> BaseResponse transitionCart(xVolTenant, transitionCartRequest)
+> BaseResponse transitionCart(transitionCartRequest)
 
 Transition Cart
 
@@ -246,7 +213,6 @@ Transitions a cart allocation into a normal order/shipment allocation
 import com.kibocommerce.sdk.inventory.ApiClient;
 import com.kibocommerce.sdk.inventory.ApiException;
 import com.kibocommerce.sdk.inventory.Configuration;
-import com.kibocommerce.sdk.inventory.auth.*;
 import com.kibocommerce.sdk.inventory.models.*;
 import com.kibocommerce.sdk.inventory.api.InventoryAllocationApi;
 
@@ -254,20 +220,11 @@ public class Example {
   public static void main(String[] args) {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
     defaultClient.setBasePath("http://https:/api");
-    
-    // Configure HTTP bearer authorization: bearerAuth
-    HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
-    bearerAuth.setBearerToken("BEARER TOKEN");
-
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
 
     InventoryAllocationApi apiInstance = new InventoryAllocationApi(defaultClient);
-    Integer xVolTenant = 56; // Integer | Tenant ID
     TransitionCartRequest transitionCartRequest = new TransitionCartRequest(); // TransitionCartRequest | Request needed for transitioning cart allocations to order/shipment allocations
     try {
-      BaseResponse result = apiInstance.transitionCart(xVolTenant, transitionCartRequest);
+      BaseResponse result = apiInstance.transitionCart(transitionCartRequest);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling InventoryAllocationApi#transitionCart");
@@ -284,7 +241,6 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **xVolTenant** | **Integer**| Tenant ID | |
 | **transitionCartRequest** | [**TransitionCartRequest**](TransitionCartRequest.md)| Request needed for transitioning cart allocations to order/shipment allocations | |
 
 ### Return type
@@ -293,7 +249,7 @@ public class Example {
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth), [clientOauth2](../README.md#clientOauth2)
+No authorization required
 
 ### HTTP request headers
 

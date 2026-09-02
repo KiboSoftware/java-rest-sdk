@@ -8,16 +8,16 @@
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
+|**adminName** | **String** |  |  [optional] |
+|**applicationAttributeId** | **Integer** |  |  [optional] |
 |**attributeId** | **Integer** |  |  [optional] |
 |**code** | **String** |  |  [optional] |
-|**type** | **String** |  |  [optional] |
 |**fqn** | **String** |  |  [optional] |
-|**sequence** | **Integer** |  |  [optional] |
-|**vocabularyJson** | **String** |  |  [optional] |
-|**applicationAttributeId** | **Integer** |  |  [optional] |
-|**name** | **String** |  |  [optional] |
 |**inputType** | **String** |  |  [optional] |
-|**adminName** | **String** |  |  [optional] |
+|**name** | **String** |  |  [optional] |
+|**sequence** | **Integer** |  |  [optional] |
+|**type** | **String** |  |  [optional] |
+|**vocabularyJson** | **String** |  |  [optional] |
 |**vocabularyValues** | **String** |  |  [optional] |
 
 

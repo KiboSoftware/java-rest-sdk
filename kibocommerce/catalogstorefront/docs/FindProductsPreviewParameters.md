@@ -8,14 +8,14 @@ This should follow the immutable DTO pattern
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
-|**mid** | **String** |  |  [optional] |
-|**query** | **String** |  |  [optional] |
-|**pageSize** | **Integer** |  |  [optional] |
-|**startIndex** | **Integer** |  |  [optional] |
-|**searchType** | **String** |  |  [optional] |
-|**fieldList** | **List&lt;String&gt;** |  |  [optional] |
-|**searchSettings** | **String** |  |  [optional] |
 |**campaignSettings** | [**PreviewCampaignSettings**](PreviewCampaignSettings.md) |  |  [optional] |
+|**fieldList** | **List&lt;String&gt;** |  |  [optional] |
+|**mid** | **String** |  |  [optional] |
+|**pageSize** | **Integer** |  |  [optional] |
+|**query** | **String** |  |  [optional] |
+|**searchSettings** | **String** |  |  [optional] |
+|**searchType** | **String** |  |  [optional] |
+|**startIndex** | **Integer** |  |  [optional] |
 
 
 ## Implemented Interfaces

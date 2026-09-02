@@ -7,9 +7,9 @@
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
-|**name** | **String** |  |  [optional] |
-|**fullPath** | **String** |  |  [optional] |
 |**files** | [**List&lt;FileMetadata&gt;**](FileMetadata.md) |  |  [optional] |
+|**fullPath** | **String** |  |  [optional] |
+|**name** | **String** |  |  [optional] |
 |**subFolders** | [**List&lt;FolderMetadata&gt;**](FolderMetadata.md) |  |  [optional] |
 
 

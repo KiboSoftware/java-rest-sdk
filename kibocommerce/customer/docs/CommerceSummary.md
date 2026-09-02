@@ -8,11 +8,11 @@ Commerce (orders and wishlists) on a customer account which lists all the orders
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
-|**totalOrderAmount** | [**CurrencyAmount**](CurrencyAmount.md) |  |  [optional] |
-|**orderCount** | **Integer** | Number of orders listed in the order history of a customer account. |  [optional] |
 |**lastOrderDate** | **OffsetDateTime** | When the last order was placed. |  [optional] |
-|**wishlistCount** | **Integer** | Number of wishlists listed in the wishlist count of a customer account |  [optional] |
+|**orderCount** | **Integer** | Number of orders listed in the order history of a customer account. |  [optional] |
+|**totalOrderAmount** | [**CurrencyAmount**](CurrencyAmount.md) |  |  [optional] |
 |**visitsCount** | **Integer** | Number of visits for this customer across the entire tenant. |  [optional] |
+|**wishlistCount** | **Integer** | Number of wishlists listed in the wishlist count of a customer account |  [optional] |
 
 
 ## Implemented Interfaces

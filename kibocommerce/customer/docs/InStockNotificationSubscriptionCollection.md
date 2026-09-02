@@ -8,11 +8,11 @@ Collection of InStockNotificationSubscriptions
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
-|**startIndex** | **Integer** |  |  [optional] |
-|**pageSize** | **Integer** |  |  [optional] |
-|**pageCount** | **Integer** |  |  [optional] |
-|**totalCount** | **Integer** |  |  [optional] |
 |**items** | [**List&lt;InStockNotificationSubscription&gt;**](InStockNotificationSubscription.md) |  |  [optional] |
+|**pageCount** | **Integer** |  |  [optional] |
+|**pageSize** | **Integer** |  |  [optional] |
+|**startIndex** | **Integer** |  |  [optional] |
+|**totalCount** | **Integer** |  |  [optional] |
 
 
 ## Implemented Interfaces

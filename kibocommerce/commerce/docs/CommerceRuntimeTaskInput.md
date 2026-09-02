@@ -7,17 +7,8 @@
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
-|**helpMessage** | **String** |  |  [optional] |
-|**label** | **String** |  |  [optional] |
-|**maxLength** | **Integer** |  |  [optional] |
-|**maximum** | **Double** |  |  [optional] |
-|**minLength** | **Integer** |  |  [optional] |
-|**minimum** | **Double** |  |  [optional] |
-|**name** | **String** |  |  [optional] |
-|**options** | **List&lt;Object&gt;** |  |  [optional] |
-|**pattern** | **String** |  |  [optional] |
-|**required** | **Boolean** |  |  [optional] |
-|**type** | **String** |  |  [optional] |
+|**maximum** | **Object** |  |  [optional] |
+|**minimum** | **Object** |  |  [optional] |
 
 
 ## Implemented Interfaces

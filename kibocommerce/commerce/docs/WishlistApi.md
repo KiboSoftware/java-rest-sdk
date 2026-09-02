@@ -22,7 +22,7 @@ All URIs are relative to *http://https:/api*
 
 <a name="addItemToWishlist"></a>
 # **addItemToWishlist**
-> WishlistItem addItemToWishlist(wishlistId, wishlistItem)
+> WishlistItem addItemToWishlist(wishlistId, responseFields, wishlistItem)
 
 Add Item To Wishlist
 
@@ -47,15 +47,12 @@ public class Example {
     HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
     bearerAuth.setBearerToken("BEARER TOKEN");
 
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
-
     WishlistApi apiInstance = new WishlistApi(defaultClient);
     String wishlistId = "wishlistId_example"; // String | 
+    String responseFields = "responseFields_example"; // String | limits which fields are returned in the response body
     WishlistItem wishlistItem = new WishlistItem(); // WishlistItem | 
     try {
-      WishlistItem result = apiInstance.addItemToWishlist(wishlistId, wishlistItem);
+      WishlistItem result = apiInstance.addItemToWishlist(wishlistId, responseFields, wishlistItem);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling WishlistApi#addItemToWishlist");
@@ -73,6 +70,7 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **wishlistId** | **String**|  | |
+| **responseFields** | **String**| limits which fields are returned in the response body | [optional] |
 | **wishlistItem** | [**WishlistItem**](WishlistItem.md)|  | [optional] |
 
 ### Return type
@@ -81,7 +79,7 @@ public class Example {
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth), [clientOauth2](../README.md#clientOauth2)
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
@@ -91,11 +89,11 @@ public class Example {
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Success |  -  |
+| **200** | OK |  -  |
 
 <a name="createWishlist"></a>
 # **createWishlist**
-> Wishlist createWishlist(wishlist)
+> Wishlist createWishlist(responseFields, wishlist)
 
 Create Wishlist
 
@@ -120,14 +118,11 @@ public class Example {
     HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
     bearerAuth.setBearerToken("BEARER TOKEN");
 
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
-
     WishlistApi apiInstance = new WishlistApi(defaultClient);
+    String responseFields = "responseFields_example"; // String | limits which fields are returned in the response body
     Wishlist wishlist = new Wishlist(); // Wishlist | 
     try {
-      Wishlist result = apiInstance.createWishlist(wishlist);
+      Wishlist result = apiInstance.createWishlist(responseFields, wishlist);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling WishlistApi#createWishlist");
@@ -144,6 +139,7 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
+| **responseFields** | **String**| limits which fields are returned in the response body | [optional] |
 | **wishlist** | [**Wishlist**](Wishlist.md)|  | [optional] |
 
 ### Return type
@@ -152,7 +148,7 @@ public class Example {
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth), [clientOauth2](../README.md#clientOauth2)
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
@@ -162,7 +158,7 @@ public class Example {
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Success |  -  |
+| **200** | OK |  -  |
 
 <a name="deleteWishlist"></a>
 # **deleteWishlist**
@@ -191,10 +187,6 @@ public class Example {
     HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
     bearerAuth.setBearerToken("BEARER TOKEN");
 
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
-
     WishlistApi apiInstance = new WishlistApi(defaultClient);
     String wishlistId = "wishlistId_example"; // String | 
     try {
@@ -222,7 +214,7 @@ null (empty response body)
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth), [clientOauth2](../README.md#clientOauth2)
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
@@ -232,7 +224,7 @@ null (empty response body)
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Success |  -  |
+| **200** | OK |  -  |
 
 <a name="deleteWishlistItem"></a>
 # **deleteWishlistItem**
@@ -260,10 +252,6 @@ public class Example {
     // Configure HTTP bearer authorization: bearerAuth
     HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
     bearerAuth.setBearerToken("BEARER TOKEN");
-
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
 
     WishlistApi apiInstance = new WishlistApi(defaultClient);
     String wishlistId = "wishlistId_example"; // String | 
@@ -294,7 +282,7 @@ null (empty response body)
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth), [clientOauth2](../README.md#clientOauth2)
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
@@ -304,11 +292,11 @@ null (empty response body)
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Success |  -  |
+| **200** | OK |  -  |
 
 <a name="getWishlist"></a>
 # **getWishlist**
-> Wishlist getWishlist(wishlistId)
+> Wishlist getWishlist(wishlistId, responseFields)
 
 Get Wishlist
 
@@ -333,14 +321,11 @@ public class Example {
     HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
     bearerAuth.setBearerToken("BEARER TOKEN");
 
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
-
     WishlistApi apiInstance = new WishlistApi(defaultClient);
     String wishlistId = "wishlistId_example"; // String | 
+    String responseFields = "responseFields_example"; // String | limits which fields are returned in the response body
     try {
-      Wishlist result = apiInstance.getWishlist(wishlistId);
+      Wishlist result = apiInstance.getWishlist(wishlistId, responseFields);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling WishlistApi#getWishlist");
@@ -358,6 +343,7 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **wishlistId** | **String**|  | |
+| **responseFields** | **String**| limits which fields are returned in the response body | [optional] |
 
 ### Return type
 
@@ -365,7 +351,7 @@ public class Example {
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth), [clientOauth2](../README.md#clientOauth2)
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
@@ -375,11 +361,11 @@ public class Example {
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Success |  -  |
+| **200** | OK |  -  |
 
 <a name="getWishlistByName"></a>
 # **getWishlistByName**
-> Wishlist getWishlistByName(customerAccountId, wishlistName)
+> Wishlist getWishlistByName(customerAccountId, wishlistName, responseFields)
 
 Get Wishlist By Name
 
@@ -404,15 +390,12 @@ public class Example {
     HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
     bearerAuth.setBearerToken("BEARER TOKEN");
 
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
-
     WishlistApi apiInstance = new WishlistApi(defaultClient);
     Integer customerAccountId = 56; // Integer | 
     String wishlistName = "wishlistName_example"; // String | 
+    String responseFields = "responseFields_example"; // String | limits which fields are returned in the response body
     try {
-      Wishlist result = apiInstance.getWishlistByName(customerAccountId, wishlistName);
+      Wishlist result = apiInstance.getWishlistByName(customerAccountId, wishlistName, responseFields);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling WishlistApi#getWishlistByName");
@@ -431,6 +414,7 @@ public class Example {
 |------------- | ------------- | ------------- | -------------|
 | **customerAccountId** | **Integer**|  | |
 | **wishlistName** | **String**|  | |
+| **responseFields** | **String**| limits which fields are returned in the response body | [optional] |
 
 ### Return type
 
@@ -438,7 +422,7 @@ public class Example {
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth), [clientOauth2](../README.md#clientOauth2)
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
@@ -448,11 +432,11 @@ public class Example {
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Success |  -  |
+| **200** | OK |  -  |
 
 <a name="getWishlistItem"></a>
 # **getWishlistItem**
-> WishlistItem getWishlistItem(wishlistId, wishlistItemId)
+> WishlistItem getWishlistItem(wishlistId, wishlistItemId, responseFields)
 
 Get Wishlist Item
 
@@ -477,15 +461,12 @@ public class Example {
     HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
     bearerAuth.setBearerToken("BEARER TOKEN");
 
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
-
     WishlistApi apiInstance = new WishlistApi(defaultClient);
     String wishlistId = "wishlistId_example"; // String | 
     String wishlistItemId = "wishlistItemId_example"; // String | 
+    String responseFields = "responseFields_example"; // String | limits which fields are returned in the response body
     try {
-      WishlistItem result = apiInstance.getWishlistItem(wishlistId, wishlistItemId);
+      WishlistItem result = apiInstance.getWishlistItem(wishlistId, wishlistItemId, responseFields);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling WishlistApi#getWishlistItem");
@@ -504,6 +485,7 @@ public class Example {
 |------------- | ------------- | ------------- | -------------|
 | **wishlistId** | **String**|  | |
 | **wishlistItemId** | **String**|  | |
+| **responseFields** | **String**| limits which fields are returned in the response body | [optional] |
 
 ### Return type
 
@@ -511,7 +493,7 @@ public class Example {
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth), [clientOauth2](../README.md#clientOauth2)
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
@@ -521,11 +503,11 @@ public class Example {
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Success |  -  |
+| **200** | OK |  -  |
 
 <a name="getWishlistItems"></a>
 # **getWishlistItems**
-> WishlistItemCollection getWishlistItems(wishlistId, startIndex, pageSize, sortBy, filter)
+> WishlistItemCollection getWishlistItems(wishlistId, startIndex, pageSize, sortBy, filter, responseFields)
 
 Get Wishlist Items
 
@@ -550,18 +532,15 @@ public class Example {
     HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
     bearerAuth.setBearerToken("BEARER TOKEN");
 
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
-
     WishlistApi apiInstance = new WishlistApi(defaultClient);
     String wishlistId = "wishlistId_example"; // String | 
     Integer startIndex = 56; // Integer | 
     Integer pageSize = 56; // Integer | 
     String sortBy = "sortBy_example"; // String | 
     String filter = "filter_example"; // String | 
+    String responseFields = "responseFields_example"; // String | limits which fields are returned in the response body
     try {
-      WishlistItemCollection result = apiInstance.getWishlistItems(wishlistId, startIndex, pageSize, sortBy, filter);
+      WishlistItemCollection result = apiInstance.getWishlistItems(wishlistId, startIndex, pageSize, sortBy, filter, responseFields);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling WishlistApi#getWishlistItems");
@@ -583,6 +562,7 @@ public class Example {
 | **pageSize** | **Integer**|  | [optional] |
 | **sortBy** | **String**|  | [optional] |
 | **filter** | **String**|  | [optional] |
+| **responseFields** | **String**| limits which fields are returned in the response body | [optional] |
 
 ### Return type
 
@@ -590,7 +570,7 @@ public class Example {
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth), [clientOauth2](../README.md#clientOauth2)
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
@@ -600,11 +580,11 @@ public class Example {
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Success |  -  |
+| **200** | OK |  -  |
 
 <a name="getWishlistItemsByWishlistName"></a>
 # **getWishlistItemsByWishlistName**
-> WishlistItemCollection getWishlistItemsByWishlistName(customerAccountId, wishlistName, startIndex, pageSize, sortBy, filter)
+> WishlistItemCollection getWishlistItemsByWishlistName(customerAccountId, wishlistName, startIndex, pageSize, sortBy, filter, responseFields)
 
 Get Wishlist Items By WishlistName
 
@@ -629,10 +609,6 @@ public class Example {
     HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
     bearerAuth.setBearerToken("BEARER TOKEN");
 
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
-
     WishlistApi apiInstance = new WishlistApi(defaultClient);
     Integer customerAccountId = 56; // Integer | 
     String wishlistName = "wishlistName_example"; // String | 
@@ -640,8 +616,9 @@ public class Example {
     Integer pageSize = 56; // Integer | 
     String sortBy = "sortBy_example"; // String | 
     String filter = "filter_example"; // String | 
+    String responseFields = "responseFields_example"; // String | limits which fields are returned in the response body
     try {
-      WishlistItemCollection result = apiInstance.getWishlistItemsByWishlistName(customerAccountId, wishlistName, startIndex, pageSize, sortBy, filter);
+      WishlistItemCollection result = apiInstance.getWishlistItemsByWishlistName(customerAccountId, wishlistName, startIndex, pageSize, sortBy, filter, responseFields);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling WishlistApi#getWishlistItemsByWishlistName");
@@ -664,6 +641,7 @@ public class Example {
 | **pageSize** | **Integer**|  | [optional] |
 | **sortBy** | **String**|  | [optional] |
 | **filter** | **String**|  | [optional] |
+| **responseFields** | **String**| limits which fields are returned in the response body | [optional] |
 
 ### Return type
 
@@ -671,7 +649,7 @@ public class Example {
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth), [clientOauth2](../README.md#clientOauth2)
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
@@ -681,11 +659,11 @@ public class Example {
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Success |  -  |
+| **200** | OK |  -  |
 
 <a name="getWishlists"></a>
 # **getWishlists**
-> WishlistCollection getWishlists(startIndex, pageSize, sortBy, filter, q, qLimit)
+> WishlistCollection getWishlists(startIndex, pageSize, sortBy, filter, q, qLimit, responseFields)
 
 Get Wishlists
 
@@ -710,19 +688,16 @@ public class Example {
     HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
     bearerAuth.setBearerToken("BEARER TOKEN");
 
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
-
     WishlistApi apiInstance = new WishlistApi(defaultClient);
-    Integer startIndex = 56; // Integer | Used to page results from a query. Indicates the zero-based offset in the complete result set where the returned entities begin.               For example, with a PageSize of 25, to get the 51st through the 75th items, startIndex=3. The default value is 0. Optional.
+    Integer startIndex = 56; // Integer | Used to page results from a query. Indicates the zero-based offset in the complete result set where the returned entities begin.              For example, with a PageSize of 25, to get the 51st through the 75th items, startIndex=50. The default value is 0. Optional.
     Integer pageSize = 56; // Integer | Used to page results from a query. Indicates the maximum number of entities to return from a query. The default value is 20 and the maximum value is 200. Optional.
     String sortBy = "sortBy_example"; // String | The element to sort the results by and the order in which the results appear. Either ascending (a-z) or descending (z-a) order. Optional.
-    String filter = "filter_example"; // String | A set of filter expressions representing the search parameters for a query: eq=equals, ne=not equals, gt=greater than, lt = less than or equals,               gt = greater than or equals, lt = less than or equals, sw = starts with, or cont = contains. Optional.
+    String filter = "filter_example"; // String | A set of filter expressions representing the search parameters for a query: eq=equals, ne=not equals, gt=greater than, lt = less than or equals,              gt = greater than or equals, lt = less than or equals, sw = starts with, or cont = contains. Optional.
     String q = "q_example"; // String | Text to perform a search on
     Integer qLimit = 56; // Integer | Limit of the records to include in a search, used for global search
+    String responseFields = "responseFields_example"; // String | limits which fields are returned in the response body
     try {
-      WishlistCollection result = apiInstance.getWishlists(startIndex, pageSize, sortBy, filter, q, qLimit);
+      WishlistCollection result = apiInstance.getWishlists(startIndex, pageSize, sortBy, filter, q, qLimit, responseFields);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling WishlistApi#getWishlists");
@@ -739,12 +714,13 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **startIndex** | **Integer**| Used to page results from a query. Indicates the zero-based offset in the complete result set where the returned entities begin.               For example, with a PageSize of 25, to get the 51st through the 75th items, startIndex&#x3D;3. The default value is 0. Optional. | [optional] |
+| **startIndex** | **Integer**| Used to page results from a query. Indicates the zero-based offset in the complete result set where the returned entities begin.              For example, with a PageSize of 25, to get the 51st through the 75th items, startIndex&#x3D;50. The default value is 0. Optional. | [optional] |
 | **pageSize** | **Integer**| Used to page results from a query. Indicates the maximum number of entities to return from a query. The default value is 20 and the maximum value is 200. Optional. | [optional] |
 | **sortBy** | **String**| The element to sort the results by and the order in which the results appear. Either ascending (a-z) or descending (z-a) order. Optional. | [optional] |
-| **filter** | **String**| A set of filter expressions representing the search parameters for a query: eq&#x3D;equals, ne&#x3D;not equals, gt&#x3D;greater than, lt &#x3D; less than or equals,               gt &#x3D; greater than or equals, lt &#x3D; less than or equals, sw &#x3D; starts with, or cont &#x3D; contains. Optional. | [optional] |
+| **filter** | **String**| A set of filter expressions representing the search parameters for a query: eq&#x3D;equals, ne&#x3D;not equals, gt&#x3D;greater than, lt &#x3D; less than or equals,              gt &#x3D; greater than or equals, lt &#x3D; less than or equals, sw &#x3D; starts with, or cont &#x3D; contains. Optional. | [optional] |
 | **q** | **String**| Text to perform a search on | [optional] |
 | **qLimit** | **Integer**| Limit of the records to include in a search, used for global search | [optional] |
+| **responseFields** | **String**| limits which fields are returned in the response body | [optional] |
 
 ### Return type
 
@@ -752,7 +728,7 @@ public class Example {
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth), [clientOauth2](../README.md#clientOauth2)
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
@@ -762,7 +738,7 @@ public class Example {
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Success |  -  |
+| **200** | OK |  -  |
 
 <a name="removeAllWishlistItems"></a>
 # **removeAllWishlistItems**
@@ -790,10 +766,6 @@ public class Example {
     // Configure HTTP bearer authorization: bearerAuth
     HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
     bearerAuth.setBearerToken("BEARER TOKEN");
-
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
 
     WishlistApi apiInstance = new WishlistApi(defaultClient);
     String wishlistId = "wishlistId_example"; // String | 
@@ -823,7 +795,7 @@ public class Example {
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth), [clientOauth2](../README.md#clientOauth2)
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
@@ -833,11 +805,11 @@ public class Example {
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Success |  -  |
+| **200** | OK |  -  |
 
 <a name="updateWishlist"></a>
 # **updateWishlist**
-> Wishlist updateWishlist(wishlistId, wishlist)
+> Wishlist updateWishlist(wishlistId, responseFields, wishlist)
 
 Update Wishlist
 
@@ -862,15 +834,12 @@ public class Example {
     HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
     bearerAuth.setBearerToken("BEARER TOKEN");
 
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
-
     WishlistApi apiInstance = new WishlistApi(defaultClient);
     String wishlistId = "wishlistId_example"; // String | 
+    String responseFields = "responseFields_example"; // String | limits which fields are returned in the response body
     Wishlist wishlist = new Wishlist(); // Wishlist | 
     try {
-      Wishlist result = apiInstance.updateWishlist(wishlistId, wishlist);
+      Wishlist result = apiInstance.updateWishlist(wishlistId, responseFields, wishlist);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling WishlistApi#updateWishlist");
@@ -888,6 +857,7 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **wishlistId** | **String**|  | |
+| **responseFields** | **String**| limits which fields are returned in the response body | [optional] |
 | **wishlist** | [**Wishlist**](Wishlist.md)|  | [optional] |
 
 ### Return type
@@ -896,7 +866,7 @@ public class Example {
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth), [clientOauth2](../README.md#clientOauth2)
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
@@ -906,11 +876,11 @@ public class Example {
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Success |  -  |
+| **200** | OK |  -  |
 
 <a name="updateWishlistItem"></a>
 # **updateWishlistItem**
-> WishlistItem updateWishlistItem(wishlistId, wishlistItemId, wishlistItem)
+> WishlistItem updateWishlistItem(wishlistId, wishlistItemId, responseFields, wishlistItem)
 
 Update Wishlist Item
 
@@ -935,16 +905,13 @@ public class Example {
     HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
     bearerAuth.setBearerToken("BEARER TOKEN");
 
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
-
     WishlistApi apiInstance = new WishlistApi(defaultClient);
     String wishlistId = "wishlistId_example"; // String | 
     String wishlistItemId = "wishlistItemId_example"; // String | 
+    String responseFields = "responseFields_example"; // String | limits which fields are returned in the response body
     WishlistItem wishlistItem = new WishlistItem(); // WishlistItem | 
     try {
-      WishlistItem result = apiInstance.updateWishlistItem(wishlistId, wishlistItemId, wishlistItem);
+      WishlistItem result = apiInstance.updateWishlistItem(wishlistId, wishlistItemId, responseFields, wishlistItem);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling WishlistApi#updateWishlistItem");
@@ -963,6 +930,7 @@ public class Example {
 |------------- | ------------- | ------------- | -------------|
 | **wishlistId** | **String**|  | |
 | **wishlistItemId** | **String**|  | |
+| **responseFields** | **String**| limits which fields are returned in the response body | [optional] |
 | **wishlistItem** | [**WishlistItem**](WishlistItem.md)|  | [optional] |
 
 ### Return type
@@ -971,7 +939,7 @@ public class Example {
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth), [clientOauth2](../README.md#clientOauth2)
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
@@ -981,11 +949,11 @@ public class Example {
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Success |  -  |
+| **200** | OK |  -  |
 
 <a name="updateWishlistItemQuantity"></a>
 # **updateWishlistItemQuantity**
-> WishlistItem updateWishlistItemQuantity(wishlistId, wishlistItemId, quantity)
+> WishlistItem updateWishlistItemQuantity(wishlistId, wishlistItemId, quantity, responseFields)
 
 Update Wishlist Item Quantity
 
@@ -1010,16 +978,13 @@ public class Example {
     HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
     bearerAuth.setBearerToken("BEARER TOKEN");
 
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
-
     WishlistApi apiInstance = new WishlistApi(defaultClient);
     String wishlistId = "wishlistId_example"; // String | 
     String wishlistItemId = "wishlistItemId_example"; // String | 
     Integer quantity = 56; // Integer | 
+    String responseFields = "responseFields_example"; // String | limits which fields are returned in the response body
     try {
-      WishlistItem result = apiInstance.updateWishlistItemQuantity(wishlistId, wishlistItemId, quantity);
+      WishlistItem result = apiInstance.updateWishlistItemQuantity(wishlistId, wishlistItemId, quantity, responseFields);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling WishlistApi#updateWishlistItemQuantity");
@@ -1039,6 +1004,7 @@ public class Example {
 | **wishlistId** | **String**|  | |
 | **wishlistItemId** | **String**|  | |
 | **quantity** | **Integer**|  | |
+| **responseFields** | **String**| limits which fields are returned in the response body | [optional] |
 
 ### Return type
 
@@ -1046,7 +1012,7 @@ public class Example {
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth), [clientOauth2](../README.md#clientOauth2)
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
@@ -1056,5 +1022,5 @@ public class Example {
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Success |  -  |
+| **200** | OK |  -  |
 

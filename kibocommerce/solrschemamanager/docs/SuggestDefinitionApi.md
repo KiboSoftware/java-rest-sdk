@@ -7,12 +7,12 @@ All URIs are relative to *http://https:/api*
 | [**downLoadSuggest**](SuggestDefinitionApi.md#downLoadSuggest) | **GET** /commerce/catalog/admin/searchSchema/suggest/{language} | Downloads the suggest file for the site |
 | [**getSuggestSettings**](SuggestDefinitionApi.md#getSuggestSettings) | **GET** /commerce/catalog/admin/searchSchema/suggest/settings/{language} | Gets the suggester settings for the site |
 | [**updateSuggestSettings**](SuggestDefinitionApi.md#updateSuggestSettings) | **PUT** /commerce/catalog/admin/searchSchema/suggest/settings/{language} | Updates the suggester settings for the site |
-| [**uploadSuggest**](SuggestDefinitionApi.md#uploadSuggest) | **PUT** /commerce/catalog/admin/searchSchema/suggest/{language} | Uploads a suggest file for the site in tab seperated format) |
+| [**uploadSuggest**](SuggestDefinitionApi.md#uploadSuggest) | **PUT** /commerce/catalog/admin/searchSchema/suggest/{language} | Uploads a suggest file for the site in tab separated format) |
 
 
 <a name="downLoadSuggest"></a>
 # **downLoadSuggest**
-> downLoadSuggest(language)
+> downLoadSuggest(language, responseFields)
 
 Downloads the suggest file for the site
 
@@ -37,14 +37,11 @@ public class Example {
     HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
     bearerAuth.setBearerToken("BEARER TOKEN");
 
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
-
     SuggestDefinitionApi apiInstance = new SuggestDefinitionApi(defaultClient);
-    String language = "language_example"; // String | langage code used by the site (en, es, fr)
+    String language = "language_example"; // String | Language code used by the site (en, es, fr)
+    String responseFields = "responseFields_example"; // String | limits which fields are returned in the response body
     try {
-      apiInstance.downLoadSuggest(language);
+      apiInstance.downLoadSuggest(language, responseFields);
     } catch (ApiException e) {
       System.err.println("Exception when calling SuggestDefinitionApi#downLoadSuggest");
       System.err.println("Status code: " + e.getCode());
@@ -60,7 +57,8 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **language** | **String**| langage code used by the site (en, es, fr) | |
+| **language** | **String**| Language code used by the site (en, es, fr) | |
+| **responseFields** | **String**| limits which fields are returned in the response body | [optional] |
 
 ### Return type
 
@@ -68,7 +66,7 @@ null (empty response body)
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth), [clientOauth2](../README.md#clientOauth2)
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
@@ -78,11 +76,11 @@ null (empty response body)
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Success |  -  |
+| **200** | OK |  -  |
 
 <a name="getSuggestSettings"></a>
 # **getSuggestSettings**
-> Suggester getSuggestSettings(language)
+> Suggester getSuggestSettings(language, responseFields)
 
 Gets the suggester settings for the site
 
@@ -107,14 +105,11 @@ public class Example {
     HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
     bearerAuth.setBearerToken("BEARER TOKEN");
 
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
-
     SuggestDefinitionApi apiInstance = new SuggestDefinitionApi(defaultClient);
-    String language = "language_example"; // String | language code use by the site (en, es, fr)
+    String language = "language_example"; // String | Language code use by the site (en, es, fr)
+    String responseFields = "responseFields_example"; // String | limits which fields are returned in the response body
     try {
-      Suggester result = apiInstance.getSuggestSettings(language);
+      Suggester result = apiInstance.getSuggestSettings(language, responseFields);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling SuggestDefinitionApi#getSuggestSettings");
@@ -131,7 +126,8 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **language** | **String**| language code use by the site (en, es, fr) | |
+| **language** | **String**| Language code use by the site (en, es, fr) | |
+| **responseFields** | **String**| limits which fields are returned in the response body | [optional] |
 
 ### Return type
 
@@ -139,7 +135,7 @@ public class Example {
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth), [clientOauth2](../README.md#clientOauth2)
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
@@ -149,11 +145,11 @@ public class Example {
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Success |  -  |
+| **200** | OK |  -  |
 
 <a name="updateSuggestSettings"></a>
 # **updateSuggestSettings**
-> Suggester updateSuggestSettings(language, suggester)
+> Suggester updateSuggestSettings(language, responseFields, suggester)
 
 Updates the suggester settings for the site
 
@@ -178,15 +174,12 @@ public class Example {
     HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
     bearerAuth.setBearerToken("BEARER TOKEN");
 
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
-
     SuggestDefinitionApi apiInstance = new SuggestDefinitionApi(defaultClient);
-    String language = "language_example"; // String | language code use by the site (en, es, fr)
-    Suggester suggester = new Suggester(); // Suggester | suggset definition in
+    String language = "language_example"; // String | Language code use by the site (en, es, fr)
+    String responseFields = "responseFields_example"; // String | limits which fields are returned in the response body
+    Suggester suggester = new Suggester(); // Suggester | Suggest definition in
     try {
-      Suggester result = apiInstance.updateSuggestSettings(language, suggester);
+      Suggester result = apiInstance.updateSuggestSettings(language, responseFields, suggester);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling SuggestDefinitionApi#updateSuggestSettings");
@@ -203,8 +196,9 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **language** | **String**| language code use by the site (en, es, fr) | |
-| **suggester** | [**Suggester**](Suggester.md)| suggset definition in | [optional] |
+| **language** | **String**| Language code use by the site (en, es, fr) | |
+| **responseFields** | **String**| limits which fields are returned in the response body | [optional] |
+| **suggester** | [**Suggester**](Suggester.md)| Suggest definition in | [optional] |
 
 ### Return type
 
@@ -212,25 +206,25 @@ public class Example {
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth), [clientOauth2](../README.md#clientOauth2)
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
- - **Content-Type**: text/plain, application/octet-stream, application/zip, application/json
+ - **Content-Type**: application/json, application/octet-stream, application/zip, text/plain
  - **Accept**: application/json, text/json, text/plain
 
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Success |  -  |
+| **200** | OK |  -  |
 
 <a name="uploadSuggest"></a>
 # **uploadSuggest**
-> List&lt;String&gt; uploadSuggest(language)
+> List&lt;String&gt; uploadSuggest(language, responseFields)
 
-Uploads a suggest file for the site in tab seperated format)
+Uploads a suggest file for the site in tab separated format)
 
-Uploads a suggest file for the site in tab seperated format)
+Uploads a suggest file for the site in tab separated format)
 
 ### Example
 ```java
@@ -251,14 +245,11 @@ public class Example {
     HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
     bearerAuth.setBearerToken("BEARER TOKEN");
 
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
-
     SuggestDefinitionApi apiInstance = new SuggestDefinitionApi(defaultClient);
     String language = "language_example"; // String | language code use by the site (en, es, fr)
+    String responseFields = "responseFields_example"; // String | limits which fields are returned in the response body
     try {
-      List<String> result = apiInstance.uploadSuggest(language);
+      List<String> result = apiInstance.uploadSuggest(language, responseFields);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling SuggestDefinitionApi#uploadSuggest");
@@ -276,6 +267,7 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **language** | **String**| language code use by the site (en, es, fr) | |
+| **responseFields** | **String**| limits which fields are returned in the response body | [optional] |
 
 ### Return type
 
@@ -283,7 +275,7 @@ public class Example {
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth), [clientOauth2](../README.md#clientOauth2)
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
@@ -293,5 +285,5 @@ public class Example {
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Success |  -  |
+| **200** | OK |  -  |
 

@@ -7,21 +7,21 @@
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
-|**name** | **String** |  |  [optional] |
-|**id** | **String** |  |  [optional] |
-|**requester** | **String** |  |  [optional] |
-|**domain** | **String** |  |  [optional] |
-|**format** | **String** |  |  [optional] |
-|**resources** | [**List&lt;ImportResource&gt;**](ImportResource.md) |  |  [optional] |
-|**contextOverride** | [**ContextOverride**](ContextOverride.md) |  |  [optional] |
-|**isComplete** | **Boolean** |  |  [optional] |
 |**auditInfo** | [**AdminUserAuditInfo**](AdminUserAuditInfo.md) |  |  [optional] |
-|**tenant** | **Integer** |  |  [optional] |
+|**_configuration** | **Object** |  |  [optional] |
+|**contextOverride** | [**ContextOverride**](ContextOverride.md) |  |  [optional] |
+|**domain** | **String** |  |  [optional] |
+|**files** | [**List&lt;DropLocation&gt;**](DropLocation.md) |  |  [optional] |
+|**format** | **String** |  |  [optional] |
+|**id** | **String** |  |  [optional] |
+|**isComplete** | **Boolean** |  |  [optional] |
+|**name** | **String** |  |  [optional] |
+|**requester** | **String** |  |  [optional] |
+|**resources** | [**List&lt;ImportResource&gt;**](ImportResource.md) |  |  [optional] |
 |**status** | **String** |  |  [optional] |
 |**statusDetails** | **String** |  |  [optional] |
 |**statusMessage** | **String** |  |  [optional] |
-|**_configuration** | **Object** |  |  [optional] |
-|**files** | [**List&lt;DropLocation&gt;**](DropLocation.md) |  |  [optional] |
+|**tenant** | **Integer** |  |  [optional] |
 
 
 ## Implemented Interfaces

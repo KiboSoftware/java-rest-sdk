@@ -9,9 +9,9 @@
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
 |**applicationCapabilityId** | **Integer** |  |  [optional] |
-|**capabilityTypeContractId** | **Integer** |  |  [optional] |
-|**applicationEndPoint** | **String** |  |  [optional] |
 |**applicationCapabilityTypeId** | **Integer** |  |  [optional] |
+|**applicationEndPoint** | **String** |  |  [optional] |
+|**capabilityTypeContractId** | **Integer** |  |  [optional] |
 |**packageId** | **Integer** |  |  [optional] |
 
 

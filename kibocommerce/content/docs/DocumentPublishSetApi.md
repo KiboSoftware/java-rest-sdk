@@ -12,7 +12,7 @@ All URIs are relative to *http://https:/api*
 
 <a name="addPublishSetItems"></a>
 # **addPublishSetItems**
-> addPublishSetItems(code, addOrDeletePublishItem)
+> addPublishSetItems(code, responseFields, addOrDeletePublishItem)
 
 Add Publish Set Items
 
@@ -37,15 +37,12 @@ public class Example {
     HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
     bearerAuth.setBearerToken("BEARER TOKEN");
 
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
-
     DocumentPublishSetApi apiInstance = new DocumentPublishSetApi(defaultClient);
     String code = "code_example"; // String | code of the publish set.  Use UNASSIGNED or ALL to denote those special cases
+    String responseFields = "responseFields_example"; // String | limits which fields are returned in the response body
     List<AddOrDeletePublishItem> addOrDeletePublishItem = Arrays.asList(); // List<AddOrDeletePublishItem> | documentId/doclist pairs to add to the publish set
     try {
-      apiInstance.addPublishSetItems(code, addOrDeletePublishItem);
+      apiInstance.addPublishSetItems(code, responseFields, addOrDeletePublishItem);
     } catch (ApiException e) {
       System.err.println("Exception when calling DocumentPublishSetApi#addPublishSetItems");
       System.err.println("Status code: " + e.getCode());
@@ -62,6 +59,7 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **code** | **String**| code of the publish set.  Use UNASSIGNED or ALL to denote those special cases | |
+| **responseFields** | **String**| limits which fields are returned in the response body | [optional] |
 | **addOrDeletePublishItem** | [**List&lt;AddOrDeletePublishItem&gt;**](AddOrDeletePublishItem.md)| documentId/doclist pairs to add to the publish set | [optional] |
 
 ### Return type
@@ -70,21 +68,21 @@ null (empty response body)
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth), [clientOauth2](../README.md#clientOauth2)
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
- - **Content-Type**: text/plain, application/octet-stream, application/json
+ - **Content-Type**: application/json, application/octet-stream, text/plain
  - **Accept**: Not defined
 
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Success |  -  |
+| **200** | OK |  -  |
 
 <a name="deletePublishSet"></a>
 # **deletePublishSet**
-> deletePublishSet(code, shouldDiscard)
+> deletePublishSet(code, shouldDiscard, responseFields)
 
 Delete Publish Set
 
@@ -109,15 +107,12 @@ public class Example {
     HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
     bearerAuth.setBearerToken("BEARER TOKEN");
 
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
-
     DocumentPublishSetApi apiInstance = new DocumentPublishSetApi(defaultClient);
     String code = "code_example"; // String | code of the publish set.  Use UNASSIGNED or ALL to denote those special cases
     Boolean shouldDiscard = true; // Boolean | should trash the drafts in the publish set as well
+    String responseFields = "responseFields_example"; // String | limits which fields are returned in the response body
     try {
-      apiInstance.deletePublishSet(code, shouldDiscard);
+      apiInstance.deletePublishSet(code, shouldDiscard, responseFields);
     } catch (ApiException e) {
       System.err.println("Exception when calling DocumentPublishSetApi#deletePublishSet");
       System.err.println("Status code: " + e.getCode());
@@ -135,6 +130,7 @@ public class Example {
 |------------- | ------------- | ------------- | -------------|
 | **code** | **String**| code of the publish set.  Use UNASSIGNED or ALL to denote those special cases | |
 | **shouldDiscard** | **Boolean**| should trash the drafts in the publish set as well | [optional] |
+| **responseFields** | **String**| limits which fields are returned in the response body | [optional] |
 
 ### Return type
 
@@ -142,7 +138,7 @@ null (empty response body)
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth), [clientOauth2](../README.md#clientOauth2)
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
@@ -152,11 +148,11 @@ null (empty response body)
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Success |  -  |
+| **200** | OK |  -  |
 
 <a name="getPublishSetItems"></a>
 # **getPublishSetItems**
-> DocumentDraftSummaryPagedCollection getPublishSetItems(code, pageSize, startIndex, sortBy, filter)
+> DocumentDraftSummaryPagedCollection getPublishSetItems(code, pageSize, startIndex, sortBy, filter, responseFields)
 
 Get Publish Set Items
 
@@ -181,18 +177,15 @@ public class Example {
     HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
     bearerAuth.setBearerToken("BEARER TOKEN");
 
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
-
     DocumentPublishSetApi apiInstance = new DocumentPublishSetApi(defaultClient);
     String code = "code_example"; // String | code of the publish set.  Use UNASSIGNED or ALL to denote those special cases
     Integer pageSize = 100; // Integer | maximum number of items to return
     Integer startIndex = 0; // Integer | start index
     String sortBy = "sortBy_example"; // String | 
     String filter = "filter_example"; // String | 
+    String responseFields = "responseFields_example"; // String | limits which fields are returned in the response body
     try {
-      DocumentDraftSummaryPagedCollection result = apiInstance.getPublishSetItems(code, pageSize, startIndex, sortBy, filter);
+      DocumentDraftSummaryPagedCollection result = apiInstance.getPublishSetItems(code, pageSize, startIndex, sortBy, filter, responseFields);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling DocumentPublishSetApi#getPublishSetItems");
@@ -214,6 +207,7 @@ public class Example {
 | **startIndex** | **Integer**| start index | [optional] [default to 0] |
 | **sortBy** | **String**|  | [optional] |
 | **filter** | **String**|  | [optional] |
+| **responseFields** | **String**| limits which fields are returned in the response body | [optional] |
 
 ### Return type
 
@@ -221,7 +215,7 @@ public class Example {
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth), [clientOauth2](../README.md#clientOauth2)
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
@@ -231,11 +225,11 @@ public class Example {
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Success |  -  |
+| **200** | OK |  -  |
 
 <a name="getPublishSets"></a>
 # **getPublishSets**
-> PublishSetSummaryPagedCollection getPublishSets(pageSize, startIndex)
+> PublishSetSummaryPagedCollection getPublishSets(pageSize, startIndex, responseFields)
 
 Get Publish Set
 
@@ -260,15 +254,12 @@ public class Example {
     HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
     bearerAuth.setBearerToken("BEARER TOKEN");
 
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
-
     DocumentPublishSetApi apiInstance = new DocumentPublishSetApi(defaultClient);
     Integer pageSize = 100; // Integer | maximum number of items to return
     Integer startIndex = 0; // Integer | start index
+    String responseFields = "responseFields_example"; // String | limits which fields are returned in the response body
     try {
-      PublishSetSummaryPagedCollection result = apiInstance.getPublishSets(pageSize, startIndex);
+      PublishSetSummaryPagedCollection result = apiInstance.getPublishSets(pageSize, startIndex, responseFields);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling DocumentPublishSetApi#getPublishSets");
@@ -287,6 +278,7 @@ public class Example {
 |------------- | ------------- | ------------- | -------------|
 | **pageSize** | **Integer**| maximum number of items to return | [optional] [default to 100] |
 | **startIndex** | **Integer**| start index | [optional] [default to 0] |
+| **responseFields** | **String**| limits which fields are returned in the response body | [optional] |
 
 ### Return type
 
@@ -294,7 +286,7 @@ public class Example {
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth), [clientOauth2](../README.md#clientOauth2)
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
@@ -304,5 +296,5 @@ public class Example {
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Success |  -  |
+| **200** | OK |  -  |
 

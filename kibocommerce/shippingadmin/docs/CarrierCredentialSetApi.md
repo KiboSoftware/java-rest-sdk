@@ -4,20 +4,20 @@ All URIs are relative to *http://https:/api*
 
 | Method | HTTP request | Description |
 |------------- | ------------- | -------------|
-| [**createCarrierCredentialSet**](CarrierCredentialSetApi.md#createCarrierCredentialSet) | **POST** /commerce/shipping/admin/carriers/credential-sets/{carrierId} | Creates a Mozu |
-| [**deleteCarrierCredentialSet**](CarrierCredentialSetApi.md#deleteCarrierCredentialSet) | **DELETE** /commerce/shipping/admin/carriers/credential-sets/{carrierId}/{code} | Deletes a Mozu |
-| [**getCarrierCredentialSet**](CarrierCredentialSetApi.md#getCarrierCredentialSet) | **GET** /commerce/shipping/admin/carriers/credential-sets/{carrierId}/{code} | Returns a Mozu |
-| [**getCarrierCredentialSets**](CarrierCredentialSetApi.md#getCarrierCredentialSets) | **GET** /commerce/shipping/admin/carriers/credential-sets | Returns a &lt;see cref&#x3D;\&quot;T:Mozu |
-| [**updateCarrierCredentialSet**](CarrierCredentialSetApi.md#updateCarrierCredentialSet) | **PUT** /commerce/shipping/admin/carriers/credential-sets/{carrierId}/{code} | Updates a Mozu |
+| [**createCarrierCredentialSet**](CarrierCredentialSetApi.md#createCarrierCredentialSet) | **POST** /commerce/shipping/admin/carriers/credential-sets/{carrierId} | Create Carrier Credential Set |
+| [**deleteCarrierCredentialSet**](CarrierCredentialSetApi.md#deleteCarrierCredentialSet) | **DELETE** /commerce/shipping/admin/carriers/credential-sets/{carrierId}/{code} | Delete Carrier Credential Set |
+| [**getCarrierCredentialSet**](CarrierCredentialSetApi.md#getCarrierCredentialSet) | **GET** /commerce/shipping/admin/carriers/credential-sets/{carrierId}/{code} | Get Carrier Credential Set |
+| [**getCarrierCredentialSets**](CarrierCredentialSetApi.md#getCarrierCredentialSets) | **GET** /commerce/shipping/admin/carriers/credential-sets | Get Carrier Credential Sets |
+| [**updateCarrierCredentialSet**](CarrierCredentialSetApi.md#updateCarrierCredentialSet) | **PUT** /commerce/shipping/admin/carriers/credential-sets/{carrierId}/{code} | Update Carrier Credential Set |
 
 
 <a name="createCarrierCredentialSet"></a>
 # **createCarrierCredentialSet**
-> CarrierCredentialSet createCarrierCredentialSet(carrierId, carrierCredentialSet)
+> CarrierCredentialSet createCarrierCredentialSet(carrierId, responseFields, carrierCredentialSet)
 
-Creates a Mozu
+Create Carrier Credential Set
 
-hippingAdmin.Contracts.Carriers.CarrierCredentialSet.
+Creates a new carrier credential set. See &lt;a href&#x3D;\&quot;/pages/shipping-carriers-api-overview\&quot;&gt;this guide&lt;/a&gt; for details about the fields that are required for each carrier.
 
 ### Example
 ```java
@@ -38,15 +38,12 @@ public class Example {
     HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
     bearerAuth.setBearerToken("BEARER TOKEN");
 
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
-
     CarrierCredentialSetApi apiInstance = new CarrierCredentialSetApi(defaultClient);
     String carrierId = "carrierId_example"; // String | The carrier ID.
+    String responseFields = "responseFields_example"; // String | limits which fields are returned in the response body
     CarrierCredentialSet carrierCredentialSet = new CarrierCredentialSet(); // CarrierCredentialSet | The carrier credential set data.
     try {
-      CarrierCredentialSet result = apiInstance.createCarrierCredentialSet(carrierId, carrierCredentialSet);
+      CarrierCredentialSet result = apiInstance.createCarrierCredentialSet(carrierId, responseFields, carrierCredentialSet);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling CarrierCredentialSetApi#createCarrierCredentialSet");
@@ -64,6 +61,7 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **carrierId** | **String**| The carrier ID. | |
+| **responseFields** | **String**| limits which fields are returned in the response body | [optional] |
 | **carrierCredentialSet** | [**CarrierCredentialSet**](CarrierCredentialSet.md)| The carrier credential set data. | [optional] |
 
 ### Return type
@@ -72,7 +70,7 @@ public class Example {
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth), [clientOauth2](../README.md#clientOauth2)
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
@@ -88,9 +86,9 @@ public class Example {
 # **deleteCarrierCredentialSet**
 > deleteCarrierCredentialSet(carrierId, code)
 
-Deletes a Mozu
+Delete Carrier Credential Set
 
-hippingAdmin.Contracts.Carriers.CarrierCredentialSet with the specified carrier and code.
+Deletes a carrier credential set
 
 ### Example
 ```java
@@ -110,10 +108,6 @@ public class Example {
     // Configure HTTP bearer authorization: bearerAuth
     HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
     bearerAuth.setBearerToken("BEARER TOKEN");
-
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
 
     CarrierCredentialSetApi apiInstance = new CarrierCredentialSetApi(defaultClient);
     String carrierId = "carrierId_example"; // String | The carrier ID.
@@ -144,7 +138,7 @@ null (empty response body)
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth), [clientOauth2](../README.md#clientOauth2)
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
@@ -158,11 +152,11 @@ null (empty response body)
 
 <a name="getCarrierCredentialSet"></a>
 # **getCarrierCredentialSet**
-> CarrierCredentialSet getCarrierCredentialSet(carrierId, code)
+> CarrierCredentialSet getCarrierCredentialSet(carrierId, code, responseFields)
 
-Returns a Mozu
+Get Carrier Credential Set
 
-hippingAdmin.Contracts.Carriers.CarrierCredentialSet with the specified carrier and code.
+Returns a credential set based on a specific Carrier ID and Code
 
 ### Example
 ```java
@@ -183,15 +177,12 @@ public class Example {
     HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
     bearerAuth.setBearerToken("BEARER TOKEN");
 
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
-
     CarrierCredentialSetApi apiInstance = new CarrierCredentialSetApi(defaultClient);
     String carrierId = "carrierId_example"; // String | The carrier ID.
     String code = "code_example"; // String | The carrier credential set code.
+    String responseFields = "responseFields_example"; // String | limits which fields are returned in the response body
     try {
-      CarrierCredentialSet result = apiInstance.getCarrierCredentialSet(carrierId, code);
+      CarrierCredentialSet result = apiInstance.getCarrierCredentialSet(carrierId, code, responseFields);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling CarrierCredentialSetApi#getCarrierCredentialSet");
@@ -210,6 +201,7 @@ public class Example {
 |------------- | ------------- | ------------- | -------------|
 | **carrierId** | **String**| The carrier ID. | |
 | **code** | **String**| The carrier credential set code. | |
+| **responseFields** | **String**| limits which fields are returned in the response body | [optional] |
 
 ### Return type
 
@@ -217,7 +209,7 @@ public class Example {
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth), [clientOauth2](../README.md#clientOauth2)
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
@@ -231,11 +223,11 @@ public class Example {
 
 <a name="getCarrierCredentialSets"></a>
 # **getCarrierCredentialSets**
-> CarrierCredentialSetCollection getCarrierCredentialSets(startIndex, pageSize, sortBy, filter)
+> CarrierCredentialSetCollection getCarrierCredentialSets(startIndex, pageSize, sortBy, filter, responseFields)
 
-Returns a &lt;see cref&#x3D;\&quot;T:Mozu
+Get Carrier Credential Sets
 
-hippingAdmin.Contracts.Carriers.CarrierCredentialSetCollection\&quot;&gt;collection&lt;/see&gt; of &lt;see cref&#x3D;\&quot;T:Mozu.ShippingAdmin.Contracts.Carriers.CarrierCredentialSet\&quot;&gt;carrier credential sets&lt;/see&gt; with the specified filters and options.
+Returns a collection of all carrier credential sets
 
 ### Example
 ```java
@@ -256,17 +248,14 @@ public class Example {
     HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
     bearerAuth.setBearerToken("BEARER TOKEN");
 
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
-
     CarrierCredentialSetApi apiInstance = new CarrierCredentialSetApi(defaultClient);
     Integer startIndex = 56; // Integer | The starting index.
     Integer pageSize = 56; // Integer | The page size.
     String sortBy = "sortBy_example"; // String | Any sorting filters.
     String filter = "filter_example"; // String | Any query filters.
+    String responseFields = "responseFields_example"; // String | limits which fields are returned in the response body
     try {
-      CarrierCredentialSetCollection result = apiInstance.getCarrierCredentialSets(startIndex, pageSize, sortBy, filter);
+      CarrierCredentialSetCollection result = apiInstance.getCarrierCredentialSets(startIndex, pageSize, sortBy, filter, responseFields);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling CarrierCredentialSetApi#getCarrierCredentialSets");
@@ -287,6 +276,7 @@ public class Example {
 | **pageSize** | **Integer**| The page size. | [optional] |
 | **sortBy** | **String**| Any sorting filters. | [optional] |
 | **filter** | **String**| Any query filters. | [optional] |
+| **responseFields** | **String**| limits which fields are returned in the response body | [optional] |
 
 ### Return type
 
@@ -294,7 +284,7 @@ public class Example {
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth), [clientOauth2](../README.md#clientOauth2)
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
@@ -308,11 +298,11 @@ public class Example {
 
 <a name="updateCarrierCredentialSet"></a>
 # **updateCarrierCredentialSet**
-> CarrierCredentialSet updateCarrierCredentialSet(carrierId, code, carrierCredentialSet)
+> CarrierCredentialSet updateCarrierCredentialSet(carrierId, code, responseFields, carrierCredentialSet)
 
-Updates a Mozu
+Update Carrier Credential Set
 
-hippingAdmin.Contracts.Carriers.CarrierCredentialSet with the specified carrier and code.
+Update an existing carrier credential set. See &lt;a href&#x3D;\&quot;/pages/shipping-carriers-api-overview\&quot;&gt;this guide&lt;/a&gt; for details about the fields that are required for each carrier.
 
 ### Example
 ```java
@@ -333,16 +323,13 @@ public class Example {
     HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
     bearerAuth.setBearerToken("BEARER TOKEN");
 
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
-
     CarrierCredentialSetApi apiInstance = new CarrierCredentialSetApi(defaultClient);
     String carrierId = "carrierId_example"; // String | The carrier ID.
     String code = "code_example"; // String | The carrier credential set code.
+    String responseFields = "responseFields_example"; // String | limits which fields are returned in the response body
     CarrierCredentialSet carrierCredentialSet = new CarrierCredentialSet(); // CarrierCredentialSet | The carrier credential set data.
     try {
-      CarrierCredentialSet result = apiInstance.updateCarrierCredentialSet(carrierId, code, carrierCredentialSet);
+      CarrierCredentialSet result = apiInstance.updateCarrierCredentialSet(carrierId, code, responseFields, carrierCredentialSet);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling CarrierCredentialSetApi#updateCarrierCredentialSet");
@@ -361,6 +348,7 @@ public class Example {
 |------------- | ------------- | ------------- | -------------|
 | **carrierId** | **String**| The carrier ID. | |
 | **code** | **String**| The carrier credential set code. | |
+| **responseFields** | **String**| limits which fields are returned in the response body | [optional] |
 | **carrierCredentialSet** | [**CarrierCredentialSet**](CarrierCredentialSet.md)| The carrier credential set data. | [optional] |
 
 ### Return type
@@ -369,7 +357,7 @@ public class Example {
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth), [clientOauth2](../README.md#clientOauth2)
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 

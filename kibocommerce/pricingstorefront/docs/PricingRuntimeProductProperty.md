@@ -8,11 +8,11 @@ Duplicate definition from ProductRuntime
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
-|**attributeFQN** | **String** | Attribute fully qualified name |  [optional] |
-|**values** | [**List&lt;PricingRuntimeProductPropertyValue&gt;**](PricingRuntimeProductPropertyValue.md) | Value(s) of the product property |  [optional] |
 |**attributeDetail** | [**ProductAttribute**](ProductAttribute.md) |  |  [optional] |
+|**attributeFQN** | **String** | Attribute fully qualified name |  [optional] |
 |**isHidden** | **Boolean** | Indicates whether the product property should be hidden from the customer |  [optional] |
 |**isMultiValue** | **Boolean** | Indicates whether it&#39;s possible for there to be more than one value in the Values field |  [optional] |
+|**values** | [**List&lt;PricingRuntimeProductPropertyValue&gt;**](PricingRuntimeProductPropertyValue.md) | Value(s) of the product property |  [optional] |
 
 
 ## Implemented Interfaces

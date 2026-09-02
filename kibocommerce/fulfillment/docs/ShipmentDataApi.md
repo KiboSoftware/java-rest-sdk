@@ -4,23 +4,23 @@ All URIs are relative to *http://https:/api*
 
 | Method | HTTP request | Description |
 |------------- | ------------- | -------------|
-| [**deleteShipmentDataByKeyUsingDELETE**](ShipmentDataApi.md#deleteShipmentDataByKeyUsingDELETE) | **DELETE** /commerce/shipments/{shipmentNumber}/data/{key} | Delete Shipment Data by Key |
-| [**deleteShipmentDataUsingDELETE**](ShipmentDataApi.md#deleteShipmentDataUsingDELETE) | **DELETE** /commerce/shipments/{shipmentNumber}/data | Delete Shipment Data |
-| [**deleteShipmentItemDataByKeyUsingDELETE**](ShipmentDataApi.md#deleteShipmentItemDataByKeyUsingDELETE) | **DELETE** /commerce/shipments/{shipmentNumber}/items/{lineId}/data/{key} | Delete Shipment Item Data by Key |
-| [**deleteShipmentItemDataUsingDELETE**](ShipmentDataApi.md#deleteShipmentItemDataUsingDELETE) | **DELETE** /commerce/shipments/{shipmentNumber}/items/{lineId}/data | Delete Shipment Item Data |
-| [**getShipmentDataUsingGET**](ShipmentDataApi.md#getShipmentDataUsingGET) | **GET** /commerce/shipments/{shipmentNumber}/data | Get Shipment Data |
-| [**getShipmentItemDataUsingGET**](ShipmentDataApi.md#getShipmentItemDataUsingGET) | **GET** /commerce/shipments/{shipmentNumber}/items/{lineId}/data | Get Shipment Item Data |
-| [**replaceShipmentDataUsingPUT**](ShipmentDataApi.md#replaceShipmentDataUsingPUT) | **PUT** /commerce/shipments/{shipmentNumber}/data | Replace Shipment Data |
-| [**replaceShipmentItemDataUsingPUT**](ShipmentDataApi.md#replaceShipmentItemDataUsingPUT) | **PUT** /commerce/shipments/{shipmentNumber}/items/{lineId}/data | Replace Shipment Item Data |
+| [**deleteShipmentData**](ShipmentDataApi.md#deleteShipmentData) | **DELETE** /commerce/shipments/{shipmentNumber}/data | deleteShipmentData |
+| [**deleteShipmentDataByKey**](ShipmentDataApi.md#deleteShipmentDataByKey) | **DELETE** /commerce/shipments/{shipmentNumber}/data/{key} | deleteShipmentDataByKey |
+| [**deleteShipmentItemData**](ShipmentDataApi.md#deleteShipmentItemData) | **DELETE** /commerce/shipments/{shipmentNumber}/items/{lineId}/data | deleteShipmentItemData |
+| [**deleteShipmentItemDataByKey**](ShipmentDataApi.md#deleteShipmentItemDataByKey) | **DELETE** /commerce/shipments/{shipmentNumber}/items/{lineId}/data/{key} | deleteShipmentItemDataByKey |
+| [**getShipmentData**](ShipmentDataApi.md#getShipmentData) | **GET** /commerce/shipments/{shipmentNumber}/data | getShipmentData |
+| [**getShipmentItemData**](ShipmentDataApi.md#getShipmentItemData) | **GET** /commerce/shipments/{shipmentNumber}/items/{lineId}/data | getShipmentItemData |
+| [**replaceShipmentData**](ShipmentDataApi.md#replaceShipmentData) | **PUT** /commerce/shipments/{shipmentNumber}/data | replaceShipmentData |
+| [**replaceShipmentItemData**](ShipmentDataApi.md#replaceShipmentItemData) | **PUT** /commerce/shipments/{shipmentNumber}/items/{lineId}/data | replaceShipmentItemData |
 
 
-<a name="deleteShipmentDataByKeyUsingDELETE"></a>
-# **deleteShipmentDataByKeyUsingDELETE**
-> deleteShipmentDataByKeyUsingDELETE(shipmentNumber, key)
+<a name="deleteShipmentData"></a>
+# **deleteShipmentData**
+> deleteShipmentData(shipmentNumber)
 
-Delete Shipment Data by Key
+deleteShipmentData
 
-Delete Shipment Data by Key
+Delete a shipment&#39;s data.
 
 ### Example
 ```java
@@ -28,7 +28,6 @@ Delete Shipment Data by Key
 import com.kibocommerce.sdk.fulfillment.ApiClient;
 import com.kibocommerce.sdk.fulfillment.ApiException;
 import com.kibocommerce.sdk.fulfillment.Configuration;
-import com.kibocommerce.sdk.fulfillment.auth.*;
 import com.kibocommerce.sdk.fulfillment.models.*;
 import com.kibocommerce.sdk.fulfillment.api.ShipmentDataApi;
 
@@ -36,22 +35,77 @@ public class Example {
   public static void main(String[] args) {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
     defaultClient.setBasePath("http://https:/api");
-    
-    // Configure HTTP bearer authorization: bearerAuth
-    HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
-    bearerAuth.setBearerToken("BEARER TOKEN");
-
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
 
     ShipmentDataApi apiInstance = new ShipmentDataApi(defaultClient);
     Integer shipmentNumber = 56; // Integer | shipmentNumber
+    try {
+      apiInstance.deleteShipmentData(shipmentNumber);
+    } catch (ApiException e) {
+      System.err.println("Exception when calling ShipmentDataApi#deleteShipmentData");
+      System.err.println("Status code: " + e.getCode());
+      System.err.println("Reason: " + e.getResponseBody());
+      System.err.println("Response headers: " + e.getResponseHeaders());
+      e.printStackTrace();
+    }
+  }
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **shipmentNumber** | **Integer**| shipmentNumber | |
+
+### Return type
+
+null (empty response body)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: Not defined
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **204** | No Content |  -  |
+| **401** | Unauthorized |  -  |
+| **403** | Forbidden |  -  |
+
+<a name="deleteShipmentDataByKey"></a>
+# **deleteShipmentDataByKey**
+> deleteShipmentDataByKey(key, shipmentNumber)
+
+deleteShipmentDataByKey
+
+Delete a shipment data entry by its key.
+
+### Example
+```java
+// Import classes:
+import com.kibocommerce.sdk.fulfillment.ApiClient;
+import com.kibocommerce.sdk.fulfillment.ApiException;
+import com.kibocommerce.sdk.fulfillment.Configuration;
+import com.kibocommerce.sdk.fulfillment.models.*;
+import com.kibocommerce.sdk.fulfillment.api.ShipmentDataApi;
+
+public class Example {
+  public static void main(String[] args) {
+    ApiClient defaultClient = Configuration.getDefaultApiClient();
+    defaultClient.setBasePath("http://https:/api");
+
+    ShipmentDataApi apiInstance = new ShipmentDataApi(defaultClient);
     String key = "key_example"; // String | key
+    Integer shipmentNumber = 56; // Integer | shipmentNumber
     try {
-      apiInstance.deleteShipmentDataByKeyUsingDELETE(shipmentNumber, key);
+      apiInstance.deleteShipmentDataByKey(key, shipmentNumber);
     } catch (ApiException e) {
-      System.err.println("Exception when calling ShipmentDataApi#deleteShipmentDataByKeyUsingDELETE");
+      System.err.println("Exception when calling ShipmentDataApi#deleteShipmentDataByKey");
       System.err.println("Status code: " + e.getCode());
       System.err.println("Reason: " + e.getResponseBody());
       System.err.println("Response headers: " + e.getResponseHeaders());
@@ -65,8 +119,8 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **shipmentNumber** | **Integer**| shipmentNumber | |
 | **key** | **String**| key | |
+| **shipmentNumber** | **Integer**| shipmentNumber | |
 
 ### Return type
 
@@ -74,7 +128,7 @@ null (empty response body)
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth), [clientOauth2](../README.md#clientOauth2)
+No authorization required
 
 ### HTTP request headers
 
@@ -84,18 +138,17 @@ null (empty response body)
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **204** | Success |  -  |
+| **204** | No Content |  -  |
 | **401** | Unauthorized |  -  |
 | **403** | Forbidden |  -  |
-| **404** | Not Found |  -  |
 
-<a name="deleteShipmentDataUsingDELETE"></a>
-# **deleteShipmentDataUsingDELETE**
-> deleteShipmentDataUsingDELETE(shipmentNumber)
+<a name="deleteShipmentItemData"></a>
+# **deleteShipmentItemData**
+> deleteShipmentItemData(lineId, shipmentNumber)
 
-Delete Shipment Data
+deleteShipmentItemData
 
-Delete Shipment Data
+Delete shipment item data.
 
 ### Example
 ```java
@@ -103,7 +156,6 @@ Delete Shipment Data
 import com.kibocommerce.sdk.fulfillment.ApiClient;
 import com.kibocommerce.sdk.fulfillment.ApiException;
 import com.kibocommerce.sdk.fulfillment.Configuration;
-import com.kibocommerce.sdk.fulfillment.auth.*;
 import com.kibocommerce.sdk.fulfillment.models.*;
 import com.kibocommerce.sdk.fulfillment.api.ShipmentDataApi;
 
@@ -111,21 +163,14 @@ public class Example {
   public static void main(String[] args) {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
     defaultClient.setBasePath("http://https:/api");
-    
-    // Configure HTTP bearer authorization: bearerAuth
-    HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
-    bearerAuth.setBearerToken("BEARER TOKEN");
-
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
 
     ShipmentDataApi apiInstance = new ShipmentDataApi(defaultClient);
+    Integer lineId = 56; // Integer | lineId
     Integer shipmentNumber = 56; // Integer | shipmentNumber
     try {
-      apiInstance.deleteShipmentDataUsingDELETE(shipmentNumber);
+      apiInstance.deleteShipmentItemData(lineId, shipmentNumber);
     } catch (ApiException e) {
-      System.err.println("Exception when calling ShipmentDataApi#deleteShipmentDataUsingDELETE");
+      System.err.println("Exception when calling ShipmentDataApi#deleteShipmentItemData");
       System.err.println("Status code: " + e.getCode());
       System.err.println("Reason: " + e.getResponseBody());
       System.err.println("Response headers: " + e.getResponseHeaders());
@@ -139,6 +184,7 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
+| **lineId** | **Integer**| lineId | |
 | **shipmentNumber** | **Integer**| shipmentNumber | |
 
 ### Return type
@@ -147,7 +193,7 @@ null (empty response body)
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth), [clientOauth2](../README.md#clientOauth2)
+No authorization required
 
 ### HTTP request headers
 
@@ -157,18 +203,17 @@ null (empty response body)
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **204** | Success |  -  |
+| **204** | No Content |  -  |
 | **401** | Unauthorized |  -  |
 | **403** | Forbidden |  -  |
-| **404** | Not Found |  -  |
 
-<a name="deleteShipmentItemDataByKeyUsingDELETE"></a>
-# **deleteShipmentItemDataByKeyUsingDELETE**
-> deleteShipmentItemDataByKeyUsingDELETE(shipmentNumber, lineId, key)
+<a name="deleteShipmentItemDataByKey"></a>
+# **deleteShipmentItemDataByKey**
+> deleteShipmentItemDataByKey(key, lineId, shipmentNumber)
 
-Delete Shipment Item Data by Key
+deleteShipmentItemDataByKey
 
-Delete Shipment Item Data by Key
+Delete a shipment item data record by its key.
 
 ### Example
 ```java
@@ -176,7 +221,6 @@ Delete Shipment Item Data by Key
 import com.kibocommerce.sdk.fulfillment.ApiClient;
 import com.kibocommerce.sdk.fulfillment.ApiException;
 import com.kibocommerce.sdk.fulfillment.Configuration;
-import com.kibocommerce.sdk.fulfillment.auth.*;
 import com.kibocommerce.sdk.fulfillment.models.*;
 import com.kibocommerce.sdk.fulfillment.api.ShipmentDataApi;
 
@@ -184,23 +228,15 @@ public class Example {
   public static void main(String[] args) {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
     defaultClient.setBasePath("http://https:/api");
-    
-    // Configure HTTP bearer authorization: bearerAuth
-    HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
-    bearerAuth.setBearerToken("BEARER TOKEN");
-
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
 
     ShipmentDataApi apiInstance = new ShipmentDataApi(defaultClient);
-    Integer shipmentNumber = 56; // Integer | shipmentNumber
-    Integer lineId = 56; // Integer | lineId
     String key = "key_example"; // String | key
+    Integer lineId = 56; // Integer | lineId
+    Integer shipmentNumber = 56; // Integer | shipmentNumber
     try {
-      apiInstance.deleteShipmentItemDataByKeyUsingDELETE(shipmentNumber, lineId, key);
+      apiInstance.deleteShipmentItemDataByKey(key, lineId, shipmentNumber);
     } catch (ApiException e) {
-      System.err.println("Exception when calling ShipmentDataApi#deleteShipmentItemDataByKeyUsingDELETE");
+      System.err.println("Exception when calling ShipmentDataApi#deleteShipmentItemDataByKey");
       System.err.println("Status code: " + e.getCode());
       System.err.println("Reason: " + e.getResponseBody());
       System.err.println("Response headers: " + e.getResponseHeaders());
@@ -214,9 +250,9 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **shipmentNumber** | **Integer**| shipmentNumber | |
-| **lineId** | **Integer**| lineId | |
 | **key** | **String**| key | |
+| **lineId** | **Integer**| lineId | |
+| **shipmentNumber** | **Integer**| shipmentNumber | |
 
 ### Return type
 
@@ -224,7 +260,7 @@ null (empty response body)
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth), [clientOauth2](../README.md#clientOauth2)
+No authorization required
 
 ### HTTP request headers
 
@@ -234,18 +270,17 @@ null (empty response body)
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **204** | Success |  -  |
+| **204** | No Content |  -  |
 | **401** | Unauthorized |  -  |
 | **403** | Forbidden |  -  |
-| **404** | Not Found |  -  |
 
-<a name="deleteShipmentItemDataUsingDELETE"></a>
-# **deleteShipmentItemDataUsingDELETE**
-> deleteShipmentItemDataUsingDELETE(shipmentNumber, lineId)
+<a name="getShipmentData"></a>
+# **getShipmentData**
+> Map&lt;String, Object&gt; getShipmentData(shipmentNumber)
 
-Delete Shipment Item Data
+getShipmentData
 
-Delete Shipment Item Data
+Get the data of a shipment.
 
 ### Example
 ```java
@@ -253,7 +288,6 @@ Delete Shipment Item Data
 import com.kibocommerce.sdk.fulfillment.ApiClient;
 import com.kibocommerce.sdk.fulfillment.ApiException;
 import com.kibocommerce.sdk.fulfillment.Configuration;
-import com.kibocommerce.sdk.fulfillment.auth.*;
 import com.kibocommerce.sdk.fulfillment.models.*;
 import com.kibocommerce.sdk.fulfillment.api.ShipmentDataApi;
 
@@ -261,22 +295,80 @@ public class Example {
   public static void main(String[] args) {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
     defaultClient.setBasePath("http://https:/api");
-    
-    // Configure HTTP bearer authorization: bearerAuth
-    HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
-    bearerAuth.setBearerToken("BEARER TOKEN");
-
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
 
     ShipmentDataApi apiInstance = new ShipmentDataApi(defaultClient);
     Integer shipmentNumber = 56; // Integer | shipmentNumber
+    try {
+      Map<String, Object> result = apiInstance.getShipmentData(shipmentNumber);
+      System.out.println(result);
+    } catch (ApiException e) {
+      System.err.println("Exception when calling ShipmentDataApi#getShipmentData");
+      System.err.println("Status code: " + e.getCode());
+      System.err.println("Reason: " + e.getResponseBody());
+      System.err.println("Response headers: " + e.getResponseHeaders());
+      e.printStackTrace();
+    }
+  }
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **shipmentNumber** | **Integer**| shipmentNumber | |
+
+### Return type
+
+**Map&lt;String, Object&gt;**
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/hal+json, application/json, application/xml
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | OK |  -  |
+| **401** | Unauthorized |  -  |
+| **403** | Forbidden |  -  |
+| **404** | Not Found |  -  |
+
+<a name="getShipmentItemData"></a>
+# **getShipmentItemData**
+> Map&lt;String, Object&gt; getShipmentItemData(lineId, shipmentNumber)
+
+getShipmentItemData
+
+Get the data of a shipment line item.
+
+### Example
+```java
+// Import classes:
+import com.kibocommerce.sdk.fulfillment.ApiClient;
+import com.kibocommerce.sdk.fulfillment.ApiException;
+import com.kibocommerce.sdk.fulfillment.Configuration;
+import com.kibocommerce.sdk.fulfillment.models.*;
+import com.kibocommerce.sdk.fulfillment.api.ShipmentDataApi;
+
+public class Example {
+  public static void main(String[] args) {
+    ApiClient defaultClient = Configuration.getDefaultApiClient();
+    defaultClient.setBasePath("http://https:/api");
+
+    ShipmentDataApi apiInstance = new ShipmentDataApi(defaultClient);
     Integer lineId = 56; // Integer | lineId
+    Integer shipmentNumber = 56; // Integer | shipmentNumber
     try {
-      apiInstance.deleteShipmentItemDataUsingDELETE(shipmentNumber, lineId);
+      Map<String, Object> result = apiInstance.getShipmentItemData(lineId, shipmentNumber);
+      System.out.println(result);
     } catch (ApiException e) {
-      System.err.println("Exception when calling ShipmentDataApi#deleteShipmentItemDataUsingDELETE");
+      System.err.println("Exception when calling ShipmentDataApi#getShipmentItemData");
       System.err.println("Status code: " + e.getCode());
       System.err.println("Reason: " + e.getResponseBody());
       System.err.println("Response headers: " + e.getResponseHeaders());
@@ -290,37 +382,37 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **shipmentNumber** | **Integer**| shipmentNumber | |
 | **lineId** | **Integer**| lineId | |
+| **shipmentNumber** | **Integer**| shipmentNumber | |
 
 ### Return type
 
-null (empty response body)
+**Map&lt;String, Object&gt;**
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth), [clientOauth2](../README.md#clientOauth2)
+No authorization required
 
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: Not defined
+ - **Accept**: application/hal+json, application/json, application/xml
 
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **204** | Success |  -  |
+| **200** | OK |  -  |
 | **401** | Unauthorized |  -  |
 | **403** | Forbidden |  -  |
 | **404** | Not Found |  -  |
 
-<a name="getShipmentDataUsingGET"></a>
-# **getShipmentDataUsingGET**
-> Map&lt;String, Object&gt; getShipmentDataUsingGET(shipmentNumber)
+<a name="replaceShipmentData"></a>
+# **replaceShipmentData**
+> Map&lt;String, Object&gt; replaceShipmentData(shipmentNumber, data, merge)
 
-Get Shipment Data
+replaceShipmentData
 
-Get Shipment Data
+Update and replace a shipment&#39;s data.
 
 ### Example
 ```java
@@ -328,7 +420,6 @@ Get Shipment Data
 import com.kibocommerce.sdk.fulfillment.ApiClient;
 import com.kibocommerce.sdk.fulfillment.ApiException;
 import com.kibocommerce.sdk.fulfillment.Configuration;
-import com.kibocommerce.sdk.fulfillment.auth.*;
 import com.kibocommerce.sdk.fulfillment.models.*;
 import com.kibocommerce.sdk.fulfillment.api.ShipmentDataApi;
 
@@ -336,22 +427,16 @@ public class Example {
   public static void main(String[] args) {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
     defaultClient.setBasePath("http://https:/api");
-    
-    // Configure HTTP bearer authorization: bearerAuth
-    HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
-    bearerAuth.setBearerToken("BEARER TOKEN");
-
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
 
     ShipmentDataApi apiInstance = new ShipmentDataApi(defaultClient);
     Integer shipmentNumber = 56; // Integer | shipmentNumber
+    Map<String, Object> data = null; // Map<String, Object> | data
+    Boolean merge = false; // Boolean | merge
     try {
-      Map<String, Object> result = apiInstance.getShipmentDataUsingGET(shipmentNumber);
+      Map<String, Object> result = apiInstance.replaceShipmentData(shipmentNumber, data, merge);
       System.out.println(result);
     } catch (ApiException e) {
-      System.err.println("Exception when calling ShipmentDataApi#getShipmentDataUsingGET");
+      System.err.println("Exception when calling ShipmentDataApi#replaceShipmentData");
       System.err.println("Status code: " + e.getCode());
       System.err.println("Reason: " + e.getResponseBody());
       System.err.println("Response headers: " + e.getResponseHeaders());
@@ -366,6 +451,8 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **shipmentNumber** | **Integer**| shipmentNumber | |
+| **data** | [**Map&lt;String, Object&gt;**](Object.md)| data | |
+| **merge** | **Boolean**| merge | [optional] [default to false] |
 
 ### Return type
 
@@ -373,184 +460,29 @@ public class Example {
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth), [clientOauth2](../README.md#clientOauth2)
-
-### HTTP request headers
-
- - **Content-Type**: Not defined
- - **Accept**: application/json, application/xml, application/hal+json
-
-### HTTP response details
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-| **200** | Success |  -  |
-| **401** | Unauthorized |  -  |
-| **403** | Forbidden |  -  |
-| **404** | Not Found |  -  |
-
-<a name="getShipmentItemDataUsingGET"></a>
-# **getShipmentItemDataUsingGET**
-> Map&lt;String, Object&gt; getShipmentItemDataUsingGET(shipmentNumber, lineId)
-
-Get Shipment Item Data
-
-Get Shipment Item Data
-
-### Example
-```java
-// Import classes:
-import com.kibocommerce.sdk.fulfillment.ApiClient;
-import com.kibocommerce.sdk.fulfillment.ApiException;
-import com.kibocommerce.sdk.fulfillment.Configuration;
-import com.kibocommerce.sdk.fulfillment.auth.*;
-import com.kibocommerce.sdk.fulfillment.models.*;
-import com.kibocommerce.sdk.fulfillment.api.ShipmentDataApi;
-
-public class Example {
-  public static void main(String[] args) {
-    ApiClient defaultClient = Configuration.getDefaultApiClient();
-    defaultClient.setBasePath("http://https:/api");
-    
-    // Configure HTTP bearer authorization: bearerAuth
-    HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
-    bearerAuth.setBearerToken("BEARER TOKEN");
-
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
-
-    ShipmentDataApi apiInstance = new ShipmentDataApi(defaultClient);
-    Integer shipmentNumber = 56; // Integer | shipmentNumber
-    Integer lineId = 56; // Integer | lineId
-    try {
-      Map<String, Object> result = apiInstance.getShipmentItemDataUsingGET(shipmentNumber, lineId);
-      System.out.println(result);
-    } catch (ApiException e) {
-      System.err.println("Exception when calling ShipmentDataApi#getShipmentItemDataUsingGET");
-      System.err.println("Status code: " + e.getCode());
-      System.err.println("Reason: " + e.getResponseBody());
-      System.err.println("Response headers: " + e.getResponseHeaders());
-      e.printStackTrace();
-    }
-  }
-}
-```
-
-### Parameters
-
-| Name | Type | Description  | Notes |
-|------------- | ------------- | ------------- | -------------|
-| **shipmentNumber** | **Integer**| shipmentNumber | |
-| **lineId** | **Integer**| lineId | |
-
-### Return type
-
-**Map&lt;String, Object&gt;**
-
-### Authorization
-
-[bearerAuth](../README.md#bearerAuth), [clientOauth2](../README.md#clientOauth2)
-
-### HTTP request headers
-
- - **Content-Type**: Not defined
- - **Accept**: application/json, application/xml, application/hal+json
-
-### HTTP response details
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-| **200** | Success |  -  |
-| **401** | Unauthorized |  -  |
-| **403** | Forbidden |  -  |
-| **404** | Not Found |  -  |
-
-<a name="replaceShipmentDataUsingPUT"></a>
-# **replaceShipmentDataUsingPUT**
-> Map&lt;String, Object&gt; replaceShipmentDataUsingPUT(shipmentNumber, merge, requestBody)
-
-Replace Shipment Data
-
-Replace Shipment Data
-
-### Example
-```java
-// Import classes:
-import com.kibocommerce.sdk.fulfillment.ApiClient;
-import com.kibocommerce.sdk.fulfillment.ApiException;
-import com.kibocommerce.sdk.fulfillment.Configuration;
-import com.kibocommerce.sdk.fulfillment.auth.*;
-import com.kibocommerce.sdk.fulfillment.models.*;
-import com.kibocommerce.sdk.fulfillment.api.ShipmentDataApi;
-
-public class Example {
-  public static void main(String[] args) {
-    ApiClient defaultClient = Configuration.getDefaultApiClient();
-    defaultClient.setBasePath("http://https:/api");
-    
-    // Configure HTTP bearer authorization: bearerAuth
-    HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
-    bearerAuth.setBearerToken("BEARER TOKEN");
-
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
-
-    ShipmentDataApi apiInstance = new ShipmentDataApi(defaultClient);
-    Integer shipmentNumber = 56; // Integer | shipmentNumber
-    Boolean merge = true; // Boolean | merge
-    Map<String, Object> requestBody = null; // Map<String, Object> | 
-    try {
-      Map<String, Object> result = apiInstance.replaceShipmentDataUsingPUT(shipmentNumber, merge, requestBody);
-      System.out.println(result);
-    } catch (ApiException e) {
-      System.err.println("Exception when calling ShipmentDataApi#replaceShipmentDataUsingPUT");
-      System.err.println("Status code: " + e.getCode());
-      System.err.println("Reason: " + e.getResponseBody());
-      System.err.println("Response headers: " + e.getResponseHeaders());
-      e.printStackTrace();
-    }
-  }
-}
-```
-
-### Parameters
-
-| Name | Type | Description  | Notes |
-|------------- | ------------- | ------------- | -------------|
-| **shipmentNumber** | **Integer**| shipmentNumber | |
-| **merge** | **Boolean**| merge | [optional] |
-| **requestBody** | [**Map&lt;String, Object&gt;**](Object.md)|  | [optional] |
-
-### Return type
-
-**Map&lt;String, Object&gt;**
-
-### Authorization
-
-[bearerAuth](../README.md#bearerAuth), [clientOauth2](../README.md#clientOauth2)
+No authorization required
 
 ### HTTP request headers
 
  - **Content-Type**: application/json
- - **Accept**: application/xml, application/json, application/hal+json
+ - **Accept**: application/hal+json, application/json, application/xml
 
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Success |  -  |
+| **200** | OK |  -  |
 | **201** | Created |  -  |
-| **400** | Invalid Input |  -  |
 | **401** | Unauthorized |  -  |
 | **403** | Forbidden |  -  |
 | **404** | Not Found |  -  |
 
-<a name="replaceShipmentItemDataUsingPUT"></a>
-# **replaceShipmentItemDataUsingPUT**
-> Map&lt;String, Object&gt; replaceShipmentItemDataUsingPUT(shipmentNumber, lineId, merge, requestBody)
+<a name="replaceShipmentItemData"></a>
+# **replaceShipmentItemData**
+> Map&lt;String, Object&gt; replaceShipmentItemData(lineId, shipmentNumber, data, merge)
 
-Replace Shipment Item Data
+replaceShipmentItemData
 
-Replace Shipment Item Data
+Replace shipment item data.
 
 ### Example
 ```java
@@ -558,7 +490,6 @@ Replace Shipment Item Data
 import com.kibocommerce.sdk.fulfillment.ApiClient;
 import com.kibocommerce.sdk.fulfillment.ApiException;
 import com.kibocommerce.sdk.fulfillment.Configuration;
-import com.kibocommerce.sdk.fulfillment.auth.*;
 import com.kibocommerce.sdk.fulfillment.models.*;
 import com.kibocommerce.sdk.fulfillment.api.ShipmentDataApi;
 
@@ -566,25 +497,17 @@ public class Example {
   public static void main(String[] args) {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
     defaultClient.setBasePath("http://https:/api");
-    
-    // Configure HTTP bearer authorization: bearerAuth
-    HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
-    bearerAuth.setBearerToken("BEARER TOKEN");
-
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
 
     ShipmentDataApi apiInstance = new ShipmentDataApi(defaultClient);
-    Integer shipmentNumber = 56; // Integer | shipmentNumber
     Integer lineId = 56; // Integer | lineId
-    Boolean merge = true; // Boolean | merge
-    Map<String, Object> requestBody = null; // Map<String, Object> | 
+    Integer shipmentNumber = 56; // Integer | shipmentNumber
+    Map<String, Object> data = null; // Map<String, Object> | data
+    Boolean merge = false; // Boolean | merge
     try {
-      Map<String, Object> result = apiInstance.replaceShipmentItemDataUsingPUT(shipmentNumber, lineId, merge, requestBody);
+      Map<String, Object> result = apiInstance.replaceShipmentItemData(lineId, shipmentNumber, data, merge);
       System.out.println(result);
     } catch (ApiException e) {
-      System.err.println("Exception when calling ShipmentDataApi#replaceShipmentItemDataUsingPUT");
+      System.err.println("Exception when calling ShipmentDataApi#replaceShipmentItemData");
       System.err.println("Status code: " + e.getCode());
       System.err.println("Reason: " + e.getResponseBody());
       System.err.println("Response headers: " + e.getResponseHeaders());
@@ -598,10 +521,10 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **shipmentNumber** | **Integer**| shipmentNumber | |
 | **lineId** | **Integer**| lineId | |
-| **merge** | **Boolean**| merge | [optional] |
-| **requestBody** | [**Map&lt;String, Object&gt;**](Object.md)|  | [optional] |
+| **shipmentNumber** | **Integer**| shipmentNumber | |
+| **data** | [**Map&lt;String, Object&gt;**](Object.md)| data | |
+| **merge** | **Boolean**| merge | [optional] [default to false] |
 
 ### Return type
 
@@ -609,19 +532,18 @@ public class Example {
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth), [clientOauth2](../README.md#clientOauth2)
+No authorization required
 
 ### HTTP request headers
 
  - **Content-Type**: application/json
- - **Accept**: application/json, application/xml, application/hal+json
+ - **Accept**: application/hal+json, application/json, application/xml
 
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Success |  -  |
+| **200** | OK |  -  |
 | **201** | Created |  -  |
-| **400** | Invalid Input |  -  |
 | **401** | Unauthorized |  -  |
 | **403** | Forbidden |  -  |
 | **404** | Not Found |  -  |

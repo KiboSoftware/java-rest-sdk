@@ -9,7 +9,7 @@ All URIs are relative to *http://https:/api*
 | [**applyCoupon**](CheckoutApi.md#applyCoupon) | **PUT** /commerce/checkouts/{checkoutId}/coupons/{couponCode} | Apply Coupon |
 | [**bulkUpdateDeliveryDates**](CheckoutApi.md#bulkUpdateDeliveryDates) | **POST** /commerce/checkouts/{checkoutId}/items/deliverydates | Update Delivery Dates of Items in bulk |
 | [**bulkUpdateItemDestinations**](CheckoutApi.md#bulkUpdateItemDestinations) | **POST** /commerce/checkouts/{checkoutId}/items/destinations | Bulk Update Item Destinations |
-| [**changeCheckoutPriceList**](CheckoutApi.md#changeCheckoutPriceList) | **PUT** /commerce/checkouts/{checkoutId}/priceList | Change Checkout PriceList |
+| [**changeCheckoutPriceList**](CheckoutApi.md#changeCheckoutPriceList) | **PUT** /commerce/checkouts/{checkoutId}/priceList | Change Checkout Price List |
 | [**createCheckoutAttributes**](CheckoutApi.md#createCheckoutAttributes) | **POST** /commerce/checkouts/{checkoutId}/attributes | Create Checkout Attributes |
 | [**createCheckoutFromCart**](CheckoutApi.md#createCheckoutFromCart) | **POST** /commerce/checkouts | Create Checkout From Cart |
 | [**createPaymentAction**](CheckoutApi.md#createPaymentAction) | **POST** /commerce/checkouts/{checkoutId}/payments/actions | Create Payment Action |
@@ -33,15 +33,17 @@ All URIs are relative to *http://https:/api*
 | [**updateCheckout**](CheckoutApi.md#updateCheckout) | **POST** /commerce/checkouts/{checkoutId} | Update Checkout |
 | [**updateCheckoutAttribute**](CheckoutApi.md#updateCheckoutAttribute) | **PUT** /commerce/checkouts/{checkoutId}/attributes | Update Checkout Attribute |
 | [**updateDestination**](CheckoutApi.md#updateDestination) | **PUT** /commerce/checkouts/{checkoutId}/destinations/{destinationId} | Update Destination |
+| [**updateGiftInfo**](CheckoutApi.md#updateGiftInfo) | **PUT** /commerce/checkouts/{checkoutId}/items/{itemId}/updateGiftInfo | Update Checkout Item Gift Information |
 | [**updateItemDeliveryDate**](CheckoutApi.md#updateItemDeliveryDate) | **PUT** /commerce/checkouts/{checkoutId}/items/{itemId}/deliverydate | Update the Delivery Date of the Item |
 | [**updateItemDestination**](CheckoutApi.md#updateItemDestination) | **PUT** /commerce/checkouts/{checkoutId}/items/{itemId}/destination/{destinationId} | Update Item Destination |
 | [**updateSubscriptionInfo**](CheckoutApi.md#updateSubscriptionInfo) | **PUT** /commerce/checkouts/{checkoutId}/items/{itemId}/subscriptionInfo | Update Item Subscription Info |
 | [**upsertInventoryTags**](CheckoutApi.md#upsertInventoryTags) | **PUT** /commerce/checkouts/{checkoutId}/items/{itemId}/upsert-inventory-tags | Upsert Inventory Tags |
+| [**upsertSubstituteInfo**](CheckoutApi.md#upsertSubstituteInfo) | **PUT** /commerce/checkouts/{checkoutId}/items/{itemId}/upsertSubstituteInfo | Update SubstituteInfo on CheckoutItem |
 
 
 <a name="addCheckoutItem"></a>
 # **addCheckoutItem**
-> Checkout addCheckoutItem(checkoutId, commerceRuntimeOrderItem)
+> Checkout addCheckoutItem(checkoutId, responseFields, orderItem)
 
 Add Checkout Item
 
@@ -66,15 +68,12 @@ public class Example {
     HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
     bearerAuth.setBearerToken("BEARER TOKEN");
 
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
-
     CheckoutApi apiInstance = new CheckoutApi(defaultClient);
     String checkoutId = "checkoutId_example"; // String | ID of the checkout to add an item to.
-    CommerceRuntimeOrderItem commerceRuntimeOrderItem = new CommerceRuntimeOrderItem(); // CommerceRuntimeOrderItem | All properties of the new item. Required property: Product.ProductCode.
+    String responseFields = "responseFields_example"; // String | limits which fields are returned in the response body
+    OrderItem orderItem = new OrderItem(); // OrderItem | All properties of the new item. Required property: Product.ProductCode.
     try {
-      Checkout result = apiInstance.addCheckoutItem(checkoutId, commerceRuntimeOrderItem);
+      Checkout result = apiInstance.addCheckoutItem(checkoutId, responseFields, orderItem);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling CheckoutApi#addCheckoutItem");
@@ -92,7 +91,8 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **checkoutId** | **String**| ID of the checkout to add an item to. | |
-| **commerceRuntimeOrderItem** | [**CommerceRuntimeOrderItem**](CommerceRuntimeOrderItem.md)| All properties of the new item. Required property: Product.ProductCode. | [optional] |
+| **responseFields** | **String**| limits which fields are returned in the response body | [optional] |
+| **orderItem** | [**OrderItem**](OrderItem.md)| All properties of the new item. Required property: Product.ProductCode. | [optional] |
 
 ### Return type
 
@@ -100,7 +100,7 @@ public class Example {
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth), [clientOauth2](../README.md#clientOauth2)
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
@@ -110,11 +110,11 @@ public class Example {
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Success |  -  |
+| **200** | OK |  -  |
 
 <a name="addDestination"></a>
 # **addDestination**
-> CommerceRuntimeDestination addDestination(checkoutId, commerceRuntimeDestination)
+> CommerceRuntimeDestination addDestination(checkoutId, responseFields, commerceRuntimeDestination)
 
 Add Destination
 
@@ -139,15 +139,12 @@ public class Example {
     HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
     bearerAuth.setBearerToken("BEARER TOKEN");
 
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
-
     CheckoutApi apiInstance = new CheckoutApi(defaultClient);
     String checkoutId = "checkoutId_example"; // String | 
+    String responseFields = "responseFields_example"; // String | limits which fields are returned in the response body
     CommerceRuntimeDestination commerceRuntimeDestination = new CommerceRuntimeDestination(); // CommerceRuntimeDestination | 
     try {
-      CommerceRuntimeDestination result = apiInstance.addDestination(checkoutId, commerceRuntimeDestination);
+      CommerceRuntimeDestination result = apiInstance.addDestination(checkoutId, responseFields, commerceRuntimeDestination);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling CheckoutApi#addDestination");
@@ -165,6 +162,7 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **checkoutId** | **String**|  | |
+| **responseFields** | **String**| limits which fields are returned in the response body | [optional] |
 | **commerceRuntimeDestination** | [**CommerceRuntimeDestination**](CommerceRuntimeDestination.md)|  | [optional] |
 
 ### Return type
@@ -173,7 +171,7 @@ public class Example {
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth), [clientOauth2](../README.md#clientOauth2)
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
@@ -183,11 +181,11 @@ public class Example {
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Success |  -  |
+| **200** | OK |  -  |
 
 <a name="applyCoupon"></a>
 # **applyCoupon**
-> Checkout applyCoupon(checkoutId, couponCode)
+> Checkout applyCoupon(checkoutId, couponCode, responseFields)
 
 Apply Coupon
 
@@ -212,15 +210,12 @@ public class Example {
     HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
     bearerAuth.setBearerToken("BEARER TOKEN");
 
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
-
     CheckoutApi apiInstance = new CheckoutApi(defaultClient);
     String checkoutId = "checkoutId_example"; // String | Unique identifier of the Checkout with which to associate the coupon.
     String couponCode = "couponCode_example"; // String | Coupon code that the customer supplies to get the discounted price.
+    String responseFields = "responseFields_example"; // String | limits which fields are returned in the response body
     try {
-      Checkout result = apiInstance.applyCoupon(checkoutId, couponCode);
+      Checkout result = apiInstance.applyCoupon(checkoutId, couponCode, responseFields);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling CheckoutApi#applyCoupon");
@@ -239,6 +234,7 @@ public class Example {
 |------------- | ------------- | ------------- | -------------|
 | **checkoutId** | **String**| Unique identifier of the Checkout with which to associate the coupon. | |
 | **couponCode** | **String**| Coupon code that the customer supplies to get the discounted price. | |
+| **responseFields** | **String**| limits which fields are returned in the response body | [optional] |
 
 ### Return type
 
@@ -246,7 +242,7 @@ public class Example {
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth), [clientOauth2](../README.md#clientOauth2)
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
@@ -256,15 +252,15 @@ public class Example {
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Success |  -  |
+| **200** | OK |  -  |
 
 <a name="bulkUpdateDeliveryDates"></a>
 # **bulkUpdateDeliveryDates**
-> Checkout bulkUpdateDeliveryDates(checkoutId, itemsAndDeliveryDates)
+> Checkout bulkUpdateDeliveryDates(checkoutId, responseFields, itemsAndDeliveryDates)
 
 Update Delivery Dates of Items in bulk
 
-Update Delivery Dates of Items in bulk
+Update delivery dates of items in bulk
 
 ### Example
 ```java
@@ -285,15 +281,12 @@ public class Example {
     HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
     bearerAuth.setBearerToken("BEARER TOKEN");
 
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
-
     CheckoutApi apiInstance = new CheckoutApi(defaultClient);
     String checkoutId = "checkoutId_example"; // String | ID of the Checkout
+    String responseFields = "responseFields_example"; // String | limits which fields are returned in the response body
     List<ItemsAndDeliveryDates> itemsAndDeliveryDates = Arrays.asList(); // List<ItemsAndDeliveryDates> | Pairings of Delivery Date and associated ItemIds
     try {
-      Checkout result = apiInstance.bulkUpdateDeliveryDates(checkoutId, itemsAndDeliveryDates);
+      Checkout result = apiInstance.bulkUpdateDeliveryDates(checkoutId, responseFields, itemsAndDeliveryDates);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling CheckoutApi#bulkUpdateDeliveryDates");
@@ -311,6 +304,7 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **checkoutId** | **String**| ID of the Checkout | |
+| **responseFields** | **String**| limits which fields are returned in the response body | [optional] |
 | **itemsAndDeliveryDates** | [**List&lt;ItemsAndDeliveryDates&gt;**](ItemsAndDeliveryDates.md)| Pairings of Delivery Date and associated ItemIds | [optional] |
 
 ### Return type
@@ -319,7 +313,7 @@ public class Example {
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth), [clientOauth2](../README.md#clientOauth2)
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
@@ -329,11 +323,11 @@ public class Example {
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Success |  -  |
+| **200** | OK |  -  |
 
 <a name="bulkUpdateItemDestinations"></a>
 # **bulkUpdateItemDestinations**
-> Checkout bulkUpdateItemDestinations(checkoutId, itemsForDestination)
+> Checkout bulkUpdateItemDestinations(checkoutId, responseFields, itemsForDestination)
 
 Bulk Update Item Destinations
 
@@ -358,15 +352,12 @@ public class Example {
     HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
     bearerAuth.setBearerToken("BEARER TOKEN");
 
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
-
     CheckoutApi apiInstance = new CheckoutApi(defaultClient);
     String checkoutId = "checkoutId_example"; // String | ID of the checkout
+    String responseFields = "responseFields_example"; // String | limits which fields are returned in the response body
     List<ItemsForDestination> itemsForDestination = Arrays.asList(); // List<ItemsForDestination> | Pairings of destination IDs with their associated items by ID
     try {
-      Checkout result = apiInstance.bulkUpdateItemDestinations(checkoutId, itemsForDestination);
+      Checkout result = apiInstance.bulkUpdateItemDestinations(checkoutId, responseFields, itemsForDestination);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling CheckoutApi#bulkUpdateItemDestinations");
@@ -384,6 +375,7 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **checkoutId** | **String**| ID of the checkout | |
+| **responseFields** | **String**| limits which fields are returned in the response body | [optional] |
 | **itemsForDestination** | [**List&lt;ItemsForDestination&gt;**](ItemsForDestination.md)| Pairings of destination IDs with their associated items by ID | [optional] |
 
 ### Return type
@@ -392,7 +384,7 @@ public class Example {
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth), [clientOauth2](../README.md#clientOauth2)
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
@@ -402,13 +394,13 @@ public class Example {
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Success |  -  |
+| **200** | OK |  -  |
 
 <a name="changeCheckoutPriceList"></a>
 # **changeCheckoutPriceList**
-> Checkout changeCheckoutPriceList(checkoutId, body)
+> Checkout changeCheckoutPriceList(checkoutId, responseFields, body)
 
-Change Checkout PriceList
+Change Checkout Price List
 
 Changes the pricelist associated with a checkout.The desired price list code should be specified on the ApiContext.
 
@@ -431,15 +423,12 @@ public class Example {
     HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
     bearerAuth.setBearerToken("BEARER TOKEN");
 
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
-
     CheckoutApi apiInstance = new CheckoutApi(defaultClient);
     String checkoutId = "checkoutId_example"; // String | Unique identifier of the checkout to change
+    String responseFields = "responseFields_example"; // String | limits which fields are returned in the response body
     String body = "body_example"; // String | The code for the pricelist to apply
     try {
-      Checkout result = apiInstance.changeCheckoutPriceList(checkoutId, body);
+      Checkout result = apiInstance.changeCheckoutPriceList(checkoutId, responseFields, body);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling CheckoutApi#changeCheckoutPriceList");
@@ -457,6 +446,7 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **checkoutId** | **String**| Unique identifier of the checkout to change | |
+| **responseFields** | **String**| limits which fields are returned in the response body | [optional] |
 | **body** | **String**| The code for the pricelist to apply | [optional] |
 
 ### Return type
@@ -465,7 +455,7 @@ public class Example {
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth), [clientOauth2](../README.md#clientOauth2)
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
@@ -475,11 +465,11 @@ public class Example {
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Success |  -  |
+| **200** | OK |  -  |
 
 <a name="createCheckoutAttributes"></a>
 # **createCheckoutAttributes**
-> List&lt;CommerceRuntimeOrderAttribute&gt; createCheckoutAttributes(checkoutId, commerceRuntimeOrderAttribute)
+> List&lt;CommerceRuntimeOrderAttribute&gt; createCheckoutAttributes(checkoutId, responseFields, commerceRuntimeOrderAttribute)
 
 Create Checkout Attributes
 
@@ -504,15 +494,12 @@ public class Example {
     HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
     bearerAuth.setBearerToken("BEARER TOKEN");
 
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
-
     CheckoutApi apiInstance = new CheckoutApi(defaultClient);
     String checkoutId = "checkoutId_example"; // String | 
+    String responseFields = "responseFields_example"; // String | limits which fields are returned in the response body
     List<CommerceRuntimeOrderAttribute> commerceRuntimeOrderAttribute = Arrays.asList(); // List<CommerceRuntimeOrderAttribute> | 
     try {
-      List<CommerceRuntimeOrderAttribute> result = apiInstance.createCheckoutAttributes(checkoutId, commerceRuntimeOrderAttribute);
+      List<CommerceRuntimeOrderAttribute> result = apiInstance.createCheckoutAttributes(checkoutId, responseFields, commerceRuntimeOrderAttribute);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling CheckoutApi#createCheckoutAttributes");
@@ -530,6 +517,7 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **checkoutId** | **String**|  | |
+| **responseFields** | **String**| limits which fields are returned in the response body | [optional] |
 | **commerceRuntimeOrderAttribute** | [**List&lt;CommerceRuntimeOrderAttribute&gt;**](CommerceRuntimeOrderAttribute.md)|  | [optional] |
 
 ### Return type
@@ -538,7 +526,7 @@ public class Example {
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth), [clientOauth2](../README.md#clientOauth2)
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
@@ -548,11 +536,11 @@ public class Example {
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Success |  -  |
+| **200** | OK |  -  |
 
 <a name="createCheckoutFromCart"></a>
 # **createCheckoutFromCart**
-> Checkout createCheckoutFromCart(cartId)
+> Checkout createCheckoutFromCart(cartId, responseFields)
 
 Create Checkout From Cart
 
@@ -577,14 +565,11 @@ public class Example {
     HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
     bearerAuth.setBearerToken("BEARER TOKEN");
 
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
-
     CheckoutApi apiInstance = new CheckoutApi(defaultClient);
     String cartId = "cartId_example"; // String | Unique identifier of the cart. This is the original cart ID expressed as a GUID.
+    String responseFields = "responseFields_example"; // String | limits which fields are returned in the response body
     try {
-      Checkout result = apiInstance.createCheckoutFromCart(cartId);
+      Checkout result = apiInstance.createCheckoutFromCart(cartId, responseFields);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling CheckoutApi#createCheckoutFromCart");
@@ -602,6 +587,7 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **cartId** | **String**| Unique identifier of the cart. This is the original cart ID expressed as a GUID. | [optional] |
+| **responseFields** | **String**| limits which fields are returned in the response body | [optional] |
 
 ### Return type
 
@@ -609,7 +595,7 @@ public class Example {
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth), [clientOauth2](../README.md#clientOauth2)
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
@@ -619,15 +605,15 @@ public class Example {
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Success |  -  |
+| **200** | OK |  -  |
 
 <a name="createPaymentAction"></a>
 # **createPaymentAction**
-> Checkout createPaymentAction(checkoutId, paymentAction)
+> Checkout createPaymentAction(checkoutId, responseFields, paymentAction)
 
 Create Payment Action
 
-Sets the action of the specified payment transaction interaction. Available actions depend on the current status of the payment transaction.If in doubt, get a list of available payment actions first.
+Sets the action of the specified payment transaction interaction. Available actions depend on the current status of the payment transaction. If in doubt, get a list of available &lt;a href&#x3D;\&quot;/pages/payment-states#payment-actions\&quot;&gt;payment actions&lt;/a&gt; first. 
 
 ### Example
 ```java
@@ -648,15 +634,12 @@ public class Example {
     HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
     bearerAuth.setBearerToken("BEARER TOKEN");
 
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
-
     CheckoutApi apiInstance = new CheckoutApi(defaultClient);
     String checkoutId = "checkoutId_example"; // String | Unique identifier of the checkout whose payment action you want to change.
+    String responseFields = "responseFields_example"; // String | limits which fields are returned in the response body
     PaymentAction paymentAction = new PaymentAction(); // PaymentAction | Action to be performed, along with any metadata.
     try {
-      Checkout result = apiInstance.createPaymentAction(checkoutId, paymentAction);
+      Checkout result = apiInstance.createPaymentAction(checkoutId, responseFields, paymentAction);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling CheckoutApi#createPaymentAction");
@@ -674,6 +657,7 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **checkoutId** | **String**| Unique identifier of the checkout whose payment action you want to change. | |
+| **responseFields** | **String**| limits which fields are returned in the response body | [optional] |
 | **paymentAction** | [**PaymentAction**](PaymentAction.md)| Action to be performed, along with any metadata. | [optional] |
 
 ### Return type
@@ -682,7 +666,7 @@ public class Example {
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth), [clientOauth2](../README.md#clientOauth2)
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
@@ -692,7 +676,7 @@ public class Example {
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Success |  -  |
+| **200** | OK |  -  |
 
 <a name="deleteCheckoutItem"></a>
 # **deleteCheckoutItem**
@@ -720,10 +704,6 @@ public class Example {
     // Configure HTTP bearer authorization: bearerAuth
     HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
     bearerAuth.setBearerToken("BEARER TOKEN");
-
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
 
     CheckoutApi apiInstance = new CheckoutApi(defaultClient);
     String checkoutId = "checkoutId_example"; // String | 
@@ -755,7 +735,7 @@ public class Example {
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth), [clientOauth2](../README.md#clientOauth2)
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
@@ -765,11 +745,11 @@ public class Example {
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Success |  -  |
+| **200** | OK |  -  |
 
 <a name="getAvailableActions"></a>
 # **getAvailableActions**
-> List&lt;String&gt; getAvailableActions(checkoutId)
+> List&lt;String&gt; getAvailableActions(checkoutId, responseFields)
 
 Get Available Actions
 
@@ -794,14 +774,11 @@ public class Example {
     HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
     bearerAuth.setBearerToken("BEARER TOKEN");
 
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
-
     CheckoutApi apiInstance = new CheckoutApi(defaultClient);
     String checkoutId = "checkoutId_example"; // String | Unique identifier of the checkout whose available actions you want to get.
+    String responseFields = "responseFields_example"; // String | limits which fields are returned in the response body
     try {
-      List<String> result = apiInstance.getAvailableActions(checkoutId);
+      List<String> result = apiInstance.getAvailableActions(checkoutId, responseFields);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling CheckoutApi#getAvailableActions");
@@ -819,6 +796,7 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **checkoutId** | **String**| Unique identifier of the checkout whose available actions you want to get. | |
+| **responseFields** | **String**| limits which fields are returned in the response body | [optional] |
 
 ### Return type
 
@@ -826,7 +804,7 @@ public class Example {
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth), [clientOauth2](../README.md#clientOauth2)
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
@@ -836,11 +814,11 @@ public class Example {
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Success |  -  |
+| **200** | OK |  -  |
 
 <a name="getAvailableShippingMethods"></a>
 # **getAvailableShippingMethods**
-> List&lt;CheckoutGroupRates&gt; getAvailableShippingMethods(checkoutId)
+> List&lt;CheckoutGroupRates&gt; getAvailableShippingMethods(checkoutId, responseFields)
 
 Get Available Shipping Methods
 
@@ -865,14 +843,11 @@ public class Example {
     HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
     bearerAuth.setBearerToken("BEARER TOKEN");
 
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
-
     CheckoutApi apiInstance = new CheckoutApi(defaultClient);
     String checkoutId = "checkoutId_example"; // String | Unique identifier of the checkout whose shipping methods you want to get.
+    String responseFields = "responseFields_example"; // String | limits which fields are returned in the response body
     try {
-      List<CheckoutGroupRates> result = apiInstance.getAvailableShippingMethods(checkoutId);
+      List<CheckoutGroupRates> result = apiInstance.getAvailableShippingMethods(checkoutId, responseFields);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling CheckoutApi#getAvailableShippingMethods");
@@ -890,6 +865,7 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **checkoutId** | **String**| Unique identifier of the checkout whose shipping methods you want to get. | |
+| **responseFields** | **String**| limits which fields are returned in the response body | [optional] |
 
 ### Return type
 
@@ -897,7 +873,7 @@ public class Example {
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth), [clientOauth2](../README.md#clientOauth2)
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
@@ -907,11 +883,11 @@ public class Example {
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Success |  -  |
+| **200** | OK |  -  |
 
 <a name="getCheckout"></a>
 # **getCheckout**
-> Checkout getCheckout(checkoutId)
+> Checkout getCheckout(checkoutId, responseFields)
 
 Get Checkout
 
@@ -936,14 +912,11 @@ public class Example {
     HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
     bearerAuth.setBearerToken("BEARER TOKEN");
 
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
-
     CheckoutApi apiInstance = new CheckoutApi(defaultClient);
     String checkoutId = "checkoutId_example"; // String | Unique identifier of the checkout whose details you want.
+    String responseFields = "responseFields_example"; // String | limits which fields are returned in the response body
     try {
-      Checkout result = apiInstance.getCheckout(checkoutId);
+      Checkout result = apiInstance.getCheckout(checkoutId, responseFields);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling CheckoutApi#getCheckout");
@@ -961,6 +934,7 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **checkoutId** | **String**| Unique identifier of the checkout whose details you want. | |
+| **responseFields** | **String**| limits which fields are returned in the response body | [optional] |
 
 ### Return type
 
@@ -968,7 +942,7 @@ public class Example {
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth), [clientOauth2](../README.md#clientOauth2)
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
@@ -978,11 +952,11 @@ public class Example {
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Success |  -  |
+| **200** | OK |  -  |
 
 <a name="getCheckoutAttributes"></a>
 # **getCheckoutAttributes**
-> List&lt;CommerceRuntimeOrderAttribute&gt; getCheckoutAttributes(checkoutId)
+> List&lt;CommerceRuntimeOrderAttribute&gt; getCheckoutAttributes(checkoutId, responseFields)
 
 Get Checkout Attributes
 
@@ -1007,14 +981,11 @@ public class Example {
     HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
     bearerAuth.setBearerToken("BEARER TOKEN");
 
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
-
     CheckoutApi apiInstance = new CheckoutApi(defaultClient);
     String checkoutId = "checkoutId_example"; // String | 
+    String responseFields = "responseFields_example"; // String | limits which fields are returned in the response body
     try {
-      List<CommerceRuntimeOrderAttribute> result = apiInstance.getCheckoutAttributes(checkoutId);
+      List<CommerceRuntimeOrderAttribute> result = apiInstance.getCheckoutAttributes(checkoutId, responseFields);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling CheckoutApi#getCheckoutAttributes");
@@ -1032,6 +1003,7 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **checkoutId** | **String**|  | |
+| **responseFields** | **String**| limits which fields are returned in the response body | [optional] |
 
 ### Return type
 
@@ -1039,7 +1011,7 @@ public class Example {
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth), [clientOauth2](../README.md#clientOauth2)
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
@@ -1049,11 +1021,11 @@ public class Example {
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Success |  -  |
+| **200** | OK |  -  |
 
 <a name="getCheckouts"></a>
 # **getCheckouts**
-> CheckoutCollection getCheckouts(startIndex, pageSize, sortBy, filter, q, qLimit)
+> CheckoutCollection getCheckouts(startIndex, pageSize, sortBy, filter, q, qLimit, responseFields)
 
 Get Checkouts
 
@@ -1078,19 +1050,16 @@ public class Example {
     HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
     bearerAuth.setBearerToken("BEARER TOKEN");
 
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
-
     CheckoutApi apiInstance = new CheckoutApi(defaultClient);
-    Integer startIndex = 56; // Integer | Used to page results from a query. Indicates the zero-based offset in the complete result set where the returned entities begin.               For example, with a PageSize of 25, to get the 51st through the 75th items, startIndex=3. The default value is 0. Optional.
+    Integer startIndex = 56; // Integer | Used to page results from a query. Indicates the zero-based offset in the complete result set where the returned entities begin.              For example, with a PageSize of 25, to get the 51st through the 75th items, startIndex=50. The default value is 0. Optional.
     Integer pageSize = 56; // Integer | Used to page results from a query. Indicates the maximum number of entities to return from a query. The default value is 20 and the maximum value is 200. Optional.
     String sortBy = "sortBy_example"; // String | The element to sort the results by and the order in which the results appear. Either ascending (a-z) or descending (z-a) order. Optional.
-    String filter = "filter_example"; // String | A set of filter expressions representing the search parameters for a query: eq=equals, ne=not equals, gt=greater than, lt = less than or equals,               gt = greater than or equals, lt = less than or equals, sw = starts with, or cont = contains. Optional.
+    String filter = "filter_example"; // String | A set of filter expressions representing the search parameters for a query: eq=equals, ne=not equals, gt=greater than, lt = less than or equals,              gt = greater than or equals, lt = less than or equals, sw = starts with, or cont = contains. Optional.
     String q = "q_example"; // String | Text to perform a search on
     Integer qLimit = 56; // Integer | Limit of the records to include in a search, used for global search
+    String responseFields = "responseFields_example"; // String | limits which fields are returned in the response body
     try {
-      CheckoutCollection result = apiInstance.getCheckouts(startIndex, pageSize, sortBy, filter, q, qLimit);
+      CheckoutCollection result = apiInstance.getCheckouts(startIndex, pageSize, sortBy, filter, q, qLimit, responseFields);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling CheckoutApi#getCheckouts");
@@ -1107,12 +1076,13 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **startIndex** | **Integer**| Used to page results from a query. Indicates the zero-based offset in the complete result set where the returned entities begin.               For example, with a PageSize of 25, to get the 51st through the 75th items, startIndex&#x3D;3. The default value is 0. Optional. | [optional] |
+| **startIndex** | **Integer**| Used to page results from a query. Indicates the zero-based offset in the complete result set where the returned entities begin.              For example, with a PageSize of 25, to get the 51st through the 75th items, startIndex&#x3D;50. The default value is 0. Optional. | [optional] |
 | **pageSize** | **Integer**| Used to page results from a query. Indicates the maximum number of entities to return from a query. The default value is 20 and the maximum value is 200. Optional. | [optional] |
 | **sortBy** | **String**| The element to sort the results by and the order in which the results appear. Either ascending (a-z) or descending (z-a) order. Optional. | [optional] |
-| **filter** | **String**| A set of filter expressions representing the search parameters for a query: eq&#x3D;equals, ne&#x3D;not equals, gt&#x3D;greater than, lt &#x3D; less than or equals,               gt &#x3D; greater than or equals, lt &#x3D; less than or equals, sw &#x3D; starts with, or cont &#x3D; contains. Optional. | [optional] |
+| **filter** | **String**| A set of filter expressions representing the search parameters for a query: eq&#x3D;equals, ne&#x3D;not equals, gt&#x3D;greater than, lt &#x3D; less than or equals,              gt &#x3D; greater than or equals, lt &#x3D; less than or equals, sw &#x3D; starts with, or cont &#x3D; contains. Optional. | [optional] |
 | **q** | **String**| Text to perform a search on | [optional] |
 | **qLimit** | **Integer**| Limit of the records to include in a search, used for global search | [optional] |
+| **responseFields** | **String**| limits which fields are returned in the response body | [optional] |
 
 ### Return type
 
@@ -1120,7 +1090,7 @@ public class Example {
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth), [clientOauth2](../README.md#clientOauth2)
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
@@ -1130,11 +1100,11 @@ public class Example {
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Success |  -  |
+| **200** | OK |  -  |
 
 <a name="getDestination"></a>
 # **getDestination**
-> CommerceRuntimeDestination getDestination(checkoutId, destinationId)
+> CommerceRuntimeDestination getDestination(checkoutId, destinationId, responseFields)
 
 Get Destination
 
@@ -1159,15 +1129,12 @@ public class Example {
     HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
     bearerAuth.setBearerToken("BEARER TOKEN");
 
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
-
     CheckoutApi apiInstance = new CheckoutApi(defaultClient);
     String checkoutId = "checkoutId_example"; // String | 
     String destinationId = "destinationId_example"; // String | 
+    String responseFields = "responseFields_example"; // String | limits which fields are returned in the response body
     try {
-      CommerceRuntimeDestination result = apiInstance.getDestination(checkoutId, destinationId);
+      CommerceRuntimeDestination result = apiInstance.getDestination(checkoutId, destinationId, responseFields);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling CheckoutApi#getDestination");
@@ -1186,6 +1153,7 @@ public class Example {
 |------------- | ------------- | ------------- | -------------|
 | **checkoutId** | **String**|  | |
 | **destinationId** | **String**|  | |
+| **responseFields** | **String**| limits which fields are returned in the response body | [optional] |
 
 ### Return type
 
@@ -1193,7 +1161,7 @@ public class Example {
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth), [clientOauth2](../README.md#clientOauth2)
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
@@ -1203,11 +1171,11 @@ public class Example {
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Success |  -  |
+| **200** | OK |  -  |
 
 <a name="getDestinations"></a>
 # **getDestinations**
-> List&lt;CommerceRuntimeDestination&gt; getDestinations(checkoutId)
+> List&lt;CommerceRuntimeDestination&gt; getDestinations(checkoutId, responseFields)
 
 Get Destinations
 
@@ -1232,14 +1200,11 @@ public class Example {
     HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
     bearerAuth.setBearerToken("BEARER TOKEN");
 
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
-
     CheckoutApi apiInstance = new CheckoutApi(defaultClient);
     String checkoutId = "checkoutId_example"; // String | 
+    String responseFields = "responseFields_example"; // String | limits which fields are returned in the response body
     try {
-      List<CommerceRuntimeDestination> result = apiInstance.getDestinations(checkoutId);
+      List<CommerceRuntimeDestination> result = apiInstance.getDestinations(checkoutId, responseFields);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling CheckoutApi#getDestinations");
@@ -1257,6 +1222,7 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **checkoutId** | **String**|  | |
+| **responseFields** | **String**| limits which fields are returned in the response body | [optional] |
 
 ### Return type
 
@@ -1264,7 +1230,7 @@ public class Example {
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth), [clientOauth2](../README.md#clientOauth2)
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
@@ -1274,11 +1240,11 @@ public class Example {
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Success |  -  |
+| **200** | OK |  -  |
 
 <a name="performCheckoutAction"></a>
 # **performCheckoutAction**
-> Checkout performCheckoutAction(checkoutId, checkoutAction)
+> Checkout performCheckoutAction(checkoutId, responseFields, checkoutAction)
 
 Perform Checkout Action
 
@@ -1303,15 +1269,12 @@ public class Example {
     HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
     bearerAuth.setBearerToken("BEARER TOKEN");
 
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
-
     CheckoutApi apiInstance = new CheckoutApi(defaultClient);
     String checkoutId = "checkoutId_example"; // String | Unique identifier of the checkout.
+    String responseFields = "responseFields_example"; // String | limits which fields are returned in the response body
     CheckoutAction checkoutAction = new CheckoutAction(); // CheckoutAction | The action to perform
     try {
-      Checkout result = apiInstance.performCheckoutAction(checkoutId, checkoutAction);
+      Checkout result = apiInstance.performCheckoutAction(checkoutId, responseFields, checkoutAction);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling CheckoutApi#performCheckoutAction");
@@ -1329,6 +1292,7 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **checkoutId** | **String**| Unique identifier of the checkout. | |
+| **responseFields** | **String**| limits which fields are returned in the response body | [optional] |
 | **checkoutAction** | [**CheckoutAction**](CheckoutAction.md)| The action to perform | [optional] |
 
 ### Return type
@@ -1337,7 +1301,7 @@ public class Example {
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth), [clientOauth2](../README.md#clientOauth2)
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
@@ -1347,15 +1311,15 @@ public class Example {
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Success |  -  |
+| **200** | OK |  -  |
 
 <a name="performPaymentAction"></a>
 # **performPaymentAction**
-> Checkout performPaymentAction(checkoutId, paymentId, paymentAction)
+> Checkout performPaymentAction(checkoutId, paymentId, responseFields, paymentAction)
 
 Perform Payment Action
 
-Sets the action of the specified payment transaction interaction. Available actions depend on the current status of the payment transaction. \\r\\nIf in doubt, get a list of available payment actions first (such as AuthAndCapture, AuthorizePayment, CapturePayment, VoidPayment, CreditPayment, RequestCheck, ApplyCheck, or DeclineCheck). Note that for order management-only systems that use No-Operation payment gateways, such as due to the payments being processed by an external storefront or service instead of UCP, these actions will not actually be performed by UCP and instead will be automatically marked as a success.
+Sets the action of the specified payment transaction interaction. Available actions depend on the current status of the payment transaction. \\r\\nIf in doubt, get a list of available &lt;a href&#x3D;\&quot;/pages/payment-states#payment-actions\&quot;&gt;payment actions&lt;/a&gt; first. Note that for order management-only systems that use No-Operation payment gateways, such as due to the payments being processed by an external storefront or service instead of UCP, these actions will not actually be performed by UCP and instead will be automatically marked as a success.
 
 ### Example
 ```java
@@ -1376,16 +1340,13 @@ public class Example {
     HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
     bearerAuth.setBearerToken("BEARER TOKEN");
 
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
-
     CheckoutApi apiInstance = new CheckoutApi(defaultClient);
     String checkoutId = "checkoutId_example"; // String | Unique identifier of the checkout whose payment action you want to change.
     String paymentId = "paymentId_example"; // String | 
+    String responseFields = "responseFields_example"; // String | limits which fields are returned in the response body
     PaymentAction paymentAction = new PaymentAction(); // PaymentAction | Action to be performed, along with any metadata.
     try {
-      Checkout result = apiInstance.performPaymentAction(checkoutId, paymentId, paymentAction);
+      Checkout result = apiInstance.performPaymentAction(checkoutId, paymentId, responseFields, paymentAction);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling CheckoutApi#performPaymentAction");
@@ -1404,6 +1365,7 @@ public class Example {
 |------------- | ------------- | ------------- | -------------|
 | **checkoutId** | **String**| Unique identifier of the checkout whose payment action you want to change. | |
 | **paymentId** | **String**|  | |
+| **responseFields** | **String**| limits which fields are returned in the response body | [optional] |
 | **paymentAction** | [**PaymentAction**](PaymentAction.md)| Action to be performed, along with any metadata. | [optional] |
 
 ### Return type
@@ -1412,7 +1374,7 @@ public class Example {
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth), [clientOauth2](../README.md#clientOauth2)
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
@@ -1422,11 +1384,11 @@ public class Example {
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Success |  -  |
+| **200** | OK |  -  |
 
 <a name="processDigitalWallet"></a>
 # **processDigitalWallet**
-> Checkout processDigitalWallet(checkoutId, digitalWalletType, digitalWallet)
+> Checkout processDigitalWallet(checkoutId, digitalWalletType, responseFields, digitalWallet)
 
 Process Digital Wallet
 
@@ -1451,16 +1413,13 @@ public class Example {
     HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
     bearerAuth.setBearerToken("BEARER TOKEN");
 
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
-
     CheckoutApi apiInstance = new CheckoutApi(defaultClient);
     String checkoutId = "checkoutId_example"; // String | 
     String digitalWalletType = "digitalWalletType_example"; // String | 
+    String responseFields = "responseFields_example"; // String | limits which fields are returned in the response body
     DigitalWallet digitalWallet = new DigitalWallet(); // DigitalWallet | 
     try {
-      Checkout result = apiInstance.processDigitalWallet(checkoutId, digitalWalletType, digitalWallet);
+      Checkout result = apiInstance.processDigitalWallet(checkoutId, digitalWalletType, responseFields, digitalWallet);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling CheckoutApi#processDigitalWallet");
@@ -1479,6 +1438,7 @@ public class Example {
 |------------- | ------------- | ------------- | -------------|
 | **checkoutId** | **String**|  | |
 | **digitalWalletType** | **String**|  | |
+| **responseFields** | **String**| limits which fields are returned in the response body | [optional] |
 | **digitalWallet** | [**DigitalWallet**](DigitalWallet.md)|  | [optional] |
 
 ### Return type
@@ -1487,7 +1447,7 @@ public class Example {
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth), [clientOauth2](../README.md#clientOauth2)
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
@@ -1497,7 +1457,7 @@ public class Example {
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Success |  -  |
+| **200** | OK |  -  |
 
 <a name="removeCoupon"></a>
 # **removeCoupon**
@@ -1525,10 +1485,6 @@ public class Example {
     // Configure HTTP bearer authorization: bearerAuth
     HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
     bearerAuth.setBearerToken("BEARER TOKEN");
-
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
 
     CheckoutApi apiInstance = new CheckoutApi(defaultClient);
     String checkoutId = "checkoutId_example"; // String | Unique identifier of the checkout with the coupon you want to remove.
@@ -1560,7 +1516,7 @@ public class Example {
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth), [clientOauth2](../README.md#clientOauth2)
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
@@ -1570,7 +1526,7 @@ public class Example {
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Success |  -  |
+| **200** | OK |  -  |
 
 <a name="removeCoupons"></a>
 # **removeCoupons**
@@ -1598,10 +1554,6 @@ public class Example {
     // Configure HTTP bearer authorization: bearerAuth
     HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
     bearerAuth.setBearerToken("BEARER TOKEN");
-
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
 
     CheckoutApi apiInstance = new CheckoutApi(defaultClient);
     String checkoutId = "checkoutId_example"; // String | Unique identifier of the order with the coupon you want to remove.
@@ -1631,7 +1583,7 @@ public class Example {
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth), [clientOauth2](../README.md#clientOauth2)
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
@@ -1641,7 +1593,7 @@ public class Example {
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Success |  -  |
+| **200** | OK |  -  |
 
 <a name="removeDestination"></a>
 # **removeDestination**
@@ -1669,10 +1621,6 @@ public class Example {
     // Configure HTTP bearer authorization: bearerAuth
     HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
     bearerAuth.setBearerToken("BEARER TOKEN");
-
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
 
     CheckoutApi apiInstance = new CheckoutApi(defaultClient);
     String checkoutId = "checkoutId_example"; // String | 
@@ -1703,7 +1651,7 @@ null (empty response body)
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth), [clientOauth2](../README.md#clientOauth2)
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
@@ -1713,15 +1661,15 @@ null (empty response body)
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Success |  -  |
+| **200** | OK |  -  |
 
 <a name="resendCheckoutConfirmationEmail"></a>
 # **resendCheckoutConfirmationEmail**
-> resendCheckoutConfirmationEmail(checkoutId)
+> resendCheckoutConfirmationEmail(checkoutId, responseFields)
 
 Resend Checkout Confirmation Email
 
-esends email on checkout confirmation.
+Resends email on checkout confirmation.
 
 ### Example
 ```java
@@ -1742,14 +1690,11 @@ public class Example {
     HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
     bearerAuth.setBearerToken("BEARER TOKEN");
 
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
-
     CheckoutApi apiInstance = new CheckoutApi(defaultClient);
     String checkoutId = "checkoutId_example"; // String | 
+    String responseFields = "responseFields_example"; // String | limits which fields are returned in the response body
     try {
-      apiInstance.resendCheckoutConfirmationEmail(checkoutId);
+      apiInstance.resendCheckoutConfirmationEmail(checkoutId, responseFields);
     } catch (ApiException e) {
       System.err.println("Exception when calling CheckoutApi#resendCheckoutConfirmationEmail");
       System.err.println("Status code: " + e.getCode());
@@ -1766,6 +1711,7 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **checkoutId** | **String**|  | |
+| **responseFields** | **String**| limits which fields are returned in the response body | [optional] |
 
 ### Return type
 
@@ -1773,7 +1719,7 @@ null (empty response body)
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth), [clientOauth2](../README.md#clientOauth2)
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
@@ -1783,11 +1729,11 @@ null (empty response body)
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Success |  -  |
+| **200** | OK |  -  |
 
 <a name="setShippingMethods"></a>
 # **setShippingMethods**
-> Checkout setShippingMethods(checkoutId, checkoutGroupShippingMethod)
+> Checkout setShippingMethods(checkoutId, responseFields, checkoutGroupShippingMethod)
 
 Set Shipping Methods
 
@@ -1812,15 +1758,12 @@ public class Example {
     HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
     bearerAuth.setBearerToken("BEARER TOKEN");
 
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
-
     CheckoutApi apiInstance = new CheckoutApi(defaultClient);
     String checkoutId = "checkoutId_example"; // String | Unique identifier of the checkout whose shipping methods you want to set.
+    String responseFields = "responseFields_example"; // String | limits which fields are returned in the response body
     List<CheckoutGroupShippingMethod> checkoutGroupShippingMethod = Arrays.asList(); // List<CheckoutGroupShippingMethod> | Pairings of checkout group to shipping method
     try {
-      Checkout result = apiInstance.setShippingMethods(checkoutId, checkoutGroupShippingMethod);
+      Checkout result = apiInstance.setShippingMethods(checkoutId, responseFields, checkoutGroupShippingMethod);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling CheckoutApi#setShippingMethods");
@@ -1838,6 +1781,7 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **checkoutId** | **String**| Unique identifier of the checkout whose shipping methods you want to set. | |
+| **responseFields** | **String**| limits which fields are returned in the response body | [optional] |
 | **checkoutGroupShippingMethod** | [**List&lt;CheckoutGroupShippingMethod&gt;**](CheckoutGroupShippingMethod.md)| Pairings of checkout group to shipping method | [optional] |
 
 ### Return type
@@ -1846,7 +1790,7 @@ public class Example {
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth), [clientOauth2](../README.md#clientOauth2)
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
@@ -1856,11 +1800,11 @@ public class Example {
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Success |  -  |
+| **200** | OK |  -  |
 
 <a name="splitItem"></a>
 # **splitItem**
-> Checkout splitItem(checkoutId, itemId, quantity)
+> Checkout splitItem(checkoutId, itemId, quantity, responseFields)
 
 Split Item
 
@@ -1885,16 +1829,13 @@ public class Example {
     HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
     bearerAuth.setBearerToken("BEARER TOKEN");
 
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
-
     CheckoutApi apiInstance = new CheckoutApi(defaultClient);
     String checkoutId = "checkoutId_example"; // String | ID of the checkout containing the item to split
     String itemId = "itemId_example"; // String | The ID of the item to split
     Integer quantity = 1; // Integer | What quantity to split off. Defaults to 1.
+    String responseFields = "responseFields_example"; // String | limits which fields are returned in the response body
     try {
-      Checkout result = apiInstance.splitItem(checkoutId, itemId, quantity);
+      Checkout result = apiInstance.splitItem(checkoutId, itemId, quantity, responseFields);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling CheckoutApi#splitItem");
@@ -1914,6 +1855,7 @@ public class Example {
 | **checkoutId** | **String**| ID of the checkout containing the item to split | |
 | **itemId** | **String**| The ID of the item to split | |
 | **quantity** | **Integer**| What quantity to split off. Defaults to 1. | [optional] [default to 1] |
+| **responseFields** | **String**| limits which fields are returned in the response body | [optional] |
 
 ### Return type
 
@@ -1921,7 +1863,7 @@ public class Example {
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth), [clientOauth2](../README.md#clientOauth2)
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
@@ -1931,11 +1873,11 @@ public class Example {
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Success |  -  |
+| **200** | OK |  -  |
 
 <a name="updateCheckout"></a>
 # **updateCheckout**
-> Checkout updateCheckout(checkoutId, checkout)
+> Checkout updateCheckout(checkoutId, responseFields, checkout)
 
 Update Checkout
 
@@ -1960,15 +1902,12 @@ public class Example {
     HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
     bearerAuth.setBearerToken("BEARER TOKEN");
 
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
-
     CheckoutApi apiInstance = new CheckoutApi(defaultClient);
     String checkoutId = "checkoutId_example"; // String | Unique identifier of the checkout whose details you want.
+    String responseFields = "responseFields_example"; // String | limits which fields are returned in the response body
     Checkout checkout = new Checkout(); // Checkout | Checkout that needs update
     try {
-      Checkout result = apiInstance.updateCheckout(checkoutId, checkout);
+      Checkout result = apiInstance.updateCheckout(checkoutId, responseFields, checkout);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling CheckoutApi#updateCheckout");
@@ -1986,6 +1925,7 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **checkoutId** | **String**| Unique identifier of the checkout whose details you want. | |
+| **responseFields** | **String**| limits which fields are returned in the response body | [optional] |
 | **checkout** | [**Checkout**](Checkout.md)| Checkout that needs update | [optional] |
 
 ### Return type
@@ -1994,7 +1934,7 @@ public class Example {
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth), [clientOauth2](../README.md#clientOauth2)
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
@@ -2004,11 +1944,11 @@ public class Example {
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Success |  -  |
+| **200** | OK |  -  |
 
 <a name="updateCheckoutAttribute"></a>
 # **updateCheckoutAttribute**
-> List&lt;CommerceRuntimeOrderAttribute&gt; updateCheckoutAttribute(checkoutId, removeMissing, commerceRuntimeOrderAttribute)
+> List&lt;CommerceRuntimeOrderAttribute&gt; updateCheckoutAttribute(checkoutId, removeMissing, responseFields, commerceRuntimeOrderAttribute)
 
 Update Checkout Attribute
 
@@ -2033,16 +1973,13 @@ public class Example {
     HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
     bearerAuth.setBearerToken("BEARER TOKEN");
 
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
-
     CheckoutApi apiInstance = new CheckoutApi(defaultClient);
     String checkoutId = "checkoutId_example"; // String | 
     Boolean removeMissing = false; // Boolean | 
+    String responseFields = "responseFields_example"; // String | limits which fields are returned in the response body
     List<CommerceRuntimeOrderAttribute> commerceRuntimeOrderAttribute = Arrays.asList(); // List<CommerceRuntimeOrderAttribute> | 
     try {
-      List<CommerceRuntimeOrderAttribute> result = apiInstance.updateCheckoutAttribute(checkoutId, removeMissing, commerceRuntimeOrderAttribute);
+      List<CommerceRuntimeOrderAttribute> result = apiInstance.updateCheckoutAttribute(checkoutId, removeMissing, responseFields, commerceRuntimeOrderAttribute);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling CheckoutApi#updateCheckoutAttribute");
@@ -2061,6 +1998,7 @@ public class Example {
 |------------- | ------------- | ------------- | -------------|
 | **checkoutId** | **String**|  | |
 | **removeMissing** | **Boolean**|  | [optional] [default to false] |
+| **responseFields** | **String**| limits which fields are returned in the response body | [optional] |
 | **commerceRuntimeOrderAttribute** | [**List&lt;CommerceRuntimeOrderAttribute&gt;**](CommerceRuntimeOrderAttribute.md)|  | [optional] |
 
 ### Return type
@@ -2069,7 +2007,7 @@ public class Example {
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth), [clientOauth2](../README.md#clientOauth2)
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
@@ -2079,11 +2017,11 @@ public class Example {
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Success |  -  |
+| **200** | OK |  -  |
 
 <a name="updateDestination"></a>
 # **updateDestination**
-> CommerceRuntimeDestination updateDestination(checkoutId, destinationId, commerceRuntimeDestination)
+> CommerceRuntimeDestination updateDestination(checkoutId, destinationId, responseFields, commerceRuntimeDestination)
 
 Update Destination
 
@@ -2108,16 +2046,13 @@ public class Example {
     HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
     bearerAuth.setBearerToken("BEARER TOKEN");
 
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
-
     CheckoutApi apiInstance = new CheckoutApi(defaultClient);
     String checkoutId = "checkoutId_example"; // String | 
     String destinationId = "destinationId_example"; // String | 
+    String responseFields = "responseFields_example"; // String | limits which fields are returned in the response body
     CommerceRuntimeDestination commerceRuntimeDestination = new CommerceRuntimeDestination(); // CommerceRuntimeDestination | 
     try {
-      CommerceRuntimeDestination result = apiInstance.updateDestination(checkoutId, destinationId, commerceRuntimeDestination);
+      CommerceRuntimeDestination result = apiInstance.updateDestination(checkoutId, destinationId, responseFields, commerceRuntimeDestination);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling CheckoutApi#updateDestination");
@@ -2136,6 +2071,7 @@ public class Example {
 |------------- | ------------- | ------------- | -------------|
 | **checkoutId** | **String**|  | |
 | **destinationId** | **String**|  | |
+| **responseFields** | **String**| limits which fields are returned in the response body | [optional] |
 | **commerceRuntimeDestination** | [**CommerceRuntimeDestination**](CommerceRuntimeDestination.md)|  | [optional] |
 
 ### Return type
@@ -2144,7 +2080,7 @@ public class Example {
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth), [clientOauth2](../README.md#clientOauth2)
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
@@ -2154,11 +2090,84 @@ public class Example {
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Success |  -  |
+| **200** | OK |  -  |
+
+<a name="updateGiftInfo"></a>
+# **updateGiftInfo**
+> Checkout updateGiftInfo(checkoutId, itemId, responseFields, giftInfo)
+
+Update Checkout Item Gift Information
+
+Updates the gift information on a checkout item
+
+### Example
+```java
+// Import classes:
+import com.kibocommerce.sdk.commerce.ApiClient;
+import com.kibocommerce.sdk.commerce.ApiException;
+import com.kibocommerce.sdk.commerce.Configuration;
+import com.kibocommerce.sdk.commerce.auth.*;
+import com.kibocommerce.sdk.commerce.models.*;
+import com.kibocommerce.sdk.commerce.api.CheckoutApi;
+
+public class Example {
+  public static void main(String[] args) {
+    ApiClient defaultClient = Configuration.getDefaultApiClient();
+    defaultClient.setBasePath("http://https:/api");
+    
+    // Configure HTTP bearer authorization: bearerAuth
+    HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+    bearerAuth.setBearerToken("BEARER TOKEN");
+
+    CheckoutApi apiInstance = new CheckoutApi(defaultClient);
+    String checkoutId = "checkoutId_example"; // String | Unique identifier of the checkout.
+    String itemId = "itemId_example"; // String | Unique identifier of the checkout item.
+    String responseFields = "responseFields_example"; // String | limits which fields are returned in the response body
+    GiftInfo giftInfo = new GiftInfo(); // GiftInfo | Mozu.CommerceRuntime.Contracts.Orders.GiftInfo to use as the update source
+    try {
+      Checkout result = apiInstance.updateGiftInfo(checkoutId, itemId, responseFields, giftInfo);
+      System.out.println(result);
+    } catch (ApiException e) {
+      System.err.println("Exception when calling CheckoutApi#updateGiftInfo");
+      System.err.println("Status code: " + e.getCode());
+      System.err.println("Reason: " + e.getResponseBody());
+      System.err.println("Response headers: " + e.getResponseHeaders());
+      e.printStackTrace();
+    }
+  }
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **checkoutId** | **String**| Unique identifier of the checkout. | |
+| **itemId** | **String**| Unique identifier of the checkout item. | |
+| **responseFields** | **String**| limits which fields are returned in the response body | [optional] |
+| **giftInfo** | [**GiftInfo**](GiftInfo.md)| Mozu.CommerceRuntime.Contracts.Orders.GiftInfo to use as the update source | [optional] |
+
+### Return type
+
+[**Checkout**](Checkout.md)
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json, text/json, text/plain
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | OK |  -  |
 
 <a name="updateItemDeliveryDate"></a>
 # **updateItemDeliveryDate**
-> Checkout updateItemDeliveryDate(checkoutId, itemId, body)
+> Checkout updateItemDeliveryDate(checkoutId, itemId, responseFields, body)
 
 Update the Delivery Date of the Item
 
@@ -2183,16 +2192,13 @@ public class Example {
     HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
     bearerAuth.setBearerToken("BEARER TOKEN");
 
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
-
     CheckoutApi apiInstance = new CheckoutApi(defaultClient);
     String checkoutId = "checkoutId_example"; // String | ID of the Checkout
     String itemId = "itemId_example"; // String | ID of the item to update
+    String responseFields = "responseFields_example"; // String | limits which fields are returned in the response body
     OffsetDateTime body = OffsetDateTime.now(); // OffsetDateTime | Delivery DateTme to update to
     try {
-      Checkout result = apiInstance.updateItemDeliveryDate(checkoutId, itemId, body);
+      Checkout result = apiInstance.updateItemDeliveryDate(checkoutId, itemId, responseFields, body);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling CheckoutApi#updateItemDeliveryDate");
@@ -2211,6 +2217,7 @@ public class Example {
 |------------- | ------------- | ------------- | -------------|
 | **checkoutId** | **String**| ID of the Checkout | |
 | **itemId** | **String**| ID of the item to update | |
+| **responseFields** | **String**| limits which fields are returned in the response body | [optional] |
 | **body** | **OffsetDateTime**| Delivery DateTme to update to | [optional] |
 
 ### Return type
@@ -2219,7 +2226,7 @@ public class Example {
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth), [clientOauth2](../README.md#clientOauth2)
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
@@ -2229,11 +2236,11 @@ public class Example {
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Success |  -  |
+| **200** | OK |  -  |
 
 <a name="updateItemDestination"></a>
 # **updateItemDestination**
-> Checkout updateItemDestination(checkoutId, itemId, destinationId)
+> Checkout updateItemDestination(checkoutId, itemId, destinationId, responseFields)
 
 Update Item Destination
 
@@ -2258,16 +2265,13 @@ public class Example {
     HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
     bearerAuth.setBearerToken("BEARER TOKEN");
 
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
-
     CheckoutApi apiInstance = new CheckoutApi(defaultClient);
     String checkoutId = "checkoutId_example"; // String | ID of the checkout
     String itemId = "itemId_example"; // String | ID of the item to update
     String destinationId = "destinationId_example"; // String | ID of the destination
+    String responseFields = "responseFields_example"; // String | limits which fields are returned in the response body
     try {
-      Checkout result = apiInstance.updateItemDestination(checkoutId, itemId, destinationId);
+      Checkout result = apiInstance.updateItemDestination(checkoutId, itemId, destinationId, responseFields);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling CheckoutApi#updateItemDestination");
@@ -2287,6 +2291,7 @@ public class Example {
 | **checkoutId** | **String**| ID of the checkout | |
 | **itemId** | **String**| ID of the item to update | |
 | **destinationId** | **String**| ID of the destination | |
+| **responseFields** | **String**| limits which fields are returned in the response body | [optional] |
 
 ### Return type
 
@@ -2294,7 +2299,7 @@ public class Example {
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth), [clientOauth2](../README.md#clientOauth2)
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
@@ -2304,11 +2309,11 @@ public class Example {
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Success |  -  |
+| **200** | OK |  -  |
 
 <a name="updateSubscriptionInfo"></a>
 # **updateSubscriptionInfo**
-> Checkout updateSubscriptionInfo(checkoutId, itemId, subscriptionInfo)
+> Checkout updateSubscriptionInfo(checkoutId, itemId, responseFields, subscriptionInfo)
 
 Update Item Subscription Info
 
@@ -2333,16 +2338,13 @@ public class Example {
     HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
     bearerAuth.setBearerToken("BEARER TOKEN");
 
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
-
     CheckoutApi apiInstance = new CheckoutApi(defaultClient);
     String checkoutId = "checkoutId_example"; // String | ID of the checkout
     String itemId = "itemId_example"; // String | ID of the item to update
+    String responseFields = "responseFields_example"; // String | limits which fields are returned in the response body
     SubscriptionInfo subscriptionInfo = new SubscriptionInfo(); // SubscriptionInfo | The Mozu.CommerceRuntime.Contracts.Subscriptions.SubscriptionInfo to use as update source on Item
     try {
-      Checkout result = apiInstance.updateSubscriptionInfo(checkoutId, itemId, subscriptionInfo);
+      Checkout result = apiInstance.updateSubscriptionInfo(checkoutId, itemId, responseFields, subscriptionInfo);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling CheckoutApi#updateSubscriptionInfo");
@@ -2361,6 +2363,7 @@ public class Example {
 |------------- | ------------- | ------------- | -------------|
 | **checkoutId** | **String**| ID of the checkout | |
 | **itemId** | **String**| ID of the item to update | |
+| **responseFields** | **String**| limits which fields are returned in the response body | [optional] |
 | **subscriptionInfo** | [**SubscriptionInfo**](SubscriptionInfo.md)| The Mozu.CommerceRuntime.Contracts.Subscriptions.SubscriptionInfo to use as update source on Item | [optional] |
 
 ### Return type
@@ -2369,7 +2372,7 @@ public class Example {
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth), [clientOauth2](../README.md#clientOauth2)
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
@@ -2379,11 +2382,11 @@ public class Example {
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Success |  -  |
+| **200** | OK |  -  |
 
 <a name="upsertInventoryTags"></a>
 # **upsertInventoryTags**
-> Checkout upsertInventoryTags(checkoutId, itemId, inventoryTags)
+> Checkout upsertInventoryTags(checkoutId, itemId, responseFields, inventoryTags)
 
 Upsert Inventory Tags
 
@@ -2408,16 +2411,13 @@ public class Example {
     HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
     bearerAuth.setBearerToken("BEARER TOKEN");
 
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
-
     CheckoutApi apiInstance = new CheckoutApi(defaultClient);
     String checkoutId = "checkoutId_example"; // String | 
     String itemId = "itemId_example"; // String | 
+    String responseFields = "responseFields_example"; // String | limits which fields are returned in the response body
     List<InventoryTags> inventoryTags = Arrays.asList(); // List<InventoryTags> | 
     try {
-      Checkout result = apiInstance.upsertInventoryTags(checkoutId, itemId, inventoryTags);
+      Checkout result = apiInstance.upsertInventoryTags(checkoutId, itemId, responseFields, inventoryTags);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling CheckoutApi#upsertInventoryTags");
@@ -2436,6 +2436,7 @@ public class Example {
 |------------- | ------------- | ------------- | -------------|
 | **checkoutId** | **String**|  | |
 | **itemId** | **String**|  | |
+| **responseFields** | **String**| limits which fields are returned in the response body | [optional] |
 | **inventoryTags** | [**List&lt;InventoryTags&gt;**](InventoryTags.md)|  | [optional] |
 
 ### Return type
@@ -2444,7 +2445,7 @@ public class Example {
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth), [clientOauth2](../README.md#clientOauth2)
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
@@ -2454,5 +2455,78 @@ public class Example {
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Success |  -  |
+| **200** | OK |  -  |
+
+<a name="upsertSubstituteInfo"></a>
+# **upsertSubstituteInfo**
+> Checkout upsertSubstituteInfo(checkoutId, itemId, responseFields, substituteInfo)
+
+Update SubstituteInfo on CheckoutItem
+
+Update SubstituteInfo on CheckoutItem
+
+### Example
+```java
+// Import classes:
+import com.kibocommerce.sdk.commerce.ApiClient;
+import com.kibocommerce.sdk.commerce.ApiException;
+import com.kibocommerce.sdk.commerce.Configuration;
+import com.kibocommerce.sdk.commerce.auth.*;
+import com.kibocommerce.sdk.commerce.models.*;
+import com.kibocommerce.sdk.commerce.api.CheckoutApi;
+
+public class Example {
+  public static void main(String[] args) {
+    ApiClient defaultClient = Configuration.getDefaultApiClient();
+    defaultClient.setBasePath("http://https:/api");
+    
+    // Configure HTTP bearer authorization: bearerAuth
+    HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+    bearerAuth.setBearerToken("BEARER TOKEN");
+
+    CheckoutApi apiInstance = new CheckoutApi(defaultClient);
+    String checkoutId = "checkoutId_example"; // String | Unique identifier of the checkout.
+    String itemId = "itemId_example"; // String | Unique identifier of the checkout item.
+    String responseFields = "responseFields_example"; // String | limits which fields are returned in the response body
+    SubstituteInfo substituteInfo = new SubstituteInfo(); // SubstituteInfo | Mozu.CommerceRuntime.Contracts.Commerce.SubstituteInfo to use as the update source
+    try {
+      Checkout result = apiInstance.upsertSubstituteInfo(checkoutId, itemId, responseFields, substituteInfo);
+      System.out.println(result);
+    } catch (ApiException e) {
+      System.err.println("Exception when calling CheckoutApi#upsertSubstituteInfo");
+      System.err.println("Status code: " + e.getCode());
+      System.err.println("Reason: " + e.getResponseBody());
+      System.err.println("Response headers: " + e.getResponseHeaders());
+      e.printStackTrace();
+    }
+  }
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **checkoutId** | **String**| Unique identifier of the checkout. | |
+| **itemId** | **String**| Unique identifier of the checkout item. | |
+| **responseFields** | **String**| limits which fields are returned in the response body | [optional] |
+| **substituteInfo** | [**SubstituteInfo**](SubstituteInfo.md)| Mozu.CommerceRuntime.Contracts.Commerce.SubstituteInfo to use as the update source | [optional] |
+
+### Return type
+
+[**Checkout**](Checkout.md)
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json, text/json, text/plain
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | OK |  -  |
 

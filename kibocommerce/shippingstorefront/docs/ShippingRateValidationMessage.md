@@ -8,9 +8,9 @@ Shipping Rate Validation Message
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
-|**severity** | **String** | Severity |  [optional] |
-|**message** | **String** | Message |  [optional] |
 |**helpLink** | **String** | Help Link |  [optional] |
+|**message** | **String** | Message |  [optional] |
+|**severity** | **String** | Severity |  [optional] |
 
 
 ## Implemented Interfaces

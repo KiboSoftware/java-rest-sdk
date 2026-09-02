@@ -10,7 +10,7 @@ All URIs are relative to *http://https:/api*
 
 <a name="getCustomerSet"></a>
 # **getCustomerSet**
-> CustomerSet getCustomerSet(code)
+> CustomerSet getCustomerSet(code, responseFields)
 
 Get Customer Set
 
@@ -35,14 +35,11 @@ public class Example {
     HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
     bearerAuth.setBearerToken("BEARER TOKEN");
 
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
-
     CustomerSetApi apiInstance = new CustomerSetApi(defaultClient);
     String code = "code_example"; // String | Unique identifier of a customer group.
+    String responseFields = "responseFields_example"; // String | limits which fields are returned in the response body
     try {
-      CustomerSet result = apiInstance.getCustomerSet(code);
+      CustomerSet result = apiInstance.getCustomerSet(code, responseFields);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling CustomerSetApi#getCustomerSet");
@@ -60,6 +57,7 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **code** | **String**| Unique identifier of a customer group. | |
+| **responseFields** | **String**| limits which fields are returned in the response body | [optional] |
 
 ### Return type
 
@@ -67,7 +65,7 @@ public class Example {
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth), [clientOauth2](../README.md#clientOauth2)
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
@@ -77,11 +75,11 @@ public class Example {
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Success |  -  |
+| **200** | OK |  -  |
 
 <a name="getCustomerSets"></a>
 # **getCustomerSets**
-> CustomerSetCollection getCustomerSets(startIndex, pageSize, sortBy, responseGroups)
+> CustomerSetCollection getCustomerSets(startIndex, pageSize, sortBy, responseGroups, responseFields)
 
 Get Customer Sets
 
@@ -106,17 +104,14 @@ public class Example {
     HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
     bearerAuth.setBearerToken("BEARER TOKEN");
 
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
-
     CustomerSetApi apiInstance = new CustomerSetApi(defaultClient);
-    Integer startIndex = 0; // Integer | Used to page results from a query. Indicates the zero-based offset in the complete result set where the returned entities begin.               For example, with a PageSize of 25, to get the 51st through the 75th items, startIndex=3. The default value is 0. Optional.
-    Integer pageSize = 20; // Integer | Used to page results from a query.               Indicates the maximum number of entities to return from a query. The default value is 20 and the maximum value is 200. Optional.
+    Integer startIndex = 0; // Integer | Used to page results from a query. Indicates the zero-based offset in the complete result set where the returned entities begin.              For example, with a PageSize of 25, to get the 51st through the 75th items, startIndex=3. The default value is 0. Optional.
+    Integer pageSize = 20; // Integer | Used to page results from a query.              Indicates the maximum number of entities to return from a query. The default value is 20 and the maximum value is 200. Optional.
     String sortBy = ""; // String | The element to sort the results by and the order in which the results appear. Either ascending (a-z) or descending (z-a) order. Optional.
     String responseGroups = "responseGroups_example"; // String | 
+    String responseFields = "responseFields_example"; // String | limits which fields are returned in the response body
     try {
-      CustomerSetCollection result = apiInstance.getCustomerSets(startIndex, pageSize, sortBy, responseGroups);
+      CustomerSetCollection result = apiInstance.getCustomerSets(startIndex, pageSize, sortBy, responseGroups, responseFields);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling CustomerSetApi#getCustomerSets");
@@ -133,10 +128,11 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **startIndex** | **Integer**| Used to page results from a query. Indicates the zero-based offset in the complete result set where the returned entities begin.               For example, with a PageSize of 25, to get the 51st through the 75th items, startIndex&#x3D;3. The default value is 0. Optional. | [optional] [default to 0] |
-| **pageSize** | **Integer**| Used to page results from a query.               Indicates the maximum number of entities to return from a query. The default value is 20 and the maximum value is 200. Optional. | [optional] [default to 20] |
+| **startIndex** | **Integer**| Used to page results from a query. Indicates the zero-based offset in the complete result set where the returned entities begin.              For example, with a PageSize of 25, to get the 51st through the 75th items, startIndex&#x3D;3. The default value is 0. Optional. | [optional] [default to 0] |
+| **pageSize** | **Integer**| Used to page results from a query.              Indicates the maximum number of entities to return from a query. The default value is 20 and the maximum value is 200. Optional. | [optional] [default to 20] |
 | **sortBy** | **String**| The element to sort the results by and the order in which the results appear. Either ascending (a-z) or descending (z-a) order. Optional. | [optional] [default to ] |
 | **responseGroups** | **String**|  | [optional] |
+| **responseFields** | **String**| limits which fields are returned in the response body | [optional] |
 
 ### Return type
 
@@ -144,7 +140,7 @@ public class Example {
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth), [clientOauth2](../README.md#clientOauth2)
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
@@ -154,5 +150,5 @@ public class Example {
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Success |  -  |
+| **200** | OK |  -  |
 

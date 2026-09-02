@@ -7,11 +7,12 @@
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
-|**actualQuantity** | **Integer** |  |  |
+|**actualQuantity** | **Integer** |  |  [optional] |
 |**attributes** | **Map&lt;String, Object&gt;** |  |  [optional] |
-|**binName** | **String** |  |  |
+|**binName** | **String** |  |  [optional] |
 |**productCode** | **String** |  |  [optional] |
-|**shipmentNumber** | **Integer** |  |  |
+|**shipmentNumber** | **Integer** |  |  [optional] |
+|**shortageReason** | [**ShortageReason**](ShortageReason.md) |  |  [optional] |
 |**variationProductCode** | **String** |  |  [optional] |
 
 

@@ -8,13 +8,13 @@ Redirects based on what is entered in site search
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
+|**auditInfo** | [**AdminUserAuditInfo**](AdminUserAuditInfo.md) |  |  [optional] |
 |**redirectId** | **String** |  |  [optional] |
-|**url** | **String** |  |  [optional] |
+|**searchTermList** | **List&lt;String&gt;** |  |  [optional] |
+|**siteId** | **Integer** |  |  [optional] |
 |**statusId** | **Integer** |  |  [optional] |
 |**tenantId** | **Integer** |  |  [optional] |
-|**siteId** | **Integer** |  |  [optional] |
-|**searchTermList** | **List&lt;String&gt;** |  |  [optional] |
-|**auditInfo** | [**AdminUserAuditInfo**](AdminUserAuditInfo.md) |  |  [optional] |
+|**url** | **String** |  |  [optional] |
 
 
 ## Implemented Interfaces

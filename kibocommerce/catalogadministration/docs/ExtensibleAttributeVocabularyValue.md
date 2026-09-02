@@ -7,10 +7,10 @@
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
-|**value** | **String** |  |  |
-|**sequence** | **Integer** |  |  [optional] |
-|**isHidden** | **Boolean** |  |  [optional] |
 |**content** | [**ExtensibleAttributeValueLocalizedContent**](ExtensibleAttributeValueLocalizedContent.md) |  |  [optional] |
+|**isHidden** | **Boolean** |  |  [optional] |
+|**sequence** | **Integer** |  |  [optional] |
+|**value** | **String** |  |  |
 
 
 ## Implemented Interfaces

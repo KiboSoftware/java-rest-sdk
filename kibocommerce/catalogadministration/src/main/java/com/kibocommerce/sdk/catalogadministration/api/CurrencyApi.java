@@ -1,8 +1,8 @@
 /*
  * Kibo Catalog Admin Services
- * OpenAPI Spec for Kibo Catalog Admin Services
+ * <div id=\"overview_CATALOG_ADMIN\">             <h2>CATALOG ADMINISTRATION</h2>             <p>The Catalog Administration APIs are a collection of resources for configuring the catalogs and products offered to your shoppers, including                 discounts and coupon sets, faceting, price lists, and different types or variations of products. See the                 <a href=\"/concept-guides/catalog\">Catalog user guides</a>                 for information about the related features in the Unified Commerce Admin.</p>             <p>Use the <strong>Attributes</strong> resource to manage localization and attribute configurations for your catalogs. This current version of the Attributes API includes localizedContent to                 support <a href=\"/pages/catalog-structure#multi-locale-catalogs\">multi-locale catalogs</a>, which was not present in the legacy API model. If                 you were a client prior to May 2024 and have upgraded your implementation to support this feature,                 you can still access attribute data that has not yet been rewritten to the new model by providing                 an x-api-version header set to \"1\". </p>             <p>Use the <strong>Categories</strong> resource to organize products and control where they appear on the storefront. Create                 and maintain a hierarchy of categories and subcategories where the site will store properties. This current version of the Categories API includes localizedContent to                 support <a href=\"/pages/catalog-structure#multi-locale-catalogs\">multi-locale catalogs</a>, which was not present in the legacy API model. If                 you were a client prior to May 2024 and have upgraded your implementation to support this feature,                 you can still access category data that has not yet been rewritten to the new model by providing                 an x-api-version header set to \"1\". </p>             <p>Use the <strong>Coupon Sets</strong> resource to view and create coupon sets. You can use coupon sets to group multiple                 coupon codes together and associate them with one or more discounts.</p>             <p>Use the <strong>Currency</strong> resource to manage the currency localization rules and exchange rates for any of the                 currencies that are supported for placing orders in.</p>             <p>Use the <strong>Discounts</strong> and <strong>Discount Settings</strong> resources to define and manage discounts to apply to products, product categories, or                 orders. This current version of the Discounts API includes localizedContent to                 support <a href=\"/pages/catalog-structure#multi-locale-catalogs\">multi-locale catalogs</a>, which was not present in the legacy Products API model. If                 you were a client prior to May 2024 and have upgraded your implementation to support this feature,                 you can still access discount data that has not yet been rewritten to the new model by providing                 an x-api-version header set to \"1\". </p>             <p>Use the <strong>Facets</strong> resource to manage the facets shoppers use to filter product display results on a                 storefront. Facets can include categories, product attributes, or prices, and use either a range of                 values or discrete values.</p>             <p>Use the <strong>Master Catalog</strong> resource to view details of the master catalogs associated with a tenant and to                 manage the product publishing mode for each master catalog.</p>             <p>Use the <strong>Price Lists</strong> resources to view and create price lists. You can use price lists to override the                 catalog pricing of products for specific customer segments and/or sites.</p>             <p>Use the <strong>Products</strong>, <strong>Product Types/Extras/Options/Properties</strong>, and <strong>Product Sort Definitions</strong> resources to create new product definitions in the master catalog and determine which                 catalogs will feature products. This current version of the Products API includes localizedContent to                 support <a href=\"/pages/catalog-structure#multi-locale-catalogs\">multi-locale catalogs</a>, which was not present in the legacy Products API model. If                 you were a client prior to May 2024 and have upgraded your implementation to support this feature,                 you can still access product data that has not yet been rewritten to the new model by providing                 an x-api-version header set to \"1\".</p>             <p>Use the <strong>Publishing</strong> resource to publish pending product updates together as part of a set.</p>             <p>Use the <strong>Search</strong> resource to manage all settings and options for providing product search on your site, as                 well as search tuning rules.</p>         </div>
  *
- * The version of the OpenAPI document: 1.0.0
+ * The version of the OpenAPI document: v1
  * 
  *
  * NOTE: This class is auto generated by OpenAPI Generator (https://openapi-generator.tech).
@@ -98,6 +98,7 @@ public class CurrencyApi {
     /**
      * Build call for addCurrencyExchangeRates
      * @param currencyCode Currency code (required)
+     * @param responseFields limits which fields are returned in the response body (optional)
      * @param catalogAdminsCurrencyExchangeRate Exchange rates for the currency (optional)
      * @param _callback Callback for upload/download progress
      * @return Call to execute
@@ -105,10 +106,10 @@ public class CurrencyApi {
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call addCurrencyExchangeRatesCall(String currencyCode, List<CatalogAdminsCurrencyExchangeRate> catalogAdminsCurrencyExchangeRate, final ApiCallback _callback) throws ApiException {
+    public okhttp3.Call addCurrencyExchangeRatesCall(String currencyCode, String responseFields, List<CatalogAdminsCurrencyExchangeRate> catalogAdminsCurrencyExchangeRate, final ApiCallback _callback) throws ApiException {
         String basePath = null;
         // Operation Servers
         String[] localBasePaths = new String[] {  };
@@ -134,6 +135,10 @@ public class CurrencyApi {
         Map<String, String> localVarCookieParams = new HashMap<String, String>();
         Map<String, Object> localVarFormParams = new HashMap<String, Object>();
 
+        if (responseFields != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("responseFields", responseFields));
+        }
+
         final String[] localVarAccepts = {
             
         };
@@ -150,12 +155,12 @@ public class CurrencyApi {
             localVarHeaderParams.put("Content-Type", localVarContentType);
         }
 
-        String[] localVarAuthNames = new String[] { "bearerAuth", "clientOauth2" };
+        String[] localVarAuthNames = new String[] { "bearerAuth" };
         return localVarApiClient.buildCall(basePath, localVarPath, "POST", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call addCurrencyExchangeRatesValidateBeforeCall(String currencyCode, List<CatalogAdminsCurrencyExchangeRate> catalogAdminsCurrencyExchangeRate, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call addCurrencyExchangeRatesValidateBeforeCall(String currencyCode, String responseFields, List<CatalogAdminsCurrencyExchangeRate> catalogAdminsCurrencyExchangeRate, final ApiCallback _callback) throws ApiException {
         
         // verify the required parameter 'currencyCode' is set
         if (currencyCode == null) {
@@ -163,49 +168,52 @@ public class CurrencyApi {
         }
         
 
-        okhttp3.Call localVarCall = addCurrencyExchangeRatesCall(currencyCode, catalogAdminsCurrencyExchangeRate, _callback);
+        okhttp3.Call localVarCall = addCurrencyExchangeRatesCall(currencyCode, responseFields, catalogAdminsCurrencyExchangeRate, _callback);
         return localVarCall;
 
     }
 
     /**
-     * Update currency localization
-     * Updates the details of a currency-localization.
+     * Update Currency Exchange Rates
+     * Updates the details of a currency localization.
      * @param currencyCode Currency code (required)
+     * @param responseFields limits which fields are returned in the response body (optional)
      * @param catalogAdminsCurrencyExchangeRate Exchange rates for the currency (optional)
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
      </table>
      */
-    public void addCurrencyExchangeRates(String currencyCode, List<CatalogAdminsCurrencyExchangeRate> catalogAdminsCurrencyExchangeRate) throws ApiException {
-        addCurrencyExchangeRatesWithHttpInfo(currencyCode, catalogAdminsCurrencyExchangeRate);
+    public void addCurrencyExchangeRates(String currencyCode, String responseFields, List<CatalogAdminsCurrencyExchangeRate> catalogAdminsCurrencyExchangeRate) throws ApiException {
+        addCurrencyExchangeRatesWithHttpInfo(currencyCode, responseFields, catalogAdminsCurrencyExchangeRate);
     }
 
     /**
-     * Update currency localization
-     * Updates the details of a currency-localization.
+     * Update Currency Exchange Rates
+     * Updates the details of a currency localization.
      * @param currencyCode Currency code (required)
+     * @param responseFields limits which fields are returned in the response body (optional)
      * @param catalogAdminsCurrencyExchangeRate Exchange rates for the currency (optional)
      * @return ApiResponse&lt;Void&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<Void> addCurrencyExchangeRatesWithHttpInfo(String currencyCode, List<CatalogAdminsCurrencyExchangeRate> catalogAdminsCurrencyExchangeRate) throws ApiException {
-        okhttp3.Call localVarCall = addCurrencyExchangeRatesValidateBeforeCall(currencyCode, catalogAdminsCurrencyExchangeRate, null);
+    public ApiResponse<Void> addCurrencyExchangeRatesWithHttpInfo(String currencyCode, String responseFields, List<CatalogAdminsCurrencyExchangeRate> catalogAdminsCurrencyExchangeRate) throws ApiException {
+        okhttp3.Call localVarCall = addCurrencyExchangeRatesValidateBeforeCall(currencyCode, responseFields, catalogAdminsCurrencyExchangeRate, null);
         return localVarApiClient.execute(localVarCall);
     }
 
     /**
-     * Update currency localization (asynchronously)
-     * Updates the details of a currency-localization.
+     * Update Currency Exchange Rates (asynchronously)
+     * Updates the details of a currency localization.
      * @param currencyCode Currency code (required)
+     * @param responseFields limits which fields are returned in the response body (optional)
      * @param catalogAdminsCurrencyExchangeRate Exchange rates for the currency (optional)
      * @param _callback The callback to be executed when the API call finishes
      * @return The request call
@@ -213,28 +221,29 @@ public class CurrencyApi {
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call addCurrencyExchangeRatesAsync(String currencyCode, List<CatalogAdminsCurrencyExchangeRate> catalogAdminsCurrencyExchangeRate, final ApiCallback<Void> _callback) throws ApiException {
+    public okhttp3.Call addCurrencyExchangeRatesAsync(String currencyCode, String responseFields, List<CatalogAdminsCurrencyExchangeRate> catalogAdminsCurrencyExchangeRate, final ApiCallback<Void> _callback) throws ApiException {
 
-        okhttp3.Call localVarCall = addCurrencyExchangeRatesValidateBeforeCall(currencyCode, catalogAdminsCurrencyExchangeRate, _callback);
+        okhttp3.Call localVarCall = addCurrencyExchangeRatesValidateBeforeCall(currencyCode, responseFields, catalogAdminsCurrencyExchangeRate, _callback);
         localVarApiClient.executeAsync(localVarCall, _callback);
         return localVarCall;
     }
     /**
      * Build call for addCurrencyLocalization
-     * @param currencyLocalization Properties of the currency-localization to create.  Required properties: CurrencyCode (optional)
+     * @param responseFields limits which fields are returned in the response body (optional)
+     * @param currencyLocalization Properties of the currency-localization to create. Required properties: CurrencyCode (optional)
      * @param _callback Callback for upload/download progress
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call addCurrencyLocalizationCall(CurrencyLocalization currencyLocalization, final ApiCallback _callback) throws ApiException {
+    public okhttp3.Call addCurrencyLocalizationCall(String responseFields, CurrencyLocalization currencyLocalization, final ApiCallback _callback) throws ApiException {
         String basePath = null;
         // Operation Servers
         String[] localBasePaths = new String[] {  };
@@ -259,6 +268,10 @@ public class CurrencyApi {
         Map<String, String> localVarCookieParams = new HashMap<String, String>();
         Map<String, Object> localVarFormParams = new HashMap<String, Object>();
 
+        if (responseFields != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("responseFields", responseFields));
+        }
+
         final String[] localVarAccepts = {
             "application/json", "text/json", "text/plain"
         };
@@ -275,70 +288,73 @@ public class CurrencyApi {
             localVarHeaderParams.put("Content-Type", localVarContentType);
         }
 
-        String[] localVarAuthNames = new String[] { "bearerAuth", "clientOauth2" };
+        String[] localVarAuthNames = new String[] { "bearerAuth" };
         return localVarApiClient.buildCall(basePath, localVarPath, "POST", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call addCurrencyLocalizationValidateBeforeCall(CurrencyLocalization currencyLocalization, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call addCurrencyLocalizationValidateBeforeCall(String responseFields, CurrencyLocalization currencyLocalization, final ApiCallback _callback) throws ApiException {
         
 
-        okhttp3.Call localVarCall = addCurrencyLocalizationCall(currencyLocalization, _callback);
+        okhttp3.Call localVarCall = addCurrencyLocalizationCall(responseFields, currencyLocalization, _callback);
         return localVarCall;
 
     }
 
     /**
-     * Add currency localization
-     * Adds a new currency localization
-     * @param currencyLocalization Properties of the currency-localization to create.  Required properties: CurrencyCode (optional)
+     * Add Currency Localization
+     * Adds a new currency localization.
+     * @param responseFields limits which fields are returned in the response body (optional)
+     * @param currencyLocalization Properties of the currency-localization to create. Required properties: CurrencyCode (optional)
      * @return CurrencyLocalization
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
      </table>
      */
-    public CurrencyLocalization addCurrencyLocalization(CurrencyLocalization currencyLocalization) throws ApiException {
-        ApiResponse<CurrencyLocalization> localVarResp = addCurrencyLocalizationWithHttpInfo(currencyLocalization);
+    public CurrencyLocalization addCurrencyLocalization(String responseFields, CurrencyLocalization currencyLocalization) throws ApiException {
+        ApiResponse<CurrencyLocalization> localVarResp = addCurrencyLocalizationWithHttpInfo(responseFields, currencyLocalization);
         return localVarResp.getData();
     }
 
     /**
-     * Add currency localization
-     * Adds a new currency localization
-     * @param currencyLocalization Properties of the currency-localization to create.  Required properties: CurrencyCode (optional)
+     * Add Currency Localization
+     * Adds a new currency localization.
+     * @param responseFields limits which fields are returned in the response body (optional)
+     * @param currencyLocalization Properties of the currency-localization to create. Required properties: CurrencyCode (optional)
      * @return ApiResponse&lt;CurrencyLocalization&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<CurrencyLocalization> addCurrencyLocalizationWithHttpInfo(CurrencyLocalization currencyLocalization) throws ApiException {
-        okhttp3.Call localVarCall = addCurrencyLocalizationValidateBeforeCall(currencyLocalization, null);
+    public ApiResponse<CurrencyLocalization> addCurrencyLocalizationWithHttpInfo(String responseFields, CurrencyLocalization currencyLocalization) throws ApiException {
+        okhttp3.Call localVarCall = addCurrencyLocalizationValidateBeforeCall(responseFields, currencyLocalization, null);
         Type localVarReturnType = new TypeToken<CurrencyLocalization>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
 
     /**
-     * Add currency localization (asynchronously)
-     * Adds a new currency localization
-     * @param currencyLocalization Properties of the currency-localization to create.  Required properties: CurrencyCode (optional)
+     * Add Currency Localization (asynchronously)
+     * Adds a new currency localization.
+     * @param responseFields limits which fields are returned in the response body (optional)
+     * @param currencyLocalization Properties of the currency-localization to create. Required properties: CurrencyCode (optional)
      * @param _callback The callback to be executed when the API call finishes
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call addCurrencyLocalizationAsync(CurrencyLocalization currencyLocalization, final ApiCallback<CurrencyLocalization> _callback) throws ApiException {
+    public okhttp3.Call addCurrencyLocalizationAsync(String responseFields, CurrencyLocalization currencyLocalization, final ApiCallback<CurrencyLocalization> _callback) throws ApiException {
 
-        okhttp3.Call localVarCall = addCurrencyLocalizationValidateBeforeCall(currencyLocalization, _callback);
+        okhttp3.Call localVarCall = addCurrencyLocalizationValidateBeforeCall(responseFields, currencyLocalization, _callback);
         Type localVarReturnType = new TypeToken<CurrencyLocalization>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
@@ -353,7 +369,7 @@ public class CurrencyApi {
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
      </table>
      */
     public okhttp3.Call deleteCurrencyExchangeRateCall(String currencyCode, String toCurrencyCode, final ApiCallback _callback) throws ApiException {
@@ -399,7 +415,7 @@ public class CurrencyApi {
             localVarHeaderParams.put("Content-Type", localVarContentType);
         }
 
-        String[] localVarAuthNames = new String[] { "bearerAuth", "clientOauth2" };
+        String[] localVarAuthNames = new String[] { "bearerAuth" };
         return localVarApiClient.buildCall(basePath, localVarPath, "DELETE", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
     }
 
@@ -423,15 +439,15 @@ public class CurrencyApi {
     }
 
     /**
-     * Delete currency exchange rate
-     * Delete a single exchange rate for a specified currency-code and target currency-code.
+     * Delete Currency Exchange Rate
+     * Delete a single exchange rate for a specified currency code and target currency code.
      * @param currencyCode Currency code (required)
      * @param toCurrencyCode C (required)
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
      </table>
      */
     public void deleteCurrencyExchangeRate(String currencyCode, String toCurrencyCode) throws ApiException {
@@ -439,8 +455,8 @@ public class CurrencyApi {
     }
 
     /**
-     * Delete currency exchange rate
-     * Delete a single exchange rate for a specified currency-code and target currency-code.
+     * Delete Currency Exchange Rate
+     * Delete a single exchange rate for a specified currency code and target currency code.
      * @param currencyCode Currency code (required)
      * @param toCurrencyCode C (required)
      * @return ApiResponse&lt;Void&gt;
@@ -448,7 +464,7 @@ public class CurrencyApi {
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
      </table>
      */
     public ApiResponse<Void> deleteCurrencyExchangeRateWithHttpInfo(String currencyCode, String toCurrencyCode) throws ApiException {
@@ -457,8 +473,8 @@ public class CurrencyApi {
     }
 
     /**
-     * Delete currency exchange rate (asynchronously)
-     * Delete a single exchange rate for a specified currency-code and target currency-code.
+     * Delete Currency Exchange Rate (asynchronously)
+     * Delete a single exchange rate for a specified currency code and target currency code.
      * @param currencyCode Currency code (required)
      * @param toCurrencyCode C (required)
      * @param _callback The callback to be executed when the API call finishes
@@ -467,7 +483,7 @@ public class CurrencyApi {
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
      </table>
      */
     public okhttp3.Call deleteCurrencyExchangeRateAsync(String currencyCode, String toCurrencyCode, final ApiCallback<Void> _callback) throws ApiException {
@@ -485,7 +501,7 @@ public class CurrencyApi {
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
      </table>
      */
     public okhttp3.Call deleteCurrencyLocalizationCall(String currencyCode, final ApiCallback _callback) throws ApiException {
@@ -530,7 +546,7 @@ public class CurrencyApi {
             localVarHeaderParams.put("Content-Type", localVarContentType);
         }
 
-        String[] localVarAuthNames = new String[] { "bearerAuth", "clientOauth2" };
+        String[] localVarAuthNames = new String[] { "bearerAuth" };
         return localVarApiClient.buildCall(basePath, localVarPath, "DELETE", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
     }
 
@@ -549,14 +565,14 @@ public class CurrencyApi {
     }
 
     /**
-     * Delete currency localization
-     * Deletes the currency-localization specified by its currency code.
+     * Delete Currency Localization
+     * Deletes the currency localization specified by its currency code.
      * @param currencyCode Currency code. (required)
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
      </table>
      */
     public void deleteCurrencyLocalization(String currencyCode) throws ApiException {
@@ -564,15 +580,15 @@ public class CurrencyApi {
     }
 
     /**
-     * Delete currency localization
-     * Deletes the currency-localization specified by its currency code.
+     * Delete Currency Localization
+     * Deletes the currency localization specified by its currency code.
      * @param currencyCode Currency code. (required)
      * @return ApiResponse&lt;Void&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
      </table>
      */
     public ApiResponse<Void> deleteCurrencyLocalizationWithHttpInfo(String currencyCode) throws ApiException {
@@ -581,8 +597,8 @@ public class CurrencyApi {
     }
 
     /**
-     * Delete currency localization (asynchronously)
-     * Deletes the currency-localization specified by its currency code.
+     * Delete Currency Localization (asynchronously)
+     * Deletes the currency localization specified by its currency code.
      * @param currencyCode Currency code. (required)
      * @param _callback The callback to be executed when the API call finishes
      * @return The request call
@@ -590,7 +606,7 @@ public class CurrencyApi {
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
      </table>
      */
     public okhttp3.Call deleteCurrencyLocalizationAsync(String currencyCode, final ApiCallback<Void> _callback) throws ApiException {
@@ -603,16 +619,17 @@ public class CurrencyApi {
      * Build call for getCurrencyExchangeRate
      * @param currencyCode Currency code (required)
      * @param toCurrencyCode Target currency code (required)
+     * @param responseFields limits which fields are returned in the response body (optional)
      * @param _callback Callback for upload/download progress
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call getCurrencyExchangeRateCall(String currencyCode, String toCurrencyCode, final ApiCallback _callback) throws ApiException {
+    public okhttp3.Call getCurrencyExchangeRateCall(String currencyCode, String toCurrencyCode, String responseFields, final ApiCallback _callback) throws ApiException {
         String basePath = null;
         // Operation Servers
         String[] localBasePaths = new String[] {  };
@@ -639,6 +656,10 @@ public class CurrencyApi {
         Map<String, String> localVarCookieParams = new HashMap<String, String>();
         Map<String, Object> localVarFormParams = new HashMap<String, Object>();
 
+        if (responseFields != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("responseFields", responseFields));
+        }
+
         final String[] localVarAccepts = {
             "application/json", "text/json", "text/plain"
         };
@@ -655,12 +676,12 @@ public class CurrencyApi {
             localVarHeaderParams.put("Content-Type", localVarContentType);
         }
 
-        String[] localVarAuthNames = new String[] { "bearerAuth", "clientOauth2" };
+        String[] localVarAuthNames = new String[] { "bearerAuth" };
         return localVarApiClient.buildCall(basePath, localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call getCurrencyExchangeRateValidateBeforeCall(String currencyCode, String toCurrencyCode, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call getCurrencyExchangeRateValidateBeforeCall(String currencyCode, String toCurrencyCode, String responseFields, final ApiCallback _callback) throws ApiException {
         
         // verify the required parameter 'currencyCode' is set
         if (currencyCode == null) {
@@ -673,65 +694,68 @@ public class CurrencyApi {
         }
         
 
-        okhttp3.Call localVarCall = getCurrencyExchangeRateCall(currencyCode, toCurrencyCode, _callback);
+        okhttp3.Call localVarCall = getCurrencyExchangeRateCall(currencyCode, toCurrencyCode, responseFields, _callback);
         return localVarCall;
 
     }
 
     /**
-     * Get currency exchange rate
-     * Retrieves a single exchange rate for a specified currency-code and target-currency-code.
+     * Get Currency Exchange Rate
+     * Retrieves a single exchange rate for a specified currency code and target currency code.
      * @param currencyCode Currency code (required)
      * @param toCurrencyCode Target currency code (required)
+     * @param responseFields limits which fields are returned in the response body (optional)
      * @return CatalogAdminsCurrencyExchangeRate
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
      </table>
      */
-    public CatalogAdminsCurrencyExchangeRate getCurrencyExchangeRate(String currencyCode, String toCurrencyCode) throws ApiException {
-        ApiResponse<CatalogAdminsCurrencyExchangeRate> localVarResp = getCurrencyExchangeRateWithHttpInfo(currencyCode, toCurrencyCode);
+    public CatalogAdminsCurrencyExchangeRate getCurrencyExchangeRate(String currencyCode, String toCurrencyCode, String responseFields) throws ApiException {
+        ApiResponse<CatalogAdminsCurrencyExchangeRate> localVarResp = getCurrencyExchangeRateWithHttpInfo(currencyCode, toCurrencyCode, responseFields);
         return localVarResp.getData();
     }
 
     /**
-     * Get currency exchange rate
-     * Retrieves a single exchange rate for a specified currency-code and target-currency-code.
+     * Get Currency Exchange Rate
+     * Retrieves a single exchange rate for a specified currency code and target currency code.
      * @param currencyCode Currency code (required)
      * @param toCurrencyCode Target currency code (required)
+     * @param responseFields limits which fields are returned in the response body (optional)
      * @return ApiResponse&lt;CatalogAdminsCurrencyExchangeRate&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<CatalogAdminsCurrencyExchangeRate> getCurrencyExchangeRateWithHttpInfo(String currencyCode, String toCurrencyCode) throws ApiException {
-        okhttp3.Call localVarCall = getCurrencyExchangeRateValidateBeforeCall(currencyCode, toCurrencyCode, null);
+    public ApiResponse<CatalogAdminsCurrencyExchangeRate> getCurrencyExchangeRateWithHttpInfo(String currencyCode, String toCurrencyCode, String responseFields) throws ApiException {
+        okhttp3.Call localVarCall = getCurrencyExchangeRateValidateBeforeCall(currencyCode, toCurrencyCode, responseFields, null);
         Type localVarReturnType = new TypeToken<CatalogAdminsCurrencyExchangeRate>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
 
     /**
-     * Get currency exchange rate (asynchronously)
-     * Retrieves a single exchange rate for a specified currency-code and target-currency-code.
+     * Get Currency Exchange Rate (asynchronously)
+     * Retrieves a single exchange rate for a specified currency code and target currency code.
      * @param currencyCode Currency code (required)
      * @param toCurrencyCode Target currency code (required)
+     * @param responseFields limits which fields are returned in the response body (optional)
      * @param _callback The callback to be executed when the API call finishes
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call getCurrencyExchangeRateAsync(String currencyCode, String toCurrencyCode, final ApiCallback<CatalogAdminsCurrencyExchangeRate> _callback) throws ApiException {
+    public okhttp3.Call getCurrencyExchangeRateAsync(String currencyCode, String toCurrencyCode, String responseFields, final ApiCallback<CatalogAdminsCurrencyExchangeRate> _callback) throws ApiException {
 
-        okhttp3.Call localVarCall = getCurrencyExchangeRateValidateBeforeCall(currencyCode, toCurrencyCode, _callback);
+        okhttp3.Call localVarCall = getCurrencyExchangeRateValidateBeforeCall(currencyCode, toCurrencyCode, responseFields, _callback);
         Type localVarReturnType = new TypeToken<CatalogAdminsCurrencyExchangeRate>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
@@ -739,16 +763,17 @@ public class CurrencyApi {
     /**
      * Build call for getCurrencyExchangeRates
      * @param currencyCode Currency code (required)
+     * @param responseFields limits which fields are returned in the response body (optional)
      * @param _callback Callback for upload/download progress
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call getCurrencyExchangeRatesCall(String currencyCode, final ApiCallback _callback) throws ApiException {
+    public okhttp3.Call getCurrencyExchangeRatesCall(String currencyCode, String responseFields, final ApiCallback _callback) throws ApiException {
         String basePath = null;
         // Operation Servers
         String[] localBasePaths = new String[] {  };
@@ -774,6 +799,10 @@ public class CurrencyApi {
         Map<String, String> localVarCookieParams = new HashMap<String, String>();
         Map<String, Object> localVarFormParams = new HashMap<String, Object>();
 
+        if (responseFields != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("responseFields", responseFields));
+        }
+
         final String[] localVarAccepts = {
             "application/json", "text/json", "text/plain"
         };
@@ -790,12 +819,12 @@ public class CurrencyApi {
             localVarHeaderParams.put("Content-Type", localVarContentType);
         }
 
-        String[] localVarAuthNames = new String[] { "bearerAuth", "clientOauth2" };
+        String[] localVarAuthNames = new String[] { "bearerAuth" };
         return localVarApiClient.buildCall(basePath, localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call getCurrencyExchangeRatesValidateBeforeCall(String currencyCode, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call getCurrencyExchangeRatesValidateBeforeCall(String currencyCode, String responseFields, final ApiCallback _callback) throws ApiException {
         
         // verify the required parameter 'currencyCode' is set
         if (currencyCode == null) {
@@ -803,62 +832,65 @@ public class CurrencyApi {
         }
         
 
-        okhttp3.Call localVarCall = getCurrencyExchangeRatesCall(currencyCode, _callback);
+        okhttp3.Call localVarCall = getCurrencyExchangeRatesCall(currencyCode, responseFields, _callback);
         return localVarCall;
 
     }
 
     /**
-     * Get currency exchange rates
-     * Retrieves a list of exchange rates for a specified currency-code and filter criteria.
+     * Get Currency Exchange Rates
+     * Retrieves a list of exchange rates for a specified currency code and filter criteria.
      * @param currencyCode Currency code (required)
+     * @param responseFields limits which fields are returned in the response body (optional)
      * @return CurrencyExchangeRateCollection
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
      </table>
      */
-    public CurrencyExchangeRateCollection getCurrencyExchangeRates(String currencyCode) throws ApiException {
-        ApiResponse<CurrencyExchangeRateCollection> localVarResp = getCurrencyExchangeRatesWithHttpInfo(currencyCode);
+    public CurrencyExchangeRateCollection getCurrencyExchangeRates(String currencyCode, String responseFields) throws ApiException {
+        ApiResponse<CurrencyExchangeRateCollection> localVarResp = getCurrencyExchangeRatesWithHttpInfo(currencyCode, responseFields);
         return localVarResp.getData();
     }
 
     /**
-     * Get currency exchange rates
-     * Retrieves a list of exchange rates for a specified currency-code and filter criteria.
+     * Get Currency Exchange Rates
+     * Retrieves a list of exchange rates for a specified currency code and filter criteria.
      * @param currencyCode Currency code (required)
+     * @param responseFields limits which fields are returned in the response body (optional)
      * @return ApiResponse&lt;CurrencyExchangeRateCollection&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<CurrencyExchangeRateCollection> getCurrencyExchangeRatesWithHttpInfo(String currencyCode) throws ApiException {
-        okhttp3.Call localVarCall = getCurrencyExchangeRatesValidateBeforeCall(currencyCode, null);
+    public ApiResponse<CurrencyExchangeRateCollection> getCurrencyExchangeRatesWithHttpInfo(String currencyCode, String responseFields) throws ApiException {
+        okhttp3.Call localVarCall = getCurrencyExchangeRatesValidateBeforeCall(currencyCode, responseFields, null);
         Type localVarReturnType = new TypeToken<CurrencyExchangeRateCollection>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
 
     /**
-     * Get currency exchange rates (asynchronously)
-     * Retrieves a list of exchange rates for a specified currency-code and filter criteria.
+     * Get Currency Exchange Rates (asynchronously)
+     * Retrieves a list of exchange rates for a specified currency code and filter criteria.
      * @param currencyCode Currency code (required)
+     * @param responseFields limits which fields are returned in the response body (optional)
      * @param _callback The callback to be executed when the API call finishes
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call getCurrencyExchangeRatesAsync(String currencyCode, final ApiCallback<CurrencyExchangeRateCollection> _callback) throws ApiException {
+    public okhttp3.Call getCurrencyExchangeRatesAsync(String currencyCode, String responseFields, final ApiCallback<CurrencyExchangeRateCollection> _callback) throws ApiException {
 
-        okhttp3.Call localVarCall = getCurrencyExchangeRatesValidateBeforeCall(currencyCode, _callback);
+        okhttp3.Call localVarCall = getCurrencyExchangeRatesValidateBeforeCall(currencyCode, responseFields, _callback);
         Type localVarReturnType = new TypeToken<CurrencyExchangeRateCollection>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
@@ -866,16 +898,17 @@ public class CurrencyApi {
     /**
      * Build call for getCurrencyLocalization
      * @param currencyCode Currency code. (required)
+     * @param responseFields limits which fields are returned in the response body (optional)
      * @param _callback Callback for upload/download progress
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call getCurrencyLocalizationCall(String currencyCode, final ApiCallback _callback) throws ApiException {
+    public okhttp3.Call getCurrencyLocalizationCall(String currencyCode, String responseFields, final ApiCallback _callback) throws ApiException {
         String basePath = null;
         // Operation Servers
         String[] localBasePaths = new String[] {  };
@@ -901,6 +934,10 @@ public class CurrencyApi {
         Map<String, String> localVarCookieParams = new HashMap<String, String>();
         Map<String, Object> localVarFormParams = new HashMap<String, Object>();
 
+        if (responseFields != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("responseFields", responseFields));
+        }
+
         final String[] localVarAccepts = {
             "application/json", "text/json", "text/plain"
         };
@@ -917,12 +954,12 @@ public class CurrencyApi {
             localVarHeaderParams.put("Content-Type", localVarContentType);
         }
 
-        String[] localVarAuthNames = new String[] { "bearerAuth", "clientOauth2" };
+        String[] localVarAuthNames = new String[] { "bearerAuth" };
         return localVarApiClient.buildCall(basePath, localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call getCurrencyLocalizationValidateBeforeCall(String currencyCode, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call getCurrencyLocalizationValidateBeforeCall(String currencyCode, String responseFields, final ApiCallback _callback) throws ApiException {
         
         // verify the required parameter 'currencyCode' is set
         if (currencyCode == null) {
@@ -930,78 +967,82 @@ public class CurrencyApi {
         }
         
 
-        okhttp3.Call localVarCall = getCurrencyLocalizationCall(currencyCode, _callback);
+        okhttp3.Call localVarCall = getCurrencyLocalizationCall(currencyCode, responseFields, _callback);
         return localVarCall;
 
     }
 
     /**
-     * Get currency localization
-     * Gets a single currency-localization.
+     * Get Currency Localization
+     * Gets a single currency localization.
      * @param currencyCode Currency code. (required)
+     * @param responseFields limits which fields are returned in the response body (optional)
      * @return CurrencyLocalization
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
      </table>
      */
-    public CurrencyLocalization getCurrencyLocalization(String currencyCode) throws ApiException {
-        ApiResponse<CurrencyLocalization> localVarResp = getCurrencyLocalizationWithHttpInfo(currencyCode);
+    public CurrencyLocalization getCurrencyLocalization(String currencyCode, String responseFields) throws ApiException {
+        ApiResponse<CurrencyLocalization> localVarResp = getCurrencyLocalizationWithHttpInfo(currencyCode, responseFields);
         return localVarResp.getData();
     }
 
     /**
-     * Get currency localization
-     * Gets a single currency-localization.
+     * Get Currency Localization
+     * Gets a single currency localization.
      * @param currencyCode Currency code. (required)
+     * @param responseFields limits which fields are returned in the response body (optional)
      * @return ApiResponse&lt;CurrencyLocalization&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<CurrencyLocalization> getCurrencyLocalizationWithHttpInfo(String currencyCode) throws ApiException {
-        okhttp3.Call localVarCall = getCurrencyLocalizationValidateBeforeCall(currencyCode, null);
+    public ApiResponse<CurrencyLocalization> getCurrencyLocalizationWithHttpInfo(String currencyCode, String responseFields) throws ApiException {
+        okhttp3.Call localVarCall = getCurrencyLocalizationValidateBeforeCall(currencyCode, responseFields, null);
         Type localVarReturnType = new TypeToken<CurrencyLocalization>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
 
     /**
-     * Get currency localization (asynchronously)
-     * Gets a single currency-localization.
+     * Get Currency Localization (asynchronously)
+     * Gets a single currency localization.
      * @param currencyCode Currency code. (required)
+     * @param responseFields limits which fields are returned in the response body (optional)
      * @param _callback The callback to be executed when the API call finishes
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call getCurrencyLocalizationAsync(String currencyCode, final ApiCallback<CurrencyLocalization> _callback) throws ApiException {
+    public okhttp3.Call getCurrencyLocalizationAsync(String currencyCode, String responseFields, final ApiCallback<CurrencyLocalization> _callback) throws ApiException {
 
-        okhttp3.Call localVarCall = getCurrencyLocalizationValidateBeforeCall(currencyCode, _callback);
+        okhttp3.Call localVarCall = getCurrencyLocalizationValidateBeforeCall(currencyCode, responseFields, _callback);
         Type localVarReturnType = new TypeToken<CurrencyLocalization>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
     }
     /**
      * Build call for getCurrencyLocalizations
+     * @param responseFields limits which fields are returned in the response body (optional)
      * @param _callback Callback for upload/download progress
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call getCurrencyLocalizationsCall(final ApiCallback _callback) throws ApiException {
+    public okhttp3.Call getCurrencyLocalizationsCall(String responseFields, final ApiCallback _callback) throws ApiException {
         String basePath = null;
         // Operation Servers
         String[] localBasePaths = new String[] {  };
@@ -1026,6 +1067,10 @@ public class CurrencyApi {
         Map<String, String> localVarCookieParams = new HashMap<String, String>();
         Map<String, Object> localVarFormParams = new HashMap<String, Object>();
 
+        if (responseFields != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("responseFields", responseFields));
+        }
+
         final String[] localVarAccepts = {
             "application/json", "text/json", "text/plain"
         };
@@ -1042,67 +1087,70 @@ public class CurrencyApi {
             localVarHeaderParams.put("Content-Type", localVarContentType);
         }
 
-        String[] localVarAuthNames = new String[] { "bearerAuth", "clientOauth2" };
+        String[] localVarAuthNames = new String[] { "bearerAuth" };
         return localVarApiClient.buildCall(basePath, localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call getCurrencyLocalizationsValidateBeforeCall(final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call getCurrencyLocalizationsValidateBeforeCall(String responseFields, final ApiCallback _callback) throws ApiException {
         
 
-        okhttp3.Call localVarCall = getCurrencyLocalizationsCall(_callback);
+        okhttp3.Call localVarCall = getCurrencyLocalizationsCall(responseFields, _callback);
         return localVarCall;
 
     }
 
     /**
-     * Get currency localizations
-     * Gets all currency-localizations.
+     * Get Currency Localizations
+     * Gets all currency localizations.
+     * @param responseFields limits which fields are returned in the response body (optional)
      * @return CurrencyLocalizationCollection
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
      </table>
      */
-    public CurrencyLocalizationCollection getCurrencyLocalizations() throws ApiException {
-        ApiResponse<CurrencyLocalizationCollection> localVarResp = getCurrencyLocalizationsWithHttpInfo();
+    public CurrencyLocalizationCollection getCurrencyLocalizations(String responseFields) throws ApiException {
+        ApiResponse<CurrencyLocalizationCollection> localVarResp = getCurrencyLocalizationsWithHttpInfo(responseFields);
         return localVarResp.getData();
     }
 
     /**
-     * Get currency localizations
-     * Gets all currency-localizations.
+     * Get Currency Localizations
+     * Gets all currency localizations.
+     * @param responseFields limits which fields are returned in the response body (optional)
      * @return ApiResponse&lt;CurrencyLocalizationCollection&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<CurrencyLocalizationCollection> getCurrencyLocalizationsWithHttpInfo() throws ApiException {
-        okhttp3.Call localVarCall = getCurrencyLocalizationsValidateBeforeCall(null);
+    public ApiResponse<CurrencyLocalizationCollection> getCurrencyLocalizationsWithHttpInfo(String responseFields) throws ApiException {
+        okhttp3.Call localVarCall = getCurrencyLocalizationsValidateBeforeCall(responseFields, null);
         Type localVarReturnType = new TypeToken<CurrencyLocalizationCollection>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
 
     /**
-     * Get currency localizations (asynchronously)
-     * Gets all currency-localizations.
+     * Get Currency Localizations (asynchronously)
+     * Gets all currency localizations.
+     * @param responseFields limits which fields are returned in the response body (optional)
      * @param _callback The callback to be executed when the API call finishes
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call getCurrencyLocalizationsAsync(final ApiCallback<CurrencyLocalizationCollection> _callback) throws ApiException {
+    public okhttp3.Call getCurrencyLocalizationsAsync(String responseFields, final ApiCallback<CurrencyLocalizationCollection> _callback) throws ApiException {
 
-        okhttp3.Call localVarCall = getCurrencyLocalizationsValidateBeforeCall(_callback);
+        okhttp3.Call localVarCall = getCurrencyLocalizationsValidateBeforeCall(responseFields, _callback);
         Type localVarReturnType = new TypeToken<CurrencyLocalizationCollection>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
@@ -1110,6 +1158,7 @@ public class CurrencyApi {
     /**
      * Build call for updateCurrencyExchangeRates
      * @param currencyCode Currency code (required)
+     * @param responseFields limits which fields are returned in the response body (optional)
      * @param catalogAdminsCurrencyExchangeRate Exchange rates for the currency (optional)
      * @param _callback Callback for upload/download progress
      * @return Call to execute
@@ -1117,10 +1166,10 @@ public class CurrencyApi {
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call updateCurrencyExchangeRatesCall(String currencyCode, List<CatalogAdminsCurrencyExchangeRate> catalogAdminsCurrencyExchangeRate, final ApiCallback _callback) throws ApiException {
+    public okhttp3.Call updateCurrencyExchangeRatesCall(String currencyCode, String responseFields, List<CatalogAdminsCurrencyExchangeRate> catalogAdminsCurrencyExchangeRate, final ApiCallback _callback) throws ApiException {
         String basePath = null;
         // Operation Servers
         String[] localBasePaths = new String[] {  };
@@ -1146,6 +1195,10 @@ public class CurrencyApi {
         Map<String, String> localVarCookieParams = new HashMap<String, String>();
         Map<String, Object> localVarFormParams = new HashMap<String, Object>();
 
+        if (responseFields != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("responseFields", responseFields));
+        }
+
         final String[] localVarAccepts = {
             
         };
@@ -1162,12 +1215,12 @@ public class CurrencyApi {
             localVarHeaderParams.put("Content-Type", localVarContentType);
         }
 
-        String[] localVarAuthNames = new String[] { "bearerAuth", "clientOauth2" };
+        String[] localVarAuthNames = new String[] { "bearerAuth" };
         return localVarApiClient.buildCall(basePath, localVarPath, "PUT", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call updateCurrencyExchangeRatesValidateBeforeCall(String currencyCode, List<CatalogAdminsCurrencyExchangeRate> catalogAdminsCurrencyExchangeRate, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call updateCurrencyExchangeRatesValidateBeforeCall(String currencyCode, String responseFields, List<CatalogAdminsCurrencyExchangeRate> catalogAdminsCurrencyExchangeRate, final ApiCallback _callback) throws ApiException {
         
         // verify the required parameter 'currencyCode' is set
         if (currencyCode == null) {
@@ -1175,49 +1228,52 @@ public class CurrencyApi {
         }
         
 
-        okhttp3.Call localVarCall = updateCurrencyExchangeRatesCall(currencyCode, catalogAdminsCurrencyExchangeRate, _callback);
+        okhttp3.Call localVarCall = updateCurrencyExchangeRatesCall(currencyCode, responseFields, catalogAdminsCurrencyExchangeRate, _callback);
         return localVarCall;
 
     }
 
     /**
-     * Update currency exchange rates
-     * Update multiple exchange rates for a specified currency-code.
+     * Bulk Update Currency Exchange Rates
+     * Update multiple exchange rates for a specified currency code.
      * @param currencyCode Currency code (required)
+     * @param responseFields limits which fields are returned in the response body (optional)
      * @param catalogAdminsCurrencyExchangeRate Exchange rates for the currency (optional)
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
      </table>
      */
-    public void updateCurrencyExchangeRates(String currencyCode, List<CatalogAdminsCurrencyExchangeRate> catalogAdminsCurrencyExchangeRate) throws ApiException {
-        updateCurrencyExchangeRatesWithHttpInfo(currencyCode, catalogAdminsCurrencyExchangeRate);
+    public void updateCurrencyExchangeRates(String currencyCode, String responseFields, List<CatalogAdminsCurrencyExchangeRate> catalogAdminsCurrencyExchangeRate) throws ApiException {
+        updateCurrencyExchangeRatesWithHttpInfo(currencyCode, responseFields, catalogAdminsCurrencyExchangeRate);
     }
 
     /**
-     * Update currency exchange rates
-     * Update multiple exchange rates for a specified currency-code.
+     * Bulk Update Currency Exchange Rates
+     * Update multiple exchange rates for a specified currency code.
      * @param currencyCode Currency code (required)
+     * @param responseFields limits which fields are returned in the response body (optional)
      * @param catalogAdminsCurrencyExchangeRate Exchange rates for the currency (optional)
      * @return ApiResponse&lt;Void&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<Void> updateCurrencyExchangeRatesWithHttpInfo(String currencyCode, List<CatalogAdminsCurrencyExchangeRate> catalogAdminsCurrencyExchangeRate) throws ApiException {
-        okhttp3.Call localVarCall = updateCurrencyExchangeRatesValidateBeforeCall(currencyCode, catalogAdminsCurrencyExchangeRate, null);
+    public ApiResponse<Void> updateCurrencyExchangeRatesWithHttpInfo(String currencyCode, String responseFields, List<CatalogAdminsCurrencyExchangeRate> catalogAdminsCurrencyExchangeRate) throws ApiException {
+        okhttp3.Call localVarCall = updateCurrencyExchangeRatesValidateBeforeCall(currencyCode, responseFields, catalogAdminsCurrencyExchangeRate, null);
         return localVarApiClient.execute(localVarCall);
     }
 
     /**
-     * Update currency exchange rates (asynchronously)
-     * Update multiple exchange rates for a specified currency-code.
+     * Bulk Update Currency Exchange Rates (asynchronously)
+     * Update multiple exchange rates for a specified currency code.
      * @param currencyCode Currency code (required)
+     * @param responseFields limits which fields are returned in the response body (optional)
      * @param catalogAdminsCurrencyExchangeRate Exchange rates for the currency (optional)
      * @param _callback The callback to be executed when the API call finishes
      * @return The request call
@@ -1225,18 +1281,19 @@ public class CurrencyApi {
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call updateCurrencyExchangeRatesAsync(String currencyCode, List<CatalogAdminsCurrencyExchangeRate> catalogAdminsCurrencyExchangeRate, final ApiCallback<Void> _callback) throws ApiException {
+    public okhttp3.Call updateCurrencyExchangeRatesAsync(String currencyCode, String responseFields, List<CatalogAdminsCurrencyExchangeRate> catalogAdminsCurrencyExchangeRate, final ApiCallback<Void> _callback) throws ApiException {
 
-        okhttp3.Call localVarCall = updateCurrencyExchangeRatesValidateBeforeCall(currencyCode, catalogAdminsCurrencyExchangeRate, _callback);
+        okhttp3.Call localVarCall = updateCurrencyExchangeRatesValidateBeforeCall(currencyCode, responseFields, catalogAdminsCurrencyExchangeRate, _callback);
         localVarApiClient.executeAsync(localVarCall, _callback);
         return localVarCall;
     }
     /**
      * Build call for updateCurrencyLocalization
      * @param currencyCode Currency code. (required)
+     * @param responseFields limits which fields are returned in the response body (optional)
      * @param currencyLocalization Properties of the currency-localization to update. (optional)
      * @param _callback Callback for upload/download progress
      * @return Call to execute
@@ -1244,10 +1301,10 @@ public class CurrencyApi {
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call updateCurrencyLocalizationCall(String currencyCode, CurrencyLocalization currencyLocalization, final ApiCallback _callback) throws ApiException {
+    public okhttp3.Call updateCurrencyLocalizationCall(String currencyCode, String responseFields, CurrencyLocalization currencyLocalization, final ApiCallback _callback) throws ApiException {
         String basePath = null;
         // Operation Servers
         String[] localBasePaths = new String[] {  };
@@ -1273,6 +1330,10 @@ public class CurrencyApi {
         Map<String, String> localVarCookieParams = new HashMap<String, String>();
         Map<String, Object> localVarFormParams = new HashMap<String, Object>();
 
+        if (responseFields != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("responseFields", responseFields));
+        }
+
         final String[] localVarAccepts = {
             "application/json", "text/json", "text/plain"
         };
@@ -1289,12 +1350,12 @@ public class CurrencyApi {
             localVarHeaderParams.put("Content-Type", localVarContentType);
         }
 
-        String[] localVarAuthNames = new String[] { "bearerAuth", "clientOauth2" };
+        String[] localVarAuthNames = new String[] { "bearerAuth" };
         return localVarApiClient.buildCall(basePath, localVarPath, "PUT", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call updateCurrencyLocalizationValidateBeforeCall(String currencyCode, CurrencyLocalization currencyLocalization, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call updateCurrencyLocalizationValidateBeforeCall(String currencyCode, String responseFields, CurrencyLocalization currencyLocalization, final ApiCallback _callback) throws ApiException {
         
         // verify the required parameter 'currencyCode' is set
         if (currencyCode == null) {
@@ -1302,52 +1363,55 @@ public class CurrencyApi {
         }
         
 
-        okhttp3.Call localVarCall = updateCurrencyLocalizationCall(currencyCode, currencyLocalization, _callback);
+        okhttp3.Call localVarCall = updateCurrencyLocalizationCall(currencyCode, responseFields, currencyLocalization, _callback);
         return localVarCall;
 
     }
 
     /**
-     * Update currency localization
-     * Updates the details of a currency-localization.
+     * Update Currency Localization
+     * Updates the details of a currency localization.
      * @param currencyCode Currency code. (required)
+     * @param responseFields limits which fields are returned in the response body (optional)
      * @param currencyLocalization Properties of the currency-localization to update. (optional)
      * @return CurrencyLocalization
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
      </table>
      */
-    public CurrencyLocalization updateCurrencyLocalization(String currencyCode, CurrencyLocalization currencyLocalization) throws ApiException {
-        ApiResponse<CurrencyLocalization> localVarResp = updateCurrencyLocalizationWithHttpInfo(currencyCode, currencyLocalization);
+    public CurrencyLocalization updateCurrencyLocalization(String currencyCode, String responseFields, CurrencyLocalization currencyLocalization) throws ApiException {
+        ApiResponse<CurrencyLocalization> localVarResp = updateCurrencyLocalizationWithHttpInfo(currencyCode, responseFields, currencyLocalization);
         return localVarResp.getData();
     }
 
     /**
-     * Update currency localization
-     * Updates the details of a currency-localization.
+     * Update Currency Localization
+     * Updates the details of a currency localization.
      * @param currencyCode Currency code. (required)
+     * @param responseFields limits which fields are returned in the response body (optional)
      * @param currencyLocalization Properties of the currency-localization to update. (optional)
      * @return ApiResponse&lt;CurrencyLocalization&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<CurrencyLocalization> updateCurrencyLocalizationWithHttpInfo(String currencyCode, CurrencyLocalization currencyLocalization) throws ApiException {
-        okhttp3.Call localVarCall = updateCurrencyLocalizationValidateBeforeCall(currencyCode, currencyLocalization, null);
+    public ApiResponse<CurrencyLocalization> updateCurrencyLocalizationWithHttpInfo(String currencyCode, String responseFields, CurrencyLocalization currencyLocalization) throws ApiException {
+        okhttp3.Call localVarCall = updateCurrencyLocalizationValidateBeforeCall(currencyCode, responseFields, currencyLocalization, null);
         Type localVarReturnType = new TypeToken<CurrencyLocalization>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
 
     /**
-     * Update currency localization (asynchronously)
-     * Updates the details of a currency-localization.
+     * Update Currency Localization (asynchronously)
+     * Updates the details of a currency localization.
      * @param currencyCode Currency code. (required)
+     * @param responseFields limits which fields are returned in the response body (optional)
      * @param currencyLocalization Properties of the currency-localization to update. (optional)
      * @param _callback The callback to be executed when the API call finishes
      * @return The request call
@@ -1355,12 +1419,12 @@ public class CurrencyApi {
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call updateCurrencyLocalizationAsync(String currencyCode, CurrencyLocalization currencyLocalization, final ApiCallback<CurrencyLocalization> _callback) throws ApiException {
+    public okhttp3.Call updateCurrencyLocalizationAsync(String currencyCode, String responseFields, CurrencyLocalization currencyLocalization, final ApiCallback<CurrencyLocalization> _callback) throws ApiException {
 
-        okhttp3.Call localVarCall = updateCurrencyLocalizationValidateBeforeCall(currencyCode, currencyLocalization, _callback);
+        okhttp3.Call localVarCall = updateCurrencyLocalizationValidateBeforeCall(currencyCode, responseFields, currencyLocalization, _callback);
         Type localVarReturnType = new TypeToken<CurrencyLocalization>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;

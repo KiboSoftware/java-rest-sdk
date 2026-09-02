@@ -7,8 +7,8 @@
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
-|**originalShipment** | [**CommerceRuntimeShipment**](CommerceRuntimeShipment.md) |  |  [optional] |
-|**newShipments** | [**List&lt;CommerceRuntimeShipment&gt;**](CommerceRuntimeShipment.md) |  |  [optional] |
+|**newShipments** | [**List&lt;Shipment&gt;**](Shipment.md) |  |  [optional] |
+|**originalShipment** | [**Shipment**](Shipment.md) |  |  [optional] |
 
 
 ## Implemented Interfaces

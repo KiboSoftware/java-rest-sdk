@@ -1,8 +1,8 @@
 /*
  * Kibo Catalog Admin Services
- * OpenAPI Spec for Kibo Catalog Admin Services
+ * <div id=\"overview_CATALOG_ADMIN\">             <h2>CATALOG ADMINISTRATION</h2>             <p>The Catalog Administration APIs are a collection of resources for configuring the catalogs and products offered to your shoppers, including                 discounts and coupon sets, faceting, price lists, and different types or variations of products. See the                 <a href=\"/concept-guides/catalog\">Catalog user guides</a>                 for information about the related features in the Unified Commerce Admin.</p>             <p>Use the <strong>Attributes</strong> resource to manage localization and attribute configurations for your catalogs. This current version of the Attributes API includes localizedContent to                 support <a href=\"/pages/catalog-structure#multi-locale-catalogs\">multi-locale catalogs</a>, which was not present in the legacy API model. If                 you were a client prior to May 2024 and have upgraded your implementation to support this feature,                 you can still access attribute data that has not yet been rewritten to the new model by providing                 an x-api-version header set to \"1\". </p>             <p>Use the <strong>Categories</strong> resource to organize products and control where they appear on the storefront. Create                 and maintain a hierarchy of categories and subcategories where the site will store properties. This current version of the Categories API includes localizedContent to                 support <a href=\"/pages/catalog-structure#multi-locale-catalogs\">multi-locale catalogs</a>, which was not present in the legacy API model. If                 you were a client prior to May 2024 and have upgraded your implementation to support this feature,                 you can still access category data that has not yet been rewritten to the new model by providing                 an x-api-version header set to \"1\". </p>             <p>Use the <strong>Coupon Sets</strong> resource to view and create coupon sets. You can use coupon sets to group multiple                 coupon codes together and associate them with one or more discounts.</p>             <p>Use the <strong>Currency</strong> resource to manage the currency localization rules and exchange rates for any of the                 currencies that are supported for placing orders in.</p>             <p>Use the <strong>Discounts</strong> and <strong>Discount Settings</strong> resources to define and manage discounts to apply to products, product categories, or                 orders. This current version of the Discounts API includes localizedContent to                 support <a href=\"/pages/catalog-structure#multi-locale-catalogs\">multi-locale catalogs</a>, which was not present in the legacy Products API model. If                 you were a client prior to May 2024 and have upgraded your implementation to support this feature,                 you can still access discount data that has not yet been rewritten to the new model by providing                 an x-api-version header set to \"1\". </p>             <p>Use the <strong>Facets</strong> resource to manage the facets shoppers use to filter product display results on a                 storefront. Facets can include categories, product attributes, or prices, and use either a range of                 values or discrete values.</p>             <p>Use the <strong>Master Catalog</strong> resource to view details of the master catalogs associated with a tenant and to                 manage the product publishing mode for each master catalog.</p>             <p>Use the <strong>Price Lists</strong> resources to view and create price lists. You can use price lists to override the                 catalog pricing of products for specific customer segments and/or sites.</p>             <p>Use the <strong>Products</strong>, <strong>Product Types/Extras/Options/Properties</strong>, and <strong>Product Sort Definitions</strong> resources to create new product definitions in the master catalog and determine which                 catalogs will feature products. This current version of the Products API includes localizedContent to                 support <a href=\"/pages/catalog-structure#multi-locale-catalogs\">multi-locale catalogs</a>, which was not present in the legacy Products API model. If                 you were a client prior to May 2024 and have upgraded your implementation to support this feature,                 you can still access product data that has not yet been rewritten to the new model by providing                 an x-api-version header set to \"1\".</p>             <p>Use the <strong>Publishing</strong> resource to publish pending product updates together as part of a set.</p>             <p>Use the <strong>Search</strong> resource to manage all settings and options for providing product search on your site, as                 well as search tuning rules.</p>         </div>
  *
- * The version of the OpenAPI document: 1.0.0
+ * The version of the OpenAPI document: v1
  * 
  *
  * NOTE: This class is auto generated by OpenAPI Generator (https://openapi-generator.tech).
@@ -61,10 +61,6 @@ import com.kibocommerce.sdk.common.JSON;
 public class SearchMerchandizingRuleImpact implements Serializable {
   private static final long serialVersionUID = 1L;
 
-  public static final String SERIALIZED_NAME_RANKED_ITEMS = "rankedItems";
-  @SerializedName(SERIALIZED_NAME_RANKED_ITEMS)
-  private List<SearchMerchandizingImpactItem> rankedItems = null;
-
   public static final String SERIALIZED_NAME_BURIED_ITEMS = "buriedItems";
   @SerializedName(SERIALIZED_NAME_BURIED_ITEMS)
   private List<SearchMerchandizingImpactItem> buriedItems = null;
@@ -72,10 +68,6 @@ public class SearchMerchandizingRuleImpact implements Serializable {
   public static final String SERIALIZED_NAME_EXCLUDED_ITEMS = "excludedItems";
   @SerializedName(SERIALIZED_NAME_EXCLUDED_ITEMS)
   private List<SearchMerchandizingImpactItem> excludedItems = null;
-
-  public static final String SERIALIZED_NAME_SORT_FIELDS = "sortFields";
-  @SerializedName(SERIALIZED_NAME_SORT_FIELDS)
-  private List<SearchMerchandizingSortField> sortFields = null;
 
   public static final String SERIALIZED_NAME_FIELD_VALUE_BOOST = "fieldValueBoost";
   @SerializedName(SERIALIZED_NAME_FIELD_VALUE_BOOST)
@@ -85,39 +77,16 @@ public class SearchMerchandizingRuleImpact implements Serializable {
   @SerializedName(SERIALIZED_NAME_FILTER)
   private SearchMerchandizingFilter filter;
 
+  public static final String SERIALIZED_NAME_RANKED_ITEMS = "rankedItems";
+  @SerializedName(SERIALIZED_NAME_RANKED_ITEMS)
+  private List<SearchMerchandizingImpactItem> rankedItems = null;
+
+  public static final String SERIALIZED_NAME_SORT_FIELDS = "sortFields";
+  @SerializedName(SERIALIZED_NAME_SORT_FIELDS)
+  private List<SearchMerchandizingSortField> sortFields = null;
+
   public SearchMerchandizingRuleImpact() {
   }
-
-  public SearchMerchandizingRuleImpact rankedItems(List<SearchMerchandizingImpactItem> rankedItems) {
-    
-    this.rankedItems = rankedItems;
-    return this;
-  }
-
-  public SearchMerchandizingRuleImpact addRankedItemsItem(SearchMerchandizingImpactItem rankedItemsItem) {
-    if (this.rankedItems == null) {
-      this.rankedItems = new ArrayList<>();
-    }
-    this.rankedItems.add(rankedItemsItem);
-    return this;
-  }
-
-   /**
-   * Get rankedItems
-   * @return rankedItems
-  **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
-
-  public List<SearchMerchandizingImpactItem> getRankedItems() {
-    return rankedItems;
-  }
-
-
-  public void setRankedItems(List<SearchMerchandizingImpactItem> rankedItems) {
-    this.rankedItems = rankedItems;
-  }
-
 
   public SearchMerchandizingRuleImpact buriedItems(List<SearchMerchandizingImpactItem> buriedItems) {
     
@@ -181,37 +150,6 @@ public class SearchMerchandizingRuleImpact implements Serializable {
   }
 
 
-  public SearchMerchandizingRuleImpact sortFields(List<SearchMerchandizingSortField> sortFields) {
-    
-    this.sortFields = sortFields;
-    return this;
-  }
-
-  public SearchMerchandizingRuleImpact addSortFieldsItem(SearchMerchandizingSortField sortFieldsItem) {
-    if (this.sortFields == null) {
-      this.sortFields = new ArrayList<>();
-    }
-    this.sortFields.add(sortFieldsItem);
-    return this;
-  }
-
-   /**
-   * Get sortFields
-   * @return sortFields
-  **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
-
-  public List<SearchMerchandizingSortField> getSortFields() {
-    return sortFields;
-  }
-
-
-  public void setSortFields(List<SearchMerchandizingSortField> sortFields) {
-    this.sortFields = sortFields;
-  }
-
-
   public SearchMerchandizingRuleImpact fieldValueBoost(SearchMerchandizingFieldValueBoost fieldValueBoost) {
     
     this.fieldValueBoost = fieldValueBoost;
@@ -258,6 +196,68 @@ public class SearchMerchandizingRuleImpact implements Serializable {
   }
 
 
+  public SearchMerchandizingRuleImpact rankedItems(List<SearchMerchandizingImpactItem> rankedItems) {
+    
+    this.rankedItems = rankedItems;
+    return this;
+  }
+
+  public SearchMerchandizingRuleImpact addRankedItemsItem(SearchMerchandizingImpactItem rankedItemsItem) {
+    if (this.rankedItems == null) {
+      this.rankedItems = new ArrayList<>();
+    }
+    this.rankedItems.add(rankedItemsItem);
+    return this;
+  }
+
+   /**
+   * Get rankedItems
+   * @return rankedItems
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
+
+  public List<SearchMerchandizingImpactItem> getRankedItems() {
+    return rankedItems;
+  }
+
+
+  public void setRankedItems(List<SearchMerchandizingImpactItem> rankedItems) {
+    this.rankedItems = rankedItems;
+  }
+
+
+  public SearchMerchandizingRuleImpact sortFields(List<SearchMerchandizingSortField> sortFields) {
+    
+    this.sortFields = sortFields;
+    return this;
+  }
+
+  public SearchMerchandizingRuleImpact addSortFieldsItem(SearchMerchandizingSortField sortFieldsItem) {
+    if (this.sortFields == null) {
+      this.sortFields = new ArrayList<>();
+    }
+    this.sortFields.add(sortFieldsItem);
+    return this;
+  }
+
+   /**
+   * Get sortFields
+   * @return sortFields
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
+
+  public List<SearchMerchandizingSortField> getSortFields() {
+    return sortFields;
+  }
+
+
+  public void setSortFields(List<SearchMerchandizingSortField> sortFields) {
+    this.sortFields = sortFields;
+  }
+
+
 
   @Override
   public boolean equals(Object o) {
@@ -268,12 +268,12 @@ public class SearchMerchandizingRuleImpact implements Serializable {
       return false;
     }
     SearchMerchandizingRuleImpact searchMerchandizingRuleImpact = (SearchMerchandizingRuleImpact) o;
-    return Objects.equals(this.rankedItems, searchMerchandizingRuleImpact.rankedItems) &&
-        Objects.equals(this.buriedItems, searchMerchandizingRuleImpact.buriedItems) &&
+    return Objects.equals(this.buriedItems, searchMerchandizingRuleImpact.buriedItems) &&
         Objects.equals(this.excludedItems, searchMerchandizingRuleImpact.excludedItems) &&
-        Objects.equals(this.sortFields, searchMerchandizingRuleImpact.sortFields) &&
         Objects.equals(this.fieldValueBoost, searchMerchandizingRuleImpact.fieldValueBoost) &&
-        Objects.equals(this.filter, searchMerchandizingRuleImpact.filter);
+        Objects.equals(this.filter, searchMerchandizingRuleImpact.filter) &&
+        Objects.equals(this.rankedItems, searchMerchandizingRuleImpact.rankedItems) &&
+        Objects.equals(this.sortFields, searchMerchandizingRuleImpact.sortFields);
   }
 
   private static <T> boolean equalsNullable(JsonNullable<T> a, JsonNullable<T> b) {
@@ -282,7 +282,7 @@ public class SearchMerchandizingRuleImpact implements Serializable {
 
   @Override
   public int hashCode() {
-    return Objects.hash(rankedItems, buriedItems, excludedItems, sortFields, fieldValueBoost, filter);
+    return Objects.hash(buriedItems, excludedItems, fieldValueBoost, filter, rankedItems, sortFields);
   }
 
   private static <T> int hashCodeNullable(JsonNullable<T> a) {
@@ -296,12 +296,12 @@ public class SearchMerchandizingRuleImpact implements Serializable {
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class SearchMerchandizingRuleImpact {\n");
-    sb.append("    rankedItems: ").append(toIndentedString(rankedItems)).append("\n");
     sb.append("    buriedItems: ").append(toIndentedString(buriedItems)).append("\n");
     sb.append("    excludedItems: ").append(toIndentedString(excludedItems)).append("\n");
-    sb.append("    sortFields: ").append(toIndentedString(sortFields)).append("\n");
     sb.append("    fieldValueBoost: ").append(toIndentedString(fieldValueBoost)).append("\n");
     sb.append("    filter: ").append(toIndentedString(filter)).append("\n");
+    sb.append("    rankedItems: ").append(toIndentedString(rankedItems)).append("\n");
+    sb.append("    sortFields: ").append(toIndentedString(sortFields)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -324,12 +324,12 @@ public class SearchMerchandizingRuleImpact implements Serializable {
   static {
     // a set of all properties/fields (JSON key names)
     openapiFields = new HashSet<String>();
-    openapiFields.add("rankedItems");
     openapiFields.add("buriedItems");
     openapiFields.add("excludedItems");
-    openapiFields.add("sortFields");
     openapiFields.add("fieldValueBoost");
     openapiFields.add("filter");
+    openapiFields.add("rankedItems");
+    openapiFields.add("sortFields");
 
     // a set of required properties/fields (JSON key names)
     openapiRequiredFields = new HashSet<String>();
@@ -356,20 +356,6 @@ public class SearchMerchandizingRuleImpact implements Serializable {
       //    }
       //  }
       
-      if (jsonObj.get("rankedItems") != null && !jsonObj.get("rankedItems").isJsonNull()) {
-        JsonArray jsonArrayrankedItems = jsonObj.getAsJsonArray("rankedItems");
-        if (jsonArrayrankedItems != null) {
-          // ensure the json data is an array
-          if (!jsonObj.get("rankedItems").isJsonArray()) {
-            throw new IllegalArgumentException(String.format("Expected the field `rankedItems` to be an array in the JSON string but got `%s`", jsonObj.get("rankedItems").toString()));
-          }
-
-          // validate the optional field `rankedItems` (array)
-          for (int i = 0; i < jsonArrayrankedItems.size(); i++) {
-            SearchMerchandizingImpactItem.validateJsonObject(jsonArrayrankedItems.get(i).getAsJsonObject());
-          };
-        }
-      }
       if (jsonObj.get("buriedItems") != null && !jsonObj.get("buriedItems").isJsonNull()) {
         JsonArray jsonArrayburiedItems = jsonObj.getAsJsonArray("buriedItems");
         if (jsonArrayburiedItems != null) {
@@ -398,6 +384,28 @@ public class SearchMerchandizingRuleImpact implements Serializable {
           };
         }
       }
+      // validate the optional field `fieldValueBoost`
+      if (jsonObj.get("fieldValueBoost") != null && !jsonObj.get("fieldValueBoost").isJsonNull()) {
+        SearchMerchandizingFieldValueBoost.validateJsonObject(jsonObj.getAsJsonObject("fieldValueBoost"));
+      }
+      // validate the optional field `filter`
+      if (jsonObj.get("filter") != null && !jsonObj.get("filter").isJsonNull()) {
+        SearchMerchandizingFilter.validateJsonObject(jsonObj.getAsJsonObject("filter"));
+      }
+      if (jsonObj.get("rankedItems") != null && !jsonObj.get("rankedItems").isJsonNull()) {
+        JsonArray jsonArrayrankedItems = jsonObj.getAsJsonArray("rankedItems");
+        if (jsonArrayrankedItems != null) {
+          // ensure the json data is an array
+          if (!jsonObj.get("rankedItems").isJsonArray()) {
+            throw new IllegalArgumentException(String.format("Expected the field `rankedItems` to be an array in the JSON string but got `%s`", jsonObj.get("rankedItems").toString()));
+          }
+
+          // validate the optional field `rankedItems` (array)
+          for (int i = 0; i < jsonArrayrankedItems.size(); i++) {
+            SearchMerchandizingImpactItem.validateJsonObject(jsonArrayrankedItems.get(i).getAsJsonObject());
+          };
+        }
+      }
       if (jsonObj.get("sortFields") != null && !jsonObj.get("sortFields").isJsonNull()) {
         JsonArray jsonArraysortFields = jsonObj.getAsJsonArray("sortFields");
         if (jsonArraysortFields != null) {
@@ -411,14 +419,6 @@ public class SearchMerchandizingRuleImpact implements Serializable {
             SearchMerchandizingSortField.validateJsonObject(jsonArraysortFields.get(i).getAsJsonObject());
           };
         }
-      }
-      // validate the optional field `fieldValueBoost`
-      if (jsonObj.get("fieldValueBoost") != null && !jsonObj.get("fieldValueBoost").isJsonNull()) {
-        SearchMerchandizingFieldValueBoost.validateJsonObject(jsonObj.getAsJsonObject("fieldValueBoost"));
-      }
-      // validate the optional field `filter`
-      if (jsonObj.get("filter") != null && !jsonObj.get("filter").isJsonNull()) {
-        SearchMerchandizingFilter.validateJsonObject(jsonObj.getAsJsonObject("filter"));
       }
   }
 

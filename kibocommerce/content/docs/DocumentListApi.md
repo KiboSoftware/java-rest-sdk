@@ -13,7 +13,7 @@ All URIs are relative to *http://https:/api*
 
 <a name="createDocumentList"></a>
 # **createDocumentList**
-> DocumentList createDocumentList(documentList)
+> DocumentList createDocumentList(responseFields, documentList)
 
 Create DocumentList
 
@@ -38,14 +38,11 @@ public class Example {
     HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
     bearerAuth.setBearerToken("BEARER TOKEN");
 
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
-
     DocumentListApi apiInstance = new DocumentListApi(defaultClient);
+    String responseFields = "responseFields_example"; // String | limits which fields are returned in the response body
     DocumentList documentList = new DocumentList(); // DocumentList | DocumentListName
     try {
-      DocumentList result = apiInstance.createDocumentList(documentList);
+      DocumentList result = apiInstance.createDocumentList(responseFields, documentList);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling DocumentListApi#createDocumentList");
@@ -62,6 +59,7 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
+| **responseFields** | **String**| limits which fields are returned in the response body | [optional] |
 | **documentList** | [**DocumentList**](DocumentList.md)| DocumentListName | [optional] |
 
 ### Return type
@@ -70,17 +68,17 @@ public class Example {
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth), [clientOauth2](../README.md#clientOauth2)
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
- - **Content-Type**: text/plain, application/octet-stream, application/json
+ - **Content-Type**: application/json, application/octet-stream, text/plain
  - **Accept**: application/json, text/json, text/plain
 
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Success |  -  |
+| **200** | OK |  -  |
 
 <a name="deleteDocumentList"></a>
 # **deleteDocumentList**
@@ -109,10 +107,6 @@ public class Example {
     HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
     bearerAuth.setBearerToken("BEARER TOKEN");
 
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
-
     DocumentListApi apiInstance = new DocumentListApi(defaultClient);
     String documentListName = "documentListName_example"; // String | Name of content documentListName to delete
     try {
@@ -140,7 +134,7 @@ null (empty response body)
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth), [clientOauth2](../README.md#clientOauth2)
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
@@ -150,15 +144,15 @@ null (empty response body)
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Success |  -  |
+| **200** | OK |  -  |
 
 <a name="getDocumentList"></a>
 # **getDocumentList**
-> DocumentList getDocumentList(documentListName)
+> DocumentList getDocumentList(documentListName, responseFields)
 
 Get Document List
 
-Get Document List
+Get Document List. The document list can only be accessed if the API context is inclusive of the document list&#39;s scope. A document list always belongs to a tenant context, denoted by the scopeType and scopeId fields. For example, if a list belongs to Catalog 123 then it is denoted by scopeType&#x3D;catalog and scopeId&#x3D;123.
 
 ### Example
 ```java
@@ -179,14 +173,11 @@ public class Example {
     HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
     bearerAuth.setBearerToken("BEARER TOKEN");
 
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
-
     DocumentListApi apiInstance = new DocumentListApi(defaultClient);
     String documentListName = "documentListName_example"; // String | Name of document documentListName to retrieve
+    String responseFields = "responseFields_example"; // String | limits which fields are returned in the response body
     try {
-      DocumentList result = apiInstance.getDocumentList(documentListName);
+      DocumentList result = apiInstance.getDocumentList(documentListName, responseFields);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling DocumentListApi#getDocumentList");
@@ -204,6 +195,7 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **documentListName** | **String**| Name of document documentListName to retrieve | |
+| **responseFields** | **String**| limits which fields are returned in the response body | [optional] |
 
 ### Return type
 
@@ -211,7 +203,7 @@ public class Example {
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth), [clientOauth2](../README.md#clientOauth2)
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
@@ -221,11 +213,11 @@ public class Example {
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Success |  -  |
+| **200** | OK |  -  |
 
 <a name="getDocumentLists"></a>
 # **getDocumentLists**
-> DocumentListCollection getDocumentLists(pageSize, startIndex)
+> DocumentListCollection getDocumentLists(pageSize, startIndex, responseFields)
 
 Get Document Lists
 
@@ -250,15 +242,12 @@ public class Example {
     HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
     bearerAuth.setBearerToken("BEARER TOKEN");
 
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
-
     DocumentListApi apiInstance = new DocumentListApi(defaultClient);
     Integer pageSize = 56; // Integer | maximum number of items to return
     Integer startIndex = 56; // Integer | 
+    String responseFields = "responseFields_example"; // String | limits which fields are returned in the response body
     try {
-      DocumentListCollection result = apiInstance.getDocumentLists(pageSize, startIndex);
+      DocumentListCollection result = apiInstance.getDocumentLists(pageSize, startIndex, responseFields);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling DocumentListApi#getDocumentLists");
@@ -277,6 +266,7 @@ public class Example {
 |------------- | ------------- | ------------- | -------------|
 | **pageSize** | **Integer**| maximum number of items to return | [optional] |
 | **startIndex** | **Integer**|  | [optional] |
+| **responseFields** | **String**| limits which fields are returned in the response body | [optional] |
 
 ### Return type
 
@@ -284,7 +274,7 @@ public class Example {
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth), [clientOauth2](../README.md#clientOauth2)
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
@@ -294,15 +284,15 @@ public class Example {
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Success |  -  |
+| **200** | OK |  -  |
 
 <a name="updateDocumentList"></a>
 # **updateDocumentList**
-> DocumentList updateDocumentList(documentListName, documentList)
+> DocumentList updateDocumentList(documentListName, responseFields, documentList)
 
 Update Document List
 
-Update Document List
+Update Document List. The document list can only be accessed if the API context is inclusive of the document list&#39;s scope. A document list always belongs to a tenant context, denoted by the scopeType and scopeId fields. For example, if a list belongs to Catalog 123 then it is denoted by scopeType&#x3D;catalog and scopeId&#x3D;123.
 
 ### Example
 ```java
@@ -323,15 +313,12 @@ public class Example {
     HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
     bearerAuth.setBearerToken("BEARER TOKEN");
 
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
-
     DocumentListApi apiInstance = new DocumentListApi(defaultClient);
     String documentListName = "documentListName_example"; // String | The name of the documentList to update
+    String responseFields = "responseFields_example"; // String | limits which fields are returned in the response body
     DocumentList documentList = new DocumentList(); // DocumentList | Content Collection values to apply
     try {
-      DocumentList result = apiInstance.updateDocumentList(documentListName, documentList);
+      DocumentList result = apiInstance.updateDocumentList(documentListName, responseFields, documentList);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling DocumentListApi#updateDocumentList");
@@ -349,6 +336,7 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **documentListName** | **String**| The name of the documentList to update | |
+| **responseFields** | **String**| limits which fields are returned in the response body | [optional] |
 | **documentList** | [**DocumentList**](DocumentList.md)| Content Collection values to apply | [optional] |
 
 ### Return type
@@ -357,15 +345,15 @@ public class Example {
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth), [clientOauth2](../README.md#clientOauth2)
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
- - **Content-Type**: text/plain, application/octet-stream, application/json
+ - **Content-Type**: application/json, application/octet-stream, text/plain
  - **Accept**: application/json, text/json, text/plain
 
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Success |  -  |
+| **200** | OK |  -  |
 

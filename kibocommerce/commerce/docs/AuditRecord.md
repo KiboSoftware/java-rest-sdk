@@ -8,9 +8,9 @@ Group a set of changes made by a single user into a single audit history entry.
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
-|**id** | **String** |  |  [optional] |
+|**auditInfo** | [**CoreApiContractsAuditInfo**](CoreApiContractsAuditInfo.md) |  |  [optional] |
 |**changes** | [**List&lt;AuditRecordChange&gt;**](AuditRecordChange.md) | List of changes for this audit history entry. |  [optional] |
-|**auditInfo** | [**AdminUserAuditInfo**](AdminUserAuditInfo.md) |  |  [optional] |
+|**id** | **String** |  |  [optional] |
 
 
 ## Implemented Interfaces

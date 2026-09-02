@@ -4,19 +4,19 @@ All URIs are relative to *http://https:/api*
 
 | Method | HTTP request | Description |
 |------------- | ------------- | -------------|
-| [**createOrderHandlingFee**](ShippingSettingsApi.md#createOrderHandlingFee) | **POST** /commerce/settings/shipping/orderhandlingfee | Creates the site&#39;s order handling fee as it appears in shipping settings. Allows you to add the return address in shipping settings without modifying any other settings. |
+| [**createOrderHandlingFee**](ShippingSettingsApi.md#createOrderHandlingFee) | **POST** /commerce/settings/shipping/orderhandlingfee | Create Shipping Settings |
 | [**getOrderHandlingFee**](ShippingSettingsApi.md#getOrderHandlingFee) | **GET** /commerce/settings/shipping/orderhandlingfee | Get Order Handling Fee |
 | [**getSiteShippingSettings**](ShippingSettingsApi.md#getSiteShippingSettings) | **GET** /commerce/settings/shipping | Get Site Shipping Settings |
-| [**updateOrderHandlingFee**](ShippingSettingsApi.md#updateOrderHandlingFee) | **PUT** /commerce/settings/shipping/orderhandlingfee | Updates the site&#39;s shipping return address as it appears in shipping settings. Allows you to update the address in shipping settings without modifying any other settings. |
+| [**updateOrderHandlingFee**](ShippingSettingsApi.md#updateOrderHandlingFee) | **PUT** /commerce/settings/shipping/orderhandlingfee | Update Shipping Settings |
 
 
 <a name="createOrderHandlingFee"></a>
 # **createOrderHandlingFee**
-> SiteShippingHandlingFee createOrderHandlingFee(siteShippingHandlingFee)
+> SiteShippingHandlingFee createOrderHandlingFee(responseFields, siteShippingHandlingFee)
 
-Creates the site&#39;s order handling fee as it appears in shipping settings. Allows you to add the return address in shipping settings without modifying any other settings.
+Create Shipping Settings
 
-OBSOLETE: Handling fees are now defined via shipping admin   Creates site&#39;s shipping handling fee.
+OBSOLETE: Handling fees are now defined via shipping admin  Creates site&#39;s shipping handling fee.
 
 ### Example
 ```java
@@ -37,14 +37,11 @@ public class Example {
     HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
     bearerAuth.setBearerToken("BEARER TOKEN");
 
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
-
     ShippingSettingsApi apiInstance = new ShippingSettingsApi(defaultClient);
+    String responseFields = "responseFields_example"; // String | limits which fields are returned in the response body
     SiteShippingHandlingFee siteShippingHandlingFee = new SiteShippingHandlingFee(); // SiteShippingHandlingFee | New order handling fee to create. Required properties: Amount.
     try {
-      SiteShippingHandlingFee result = apiInstance.createOrderHandlingFee(siteShippingHandlingFee);
+      SiteShippingHandlingFee result = apiInstance.createOrderHandlingFee(responseFields, siteShippingHandlingFee);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling ShippingSettingsApi#createOrderHandlingFee");
@@ -61,6 +58,7 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
+| **responseFields** | **String**| limits which fields are returned in the response body | [optional] |
 | **siteShippingHandlingFee** | [**SiteShippingHandlingFee**](SiteShippingHandlingFee.md)| New order handling fee to create. Required properties: Amount. | [optional] |
 
 ### Return type
@@ -69,7 +67,7 @@ public class Example {
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth), [clientOauth2](../README.md#clientOauth2)
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
@@ -79,15 +77,15 @@ public class Example {
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Success |  -  |
+| **200** | OK |  -  |
 
 <a name="getOrderHandlingFee"></a>
 # **getOrderHandlingFee**
-> SiteShippingHandlingFee getOrderHandlingFee()
+> SiteShippingHandlingFee getOrderHandlingFee(responseFields)
 
 Get Order Handling Fee
 
-OBSOLETE: Handling fees are now defined via shipping admin   Retrieves the site&#39;s shipping handling fee.
+OBSOLETE: Handling fees are now defined via shipping admin  Retrieves the site&#39;s shipping handling fee.
 
 ### Example
 ```java
@@ -108,13 +106,10 @@ public class Example {
     HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
     bearerAuth.setBearerToken("BEARER TOKEN");
 
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
-
     ShippingSettingsApi apiInstance = new ShippingSettingsApi(defaultClient);
+    String responseFields = "responseFields_example"; // String | limits which fields are returned in the response body
     try {
-      SiteShippingHandlingFee result = apiInstance.getOrderHandlingFee();
+      SiteShippingHandlingFee result = apiInstance.getOrderHandlingFee(responseFields);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling ShippingSettingsApi#getOrderHandlingFee");
@@ -128,7 +123,10 @@ public class Example {
 ```
 
 ### Parameters
-This endpoint does not need any parameter.
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **responseFields** | **String**| limits which fields are returned in the response body | [optional] |
 
 ### Return type
 
@@ -136,7 +134,7 @@ This endpoint does not need any parameter.
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth), [clientOauth2](../README.md#clientOauth2)
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
@@ -146,15 +144,15 @@ This endpoint does not need any parameter.
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Success |  -  |
+| **200** | OK |  -  |
 
 <a name="getSiteShippingSettings"></a>
 # **getSiteShippingSettings**
-> SiteShippingSettings getSiteShippingSettings()
+> SiteShippingSettings getSiteShippingSettings(responseFields)
 
 Get Site Shipping Settings
 
-Retrievs site&#39;s current shipping settings including information about the active shipping rate provider,  return address, shipping methods, and which countries that you can ship to.
+Retrieves site&#39;s current shipping settings including information about the active shipping rate provider,  return address, shipping methods, and which countries that you can ship to.
 
 ### Example
 ```java
@@ -175,13 +173,10 @@ public class Example {
     HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
     bearerAuth.setBearerToken("BEARER TOKEN");
 
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
-
     ShippingSettingsApi apiInstance = new ShippingSettingsApi(defaultClient);
+    String responseFields = "responseFields_example"; // String | limits which fields are returned in the response body
     try {
-      SiteShippingSettings result = apiInstance.getSiteShippingSettings();
+      SiteShippingSettings result = apiInstance.getSiteShippingSettings(responseFields);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling ShippingSettingsApi#getSiteShippingSettings");
@@ -195,7 +190,10 @@ public class Example {
 ```
 
 ### Parameters
-This endpoint does not need any parameter.
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **responseFields** | **String**| limits which fields are returned in the response body | [optional] |
 
 ### Return type
 
@@ -203,7 +201,7 @@ This endpoint does not need any parameter.
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth), [clientOauth2](../README.md#clientOauth2)
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
@@ -213,15 +211,15 @@ This endpoint does not need any parameter.
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Success |  -  |
+| **200** | OK |  -  |
 
 <a name="updateOrderHandlingFee"></a>
 # **updateOrderHandlingFee**
-> SiteShippingHandlingFee updateOrderHandlingFee(siteShippingHandlingFee)
+> SiteShippingHandlingFee updateOrderHandlingFee(responseFields, siteShippingHandlingFee)
 
-Updates the site&#39;s shipping return address as it appears in shipping settings. Allows you to update the address in shipping settings without modifying any other settings.
+Update Shipping Settings
 
-OBSOLETE: Handling fees are now defined via shipping admin   Updates the site&#39;s shipping handling fee.
+OBSOLETE: Handling fees are now defined via shipping admin  Updates the site&#39;s shipping handling fee.
 
 ### Example
 ```java
@@ -242,14 +240,11 @@ public class Example {
     HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
     bearerAuth.setBearerToken("BEARER TOKEN");
 
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
-
     ShippingSettingsApi apiInstance = new ShippingSettingsApi(defaultClient);
+    String responseFields = "responseFields_example"; // String | limits which fields are returned in the response body
     SiteShippingHandlingFee siteShippingHandlingFee = new SiteShippingHandlingFee(); // SiteShippingHandlingFee | Properties of the site's order handling fee. Required properties: Amount.
     try {
-      SiteShippingHandlingFee result = apiInstance.updateOrderHandlingFee(siteShippingHandlingFee);
+      SiteShippingHandlingFee result = apiInstance.updateOrderHandlingFee(responseFields, siteShippingHandlingFee);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling ShippingSettingsApi#updateOrderHandlingFee");
@@ -266,6 +261,7 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
+| **responseFields** | **String**| limits which fields are returned in the response body | [optional] |
 | **siteShippingHandlingFee** | [**SiteShippingHandlingFee**](SiteShippingHandlingFee.md)| Properties of the site&#39;s order handling fee. Required properties: Amount. | [optional] |
 
 ### Return type
@@ -274,7 +270,7 @@ public class Example {
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth), [clientOauth2](../README.md#clientOauth2)
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
@@ -284,5 +280,5 @@ public class Example {
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Success |  -  |
+| **200** | OK |  -  |
 

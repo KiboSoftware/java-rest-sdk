@@ -7,10 +7,10 @@
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
-|**documentId** | **String** |  |  [optional] |
 |**docListFQN** | **String** |  |  [optional] |
-|**scopeType** | **String** |  |  [optional] |
+|**documentId** | **String** |  |  [optional] |
 |**scopeId** | **Integer** |  |  [optional] |
+|**scopeType** | **String** |  |  [optional] |
 
 
 ## Implemented Interfaces

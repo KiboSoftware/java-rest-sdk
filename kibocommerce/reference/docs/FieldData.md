@@ -7,8 +7,8 @@
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
-|**value** | **String** |  |  [optional] |
 |**code** | **String** |  |  [optional] |
+|**value** | **String** |  |  [optional] |
 
 
 ## Implemented Interfaces

@@ -8,8 +8,8 @@ Old password and new password.
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
-|**oldPassword** | **String** | Old password. |  [optional] |
-|**newPassword** | **String** | New password. |  [optional] |
+|**newPassword** | **String** | New password. |  |
+|**oldPassword** | **String** | Old password. |  |
 
 
 ## Implemented Interfaces

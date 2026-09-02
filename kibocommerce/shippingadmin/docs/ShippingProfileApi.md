@@ -14,7 +14,7 @@ All URIs are relative to *http://https:/api*
 | [**getOrderHandlingFeeRules**](ShippingProfileApi.md#getOrderHandlingFeeRules) | **GET** /commerce/shipping/admin/profiles/{profilecode}/rules/orderhandlingfees | Get Order Handling Fee Rules |
 | [**getProductHandlingFeeRule**](ShippingProfileApi.md#getProductHandlingFeeRule) | **GET** /commerce/shipping/admin/profiles/{profilecode}/rules/producthandlingfees/{id} | Get Product Handling Fee Rule |
 | [**getProductHandlingFeeRules**](ShippingProfileApi.md#getProductHandlingFeeRules) | **GET** /commerce/shipping/admin/profiles/{profilecode}/rules/producthandlingfees | Get Product Handling Fee Rules |
-| [**getProfiles**](ShippingProfileApi.md#getProfiles) | **GET** /commerce/shipping/admin/profiles | Get Shipping Profiles for the Tenant/Master Catalog |
+| [**getProfiles**](ShippingProfileApi.md#getProfiles) | **GET** /commerce/shipping/admin/profiles | Get Shipping Profiles |
 | [**getShippingInclusionRule**](ShippingProfileApi.md#getShippingInclusionRule) | **GET** /commerce/shipping/admin/profiles/{profilecode}/rules/shippinginclusions/{id} | Get Shipping Inclusion Rule |
 | [**getShippingInclusionRules**](ShippingProfileApi.md#getShippingInclusionRules) | **GET** /commerce/shipping/admin/profiles/{profilecode}/rules/shippinginclusions | Get Shipping Inclusion Rules |
 | [**getStates**](ShippingProfileApi.md#getStates) | **GET** /commerce/shipping/admin/profiles/{profilecode}/shippingstates | Get Configured Shipping States |
@@ -26,11 +26,11 @@ All URIs are relative to *http://https:/api*
 
 <a name="createOrderHandlingFeeRule"></a>
 # **createOrderHandlingFeeRule**
-> HandlingFeeRule createOrderHandlingFeeRule(profilecode, handlingFeeRule)
+> HandlingFeeRule createOrderHandlingFeeRule(profilecode, responseFields, handlingFeeRule)
 
 Create Order Handling Fee Rule
 
-Create Order Handling Fee Rule
+Creates a new order handling fee rule
 
 ### Example
 ```java
@@ -51,15 +51,12 @@ public class Example {
     HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
     bearerAuth.setBearerToken("BEARER TOKEN");
 
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
-
     ShippingProfileApi apiInstance = new ShippingProfileApi(defaultClient);
     String profilecode = "profilecode_example"; // String | 
+    String responseFields = "responseFields_example"; // String | limits which fields are returned in the response body
     HandlingFeeRule handlingFeeRule = new HandlingFeeRule(); // HandlingFeeRule | 
     try {
-      HandlingFeeRule result = apiInstance.createOrderHandlingFeeRule(profilecode, handlingFeeRule);
+      HandlingFeeRule result = apiInstance.createOrderHandlingFeeRule(profilecode, responseFields, handlingFeeRule);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling ShippingProfileApi#createOrderHandlingFeeRule");
@@ -77,6 +74,7 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **profilecode** | **String**|  | |
+| **responseFields** | **String**| limits which fields are returned in the response body | [optional] |
 | **handlingFeeRule** | [**HandlingFeeRule**](HandlingFeeRule.md)|  | [optional] |
 
 ### Return type
@@ -85,7 +83,7 @@ public class Example {
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth), [clientOauth2](../README.md#clientOauth2)
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
@@ -99,11 +97,11 @@ public class Example {
 
 <a name="createProductHandlingFeeRule"></a>
 # **createProductHandlingFeeRule**
-> HandlingFeeRule createProductHandlingFeeRule(profilecode, handlingFeeRule)
+> HandlingFeeRule createProductHandlingFeeRule(profilecode, responseFields, handlingFeeRule)
 
 Create Product Handling Fee Rule
 
-Create Product Handling Fee Rule
+Creates a new product handling fee rule
 
 ### Example
 ```java
@@ -124,15 +122,12 @@ public class Example {
     HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
     bearerAuth.setBearerToken("BEARER TOKEN");
 
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
-
     ShippingProfileApi apiInstance = new ShippingProfileApi(defaultClient);
     String profilecode = "profilecode_example"; // String | 
+    String responseFields = "responseFields_example"; // String | limits which fields are returned in the response body
     HandlingFeeRule handlingFeeRule = new HandlingFeeRule(); // HandlingFeeRule | 
     try {
-      HandlingFeeRule result = apiInstance.createProductHandlingFeeRule(profilecode, handlingFeeRule);
+      HandlingFeeRule result = apiInstance.createProductHandlingFeeRule(profilecode, responseFields, handlingFeeRule);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling ShippingProfileApi#createProductHandlingFeeRule");
@@ -150,6 +145,7 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **profilecode** | **String**|  | |
+| **responseFields** | **String**| limits which fields are returned in the response body | [optional] |
 | **handlingFeeRule** | [**HandlingFeeRule**](HandlingFeeRule.md)|  | [optional] |
 
 ### Return type
@@ -158,7 +154,7 @@ public class Example {
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth), [clientOauth2](../README.md#clientOauth2)
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
@@ -172,11 +168,11 @@ public class Example {
 
 <a name="createShippingInclusionRule"></a>
 # **createShippingInclusionRule**
-> ShippingInclusionRule createShippingInclusionRule(profilecode, shippingInclusionRule)
+> ShippingInclusionRule createShippingInclusionRule(profilecode, responseFields, shippingInclusionRule)
 
 Create Shipping Inclusion Rule
 
-Create Shipping Inclusion Rule
+Creates a new shipping inclusion rule
 
 ### Example
 ```java
@@ -197,15 +193,12 @@ public class Example {
     HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
     bearerAuth.setBearerToken("BEARER TOKEN");
 
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
-
     ShippingProfileApi apiInstance = new ShippingProfileApi(defaultClient);
     String profilecode = "profilecode_example"; // String | 
+    String responseFields = "responseFields_example"; // String | limits which fields are returned in the response body
     ShippingInclusionRule shippingInclusionRule = new ShippingInclusionRule(); // ShippingInclusionRule | 
     try {
-      ShippingInclusionRule result = apiInstance.createShippingInclusionRule(profilecode, shippingInclusionRule);
+      ShippingInclusionRule result = apiInstance.createShippingInclusionRule(profilecode, responseFields, shippingInclusionRule);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling ShippingProfileApi#createShippingInclusionRule");
@@ -223,6 +216,7 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **profilecode** | **String**|  | |
+| **responseFields** | **String**| limits which fields are returned in the response body | [optional] |
 | **shippingInclusionRule** | [**ShippingInclusionRule**](ShippingInclusionRule.md)|  | [optional] |
 
 ### Return type
@@ -231,7 +225,7 @@ public class Example {
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth), [clientOauth2](../README.md#clientOauth2)
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
@@ -249,7 +243,7 @@ public class Example {
 
 Delete Order Handling Fee Rule
 
-Delete Order Handling Fee Rule
+Deletes an existing order handling fee rule
 
 ### Example
 ```java
@@ -269,10 +263,6 @@ public class Example {
     // Configure HTTP bearer authorization: bearerAuth
     HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
     bearerAuth.setBearerToken("BEARER TOKEN");
-
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
 
     ShippingProfileApi apiInstance = new ShippingProfileApi(defaultClient);
     String profilecode = "profilecode_example"; // String | 
@@ -304,7 +294,7 @@ public class Example {
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth), [clientOauth2](../README.md#clientOauth2)
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
@@ -322,7 +312,7 @@ public class Example {
 
 Delete Product Handling Fee Rule
 
-Delete Product Handling Fee Rule
+Deletes an existing product handling fee rule
 
 ### Example
 ```java
@@ -342,10 +332,6 @@ public class Example {
     // Configure HTTP bearer authorization: bearerAuth
     HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
     bearerAuth.setBearerToken("BEARER TOKEN");
-
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
 
     ShippingProfileApi apiInstance = new ShippingProfileApi(defaultClient);
     String profilecode = "profilecode_example"; // String | 
@@ -376,7 +362,7 @@ null (empty response body)
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth), [clientOauth2](../README.md#clientOauth2)
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
@@ -394,7 +380,7 @@ null (empty response body)
 
 Delete Shipping Inclusion Rule
 
-Delete Shipping Inclusion Rule
+Deletes an existing shipping inclusion rule
 
 ### Example
 ```java
@@ -414,10 +400,6 @@ public class Example {
     // Configure HTTP bearer authorization: bearerAuth
     HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
     bearerAuth.setBearerToken("BEARER TOKEN");
-
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
 
     ShippingProfileApi apiInstance = new ShippingProfileApi(defaultClient);
     String profilecode = "profilecode_example"; // String | 
@@ -448,7 +430,7 @@ null (empty response body)
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth), [clientOauth2](../README.md#clientOauth2)
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
@@ -462,11 +444,11 @@ null (empty response body)
 
 <a name="getOrderHandlingFeeRule"></a>
 # **getOrderHandlingFeeRule**
-> HandlingFeeRule getOrderHandlingFeeRule(profilecode, id)
+> HandlingFeeRule getOrderHandlingFeeRule(profilecode, id, responseFields)
 
 Get Order Handling Fee Rule
 
-Get Order Handling Fee Rule
+Retrieves an order handling fee rule by ID
 
 ### Example
 ```java
@@ -487,15 +469,12 @@ public class Example {
     HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
     bearerAuth.setBearerToken("BEARER TOKEN");
 
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
-
     ShippingProfileApi apiInstance = new ShippingProfileApi(defaultClient);
     String profilecode = "profilecode_example"; // String | 
     String id = "id_example"; // String | 
+    String responseFields = "responseFields_example"; // String | limits which fields are returned in the response body
     try {
-      HandlingFeeRule result = apiInstance.getOrderHandlingFeeRule(profilecode, id);
+      HandlingFeeRule result = apiInstance.getOrderHandlingFeeRule(profilecode, id, responseFields);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling ShippingProfileApi#getOrderHandlingFeeRule");
@@ -514,6 +493,7 @@ public class Example {
 |------------- | ------------- | ------------- | -------------|
 | **profilecode** | **String**|  | |
 | **id** | **String**|  | |
+| **responseFields** | **String**| limits which fields are returned in the response body | [optional] |
 
 ### Return type
 
@@ -521,7 +501,7 @@ public class Example {
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth), [clientOauth2](../README.md#clientOauth2)
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
@@ -535,11 +515,11 @@ public class Example {
 
 <a name="getOrderHandlingFeeRules"></a>
 # **getOrderHandlingFeeRules**
-> HandlingFeeRuleCollection getOrderHandlingFeeRules(profilecode)
+> HandlingFeeRuleCollection getOrderHandlingFeeRules(profilecode, fulfillmentMethod, responseFields)
 
 Get Order Handling Fee Rules
 
-Get Order Handling Fee Rules
+Retrieve all order handling fee rules
 
 ### Example
 ```java
@@ -560,14 +540,12 @@ public class Example {
     HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
     bearerAuth.setBearerToken("BEARER TOKEN");
 
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
-
     ShippingProfileApi apiInstance = new ShippingProfileApi(defaultClient);
     String profilecode = "profilecode_example"; // String | 
+    String fulfillmentMethod = "fulfillmentMethod_example"; // String | 
+    String responseFields = "responseFields_example"; // String | limits which fields are returned in the response body
     try {
-      HandlingFeeRuleCollection result = apiInstance.getOrderHandlingFeeRules(profilecode);
+      HandlingFeeRuleCollection result = apiInstance.getOrderHandlingFeeRules(profilecode, fulfillmentMethod, responseFields);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling ShippingProfileApi#getOrderHandlingFeeRules");
@@ -585,6 +563,8 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **profilecode** | **String**|  | |
+| **fulfillmentMethod** | **String**|  | [optional] |
+| **responseFields** | **String**| limits which fields are returned in the response body | [optional] |
 
 ### Return type
 
@@ -592,7 +572,7 @@ public class Example {
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth), [clientOauth2](../README.md#clientOauth2)
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
@@ -606,11 +586,11 @@ public class Example {
 
 <a name="getProductHandlingFeeRule"></a>
 # **getProductHandlingFeeRule**
-> HandlingFeeRule getProductHandlingFeeRule(profilecode, id)
+> HandlingFeeRule getProductHandlingFeeRule(profilecode, id, responseFields)
 
 Get Product Handling Fee Rule
 
-Get Product Handling Fee Rule
+Retrieves a product handling fee rule by ID
 
 ### Example
 ```java
@@ -631,15 +611,12 @@ public class Example {
     HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
     bearerAuth.setBearerToken("BEARER TOKEN");
 
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
-
     ShippingProfileApi apiInstance = new ShippingProfileApi(defaultClient);
     String profilecode = "profilecode_example"; // String | 
     String id = "id_example"; // String | 
+    String responseFields = "responseFields_example"; // String | limits which fields are returned in the response body
     try {
-      HandlingFeeRule result = apiInstance.getProductHandlingFeeRule(profilecode, id);
+      HandlingFeeRule result = apiInstance.getProductHandlingFeeRule(profilecode, id, responseFields);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling ShippingProfileApi#getProductHandlingFeeRule");
@@ -658,6 +635,7 @@ public class Example {
 |------------- | ------------- | ------------- | -------------|
 | **profilecode** | **String**|  | |
 | **id** | **String**|  | |
+| **responseFields** | **String**| limits which fields are returned in the response body | [optional] |
 
 ### Return type
 
@@ -665,7 +643,7 @@ public class Example {
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth), [clientOauth2](../README.md#clientOauth2)
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
@@ -679,11 +657,11 @@ public class Example {
 
 <a name="getProductHandlingFeeRules"></a>
 # **getProductHandlingFeeRules**
-> HandlingFeeRuleCollection getProductHandlingFeeRules(profilecode)
+> HandlingFeeRuleCollection getProductHandlingFeeRules(profilecode, fulfillmentMethod, responseFields)
 
 Get Product Handling Fee Rules
 
-Get Product Handling Fee Rules
+Retrieves all product handling fee rules
 
 ### Example
 ```java
@@ -704,14 +682,12 @@ public class Example {
     HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
     bearerAuth.setBearerToken("BEARER TOKEN");
 
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
-
     ShippingProfileApi apiInstance = new ShippingProfileApi(defaultClient);
     String profilecode = "profilecode_example"; // String | 
+    String fulfillmentMethod = "fulfillmentMethod_example"; // String | 
+    String responseFields = "responseFields_example"; // String | limits which fields are returned in the response body
     try {
-      HandlingFeeRuleCollection result = apiInstance.getProductHandlingFeeRules(profilecode);
+      HandlingFeeRuleCollection result = apiInstance.getProductHandlingFeeRules(profilecode, fulfillmentMethod, responseFields);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling ShippingProfileApi#getProductHandlingFeeRules");
@@ -729,6 +705,8 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **profilecode** | **String**|  | |
+| **fulfillmentMethod** | **String**|  | [optional] |
+| **responseFields** | **String**| limits which fields are returned in the response body | [optional] |
 
 ### Return type
 
@@ -736,7 +714,7 @@ public class Example {
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth), [clientOauth2](../README.md#clientOauth2)
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
@@ -750,11 +728,11 @@ public class Example {
 
 <a name="getProfiles"></a>
 # **getProfiles**
-> ShippingProfileCollection getProfiles()
+> ShippingProfileCollection getProfiles(responseFields)
 
-Get Shipping Profiles for the Tenant/Master Catalog
+Get Shipping Profiles
 
-Get Shipping Profiles for the Tenant/Master Catalog
+Get shipping profiles for the tenant/master catalog
 
 ### Example
 ```java
@@ -775,13 +753,10 @@ public class Example {
     HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
     bearerAuth.setBearerToken("BEARER TOKEN");
 
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
-
     ShippingProfileApi apiInstance = new ShippingProfileApi(defaultClient);
+    String responseFields = "responseFields_example"; // String | limits which fields are returned in the response body
     try {
-      ShippingProfileCollection result = apiInstance.getProfiles();
+      ShippingProfileCollection result = apiInstance.getProfiles(responseFields);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling ShippingProfileApi#getProfiles");
@@ -795,7 +770,10 @@ public class Example {
 ```
 
 ### Parameters
-This endpoint does not need any parameter.
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **responseFields** | **String**| limits which fields are returned in the response body | [optional] |
 
 ### Return type
 
@@ -803,7 +781,7 @@ This endpoint does not need any parameter.
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth), [clientOauth2](../README.md#clientOauth2)
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
@@ -817,11 +795,11 @@ This endpoint does not need any parameter.
 
 <a name="getShippingInclusionRule"></a>
 # **getShippingInclusionRule**
-> ShippingInclusionRule getShippingInclusionRule(profilecode, id)
+> ShippingInclusionRule getShippingInclusionRule(profilecode, id, responseFields)
 
 Get Shipping Inclusion Rule
 
-Get Shipping Inclusion Rule
+Retrieves a shipping inclusion rule by ID
 
 ### Example
 ```java
@@ -842,15 +820,12 @@ public class Example {
     HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
     bearerAuth.setBearerToken("BEARER TOKEN");
 
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
-
     ShippingProfileApi apiInstance = new ShippingProfileApi(defaultClient);
     String profilecode = "profilecode_example"; // String | 
     String id = "id_example"; // String | 
+    String responseFields = "responseFields_example"; // String | limits which fields are returned in the response body
     try {
-      ShippingInclusionRule result = apiInstance.getShippingInclusionRule(profilecode, id);
+      ShippingInclusionRule result = apiInstance.getShippingInclusionRule(profilecode, id, responseFields);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling ShippingProfileApi#getShippingInclusionRule");
@@ -869,6 +844,7 @@ public class Example {
 |------------- | ------------- | ------------- | -------------|
 | **profilecode** | **String**|  | |
 | **id** | **String**|  | |
+| **responseFields** | **String**| limits which fields are returned in the response body | [optional] |
 
 ### Return type
 
@@ -876,7 +852,7 @@ public class Example {
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth), [clientOauth2](../README.md#clientOauth2)
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
@@ -890,11 +866,11 @@ public class Example {
 
 <a name="getShippingInclusionRules"></a>
 # **getShippingInclusionRules**
-> ShippingInclusionRuleCollection getShippingInclusionRules(profilecode)
+> ShippingInclusionRuleCollection getShippingInclusionRules(profilecode, responseFields)
 
 Get Shipping Inclusion Rules
 
-Get Shipping Inclusion Rules
+Retrieves all shipping inclusion rules
 
 ### Example
 ```java
@@ -915,14 +891,11 @@ public class Example {
     HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
     bearerAuth.setBearerToken("BEARER TOKEN");
 
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
-
     ShippingProfileApi apiInstance = new ShippingProfileApi(defaultClient);
     String profilecode = "profilecode_example"; // String | 
+    String responseFields = "responseFields_example"; // String | limits which fields are returned in the response body
     try {
-      ShippingInclusionRuleCollection result = apiInstance.getShippingInclusionRules(profilecode);
+      ShippingInclusionRuleCollection result = apiInstance.getShippingInclusionRules(profilecode, responseFields);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling ShippingProfileApi#getShippingInclusionRules");
@@ -940,6 +913,7 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **profilecode** | **String**|  | |
+| **responseFields** | **String**| limits which fields are returned in the response body | [optional] |
 
 ### Return type
 
@@ -947,7 +921,7 @@ public class Example {
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth), [clientOauth2](../README.md#clientOauth2)
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
@@ -961,11 +935,11 @@ public class Example {
 
 <a name="getStates"></a>
 # **getStates**
-> List&lt;ShippingStates&gt; getStates(profileCode)
+> List&lt;ShippingStates&gt; getStates(profileCode, responseFields)
 
 Get Configured Shipping States
 
-
+Retrieves all configured shipping states
 
 ### Example
 ```java
@@ -986,14 +960,11 @@ public class Example {
     HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
     bearerAuth.setBearerToken("BEARER TOKEN");
 
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
-
     ShippingProfileApi apiInstance = new ShippingProfileApi(defaultClient);
     String profileCode = "profileCode_example"; // String | 
+    String responseFields = "responseFields_example"; // String | limits which fields are returned in the response body
     try {
-      List<ShippingStates> result = apiInstance.getStates(profileCode);
+      List<ShippingStates> result = apiInstance.getStates(profileCode, responseFields);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling ShippingProfileApi#getStates");
@@ -1011,6 +982,7 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **profileCode** | **String**|  | |
+| **responseFields** | **String**| limits which fields are returned in the response body | [optional] |
 
 ### Return type
 
@@ -1018,7 +990,7 @@ public class Example {
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth), [clientOauth2](../README.md#clientOauth2)
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
@@ -1032,11 +1004,11 @@ public class Example {
 
 <a name="updateOrderHandlingFeeRule"></a>
 # **updateOrderHandlingFeeRule**
-> HandlingFeeRule updateOrderHandlingFeeRule(profilecode, id, handlingFeeRule)
+> HandlingFeeRule updateOrderHandlingFeeRule(profilecode, id, responseFields, handlingFeeRule)
 
 Update Order Handling Fee Rule
 
-Update Order Handling Fee Rule
+Updates an existing order handling fee rule
 
 ### Example
 ```java
@@ -1057,16 +1029,13 @@ public class Example {
     HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
     bearerAuth.setBearerToken("BEARER TOKEN");
 
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
-
     ShippingProfileApi apiInstance = new ShippingProfileApi(defaultClient);
     String profilecode = "profilecode_example"; // String | 
     String id = "id_example"; // String | 
+    String responseFields = "responseFields_example"; // String | limits which fields are returned in the response body
     HandlingFeeRule handlingFeeRule = new HandlingFeeRule(); // HandlingFeeRule | 
     try {
-      HandlingFeeRule result = apiInstance.updateOrderHandlingFeeRule(profilecode, id, handlingFeeRule);
+      HandlingFeeRule result = apiInstance.updateOrderHandlingFeeRule(profilecode, id, responseFields, handlingFeeRule);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling ShippingProfileApi#updateOrderHandlingFeeRule");
@@ -1085,6 +1054,7 @@ public class Example {
 |------------- | ------------- | ------------- | -------------|
 | **profilecode** | **String**|  | |
 | **id** | **String**|  | |
+| **responseFields** | **String**| limits which fields are returned in the response body | [optional] |
 | **handlingFeeRule** | [**HandlingFeeRule**](HandlingFeeRule.md)|  | [optional] |
 
 ### Return type
@@ -1093,7 +1063,7 @@ public class Example {
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth), [clientOauth2](../README.md#clientOauth2)
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
@@ -1107,11 +1077,11 @@ public class Example {
 
 <a name="updateProductHandlingFeeRule"></a>
 # **updateProductHandlingFeeRule**
-> HandlingFeeRule updateProductHandlingFeeRule(profilecode, id, handlingFeeRule)
+> HandlingFeeRule updateProductHandlingFeeRule(profilecode, id, responseFields, handlingFeeRule)
 
 Update Product Handling Fee Rule
 
-Update Product Handling Fee Rule
+Updates an existing product handling fee rule
 
 ### Example
 ```java
@@ -1132,16 +1102,13 @@ public class Example {
     HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
     bearerAuth.setBearerToken("BEARER TOKEN");
 
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
-
     ShippingProfileApi apiInstance = new ShippingProfileApi(defaultClient);
     String profilecode = "profilecode_example"; // String | 
     String id = "id_example"; // String | 
+    String responseFields = "responseFields_example"; // String | limits which fields are returned in the response body
     HandlingFeeRule handlingFeeRule = new HandlingFeeRule(); // HandlingFeeRule | 
     try {
-      HandlingFeeRule result = apiInstance.updateProductHandlingFeeRule(profilecode, id, handlingFeeRule);
+      HandlingFeeRule result = apiInstance.updateProductHandlingFeeRule(profilecode, id, responseFields, handlingFeeRule);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling ShippingProfileApi#updateProductHandlingFeeRule");
@@ -1160,6 +1127,7 @@ public class Example {
 |------------- | ------------- | ------------- | -------------|
 | **profilecode** | **String**|  | |
 | **id** | **String**|  | |
+| **responseFields** | **String**| limits which fields are returned in the response body | [optional] |
 | **handlingFeeRule** | [**HandlingFeeRule**](HandlingFeeRule.md)|  | [optional] |
 
 ### Return type
@@ -1168,7 +1136,7 @@ public class Example {
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth), [clientOauth2](../README.md#clientOauth2)
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
@@ -1182,11 +1150,11 @@ public class Example {
 
 <a name="updateShippingInclusionRule"></a>
 # **updateShippingInclusionRule**
-> ShippingInclusionRule updateShippingInclusionRule(profilecode, id, shippingInclusionRule)
+> ShippingInclusionRule updateShippingInclusionRule(profilecode, id, responseFields, shippingInclusionRule)
 
 Update Shipping Inclusion Rule
 
-Update Shipping Inclusion Rule
+Updates an existing shipping inclusion rule
 
 ### Example
 ```java
@@ -1207,16 +1175,13 @@ public class Example {
     HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
     bearerAuth.setBearerToken("BEARER TOKEN");
 
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
-
     ShippingProfileApi apiInstance = new ShippingProfileApi(defaultClient);
     String profilecode = "profilecode_example"; // String | 
     String id = "id_example"; // String | 
+    String responseFields = "responseFields_example"; // String | limits which fields are returned in the response body
     ShippingInclusionRule shippingInclusionRule = new ShippingInclusionRule(); // ShippingInclusionRule | 
     try {
-      ShippingInclusionRule result = apiInstance.updateShippingInclusionRule(profilecode, id, shippingInclusionRule);
+      ShippingInclusionRule result = apiInstance.updateShippingInclusionRule(profilecode, id, responseFields, shippingInclusionRule);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling ShippingProfileApi#updateShippingInclusionRule");
@@ -1235,6 +1200,7 @@ public class Example {
 |------------- | ------------- | ------------- | -------------|
 | **profilecode** | **String**|  | |
 | **id** | **String**|  | |
+| **responseFields** | **String**| limits which fields are returned in the response body | [optional] |
 | **shippingInclusionRule** | [**ShippingInclusionRule**](ShippingInclusionRule.md)|  | [optional] |
 
 ### Return type
@@ -1243,7 +1209,7 @@ public class Example {
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth), [clientOauth2](../README.md#clientOauth2)
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
@@ -1257,11 +1223,11 @@ public class Example {
 
 <a name="updateStates"></a>
 # **updateStates**
-> List&lt;ShippingStates&gt; updateStates(profilecode, shippingStates)
+> List&lt;ShippingStates&gt; updateStates(profilecode, responseFields, shippingStates)
 
 Update States
 
-Update States
+Updates the configured shipping states
 
 ### Example
 ```java
@@ -1282,15 +1248,12 @@ public class Example {
     HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
     bearerAuth.setBearerToken("BEARER TOKEN");
 
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
-
     ShippingProfileApi apiInstance = new ShippingProfileApi(defaultClient);
     String profilecode = "profilecode_example"; // String | 
+    String responseFields = "responseFields_example"; // String | limits which fields are returned in the response body
     List<ShippingStates> shippingStates = Arrays.asList(); // List<ShippingStates> | 
     try {
-      List<ShippingStates> result = apiInstance.updateStates(profilecode, shippingStates);
+      List<ShippingStates> result = apiInstance.updateStates(profilecode, responseFields, shippingStates);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling ShippingProfileApi#updateStates");
@@ -1308,6 +1271,7 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **profilecode** | **String**|  | |
+| **responseFields** | **String**| limits which fields are returned in the response body | [optional] |
 | **shippingStates** | [**List&lt;ShippingStates&gt;**](ShippingStates.md)|  | [optional] |
 
 ### Return type
@@ -1316,7 +1280,7 @@ public class Example {
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth), [clientOauth2](../README.md#clientOauth2)
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 

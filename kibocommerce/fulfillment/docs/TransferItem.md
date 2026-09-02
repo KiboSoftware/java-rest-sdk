@@ -9,8 +9,10 @@
 |------------ | ------------- | ------------- | -------------|
 |**blockAssignment** | **Boolean** |  |  [optional] |
 |**fulfillmentLocationCode** | **String** |  |  [optional] |
-|**lineId** | **Integer** |  |  |
-|**quantity** | **Integer** |  |  |
+|**holdBlockAssignment** | **Boolean** |  |  [optional] |
+|**isReservedInventory** | **Boolean** |  |  [optional] |
+|**lineId** | **Integer** |  |  [optional] |
+|**quantity** | **Integer** |  |  [optional] |
 |**transferredReason** | [**TransferredReason**](TransferredReason.md) |  |  [optional] |
 
 

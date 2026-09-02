@@ -7,7 +7,7 @@
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
-|**booleanOperator** | [**BooleanOperatorEnum**](#BooleanOperatorEnum) |  |  [optional] |
+|**booleanOperator** | [**BooleanOperatorEnum**](#BooleanOperatorEnum) |  |  |
 |**created** | **OffsetDateTime** |  |  [optional] |
 |**creatorUsername** | **String** |  |  [optional] |
 |**customAttributeName** | **String** |  |  [optional] |
@@ -16,19 +16,25 @@
 |**dataPointExtensibleAttributeName** | **String** |  |  [optional] |
 |**dataPointExtensibleAttributeType** | **String** |  |  [optional] |
 |**dataPointExtensibleFilter** | **Boolean** |  |  [optional] |
-|**dotDelimitedPropertyName** | **String** |  |  [optional] |
-|**environmentID** | **Integer** |  |  [optional] |
+|**dotDelimitedPropertyName** | **String** |  |  |
+|**environmentID** | **Integer** |  |  |
 |**extensibleAttributeFQN** | **String** |  |  [optional] |
 |**extensibleAttributeName** | **String** |  |  [optional] |
-|**extensibleAttributeType** | **String** |  |  [optional] |
 |**extensibleFilter** | **Boolean** |  |  [optional] |
 |**filterID** | **Integer** |  |  [optional] |
-|**filterUnit** | [**UnitOfobject**](UnitOfobject.md) |  |  [optional] |
-|**name** | **String** |  |  [optional] |
+|**filterLogicalGroupOrderIndex** | **Integer** |  |  [optional] |
+|**filterUnit** | [**AbstractFilterFilterUnit**](AbstractFilterFilterUnit.md) |  |  [optional] |
+|**inventoryBasedFilter** | **Boolean** |  |  [optional] |
+|**itemBasedFilter** | **Boolean** |  |  [optional] |
+|**locationBasedFilter** | **Boolean** |  |  [optional] |
+|**name** | **String** |  |  |
+|**orderIndex** | **Integer** |  |  [optional] |
+|**orderLocationFilterEqualToLocationOrInventoryFilter** | **Boolean** |  |  [optional] |
 |**pathString** | **String** |  |  [optional] |
 |**persisted** | **Boolean** |  |  [optional] |
-|**siteID** | **Integer** |  |  [optional] |
-|**tenantID** | **Integer** |  |  [optional] |
+|**siteID** | **Integer** |  |  |
+|**suggestionEventListeners** | **Set&lt;Object&gt;** |  |  [optional] |
+|**tenantID** | **Integer** |  |  |
 |**updated** | **OffsetDateTime** |  |  [optional] |
 |**updaterUsername** | **String** |  |  [optional] |
 |**userContext** | [**UserContextInformation**](UserContextInformation.md) |  |  [optional] |

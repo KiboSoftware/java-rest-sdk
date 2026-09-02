@@ -7,8 +7,8 @@
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
-|**rangeValueStart** | **Object** |  |  [optional] |
 |**rangeValueEnd** | **Object** |  |  [optional] |
+|**rangeValueStart** | **Object** |  |  [optional] |
 
 
 ## Implemented Interfaces

@@ -4,19 +4,19 @@ All URIs are relative to *http://https:/api*
 
 | Method | HTTP request | Description |
 |------------- | ------------- | -------------|
-| [**download**](FilesApi.md#download) | **GET** /platform/data/files/{id}/content | Download |
-| [**get**](FilesApi.md#get) | **GET** /platform/data/files/{id} | Get |
+| [**download**](FilesApi.md#download) | **GET** /platform/data/files/{id}/content | Download Files |
+| [**get**](FilesApi.md#get) | **GET** /platform/data/files/{id} | Get File |
 | [**getPublicLink**](FilesApi.md#getPublicLink) | **POST** /platform/data/files/{id}/generatelink | Get Public Link |
-| [**upload**](FilesApi.md#upload) | **POST** /platform/data/files | Upload |
+| [**upload**](FilesApi.md#upload) | **POST** /platform/data/files | Upload Files |
 
 
 <a name="download"></a>
 # **download**
-> download(id)
+> download(id, responseFields)
 
-Download
+Download Files
 
-Download
+Downloads specific files by ID
 
 ### Example
 ```java
@@ -37,14 +37,11 @@ public class Example {
     HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
     bearerAuth.setBearerToken("BEARER TOKEN");
 
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
-
     FilesApi apiInstance = new FilesApi(defaultClient);
     String id = "id_example"; // String | 
+    String responseFields = "responseFields_example"; // String | limits which fields are returned in the response body
     try {
-      apiInstance.download(id);
+      apiInstance.download(id, responseFields);
     } catch (ApiException e) {
       System.err.println("Exception when calling FilesApi#download");
       System.err.println("Status code: " + e.getCode());
@@ -61,6 +58,7 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **id** | **String**|  | |
+| **responseFields** | **String**| limits which fields are returned in the response body | [optional] |
 
 ### Return type
 
@@ -68,7 +66,7 @@ null (empty response body)
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth), [clientOauth2](../README.md#clientOauth2)
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
@@ -78,15 +76,15 @@ null (empty response body)
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Success |  -  |
+| **200** | OK |  -  |
 
 <a name="get"></a>
 # **get**
-> DropLocation get(id)
+> DropLocation get(id, responseFields)
 
-Get
+Get File
 
-Get
+Retrieves file information by ID
 
 ### Example
 ```java
@@ -107,14 +105,11 @@ public class Example {
     HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
     bearerAuth.setBearerToken("BEARER TOKEN");
 
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
-
     FilesApi apiInstance = new FilesApi(defaultClient);
     String id = "id_example"; // String | 
+    String responseFields = "responseFields_example"; // String | limits which fields are returned in the response body
     try {
-      DropLocation result = apiInstance.get(id);
+      DropLocation result = apiInstance.get(id, responseFields);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling FilesApi#get");
@@ -132,6 +127,7 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **id** | **String**|  | |
+| **responseFields** | **String**| limits which fields are returned in the response body | [optional] |
 
 ### Return type
 
@@ -139,7 +135,7 @@ public class Example {
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth), [clientOauth2](../README.md#clientOauth2)
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
@@ -149,15 +145,15 @@ public class Example {
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Success |  -  |
+| **200** | OK |  -  |
 
 <a name="getPublicLink"></a>
 # **getPublicLink**
-> String getPublicLink(id, hourDuration)
+> String getPublicLink(id, hourDuration, responseFields)
 
 Get Public Link
 
-Get Public Link
+Generates a public link for the files
 
 ### Example
 ```java
@@ -178,15 +174,12 @@ public class Example {
     HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
     bearerAuth.setBearerToken("BEARER TOKEN");
 
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
-
     FilesApi apiInstance = new FilesApi(defaultClient);
     String id = "id_example"; // String | 
     Integer hourDuration = 24; // Integer | 
+    String responseFields = "responseFields_example"; // String | limits which fields are returned in the response body
     try {
-      String result = apiInstance.getPublicLink(id, hourDuration);
+      String result = apiInstance.getPublicLink(id, hourDuration, responseFields);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling FilesApi#getPublicLink");
@@ -205,6 +198,7 @@ public class Example {
 |------------- | ------------- | ------------- | -------------|
 | **id** | **String**|  | |
 | **hourDuration** | **Integer**|  | [optional] [default to 24] |
+| **responseFields** | **String**| limits which fields are returned in the response body | [optional] |
 
 ### Return type
 
@@ -212,7 +206,7 @@ public class Example {
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth), [clientOauth2](../README.md#clientOauth2)
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
@@ -222,15 +216,15 @@ public class Example {
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Success |  -  |
+| **200** | OK |  -  |
 
 <a name="upload"></a>
 # **upload**
-> DropLocation upload(fileType, fileName, body)
+> DropLocation upload(fileType, fileName, responseFields, body)
 
-Upload
+Upload Files
 
-Upload
+Uploads files to the system
 
 ### Example
 ```java
@@ -251,16 +245,13 @@ public class Example {
     HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
     bearerAuth.setBearerToken("BEARER TOKEN");
 
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
-
     FilesApi apiInstance = new FilesApi(defaultClient);
     String fileType = "fileType_example"; // String | 
     String fileName = "fileName_example"; // String | 
+    String responseFields = "responseFields_example"; // String | limits which fields are returned in the response body
     File body = new File("/path/to/file"); // File | 
     try {
-      DropLocation result = apiInstance.upload(fileType, fileName, body);
+      DropLocation result = apiInstance.upload(fileType, fileName, responseFields, body);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling FilesApi#upload");
@@ -279,6 +270,7 @@ public class Example {
 |------------- | ------------- | ------------- | -------------|
 | **fileType** | **String**|  | [optional] |
 | **fileName** | **String**|  | [optional] |
+| **responseFields** | **String**| limits which fields are returned in the response body | [optional] |
 | **body** | **File**|  | [optional] |
 
 ### Return type
@@ -287,7 +279,7 @@ public class Example {
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth), [clientOauth2](../README.md#clientOauth2)
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
@@ -297,5 +289,5 @@ public class Example {
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Success |  -  |
+| **200** | OK |  -  |
 

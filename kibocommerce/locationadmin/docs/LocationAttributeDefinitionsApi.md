@@ -13,11 +13,11 @@ All URIs are relative to *http://https:/api*
 
 <a name="createAttribute"></a>
 # **createAttribute**
-> CommerceRuntimeAttribute createAttribute(commerceRuntimeAttribute)
+> LocationAdminAttribute createAttribute(responseFields, locationAdminAttribute)
 
 Create Attribute
 
-Create Attribute
+Create a new location attribute.
 
 ### Example
 ```java
@@ -38,14 +38,11 @@ public class Example {
     HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
     bearerAuth.setBearerToken("BEARER TOKEN");
 
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
-
     LocationAttributeDefinitionsApi apiInstance = new LocationAttributeDefinitionsApi(defaultClient);
-    CommerceRuntimeAttribute commerceRuntimeAttribute = new CommerceRuntimeAttribute(); // CommerceRuntimeAttribute | 
+    String responseFields = "responseFields_example"; // String | limits which fields are returned in the response body
+    LocationAdminAttribute locationAdminAttribute = new LocationAdminAttribute(); // LocationAdminAttribute | 
     try {
-      CommerceRuntimeAttribute result = apiInstance.createAttribute(commerceRuntimeAttribute);
+      LocationAdminAttribute result = apiInstance.createAttribute(responseFields, locationAdminAttribute);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling LocationAttributeDefinitionsApi#createAttribute");
@@ -62,15 +59,16 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **commerceRuntimeAttribute** | [**CommerceRuntimeAttribute**](CommerceRuntimeAttribute.md)|  | [optional] |
+| **responseFields** | **String**| limits which fields are returned in the response body | [optional] |
+| **locationAdminAttribute** | [**LocationAdminAttribute**](LocationAdminAttribute.md)|  | [optional] |
 
 ### Return type
 
-[**CommerceRuntimeAttribute**](CommerceRuntimeAttribute.md)
+[**LocationAdminAttribute**](LocationAdminAttribute.md)
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth), [clientOauth2](../README.md#clientOauth2)
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
@@ -84,7 +82,7 @@ public class Example {
 
 <a name="getAttribute"></a>
 # **getAttribute**
-> CommerceRuntimeAttribute getAttribute(attributeFQN, responseGroups)
+> LocationAdminAttribute getAttribute(attributeFQN, responseGroups, responseFields)
 
 Get Attribute
 
@@ -109,15 +107,12 @@ public class Example {
     HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
     bearerAuth.setBearerToken("BEARER TOKEN");
 
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
-
     LocationAttributeDefinitionsApi apiInstance = new LocationAttributeDefinitionsApi(defaultClient);
     String attributeFQN = "attributeFQN_example"; // String | 
     String responseGroups = "responseGroups_example"; // String | 
+    String responseFields = "responseFields_example"; // String | limits which fields are returned in the response body
     try {
-      CommerceRuntimeAttribute result = apiInstance.getAttribute(attributeFQN, responseGroups);
+      LocationAdminAttribute result = apiInstance.getAttribute(attributeFQN, responseGroups, responseFields);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling LocationAttributeDefinitionsApi#getAttribute");
@@ -136,14 +131,15 @@ public class Example {
 |------------- | ------------- | ------------- | -------------|
 | **attributeFQN** | **String**|  | |
 | **responseGroups** | **String**|  | [optional] |
+| **responseFields** | **String**| limits which fields are returned in the response body | [optional] |
 
 ### Return type
 
-[**CommerceRuntimeAttribute**](CommerceRuntimeAttribute.md)
+[**LocationAdminAttribute**](LocationAdminAttribute.md)
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth), [clientOauth2](../README.md#clientOauth2)
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
@@ -157,11 +153,11 @@ public class Example {
 
 <a name="getAttributeVocabularyValues"></a>
 # **getAttributeVocabularyValues**
-> List&lt;CommerceRuntimeAttributeVocabularyValue&gt; getAttributeVocabularyValues(attributeFQN, responseGroups)
+> List&lt;LocationAdminAttributeVocabularyValue&gt; getAttributeVocabularyValues(attributeFQN, responseGroups, responseFields)
 
 Get Attribute Vocabulary Values
 
-Get Attribute Vocabulary Values
+Retrieves the details of attribute vocabulary values.
 
 ### Example
 ```java
@@ -182,15 +178,12 @@ public class Example {
     HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
     bearerAuth.setBearerToken("BEARER TOKEN");
 
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
-
     LocationAttributeDefinitionsApi apiInstance = new LocationAttributeDefinitionsApi(defaultClient);
     String attributeFQN = "attributeFQN_example"; // String | 
     String responseGroups = "responseGroups_example"; // String | 
+    String responseFields = "responseFields_example"; // String | limits which fields are returned in the response body
     try {
-      List<CommerceRuntimeAttributeVocabularyValue> result = apiInstance.getAttributeVocabularyValues(attributeFQN, responseGroups);
+      List<LocationAdminAttributeVocabularyValue> result = apiInstance.getAttributeVocabularyValues(attributeFQN, responseGroups, responseFields);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling LocationAttributeDefinitionsApi#getAttributeVocabularyValues");
@@ -209,14 +202,15 @@ public class Example {
 |------------- | ------------- | ------------- | -------------|
 | **attributeFQN** | **String**|  | |
 | **responseGroups** | **String**|  | [optional] |
+| **responseFields** | **String**| limits which fields are returned in the response body | [optional] |
 
 ### Return type
 
-[**List&lt;CommerceRuntimeAttributeVocabularyValue&gt;**](CommerceRuntimeAttributeVocabularyValue.md)
+[**List&lt;LocationAdminAttributeVocabularyValue&gt;**](LocationAdminAttributeVocabularyValue.md)
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth), [clientOauth2](../README.md#clientOauth2)
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
@@ -230,11 +224,11 @@ public class Example {
 
 <a name="getAttributes"></a>
 # **getAttributes**
-> CommerceRuntimeAttributeCollection getAttributes(startIndex, pageSize, sortBy, responseGroups, filter)
+> CommerceRuntimeAttributeCollection getAttributes(startIndex, pageSize, sortBy, responseGroups, filter, responseFields)
 
 Get Attributes
 
-Get Attributes
+Retrieves the details of attributes.
 
 ### Example
 ```java
@@ -255,18 +249,15 @@ public class Example {
     HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
     bearerAuth.setBearerToken("BEARER TOKEN");
 
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
-
     LocationAttributeDefinitionsApi apiInstance = new LocationAttributeDefinitionsApi(defaultClient);
     Integer startIndex = 0; // Integer | 
     Integer pageSize = 0; // Integer | 
     String sortBy = "sortBy_example"; // String | 
     String responseGroups = "responseGroups_example"; // String | 
     String filter = "filter_example"; // String | 
+    String responseFields = "responseFields_example"; // String | limits which fields are returned in the response body
     try {
-      CommerceRuntimeAttributeCollection result = apiInstance.getAttributes(startIndex, pageSize, sortBy, responseGroups, filter);
+      CommerceRuntimeAttributeCollection result = apiInstance.getAttributes(startIndex, pageSize, sortBy, responseGroups, filter, responseFields);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling LocationAttributeDefinitionsApi#getAttributes");
@@ -288,6 +279,7 @@ public class Example {
 | **sortBy** | **String**|  | [optional] |
 | **responseGroups** | **String**|  | [optional] |
 | **filter** | **String**|  | [optional] |
+| **responseFields** | **String**| limits which fields are returned in the response body | [optional] |
 
 ### Return type
 
@@ -295,7 +287,7 @@ public class Example {
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth), [clientOauth2](../README.md#clientOauth2)
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
@@ -309,11 +301,11 @@ public class Example {
 
 <a name="updateAttribute"></a>
 # **updateAttribute**
-> CommerceRuntimeAttribute updateAttribute(attributeFQN, commerceRuntimeAttribute)
+> LocationAdminAttribute updateAttribute(attributeFQN, responseFields, locationAdminAttribute)
 
 Update Attribute
 
-Update Attribute
+Update a location attribute.
 
 ### Example
 ```java
@@ -334,15 +326,12 @@ public class Example {
     HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
     bearerAuth.setBearerToken("BEARER TOKEN");
 
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
-
     LocationAttributeDefinitionsApi apiInstance = new LocationAttributeDefinitionsApi(defaultClient);
     String attributeFQN = "attributeFQN_example"; // String | 
-    CommerceRuntimeAttribute commerceRuntimeAttribute = new CommerceRuntimeAttribute(); // CommerceRuntimeAttribute | 
+    String responseFields = "responseFields_example"; // String | limits which fields are returned in the response body
+    LocationAdminAttribute locationAdminAttribute = new LocationAdminAttribute(); // LocationAdminAttribute | 
     try {
-      CommerceRuntimeAttribute result = apiInstance.updateAttribute(attributeFQN, commerceRuntimeAttribute);
+      LocationAdminAttribute result = apiInstance.updateAttribute(attributeFQN, responseFields, locationAdminAttribute);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling LocationAttributeDefinitionsApi#updateAttribute");
@@ -360,15 +349,16 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **attributeFQN** | **String**|  | |
-| **commerceRuntimeAttribute** | [**CommerceRuntimeAttribute**](CommerceRuntimeAttribute.md)|  | [optional] |
+| **responseFields** | **String**| limits which fields are returned in the response body | [optional] |
+| **locationAdminAttribute** | [**LocationAdminAttribute**](LocationAdminAttribute.md)|  | [optional] |
 
 ### Return type
 
-[**CommerceRuntimeAttribute**](CommerceRuntimeAttribute.md)
+[**LocationAdminAttribute**](LocationAdminAttribute.md)
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth), [clientOauth2](../README.md#clientOauth2)
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 

@@ -7,16 +7,16 @@
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
-|**type** | **String** |  |  [optional] |
-|**includedCategoryIds** | **List&lt;Integer&gt;** |  |  [optional] |
-|**excludedCategoryIds** | **List&lt;Integer&gt;** |  |  [optional] |
-|**includedCategoriesOperator** | **String** |  |  [optional] |
 |**excludedCategoriesOperator** | **String** |  |  [optional] |
-|**includedProductCodes** | **List&lt;String&gt;** |  |  [optional] |
+|**excludedCategoryIds** | **List&lt;Integer&gt;** |  |  [optional] |
 |**excludedProductCodes** | **List&lt;String&gt;** |  |  [optional] |
 |**includeAllProducts** | **Boolean** |  |  [optional] |
+|**includedCategoriesOperator** | **String** |  |  [optional] |
+|**includedCategoryIds** | **List&lt;Integer&gt;** |  |  [optional] |
+|**includedProductCodes** | **List&lt;String&gt;** |  |  [optional] |
 |**shippingMethods** | **List&lt;String&gt;** |  |  [optional] |
 |**shippingZones** | **List&lt;String&gt;** |  |  [optional] |
+|**type** | **String** |  |  [optional] |
 
 
 ## Implemented Interfaces

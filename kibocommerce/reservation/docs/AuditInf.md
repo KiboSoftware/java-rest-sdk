@@ -7,10 +7,10 @@
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
-|**createdBy** | **String** |  |  [optional] |
 |**createdAt** | **OffsetDateTime** |  |  [optional] |
-|**updatedBy** | **String** |  |  [optional] |
+|**createdBy** | **String** |  |  [optional] |
 |**updatedAt** | **OffsetDateTime** |  |  [optional] |
+|**updatedBy** | **String** |  |  [optional] |
 
 
 ## Implemented Interfaces

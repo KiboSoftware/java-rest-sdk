@@ -9,7 +9,7 @@
 |------------ | ------------- | ------------- | -------------|
 |**description** | **String** |  |  [optional] |
 |**id** | **String** |  |  [optional] |
-|**inputs** | [**List&lt;FulfillmentTaskInput&gt;**](FulfillmentTaskInput.md) |  |  [optional] |
+|**inputs** | [**List&lt;FulfillmentAPITaskInput&gt;**](FulfillmentAPITaskInput.md) |  |  [optional] |
 |**name** | **String** |  |  [optional] |
 |**priority** | **Integer** |  |  [optional] |
 |**skippable** | **Boolean** |  |  [optional] |

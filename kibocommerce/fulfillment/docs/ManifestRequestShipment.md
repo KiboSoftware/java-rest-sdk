@@ -8,7 +8,7 @@
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
 |**integratorIds** | **List&lt;String&gt;** |  |  [optional] |
-|**shipmentNumber** | **Integer** |  |  |
+|**shipmentNumber** | **Integer** |  |  [optional] |
 
 
 ## Implemented Interfaces

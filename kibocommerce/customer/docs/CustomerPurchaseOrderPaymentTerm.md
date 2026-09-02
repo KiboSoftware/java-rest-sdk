@@ -7,10 +7,10 @@
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
-|**siteId** | **Integer** |  |  [optional] |
+|**auditInfo** | [**AdminUserAuditInfo**](AdminUserAuditInfo.md) |  |  [optional] |
 |**code** | **String** |  |  [optional] |
 |**description** | **String** |  |  [optional] |
-|**auditInfo** | [**AdminUserAuditInfo**](AdminUserAuditInfo.md) |  |  [optional] |
+|**siteId** | **Integer** |  |  [optional] |
 
 
 ## Implemented Interfaces

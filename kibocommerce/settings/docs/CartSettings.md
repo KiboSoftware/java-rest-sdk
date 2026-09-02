@@ -8,8 +8,9 @@ Cart settings defined for this site.
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
-|**enableHandlingFee** | **Boolean** |  |  [optional] |
 |**auditInfo** | [**AdminUserAuditInfo**](AdminUserAuditInfo.md) |  |  [optional] |
+|**enableHandlingFee** | **Boolean** |  |  [optional] |
+|**reserveCartInventoryInterval** | **Integer** | Specifies the amount of time to reserve inventory in cart |  [optional] |
 
 
 ## Implemented Interfaces

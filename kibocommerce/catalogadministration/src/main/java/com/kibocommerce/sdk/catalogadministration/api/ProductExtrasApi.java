@@ -1,8 +1,8 @@
 /*
  * Kibo Catalog Admin Services
- * OpenAPI Spec for Kibo Catalog Admin Services
+ * <div id=\"overview_CATALOG_ADMIN\">             <h2>CATALOG ADMINISTRATION</h2>             <p>The Catalog Administration APIs are a collection of resources for configuring the catalogs and products offered to your shoppers, including                 discounts and coupon sets, faceting, price lists, and different types or variations of products. See the                 <a href=\"/concept-guides/catalog\">Catalog user guides</a>                 for information about the related features in the Unified Commerce Admin.</p>             <p>Use the <strong>Attributes</strong> resource to manage localization and attribute configurations for your catalogs. This current version of the Attributes API includes localizedContent to                 support <a href=\"/pages/catalog-structure#multi-locale-catalogs\">multi-locale catalogs</a>, which was not present in the legacy API model. If                 you were a client prior to May 2024 and have upgraded your implementation to support this feature,                 you can still access attribute data that has not yet been rewritten to the new model by providing                 an x-api-version header set to \"1\". </p>             <p>Use the <strong>Categories</strong> resource to organize products and control where they appear on the storefront. Create                 and maintain a hierarchy of categories and subcategories where the site will store properties. This current version of the Categories API includes localizedContent to                 support <a href=\"/pages/catalog-structure#multi-locale-catalogs\">multi-locale catalogs</a>, which was not present in the legacy API model. If                 you were a client prior to May 2024 and have upgraded your implementation to support this feature,                 you can still access category data that has not yet been rewritten to the new model by providing                 an x-api-version header set to \"1\". </p>             <p>Use the <strong>Coupon Sets</strong> resource to view and create coupon sets. You can use coupon sets to group multiple                 coupon codes together and associate them with one or more discounts.</p>             <p>Use the <strong>Currency</strong> resource to manage the currency localization rules and exchange rates for any of the                 currencies that are supported for placing orders in.</p>             <p>Use the <strong>Discounts</strong> and <strong>Discount Settings</strong> resources to define and manage discounts to apply to products, product categories, or                 orders. This current version of the Discounts API includes localizedContent to                 support <a href=\"/pages/catalog-structure#multi-locale-catalogs\">multi-locale catalogs</a>, which was not present in the legacy Products API model. If                 you were a client prior to May 2024 and have upgraded your implementation to support this feature,                 you can still access discount data that has not yet been rewritten to the new model by providing                 an x-api-version header set to \"1\". </p>             <p>Use the <strong>Facets</strong> resource to manage the facets shoppers use to filter product display results on a                 storefront. Facets can include categories, product attributes, or prices, and use either a range of                 values or discrete values.</p>             <p>Use the <strong>Master Catalog</strong> resource to view details of the master catalogs associated with a tenant and to                 manage the product publishing mode for each master catalog.</p>             <p>Use the <strong>Price Lists</strong> resources to view and create price lists. You can use price lists to override the                 catalog pricing of products for specific customer segments and/or sites.</p>             <p>Use the <strong>Products</strong>, <strong>Product Types/Extras/Options/Properties</strong>, and <strong>Product Sort Definitions</strong> resources to create new product definitions in the master catalog and determine which                 catalogs will feature products. This current version of the Products API includes localizedContent to                 support <a href=\"/pages/catalog-structure#multi-locale-catalogs\">multi-locale catalogs</a>, which was not present in the legacy Products API model. If                 you were a client prior to May 2024 and have upgraded your implementation to support this feature,                 you can still access product data that has not yet been rewritten to the new model by providing                 an x-api-version header set to \"1\".</p>             <p>Use the <strong>Publishing</strong> resource to publish pending product updates together as part of a set.</p>             <p>Use the <strong>Search</strong> resource to manage all settings and options for providing product search on your site, as                 well as search tuning rules.</p>         </div>
  *
- * The version of the OpenAPI document: 1.0.0
+ * The version of the OpenAPI document: v1
  * 
  *
  * NOTE: This class is auto generated by OpenAPI Generator (https://openapi-generator.tech).
@@ -96,6 +96,7 @@ public class ProductExtrasApi {
     /**
      * Build call for addExtra
      * @param productCode  (required)
+     * @param responseFields limits which fields are returned in the response body (optional)
      * @param productExtra  (optional)
      * @param _callback Callback for upload/download progress
      * @return Call to execute
@@ -103,10 +104,10 @@ public class ProductExtrasApi {
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call addExtraCall(String productCode, ProductExtra productExtra, final ApiCallback _callback) throws ApiException {
+    public okhttp3.Call addExtraCall(String productCode, String responseFields, ProductExtra productExtra, final ApiCallback _callback) throws ApiException {
         String basePath = null;
         // Operation Servers
         String[] localBasePaths = new String[] {  };
@@ -132,6 +133,10 @@ public class ProductExtrasApi {
         Map<String, String> localVarCookieParams = new HashMap<String, String>();
         Map<String, Object> localVarFormParams = new HashMap<String, Object>();
 
+        if (responseFields != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("responseFields", responseFields));
+        }
+
         final String[] localVarAccepts = {
             "application/json", "text/json", "text/plain"
         };
@@ -148,12 +153,12 @@ public class ProductExtrasApi {
             localVarHeaderParams.put("Content-Type", localVarContentType);
         }
 
-        String[] localVarAuthNames = new String[] { "bearerAuth", "clientOauth2" };
+        String[] localVarAuthNames = new String[] { "bearerAuth" };
         return localVarApiClient.buildCall(basePath, localVarPath, "POST", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call addExtraValidateBeforeCall(String productCode, ProductExtra productExtra, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call addExtraValidateBeforeCall(String productCode, String responseFields, ProductExtra productExtra, final ApiCallback _callback) throws ApiException {
         
         // verify the required parameter 'productCode' is set
         if (productCode == null) {
@@ -161,52 +166,55 @@ public class ProductExtrasApi {
         }
         
 
-        okhttp3.Call localVarCall = addExtraCall(productCode, productExtra, _callback);
+        okhttp3.Call localVarCall = addExtraCall(productCode, responseFields, productExtra, _callback);
         return localVarCall;
 
     }
 
     /**
-     * Add extra
-     * Add extra
+     * Add Product Extra
+     * Add extra. This current version of the Products API includes localizedContent to support &lt;a href&#x3D;\&quot;/pages/catalog-structure#multi-locale-catalogs\&quot;&gt;multi-locale catalogs&lt;/a&gt;, which was not present in the previous API model. If you were a client prior to May 2024 and have upgraded your implementation to support this feature, you can still access product data that has not yet been rewritten to the new model by providing an x-api-version header set to \&quot;1\&quot;.
      * @param productCode  (required)
+     * @param responseFields limits which fields are returned in the response body (optional)
      * @param productExtra  (optional)
      * @return ProductExtra
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
      </table>
      */
-    public ProductExtra addExtra(String productCode, ProductExtra productExtra) throws ApiException {
-        ApiResponse<ProductExtra> localVarResp = addExtraWithHttpInfo(productCode, productExtra);
+    public ProductExtra addExtra(String productCode, String responseFields, ProductExtra productExtra) throws ApiException {
+        ApiResponse<ProductExtra> localVarResp = addExtraWithHttpInfo(productCode, responseFields, productExtra);
         return localVarResp.getData();
     }
 
     /**
-     * Add extra
-     * Add extra
+     * Add Product Extra
+     * Add extra. This current version of the Products API includes localizedContent to support &lt;a href&#x3D;\&quot;/pages/catalog-structure#multi-locale-catalogs\&quot;&gt;multi-locale catalogs&lt;/a&gt;, which was not present in the previous API model. If you were a client prior to May 2024 and have upgraded your implementation to support this feature, you can still access product data that has not yet been rewritten to the new model by providing an x-api-version header set to \&quot;1\&quot;.
      * @param productCode  (required)
+     * @param responseFields limits which fields are returned in the response body (optional)
      * @param productExtra  (optional)
      * @return ApiResponse&lt;ProductExtra&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<ProductExtra> addExtraWithHttpInfo(String productCode, ProductExtra productExtra) throws ApiException {
-        okhttp3.Call localVarCall = addExtraValidateBeforeCall(productCode, productExtra, null);
+    public ApiResponse<ProductExtra> addExtraWithHttpInfo(String productCode, String responseFields, ProductExtra productExtra) throws ApiException {
+        okhttp3.Call localVarCall = addExtraValidateBeforeCall(productCode, responseFields, productExtra, null);
         Type localVarReturnType = new TypeToken<ProductExtra>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
 
     /**
-     * Add extra (asynchronously)
-     * Add extra
+     * Add Product Extra (asynchronously)
+     * Add extra. This current version of the Products API includes localizedContent to support &lt;a href&#x3D;\&quot;/pages/catalog-structure#multi-locale-catalogs\&quot;&gt;multi-locale catalogs&lt;/a&gt;, which was not present in the previous API model. If you were a client prior to May 2024 and have upgraded your implementation to support this feature, you can still access product data that has not yet been rewritten to the new model by providing an x-api-version header set to \&quot;1\&quot;.
      * @param productCode  (required)
+     * @param responseFields limits which fields are returned in the response body (optional)
      * @param productExtra  (optional)
      * @param _callback The callback to be executed when the API call finishes
      * @return The request call
@@ -214,12 +222,12 @@ public class ProductExtrasApi {
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call addExtraAsync(String productCode, ProductExtra productExtra, final ApiCallback<ProductExtra> _callback) throws ApiException {
+    public okhttp3.Call addExtraAsync(String productCode, String responseFields, ProductExtra productExtra, final ApiCallback<ProductExtra> _callback) throws ApiException {
 
-        okhttp3.Call localVarCall = addExtraValidateBeforeCall(productCode, productExtra, _callback);
+        okhttp3.Call localVarCall = addExtraValidateBeforeCall(productCode, responseFields, productExtra, _callback);
         Type localVarReturnType = new TypeToken<ProductExtra>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
@@ -229,6 +237,7 @@ public class ProductExtrasApi {
      * @param productCode  (required)
      * @param attributeFQN  (required)
      * @param value  (required)
+     * @param responseFields limits which fields are returned in the response body (optional)
      * @param productExtraValueDeltaPrice  (optional)
      * @param _callback Callback for upload/download progress
      * @return Call to execute
@@ -236,10 +245,10 @@ public class ProductExtrasApi {
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call addExtraValueLocalizedDeltaPriceCall(String productCode, String attributeFQN, String value, ProductExtraValueDeltaPrice productExtraValueDeltaPrice, final ApiCallback _callback) throws ApiException {
+    public okhttp3.Call addExtraValueLocalizedDeltaPriceCall(String productCode, String attributeFQN, String value, String responseFields, ProductExtraValueDeltaPrice productExtraValueDeltaPrice, final ApiCallback _callback) throws ApiException {
         String basePath = null;
         // Operation Servers
         String[] localBasePaths = new String[] {  };
@@ -267,6 +276,10 @@ public class ProductExtrasApi {
         Map<String, String> localVarCookieParams = new HashMap<String, String>();
         Map<String, Object> localVarFormParams = new HashMap<String, Object>();
 
+        if (responseFields != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("responseFields", responseFields));
+        }
+
         final String[] localVarAccepts = {
             "application/json", "text/json", "text/plain"
         };
@@ -283,12 +296,12 @@ public class ProductExtrasApi {
             localVarHeaderParams.put("Content-Type", localVarContentType);
         }
 
-        String[] localVarAuthNames = new String[] { "bearerAuth", "clientOauth2" };
+        String[] localVarAuthNames = new String[] { "bearerAuth" };
         return localVarApiClient.buildCall(basePath, localVarPath, "POST", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call addExtraValueLocalizedDeltaPriceValidateBeforeCall(String productCode, String attributeFQN, String value, ProductExtraValueDeltaPrice productExtraValueDeltaPrice, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call addExtraValueLocalizedDeltaPriceValidateBeforeCall(String productCode, String attributeFQN, String value, String responseFields, ProductExtraValueDeltaPrice productExtraValueDeltaPrice, final ApiCallback _callback) throws ApiException {
         
         // verify the required parameter 'productCode' is set
         if (productCode == null) {
@@ -306,58 +319,61 @@ public class ProductExtrasApi {
         }
         
 
-        okhttp3.Call localVarCall = addExtraValueLocalizedDeltaPriceCall(productCode, attributeFQN, value, productExtraValueDeltaPrice, _callback);
+        okhttp3.Call localVarCall = addExtraValueLocalizedDeltaPriceCall(productCode, attributeFQN, value, responseFields, productExtraValueDeltaPrice, _callback);
         return localVarCall;
 
     }
 
     /**
-     * Add extra value localized delta price
-     * 
+     * Add Extra Localized Delta Price
+     * Add a extra value localized delta price. This current version of the Products API includes localizedContent to support &lt;a href&#x3D;\&quot;/pages/catalog-structure#multi-locale-catalogs\&quot;&gt;multi-locale catalogs&lt;/a&gt;, which was not present in the previous API model. If you were a client prior to May 2024 and have upgraded your implementation to support this feature, you can still access product data that has not yet been rewritten to the new model by providing an x-api-version header set to \&quot;1\&quot;.
      * @param productCode  (required)
      * @param attributeFQN  (required)
      * @param value  (required)
+     * @param responseFields limits which fields are returned in the response body (optional)
      * @param productExtraValueDeltaPrice  (optional)
      * @return ProductExtraValueDeltaPrice
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
      </table>
      */
-    public ProductExtraValueDeltaPrice addExtraValueLocalizedDeltaPrice(String productCode, String attributeFQN, String value, ProductExtraValueDeltaPrice productExtraValueDeltaPrice) throws ApiException {
-        ApiResponse<ProductExtraValueDeltaPrice> localVarResp = addExtraValueLocalizedDeltaPriceWithHttpInfo(productCode, attributeFQN, value, productExtraValueDeltaPrice);
+    public ProductExtraValueDeltaPrice addExtraValueLocalizedDeltaPrice(String productCode, String attributeFQN, String value, String responseFields, ProductExtraValueDeltaPrice productExtraValueDeltaPrice) throws ApiException {
+        ApiResponse<ProductExtraValueDeltaPrice> localVarResp = addExtraValueLocalizedDeltaPriceWithHttpInfo(productCode, attributeFQN, value, responseFields, productExtraValueDeltaPrice);
         return localVarResp.getData();
     }
 
     /**
-     * Add extra value localized delta price
-     * 
+     * Add Extra Localized Delta Price
+     * Add a extra value localized delta price. This current version of the Products API includes localizedContent to support &lt;a href&#x3D;\&quot;/pages/catalog-structure#multi-locale-catalogs\&quot;&gt;multi-locale catalogs&lt;/a&gt;, which was not present in the previous API model. If you were a client prior to May 2024 and have upgraded your implementation to support this feature, you can still access product data that has not yet been rewritten to the new model by providing an x-api-version header set to \&quot;1\&quot;.
      * @param productCode  (required)
      * @param attributeFQN  (required)
      * @param value  (required)
+     * @param responseFields limits which fields are returned in the response body (optional)
      * @param productExtraValueDeltaPrice  (optional)
      * @return ApiResponse&lt;ProductExtraValueDeltaPrice&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<ProductExtraValueDeltaPrice> addExtraValueLocalizedDeltaPriceWithHttpInfo(String productCode, String attributeFQN, String value, ProductExtraValueDeltaPrice productExtraValueDeltaPrice) throws ApiException {
-        okhttp3.Call localVarCall = addExtraValueLocalizedDeltaPriceValidateBeforeCall(productCode, attributeFQN, value, productExtraValueDeltaPrice, null);
+    public ApiResponse<ProductExtraValueDeltaPrice> addExtraValueLocalizedDeltaPriceWithHttpInfo(String productCode, String attributeFQN, String value, String responseFields, ProductExtraValueDeltaPrice productExtraValueDeltaPrice) throws ApiException {
+        okhttp3.Call localVarCall = addExtraValueLocalizedDeltaPriceValidateBeforeCall(productCode, attributeFQN, value, responseFields, productExtraValueDeltaPrice, null);
         Type localVarReturnType = new TypeToken<ProductExtraValueDeltaPrice>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
 
     /**
-     * Add extra value localized delta price (asynchronously)
-     * 
+     * Add Extra Localized Delta Price (asynchronously)
+     * Add a extra value localized delta price. This current version of the Products API includes localizedContent to support &lt;a href&#x3D;\&quot;/pages/catalog-structure#multi-locale-catalogs\&quot;&gt;multi-locale catalogs&lt;/a&gt;, which was not present in the previous API model. If you were a client prior to May 2024 and have upgraded your implementation to support this feature, you can still access product data that has not yet been rewritten to the new model by providing an x-api-version header set to \&quot;1\&quot;.
      * @param productCode  (required)
      * @param attributeFQN  (required)
      * @param value  (required)
+     * @param responseFields limits which fields are returned in the response body (optional)
      * @param productExtraValueDeltaPrice  (optional)
      * @param _callback The callback to be executed when the API call finishes
      * @return The request call
@@ -365,12 +381,12 @@ public class ProductExtrasApi {
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call addExtraValueLocalizedDeltaPriceAsync(String productCode, String attributeFQN, String value, ProductExtraValueDeltaPrice productExtraValueDeltaPrice, final ApiCallback<ProductExtraValueDeltaPrice> _callback) throws ApiException {
+    public okhttp3.Call addExtraValueLocalizedDeltaPriceAsync(String productCode, String attributeFQN, String value, String responseFields, ProductExtraValueDeltaPrice productExtraValueDeltaPrice, final ApiCallback<ProductExtraValueDeltaPrice> _callback) throws ApiException {
 
-        okhttp3.Call localVarCall = addExtraValueLocalizedDeltaPriceValidateBeforeCall(productCode, attributeFQN, value, productExtraValueDeltaPrice, _callback);
+        okhttp3.Call localVarCall = addExtraValueLocalizedDeltaPriceValidateBeforeCall(productCode, attributeFQN, value, responseFields, productExtraValueDeltaPrice, _callback);
         Type localVarReturnType = new TypeToken<ProductExtraValueDeltaPrice>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
@@ -385,7 +401,7 @@ public class ProductExtrasApi {
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
      </table>
      */
     public okhttp3.Call deleteExtraCall(String productCode, String attributeFQN, final ApiCallback _callback) throws ApiException {
@@ -431,7 +447,7 @@ public class ProductExtrasApi {
             localVarHeaderParams.put("Content-Type", localVarContentType);
         }
 
-        String[] localVarAuthNames = new String[] { "bearerAuth", "clientOauth2" };
+        String[] localVarAuthNames = new String[] { "bearerAuth" };
         return localVarApiClient.buildCall(basePath, localVarPath, "DELETE", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
     }
 
@@ -455,7 +471,7 @@ public class ProductExtrasApi {
     }
 
     /**
-     * Delete extra
+     * Delete Product Extra
      * Delete extra
      * @param productCode  (required)
      * @param attributeFQN  (required)
@@ -463,7 +479,7 @@ public class ProductExtrasApi {
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
      </table>
      */
     public void deleteExtra(String productCode, String attributeFQN) throws ApiException {
@@ -471,7 +487,7 @@ public class ProductExtrasApi {
     }
 
     /**
-     * Delete extra
+     * Delete Product Extra
      * Delete extra
      * @param productCode  (required)
      * @param attributeFQN  (required)
@@ -480,7 +496,7 @@ public class ProductExtrasApi {
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
      </table>
      */
     public ApiResponse<Void> deleteExtraWithHttpInfo(String productCode, String attributeFQN) throws ApiException {
@@ -489,7 +505,7 @@ public class ProductExtrasApi {
     }
 
     /**
-     * Delete extra (asynchronously)
+     * Delete Product Extra (asynchronously)
      * Delete extra
      * @param productCode  (required)
      * @param attributeFQN  (required)
@@ -499,7 +515,7 @@ public class ProductExtrasApi {
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
      </table>
      */
     public okhttp3.Call deleteExtraAsync(String productCode, String attributeFQN, final ApiCallback<Void> _callback) throws ApiException {
@@ -520,7 +536,7 @@ public class ProductExtrasApi {
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
      </table>
      */
     public okhttp3.Call deleteExtraValueLocalizedDeltaPriceCall(String productCode, String attributeFQN, String value, String currencyCode, final ApiCallback _callback) throws ApiException {
@@ -568,7 +584,7 @@ public class ProductExtrasApi {
             localVarHeaderParams.put("Content-Type", localVarContentType);
         }
 
-        String[] localVarAuthNames = new String[] { "bearerAuth", "clientOauth2" };
+        String[] localVarAuthNames = new String[] { "bearerAuth" };
         return localVarApiClient.buildCall(basePath, localVarPath, "DELETE", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
     }
 
@@ -602,8 +618,8 @@ public class ProductExtrasApi {
     }
 
     /**
-     * Delete extra value localized delta price
-     * 
+     * Delete Extra Localized Delta Price
+     * Delete extra value localized delta price.
      * @param productCode  (required)
      * @param attributeFQN  (required)
      * @param value  (required)
@@ -612,7 +628,7 @@ public class ProductExtrasApi {
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
      </table>
      */
     public void deleteExtraValueLocalizedDeltaPrice(String productCode, String attributeFQN, String value, String currencyCode) throws ApiException {
@@ -620,8 +636,8 @@ public class ProductExtrasApi {
     }
 
     /**
-     * Delete extra value localized delta price
-     * 
+     * Delete Extra Localized Delta Price
+     * Delete extra value localized delta price.
      * @param productCode  (required)
      * @param attributeFQN  (required)
      * @param value  (required)
@@ -631,7 +647,7 @@ public class ProductExtrasApi {
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
      </table>
      */
     public ApiResponse<Void> deleteExtraValueLocalizedDeltaPriceWithHttpInfo(String productCode, String attributeFQN, String value, String currencyCode) throws ApiException {
@@ -640,8 +656,8 @@ public class ProductExtrasApi {
     }
 
     /**
-     * Delete extra value localized delta price (asynchronously)
-     * 
+     * Delete Extra Localized Delta Price (asynchronously)
+     * Delete extra value localized delta price.
      * @param productCode  (required)
      * @param attributeFQN  (required)
      * @param value  (required)
@@ -652,7 +668,7 @@ public class ProductExtrasApi {
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
      </table>
      */
     public okhttp3.Call deleteExtraValueLocalizedDeltaPriceAsync(String productCode, String attributeFQN, String value, String currencyCode, final ApiCallback<Void> _callback) throws ApiException {
@@ -665,16 +681,17 @@ public class ProductExtrasApi {
      * Build call for getExtra
      * @param productCode  (required)
      * @param attributeFQN  (required)
+     * @param responseFields limits which fields are returned in the response body (optional)
      * @param _callback Callback for upload/download progress
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call getExtraCall(String productCode, String attributeFQN, final ApiCallback _callback) throws ApiException {
+    public okhttp3.Call getExtraCall(String productCode, String attributeFQN, String responseFields, final ApiCallback _callback) throws ApiException {
         String basePath = null;
         // Operation Servers
         String[] localBasePaths = new String[] {  };
@@ -701,6 +718,10 @@ public class ProductExtrasApi {
         Map<String, String> localVarCookieParams = new HashMap<String, String>();
         Map<String, Object> localVarFormParams = new HashMap<String, Object>();
 
+        if (responseFields != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("responseFields", responseFields));
+        }
+
         final String[] localVarAccepts = {
             "application/json", "text/json", "text/plain"
         };
@@ -717,12 +738,12 @@ public class ProductExtrasApi {
             localVarHeaderParams.put("Content-Type", localVarContentType);
         }
 
-        String[] localVarAuthNames = new String[] { "bearerAuth", "clientOauth2" };
+        String[] localVarAuthNames = new String[] { "bearerAuth" };
         return localVarApiClient.buildCall(basePath, localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call getExtraValidateBeforeCall(String productCode, String attributeFQN, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call getExtraValidateBeforeCall(String productCode, String attributeFQN, String responseFields, final ApiCallback _callback) throws ApiException {
         
         // verify the required parameter 'productCode' is set
         if (productCode == null) {
@@ -735,65 +756,68 @@ public class ProductExtrasApi {
         }
         
 
-        okhttp3.Call localVarCall = getExtraCall(productCode, attributeFQN, _callback);
+        okhttp3.Call localVarCall = getExtraCall(productCode, attributeFQN, responseFields, _callback);
         return localVarCall;
 
     }
 
     /**
-     * Get extra
-     * Get individual extra.
+     * Get Product Extra
+     * Get individual extra. This current version of the Products API includes localizedContent to support &lt;a href&#x3D;\&quot;/pages/catalog-structure#multi-locale-catalogs\&quot;&gt;multi-locale catalogs&lt;/a&gt;, which was not present in the previous API model. If you were a client prior to May 2024 and have upgraded your implementation to support this feature, you can still access product data that has not yet been rewritten to the new model by providing an x-api-version header set to \&quot;1\&quot;.
      * @param productCode  (required)
      * @param attributeFQN  (required)
+     * @param responseFields limits which fields are returned in the response body (optional)
      * @return ProductExtra
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
      </table>
      */
-    public ProductExtra getExtra(String productCode, String attributeFQN) throws ApiException {
-        ApiResponse<ProductExtra> localVarResp = getExtraWithHttpInfo(productCode, attributeFQN);
+    public ProductExtra getExtra(String productCode, String attributeFQN, String responseFields) throws ApiException {
+        ApiResponse<ProductExtra> localVarResp = getExtraWithHttpInfo(productCode, attributeFQN, responseFields);
         return localVarResp.getData();
     }
 
     /**
-     * Get extra
-     * Get individual extra.
+     * Get Product Extra
+     * Get individual extra. This current version of the Products API includes localizedContent to support &lt;a href&#x3D;\&quot;/pages/catalog-structure#multi-locale-catalogs\&quot;&gt;multi-locale catalogs&lt;/a&gt;, which was not present in the previous API model. If you were a client prior to May 2024 and have upgraded your implementation to support this feature, you can still access product data that has not yet been rewritten to the new model by providing an x-api-version header set to \&quot;1\&quot;.
      * @param productCode  (required)
      * @param attributeFQN  (required)
+     * @param responseFields limits which fields are returned in the response body (optional)
      * @return ApiResponse&lt;ProductExtra&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<ProductExtra> getExtraWithHttpInfo(String productCode, String attributeFQN) throws ApiException {
-        okhttp3.Call localVarCall = getExtraValidateBeforeCall(productCode, attributeFQN, null);
+    public ApiResponse<ProductExtra> getExtraWithHttpInfo(String productCode, String attributeFQN, String responseFields) throws ApiException {
+        okhttp3.Call localVarCall = getExtraValidateBeforeCall(productCode, attributeFQN, responseFields, null);
         Type localVarReturnType = new TypeToken<ProductExtra>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
 
     /**
-     * Get extra (asynchronously)
-     * Get individual extra.
+     * Get Product Extra (asynchronously)
+     * Get individual extra. This current version of the Products API includes localizedContent to support &lt;a href&#x3D;\&quot;/pages/catalog-structure#multi-locale-catalogs\&quot;&gt;multi-locale catalogs&lt;/a&gt;, which was not present in the previous API model. If you were a client prior to May 2024 and have upgraded your implementation to support this feature, you can still access product data that has not yet been rewritten to the new model by providing an x-api-version header set to \&quot;1\&quot;.
      * @param productCode  (required)
      * @param attributeFQN  (required)
+     * @param responseFields limits which fields are returned in the response body (optional)
      * @param _callback The callback to be executed when the API call finishes
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call getExtraAsync(String productCode, String attributeFQN, final ApiCallback<ProductExtra> _callback) throws ApiException {
+    public okhttp3.Call getExtraAsync(String productCode, String attributeFQN, String responseFields, final ApiCallback<ProductExtra> _callback) throws ApiException {
 
-        okhttp3.Call localVarCall = getExtraValidateBeforeCall(productCode, attributeFQN, _callback);
+        okhttp3.Call localVarCall = getExtraValidateBeforeCall(productCode, attributeFQN, responseFields, _callback);
         Type localVarReturnType = new TypeToken<ProductExtra>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
@@ -804,16 +828,17 @@ public class ProductExtrasApi {
      * @param attributeFQN  (required)
      * @param value  (required)
      * @param currencyCode  (required)
+     * @param responseFields limits which fields are returned in the response body (optional)
      * @param _callback Callback for upload/download progress
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call getExtraValueLocalizedDeltaPriceCall(String productCode, String attributeFQN, String value, String currencyCode, final ApiCallback _callback) throws ApiException {
+    public okhttp3.Call getExtraValueLocalizedDeltaPriceCall(String productCode, String attributeFQN, String value, String currencyCode, String responseFields, final ApiCallback _callback) throws ApiException {
         String basePath = null;
         // Operation Servers
         String[] localBasePaths = new String[] {  };
@@ -842,6 +867,10 @@ public class ProductExtrasApi {
         Map<String, String> localVarCookieParams = new HashMap<String, String>();
         Map<String, Object> localVarFormParams = new HashMap<String, Object>();
 
+        if (responseFields != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("responseFields", responseFields));
+        }
+
         final String[] localVarAccepts = {
             "application/json", "text/json", "text/plain"
         };
@@ -858,12 +887,12 @@ public class ProductExtrasApi {
             localVarHeaderParams.put("Content-Type", localVarContentType);
         }
 
-        String[] localVarAuthNames = new String[] { "bearerAuth", "clientOauth2" };
+        String[] localVarAuthNames = new String[] { "bearerAuth" };
         return localVarApiClient.buildCall(basePath, localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call getExtraValueLocalizedDeltaPriceValidateBeforeCall(String productCode, String attributeFQN, String value, String currencyCode, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call getExtraValueLocalizedDeltaPriceValidateBeforeCall(String productCode, String attributeFQN, String value, String currencyCode, String responseFields, final ApiCallback _callback) throws ApiException {
         
         // verify the required parameter 'productCode' is set
         if (productCode == null) {
@@ -886,71 +915,74 @@ public class ProductExtrasApi {
         }
         
 
-        okhttp3.Call localVarCall = getExtraValueLocalizedDeltaPriceCall(productCode, attributeFQN, value, currencyCode, _callback);
+        okhttp3.Call localVarCall = getExtraValueLocalizedDeltaPriceCall(productCode, attributeFQN, value, currencyCode, responseFields, _callback);
         return localVarCall;
 
     }
 
     /**
-     * Get extra value localized delta price
-     * 
+     * Get Extra Localized Delta Price by Currency
+     * Get extra value localized delta price. This current version of the Products API includes localizedContent to support &lt;a href&#x3D;\&quot;/pages/catalog-structure#multi-locale-catalogs\&quot;&gt;multi-locale catalogs&lt;/a&gt;, which was not present in the previous API model. If you were a client prior to May 2024 and have upgraded your implementation to support this feature, you can still access product data that has not yet been rewritten to the new model by providing an x-api-version header set to \&quot;1\&quot;.
      * @param productCode  (required)
      * @param attributeFQN  (required)
      * @param value  (required)
      * @param currencyCode  (required)
+     * @param responseFields limits which fields are returned in the response body (optional)
      * @return ProductExtraValueDeltaPrice
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
      </table>
      */
-    public ProductExtraValueDeltaPrice getExtraValueLocalizedDeltaPrice(String productCode, String attributeFQN, String value, String currencyCode) throws ApiException {
-        ApiResponse<ProductExtraValueDeltaPrice> localVarResp = getExtraValueLocalizedDeltaPriceWithHttpInfo(productCode, attributeFQN, value, currencyCode);
+    public ProductExtraValueDeltaPrice getExtraValueLocalizedDeltaPrice(String productCode, String attributeFQN, String value, String currencyCode, String responseFields) throws ApiException {
+        ApiResponse<ProductExtraValueDeltaPrice> localVarResp = getExtraValueLocalizedDeltaPriceWithHttpInfo(productCode, attributeFQN, value, currencyCode, responseFields);
         return localVarResp.getData();
     }
 
     /**
-     * Get extra value localized delta price
-     * 
+     * Get Extra Localized Delta Price by Currency
+     * Get extra value localized delta price. This current version of the Products API includes localizedContent to support &lt;a href&#x3D;\&quot;/pages/catalog-structure#multi-locale-catalogs\&quot;&gt;multi-locale catalogs&lt;/a&gt;, which was not present in the previous API model. If you were a client prior to May 2024 and have upgraded your implementation to support this feature, you can still access product data that has not yet been rewritten to the new model by providing an x-api-version header set to \&quot;1\&quot;.
      * @param productCode  (required)
      * @param attributeFQN  (required)
      * @param value  (required)
      * @param currencyCode  (required)
+     * @param responseFields limits which fields are returned in the response body (optional)
      * @return ApiResponse&lt;ProductExtraValueDeltaPrice&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<ProductExtraValueDeltaPrice> getExtraValueLocalizedDeltaPriceWithHttpInfo(String productCode, String attributeFQN, String value, String currencyCode) throws ApiException {
-        okhttp3.Call localVarCall = getExtraValueLocalizedDeltaPriceValidateBeforeCall(productCode, attributeFQN, value, currencyCode, null);
+    public ApiResponse<ProductExtraValueDeltaPrice> getExtraValueLocalizedDeltaPriceWithHttpInfo(String productCode, String attributeFQN, String value, String currencyCode, String responseFields) throws ApiException {
+        okhttp3.Call localVarCall = getExtraValueLocalizedDeltaPriceValidateBeforeCall(productCode, attributeFQN, value, currencyCode, responseFields, null);
         Type localVarReturnType = new TypeToken<ProductExtraValueDeltaPrice>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
 
     /**
-     * Get extra value localized delta price (asynchronously)
-     * 
+     * Get Extra Localized Delta Price by Currency (asynchronously)
+     * Get extra value localized delta price. This current version of the Products API includes localizedContent to support &lt;a href&#x3D;\&quot;/pages/catalog-structure#multi-locale-catalogs\&quot;&gt;multi-locale catalogs&lt;/a&gt;, which was not present in the previous API model. If you were a client prior to May 2024 and have upgraded your implementation to support this feature, you can still access product data that has not yet been rewritten to the new model by providing an x-api-version header set to \&quot;1\&quot;.
      * @param productCode  (required)
      * @param attributeFQN  (required)
      * @param value  (required)
      * @param currencyCode  (required)
+     * @param responseFields limits which fields are returned in the response body (optional)
      * @param _callback The callback to be executed when the API call finishes
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call getExtraValueLocalizedDeltaPriceAsync(String productCode, String attributeFQN, String value, String currencyCode, final ApiCallback<ProductExtraValueDeltaPrice> _callback) throws ApiException {
+    public okhttp3.Call getExtraValueLocalizedDeltaPriceAsync(String productCode, String attributeFQN, String value, String currencyCode, String responseFields, final ApiCallback<ProductExtraValueDeltaPrice> _callback) throws ApiException {
 
-        okhttp3.Call localVarCall = getExtraValueLocalizedDeltaPriceValidateBeforeCall(productCode, attributeFQN, value, currencyCode, _callback);
+        okhttp3.Call localVarCall = getExtraValueLocalizedDeltaPriceValidateBeforeCall(productCode, attributeFQN, value, currencyCode, responseFields, _callback);
         Type localVarReturnType = new TypeToken<ProductExtraValueDeltaPrice>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
@@ -960,16 +992,17 @@ public class ProductExtrasApi {
      * @param productCode  (required)
      * @param attributeFQN  (required)
      * @param value  (required)
+     * @param responseFields limits which fields are returned in the response body (optional)
      * @param _callback Callback for upload/download progress
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call getExtraValueLocalizedDeltaPricesCall(String productCode, String attributeFQN, String value, final ApiCallback _callback) throws ApiException {
+    public okhttp3.Call getExtraValueLocalizedDeltaPricesCall(String productCode, String attributeFQN, String value, String responseFields, final ApiCallback _callback) throws ApiException {
         String basePath = null;
         // Operation Servers
         String[] localBasePaths = new String[] {  };
@@ -997,6 +1030,10 @@ public class ProductExtrasApi {
         Map<String, String> localVarCookieParams = new HashMap<String, String>();
         Map<String, Object> localVarFormParams = new HashMap<String, Object>();
 
+        if (responseFields != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("responseFields", responseFields));
+        }
+
         final String[] localVarAccepts = {
             "application/json", "text/json", "text/plain"
         };
@@ -1013,12 +1050,12 @@ public class ProductExtrasApi {
             localVarHeaderParams.put("Content-Type", localVarContentType);
         }
 
-        String[] localVarAuthNames = new String[] { "bearerAuth", "clientOauth2" };
+        String[] localVarAuthNames = new String[] { "bearerAuth" };
         return localVarApiClient.buildCall(basePath, localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call getExtraValueLocalizedDeltaPricesValidateBeforeCall(String productCode, String attributeFQN, String value, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call getExtraValueLocalizedDeltaPricesValidateBeforeCall(String productCode, String attributeFQN, String value, String responseFields, final ApiCallback _callback) throws ApiException {
         
         // verify the required parameter 'productCode' is set
         if (productCode == null) {
@@ -1036,68 +1073,71 @@ public class ProductExtrasApi {
         }
         
 
-        okhttp3.Call localVarCall = getExtraValueLocalizedDeltaPricesCall(productCode, attributeFQN, value, _callback);
+        okhttp3.Call localVarCall = getExtraValueLocalizedDeltaPricesCall(productCode, attributeFQN, value, responseFields, _callback);
         return localVarCall;
 
     }
 
     /**
-     * Get extra value localized delta prices
-     * 
+     * Get Extra Localized Delta Price
+     * Get extra value localized delta price. This current version of the Products API includes localizedContent to support &lt;a href&#x3D;\&quot;/pages/catalog-structure#multi-locale-catalogs\&quot;&gt;multi-locale catalogs&lt;/a&gt;, which was not present in the previous API model. If you were a client prior to May 2024 and have upgraded your implementation to support this feature, you can still access product data that has not yet been rewritten to the new model by providing an x-api-version header set to \&quot;1\&quot;.
      * @param productCode  (required)
      * @param attributeFQN  (required)
      * @param value  (required)
+     * @param responseFields limits which fields are returned in the response body (optional)
      * @return List&lt;ProductExtraValueDeltaPrice&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
      </table>
      */
-    public List<ProductExtraValueDeltaPrice> getExtraValueLocalizedDeltaPrices(String productCode, String attributeFQN, String value) throws ApiException {
-        ApiResponse<List<ProductExtraValueDeltaPrice>> localVarResp = getExtraValueLocalizedDeltaPricesWithHttpInfo(productCode, attributeFQN, value);
+    public List<ProductExtraValueDeltaPrice> getExtraValueLocalizedDeltaPrices(String productCode, String attributeFQN, String value, String responseFields) throws ApiException {
+        ApiResponse<List<ProductExtraValueDeltaPrice>> localVarResp = getExtraValueLocalizedDeltaPricesWithHttpInfo(productCode, attributeFQN, value, responseFields);
         return localVarResp.getData();
     }
 
     /**
-     * Get extra value localized delta prices
-     * 
+     * Get Extra Localized Delta Price
+     * Get extra value localized delta price. This current version of the Products API includes localizedContent to support &lt;a href&#x3D;\&quot;/pages/catalog-structure#multi-locale-catalogs\&quot;&gt;multi-locale catalogs&lt;/a&gt;, which was not present in the previous API model. If you were a client prior to May 2024 and have upgraded your implementation to support this feature, you can still access product data that has not yet been rewritten to the new model by providing an x-api-version header set to \&quot;1\&quot;.
      * @param productCode  (required)
      * @param attributeFQN  (required)
      * @param value  (required)
+     * @param responseFields limits which fields are returned in the response body (optional)
      * @return ApiResponse&lt;List&lt;ProductExtraValueDeltaPrice&gt;&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<List<ProductExtraValueDeltaPrice>> getExtraValueLocalizedDeltaPricesWithHttpInfo(String productCode, String attributeFQN, String value) throws ApiException {
-        okhttp3.Call localVarCall = getExtraValueLocalizedDeltaPricesValidateBeforeCall(productCode, attributeFQN, value, null);
+    public ApiResponse<List<ProductExtraValueDeltaPrice>> getExtraValueLocalizedDeltaPricesWithHttpInfo(String productCode, String attributeFQN, String value, String responseFields) throws ApiException {
+        okhttp3.Call localVarCall = getExtraValueLocalizedDeltaPricesValidateBeforeCall(productCode, attributeFQN, value, responseFields, null);
         Type localVarReturnType = new TypeToken<List<ProductExtraValueDeltaPrice>>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
 
     /**
-     * Get extra value localized delta prices (asynchronously)
-     * 
+     * Get Extra Localized Delta Price (asynchronously)
+     * Get extra value localized delta price. This current version of the Products API includes localizedContent to support &lt;a href&#x3D;\&quot;/pages/catalog-structure#multi-locale-catalogs\&quot;&gt;multi-locale catalogs&lt;/a&gt;, which was not present in the previous API model. If you were a client prior to May 2024 and have upgraded your implementation to support this feature, you can still access product data that has not yet been rewritten to the new model by providing an x-api-version header set to \&quot;1\&quot;.
      * @param productCode  (required)
      * @param attributeFQN  (required)
      * @param value  (required)
+     * @param responseFields limits which fields are returned in the response body (optional)
      * @param _callback The callback to be executed when the API call finishes
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call getExtraValueLocalizedDeltaPricesAsync(String productCode, String attributeFQN, String value, final ApiCallback<List<ProductExtraValueDeltaPrice>> _callback) throws ApiException {
+    public okhttp3.Call getExtraValueLocalizedDeltaPricesAsync(String productCode, String attributeFQN, String value, String responseFields, final ApiCallback<List<ProductExtraValueDeltaPrice>> _callback) throws ApiException {
 
-        okhttp3.Call localVarCall = getExtraValueLocalizedDeltaPricesValidateBeforeCall(productCode, attributeFQN, value, _callback);
+        okhttp3.Call localVarCall = getExtraValueLocalizedDeltaPricesValidateBeforeCall(productCode, attributeFQN, value, responseFields, _callback);
         Type localVarReturnType = new TypeToken<List<ProductExtraValueDeltaPrice>>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
@@ -1105,16 +1145,17 @@ public class ProductExtrasApi {
     /**
      * Build call for getExtras
      * @param productCode  (required)
+     * @param responseFields limits which fields are returned in the response body (optional)
      * @param _callback Callback for upload/download progress
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call getExtrasCall(String productCode, final ApiCallback _callback) throws ApiException {
+    public okhttp3.Call getExtrasCall(String productCode, String responseFields, final ApiCallback _callback) throws ApiException {
         String basePath = null;
         // Operation Servers
         String[] localBasePaths = new String[] {  };
@@ -1140,6 +1181,10 @@ public class ProductExtrasApi {
         Map<String, String> localVarCookieParams = new HashMap<String, String>();
         Map<String, Object> localVarFormParams = new HashMap<String, Object>();
 
+        if (responseFields != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("responseFields", responseFields));
+        }
+
         final String[] localVarAccepts = {
             "application/json", "text/json", "text/plain"
         };
@@ -1156,12 +1201,12 @@ public class ProductExtrasApi {
             localVarHeaderParams.put("Content-Type", localVarContentType);
         }
 
-        String[] localVarAuthNames = new String[] { "bearerAuth", "clientOauth2" };
+        String[] localVarAuthNames = new String[] { "bearerAuth" };
         return localVarApiClient.buildCall(basePath, localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call getExtrasValidateBeforeCall(String productCode, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call getExtrasValidateBeforeCall(String productCode, String responseFields, final ApiCallback _callback) throws ApiException {
         
         // verify the required parameter 'productCode' is set
         if (productCode == null) {
@@ -1169,62 +1214,65 @@ public class ProductExtrasApi {
         }
         
 
-        okhttp3.Call localVarCall = getExtrasCall(productCode, _callback);
+        okhttp3.Call localVarCall = getExtrasCall(productCode, responseFields, _callback);
         return localVarCall;
 
     }
 
     /**
-     * Get extras
-     * Get extras for the product.
+     * Get Product Extras
+     * Get extras for the product. This current version of the Products API includes localizedContent to support &lt;a href&#x3D;\&quot;/pages/catalog-structure#multi-locale-catalogs\&quot;&gt;multi-locale catalogs&lt;/a&gt;, which was not present in the previous API model. If you were a client prior to May 2024 and have upgraded your implementation to support this feature, you can still access product data that has not yet been rewritten to the new model by providing an x-api-version header set to \&quot;1\&quot;.
      * @param productCode  (required)
+     * @param responseFields limits which fields are returned in the response body (optional)
      * @return List&lt;ProductExtra&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
      </table>
      */
-    public List<ProductExtra> getExtras(String productCode) throws ApiException {
-        ApiResponse<List<ProductExtra>> localVarResp = getExtrasWithHttpInfo(productCode);
+    public List<ProductExtra> getExtras(String productCode, String responseFields) throws ApiException {
+        ApiResponse<List<ProductExtra>> localVarResp = getExtrasWithHttpInfo(productCode, responseFields);
         return localVarResp.getData();
     }
 
     /**
-     * Get extras
-     * Get extras for the product.
+     * Get Product Extras
+     * Get extras for the product. This current version of the Products API includes localizedContent to support &lt;a href&#x3D;\&quot;/pages/catalog-structure#multi-locale-catalogs\&quot;&gt;multi-locale catalogs&lt;/a&gt;, which was not present in the previous API model. If you were a client prior to May 2024 and have upgraded your implementation to support this feature, you can still access product data that has not yet been rewritten to the new model by providing an x-api-version header set to \&quot;1\&quot;.
      * @param productCode  (required)
+     * @param responseFields limits which fields are returned in the response body (optional)
      * @return ApiResponse&lt;List&lt;ProductExtra&gt;&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<List<ProductExtra>> getExtrasWithHttpInfo(String productCode) throws ApiException {
-        okhttp3.Call localVarCall = getExtrasValidateBeforeCall(productCode, null);
+    public ApiResponse<List<ProductExtra>> getExtrasWithHttpInfo(String productCode, String responseFields) throws ApiException {
+        okhttp3.Call localVarCall = getExtrasValidateBeforeCall(productCode, responseFields, null);
         Type localVarReturnType = new TypeToken<List<ProductExtra>>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
 
     /**
-     * Get extras (asynchronously)
-     * Get extras for the product.
+     * Get Product Extras (asynchronously)
+     * Get extras for the product. This current version of the Products API includes localizedContent to support &lt;a href&#x3D;\&quot;/pages/catalog-structure#multi-locale-catalogs\&quot;&gt;multi-locale catalogs&lt;/a&gt;, which was not present in the previous API model. If you were a client prior to May 2024 and have upgraded your implementation to support this feature, you can still access product data that has not yet been rewritten to the new model by providing an x-api-version header set to \&quot;1\&quot;.
      * @param productCode  (required)
+     * @param responseFields limits which fields are returned in the response body (optional)
      * @param _callback The callback to be executed when the API call finishes
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call getExtrasAsync(String productCode, final ApiCallback<List<ProductExtra>> _callback) throws ApiException {
+    public okhttp3.Call getExtrasAsync(String productCode, String responseFields, final ApiCallback<List<ProductExtra>> _callback) throws ApiException {
 
-        okhttp3.Call localVarCall = getExtrasValidateBeforeCall(productCode, _callback);
+        okhttp3.Call localVarCall = getExtrasValidateBeforeCall(productCode, responseFields, _callback);
         Type localVarReturnType = new TypeToken<List<ProductExtra>>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
@@ -1233,6 +1281,7 @@ public class ProductExtrasApi {
      * Build call for updateExtra
      * @param productCode  (required)
      * @param attributeFQN  (required)
+     * @param responseFields limits which fields are returned in the response body (optional)
      * @param productExtra  (optional)
      * @param _callback Callback for upload/download progress
      * @return Call to execute
@@ -1240,10 +1289,10 @@ public class ProductExtrasApi {
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call updateExtraCall(String productCode, String attributeFQN, ProductExtra productExtra, final ApiCallback _callback) throws ApiException {
+    public okhttp3.Call updateExtraCall(String productCode, String attributeFQN, String responseFields, ProductExtra productExtra, final ApiCallback _callback) throws ApiException {
         String basePath = null;
         // Operation Servers
         String[] localBasePaths = new String[] {  };
@@ -1270,6 +1319,10 @@ public class ProductExtrasApi {
         Map<String, String> localVarCookieParams = new HashMap<String, String>();
         Map<String, Object> localVarFormParams = new HashMap<String, Object>();
 
+        if (responseFields != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("responseFields", responseFields));
+        }
+
         final String[] localVarAccepts = {
             "application/json", "text/json", "text/plain"
         };
@@ -1286,12 +1339,12 @@ public class ProductExtrasApi {
             localVarHeaderParams.put("Content-Type", localVarContentType);
         }
 
-        String[] localVarAuthNames = new String[] { "bearerAuth", "clientOauth2" };
+        String[] localVarAuthNames = new String[] { "bearerAuth" };
         return localVarApiClient.buildCall(basePath, localVarPath, "PUT", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call updateExtraValidateBeforeCall(String productCode, String attributeFQN, ProductExtra productExtra, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call updateExtraValidateBeforeCall(String productCode, String attributeFQN, String responseFields, ProductExtra productExtra, final ApiCallback _callback) throws ApiException {
         
         // verify the required parameter 'productCode' is set
         if (productCode == null) {
@@ -1304,55 +1357,58 @@ public class ProductExtrasApi {
         }
         
 
-        okhttp3.Call localVarCall = updateExtraCall(productCode, attributeFQN, productExtra, _callback);
+        okhttp3.Call localVarCall = updateExtraCall(productCode, attributeFQN, responseFields, productExtra, _callback);
         return localVarCall;
 
     }
 
     /**
-     * Update extra
-     * Update extra
+     * Update Product Extra
+     * Update extra. This current version of the Products API includes localizedContent to support &lt;a href&#x3D;\&quot;/pages/catalog-structure#multi-locale-catalogs\&quot;&gt;multi-locale catalogs&lt;/a&gt;, which was not present in the previous API model. If you were a client prior to May 2024 and have upgraded your implementation to support this feature, you can still access product data that has not yet been rewritten to the new model by providing an x-api-version header set to \&quot;1\&quot;.
      * @param productCode  (required)
      * @param attributeFQN  (required)
+     * @param responseFields limits which fields are returned in the response body (optional)
      * @param productExtra  (optional)
      * @return ProductExtra
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
      </table>
      */
-    public ProductExtra updateExtra(String productCode, String attributeFQN, ProductExtra productExtra) throws ApiException {
-        ApiResponse<ProductExtra> localVarResp = updateExtraWithHttpInfo(productCode, attributeFQN, productExtra);
+    public ProductExtra updateExtra(String productCode, String attributeFQN, String responseFields, ProductExtra productExtra) throws ApiException {
+        ApiResponse<ProductExtra> localVarResp = updateExtraWithHttpInfo(productCode, attributeFQN, responseFields, productExtra);
         return localVarResp.getData();
     }
 
     /**
-     * Update extra
-     * Update extra
+     * Update Product Extra
+     * Update extra. This current version of the Products API includes localizedContent to support &lt;a href&#x3D;\&quot;/pages/catalog-structure#multi-locale-catalogs\&quot;&gt;multi-locale catalogs&lt;/a&gt;, which was not present in the previous API model. If you were a client prior to May 2024 and have upgraded your implementation to support this feature, you can still access product data that has not yet been rewritten to the new model by providing an x-api-version header set to \&quot;1\&quot;.
      * @param productCode  (required)
      * @param attributeFQN  (required)
+     * @param responseFields limits which fields are returned in the response body (optional)
      * @param productExtra  (optional)
      * @return ApiResponse&lt;ProductExtra&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<ProductExtra> updateExtraWithHttpInfo(String productCode, String attributeFQN, ProductExtra productExtra) throws ApiException {
-        okhttp3.Call localVarCall = updateExtraValidateBeforeCall(productCode, attributeFQN, productExtra, null);
+    public ApiResponse<ProductExtra> updateExtraWithHttpInfo(String productCode, String attributeFQN, String responseFields, ProductExtra productExtra) throws ApiException {
+        okhttp3.Call localVarCall = updateExtraValidateBeforeCall(productCode, attributeFQN, responseFields, productExtra, null);
         Type localVarReturnType = new TypeToken<ProductExtra>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
 
     /**
-     * Update extra (asynchronously)
-     * Update extra
+     * Update Product Extra (asynchronously)
+     * Update extra. This current version of the Products API includes localizedContent to support &lt;a href&#x3D;\&quot;/pages/catalog-structure#multi-locale-catalogs\&quot;&gt;multi-locale catalogs&lt;/a&gt;, which was not present in the previous API model. If you were a client prior to May 2024 and have upgraded your implementation to support this feature, you can still access product data that has not yet been rewritten to the new model by providing an x-api-version header set to \&quot;1\&quot;.
      * @param productCode  (required)
      * @param attributeFQN  (required)
+     * @param responseFields limits which fields are returned in the response body (optional)
      * @param productExtra  (optional)
      * @param _callback The callback to be executed when the API call finishes
      * @return The request call
@@ -1360,12 +1416,12 @@ public class ProductExtrasApi {
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call updateExtraAsync(String productCode, String attributeFQN, ProductExtra productExtra, final ApiCallback<ProductExtra> _callback) throws ApiException {
+    public okhttp3.Call updateExtraAsync(String productCode, String attributeFQN, String responseFields, ProductExtra productExtra, final ApiCallback<ProductExtra> _callback) throws ApiException {
 
-        okhttp3.Call localVarCall = updateExtraValidateBeforeCall(productCode, attributeFQN, productExtra, _callback);
+        okhttp3.Call localVarCall = updateExtraValidateBeforeCall(productCode, attributeFQN, responseFields, productExtra, _callback);
         Type localVarReturnType = new TypeToken<ProductExtra>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
@@ -1376,6 +1432,7 @@ public class ProductExtrasApi {
      * @param attributeFQN  (required)
      * @param value  (required)
      * @param currencyCode  (required)
+     * @param responseFields limits which fields are returned in the response body (optional)
      * @param productExtraValueDeltaPrice  (optional)
      * @param _callback Callback for upload/download progress
      * @return Call to execute
@@ -1383,10 +1440,10 @@ public class ProductExtrasApi {
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call updateExtraValueLocalizedDeltaPriceCall(String productCode, String attributeFQN, String value, String currencyCode, ProductExtraValueDeltaPrice productExtraValueDeltaPrice, final ApiCallback _callback) throws ApiException {
+    public okhttp3.Call updateExtraValueLocalizedDeltaPriceCall(String productCode, String attributeFQN, String value, String currencyCode, String responseFields, ProductExtraValueDeltaPrice productExtraValueDeltaPrice, final ApiCallback _callback) throws ApiException {
         String basePath = null;
         // Operation Servers
         String[] localBasePaths = new String[] {  };
@@ -1415,6 +1472,10 @@ public class ProductExtrasApi {
         Map<String, String> localVarCookieParams = new HashMap<String, String>();
         Map<String, Object> localVarFormParams = new HashMap<String, Object>();
 
+        if (responseFields != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("responseFields", responseFields));
+        }
+
         final String[] localVarAccepts = {
             "application/json", "text/json", "text/plain"
         };
@@ -1431,12 +1492,12 @@ public class ProductExtrasApi {
             localVarHeaderParams.put("Content-Type", localVarContentType);
         }
 
-        String[] localVarAuthNames = new String[] { "bearerAuth", "clientOauth2" };
+        String[] localVarAuthNames = new String[] { "bearerAuth" };
         return localVarApiClient.buildCall(basePath, localVarPath, "PUT", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call updateExtraValueLocalizedDeltaPriceValidateBeforeCall(String productCode, String attributeFQN, String value, String currencyCode, ProductExtraValueDeltaPrice productExtraValueDeltaPrice, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call updateExtraValueLocalizedDeltaPriceValidateBeforeCall(String productCode, String attributeFQN, String value, String currencyCode, String responseFields, ProductExtraValueDeltaPrice productExtraValueDeltaPrice, final ApiCallback _callback) throws ApiException {
         
         // verify the required parameter 'productCode' is set
         if (productCode == null) {
@@ -1459,61 +1520,64 @@ public class ProductExtrasApi {
         }
         
 
-        okhttp3.Call localVarCall = updateExtraValueLocalizedDeltaPriceCall(productCode, attributeFQN, value, currencyCode, productExtraValueDeltaPrice, _callback);
+        okhttp3.Call localVarCall = updateExtraValueLocalizedDeltaPriceCall(productCode, attributeFQN, value, currencyCode, responseFields, productExtraValueDeltaPrice, _callback);
         return localVarCall;
 
     }
 
     /**
-     * Update extra value localized delta price
-     * 
+     * Update Extra Localized Delta Price by Currency
+     * Update extra value localized delta price. This current version of the Products API includes localizedContent to support &lt;a href&#x3D;\&quot;/pages/catalog-structure#multi-locale-catalogs\&quot;&gt;multi-locale catalogs&lt;/a&gt;, which was not present in the previous API model. If you were a client prior to May 2024 and have upgraded your implementation to support this feature, you can still access product data that has not yet been rewritten to the new model by providing an x-api-version header set to \&quot;1\&quot;.
      * @param productCode  (required)
      * @param attributeFQN  (required)
      * @param value  (required)
      * @param currencyCode  (required)
+     * @param responseFields limits which fields are returned in the response body (optional)
      * @param productExtraValueDeltaPrice  (optional)
      * @return ProductExtraValueDeltaPrice
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
      </table>
      */
-    public ProductExtraValueDeltaPrice updateExtraValueLocalizedDeltaPrice(String productCode, String attributeFQN, String value, String currencyCode, ProductExtraValueDeltaPrice productExtraValueDeltaPrice) throws ApiException {
-        ApiResponse<ProductExtraValueDeltaPrice> localVarResp = updateExtraValueLocalizedDeltaPriceWithHttpInfo(productCode, attributeFQN, value, currencyCode, productExtraValueDeltaPrice);
+    public ProductExtraValueDeltaPrice updateExtraValueLocalizedDeltaPrice(String productCode, String attributeFQN, String value, String currencyCode, String responseFields, ProductExtraValueDeltaPrice productExtraValueDeltaPrice) throws ApiException {
+        ApiResponse<ProductExtraValueDeltaPrice> localVarResp = updateExtraValueLocalizedDeltaPriceWithHttpInfo(productCode, attributeFQN, value, currencyCode, responseFields, productExtraValueDeltaPrice);
         return localVarResp.getData();
     }
 
     /**
-     * Update extra value localized delta price
-     * 
+     * Update Extra Localized Delta Price by Currency
+     * Update extra value localized delta price. This current version of the Products API includes localizedContent to support &lt;a href&#x3D;\&quot;/pages/catalog-structure#multi-locale-catalogs\&quot;&gt;multi-locale catalogs&lt;/a&gt;, which was not present in the previous API model. If you were a client prior to May 2024 and have upgraded your implementation to support this feature, you can still access product data that has not yet been rewritten to the new model by providing an x-api-version header set to \&quot;1\&quot;.
      * @param productCode  (required)
      * @param attributeFQN  (required)
      * @param value  (required)
      * @param currencyCode  (required)
+     * @param responseFields limits which fields are returned in the response body (optional)
      * @param productExtraValueDeltaPrice  (optional)
      * @return ApiResponse&lt;ProductExtraValueDeltaPrice&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<ProductExtraValueDeltaPrice> updateExtraValueLocalizedDeltaPriceWithHttpInfo(String productCode, String attributeFQN, String value, String currencyCode, ProductExtraValueDeltaPrice productExtraValueDeltaPrice) throws ApiException {
-        okhttp3.Call localVarCall = updateExtraValueLocalizedDeltaPriceValidateBeforeCall(productCode, attributeFQN, value, currencyCode, productExtraValueDeltaPrice, null);
+    public ApiResponse<ProductExtraValueDeltaPrice> updateExtraValueLocalizedDeltaPriceWithHttpInfo(String productCode, String attributeFQN, String value, String currencyCode, String responseFields, ProductExtraValueDeltaPrice productExtraValueDeltaPrice) throws ApiException {
+        okhttp3.Call localVarCall = updateExtraValueLocalizedDeltaPriceValidateBeforeCall(productCode, attributeFQN, value, currencyCode, responseFields, productExtraValueDeltaPrice, null);
         Type localVarReturnType = new TypeToken<ProductExtraValueDeltaPrice>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
 
     /**
-     * Update extra value localized delta price (asynchronously)
-     * 
+     * Update Extra Localized Delta Price by Currency (asynchronously)
+     * Update extra value localized delta price. This current version of the Products API includes localizedContent to support &lt;a href&#x3D;\&quot;/pages/catalog-structure#multi-locale-catalogs\&quot;&gt;multi-locale catalogs&lt;/a&gt;, which was not present in the previous API model. If you were a client prior to May 2024 and have upgraded your implementation to support this feature, you can still access product data that has not yet been rewritten to the new model by providing an x-api-version header set to \&quot;1\&quot;.
      * @param productCode  (required)
      * @param attributeFQN  (required)
      * @param value  (required)
      * @param currencyCode  (required)
+     * @param responseFields limits which fields are returned in the response body (optional)
      * @param productExtraValueDeltaPrice  (optional)
      * @param _callback The callback to be executed when the API call finishes
      * @return The request call
@@ -1521,12 +1585,12 @@ public class ProductExtrasApi {
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call updateExtraValueLocalizedDeltaPriceAsync(String productCode, String attributeFQN, String value, String currencyCode, ProductExtraValueDeltaPrice productExtraValueDeltaPrice, final ApiCallback<ProductExtraValueDeltaPrice> _callback) throws ApiException {
+    public okhttp3.Call updateExtraValueLocalizedDeltaPriceAsync(String productCode, String attributeFQN, String value, String currencyCode, String responseFields, ProductExtraValueDeltaPrice productExtraValueDeltaPrice, final ApiCallback<ProductExtraValueDeltaPrice> _callback) throws ApiException {
 
-        okhttp3.Call localVarCall = updateExtraValueLocalizedDeltaPriceValidateBeforeCall(productCode, attributeFQN, value, currencyCode, productExtraValueDeltaPrice, _callback);
+        okhttp3.Call localVarCall = updateExtraValueLocalizedDeltaPriceValidateBeforeCall(productCode, attributeFQN, value, currencyCode, responseFields, productExtraValueDeltaPrice, _callback);
         Type localVarReturnType = new TypeToken<ProductExtraValueDeltaPrice>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
@@ -1536,6 +1600,7 @@ public class ProductExtrasApi {
      * @param productCode  (required)
      * @param attributeFQN  (required)
      * @param value  (required)
+     * @param responseFields limits which fields are returned in the response body (optional)
      * @param productExtraValueDeltaPrice  (optional)
      * @param _callback Callback for upload/download progress
      * @return Call to execute
@@ -1543,10 +1608,10 @@ public class ProductExtrasApi {
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call updateExtraValueLocalizedDeltaPricesCall(String productCode, String attributeFQN, String value, List<ProductExtraValueDeltaPrice> productExtraValueDeltaPrice, final ApiCallback _callback) throws ApiException {
+    public okhttp3.Call updateExtraValueLocalizedDeltaPricesCall(String productCode, String attributeFQN, String value, String responseFields, List<ProductExtraValueDeltaPrice> productExtraValueDeltaPrice, final ApiCallback _callback) throws ApiException {
         String basePath = null;
         // Operation Servers
         String[] localBasePaths = new String[] {  };
@@ -1574,6 +1639,10 @@ public class ProductExtrasApi {
         Map<String, String> localVarCookieParams = new HashMap<String, String>();
         Map<String, Object> localVarFormParams = new HashMap<String, Object>();
 
+        if (responseFields != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("responseFields", responseFields));
+        }
+
         final String[] localVarAccepts = {
             "application/json", "text/json", "text/plain"
         };
@@ -1590,12 +1659,12 @@ public class ProductExtrasApi {
             localVarHeaderParams.put("Content-Type", localVarContentType);
         }
 
-        String[] localVarAuthNames = new String[] { "bearerAuth", "clientOauth2" };
+        String[] localVarAuthNames = new String[] { "bearerAuth" };
         return localVarApiClient.buildCall(basePath, localVarPath, "PUT", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call updateExtraValueLocalizedDeltaPricesValidateBeforeCall(String productCode, String attributeFQN, String value, List<ProductExtraValueDeltaPrice> productExtraValueDeltaPrice, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call updateExtraValueLocalizedDeltaPricesValidateBeforeCall(String productCode, String attributeFQN, String value, String responseFields, List<ProductExtraValueDeltaPrice> productExtraValueDeltaPrice, final ApiCallback _callback) throws ApiException {
         
         // verify the required parameter 'productCode' is set
         if (productCode == null) {
@@ -1613,58 +1682,61 @@ public class ProductExtrasApi {
         }
         
 
-        okhttp3.Call localVarCall = updateExtraValueLocalizedDeltaPricesCall(productCode, attributeFQN, value, productExtraValueDeltaPrice, _callback);
+        okhttp3.Call localVarCall = updateExtraValueLocalizedDeltaPricesCall(productCode, attributeFQN, value, responseFields, productExtraValueDeltaPrice, _callback);
         return localVarCall;
 
     }
 
     /**
-     * Update extra value localized delta prices
-     * 
+     * Update Extra Localized Delta Price
+     * Update extra value localized delta price. This current version of the Products API includes localizedContent to support &lt;a href&#x3D;\&quot;/pages/catalog-structure#multi-locale-catalogs\&quot;&gt;multi-locale catalogs&lt;/a&gt;, which was not present in the previous API model. If you were a client prior to May 2024 and have upgraded your implementation to support this feature, you can still access product data that has not yet been rewritten to the new model by providing an x-api-version header set to \&quot;1\&quot;.
      * @param productCode  (required)
      * @param attributeFQN  (required)
      * @param value  (required)
+     * @param responseFields limits which fields are returned in the response body (optional)
      * @param productExtraValueDeltaPrice  (optional)
      * @return List&lt;ProductExtraValueDeltaPrice&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
      </table>
      */
-    public List<ProductExtraValueDeltaPrice> updateExtraValueLocalizedDeltaPrices(String productCode, String attributeFQN, String value, List<ProductExtraValueDeltaPrice> productExtraValueDeltaPrice) throws ApiException {
-        ApiResponse<List<ProductExtraValueDeltaPrice>> localVarResp = updateExtraValueLocalizedDeltaPricesWithHttpInfo(productCode, attributeFQN, value, productExtraValueDeltaPrice);
+    public List<ProductExtraValueDeltaPrice> updateExtraValueLocalizedDeltaPrices(String productCode, String attributeFQN, String value, String responseFields, List<ProductExtraValueDeltaPrice> productExtraValueDeltaPrice) throws ApiException {
+        ApiResponse<List<ProductExtraValueDeltaPrice>> localVarResp = updateExtraValueLocalizedDeltaPricesWithHttpInfo(productCode, attributeFQN, value, responseFields, productExtraValueDeltaPrice);
         return localVarResp.getData();
     }
 
     /**
-     * Update extra value localized delta prices
-     * 
+     * Update Extra Localized Delta Price
+     * Update extra value localized delta price. This current version of the Products API includes localizedContent to support &lt;a href&#x3D;\&quot;/pages/catalog-structure#multi-locale-catalogs\&quot;&gt;multi-locale catalogs&lt;/a&gt;, which was not present in the previous API model. If you were a client prior to May 2024 and have upgraded your implementation to support this feature, you can still access product data that has not yet been rewritten to the new model by providing an x-api-version header set to \&quot;1\&quot;.
      * @param productCode  (required)
      * @param attributeFQN  (required)
      * @param value  (required)
+     * @param responseFields limits which fields are returned in the response body (optional)
      * @param productExtraValueDeltaPrice  (optional)
      * @return ApiResponse&lt;List&lt;ProductExtraValueDeltaPrice&gt;&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<List<ProductExtraValueDeltaPrice>> updateExtraValueLocalizedDeltaPricesWithHttpInfo(String productCode, String attributeFQN, String value, List<ProductExtraValueDeltaPrice> productExtraValueDeltaPrice) throws ApiException {
-        okhttp3.Call localVarCall = updateExtraValueLocalizedDeltaPricesValidateBeforeCall(productCode, attributeFQN, value, productExtraValueDeltaPrice, null);
+    public ApiResponse<List<ProductExtraValueDeltaPrice>> updateExtraValueLocalizedDeltaPricesWithHttpInfo(String productCode, String attributeFQN, String value, String responseFields, List<ProductExtraValueDeltaPrice> productExtraValueDeltaPrice) throws ApiException {
+        okhttp3.Call localVarCall = updateExtraValueLocalizedDeltaPricesValidateBeforeCall(productCode, attributeFQN, value, responseFields, productExtraValueDeltaPrice, null);
         Type localVarReturnType = new TypeToken<List<ProductExtraValueDeltaPrice>>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
 
     /**
-     * Update extra value localized delta prices (asynchronously)
-     * 
+     * Update Extra Localized Delta Price (asynchronously)
+     * Update extra value localized delta price. This current version of the Products API includes localizedContent to support &lt;a href&#x3D;\&quot;/pages/catalog-structure#multi-locale-catalogs\&quot;&gt;multi-locale catalogs&lt;/a&gt;, which was not present in the previous API model. If you were a client prior to May 2024 and have upgraded your implementation to support this feature, you can still access product data that has not yet been rewritten to the new model by providing an x-api-version header set to \&quot;1\&quot;.
      * @param productCode  (required)
      * @param attributeFQN  (required)
      * @param value  (required)
+     * @param responseFields limits which fields are returned in the response body (optional)
      * @param productExtraValueDeltaPrice  (optional)
      * @param _callback The callback to be executed when the API call finishes
      * @return The request call
@@ -1672,12 +1744,12 @@ public class ProductExtrasApi {
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call updateExtraValueLocalizedDeltaPricesAsync(String productCode, String attributeFQN, String value, List<ProductExtraValueDeltaPrice> productExtraValueDeltaPrice, final ApiCallback<List<ProductExtraValueDeltaPrice>> _callback) throws ApiException {
+    public okhttp3.Call updateExtraValueLocalizedDeltaPricesAsync(String productCode, String attributeFQN, String value, String responseFields, List<ProductExtraValueDeltaPrice> productExtraValueDeltaPrice, final ApiCallback<List<ProductExtraValueDeltaPrice>> _callback) throws ApiException {
 
-        okhttp3.Call localVarCall = updateExtraValueLocalizedDeltaPricesValidateBeforeCall(productCode, attributeFQN, value, productExtraValueDeltaPrice, _callback);
+        okhttp3.Call localVarCall = updateExtraValueLocalizedDeltaPricesValidateBeforeCall(productCode, attributeFQN, value, responseFields, productExtraValueDeltaPrice, _callback);
         Type localVarReturnType = new TypeToken<List<ProductExtraValueDeltaPrice>>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;

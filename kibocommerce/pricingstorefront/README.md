@@ -1,7 +1,7 @@
 # pricingstorefront
 
 Kibo PricingRuntime Service
-- API version: 1.0.0
+- API version: v1
 
 OpenAPI Spec for Kibo PricingRuntime Service
 
@@ -39,7 +39,7 @@ Add this dependency to your project's POM:
 <dependency>
   <groupId>com.kibocommerce</groupId>
   <artifactId>pricingstorefront</artifactId>
-  <version>1.0.0</version>
+  <version>3.0.0</version>
   <scope>compile</scope>
 </dependency>
 ```
@@ -55,7 +55,7 @@ Add this dependency to your project's build file:
   }
 
   dependencies {
-     implementation "com.kibocommerce:pricingstorefront:1.0.0"
+     implementation "com.kibocommerce:pricingstorefront:3.0.0"
   }
 ```
 
@@ -69,7 +69,7 @@ mvn clean package
 
 Then manually install the following JARs:
 
-* `target/pricingstorefront-1.0.0.jar`
+* `target/pricingstorefront-3.0.0.jar`
 * `target/lib/*.jar`
 
 ## Getting Started
@@ -84,7 +84,7 @@ import com.kibocommerce.sdk.pricingstorefront.ApiException;
 import com.kibocommerce.sdk.pricingstorefront.Configuration;
 import com.kibocommerce.sdk.pricingstorefront.auth.*;
 import com.kibocommerce.sdk.pricingstorefront.models.*;
-import com.kibocommerce.sdk.pricingstorefront.api.DiscountRuntimeApi;
+import com.kibocommerce.sdk.pricingstorefront.api.DiscountsApi;
 
 public class Example {
   public static void main(String[] args) {
@@ -95,17 +95,14 @@ public class Example {
     HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
     bearerAuth.setBearerToken("BEARER TOKEN");
 
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
-
-    DiscountRuntimeApi apiInstance = new DiscountRuntimeApi(defaultClient);
-    Integer discountId = 56; // Integer | 
+    DiscountsApi apiInstance = new DiscountsApi(defaultClient);
+    String responseFields = "responseFields_example"; // String | limits which fields are returned in the response body
+    FindItemDiscountsRequest findItemDiscountsRequest = new FindItemDiscountsRequest(); // FindItemDiscountsRequest | 
     try {
-      AutoAddDiscountTarget result = apiInstance.getAutoAddTarget(discountId);
+      FindDiscountsResponse result = apiInstance.storefrontFindItemDiscounts(responseFields, findItemDiscountsRequest);
       System.out.println(result);
     } catch (ApiException e) {
-      System.err.println("Exception when calling DiscountRuntimeApi#getAutoAddTarget");
+      System.err.println("Exception when calling DiscountsApi#storefrontFindItemDiscounts");
       System.err.println("Status code: " + e.getCode());
       System.err.println("Reason: " + e.getResponseBody());
       System.err.println("Response headers: " + e.getResponseHeaders());
@@ -122,36 +119,70 @@ All URIs are relative to *http://https:/api*
 
 Class | Method | HTTP request | Description
 ------------ | ------------- | ------------- | -------------
-*DiscountRuntimeApi* | [**getAutoAddTarget**](docs/DiscountRuntimeApi.md#getAutoAddTarget) | **GET** /commerce/catalog/storefront/discounts/autoaddtarget/{discountId} | Get Auto Add Target
-*TaxCapabilityApi* | [**getTax**](docs/TaxCapabilityApi.md#getTax) | **POST** /tax | Get Tax
-*TaxRuntimeApi* | [**estimateTaxes**](docs/TaxRuntimeApi.md#estimateTaxes) | **POST** /commerce/catalog/storefront/tax/estimate-order | Estimate Taxes
+*DiscountsApi* | [**storefrontFindItemDiscounts**](docs/DiscountsApi.md#storefrontFindItemDiscounts) | **POST** /commerce/catalog/storefront/discounts/products | Get Item Discounts
+*DiscountsApi* | [**storefrontFindOrderDiscounts**](docs/DiscountsApi.md#storefrontFindOrderDiscounts) | **POST** /commerce/catalog/storefront/discounts/orders | Get Order Level Discounts
+*DiscountsApi* | [**storefrontGetAutoAddTarget**](docs/DiscountsApi.md#storefrontGetAutoAddTarget) | **GET** /commerce/catalog/storefront/discounts/autoaddtarget/{discountId} | Get Auto Add Target
+*DiscountsApi* | [**storefrontGetDiscountByCouponCode**](docs/DiscountsApi.md#storefrontGetDiscountByCouponCode) | **GET** /commerce/catalog/storefront/discounts/couponCode/{couponCode} | Get Discount by Coupon Code
+*DiscountsApi* | [**storefrontGetDiscountById**](docs/DiscountsApi.md#storefrontGetDiscountById) | **GET** /commerce/catalog/storefront/discounts/id/{id} | Get Discount by ID
+*DiscountsApi* | [**storefrontGetDiscountByLabel**](docs/DiscountsApi.md#storefrontGetDiscountByLabel) | **GET** /commerce/catalog/storefront/discounts/label/{label} | Get Discounts by Label
+*DiscountsApi* | [**storefrontGetDiscountByLabel1**](docs/DiscountsApi.md#storefrontGetDiscountByLabel1) | **GET** /commerce/catalog/storefront/discounts/secure/label/{label} | Get Secure Discounts by Label
+*DiscountsApi* | [**storefrontGetItemDiscounts**](docs/DiscountsApi.md#storefrontGetItemDiscounts) | **GET** /commerce/catalog/storefront/discounts/products/{productCode} | Get Item Discounts by Product
+*DiscountsApi* | [**storefrontGetPublicDiscountByCode**](docs/DiscountsApi.md#storefrontGetPublicDiscountByCode) | **GET** /commerce/catalog/storefront/discounts/code/{code} | Get Discount by Code
+*DiscountsApi* | [**storefrontSecureGetDiscountByCode**](docs/DiscountsApi.md#storefrontSecureGetDiscountByCode) | **GET** /commerce/catalog/storefront/discounts/secure/code/{code} | Get Secure Discount by Code
+*DiscountsApi* | [**storefrontSecureGetDiscountByCouponCode**](docs/DiscountsApi.md#storefrontSecureGetDiscountByCouponCode) | **GET** /commerce/catalog/storefront/discounts/secure/couponCode/{couponCode} | Get Secure Discount by Coupon Code
+*DiscountsApi* | [**storefrontSecureGetDiscountById**](docs/DiscountsApi.md#storefrontSecureGetDiscountById) | **GET** /commerce/catalog/storefront/discounts/secure/id/{id} | Get Secure Discount by ID
+*ProductsApi* | [**storefrontSecureFindItemDiscounts**](docs/ProductsApi.md#storefrontSecureFindItemDiscounts) | **POST** /commerce/catalog/storefront/discounts/secure/products | Get Secure Item Discounts
+*ProductsApi* | [**storefrontSecureFindOrderDiscounts**](docs/ProductsApi.md#storefrontSecureFindOrderDiscounts) | **POST** /commerce/catalog/storefront/discounts/secure/orders | Get Secure Order Discounts
+*ProductsApi* | [**storefrontSecureGetItemDiscounts**](docs/ProductsApi.md#storefrontSecureGetItemDiscounts) | **GET** /commerce/catalog/storefront/discounts/secure/products/{productCode} | Get Secure Item Discounts by Product
+*TaxesApi* | [**storefrontEstimateTaxes**](docs/TaxesApi.md#storefrontEstimateTaxes) | **POST** /commerce/catalog/storefront/tax/estimate-order | Estimate Order Tax
 
 
 ## Documentation for Models
 
  - [AppliedLineItemDiscount](docs/AppliedLineItemDiscount.md)
+ - [AppliedLineItemDiscountAllOf](docs/AppliedLineItemDiscountAllOf.md)
  - [AppliedOrderShippingDiscount](docs/AppliedOrderShippingDiscount.md)
+ - [AppliedOrderShippingDiscountAllOf](docs/AppliedOrderShippingDiscountAllOf.md)
  - [AutoAddDiscountTarget](docs/AutoAddDiscountTarget.md)
+ - [CategoryDiscountCondition](docs/CategoryDiscountCondition.md)
  - [CommerceRuntimeAddress](docs/CommerceRuntimeAddress.md)
+ - [CommerceRuntimeThresholdMessage](docs/CommerceRuntimeThresholdMessage.md)
+ - [ContinuityRecurrenceSettings](docs/ContinuityRecurrenceSettings.md)
+ - [DiscountCustomProperty](docs/DiscountCustomProperty.md)
+ - [FindDiscountsRequestBase](docs/FindDiscountsRequestBase.md)
+ - [FindDiscountsResponse](docs/FindDiscountsResponse.md)
+ - [FindItemDiscountsRequest](docs/FindItemDiscountsRequest.md)
+ - [FindItemDiscountsRequestAllOf](docs/FindItemDiscountsRequestAllOf.md)
+ - [FindOrderDiscountsRequest](docs/FindOrderDiscountsRequest.md)
  - [ItemTaxContext](docs/ItemTaxContext.md)
  - [OrderTaxContext](docs/OrderTaxContext.md)
  - [PricingRuntimeAppliedDiscount](docs/PricingRuntimeAppliedDiscount.md)
  - [PricingRuntimeAppliedLineItemProductDiscount](docs/PricingRuntimeAppliedLineItemProductDiscount.md)
+ - [PricingRuntimeAppliedLineItemProductDiscountAllOf](docs/PricingRuntimeAppliedLineItemProductDiscountAllOf.md)
  - [PricingRuntimeAppliedLineItemShippingDiscount](docs/PricingRuntimeAppliedLineItemShippingDiscount.md)
+ - [PricingRuntimeAppliedProductDiscount](docs/PricingRuntimeAppliedProductDiscount.md)
+ - [PricingRuntimeAppliedProductDiscountAllOf](docs/PricingRuntimeAppliedProductDiscountAllOf.md)
+ - [PricingRuntimeCustomerSegment](docs/PricingRuntimeCustomerSegment.md)
  - [PricingRuntimeDiscount](docs/PricingRuntimeDiscount.md)
+ - [PricingRuntimeDiscount2](docs/PricingRuntimeDiscount2.md)
+ - [PricingRuntimeDiscountCollection](docs/PricingRuntimeDiscountCollection.md)
  - [PricingRuntimeDiscountCondition](docs/PricingRuntimeDiscountCondition.md)
  - [PricingRuntimeDiscountTarget](docs/PricingRuntimeDiscountTarget.md)
  - [PricingRuntimeProductProperty](docs/PricingRuntimeProductProperty.md)
  - [PricingRuntimeProductPropertyValue](docs/PricingRuntimeProductPropertyValue.md)
+ - [PricingRuntimeTargetedCategory](docs/PricingRuntimeTargetedCategory.md)
+ - [PricingRuntimeTargetedShippingMethod](docs/PricingRuntimeTargetedShippingMethod.md)
+ - [PricingRuntimeTargetedShippingZone](docs/PricingRuntimeTargetedShippingZone.md)
  - [ProductAttribute](docs/ProductAttribute.md)
+ - [ProductDiscountCondition](docs/ProductDiscountCondition.md)
+ - [ProductDiscountMap](docs/ProductDiscountMap.md)
+ - [RuntimeDiscountCondition](docs/RuntimeDiscountCondition.md)
+ - [RuntimeDiscountTarget](docs/RuntimeDiscountTarget.md)
+ - [TargetedProduct](docs/TargetedProduct.md)
  - [TaxAttribute](docs/TaxAttribute.md)
  - [TaxContext](docs/TaxContext.md)
  - [TaxableLineItem](docs/TaxableLineItem.md)
  - [TaxableOrder](docs/TaxableOrder.md)
- - [ThrirdPartyItemTaxContext](docs/ThrirdPartyItemTaxContext.md)
- - [ThrirdPartyOrderTaxContext](docs/ThrirdPartyOrderTaxContext.md)
- - [ThrirdPartyTaxContext](docs/ThrirdPartyTaxContext.md)
- - [ThrirdPartyTaxableOrder](docs/ThrirdPartyTaxableOrder.md)
 
 
 ## Documentation for Authorization
@@ -160,13 +191,6 @@ Authentication schemes defined for the API:
 ### bearerAuth
 
 - **Type**: HTTP basic authentication
-
-### clientOauth2
-
-- **Type**: OAuth
-- **Flow**: application
-- **Authorization URL**: 
-- **Scopes**: N/A
 
 
 ## Recommendation

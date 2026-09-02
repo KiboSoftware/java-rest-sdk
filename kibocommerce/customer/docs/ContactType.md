@@ -7,8 +7,8 @@
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
-|**name** | **String** |  |  [optional] |
 |**isPrimary** | **Boolean** |  |  [optional] |
+|**name** | **String** |  |  [optional] |
 
 
 ## Implemented Interfaces

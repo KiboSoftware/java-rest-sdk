@@ -9,11 +9,11 @@ All URIs are relative to *http://https:/api*
 
 <a name="getTenant"></a>
 # **getTenant**
-> TenantTenant getTenant(tenantId)
+> Tenant getTenant(tenantId, responseFields)
 
 Get Tenant by ID
 
-Get Tenant by ID
+Retrieve information about a tenant. The attributes object will contain flags indicating whether or not certain features are enabled on the tenant. Kibo employees can reference &lt;a href&#x3D;\&quot;/pages/tenant-attributes\&quot;&gt;this internal-only documentation&lt;/a&gt; for a list of all attributes. &lt;/ul&gt;
 
 ### Example
 ```java
@@ -34,14 +34,11 @@ public class Example {
     HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
     bearerAuth.setBearerToken("BEARER TOKEN");
 
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
-
     TenantsApi apiInstance = new TenantsApi(defaultClient);
     Integer tenantId = 56; // Integer | 
+    String responseFields = "responseFields_example"; // String | limits which fields are returned in the response body
     try {
-      TenantTenant result = apiInstance.getTenant(tenantId);
+      Tenant result = apiInstance.getTenant(tenantId, responseFields);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling TenantsApi#getTenant");
@@ -59,14 +56,15 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **tenantId** | **Integer**|  | |
+| **responseFields** | **String**| limits which fields are returned in the response body | [optional] |
 
 ### Return type
 
-[**TenantTenant**](TenantTenant.md)
+[**Tenant**](Tenant.md)
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth), [clientOauth2](../README.md#clientOauth2)
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
@@ -76,5 +74,5 @@ public class Example {
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Success |  -  |
+| **200** | OK |  -  |
 

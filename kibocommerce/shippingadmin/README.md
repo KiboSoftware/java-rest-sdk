@@ -1,7 +1,7 @@
 # shippingadmin
 
 Kibo Shipping Admin Service
-- API version: 1.0.0
+- API version: v1
 
 OpenAPI Spec for Kibo Shipping Admin Service
 
@@ -39,7 +39,7 @@ Add this dependency to your project's POM:
 <dependency>
   <groupId>com.kibocommerce</groupId>
   <artifactId>shippingadmin</artifactId>
-  <version>1.0.0</version>
+  <version>3.0.0</version>
   <scope>compile</scope>
 </dependency>
 ```
@@ -55,7 +55,7 @@ Add this dependency to your project's build file:
   }
 
   dependencies {
-     implementation "com.kibocommerce:shippingadmin:1.0.0"
+     implementation "com.kibocommerce:shippingadmin:3.0.0"
   }
 ```
 
@@ -69,7 +69,7 @@ mvn clean package
 
 Then manually install the following JARs:
 
-* `target/shippingadmin-1.0.0.jar`
+* `target/shippingadmin-3.0.0.jar`
 * `target/lib/*.jar`
 
 ## Getting Started
@@ -95,15 +95,12 @@ public class Example {
     HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
     bearerAuth.setBearerToken("BEARER TOKEN");
 
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
-
     CarrierConfigurationApi apiInstance = new CarrierConfigurationApi(defaultClient);
     String carrierId = "carrierId_example"; // String | 
+    String responseFields = "responseFields_example"; // String | limits which fields are returned in the response body
     CarrierConfiguration carrierConfiguration = new CarrierConfiguration(); // CarrierConfiguration | 
     try {
-      CarrierConfiguration result = apiInstance.createConfiguration(carrierId, carrierConfiguration);
+      CarrierConfiguration result = apiInstance.createConfiguration(carrierId, responseFields, carrierConfiguration);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling CarrierConfigurationApi#createConfiguration");
@@ -124,24 +121,25 @@ All URIs are relative to *http://https:/api*
 Class | Method | HTTP request | Description
 ------------ | ------------- | ------------- | -------------
 *CarrierConfigurationApi* | [**createConfiguration**](docs/CarrierConfigurationApi.md#createConfiguration) | **POST** /commerce/shipping/admin/carriers/{carrierId} | Create Carrier Configuration
-*CarrierConfigurationApi* | [**deleteConfiguration**](docs/CarrierConfigurationApi.md#deleteConfiguration) | **DELETE** /commerce/shipping/admin/carriers/{carrierId} | Delete an existing Carrier Configuration
-*CarrierConfigurationApi* | [**getConfiguration**](docs/CarrierConfigurationApi.md#getConfiguration) | **GET** /commerce/shipping/admin/carriers/{carrierId} | Get Carrier Configuration (for this particular site)
-*CarrierConfigurationApi* | [**getConfigurations**](docs/CarrierConfigurationApi.md#getConfigurations) | **GET** /commerce/shipping/admin/carriers | Retrieves a list of Carrier Configurations according to any specified filter criteria and sort options
-*CarrierConfigurationApi* | [**updateConfiguration**](docs/CarrierConfigurationApi.md#updateConfiguration) | **PUT** /commerce/shipping/admin/carriers/{carrierId} | Update an existing Carrier Configuration
-*CarrierConfigurationGlobalApi* | [**getAllServiceTypes**](docs/CarrierConfigurationGlobalApi.md#getAllServiceTypes) | **GET** /commerce/shipping/global/carriers/serviceTypes/{localeCode} | Used for retrieving the available service types for the Mozu Default Application carriers
-*CarrierConfigurationGlobalApi* | [**getCarrierServiceTypes**](docs/CarrierConfigurationGlobalApi.md#getCarrierServiceTypes) | **GET** /commerce/shipping/global/carriers/{carrierId}/serviceTypes/{localeCode} | Used for retrieving the available service types for the Mozu Default Application carriers
-*CarrierCredentialApi* | [**createCarrierCredential**](docs/CarrierCredentialApi.md#createCarrierCredential) | **POST** /commerce/shipping/admin/carriers/credentials/{carrierId} | Creates a Mozu
-*CarrierCredentialApi* | [**deleteCarrierCredential**](docs/CarrierCredentialApi.md#deleteCarrierCredential) | **DELETE** /commerce/shipping/admin/carriers/credentials/{carrierId} | Deletes a Mozu
-*CarrierCredentialApi* | [**getCarrierCredential**](docs/CarrierCredentialApi.md#getCarrierCredential) | **GET** /commerce/shipping/admin/carriers/credentials/{carrierId} | Gets a Mozu
-*CarrierCredentialApi* | [**getCarrierCredentials**](docs/CarrierCredentialApi.md#getCarrierCredentials) | **GET** /commerce/shipping/admin/carriers/credentials | Returns a &lt;see cref&#x3D;\&quot;T:Mozu
-*CarrierCredentialApi* | [**updateCarrierCredential**](docs/CarrierCredentialApi.md#updateCarrierCredential) | **PUT** /commerce/shipping/admin/carriers/credentials/{carrierId} | Updates a Mozu
-*CarrierCredentialSetApi* | [**createCarrierCredentialSet**](docs/CarrierCredentialSetApi.md#createCarrierCredentialSet) | **POST** /commerce/shipping/admin/carriers/credential-sets/{carrierId} | Creates a Mozu
-*CarrierCredentialSetApi* | [**deleteCarrierCredentialSet**](docs/CarrierCredentialSetApi.md#deleteCarrierCredentialSet) | **DELETE** /commerce/shipping/admin/carriers/credential-sets/{carrierId}/{code} | Deletes a Mozu
-*CarrierCredentialSetApi* | [**getCarrierCredentialSet**](docs/CarrierCredentialSetApi.md#getCarrierCredentialSet) | **GET** /commerce/shipping/admin/carriers/credential-sets/{carrierId}/{code} | Returns a Mozu
-*CarrierCredentialSetApi* | [**getCarrierCredentialSets**](docs/CarrierCredentialSetApi.md#getCarrierCredentialSets) | **GET** /commerce/shipping/admin/carriers/credential-sets | Returns a &lt;see cref&#x3D;\&quot;T:Mozu
-*CarrierCredentialSetApi* | [**updateCarrierCredentialSet**](docs/CarrierCredentialSetApi.md#updateCarrierCredentialSet) | **PUT** /commerce/shipping/admin/carriers/credential-sets/{carrierId}/{code} | Updates a Mozu
-*CarrierDefinitionApi* | [**getCarrierDefinition**](docs/CarrierDefinitionApi.md#getCarrierDefinition) | **GET** /commerce/shipping/admin/carriers/definitions/{carrierId} | Returns a Mozu
-*CarrierDefinitionApi* | [**getCarrierDefinitions**](docs/CarrierDefinitionApi.md#getCarrierDefinitions) | **GET** /commerce/shipping/admin/carriers/definitions | Returns a list of Mozu
+*CarrierConfigurationApi* | [**deleteConfiguration**](docs/CarrierConfigurationApi.md#deleteConfiguration) | **DELETE** /commerce/shipping/admin/carriers/{carrierId} | Delete Carrier Configuration
+*CarrierConfigurationApi* | [**getConfiguration**](docs/CarrierConfigurationApi.md#getConfiguration) | **GET** /commerce/shipping/admin/carriers/{carrierId} | Get carrier configuration information
+*CarrierConfigurationApi* | [**getConfigurations**](docs/CarrierConfigurationApi.md#getConfigurations) | **GET** /commerce/shipping/admin/carriers | Get Carrier Configurations
+*CarrierConfigurationApi* | [**updateConfiguration**](docs/CarrierConfigurationApi.md#updateConfiguration) | **PUT** /commerce/shipping/admin/carriers/{carrierId} | Update Carrier Configuration
+*CarrierConfigurationGlobalApi* | [**getAllServiceTypes**](docs/CarrierConfigurationGlobalApi.md#getAllServiceTypes) | **GET** /commerce/shipping/global/carriers/serviceTypes/{localeCode} | Get Service Types (without Carrier ID)
+*CarrierConfigurationGlobalApi* | [**getCarrierServiceTypes**](docs/CarrierConfigurationGlobalApi.md#getCarrierServiceTypes) | **GET** /commerce/shipping/global/carriers/{carrierId}/serviceTypes/{localeCode} | Get Service Types (with Carrier ID)
+*CarrierConfigurationGlobalApi* | [**getSignatureOptions**](docs/CarrierConfigurationGlobalApi.md#getSignatureOptions) | **GET** /commerce/shipping/global/carriers/signatureOptions | Gets all the Signature Options
+*CarrierCredentialApi* | [**createCarrierCredential**](docs/CarrierCredentialApi.md#createCarrierCredential) | **POST** /commerce/shipping/admin/carriers/credentials/{carrierId} | Create Carrier Credentials
+*CarrierCredentialApi* | [**deleteCarrierCredential**](docs/CarrierCredentialApi.md#deleteCarrierCredential) | **DELETE** /commerce/shipping/admin/carriers/credentials/{carrierId} | Delete Carrier Credentials
+*CarrierCredentialApi* | [**getCarrierCredential**](docs/CarrierCredentialApi.md#getCarrierCredential) | **GET** /commerce/shipping/admin/carriers/credentials/{carrierId} | Get Carrier Credentials by ID
+*CarrierCredentialApi* | [**getCarrierCredentials**](docs/CarrierCredentialApi.md#getCarrierCredentials) | **GET** /commerce/shipping/admin/carriers/credentials | Get Carrier Credentials
+*CarrierCredentialApi* | [**updateCarrierCredential**](docs/CarrierCredentialApi.md#updateCarrierCredential) | **PUT** /commerce/shipping/admin/carriers/credentials/{carrierId} | Update Carrier Credentials
+*CarrierCredentialSetApi* | [**createCarrierCredentialSet**](docs/CarrierCredentialSetApi.md#createCarrierCredentialSet) | **POST** /commerce/shipping/admin/carriers/credential-sets/{carrierId} | Create Carrier Credential Set
+*CarrierCredentialSetApi* | [**deleteCarrierCredentialSet**](docs/CarrierCredentialSetApi.md#deleteCarrierCredentialSet) | **DELETE** /commerce/shipping/admin/carriers/credential-sets/{carrierId}/{code} | Delete Carrier Credential Set
+*CarrierCredentialSetApi* | [**getCarrierCredentialSet**](docs/CarrierCredentialSetApi.md#getCarrierCredentialSet) | **GET** /commerce/shipping/admin/carriers/credential-sets/{carrierId}/{code} | Get Carrier Credential Set
+*CarrierCredentialSetApi* | [**getCarrierCredentialSets**](docs/CarrierCredentialSetApi.md#getCarrierCredentialSets) | **GET** /commerce/shipping/admin/carriers/credential-sets | Get Carrier Credential Sets
+*CarrierCredentialSetApi* | [**updateCarrierCredentialSet**](docs/CarrierCredentialSetApi.md#updateCarrierCredentialSet) | **PUT** /commerce/shipping/admin/carriers/credential-sets/{carrierId}/{code} | Update Carrier Credential Set
+*CarrierDefinitionApi* | [**getCarrierDefinition**](docs/CarrierDefinitionApi.md#getCarrierDefinition) | **GET** /commerce/shipping/admin/carriers/definitions/{carrierId} | Get Carrier Definition
+*CarrierDefinitionApi* | [**getCarrierDefinitions**](docs/CarrierDefinitionApi.md#getCarrierDefinitions) | **GET** /commerce/shipping/admin/carriers/definitions | Get Carrier Definitions
 *ShippingProfileApi* | [**createOrderHandlingFeeRule**](docs/ShippingProfileApi.md#createOrderHandlingFeeRule) | **POST** /commerce/shipping/admin/profiles/{profilecode}/rules/orderhandlingfees | Create Order Handling Fee Rule
 *ShippingProfileApi* | [**createProductHandlingFeeRule**](docs/ShippingProfileApi.md#createProductHandlingFeeRule) | **POST** /commerce/shipping/admin/profiles/{profilecode}/rules/producthandlingfees | Create Product Handling Fee Rule
 *ShippingProfileApi* | [**createShippingInclusionRule**](docs/ShippingProfileApi.md#createShippingInclusionRule) | **POST** /commerce/shipping/admin/profiles/{profilecode}/rules/shippinginclusions | Create Shipping Inclusion Rule
@@ -152,7 +150,7 @@ Class | Method | HTTP request | Description
 *ShippingProfileApi* | [**getOrderHandlingFeeRules**](docs/ShippingProfileApi.md#getOrderHandlingFeeRules) | **GET** /commerce/shipping/admin/profiles/{profilecode}/rules/orderhandlingfees | Get Order Handling Fee Rules
 *ShippingProfileApi* | [**getProductHandlingFeeRule**](docs/ShippingProfileApi.md#getProductHandlingFeeRule) | **GET** /commerce/shipping/admin/profiles/{profilecode}/rules/producthandlingfees/{id} | Get Product Handling Fee Rule
 *ShippingProfileApi* | [**getProductHandlingFeeRules**](docs/ShippingProfileApi.md#getProductHandlingFeeRules) | **GET** /commerce/shipping/admin/profiles/{profilecode}/rules/producthandlingfees | Get Product Handling Fee Rules
-*ShippingProfileApi* | [**getProfiles**](docs/ShippingProfileApi.md#getProfiles) | **GET** /commerce/shipping/admin/profiles | Get Shipping Profiles for the Tenant/Master Catalog
+*ShippingProfileApi* | [**getProfiles**](docs/ShippingProfileApi.md#getProfiles) | **GET** /commerce/shipping/admin/profiles | Get Shipping Profiles
 *ShippingProfileApi* | [**getShippingInclusionRule**](docs/ShippingProfileApi.md#getShippingInclusionRule) | **GET** /commerce/shipping/admin/profiles/{profilecode}/rules/shippinginclusions/{id} | Get Shipping Inclusion Rule
 *ShippingProfileApi* | [**getShippingInclusionRules**](docs/ShippingProfileApi.md#getShippingInclusionRules) | **GET** /commerce/shipping/admin/profiles/{profilecode}/rules/shippinginclusions | Get Shipping Inclusion Rules
 *ShippingProfileApi* | [**getStates**](docs/ShippingProfileApi.md#getStates) | **GET** /commerce/shipping/admin/profiles/{profilecode}/shippingstates | Get Configured Shipping States
@@ -163,7 +161,7 @@ Class | Method | HTTP request | Description
 *TargetRulesApi* | [**createTargetRule**](docs/TargetRulesApi.md#createTargetRule) | **POST** /commerce/targetrules | Create Target Rule
 *TargetRulesApi* | [**deleteTargetRule**](docs/TargetRulesApi.md#deleteTargetRule) | **DELETE** /commerce/targetrules/{code} | Delete Target Rule
 *TargetRulesApi* | [**getTargetRule**](docs/TargetRulesApi.md#getTargetRule) | **GET** /commerce/targetrules/{code} | Get Target Rule
-*TargetRulesApi* | [**getTargetRules**](docs/TargetRulesApi.md#getTargetRules) | **GET** /commerce/targetrules | Retrieves a list of TargetRules according to any specified filter criteria and sort options
+*TargetRulesApi* | [**getTargetRules**](docs/TargetRulesApi.md#getTargetRules) | **GET** /commerce/targetrules | Get Target Rules
 *TargetRulesApi* | [**updateTargetRule**](docs/TargetRulesApi.md#updateTargetRule) | **PUT** /commerce/targetrules/{code} | Update Target Rule
 *TargetRulesApi* | [**validateTargetRule**](docs/TargetRulesApi.md#validateTargetRule) | **POST** /commerce/targetrules/validate | Validate Target Rule
 
@@ -188,19 +186,32 @@ Class | Method | HTTP request | Description
  - [HandlingFeeRule](docs/HandlingFeeRule.md)
  - [HandlingFeeRuleCollection](docs/HandlingFeeRuleCollection.md)
  - [HttpMethod](docs/HttpMethod.md)
+ - [Option](docs/Option.md)
  - [ServiceType](docs/ServiceType.md)
  - [ServiceTypeLocalizedContent](docs/ServiceTypeLocalizedContent.md)
  - [Setting](docs/Setting.md)
+ - [ShippingAdminBrotliDecompressedContent](docs/ShippingAdminBrotliDecompressedContent.md)
+ - [ShippingAdminByteArrayContent](docs/ShippingAdminByteArrayContent.md)
+ - [ShippingAdminDecompressedContent](docs/ShippingAdminDecompressedContent.md)
+ - [ShippingAdminDeflateDecompressedContent](docs/ShippingAdminDeflateDecompressedContent.md)
+ - [ShippingAdminEmptyContent](docs/ShippingAdminEmptyContent.md)
+ - [ShippingAdminFormUrlEncodedContent](docs/ShippingAdminFormUrlEncodedContent.md)
+ - [ShippingAdminGZipDecompressedContent](docs/ShippingAdminGZipDecompressedContent.md)
+ - [ShippingAdminHttpConnectionResponseContent](docs/ShippingAdminHttpConnectionResponseContent.md)
  - [ShippingAdminHttpRequestMessage](docs/ShippingAdminHttpRequestMessage.md)
  - [ShippingAdminHttpResponseMessage](docs/ShippingAdminHttpResponseMessage.md)
  - [ShippingAdminHttpStatusCode](docs/ShippingAdminHttpStatusCode.md)
  - [ShippingAdminHttpVersionPolicy](docs/ShippingAdminHttpVersionPolicy.md)
+ - [ShippingAdminReadOnlyMemoryContent](docs/ShippingAdminReadOnlyMemoryContent.md)
  - [ShippingAdminState](docs/ShippingAdminState.md)
+ - [ShippingAdminStreamContent](docs/ShippingAdminStreamContent.md)
+ - [ShippingAdminStringContent](docs/ShippingAdminStringContent.md)
  - [ShippingInclusionRule](docs/ShippingInclusionRule.md)
  - [ShippingInclusionRuleCollection](docs/ShippingInclusionRuleCollection.md)
  - [ShippingProfile](docs/ShippingProfile.md)
  - [ShippingProfileCollection](docs/ShippingProfileCollection.md)
  - [ShippingStates](docs/ShippingStates.md)
+ - [SignatureOption](docs/SignatureOption.md)
  - [StringStringIEnumerableKeyValuePair](docs/StringStringIEnumerableKeyValuePair.md)
  - [TargetRule](docs/TargetRule.md)
  - [TargetRuleCollection](docs/TargetRuleCollection.md)
@@ -212,13 +223,6 @@ Authentication schemes defined for the API:
 ### bearerAuth
 
 - **Type**: HTTP basic authentication
-
-### clientOauth2
-
-- **Type**: OAuth
-- **Flow**: application
-- **Authorization URL**: 
-- **Scopes**: N/A
 
 
 ## Recommendation

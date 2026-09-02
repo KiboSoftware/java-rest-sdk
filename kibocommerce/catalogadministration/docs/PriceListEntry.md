@@ -8,32 +8,32 @@ Category
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
-|**priceListCode** | **String** | External unique identifier of the PriceList. Must be unique an only contain url sanitized characters. Max length is  50 |  [optional] |
+|**auditInfo** | [**AdminUserAuditInfo**](AdminUserAuditInfo.md) |  |  [optional] |
+|**cost** | **Double** |  |  [optional] |
+|**costMode** | **String** |  |  [optional] |
+|**currencyCode** | **String** |  |  |
+|**discountsRestricted** | **Boolean** |  |  [optional] |
+|**discountsRestrictedEndDate** | **OffsetDateTime** |  |  [optional] |
+|**discountsRestrictedMode** | **String** |  |  [optional] |
+|**discountsRestrictedStartDate** | **OffsetDateTime** |  |  [optional] |
+|**endDate** | **OffsetDateTime** |  |  [optional] |
+|**extraEntries** | [**List&lt;PriceListEntryExtra&gt;**](PriceListEntryExtra.md) |  |  [optional] |
+|**isVariation** | **Boolean** |  |  [optional] |
+|**map** | **Double** |  |  [optional] |
+|**mapEndDate** | **OffsetDateTime** |  |  [optional] |
+|**mapMode** | **String** |  |  [optional] |
+|**mapStartDate** | **OffsetDateTime** |  |  [optional] |
+|**msrp** | **Double** |  |  [optional] |
+|**msrpMode** | **String** |  |  [optional] |
+|**options** | [**List&lt;CatalogAdminsProductOption&gt;**](CatalogAdminsProductOption.md) |  |  [optional] |
+|**priceEntries** | [**List&lt;PriceListEntryPrice&gt;**](PriceListEntryPrice.md) |  |  [optional] |
+|**priceListCode** | **String** | External unique identifier of the PriceList. Must be unique an only contain url sanitized characters. Max length is 50 |  [optional] |
+|**priceListEntryMode** | **String** |  |  [optional] |
 |**priceListEntrySequence** | **Integer** |  |  [optional] |
+|**priceListEntryTypeCode** | **String** |  |  [optional] |
 |**productCode** | **String** |  |  |
 |**productName** | **String** |  |  [optional] |
-|**isVariation** | **Boolean** |  |  [optional] |
-|**options** | [**List&lt;CatalogAdminsProductOption&gt;**](CatalogAdminsProductOption.md) |  |  [optional] |
-|**currencyCode** | **String** |  |  |
 |**startDate** | **OffsetDateTime** |  |  [optional] |
-|**endDate** | **OffsetDateTime** |  |  [optional] |
-|**priceListEntryMode** | **String** |  |  [optional] |
-|**priceListEntryTypeCode** | **String** |  |  [optional] |
-|**discountsRestrictedMode** | **String** |  |  [optional] |
-|**discountsRestricted** | **Boolean** |  |  [optional] |
-|**discountsRestrictedStartDate** | **OffsetDateTime** |  |  [optional] |
-|**discountsRestrictedEndDate** | **OffsetDateTime** |  |  [optional] |
-|**msrpMode** | **String** |  |  [optional] |
-|**msrp** | **Double** |  |  [optional] |
-|**mapMode** | **String** |  |  [optional] |
-|**map** | **Double** |  |  [optional] |
-|**mapStartDate** | **OffsetDateTime** |  |  [optional] |
-|**mapEndDate** | **OffsetDateTime** |  |  [optional] |
-|**costMode** | **String** |  |  [optional] |
-|**cost** | **Double** |  |  [optional] |
-|**priceEntries** | [**List&lt;PriceListEntryPrice&gt;**](PriceListEntryPrice.md) |  |  [optional] |
-|**extraEntries** | [**List&lt;PriceListEntryExtra&gt;**](PriceListEntryExtra.md) |  |  [optional] |
-|**auditInfo** | [**AdminUserAuditInfo**](AdminUserAuditInfo.md) |  |  [optional] |
 
 
 ## Implemented Interfaces

@@ -8,8 +8,8 @@ Value of the shipping discount.
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
-|**methodCode** | **String** | Unique identifier of the shipping method discount. |  [optional] |
 |**discount** | [**CommerceRuntimeAppliedDiscount**](CommerceRuntimeAppliedDiscount.md) |  |  [optional] |
+|**methodCode** | **String** | Unique identifier of the shipping method discount. |  [optional] |
 
 
 ## Implemented Interfaces

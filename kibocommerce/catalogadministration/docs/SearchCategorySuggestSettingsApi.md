@@ -4,16 +4,16 @@ All URIs are relative to *http://https:/api*
 
 | Method | HTTP request | Description |
 |------------- | ------------- | -------------|
-| [**deleteCategorySuggestSettings**](SearchCategorySuggestSettingsApi.md#deleteCategorySuggestSettings) | **DELETE** /commerce/catalog/admin/search/{name}/categorysuggestsettings | Delete category suggest settings |
-| [**getCategorySuggestSettings**](SearchCategorySuggestSettingsApi.md#getCategorySuggestSettings) | **GET** /commerce/catalog/admin/search/{name}/categorysuggestsettings | Get category suggest settings |
-| [**updateCategorySuggestSettings**](SearchCategorySuggestSettingsApi.md#updateCategorySuggestSettings) | **PUT** /commerce/catalog/admin/search/{name}/categorysuggestsettings | Add/Update category suggest settings |
+| [**deleteCategorySuggestSettings**](SearchCategorySuggestSettingsApi.md#deleteCategorySuggestSettings) | **DELETE** /commerce/catalog/admin/search/{name}/categorysuggestsettings | Delete Category Suggest Settings |
+| [**getCategorySuggestSettings**](SearchCategorySuggestSettingsApi.md#getCategorySuggestSettings) | **GET** /commerce/catalog/admin/search/{name}/categorysuggestsettings | Get Category Suggest Settings |
+| [**updateCategorySuggestSettings**](SearchCategorySuggestSettingsApi.md#updateCategorySuggestSettings) | **PUT** /commerce/catalog/admin/search/{name}/categorysuggestsettings | Update Category Suggest Settings |
 
 
 <a name="deleteCategorySuggestSettings"></a>
 # **deleteCategorySuggestSettings**
 > deleteCategorySuggestSettings(name)
 
-Delete category suggest settings
+Delete Category Suggest Settings
 
 Deletes the CategorySuggestSettings for a specific SearchSetting by name.
 
@@ -35,10 +35,6 @@ public class Example {
     // Configure HTTP bearer authorization: bearerAuth
     HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
     bearerAuth.setBearerToken("BEARER TOKEN");
-
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
 
     SearchCategorySuggestSettingsApi apiInstance = new SearchCategorySuggestSettingsApi(defaultClient);
     String name = "name_example"; // String | 
@@ -67,7 +63,7 @@ null (empty response body)
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth), [clientOauth2](../README.md#clientOauth2)
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
@@ -77,13 +73,13 @@ null (empty response body)
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Success |  -  |
+| **200** | OK |  -  |
 
 <a name="getCategorySuggestSettings"></a>
 # **getCategorySuggestSettings**
-> SuggestSettings getCategorySuggestSettings(name)
+> SuggestSettings getCategorySuggestSettings(name, responseFields)
 
-Get category suggest settings
+Get Category Suggest Settings
 
 Get CategorySuggestSettings for a specific SearchSettings.
 
@@ -106,14 +102,11 @@ public class Example {
     HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
     bearerAuth.setBearerToken("BEARER TOKEN");
 
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
-
     SearchCategorySuggestSettingsApi apiInstance = new SearchCategorySuggestSettingsApi(defaultClient);
     String name = "name_example"; // String | 
+    String responseFields = "responseFields_example"; // String | limits which fields are returned in the response body
     try {
-      SuggestSettings result = apiInstance.getCategorySuggestSettings(name);
+      SuggestSettings result = apiInstance.getCategorySuggestSettings(name, responseFields);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling SearchCategorySuggestSettingsApi#getCategorySuggestSettings");
@@ -131,6 +124,7 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **name** | **String**|  | |
+| **responseFields** | **String**| limits which fields are returned in the response body | [optional] |
 
 ### Return type
 
@@ -138,7 +132,7 @@ public class Example {
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth), [clientOauth2](../README.md#clientOauth2)
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
@@ -148,15 +142,15 @@ public class Example {
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Success |  -  |
+| **200** | OK |  -  |
 
 <a name="updateCategorySuggestSettings"></a>
 # **updateCategorySuggestSettings**
-> SuggestSettings updateCategorySuggestSettings(name, suggestSettings)
+> SuggestSettings updateCategorySuggestSettings(name, responseFields, suggestSettings)
 
-Add/Update category suggest settings
+Update Category Suggest Settings
 
-Adds or Updates (Upsert) the CategorySuggestSettings for a specific SearchSetting.
+Adds or updates the CategorySuggestSettings for a specific SearchSetting.
 
 ### Example
 ```java
@@ -177,15 +171,12 @@ public class Example {
     HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
     bearerAuth.setBearerToken("BEARER TOKEN");
 
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
-
     SearchCategorySuggestSettingsApi apiInstance = new SearchCategorySuggestSettingsApi(defaultClient);
     String name = "name_example"; // String | 
+    String responseFields = "responseFields_example"; // String | limits which fields are returned in the response body
     SuggestSettings suggestSettings = new SuggestSettings(); // SuggestSettings | 
     try {
-      SuggestSettings result = apiInstance.updateCategorySuggestSettings(name, suggestSettings);
+      SuggestSettings result = apiInstance.updateCategorySuggestSettings(name, responseFields, suggestSettings);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling SearchCategorySuggestSettingsApi#updateCategorySuggestSettings");
@@ -203,6 +194,7 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **name** | **String**|  | |
+| **responseFields** | **String**| limits which fields are returned in the response body | [optional] |
 | **suggestSettings** | [**SuggestSettings**](SuggestSettings.md)|  | [optional] |
 
 ### Return type
@@ -211,7 +203,7 @@ public class Example {
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth), [clientOauth2](../README.md#clientOauth2)
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
@@ -221,5 +213,5 @@ public class Example {
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Success |  -  |
+| **200** | OK |  -  |
 

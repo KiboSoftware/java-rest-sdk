@@ -7,27 +7,30 @@
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
-|**discountId** | **Integer** |  |  [optional] |
-|**name** | **String** |  |  [optional] |
-|**friendlyDescription** | **String** |  |  [optional] |
 |**amount** | **Double** |  |  [optional] |
-|**scope** | **String** |  |  [optional] |
-|**maxRedemptions** | **Integer** |  |  [optional] |
-|**maximumUsesPerUser** | **Integer** |  |  [optional] |
-|**requiresAuthenticatedUser** | **Boolean** |  |  [optional] |
-|**doesNotApplyToProductsWithSalePrice** | **Boolean** |  |  [optional] |
-|**maximumRedemptionsPerOrder** | **Integer** |  |  [optional] |
-|**maximumDiscountValuePerOrder** | **Double** |  |  [optional] |
-|**maxDiscountValuePerRedemption** | **Double** |  |  [optional] |
-|**doesNotApplyToMultiShipToOrders** | **Boolean** |  |  [optional] |
-|**includedPriceLists** | **List&lt;String&gt;** |  |  [optional] |
-|**redemptions** | **Integer** |  |  [optional] |
-|**type** | **String** |  |  [optional] |
 |**amountType** | **String** |  |  [optional] |
-|**target** | [**PricingDiscountTarget**](PricingDiscountTarget.md) |  |  [optional] |
+|**code** | **String** |  |  [optional] |
 |**condition** | [**PricingDiscountCondition**](PricingDiscountCondition.md) |  |  [optional] |
+|**discountId** | **Integer** |  |  [optional] |
+|**doesNotApplyToMultiShipToOrders** | **Boolean** |  |  [optional] |
+|**doesNotApplyToProductsWithSalePrice** | **Boolean** |  |  [optional] |
 |**expirationDate** | **OffsetDateTime** |  |  [optional] |
+|**friendlyDescription** | **String** |  |  [optional] |
+|**includedPriceLists** | **List&lt;String&gt;** |  |  [optional] |
+|**isPublic** | **Boolean** |  |  [optional] |
+|**labels** | **List&lt;String&gt;** |  |  [optional] |
+|**maxDiscountValuePerRedemption** | **Double** |  |  [optional] |
+|**maxRedemptions** | **Integer** |  |  [optional] |
+|**maximumDiscountValuePerOrder** | **Double** |  |  [optional] |
+|**maximumRedemptionsPerOrder** | **Integer** |  |  [optional] |
+|**maximumUsesPerUser** | **Integer** |  |  [optional] |
+|**name** | **String** |  |  [optional] |
+|**redemptions** | **Integer** |  |  [optional] |
+|**requiresAuthenticatedUser** | **Boolean** |  |  [optional] |
+|**scope** | **String** |  |  [optional] |
 |**stackingLayer** | **Integer** |  |  [optional] |
+|**target** | [**PricingDiscountTarget**](PricingDiscountTarget.md) |  |  [optional] |
+|**type** | **String** |  |  [optional] |
 
 
 ## Implemented Interfaces

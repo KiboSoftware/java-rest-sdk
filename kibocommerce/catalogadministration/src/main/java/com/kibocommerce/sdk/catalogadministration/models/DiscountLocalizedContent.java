@@ -1,8 +1,8 @@
 /*
  * Kibo Catalog Admin Services
- * OpenAPI Spec for Kibo Catalog Admin Services
+ * <div id=\"overview_CATALOG_ADMIN\">             <h2>CATALOG ADMINISTRATION</h2>             <p>The Catalog Administration APIs are a collection of resources for configuring the catalogs and products offered to your shoppers, including                 discounts and coupon sets, faceting, price lists, and different types or variations of products. See the                 <a href=\"/concept-guides/catalog\">Catalog user guides</a>                 for information about the related features in the Unified Commerce Admin.</p>             <p>Use the <strong>Attributes</strong> resource to manage localization and attribute configurations for your catalogs. This current version of the Attributes API includes localizedContent to                 support <a href=\"/pages/catalog-structure#multi-locale-catalogs\">multi-locale catalogs</a>, which was not present in the legacy API model. If                 you were a client prior to May 2024 and have upgraded your implementation to support this feature,                 you can still access attribute data that has not yet been rewritten to the new model by providing                 an x-api-version header set to \"1\". </p>             <p>Use the <strong>Categories</strong> resource to organize products and control where they appear on the storefront. Create                 and maintain a hierarchy of categories and subcategories where the site will store properties. This current version of the Categories API includes localizedContent to                 support <a href=\"/pages/catalog-structure#multi-locale-catalogs\">multi-locale catalogs</a>, which was not present in the legacy API model. If                 you were a client prior to May 2024 and have upgraded your implementation to support this feature,                 you can still access category data that has not yet been rewritten to the new model by providing                 an x-api-version header set to \"1\". </p>             <p>Use the <strong>Coupon Sets</strong> resource to view and create coupon sets. You can use coupon sets to group multiple                 coupon codes together and associate them with one or more discounts.</p>             <p>Use the <strong>Currency</strong> resource to manage the currency localization rules and exchange rates for any of the                 currencies that are supported for placing orders in.</p>             <p>Use the <strong>Discounts</strong> and <strong>Discount Settings</strong> resources to define and manage discounts to apply to products, product categories, or                 orders. This current version of the Discounts API includes localizedContent to                 support <a href=\"/pages/catalog-structure#multi-locale-catalogs\">multi-locale catalogs</a>, which was not present in the legacy Products API model. If                 you were a client prior to May 2024 and have upgraded your implementation to support this feature,                 you can still access discount data that has not yet been rewritten to the new model by providing                 an x-api-version header set to \"1\". </p>             <p>Use the <strong>Facets</strong> resource to manage the facets shoppers use to filter product display results on a                 storefront. Facets can include categories, product attributes, or prices, and use either a range of                 values or discrete values.</p>             <p>Use the <strong>Master Catalog</strong> resource to view details of the master catalogs associated with a tenant and to                 manage the product publishing mode for each master catalog.</p>             <p>Use the <strong>Price Lists</strong> resources to view and create price lists. You can use price lists to override the                 catalog pricing of products for specific customer segments and/or sites.</p>             <p>Use the <strong>Products</strong>, <strong>Product Types/Extras/Options/Properties</strong>, and <strong>Product Sort Definitions</strong> resources to create new product definitions in the master catalog and determine which                 catalogs will feature products. This current version of the Products API includes localizedContent to                 support <a href=\"/pages/catalog-structure#multi-locale-catalogs\">multi-locale catalogs</a>, which was not present in the legacy Products API model. If                 you were a client prior to May 2024 and have upgraded your implementation to support this feature,                 you can still access product data that has not yet been rewritten to the new model by providing                 an x-api-version header set to \"1\".</p>             <p>Use the <strong>Publishing</strong> resource to publish pending product updates together as part of a set.</p>             <p>Use the <strong>Search</strong> resource to manage all settings and options for providing product search on your site, as                 well as search tuning rules.</p>         </div>
  *
- * The version of the OpenAPI document: 1.0.0
+ * The version of the OpenAPI document: v1
  * 
  *
  * NOTE: This class is auto generated by OpenAPI Generator (https://openapi-generator.tech).
@@ -21,6 +21,7 @@ import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import com.kibocommerce.sdk.catalogadministration.models.AdminUserAuditInfo;
+import com.kibocommerce.sdk.catalogadministration.models.CustomPropertyValues;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
@@ -49,12 +50,24 @@ import java.util.Set;
 import com.kibocommerce.sdk.common.JSON;
 
 /**
- * Container for the language-specific name of the discount. You will have a container for each supported language  (LocaleCode).  This enables you to display the discount name in multiple languages yet manage it as a single discount internally.
+ * Container for the language-specific name of the discount. You will have a container for each supported language (LocaleCode). This enables you to display the discount name in multiple languages yet manage it as a single discount internally.
  */
-@ApiModel(description = "Container for the language-specific name of the discount. You will have a container for each supported language  (LocaleCode).  This enables you to display the discount name in multiple languages yet manage it as a single discount internally.")
+@ApiModel(description = "Container for the language-specific name of the discount. You will have a container for each supported language (LocaleCode). This enables you to display the discount name in multiple languages yet manage it as a single discount internally.")
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
 public class DiscountLocalizedContent implements Serializable {
   private static final long serialVersionUID = 1L;
+
+  public static final String SERIALIZED_NAME_AUDIT_INFO = "auditInfo";
+  @SerializedName(SERIALIZED_NAME_AUDIT_INFO)
+  private AdminUserAuditInfo auditInfo;
+
+  public static final String SERIALIZED_NAME_CUSTOM_PROPERTY_VALUES = "customPropertyValues";
+  @SerializedName(SERIALIZED_NAME_CUSTOM_PROPERTY_VALUES)
+  private CustomPropertyValues customPropertyValues;
+
+  public static final String SERIALIZED_NAME_FRIENDLY_DESCRIPTION = "friendlyDescription";
+  @SerializedName(SERIALIZED_NAME_FRIENDLY_DESCRIPTION)
+  private String friendlyDescription;
 
   public static final String SERIALIZED_NAME_LOCALE_CODE = "localeCode";
   @SerializedName(SERIALIZED_NAME_LOCALE_CODE)
@@ -64,16 +77,77 @@ public class DiscountLocalizedContent implements Serializable {
   @SerializedName(SERIALIZED_NAME_NAME)
   private String name;
 
-  public static final String SERIALIZED_NAME_FRIENDLY_DESCRIPTION = "friendlyDescription";
-  @SerializedName(SERIALIZED_NAME_FRIENDLY_DESCRIPTION)
-  private String friendlyDescription;
-
-  public static final String SERIALIZED_NAME_AUDIT_INFO = "auditInfo";
-  @SerializedName(SERIALIZED_NAME_AUDIT_INFO)
-  private AdminUserAuditInfo auditInfo;
-
   public DiscountLocalizedContent() {
   }
+
+  public DiscountLocalizedContent auditInfo(AdminUserAuditInfo auditInfo) {
+    
+    this.auditInfo = auditInfo;
+    return this;
+  }
+
+   /**
+   * Get auditInfo
+   * @return auditInfo
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
+
+  public AdminUserAuditInfo getAuditInfo() {
+    return auditInfo;
+  }
+
+
+  public void setAuditInfo(AdminUserAuditInfo auditInfo) {
+    this.auditInfo = auditInfo;
+  }
+
+
+  public DiscountLocalizedContent customPropertyValues(CustomPropertyValues customPropertyValues) {
+    
+    this.customPropertyValues = customPropertyValues;
+    return this;
+  }
+
+   /**
+   * Get customPropertyValues
+   * @return customPropertyValues
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
+
+  public CustomPropertyValues getCustomPropertyValues() {
+    return customPropertyValues;
+  }
+
+
+  public void setCustomPropertyValues(CustomPropertyValues customPropertyValues) {
+    this.customPropertyValues = customPropertyValues;
+  }
+
+
+  public DiscountLocalizedContent friendlyDescription(String friendlyDescription) {
+    
+    this.friendlyDescription = friendlyDescription;
+    return this;
+  }
+
+   /**
+   * Promotional text or HTML that can be utilized as friendly content like \&quot;Buy this product now and get X!\&quot;
+   * @return friendlyDescription
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "Promotional text or HTML that can be utilized as friendly content like \"Buy this product now and get X!\"")
+
+  public String getFriendlyDescription() {
+    return friendlyDescription;
+  }
+
+
+  public void setFriendlyDescription(String friendlyDescription) {
+    this.friendlyDescription = friendlyDescription;
+  }
+
 
   public DiscountLocalizedContent localeCode(String localeCode) {
     
@@ -121,52 +195,6 @@ public class DiscountLocalizedContent implements Serializable {
   }
 
 
-  public DiscountLocalizedContent friendlyDescription(String friendlyDescription) {
-    
-    this.friendlyDescription = friendlyDescription;
-    return this;
-  }
-
-   /**
-   * Promotional text or HTML that can be utilized as friendly content like \&quot;Buy this product now and get X!\&quot;
-   * @return friendlyDescription
-  **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(value = "Promotional text or HTML that can be utilized as friendly content like \"Buy this product now and get X!\"")
-
-  public String getFriendlyDescription() {
-    return friendlyDescription;
-  }
-
-
-  public void setFriendlyDescription(String friendlyDescription) {
-    this.friendlyDescription = friendlyDescription;
-  }
-
-
-  public DiscountLocalizedContent auditInfo(AdminUserAuditInfo auditInfo) {
-    
-    this.auditInfo = auditInfo;
-    return this;
-  }
-
-   /**
-   * Get auditInfo
-   * @return auditInfo
-  **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
-
-  public AdminUserAuditInfo getAuditInfo() {
-    return auditInfo;
-  }
-
-
-  public void setAuditInfo(AdminUserAuditInfo auditInfo) {
-    this.auditInfo = auditInfo;
-  }
-
-
 
   @Override
   public boolean equals(Object o) {
@@ -177,10 +205,11 @@ public class DiscountLocalizedContent implements Serializable {
       return false;
     }
     DiscountLocalizedContent discountLocalizedContent = (DiscountLocalizedContent) o;
-    return Objects.equals(this.localeCode, discountLocalizedContent.localeCode) &&
-        Objects.equals(this.name, discountLocalizedContent.name) &&
+    return Objects.equals(this.auditInfo, discountLocalizedContent.auditInfo) &&
+        Objects.equals(this.customPropertyValues, discountLocalizedContent.customPropertyValues) &&
         Objects.equals(this.friendlyDescription, discountLocalizedContent.friendlyDescription) &&
-        Objects.equals(this.auditInfo, discountLocalizedContent.auditInfo);
+        Objects.equals(this.localeCode, discountLocalizedContent.localeCode) &&
+        Objects.equals(this.name, discountLocalizedContent.name);
   }
 
   private static <T> boolean equalsNullable(JsonNullable<T> a, JsonNullable<T> b) {
@@ -189,7 +218,7 @@ public class DiscountLocalizedContent implements Serializable {
 
   @Override
   public int hashCode() {
-    return Objects.hash(localeCode, name, friendlyDescription, auditInfo);
+    return Objects.hash(auditInfo, customPropertyValues, friendlyDescription, localeCode, name);
   }
 
   private static <T> int hashCodeNullable(JsonNullable<T> a) {
@@ -203,10 +232,11 @@ public class DiscountLocalizedContent implements Serializable {
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class DiscountLocalizedContent {\n");
+    sb.append("    auditInfo: ").append(toIndentedString(auditInfo)).append("\n");
+    sb.append("    customPropertyValues: ").append(toIndentedString(customPropertyValues)).append("\n");
+    sb.append("    friendlyDescription: ").append(toIndentedString(friendlyDescription)).append("\n");
     sb.append("    localeCode: ").append(toIndentedString(localeCode)).append("\n");
     sb.append("    name: ").append(toIndentedString(name)).append("\n");
-    sb.append("    friendlyDescription: ").append(toIndentedString(friendlyDescription)).append("\n");
-    sb.append("    auditInfo: ").append(toIndentedString(auditInfo)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -229,10 +259,11 @@ public class DiscountLocalizedContent implements Serializable {
   static {
     // a set of all properties/fields (JSON key names)
     openapiFields = new HashSet<String>();
+    openapiFields.add("auditInfo");
+    openapiFields.add("customPropertyValues");
+    openapiFields.add("friendlyDescription");
     openapiFields.add("localeCode");
     openapiFields.add("name");
-    openapiFields.add("friendlyDescription");
-    openapiFields.add("auditInfo");
 
     // a set of required properties/fields (JSON key names)
     openapiRequiredFields = new HashSet<String>();
@@ -267,18 +298,22 @@ public class DiscountLocalizedContent implements Serializable {
           throw new IllegalArgumentException(String.format("The required field `%s` is not found in the JSON string: %s", requiredField, jsonObj.toString()));
         }
       }
+      // validate the optional field `auditInfo`
+      if (jsonObj.get("auditInfo") != null && !jsonObj.get("auditInfo").isJsonNull()) {
+        AdminUserAuditInfo.validateJsonObject(jsonObj.getAsJsonObject("auditInfo"));
+      }
+      // validate the optional field `customPropertyValues`
+      if (jsonObj.get("customPropertyValues") != null && !jsonObj.get("customPropertyValues").isJsonNull()) {
+        CustomPropertyValues.validateJsonObject(jsonObj.getAsJsonObject("customPropertyValues"));
+      }
+      if ((jsonObj.get("friendlyDescription") != null && !jsonObj.get("friendlyDescription").isJsonNull()) && !jsonObj.get("friendlyDescription").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `friendlyDescription` to be a primitive type in the JSON string but got `%s`", jsonObj.get("friendlyDescription").toString()));
+      }
       if ((jsonObj.get("localeCode") != null && !jsonObj.get("localeCode").isJsonNull()) && !jsonObj.get("localeCode").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format("Expected the field `localeCode` to be a primitive type in the JSON string but got `%s`", jsonObj.get("localeCode").toString()));
       }
       if (!jsonObj.get("name").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format("Expected the field `name` to be a primitive type in the JSON string but got `%s`", jsonObj.get("name").toString()));
-      }
-      if ((jsonObj.get("friendlyDescription") != null && !jsonObj.get("friendlyDescription").isJsonNull()) && !jsonObj.get("friendlyDescription").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `friendlyDescription` to be a primitive type in the JSON string but got `%s`", jsonObj.get("friendlyDescription").toString()));
-      }
-      // validate the optional field `auditInfo`
-      if (jsonObj.get("auditInfo") != null && !jsonObj.get("auditInfo").isJsonNull()) {
-        AdminUserAuditInfo.validateJsonObject(jsonObj.getAsJsonObject("auditInfo"));
       }
   }
 

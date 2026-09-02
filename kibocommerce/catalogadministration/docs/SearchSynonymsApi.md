@@ -4,21 +4,21 @@ All URIs are relative to *http://https:/api*
 
 | Method | HTTP request | Description |
 |------------- | ------------- | -------------|
-| [**addSynonymDefinition**](SearchSynonymsApi.md#addSynonymDefinition) | **POST** /commerce/catalog/admin/search/synonyms | Add synonym definition |
-| [**deleteSynonymDefinition**](SearchSynonymsApi.md#deleteSynonymDefinition) | **DELETE** /commerce/catalog/admin/search/synonyms/{synonymId} | Delete synonym definition |
-| [**getAllSynonymDefinitionCollectionsForMasterCatalog**](SearchSynonymsApi.md#getAllSynonymDefinitionCollectionsForMasterCatalog) | **GET** /commerce/catalog/admin/search/master-catalog-synonym-definitions/{languageCode} | Get synonym definition collections |
-| [**getSynonymDefinition**](SearchSynonymsApi.md#getSynonymDefinition) | **GET** /commerce/catalog/admin/search/synonyms/{synonymId} | Get synonym definition |
-| [**getSynonymDefinitionCollection**](SearchSynonymsApi.md#getSynonymDefinitionCollection) | **GET** /commerce/catalog/admin/search/synonym-definitions/{localeCode} | Get synonym definition collection |
-| [**getSynonymDefinitions**](SearchSynonymsApi.md#getSynonymDefinitions) | **GET** /commerce/catalog/admin/search/synonyms | Get synonym definitions |
-| [**updateSynonymDefinition**](SearchSynonymsApi.md#updateSynonymDefinition) | **PUT** /commerce/catalog/admin/search/synonyms/{synonymId} | Update synonym definition |
-| [**updateSynonymDefinitionCollection**](SearchSynonymsApi.md#updateSynonymDefinitionCollection) | **POST** /commerce/catalog/admin/search/synonym-definitions/{localeCode} | Add/Update synonym definition collection |
+| [**addSynonymDefinition**](SearchSynonymsApi.md#addSynonymDefinition) | **POST** /commerce/catalog/admin/search/synonyms | Add Synonym Definition |
+| [**deleteSynonymDefinition**](SearchSynonymsApi.md#deleteSynonymDefinition) | **DELETE** /commerce/catalog/admin/search/synonyms/{synonymId} | Delete Synonym Definition |
+| [**getAllSynonymDefinitionCollectionsForMasterCatalog**](SearchSynonymsApi.md#getAllSynonymDefinitionCollectionsForMasterCatalog) | **GET** /commerce/catalog/admin/search/master-catalog-synonym-definitions/{languageCode} | Get Synonym Definition Collections |
+| [**getSynonymDefinition**](SearchSynonymsApi.md#getSynonymDefinition) | **GET** /commerce/catalog/admin/search/synonyms/{synonymId} | Get Synonym Definition |
+| [**getSynonymDefinitionCollection**](SearchSynonymsApi.md#getSynonymDefinitionCollection) | **GET** /commerce/catalog/admin/search/synonym-definitions/{localeCode} | Get Synonym Definition Collection |
+| [**getSynonymDefinitions**](SearchSynonymsApi.md#getSynonymDefinitions) | **GET** /commerce/catalog/admin/search/synonyms | Get Synonym Definitions |
+| [**updateSynonymDefinition**](SearchSynonymsApi.md#updateSynonymDefinition) | **PUT** /commerce/catalog/admin/search/synonyms/{synonymId} | Update Synonym Definition |
+| [**updateSynonymDefinitionCollection**](SearchSynonymsApi.md#updateSynonymDefinitionCollection) | **POST** /commerce/catalog/admin/search/synonym-definitions/{localeCode} | Add Synonym Definition Collection |
 
 
 <a name="addSynonymDefinition"></a>
 # **addSynonymDefinition**
-> SynonymDefinition addSynonymDefinition(synonymDefinition)
+> SynonymDefinition addSynonymDefinition(responseFields, synonymDefinition)
 
-Add synonym definition
+Add Synonym Definition
 
 Add synonym definition
 
@@ -41,14 +41,11 @@ public class Example {
     HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
     bearerAuth.setBearerToken("BEARER TOKEN");
 
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
-
     SearchSynonymsApi apiInstance = new SearchSynonymsApi(defaultClient);
+    String responseFields = "responseFields_example"; // String | limits which fields are returned in the response body
     SynonymDefinition synonymDefinition = new SynonymDefinition(); // SynonymDefinition | 
     try {
-      SynonymDefinition result = apiInstance.addSynonymDefinition(synonymDefinition);
+      SynonymDefinition result = apiInstance.addSynonymDefinition(responseFields, synonymDefinition);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling SearchSynonymsApi#addSynonymDefinition");
@@ -65,6 +62,7 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
+| **responseFields** | **String**| limits which fields are returned in the response body | [optional] |
 | **synonymDefinition** | [**SynonymDefinition**](SynonymDefinition.md)|  | [optional] |
 
 ### Return type
@@ -73,7 +71,7 @@ public class Example {
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth), [clientOauth2](../README.md#clientOauth2)
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
@@ -83,15 +81,15 @@ public class Example {
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Success |  -  |
+| **200** | OK |  -  |
 
 <a name="deleteSynonymDefinition"></a>
 # **deleteSynonymDefinition**
 > deleteSynonymDefinition(synonymId)
 
-Delete synonym definition
+Delete Synonym Definition
 
-Delete synonym definition
+Delete a specific synonym definition by ID.
 
 ### Example
 ```java
@@ -111,10 +109,6 @@ public class Example {
     // Configure HTTP bearer authorization: bearerAuth
     HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
     bearerAuth.setBearerToken("BEARER TOKEN");
-
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
 
     SearchSynonymsApi apiInstance = new SearchSynonymsApi(defaultClient);
     Integer synonymId = 56; // Integer | 
@@ -143,7 +137,7 @@ null (empty response body)
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth), [clientOauth2](../README.md#clientOauth2)
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
@@ -153,15 +147,15 @@ null (empty response body)
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Success |  -  |
+| **200** | OK |  -  |
 
 <a name="getAllSynonymDefinitionCollectionsForMasterCatalog"></a>
 # **getAllSynonymDefinitionCollectionsForMasterCatalog**
-> SynonymDefinitionCollection getAllSynonymDefinitionCollectionsForMasterCatalog(languageCode)
+> SynonymDefinitionCollection getAllSynonymDefinitionCollectionsForMasterCatalog(languageCode, responseFields)
 
-Get synonym definition collections
+Get Synonym Definition Collections
 
-Get synonym definition collections
+Get synonym definition collections.
 
 ### Example
 ```java
@@ -182,14 +176,11 @@ public class Example {
     HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
     bearerAuth.setBearerToken("BEARER TOKEN");
 
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
-
     SearchSynonymsApi apiInstance = new SearchSynonymsApi(defaultClient);
     String languageCode = "languageCode_example"; // String | 
+    String responseFields = "responseFields_example"; // String | limits which fields are returned in the response body
     try {
-      SynonymDefinitionCollection result = apiInstance.getAllSynonymDefinitionCollectionsForMasterCatalog(languageCode);
+      SynonymDefinitionCollection result = apiInstance.getAllSynonymDefinitionCollectionsForMasterCatalog(languageCode, responseFields);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling SearchSynonymsApi#getAllSynonymDefinitionCollectionsForMasterCatalog");
@@ -207,6 +198,7 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **languageCode** | **String**|  | |
+| **responseFields** | **String**| limits which fields are returned in the response body | [optional] |
 
 ### Return type
 
@@ -214,7 +206,7 @@ public class Example {
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth), [clientOauth2](../README.md#clientOauth2)
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
@@ -224,15 +216,15 @@ public class Example {
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Success |  -  |
+| **200** | OK |  -  |
 
 <a name="getSynonymDefinition"></a>
 # **getSynonymDefinition**
-> SynonymDefinition getSynonymDefinition(synonymId)
+> SynonymDefinition getSynonymDefinition(synonymId, responseFields)
 
-Get synonym definition
+Get Synonym Definition
 
-Get synonym definition
+Get a specific synonym definition by ID.
 
 ### Example
 ```java
@@ -253,14 +245,11 @@ public class Example {
     HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
     bearerAuth.setBearerToken("BEARER TOKEN");
 
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
-
     SearchSynonymsApi apiInstance = new SearchSynonymsApi(defaultClient);
     Integer synonymId = 56; // Integer | 
+    String responseFields = "responseFields_example"; // String | limits which fields are returned in the response body
     try {
-      SynonymDefinition result = apiInstance.getSynonymDefinition(synonymId);
+      SynonymDefinition result = apiInstance.getSynonymDefinition(synonymId, responseFields);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling SearchSynonymsApi#getSynonymDefinition");
@@ -278,6 +267,7 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **synonymId** | **Integer**|  | |
+| **responseFields** | **String**| limits which fields are returned in the response body | [optional] |
 
 ### Return type
 
@@ -285,7 +275,7 @@ public class Example {
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth), [clientOauth2](../README.md#clientOauth2)
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
@@ -295,15 +285,15 @@ public class Example {
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Success |  -  |
+| **200** | OK |  -  |
 
 <a name="getSynonymDefinitionCollection"></a>
 # **getSynonymDefinitionCollection**
-> SynonymDefinitionCollection getSynonymDefinitionCollection(localeCode)
+> SynonymDefinitionCollection getSynonymDefinitionCollection(localeCode, responseFields)
 
-Get synonym definition collection
+Get Synonym Definition Collection
 
-Get synonym definition collection
+Get synonym definition collection.
 
 ### Example
 ```java
@@ -324,14 +314,11 @@ public class Example {
     HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
     bearerAuth.setBearerToken("BEARER TOKEN");
 
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
-
     SearchSynonymsApi apiInstance = new SearchSynonymsApi(defaultClient);
     String localeCode = "localeCode_example"; // String | 
+    String responseFields = "responseFields_example"; // String | limits which fields are returned in the response body
     try {
-      SynonymDefinitionCollection result = apiInstance.getSynonymDefinitionCollection(localeCode);
+      SynonymDefinitionCollection result = apiInstance.getSynonymDefinitionCollection(localeCode, responseFields);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling SearchSynonymsApi#getSynonymDefinitionCollection");
@@ -349,6 +336,7 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **localeCode** | **String**|  | |
+| **responseFields** | **String**| limits which fields are returned in the response body | [optional] |
 
 ### Return type
 
@@ -356,7 +344,7 @@ public class Example {
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth), [clientOauth2](../README.md#clientOauth2)
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
@@ -366,15 +354,15 @@ public class Example {
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Success |  -  |
+| **200** | OK |  -  |
 
 <a name="getSynonymDefinitions"></a>
 # **getSynonymDefinitions**
-> SynonymDefinitionPagedCollection getSynonymDefinitions(startIndex, pageSize, sortBy, filter)
+> SynonymDefinitionPagedCollection getSynonymDefinitions(startIndex, pageSize, sortBy, filter, responseFields)
 
-Get synonym definitions
+Get Synonym Definitions
 
-Get synonym definitions
+Get synonym definitions.
 
 ### Example
 ```java
@@ -395,17 +383,14 @@ public class Example {
     HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
     bearerAuth.setBearerToken("BEARER TOKEN");
 
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
-
     SearchSynonymsApi apiInstance = new SearchSynonymsApi(defaultClient);
     Integer startIndex = 0; // Integer | 
     Integer pageSize = 0; // Integer | 
     String sortBy = "sortBy_example"; // String | 
     String filter = "filter_example"; // String | 
+    String responseFields = "responseFields_example"; // String | limits which fields are returned in the response body
     try {
-      SynonymDefinitionPagedCollection result = apiInstance.getSynonymDefinitions(startIndex, pageSize, sortBy, filter);
+      SynonymDefinitionPagedCollection result = apiInstance.getSynonymDefinitions(startIndex, pageSize, sortBy, filter, responseFields);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling SearchSynonymsApi#getSynonymDefinitions");
@@ -426,6 +411,7 @@ public class Example {
 | **pageSize** | **Integer**|  | [optional] [default to 0] |
 | **sortBy** | **String**|  | [optional] |
 | **filter** | **String**|  | [optional] |
+| **responseFields** | **String**| limits which fields are returned in the response body | [optional] |
 
 ### Return type
 
@@ -433,7 +419,7 @@ public class Example {
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth), [clientOauth2](../README.md#clientOauth2)
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
@@ -443,15 +429,15 @@ public class Example {
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Success |  -  |
+| **200** | OK |  -  |
 
 <a name="updateSynonymDefinition"></a>
 # **updateSynonymDefinition**
-> SynonymDefinition updateSynonymDefinition(synonymId, synonymDefinition)
+> SynonymDefinition updateSynonymDefinition(synonymId, responseFields, synonymDefinition)
 
-Update synonym definition
+Update Synonym Definition
 
-Update synonym definition
+Update a specific synonym definition by ID.
 
 ### Example
 ```java
@@ -472,15 +458,12 @@ public class Example {
     HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
     bearerAuth.setBearerToken("BEARER TOKEN");
 
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
-
     SearchSynonymsApi apiInstance = new SearchSynonymsApi(defaultClient);
     Integer synonymId = 56; // Integer | 
+    String responseFields = "responseFields_example"; // String | limits which fields are returned in the response body
     SynonymDefinition synonymDefinition = new SynonymDefinition(); // SynonymDefinition | 
     try {
-      SynonymDefinition result = apiInstance.updateSynonymDefinition(synonymId, synonymDefinition);
+      SynonymDefinition result = apiInstance.updateSynonymDefinition(synonymId, responseFields, synonymDefinition);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling SearchSynonymsApi#updateSynonymDefinition");
@@ -498,6 +481,7 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **synonymId** | **Integer**|  | |
+| **responseFields** | **String**| limits which fields are returned in the response body | [optional] |
 | **synonymDefinition** | [**SynonymDefinition**](SynonymDefinition.md)|  | [optional] |
 
 ### Return type
@@ -506,7 +490,7 @@ public class Example {
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth), [clientOauth2](../README.md#clientOauth2)
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
@@ -516,15 +500,15 @@ public class Example {
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Success |  -  |
+| **200** | OK |  -  |
 
 <a name="updateSynonymDefinitionCollection"></a>
 # **updateSynonymDefinitionCollection**
-> SynonymDefinitionCollection updateSynonymDefinitionCollection(localeCode, synonymDefinitionCollection)
+> SynonymDefinitionCollection updateSynonymDefinitionCollection(localeCode, responseFields, synonymDefinitionCollection)
 
-Add/Update synonym definition collection
+Add Synonym Definition Collection
 
-Upsert synonym definition collection
+Add or update a synonym definition collection.
 
 ### Example
 ```java
@@ -545,15 +529,12 @@ public class Example {
     HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
     bearerAuth.setBearerToken("BEARER TOKEN");
 
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
-
     SearchSynonymsApi apiInstance = new SearchSynonymsApi(defaultClient);
     String localeCode = "localeCode_example"; // String | 
+    String responseFields = "responseFields_example"; // String | limits which fields are returned in the response body
     SynonymDefinitionCollection synonymDefinitionCollection = new SynonymDefinitionCollection(); // SynonymDefinitionCollection | 
     try {
-      SynonymDefinitionCollection result = apiInstance.updateSynonymDefinitionCollection(localeCode, synonymDefinitionCollection);
+      SynonymDefinitionCollection result = apiInstance.updateSynonymDefinitionCollection(localeCode, responseFields, synonymDefinitionCollection);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling SearchSynonymsApi#updateSynonymDefinitionCollection");
@@ -571,6 +552,7 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **localeCode** | **String**|  | |
+| **responseFields** | **String**| limits which fields are returned in the response body | [optional] |
 | **synonymDefinitionCollection** | [**SynonymDefinitionCollection**](SynonymDefinitionCollection.md)|  | [optional] |
 
 ### Return type
@@ -579,7 +561,7 @@ public class Example {
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth), [clientOauth2](../README.md#clientOauth2)
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
@@ -589,5 +571,5 @@ public class Example {
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Success |  -  |
+| **200** | OK |  -  |
 

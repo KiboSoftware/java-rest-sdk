@@ -8,14 +8,14 @@ Summary information for Move operation
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
-|**totalCount** | **Long** |  |  [optional] |
-|**moveCount** | **Long** |  |  [optional] |
+|**destPath** | **String** |  |  [optional] |
 |**duplicateCount** | **Long** |  |  [optional] |
 |**messages** | **List&lt;String&gt;** |  |  [optional] |
-|**sourcePath** | **String** |  |  [optional] |
-|**destPath** | **String** |  |  [optional] |
+|**moveCount** | **Long** |  |  [optional] |
 |**preview** | **Boolean** |  |  [optional] |
 |**renameDuplicates** | **Boolean** |  |  [optional] |
+|**sourcePath** | **String** |  |  [optional] |
+|**totalCount** | **Long** |  |  [optional] |
 
 
 ## Implemented Interfaces

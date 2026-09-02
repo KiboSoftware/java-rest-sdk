@@ -8,10 +8,10 @@
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
 |**isCurrent** | **Boolean** |  |  [optional] |
-|**minQty** | **Integer** |  |  [optional] |
 |**maxQty** | **Integer** |  |  [optional] |
-|**priceRange** | [**ProductPriceRange**](ProductPriceRange.md) |  |  [optional] |
+|**minQty** | **Integer** |  |  [optional] |
 |**price** | [**CatalogRuntimesProductPrice**](CatalogRuntimesProductPrice.md) |  |  [optional] |
+|**priceRange** | [**ProductPriceRange**](ProductPriceRange.md) |  |  [optional] |
 
 
 ## Implemented Interfaces

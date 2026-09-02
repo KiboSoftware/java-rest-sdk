@@ -2,7 +2,7 @@
 
 # PaymentGatewayResponseData
 
-Payment gateway reponse data
+Payment gateway response data
 
 ## Properties
 

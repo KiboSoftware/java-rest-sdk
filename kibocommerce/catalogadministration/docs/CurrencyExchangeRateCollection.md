@@ -8,8 +8,8 @@ Non-pages collection of currency-exchange-rates.
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
-|**totalCount** | **Integer** |  |  [optional] |
 |**items** | [**List&lt;CatalogAdminsCurrencyExchangeRate&gt;**](CatalogAdminsCurrencyExchangeRate.md) |  |  [optional] |
+|**totalCount** | **Integer** |  |  [optional] |
 
 
 ## Implemented Interfaces

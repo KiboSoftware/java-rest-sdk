@@ -4,19 +4,19 @@ All URIs are relative to *http://https:/api*
 
 | Method | HTTP request | Description |
 |------------- | ------------- | -------------|
-| [**callList**](ExportApi.md#callList) | **GET** /platform/data/export | List |
-| [**create**](ExportApi.md#create) | **POST** /platform/data/export | Create |
-| [**delete**](ExportApi.md#delete) | **DELETE** /platform/data/export/{id} | Delete |
-| [**get**](ExportApi.md#get) | **GET** /platform/data/export/{id} | Get |
+| [**callList**](ExportApi.md#callList) | **GET** /platform/data/export | Get Export Jobs |
+| [**create**](ExportApi.md#create) | **POST** /platform/data/export | Create Export Job |
+| [**delete**](ExportApi.md#delete) | **DELETE** /platform/data/export/{id} | Delete Export Job |
+| [**get**](ExportApi.md#get) | **GET** /platform/data/export/{id} | Get Export Job |
 
 
 <a name="callList"></a>
 # **callList**
-> List&lt;ExportJob&gt; callList(startIndex, pageSize, filter)
+> List&lt;ExportJob&gt; callList(startIndex, pageSize, filter, responseFields)
 
-List
+Get Export Jobs
 
-List
+Retrieves a list of all export jobs. For detailed usage, file format specifications, and field references, see the [Import/Export API Overview](/pages/import-export-api-overview).
 
 ### Example
 ```java
@@ -37,16 +37,13 @@ public class Example {
     HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
     bearerAuth.setBearerToken("BEARER TOKEN");
 
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
-
     ExportApi apiInstance = new ExportApi(defaultClient);
     Integer startIndex = 0; // Integer | 
     Integer pageSize = 0; // Integer | 
     String filter = "filter_example"; // String | 
+    String responseFields = "responseFields_example"; // String | limits which fields are returned in the response body
     try {
-      List<ExportJob> result = apiInstance.callList(startIndex, pageSize, filter);
+      List<ExportJob> result = apiInstance.callList(startIndex, pageSize, filter, responseFields);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling ExportApi#callList");
@@ -66,6 +63,7 @@ public class Example {
 | **startIndex** | **Integer**|  | [optional] [default to 0] |
 | **pageSize** | **Integer**|  | [optional] [default to 0] |
 | **filter** | **String**|  | [optional] |
+| **responseFields** | **String**| limits which fields are returned in the response body | [optional] |
 
 ### Return type
 
@@ -73,7 +71,7 @@ public class Example {
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth), [clientOauth2](../README.md#clientOauth2)
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
@@ -83,15 +81,15 @@ public class Example {
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Success |  -  |
+| **200** | OK |  -  |
 
 <a name="create"></a>
 # **create**
-> ExportJob create(exportJob)
+> ExportJob create(responseFields, exportJob)
 
-Create
+Create Export Job
 
-Create
+Creates a new export job. For detailed usage, file format specifications, and field references, see the [Import/Export API Overview](/pages/import-export-api-overview).
 
 ### Example
 ```java
@@ -112,14 +110,11 @@ public class Example {
     HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
     bearerAuth.setBearerToken("BEARER TOKEN");
 
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
-
     ExportApi apiInstance = new ExportApi(defaultClient);
+    String responseFields = "responseFields_example"; // String | limits which fields are returned in the response body
     ExportJob exportJob = new ExportJob(); // ExportJob | 
     try {
-      ExportJob result = apiInstance.create(exportJob);
+      ExportJob result = apiInstance.create(responseFields, exportJob);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling ExportApi#create");
@@ -136,6 +131,7 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
+| **responseFields** | **String**| limits which fields are returned in the response body | [optional] |
 | **exportJob** | [**ExportJob**](ExportJob.md)|  | [optional] |
 
 ### Return type
@@ -144,7 +140,7 @@ public class Example {
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth), [clientOauth2](../README.md#clientOauth2)
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
@@ -154,15 +150,15 @@ public class Example {
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Success |  -  |
+| **200** | OK |  -  |
 
 <a name="delete"></a>
 # **delete**
 > delete(id)
 
-Delete
+Delete Export Job
 
-Delete
+Deletes an existing export job. For detailed usage, file format specifications, and field references, see the [Import/Export API Overview](/pages/import-export-api-overview).
 
 ### Example
 ```java
@@ -182,10 +178,6 @@ public class Example {
     // Configure HTTP bearer authorization: bearerAuth
     HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
     bearerAuth.setBearerToken("BEARER TOKEN");
-
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
 
     ExportApi apiInstance = new ExportApi(defaultClient);
     String id = "id_example"; // String | 
@@ -214,7 +206,7 @@ null (empty response body)
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth), [clientOauth2](../README.md#clientOauth2)
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
@@ -224,15 +216,15 @@ null (empty response body)
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Success |  -  |
+| **200** | OK |  -  |
 
 <a name="get"></a>
 # **get**
-> ExportJob get(id)
+> ExportJob get(id, responseFields)
 
-Get
+Get Export Job
 
-Get
+Retrieves an export job by ID. For detailed usage, file format specifications, and field references, see the [Import/Export API Overview](/pages/import-export-api-overview).
 
 ### Example
 ```java
@@ -253,14 +245,11 @@ public class Example {
     HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
     bearerAuth.setBearerToken("BEARER TOKEN");
 
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
-
     ExportApi apiInstance = new ExportApi(defaultClient);
     String id = "id_example"; // String | 
+    String responseFields = "responseFields_example"; // String | limits which fields are returned in the response body
     try {
-      ExportJob result = apiInstance.get(id);
+      ExportJob result = apiInstance.get(id, responseFields);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling ExportApi#get");
@@ -278,6 +267,7 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **id** | **String**|  | |
+| **responseFields** | **String**| limits which fields are returned in the response body | [optional] |
 
 ### Return type
 
@@ -285,7 +275,7 @@ public class Example {
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth), [clientOauth2](../README.md#clientOauth2)
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
@@ -295,5 +285,5 @@ public class Example {
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Success |  -  |
+| **200** | OK |  -  |
 

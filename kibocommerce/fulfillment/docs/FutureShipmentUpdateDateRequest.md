@@ -8,7 +8,8 @@
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
 |**bypassFutureAllocateDeallocate** | **Boolean** |  |  [optional] |
-|**futureDate** | **OffsetDateTime** |  |  |
+|**futureDate** | **OffsetDateTime** |  |  [optional] |
+|**runId** | **String** |  |  [optional] |
 
 
 ## Implemented Interfaces

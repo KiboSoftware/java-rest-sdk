@@ -1,134 +1,124 @@
 openapi: 3.0.1
 info:
-  description: OpenAPI Spec for Kibo ShippingRuntime Service
-  title: Kibo ShippingRuntime Service
+  description: |-
+    <div id="overview_SHIPPING">
+                <h2>SHIPPING</h2>
+                <p>The Shipping APIs are a collection of resources for administrating shipping settings such as carrier configurations and
+                    shipping profiles. For more information about site settings and the associated configurations in the Unified Commerce Admin
+                    interface, see the <a href="/pages/shipping-settings">Shipping Settings
+                        documentation</a>.</p>
+                <p>Use the <strong>Carrier Configuration</strong> (specific and global) resources to manage your settings for fulfillment carriers.</p>
+                <p>Use the <strong>Carrier Credential</strong> and <strong>Credential Set</strong> resources to manage the authentication for your carrier configurations.</p>
+                <p>Use the <strong>Shipping</strong> and <strong>Shipping Profile</strong> resources to set rules for shipping fees, profiles, and inclusion.</p>
+                <p>Use the <strong>Target Rules</strong> resource to manage your target rules for products and zones. For example, you can set specific rules that dictate shipping options for specific products.</p>
+            </div>
+  title: Shipping Admin
+  version: v1
 servers:
-- description: TenantPod Host
-  url: "https://{tenantPodHost}/api"
-- description: Tenant Level Api
-  url: "https://t{tenantId}.{env}.mozu.com/api"
-  variables:
-    tenantId:
-      default: "0"
-      description: Id of the Tenant
-    env:
-      default: sandbox
-      enum:
-      - sandbox
-      - tp1
-      - tp2
-      - tp3
-      - tp4
-      - tp5
-      - stg1
-      - stg2
-- description: Site Level Api
-  url: "https://t{tenantId}-s{siteId}.{env}.mozu.com/api"
-  variables:
-    tenantId:
-      default: "0"
-      description: Id of the Tenant
-    siteId:
-      default: "0"
-      description: Id of the Site
-    env:
-      default: sandbox
-      enum:
-      - sandbox
-      - tp1
-      - tp2
-      - tp3
-      - tp4
-      - tp5
-      - stg1
-- description: HomePod Api
-  url: https://home.mozu.com/api
-- description: EURO Tenant Level Api
-  url: "https://t{tenantId}.{env}.euw1.kibocommerce.com/api"
-  variables:
-    tenantId:
-      default: "0"
-      description: Id of the Tenant
-    env:
-      default: sandbox
-      enum:
-      - sb
-      - tp1
-- description: EURO Site Level Api
-  url: "https://t{tenantId}-s{siteId}.{env}.euw1.kibocommerce.com/api"
-  variables:
-    tenantId:
-      default: "0"
-      description: Id of the Tenant
-    siteId:
-      default: "0"
-      description: Id of the Site
-    env:
-      default: sandbox
-      enum:
-      - sb
-      - tp1
-- description: EURO HomePod Api
-  url: https://home.euw1.kibocommerce.com/api
+- url: "https://{tenantPodHost}/api"
 security:
 - bearerAuth: []
-  clientOauth2: []
 paths:
   /commerce/catalog/storefront/shipping/carriers:
     get:
       description: Get a list of supported carriers.
       operationId: getCarriers
+      parameters:
+      - description: limits which fields are returned in the response body
+        explode: true
+        in: query
+        name: responseFields
+        required: false
+        schema:
+          type: string
+        style: form
       responses:
         "200":
           content:
-            text/plain:
-              schema:
-                $ref: '#/components/schemas/CarrierResponse'
             application/json:
               schema:
                 $ref: '#/components/schemas/CarrierResponse'
             text/json:
               schema:
                 $ref: '#/components/schemas/CarrierResponse'
-          description: Success
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/CarrierResponse'
+          description: OK
       summary: Get Carriers
       tags:
       - Shipping
       x-accepts: application/json
-  /commerce/catalog/storefront/shipping/request-rates:
+  /commerce/catalog/storefront/shipping/get-labels:
     post:
-      description: Get Rate Responses for a Rate Request
-      operationId: getRates
+      description: Get shipping labels by tracking number.
+      operationId: getLabelsByTrackingNumber
       parameters:
-      - description: ""
+      - description: limits which fields are returned in the response body
         explode: true
         in: query
-        name: includeRawResponse
+        name: responseFields
         required: false
         schema:
-          default: false
-          type: boolean
+          type: string
         style: form
       requestBody:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/RateRequest'
+              $ref: '#/components/schemas/LabelRequest'
         description: ""
       responses:
         "200":
           content:
-            text/plain:
-              schema:
-                $ref: '#/components/schemas/RatesResponse'
             application/json:
               schema:
-                $ref: '#/components/schemas/RatesResponse'
+                $ref: '#/components/schemas/LabelResponse'
             text/json:
               schema:
-                $ref: '#/components/schemas/RatesResponse'
-          description: Success
-      summary: Get Rates
+                $ref: '#/components/schemas/LabelResponse'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/LabelResponse'
+          description: OK
+      summary: Get Labels By Tracking Number
+      tags:
+      - Shipping
+      x-content-type: application/json
+      x-accepts: application/json
+  /commerce/catalog/storefront/shipping/request-labels:
+    post:
+      description: Get Shipping Label for the Service Type Requested
+      operationId: getLabels
+      parameters:
+      - description: limits which fields are returned in the response body
+        explode: true
+        in: query
+        name: responseFields
+        required: false
+        schema:
+          type: string
+        style: form
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ShipmentRequest'
+        description: ""
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ShippingRuntimeShipmentResponse'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ShippingRuntimeShipmentResponse'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ShippingRuntimeShipmentResponse'
+          description: OK
+      summary: Get Labels
       tags:
       - Shipping
       x-content-type: application/json
@@ -147,6 +137,14 @@ paths:
           default: false
           type: boolean
         style: form
+      - description: limits which fields are returned in the response body
+        explode: true
+        in: query
+        name: responseFields
+        required: false
+        schema:
+          type: string
+        style: form
       requestBody:
         content:
           application/json:
@@ -158,11 +156,6 @@ paths:
       responses:
         "200":
           content:
-            text/plain:
-              schema:
-                items:
-                  $ref: '#/components/schemas/RatesResponseGroup'
-                type: array
             application/json:
               schema:
                 items:
@@ -173,147 +166,275 @@ paths:
                 items:
                   $ref: '#/components/schemas/RatesResponseGroup'
                 type: array
-          description: Success
+            text/plain:
+              schema:
+                items:
+                  $ref: '#/components/schemas/RatesResponseGroup'
+                type: array
+          description: OK
       summary: Get Multi Rates
       tags:
       - Shipping
       x-content-type: application/json
       x-accepts: application/json
-  /commerce/catalog/storefront/shipping/request-labels:
+  /commerce/catalog/storefront/shipping/request-rates:
     post:
-      description: Get Shipping Label for the Service Type Requested
-      operationId: getLabels
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/ShipmentRequest'
-        description: ""
-      responses:
-        "200":
-          content:
-            text/plain:
-              schema:
-                $ref: '#/components/schemas/ShipmentResponse'
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ShipmentResponse'
-            text/json:
-              schema:
-                $ref: '#/components/schemas/ShipmentResponse'
-          description: Success
-      summary: Get Labels
-      tags:
-      - Shipping
-      x-content-type: application/json
-      x-accepts: application/json
-  /commerce/catalog/storefront/shipping/request-manifest:
-    post:
-      description: Get Manifest for the list Shipping Labels
-      operationId: getManifest
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/ShippingRuntimeManifestRequest'
-        description: ""
-      responses:
-        "200":
-          content:
-            text/plain:
-              schema:
-                $ref: '#/components/schemas/ManifestResponse'
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ManifestResponse'
-            text/json:
-              schema:
-                $ref: '#/components/schemas/ManifestResponse'
-          description: Success
-      summary: Get Manifest
-      tags:
-      - Shipping
-      x-content-type: application/json
-      x-accepts: application/json
-  /commerce/catalog/storefront/shipping/{carrierId}/get-manifest-url/{manifestId}:
-    get:
-      description: Get Manifest URL for the Manifest Id
-      operationId: getManifestURL
+      description: Get Rate Responses for a Rate Request
+      operationId: getRates
       parameters:
       - description: ""
-        explode: false
-        in: path
-        name: carrierId
-        required: true
+        explode: true
+        in: query
+        name: includeRawResponse
+        required: false
+        schema:
+          default: false
+          type: boolean
+        style: form
+      - description: limits which fields are returned in the response body
+        explode: true
+        in: query
+        name: responseFields
+        required: false
         schema:
           type: string
-        style: simple
-      - description: ""
-        explode: false
-        in: path
-        name: manifestId
-        required: true
-        schema:
-          type: string
-        style: simple
-      responses:
-        "200":
-          content:
-            text/plain:
-              schema:
-                type: string
-            application/json:
-              schema:
-                type: string
-            text/json:
-              schema:
-                type: string
-          description: Success
-      summary: Get Manifest URL
-      tags:
-      - Shipping
-      x-accepts: application/json
-  /commerce/catalog/storefront/shipping/cancel-labels:
-    post:
-      description: Cancel a Unused Label
-      operationId: cancelLabels
+        style: form
       requestBody:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/CancelLabelRequest'
+              $ref: '#/components/schemas/RateRequest'
         description: ""
       responses:
         "200":
           content:
-            text/plain:
-              schema:
-                $ref: '#/components/schemas/CancelLabelResponse'
             application/json:
               schema:
-                $ref: '#/components/schemas/CancelLabelResponse'
+                $ref: '#/components/schemas/RatesResponse'
             text/json:
               schema:
-                $ref: '#/components/schemas/CancelLabelResponse'
-          description: Success
-      summary: Cancel Labels
+                $ref: '#/components/schemas/RatesResponse'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/RatesResponse'
+          description: OK
+      summary: Get Rates
+      tags:
+      - Shipping
+      x-content-type: application/json
+      x-accepts: application/json
+  /commerce/catalog/storefront/shipping/transit-times:
+    post:
+      description: Get Transit Times
+      operationId: getTransitTimes
+      parameters:
+      - description: limits which fields are returned in the response body
+        explode: true
+        in: query
+        name: responseFields
+        required: false
+        schema:
+          type: string
+        style: form
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TransitTimesRequest'
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TransitTimesResponse'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/TransitTimesResponse'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/TransitTimesResponse'
+          description: OK
+      summary: Get Transit Times
       tags:
       - Shipping
       x-content-type: application/json
       x-accepts: application/json
 components:
   schemas:
+    AdminUserAuditInfo:
+      example:
+        createBy: createBy
+        updateDate: 2000-01-23T04:56:07.000+00:00
+        updateBy: updateBy
+        createDate: 2000-01-23T04:56:07.000+00:00
+      properties:
+        createBy:
+          nullable: true
+          type: string
+        createDate:
+          format: date-time
+          nullable: true
+          type: string
+        updateBy:
+          nullable: true
+          type: string
+        updateDate:
+          format: date-time
+          nullable: true
+          type: string
+      type: object
+    CarrierMethods:
+      properties:
+        carrierId:
+          nullable: true
+          type: string
+        shippingMethods:
+          description: Selected Shipping Service Type.
+          items:
+            type: string
+          nullable: true
+          type: array
+      type: object
+    CarrierRatesResponse:
+      example:
+        shippingRates:
+        - daysInTransit: 6
+          amount: 0.8008281904610115
+          code: code
+          data: "{}"
+          messages:
+          - severity: severity
+            helpLink: helpLink
+            message: message
+          - severity: severity
+            helpLink: helpLink
+            message: message
+          shippingItemRates:
+          - itemId: itemId
+            amount: 1.4658129805029452
+            quantity: 5
+          - itemId: itemId
+            amount: 1.4658129805029452
+            quantity: 5
+          windows:
+          - pickupTime:
+              startsAt: 2000-01-23T04:56:07.000+00:00
+              endsAt: 2000-01-23T04:56:07.000+00:00
+            dropoffTime:
+              startsAt: 2000-01-23T04:56:07.000+00:00
+              endsAt: 2000-01-23T04:56:07.000+00:00
+          - pickupTime:
+              startsAt: 2000-01-23T04:56:07.000+00:00
+              endsAt: 2000-01-23T04:56:07.000+00:00
+            dropoffTime:
+              startsAt: 2000-01-23T04:56:07.000+00:00
+              endsAt: 2000-01-23T04:56:07.000+00:00
+          content:
+            localeCode: localeCode
+            name: name
+          customAttributes:
+          - childAttributes:
+            - null
+            - null
+            value: value
+            key: key
+          - childAttributes:
+            - null
+            - null
+            value: value
+            key: key
+        - daysInTransit: 6
+          amount: 0.8008281904610115
+          code: code
+          data: "{}"
+          messages:
+          - severity: severity
+            helpLink: helpLink
+            message: message
+          - severity: severity
+            helpLink: helpLink
+            message: message
+          shippingItemRates:
+          - itemId: itemId
+            amount: 1.4658129805029452
+            quantity: 5
+          - itemId: itemId
+            amount: 1.4658129805029452
+            quantity: 5
+          windows:
+          - pickupTime:
+              startsAt: 2000-01-23T04:56:07.000+00:00
+              endsAt: 2000-01-23T04:56:07.000+00:00
+            dropoffTime:
+              startsAt: 2000-01-23T04:56:07.000+00:00
+              endsAt: 2000-01-23T04:56:07.000+00:00
+          - pickupTime:
+              startsAt: 2000-01-23T04:56:07.000+00:00
+              endsAt: 2000-01-23T04:56:07.000+00:00
+            dropoffTime:
+              startsAt: 2000-01-23T04:56:07.000+00:00
+              endsAt: 2000-01-23T04:56:07.000+00:00
+          content:
+            localeCode: localeCode
+            name: name
+          customAttributes:
+          - childAttributes:
+            - null
+            - null
+            value: value
+            key: key
+          - childAttributes:
+            - null
+            - null
+            value: value
+            key: key
+        fulfillmentMethod: fulfillmentMethod
+        carrierId: carrierId
+        customAttributes:
+        - childAttributes:
+          - null
+          - null
+          value: value
+          key: key
+        - childAttributes:
+          - null
+          - null
+          value: value
+          key: key
+      properties:
+        carrierId:
+          nullable: true
+          type: string
+        customAttributes:
+          deprecated: true
+          items:
+            $ref: '#/components/schemas/CustomAttribute'
+          nullable: true
+          type: array
+        fulfillmentMethod:
+          description: The fulfillment method for which this carrier rate is applicable
+            to. Possible values are Ship and Delivery.
+          nullable: true
+          type: string
+        shippingRates:
+          items:
+            $ref: '#/components/schemas/ShippingRuntimeShippingRate'
+          nullable: true
+          type: array
+      type: object
     CarrierResponse:
-      additionalProperties: false
       description: Response containing a list of Carriers supported on a tenant /
         site.
       example:
         carriers:
         - auditInfo:
-            updateDate: 2000-01-23T04:56:07.000+00:00
             createBy: createBy
+            updateDate: 2000-01-23T04:56:07.000+00:00
             updateBy: updateBy
             createDate: 2000-01-23T04:56:07.000+00:00
+          features:
+          - features
+          - features
           name: name
           description: description
           certified: true
@@ -321,10 +442,13 @@ components:
           isBuiltIn: true
           logoUrl: logoUrl
         - auditInfo:
-            updateDate: 2000-01-23T04:56:07.000+00:00
             createBy: createBy
+            updateDate: 2000-01-23T04:56:07.000+00:00
             updateBy: updateBy
             createDate: 2000-01-23T04:56:07.000+00:00
+          features:
+          - features
+          - features
           name: name
           description: description
           certified: true
@@ -338,274 +462,216 @@ components:
           nullable: true
           type: array
       type: object
-    ItemMeasurements:
-      additionalProperties: false
+    CarrierTransitTimes:
       example:
-        width:
-          unit: unit
-          value: 2.3021358869347655
-        length:
-          unit: unit
-          value: 2.3021358869347655
-        girth: 7.061401241503109
-        weight:
-          unit: unit
-          value: 2.3021358869347655
-        height:
-          unit: unit
-          value: 2.3021358869347655
+        estimatedDeliveryDates:
+        - serviceType: serviceType
+          data: "{}"
+          fulfillmentMethod: fulfillmentMethod
+          messages:
+          - severity: severity
+            helpLink: helpLink
+            message: message
+          - severity: severity
+            helpLink: helpLink
+            message: message
+          deliveryDate: deliveryDate
+          windows:
+          - pickupTime:
+              startsAt: 2000-01-23T04:56:07.000+00:00
+              endsAt: 2000-01-23T04:56:07.000+00:00
+            dropoffTime:
+              startsAt: 2000-01-23T04:56:07.000+00:00
+              endsAt: 2000-01-23T04:56:07.000+00:00
+          - pickupTime:
+              startsAt: 2000-01-23T04:56:07.000+00:00
+              endsAt: 2000-01-23T04:56:07.000+00:00
+            dropoffTime:
+              startsAt: 2000-01-23T04:56:07.000+00:00
+              endsAt: 2000-01-23T04:56:07.000+00:00
+        - serviceType: serviceType
+          data: "{}"
+          fulfillmentMethod: fulfillmentMethod
+          messages:
+          - severity: severity
+            helpLink: helpLink
+            message: message
+          - severity: severity
+            helpLink: helpLink
+            message: message
+          deliveryDate: deliveryDate
+          windows:
+          - pickupTime:
+              startsAt: 2000-01-23T04:56:07.000+00:00
+              endsAt: 2000-01-23T04:56:07.000+00:00
+            dropoffTime:
+              startsAt: 2000-01-23T04:56:07.000+00:00
+              endsAt: 2000-01-23T04:56:07.000+00:00
+          - pickupTime:
+              startsAt: 2000-01-23T04:56:07.000+00:00
+              endsAt: 2000-01-23T04:56:07.000+00:00
+            dropoffTime:
+              startsAt: 2000-01-23T04:56:07.000+00:00
+              endsAt: 2000-01-23T04:56:07.000+00:00
+        itemIds:
+        - itemIds
+        - itemIds
+        carrierId: carrierId
       properties:
-        height:
-          $ref: '#/components/schemas/CommerceRuntimeMeasurement'
-        width:
-          $ref: '#/components/schemas/CommerceRuntimeMeasurement'
-        length:
-          $ref: '#/components/schemas/CommerceRuntimeMeasurement'
-        weight:
-          $ref: '#/components/schemas/CommerceRuntimeMeasurement'
-        girth:
-          description: Not exposed publicly
-          format: double
+        carrierId:
           nullable: true
-          type: number
+          type: string
+        estimatedDeliveryDates:
+          items:
+            $ref: '#/components/schemas/ShippingRuntimeEstimatedDeliveryDate'
+          nullable: true
+          type: array
+        itemIds:
+          items:
+            type: string
+          nullable: true
+          type: array
       type: object
-    ProductSummary:
-      additionalProperties: false
+    CommerceRuntimeAddress:
       example:
-        productCode: productCode
-        quantity: 9
-        price: 3.616076749251911
-        unitMeasurements:
-          width:
-            unit: unit
-            value: 2.3021358869347655
-          length:
-            unit: unit
-            value: 2.3021358869347655
-          girth: 7.061401241503109
-          weight:
-            unit: unit
-            value: 2.3021358869347655
-          height:
-            unit: unit
-            value: 2.3021358869347655
-        options:
-        - dataType: dataType
-          value: ""
-          attributeFQN: attributeFQN
-        - dataType: dataType
-          value: ""
-          attributeFQN: attributeFQN
-        categories:
-        - parent: null
-          id: 5
-        - parent: null
-          id: 5
-        productType: productType
-        properties:
-        - dataType: dataType
-          values:
-          - ""
-          - ""
-          attributeFQN: attributeFQN
-        - dataType: dataType
-          values:
-          - ""
-          - ""
-          attributeFQN: attributeFQN
-        productDescription: productDescription
+        isValidated: true
+        postalOrZipCode: postalOrZipCode
+        address3: address3
+        stateOrProvince: stateOrProvince
+        address2: address2
+        address1: address1
+        addressType: addressType
+        countryCode: countryCode
+        address4: address4
+        cityOrTown: cityOrTown
       properties:
-        productCode:
-          description: Merchant-created code that uniquely identifies the product.
+        address1:
           nullable: true
           type: string
-        productType:
+        address2:
           nullable: true
           type: string
-        categories:
-          items:
-            $ref: '#/components/schemas/ShippingRuntimeCategory'
-          nullable: true
-          type: array
-        unitMeasurements:
-          $ref: '#/components/schemas/ItemMeasurements'
-        properties:
-          items:
-            $ref: '#/components/schemas/ShippingRuntimeProductProperty'
-          nullable: true
-          type: array
-        options:
-          items:
-            $ref: '#/components/schemas/ShippingRuntimeProductOption'
-          nullable: true
-          type: array
-        productDescription:
-          description: Product name/description
+        address3:
           nullable: true
           type: string
-        quantity:
-          description: Product quantity
-          format: int32
-          type: integer
-        price:
-          description: Price (unit price * quantity)
-          format: double
-          type: number
-      type: object
-    RateRequestItem:
-      additionalProperties: false
-      example:
-        productSummaries:
-        - productCode: productCode
-          quantity: 9
-          price: 3.616076749251911
-          unitMeasurements:
-            width:
-              unit: unit
-              value: 2.3021358869347655
-            length:
-              unit: unit
-              value: 2.3021358869347655
-            girth: 7.061401241503109
-            weight:
-              unit: unit
-              value: 2.3021358869347655
-            height:
-              unit: unit
-              value: 2.3021358869347655
-          options:
-          - dataType: dataType
-            value: ""
-            attributeFQN: attributeFQN
-          - dataType: dataType
-            value: ""
-            attributeFQN: attributeFQN
-          categories:
-          - parent: null
-            id: 5
-          - parent: null
-            id: 5
-          productType: productType
-          properties:
-          - dataType: dataType
-            values:
-            - ""
-            - ""
-            attributeFQN: attributeFQN
-          - dataType: dataType
-            values:
-            - ""
-            - ""
-            attributeFQN: attributeFQN
-          productDescription: productDescription
-        - productCode: productCode
-          quantity: 9
-          price: 3.616076749251911
-          unitMeasurements:
-            width:
-              unit: unit
-              value: 2.3021358869347655
-            length:
-              unit: unit
-              value: 2.3021358869347655
-            girth: 7.061401241503109
-            weight:
-              unit: unit
-              value: 2.3021358869347655
-            height:
-              unit: unit
-              value: 2.3021358869347655
-          options:
-          - dataType: dataType
-            value: ""
-            attributeFQN: attributeFQN
-          - dataType: dataType
-            value: ""
-            attributeFQN: attributeFQN
-          categories:
-          - parent: null
-            id: 5
-          - parent: null
-            id: 5
-          productType: productType
-          properties:
-          - dataType: dataType
-            values:
-            - ""
-            - ""
-            attributeFQN: attributeFQN
-          - dataType: dataType
-            values:
-            - ""
-            - ""
-            attributeFQN: attributeFQN
-          productDescription: productDescription
-        itemId: itemId
-        quantity: 2
-        data: "{}"
-        unitMeasurements:
-          width:
-            unit: unit
-            value: 2.3021358869347655
-          length:
-            unit: unit
-            value: 2.3021358869347655
-          girth: 7.061401241503109
-          weight:
-            unit: unit
-            value: 2.3021358869347655
-          height:
-            unit: unit
-            value: 2.3021358869347655
-        shipsByItself: true
-      properties:
-        itemId:
+        address4:
           nullable: true
           type: string
-        shipsByItself:
+        addressType:
+          nullable: true
+          type: string
+        cityOrTown:
+          nullable: true
+          type: string
+        countryCode:
+          nullable: true
+          type: string
+        isValidated:
           nullable: true
           type: boolean
-        productSummaries:
-          description: "If Product Summaries are populated, this information will\
-            \ be utilized in Product Rules (e.g. ProductCode eq \"ABC\" or (Weight.Unit\
-            \ eq \"lbs\" and Weight.Value ge 50)"
-          items:
-            $ref: '#/components/schemas/ProductSummary'
-          nullable: true
-          type: array
-        unitMeasurements:
-          $ref: '#/components/schemas/ItemMeasurements'
-        quantity:
-          format: int32
-          nullable: true
-          type: integer
-        data:
-          nullable: true
-          type: object
-      type: object
-    RateRequestAttribute:
-      additionalProperties: false
-      example:
-        attributeDefinitionId: 4
-        values:
-        - ""
-        - ""
-        fullyQualifiedName: fullyQualifiedName
-      properties:
-        fullyQualifiedName:
+        postalOrZipCode:
           nullable: true
           type: string
-        attributeDefinitionId:
+        stateOrProvince:
+          nullable: true
+          type: string
+      type: object
+    CommerceRuntimeContact:
+      example:
+        firstName: firstName
+        address:
+          isValidated: true
+          postalOrZipCode: postalOrZipCode
+          address3: address3
+          stateOrProvince: stateOrProvince
+          address2: address2
+          address1: address1
+          addressType: addressType
+          countryCode: countryCode
+          address4: address4
+          cityOrTown: cityOrTown
+        companyOrOrganization: companyOrOrganization
+        lastNameOrSurname: lastNameOrSurname
+        middleNameOrInitial: middleNameOrInitial
+        id: 5
+        email: email
+        phoneNumbers:
+          work: work
+          mobile: mobile
+          home: home
+      properties:
+        address:
+          $ref: '#/components/schemas/CommerceRuntimeAddress'
+        companyOrOrganization:
+          nullable: true
+          type: string
+        email:
+          nullable: true
+          type: string
+        firstName:
+          nullable: true
+          type: string
+        id:
           format: int32
           nullable: true
           type: integer
-        values:
-          items: {}
+        lastNameOrSurname:
           nullable: true
-          type: array
+          type: string
+        middleNameOrInitial:
+          nullable: true
+          type: string
+        phoneNumbers:
+          $ref: '#/components/schemas/CommerceRuntimePhone'
+      type: object
+    CommerceRuntimeMeasurement:
+      example:
+        unit: unit
+        value: 9.301444243932576
+      properties:
+        unit:
+          nullable: true
+          type: string
+        value:
+          format: double
+          nullable: true
+          type: number
+      type: object
+    CommerceRuntimePhone:
+      example:
+        work: work
+        mobile: mobile
+        home: home
+      properties:
+        home:
+          nullable: true
+          type: string
+        mobile:
+          nullable: true
+          type: string
+        work:
+          nullable: true
+          type: string
+      type: object
+    ConsolidationReference:
+      example:
+        relatedShipmentNumber: 6
+        relatedOrderNumber: 0
+        relatedOrderId: relatedOrderId
+      properties:
+        relatedOrderId:
+          nullable: true
+          type: string
+        relatedOrderNumber:
+          format: int32
+          nullable: true
+          type: integer
+        relatedShipmentNumber:
+          format: int32
+          nullable: true
+          type: integer
       type: object
     CustomAttribute:
-      additionalProperties: false
       example:
         childAttributes:
         - null
@@ -625,48 +691,262 @@ components:
           nullable: true
           type: string
       type: object
-    RateRequest:
-      additionalProperties: false
+    CustomerReferences:
       example:
-        handlingTotal: 1.4658129805029452
+        value: value
+        key: key
+      properties:
+        key:
+          nullable: true
+          type: string
+        value:
+          nullable: true
+          type: string
+      type: object
+    ExternalRateRequest:
+      allOf:
+      - $ref: '#/components/schemas/RateRequest'
+      - $ref: '#/components/schemas/ExternalRateRequest_allOf'
+    ItemMeasurements:
+      example:
+        girth: 7.386281948385884
+        length:
+          unit: unit
+          value: 9.301444243932576
+        width:
+          unit: unit
+          value: 9.301444243932576
+        weight:
+          unit: unit
+          value: 9.301444243932576
+        height:
+          unit: unit
+          value: 9.301444243932576
+      properties:
+        girth:
+          description: Not exposed publicly
+          format: double
+          nullable: true
+          type: number
+        height:
+          $ref: '#/components/schemas/CommerceRuntimeMeasurement'
+        length:
+          $ref: '#/components/schemas/CommerceRuntimeMeasurement'
+        weight:
+          $ref: '#/components/schemas/CommerceRuntimeMeasurement'
+        width:
+          $ref: '#/components/schemas/CommerceRuntimeMeasurement'
+      type: object
+    LabelRequest:
+      example:
+        labelFormat: labelFormat
+        packageTrackingNumber: packageTrackingNumber
+        carrierId: carrierId
+        trackingNumber: trackingNumber
+      properties:
+        carrierId:
+          nullable: true
+          type: string
+        labelFormat:
+          nullable: true
+          type: string
+        packageTrackingNumber:
+          nullable: true
+          type: string
+        trackingNumber:
+          nullable: true
+          type: string
+      type: object
+    LabelResponse:
+      example:
+        packageLabels:
+        - label:
+            imageFormat: imageFormat
+            imageData: imageData
+            labelUrl: labelUrl
+          trackingNumber: trackingNumber
+        - label:
+            imageFormat: imageFormat
+            imageData: imageData
+            labelUrl: labelUrl
+          trackingNumber: trackingNumber
+        trackingNumber: trackingNumber
+      properties:
+        packageLabels:
+          items:
+            $ref: '#/components/schemas/PackageLabelResponse'
+          nullable: true
+          type: array
+        trackingNumber:
+          nullable: true
+          type: string
+      type: object
+    Money:
+      example:
+        currencyCode: currencyCode
+        value: 0.8008281904610115
+      properties:
+        currencyCode:
+          nullable: true
+          type: string
+        value:
+          format: double
+          type: number
+      type: object
+    Notification:
+      example:
+        code: code
+        source: source
+        message: message
+      properties:
+        code:
+          nullable: true
+          type: string
+        message:
+          nullable: true
+          type: string
+        source:
+          nullable: true
+          type: string
+      type: object
+    PackageLabelResponse:
+      example:
+        label:
+          imageFormat: imageFormat
+          imageData: imageData
+          labelUrl: labelUrl
+        trackingNumber: trackingNumber
+      properties:
+        label:
+          $ref: '#/components/schemas/ShippingLabel'
+        trackingNumber:
+          nullable: true
+          type: string
+      type: object
+    ProductSummary:
+      example:
+        productCode: productCode
+        quantity: 4
+        price: 2.027123023002322
+        unitMeasurements:
+          girth: 7.386281948385884
+          length:
+            unit: unit
+            value: 9.301444243932576
+          width:
+            unit: unit
+            value: 9.301444243932576
+          weight:
+            unit: unit
+            value: 9.301444243932576
+          height:
+            unit: unit
+            value: 9.301444243932576
+        options:
+        - dataType: dataType
+          value: ""
+          attributeFQN: attributeFQN
+        - dataType: dataType
+          value: ""
+          attributeFQN: attributeFQN
+        categories:
+        - parent: null
+          id: 3
+        - parent: null
+          id: 3
+        productDescription: productDescription
+        productType: productType
+        properties:
+        - dataType: dataType
+          values:
+          - ""
+          - ""
+          attributeFQN: attributeFQN
+        - dataType: dataType
+          values:
+          - ""
+          - ""
+          attributeFQN: attributeFQN
+      properties:
+        categories:
+          items:
+            $ref: '#/components/schemas/ShippingRuntimeCategory'
+          nullable: true
+          type: array
+        options:
+          items:
+            $ref: '#/components/schemas/ShippingRuntimeProductOption'
+          nullable: true
+          type: array
+        price:
+          description: Price (unit price * quantity)
+          format: double
+          type: number
+        productCode:
+          description: Merchant-created code that uniquely identifies the product.
+          nullable: true
+          type: string
+        productDescription:
+          description: Product name/description
+          nullable: true
+          type: string
+        productType:
+          nullable: true
+          type: string
+        properties:
+          items:
+            $ref: '#/components/schemas/ShippingRuntimeProductProperty'
+          nullable: true
+          type: array
+        quantity:
+          description: Product quantity
+          format: int32
+          type: integer
+        unitMeasurements:
+          $ref: '#/components/schemas/ItemMeasurements'
+      type: object
+    RateRequest:
+      example:
+        handlingTotal: 6.027456183070403
         destinationAddress:
-          postalOrZipCode: postalOrZipCode
           isValidated: true
+          postalOrZipCode: postalOrZipCode
           address3: address3
           stateOrProvince: stateOrProvince
           address2: address2
           address1: address1
-          countryCode: countryCode
           addressType: addressType
+          countryCode: countryCode
           address4: address4
           cityOrTown: cityOrTown
         data: "{}"
         originAddress:
-          postalOrZipCode: postalOrZipCode
           isValidated: true
+          postalOrZipCode: postalOrZipCode
           address3: address3
           stateOrProvince: stateOrProvince
           address2: address2
           address1: address1
-          countryCode: countryCode
           addressType: addressType
+          countryCode: countryCode
           address4: address4
           cityOrTown: cityOrTown
-        orderDiscountedSubTotal: 6.027456183070403
+        orderDiscountedSubTotal: 1.4658129805029452
         estimatedShipmentDate: 2000-01-23T04:56:07.000+00:00
-        orderTotal: 0.8008281904610115
+        orderTotal: 5.962133916683182
         relatedOrderId: relatedOrderId
         carrierIds:
         - carrierIds
         - carrierIds
         relatedOrderNumber: 5
+        originLocationCode: originLocationCode
         attributes:
-        - attributeDefinitionId: 4
+        - attributeDefinitionId: 0
           values:
           - ""
           - ""
           fullyQualifiedName: fullyQualifiedName
-        - attributeDefinitionId: 4
+        - attributeDefinitionId: 0
           values:
           - ""
           - ""
@@ -677,212 +957,8 @@ components:
         - shippingServiceTypes
         isoCurrencyCode: isoCurrencyCode
         items:
-        - productSummaries:
-          - productCode: productCode
-            quantity: 9
-            price: 3.616076749251911
-            unitMeasurements:
-              width:
-                unit: unit
-                value: 2.3021358869347655
-              length:
-                unit: unit
-                value: 2.3021358869347655
-              girth: 7.061401241503109
-              weight:
-                unit: unit
-                value: 2.3021358869347655
-              height:
-                unit: unit
-                value: 2.3021358869347655
-            options:
-            - dataType: dataType
-              value: ""
-              attributeFQN: attributeFQN
-            - dataType: dataType
-              value: ""
-              attributeFQN: attributeFQN
-            categories:
-            - parent: null
-              id: 5
-            - parent: null
-              id: 5
-            productType: productType
-            properties:
-            - dataType: dataType
-              values:
-              - ""
-              - ""
-              attributeFQN: attributeFQN
-            - dataType: dataType
-              values:
-              - ""
-              - ""
-              attributeFQN: attributeFQN
-            productDescription: productDescription
-          - productCode: productCode
-            quantity: 9
-            price: 3.616076749251911
-            unitMeasurements:
-              width:
-                unit: unit
-                value: 2.3021358869347655
-              length:
-                unit: unit
-                value: 2.3021358869347655
-              girth: 7.061401241503109
-              weight:
-                unit: unit
-                value: 2.3021358869347655
-              height:
-                unit: unit
-                value: 2.3021358869347655
-            options:
-            - dataType: dataType
-              value: ""
-              attributeFQN: attributeFQN
-            - dataType: dataType
-              value: ""
-              attributeFQN: attributeFQN
-            categories:
-            - parent: null
-              id: 5
-            - parent: null
-              id: 5
-            productType: productType
-            properties:
-            - dataType: dataType
-              values:
-              - ""
-              - ""
-              attributeFQN: attributeFQN
-            - dataType: dataType
-              values:
-              - ""
-              - ""
-              attributeFQN: attributeFQN
-            productDescription: productDescription
-          itemId: itemId
-          quantity: 2
-          data: "{}"
-          unitMeasurements:
-            width:
-              unit: unit
-              value: 2.3021358869347655
-            length:
-              unit: unit
-              value: 2.3021358869347655
-            girth: 7.061401241503109
-            weight:
-              unit: unit
-              value: 2.3021358869347655
-            height:
-              unit: unit
-              value: 2.3021358869347655
-          shipsByItself: true
-        - productSummaries:
-          - productCode: productCode
-            quantity: 9
-            price: 3.616076749251911
-            unitMeasurements:
-              width:
-                unit: unit
-                value: 2.3021358869347655
-              length:
-                unit: unit
-                value: 2.3021358869347655
-              girth: 7.061401241503109
-              weight:
-                unit: unit
-                value: 2.3021358869347655
-              height:
-                unit: unit
-                value: 2.3021358869347655
-            options:
-            - dataType: dataType
-              value: ""
-              attributeFQN: attributeFQN
-            - dataType: dataType
-              value: ""
-              attributeFQN: attributeFQN
-            categories:
-            - parent: null
-              id: 5
-            - parent: null
-              id: 5
-            productType: productType
-            properties:
-            - dataType: dataType
-              values:
-              - ""
-              - ""
-              attributeFQN: attributeFQN
-            - dataType: dataType
-              values:
-              - ""
-              - ""
-              attributeFQN: attributeFQN
-            productDescription: productDescription
-          - productCode: productCode
-            quantity: 9
-            price: 3.616076749251911
-            unitMeasurements:
-              width:
-                unit: unit
-                value: 2.3021358869347655
-              length:
-                unit: unit
-                value: 2.3021358869347655
-              girth: 7.061401241503109
-              weight:
-                unit: unit
-                value: 2.3021358869347655
-              height:
-                unit: unit
-                value: 2.3021358869347655
-            options:
-            - dataType: dataType
-              value: ""
-              attributeFQN: attributeFQN
-            - dataType: dataType
-              value: ""
-              attributeFQN: attributeFQN
-            categories:
-            - parent: null
-              id: 5
-            - parent: null
-              id: 5
-            productType: productType
-            properties:
-            - dataType: dataType
-              values:
-              - ""
-              - ""
-              attributeFQN: attributeFQN
-            - dataType: dataType
-              values:
-              - ""
-              - ""
-              attributeFQN: attributeFQN
-            productDescription: productDescription
-          itemId: itemId
-          quantity: 2
-          data: "{}"
-          unitMeasurements:
-            width:
-              unit: unit
-              value: 2.3021358869347655
-            length:
-              unit: unit
-              value: 2.3021358869347655
-            girth: 7.061401241503109
-            weight:
-              unit: unit
-              value: 2.3021358869347655
-            height:
-              unit: unit
-              value: 2.3021358869347655
-          shipsByItself: true
+        - null
+        - null
         isDestinationAddressCommercial: true
         customAttributes:
         - childAttributes:
@@ -896,79 +972,18 @@ components:
           value: value
           key: key
       properties:
-        id:
+        attributes:
+          description: Order Attributes. Made available for Arc.js to use
+          items:
+            $ref: '#/components/schemas/RateRequestAttribute'
           nullable: true
-          type: string
-        isoCurrencyCode:
-          nullable: true
-          type: string
-        originAddress:
-          $ref: '#/components/schemas/CommerceRuntimeAddress'
-        destinationAddress:
-          $ref: '#/components/schemas/CommerceRuntimeAddress'
+          type: array
         carrierIds:
           description: Optional.  If one or more Carrier Ids are specified then only
             the rates for the specified carrier('s/s') configured service types or
             shipping methods will be calculated resulting in better performance.
           items:
             type: string
-          nullable: true
-          type: array
-        shippingServiceTypes:
-          description: Optional.  If one or more Shipping Service Type Codes are specified
-            then only the specified rates for the specified carrier('s/s') configured
-            service types or shipping methods will be calculated resulting in better
-            performance.
-          items:
-            type: string
-          nullable: true
-          type: array
-        orderTotal:
-          description: The OrderTotal to be used in rate calculation
-          format: double
-          nullable: true
-          type: number
-        orderDiscountedSubTotal:
-          description: The Order SubTotal After Discounts to be used in rate calculation
-          format: double
-          nullable: true
-          type: number
-        handlingTotal:
-          description: The order Handling total after discounts to be used in rate
-            calculation
-          format: double
-          nullable: true
-          type: number
-        relatedOrderId:
-          description: "The Order ID to be used in rate calculation\r\nInformational\
-            \ only"
-          nullable: true
-          type: string
-        relatedOrderNumber:
-          description: "The Order Number to be used in rate calculation\r\nInformational\
-            \ only"
-          format: int32
-          nullable: true
-          type: integer
-        isDestinationAddressCommercial:
-          description: Is the destination address a commercial address?
-          nullable: true
-          type: boolean
-        items:
-          items:
-            $ref: '#/components/schemas/RateRequestItem'
-          nullable: true
-          type: array
-        estimatedShipmentDate:
-          description: Estimate Date/Time when the shipment for this will be sent.  Primarily
-            utilize to estimate delivery date.
-          format: date-time
-          nullable: true
-          type: string
-        attributes:
-          description: Order Attributes. Made available for Arc.js to use
-          items:
-            $ref: '#/components/schemas/RateRequestAttribute'
           nullable: true
           type: array
         customAttributes:
@@ -980,86 +995,151 @@ components:
         data:
           nullable: true
           type: object
-      type: object
-    ShippingRateLocalizedContent:
-      additionalProperties: false
-      example:
-        localeCode: localeCode
-        name: name
-      properties:
-        localeCode:
+        destinationAddress:
+          $ref: '#/components/schemas/CommerceRuntimeAddress'
+        estimatedShipmentDate:
+          description: Estimate Date/Time when the shipment for this will be sent.  Primarily
+            utilize to estimate delivery date.
+          format: date-time
           nullable: true
           type: string
-        name:
-          nullable: true
-          type: string
-      type: object
-    ShippingItemRate:
-      additionalProperties: false
-      description: The shipping rate for a particular line item
-      example:
-        itemId: itemId
-        amount: 5.962133916683182
-        quantity: 1
-      properties:
-        itemId:
-          nullable: true
-          type: string
-        quantity:
-          format: int32
-          nullable: true
-          type: integer
-        amount:
+        handlingTotal:
+          description: The order Handling total after discounts to be used in rate
+            calculation
           format: double
           nullable: true
           type: number
+        id:
+          nullable: true
+          type: string
+        isDestinationAddressCommercial:
+          description: Is the destination address a commercial address?
+          nullable: true
+          type: boolean
+        isoCurrencyCode:
+          nullable: true
+          type: string
+        items:
+          items:
+            $ref: '#/components/schemas/RateRequestItem'
+          nullable: true
+          type: array
+        orderDiscountedSubTotal:
+          description: The Order SubTotal After Discounts to be used in rate calculation
+          format: double
+          nullable: true
+          type: number
+        orderTotal:
+          description: The OrderTotal to be used in rate calculation
+          format: double
+          nullable: true
+          type: number
+        originAddress:
+          $ref: '#/components/schemas/CommerceRuntimeAddress'
+        originLocationCode:
+          description: Optional for STH rates. The location code of the origin location.
+            Used for calculation of Delivery rates.
+          nullable: true
+          type: string
+        relatedOrderId:
+          description: |-
+            The Order ID to be used in rate calculation
+            Informational only
+          nullable: true
+          type: string
+        relatedOrderNumber:
+          description: |-
+            The Order Number to be used in rate calculation
+            Informational only
+          format: int32
+          nullable: true
+          type: integer
+        shippingServiceTypes:
+          description: Optional.  If one or more Shipping Service Type Codes are specified
+            then only the specified rates for the specified carrier('s/s') configured
+            service types or shipping methods will be calculated resulting in better
+            performance.
+          items:
+            type: string
+          nullable: true
+          type: array
       type: object
-    ShippingRateValidationMessage:
-      additionalProperties: false
-      description: Shipping Rate Validation Message
+    RateRequestAttribute:
       example:
-        severity: severity
-        helpLink: helpLink
-        message: message
+        attributeDefinitionId: 0
+        values:
+        - ""
+        - ""
+        fullyQualifiedName: fullyQualifiedName
       properties:
-        severity:
-          description: Severity
+        attributeDefinitionId:
+          format: int32
+          nullable: true
+          type: integer
+        fullyQualifiedName:
           nullable: true
           type: string
-        message:
-          description: Message
+        values:
+          items: {}
           nullable: true
-          type: string
-        helpLink:
-          description: Help Link
-          nullable: true
-          type: string
+          type: array
       type: object
-    CarrierRatesResponse:
-      additionalProperties: false
+    RateRequestGroup:
       example:
-        shippingRates:
-        - daysInTransit: 6
-          amount: 0.8008281904610115
-          code: code
+        rateRequests:
+        - handlingTotal: 6.027456183070403
+          destinationAddress:
+            isValidated: true
+            postalOrZipCode: postalOrZipCode
+            address3: address3
+            stateOrProvince: stateOrProvince
+            address2: address2
+            address1: address1
+            addressType: addressType
+            countryCode: countryCode
+            address4: address4
+            cityOrTown: cityOrTown
           data: "{}"
-          shippingItemRates:
-          - itemId: itemId
-            amount: 5.962133916683182
-            quantity: 1
-          - itemId: itemId
-            amount: 5.962133916683182
-            quantity: 1
-          messages:
-          - severity: severity
-            helpLink: helpLink
-            message: message
-          - severity: severity
-            helpLink: helpLink
-            message: message
-          content:
-            localeCode: localeCode
-            name: name
+          originAddress:
+            isValidated: true
+            postalOrZipCode: postalOrZipCode
+            address3: address3
+            stateOrProvince: stateOrProvince
+            address2: address2
+            address1: address1
+            addressType: addressType
+            countryCode: countryCode
+            address4: address4
+            cityOrTown: cityOrTown
+          orderDiscountedSubTotal: 1.4658129805029452
+          estimatedShipmentDate: 2000-01-23T04:56:07.000+00:00
+          orderTotal: 5.962133916683182
+          relatedOrderId: relatedOrderId
+          carrierIds:
+          - carrierIds
+          - carrierIds
+          relatedOrderNumber: 5
+          originLocationCode: originLocationCode
+          attributes:
+          - attributeDefinitionId: 0
+            values:
+            - ""
+            - ""
+            fullyQualifiedName: fullyQualifiedName
+          - attributeDefinitionId: 0
+            values:
+            - ""
+            - ""
+            fullyQualifiedName: fullyQualifiedName
+          id: id
+          shippingServiceTypes:
+          - shippingServiceTypes
+          - shippingServiceTypes
+          isoCurrencyCode: isoCurrencyCode
+          items:
+          - null
+          - null
+          isDestinationAddressCommercial: true
           customAttributes:
           - childAttributes:
             - null
@@ -1071,27 +1151,59 @@ components:
             - null
             value: value
             key: key
-        - daysInTransit: 6
-          amount: 0.8008281904610115
-          code: code
+        - handlingTotal: 6.027456183070403
+          destinationAddress:
+            isValidated: true
+            postalOrZipCode: postalOrZipCode
+            address3: address3
+            stateOrProvince: stateOrProvince
+            address2: address2
+            address1: address1
+            addressType: addressType
+            countryCode: countryCode
+            address4: address4
+            cityOrTown: cityOrTown
           data: "{}"
-          shippingItemRates:
-          - itemId: itemId
-            amount: 5.962133916683182
-            quantity: 1
-          - itemId: itemId
-            amount: 5.962133916683182
-            quantity: 1
-          messages:
-          - severity: severity
-            helpLink: helpLink
-            message: message
-          - severity: severity
-            helpLink: helpLink
-            message: message
-          content:
-            localeCode: localeCode
-            name: name
+          originAddress:
+            isValidated: true
+            postalOrZipCode: postalOrZipCode
+            address3: address3
+            stateOrProvince: stateOrProvince
+            address2: address2
+            address1: address1
+            addressType: addressType
+            countryCode: countryCode
+            address4: address4
+            cityOrTown: cityOrTown
+          orderDiscountedSubTotal: 1.4658129805029452
+          estimatedShipmentDate: 2000-01-23T04:56:07.000+00:00
+          orderTotal: 5.962133916683182
+          relatedOrderId: relatedOrderId
+          carrierIds:
+          - carrierIds
+          - carrierIds
+          relatedOrderNumber: 5
+          originLocationCode: originLocationCode
+          attributes:
+          - attributeDefinitionId: 0
+            values:
+            - ""
+            - ""
+            fullyQualifiedName: fullyQualifiedName
+          - attributeDefinitionId: 0
+            values:
+            - ""
+            - ""
+            fullyQualifiedName: fullyQualifiedName
+          id: id
+          shippingServiceTypes:
+          - shippingServiceTypes
+          - shippingServiceTypes
+          isoCurrencyCode: isoCurrencyCode
+          items:
+          - null
+          - null
+          isDestinationAddressCommercial: true
           customAttributes:
           - childAttributes:
             - null
@@ -1103,51 +1215,30 @@ components:
             - null
             value: value
             key: key
-        carrierId: carrierId
-        customAttributes:
-        - childAttributes:
-          - null
-          - null
-          value: value
-          key: key
-        - childAttributes:
-          - null
-          - null
-          value: value
-          key: key
+        id: id
       properties:
-        carrierId:
+        id:
           nullable: true
           type: string
-        shippingRates:
+        rateRequests:
           items:
-            $ref: '#/components/schemas/ShippingRuntimeShippingRate'
-          nullable: true
-          type: array
-        customAttributes:
-          deprecated: true
-          items:
-            $ref: '#/components/schemas/CustomAttribute'
+            $ref: '#/components/schemas/RateRequest'
           nullable: true
           type: array
       type: object
+    RateRequestItem:
+      allOf:
+      - $ref: '#/components/schemas/RequestItem'
+      - $ref: '#/components/schemas/RateRequestItem_allOf'
+      description: "Represents an item in a rate request, inheriting from RequestItem."
     RatesResponse:
-      additionalProperties: false
       example:
-        resolvedShippingZoneCode: resolvedShippingZoneCode
         rates:
         - shippingRates:
           - daysInTransit: 6
             amount: 0.8008281904610115
             code: code
             data: "{}"
-            shippingItemRates:
-            - itemId: itemId
-              amount: 5.962133916683182
-              quantity: 1
-            - itemId: itemId
-              amount: 5.962133916683182
-              quantity: 1
             messages:
             - severity: severity
               helpLink: helpLink
@@ -1155,6 +1246,26 @@ components:
             - severity: severity
               helpLink: helpLink
               message: message
+            shippingItemRates:
+            - itemId: itemId
+              amount: 1.4658129805029452
+              quantity: 5
+            - itemId: itemId
+              amount: 1.4658129805029452
+              quantity: 5
+            windows:
+            - pickupTime:
+                startsAt: 2000-01-23T04:56:07.000+00:00
+                endsAt: 2000-01-23T04:56:07.000+00:00
+              dropoffTime:
+                startsAt: 2000-01-23T04:56:07.000+00:00
+                endsAt: 2000-01-23T04:56:07.000+00:00
+            - pickupTime:
+                startsAt: 2000-01-23T04:56:07.000+00:00
+                endsAt: 2000-01-23T04:56:07.000+00:00
+              dropoffTime:
+                startsAt: 2000-01-23T04:56:07.000+00:00
+                endsAt: 2000-01-23T04:56:07.000+00:00
             content:
               localeCode: localeCode
               name: name
@@ -1173,13 +1284,6 @@ components:
             amount: 0.8008281904610115
             code: code
             data: "{}"
-            shippingItemRates:
-            - itemId: itemId
-              amount: 5.962133916683182
-              quantity: 1
-            - itemId: itemId
-              amount: 5.962133916683182
-              quantity: 1
             messages:
             - severity: severity
               helpLink: helpLink
@@ -1187,6 +1291,26 @@ components:
             - severity: severity
               helpLink: helpLink
               message: message
+            shippingItemRates:
+            - itemId: itemId
+              amount: 1.4658129805029452
+              quantity: 5
+            - itemId: itemId
+              amount: 1.4658129805029452
+              quantity: 5
+            windows:
+            - pickupTime:
+                startsAt: 2000-01-23T04:56:07.000+00:00
+                endsAt: 2000-01-23T04:56:07.000+00:00
+              dropoffTime:
+                startsAt: 2000-01-23T04:56:07.000+00:00
+                endsAt: 2000-01-23T04:56:07.000+00:00
+            - pickupTime:
+                startsAt: 2000-01-23T04:56:07.000+00:00
+                endsAt: 2000-01-23T04:56:07.000+00:00
+              dropoffTime:
+                startsAt: 2000-01-23T04:56:07.000+00:00
+                endsAt: 2000-01-23T04:56:07.000+00:00
             content:
               localeCode: localeCode
               name: name
@@ -1201,6 +1325,7 @@ components:
               - null
               value: value
               key: key
+          fulfillmentMethod: fulfillmentMethod
           carrierId: carrierId
           customAttributes:
           - childAttributes:
@@ -1218,13 +1343,6 @@ components:
             amount: 0.8008281904610115
             code: code
             data: "{}"
-            shippingItemRates:
-            - itemId: itemId
-              amount: 5.962133916683182
-              quantity: 1
-            - itemId: itemId
-              amount: 5.962133916683182
-              quantity: 1
             messages:
             - severity: severity
               helpLink: helpLink
@@ -1232,6 +1350,26 @@ components:
             - severity: severity
               helpLink: helpLink
               message: message
+            shippingItemRates:
+            - itemId: itemId
+              amount: 1.4658129805029452
+              quantity: 5
+            - itemId: itemId
+              amount: 1.4658129805029452
+              quantity: 5
+            windows:
+            - pickupTime:
+                startsAt: 2000-01-23T04:56:07.000+00:00
+                endsAt: 2000-01-23T04:56:07.000+00:00
+              dropoffTime:
+                startsAt: 2000-01-23T04:56:07.000+00:00
+                endsAt: 2000-01-23T04:56:07.000+00:00
+            - pickupTime:
+                startsAt: 2000-01-23T04:56:07.000+00:00
+                endsAt: 2000-01-23T04:56:07.000+00:00
+              dropoffTime:
+                startsAt: 2000-01-23T04:56:07.000+00:00
+                endsAt: 2000-01-23T04:56:07.000+00:00
             content:
               localeCode: localeCode
               name: name
@@ -1250,13 +1388,6 @@ components:
             amount: 0.8008281904610115
             code: code
             data: "{}"
-            shippingItemRates:
-            - itemId: itemId
-              amount: 5.962133916683182
-              quantity: 1
-            - itemId: itemId
-              amount: 5.962133916683182
-              quantity: 1
             messages:
             - severity: severity
               helpLink: helpLink
@@ -1264,6 +1395,26 @@ components:
             - severity: severity
               helpLink: helpLink
               message: message
+            shippingItemRates:
+            - itemId: itemId
+              amount: 1.4658129805029452
+              quantity: 5
+            - itemId: itemId
+              amount: 1.4658129805029452
+              quantity: 5
+            windows:
+            - pickupTime:
+                startsAt: 2000-01-23T04:56:07.000+00:00
+                endsAt: 2000-01-23T04:56:07.000+00:00
+              dropoffTime:
+                startsAt: 2000-01-23T04:56:07.000+00:00
+                endsAt: 2000-01-23T04:56:07.000+00:00
+            - pickupTime:
+                startsAt: 2000-01-23T04:56:07.000+00:00
+                endsAt: 2000-01-23T04:56:07.000+00:00
+              dropoffTime:
+                startsAt: 2000-01-23T04:56:07.000+00:00
+                endsAt: 2000-01-23T04:56:07.000+00:00
             content:
               localeCode: localeCode
               name: name
@@ -1278,6 +1429,7 @@ components:
               - null
               value: value
               key: key
+          fulfillmentMethod: fulfillmentMethod
           carrierId: carrierId
           customAttributes:
           - childAttributes:
@@ -1290,20 +1442,25 @@ components:
             - null
             value: value
             key: key
+        resolvedShippingZoneCode: resolvedShippingZoneCode
         shippingZoneCodes:
         - shippingZoneCodes
         - shippingZoneCodes
         id: id
       properties:
         id:
-          description: "Resolved Shipping Zone Code.  This value can be null if the\
-            \ tenant/site does not have shipping zones defined or there are no matching\
-            \ \r\nshipping zones for the request (e.g. the only zone defined is \"\
-            UNITED-STATES\" and the destination address of the rate request is in\
-            \ Canada)"
           nullable: true
           type: string
+        rates:
+          items:
+            $ref: '#/components/schemas/CarrierRatesResponse'
+          nullable: true
+          type: array
         resolvedShippingZoneCode:
+          description: "Resolved Shipping Zone Code.  This value can be null if the\
+            \ tenant/site does not have shipping zones defined or there are no matching\
+            \ \nshipping zones for the request (e.g. the only zone defined is \"UNITED-STATES\"\
+            \ and the destination address of the rate request is in Canada)"
           nullable: true
           type: string
         shippingZoneCodes:
@@ -1311,579 +1468,16 @@ components:
             type: string
           nullable: true
           type: array
-        rates:
-          items:
-            $ref: '#/components/schemas/CarrierRatesResponse'
-          nullable: true
-          type: array
-      type: object
-    RateRequestGroup:
-      additionalProperties: false
-      example:
-        rateRequests:
-        - handlingTotal: 1.4658129805029452
-          destinationAddress:
-            postalOrZipCode: postalOrZipCode
-            isValidated: true
-            address3: address3
-            stateOrProvince: stateOrProvince
-            address2: address2
-            address1: address1
-            countryCode: countryCode
-            addressType: addressType
-            address4: address4
-            cityOrTown: cityOrTown
-          data: "{}"
-          originAddress:
-            postalOrZipCode: postalOrZipCode
-            isValidated: true
-            address3: address3
-            stateOrProvince: stateOrProvince
-            address2: address2
-            address1: address1
-            countryCode: countryCode
-            addressType: addressType
-            address4: address4
-            cityOrTown: cityOrTown
-          orderDiscountedSubTotal: 6.027456183070403
-          estimatedShipmentDate: 2000-01-23T04:56:07.000+00:00
-          orderTotal: 0.8008281904610115
-          relatedOrderId: relatedOrderId
-          carrierIds:
-          - carrierIds
-          - carrierIds
-          relatedOrderNumber: 5
-          attributes:
-          - attributeDefinitionId: 4
-            values:
-            - ""
-            - ""
-            fullyQualifiedName: fullyQualifiedName
-          - attributeDefinitionId: 4
-            values:
-            - ""
-            - ""
-            fullyQualifiedName: fullyQualifiedName
-          id: id
-          shippingServiceTypes:
-          - shippingServiceTypes
-          - shippingServiceTypes
-          isoCurrencyCode: isoCurrencyCode
-          items:
-          - productSummaries:
-            - productCode: productCode
-              quantity: 9
-              price: 3.616076749251911
-              unitMeasurements:
-                width:
-                  unit: unit
-                  value: 2.3021358869347655
-                length:
-                  unit: unit
-                  value: 2.3021358869347655
-                girth: 7.061401241503109
-                weight:
-                  unit: unit
-                  value: 2.3021358869347655
-                height:
-                  unit: unit
-                  value: 2.3021358869347655
-              options:
-              - dataType: dataType
-                value: ""
-                attributeFQN: attributeFQN
-              - dataType: dataType
-                value: ""
-                attributeFQN: attributeFQN
-              categories:
-              - parent: null
-                id: 5
-              - parent: null
-                id: 5
-              productType: productType
-              properties:
-              - dataType: dataType
-                values:
-                - ""
-                - ""
-                attributeFQN: attributeFQN
-              - dataType: dataType
-                values:
-                - ""
-                - ""
-                attributeFQN: attributeFQN
-              productDescription: productDescription
-            - productCode: productCode
-              quantity: 9
-              price: 3.616076749251911
-              unitMeasurements:
-                width:
-                  unit: unit
-                  value: 2.3021358869347655
-                length:
-                  unit: unit
-                  value: 2.3021358869347655
-                girth: 7.061401241503109
-                weight:
-                  unit: unit
-                  value: 2.3021358869347655
-                height:
-                  unit: unit
-                  value: 2.3021358869347655
-              options:
-              - dataType: dataType
-                value: ""
-                attributeFQN: attributeFQN
-              - dataType: dataType
-                value: ""
-                attributeFQN: attributeFQN
-              categories:
-              - parent: null
-                id: 5
-              - parent: null
-                id: 5
-              productType: productType
-              properties:
-              - dataType: dataType
-                values:
-                - ""
-                - ""
-                attributeFQN: attributeFQN
-              - dataType: dataType
-                values:
-                - ""
-                - ""
-                attributeFQN: attributeFQN
-              productDescription: productDescription
-            itemId: itemId
-            quantity: 2
-            data: "{}"
-            unitMeasurements:
-              width:
-                unit: unit
-                value: 2.3021358869347655
-              length:
-                unit: unit
-                value: 2.3021358869347655
-              girth: 7.061401241503109
-              weight:
-                unit: unit
-                value: 2.3021358869347655
-              height:
-                unit: unit
-                value: 2.3021358869347655
-            shipsByItself: true
-          - productSummaries:
-            - productCode: productCode
-              quantity: 9
-              price: 3.616076749251911
-              unitMeasurements:
-                width:
-                  unit: unit
-                  value: 2.3021358869347655
-                length:
-                  unit: unit
-                  value: 2.3021358869347655
-                girth: 7.061401241503109
-                weight:
-                  unit: unit
-                  value: 2.3021358869347655
-                height:
-                  unit: unit
-                  value: 2.3021358869347655
-              options:
-              - dataType: dataType
-                value: ""
-                attributeFQN: attributeFQN
-              - dataType: dataType
-                value: ""
-                attributeFQN: attributeFQN
-              categories:
-              - parent: null
-                id: 5
-              - parent: null
-                id: 5
-              productType: productType
-              properties:
-              - dataType: dataType
-                values:
-                - ""
-                - ""
-                attributeFQN: attributeFQN
-              - dataType: dataType
-                values:
-                - ""
-                - ""
-                attributeFQN: attributeFQN
-              productDescription: productDescription
-            - productCode: productCode
-              quantity: 9
-              price: 3.616076749251911
-              unitMeasurements:
-                width:
-                  unit: unit
-                  value: 2.3021358869347655
-                length:
-                  unit: unit
-                  value: 2.3021358869347655
-                girth: 7.061401241503109
-                weight:
-                  unit: unit
-                  value: 2.3021358869347655
-                height:
-                  unit: unit
-                  value: 2.3021358869347655
-              options:
-              - dataType: dataType
-                value: ""
-                attributeFQN: attributeFQN
-              - dataType: dataType
-                value: ""
-                attributeFQN: attributeFQN
-              categories:
-              - parent: null
-                id: 5
-              - parent: null
-                id: 5
-              productType: productType
-              properties:
-              - dataType: dataType
-                values:
-                - ""
-                - ""
-                attributeFQN: attributeFQN
-              - dataType: dataType
-                values:
-                - ""
-                - ""
-                attributeFQN: attributeFQN
-              productDescription: productDescription
-            itemId: itemId
-            quantity: 2
-            data: "{}"
-            unitMeasurements:
-              width:
-                unit: unit
-                value: 2.3021358869347655
-              length:
-                unit: unit
-                value: 2.3021358869347655
-              girth: 7.061401241503109
-              weight:
-                unit: unit
-                value: 2.3021358869347655
-              height:
-                unit: unit
-                value: 2.3021358869347655
-            shipsByItself: true
-          isDestinationAddressCommercial: true
-          customAttributes:
-          - childAttributes:
-            - null
-            - null
-            value: value
-            key: key
-          - childAttributes:
-            - null
-            - null
-            value: value
-            key: key
-        - handlingTotal: 1.4658129805029452
-          destinationAddress:
-            postalOrZipCode: postalOrZipCode
-            isValidated: true
-            address3: address3
-            stateOrProvince: stateOrProvince
-            address2: address2
-            address1: address1
-            countryCode: countryCode
-            addressType: addressType
-            address4: address4
-            cityOrTown: cityOrTown
-          data: "{}"
-          originAddress:
-            postalOrZipCode: postalOrZipCode
-            isValidated: true
-            address3: address3
-            stateOrProvince: stateOrProvince
-            address2: address2
-            address1: address1
-            countryCode: countryCode
-            addressType: addressType
-            address4: address4
-            cityOrTown: cityOrTown
-          orderDiscountedSubTotal: 6.027456183070403
-          estimatedShipmentDate: 2000-01-23T04:56:07.000+00:00
-          orderTotal: 0.8008281904610115
-          relatedOrderId: relatedOrderId
-          carrierIds:
-          - carrierIds
-          - carrierIds
-          relatedOrderNumber: 5
-          attributes:
-          - attributeDefinitionId: 4
-            values:
-            - ""
-            - ""
-            fullyQualifiedName: fullyQualifiedName
-          - attributeDefinitionId: 4
-            values:
-            - ""
-            - ""
-            fullyQualifiedName: fullyQualifiedName
-          id: id
-          shippingServiceTypes:
-          - shippingServiceTypes
-          - shippingServiceTypes
-          isoCurrencyCode: isoCurrencyCode
-          items:
-          - productSummaries:
-            - productCode: productCode
-              quantity: 9
-              price: 3.616076749251911
-              unitMeasurements:
-                width:
-                  unit: unit
-                  value: 2.3021358869347655
-                length:
-                  unit: unit
-                  value: 2.3021358869347655
-                girth: 7.061401241503109
-                weight:
-                  unit: unit
-                  value: 2.3021358869347655
-                height:
-                  unit: unit
-                  value: 2.3021358869347655
-              options:
-              - dataType: dataType
-                value: ""
-                attributeFQN: attributeFQN
-              - dataType: dataType
-                value: ""
-                attributeFQN: attributeFQN
-              categories:
-              - parent: null
-                id: 5
-              - parent: null
-                id: 5
-              productType: productType
-              properties:
-              - dataType: dataType
-                values:
-                - ""
-                - ""
-                attributeFQN: attributeFQN
-              - dataType: dataType
-                values:
-                - ""
-                - ""
-                attributeFQN: attributeFQN
-              productDescription: productDescription
-            - productCode: productCode
-              quantity: 9
-              price: 3.616076749251911
-              unitMeasurements:
-                width:
-                  unit: unit
-                  value: 2.3021358869347655
-                length:
-                  unit: unit
-                  value: 2.3021358869347655
-                girth: 7.061401241503109
-                weight:
-                  unit: unit
-                  value: 2.3021358869347655
-                height:
-                  unit: unit
-                  value: 2.3021358869347655
-              options:
-              - dataType: dataType
-                value: ""
-                attributeFQN: attributeFQN
-              - dataType: dataType
-                value: ""
-                attributeFQN: attributeFQN
-              categories:
-              - parent: null
-                id: 5
-              - parent: null
-                id: 5
-              productType: productType
-              properties:
-              - dataType: dataType
-                values:
-                - ""
-                - ""
-                attributeFQN: attributeFQN
-              - dataType: dataType
-                values:
-                - ""
-                - ""
-                attributeFQN: attributeFQN
-              productDescription: productDescription
-            itemId: itemId
-            quantity: 2
-            data: "{}"
-            unitMeasurements:
-              width:
-                unit: unit
-                value: 2.3021358869347655
-              length:
-                unit: unit
-                value: 2.3021358869347655
-              girth: 7.061401241503109
-              weight:
-                unit: unit
-                value: 2.3021358869347655
-              height:
-                unit: unit
-                value: 2.3021358869347655
-            shipsByItself: true
-          - productSummaries:
-            - productCode: productCode
-              quantity: 9
-              price: 3.616076749251911
-              unitMeasurements:
-                width:
-                  unit: unit
-                  value: 2.3021358869347655
-                length:
-                  unit: unit
-                  value: 2.3021358869347655
-                girth: 7.061401241503109
-                weight:
-                  unit: unit
-                  value: 2.3021358869347655
-                height:
-                  unit: unit
-                  value: 2.3021358869347655
-              options:
-              - dataType: dataType
-                value: ""
-                attributeFQN: attributeFQN
-              - dataType: dataType
-                value: ""
-                attributeFQN: attributeFQN
-              categories:
-              - parent: null
-                id: 5
-              - parent: null
-                id: 5
-              productType: productType
-              properties:
-              - dataType: dataType
-                values:
-                - ""
-                - ""
-                attributeFQN: attributeFQN
-              - dataType: dataType
-                values:
-                - ""
-                - ""
-                attributeFQN: attributeFQN
-              productDescription: productDescription
-            - productCode: productCode
-              quantity: 9
-              price: 3.616076749251911
-              unitMeasurements:
-                width:
-                  unit: unit
-                  value: 2.3021358869347655
-                length:
-                  unit: unit
-                  value: 2.3021358869347655
-                girth: 7.061401241503109
-                weight:
-                  unit: unit
-                  value: 2.3021358869347655
-                height:
-                  unit: unit
-                  value: 2.3021358869347655
-              options:
-              - dataType: dataType
-                value: ""
-                attributeFQN: attributeFQN
-              - dataType: dataType
-                value: ""
-                attributeFQN: attributeFQN
-              categories:
-              - parent: null
-                id: 5
-              - parent: null
-                id: 5
-              productType: productType
-              properties:
-              - dataType: dataType
-                values:
-                - ""
-                - ""
-                attributeFQN: attributeFQN
-              - dataType: dataType
-                values:
-                - ""
-                - ""
-                attributeFQN: attributeFQN
-              productDescription: productDescription
-            itemId: itemId
-            quantity: 2
-            data: "{}"
-            unitMeasurements:
-              width:
-                unit: unit
-                value: 2.3021358869347655
-              length:
-                unit: unit
-                value: 2.3021358869347655
-              girth: 7.061401241503109
-              weight:
-                unit: unit
-                value: 2.3021358869347655
-              height:
-                unit: unit
-                value: 2.3021358869347655
-            shipsByItself: true
-          isDestinationAddressCommercial: true
-          customAttributes:
-          - childAttributes:
-            - null
-            - null
-            value: value
-            key: key
-          - childAttributes:
-            - null
-            - null
-            value: value
-            key: key
-        id: id
-      properties:
-        rateRequests:
-          items:
-            $ref: '#/components/schemas/RateRequest'
-          nullable: true
-          type: array
-        id:
-          nullable: true
-          type: string
       type: object
     RatesResponseGroup:
-      additionalProperties: false
       example:
         ratesResponse:
-          resolvedShippingZoneCode: resolvedShippingZoneCode
           rates:
           - shippingRates:
             - daysInTransit: 6
               amount: 0.8008281904610115
               code: code
               data: "{}"
-              shippingItemRates:
-              - itemId: itemId
-                amount: 5.962133916683182
-                quantity: 1
-              - itemId: itemId
-                amount: 5.962133916683182
-                quantity: 1
               messages:
               - severity: severity
                 helpLink: helpLink
@@ -1891,6 +1485,26 @@ components:
               - severity: severity
                 helpLink: helpLink
                 message: message
+              shippingItemRates:
+              - itemId: itemId
+                amount: 1.4658129805029452
+                quantity: 5
+              - itemId: itemId
+                amount: 1.4658129805029452
+                quantity: 5
+              windows:
+              - pickupTime:
+                  startsAt: 2000-01-23T04:56:07.000+00:00
+                  endsAt: 2000-01-23T04:56:07.000+00:00
+                dropoffTime:
+                  startsAt: 2000-01-23T04:56:07.000+00:00
+                  endsAt: 2000-01-23T04:56:07.000+00:00
+              - pickupTime:
+                  startsAt: 2000-01-23T04:56:07.000+00:00
+                  endsAt: 2000-01-23T04:56:07.000+00:00
+                dropoffTime:
+                  startsAt: 2000-01-23T04:56:07.000+00:00
+                  endsAt: 2000-01-23T04:56:07.000+00:00
               content:
                 localeCode: localeCode
                 name: name
@@ -1909,13 +1523,6 @@ components:
               amount: 0.8008281904610115
               code: code
               data: "{}"
-              shippingItemRates:
-              - itemId: itemId
-                amount: 5.962133916683182
-                quantity: 1
-              - itemId: itemId
-                amount: 5.962133916683182
-                quantity: 1
               messages:
               - severity: severity
                 helpLink: helpLink
@@ -1923,6 +1530,26 @@ components:
               - severity: severity
                 helpLink: helpLink
                 message: message
+              shippingItemRates:
+              - itemId: itemId
+                amount: 1.4658129805029452
+                quantity: 5
+              - itemId: itemId
+                amount: 1.4658129805029452
+                quantity: 5
+              windows:
+              - pickupTime:
+                  startsAt: 2000-01-23T04:56:07.000+00:00
+                  endsAt: 2000-01-23T04:56:07.000+00:00
+                dropoffTime:
+                  startsAt: 2000-01-23T04:56:07.000+00:00
+                  endsAt: 2000-01-23T04:56:07.000+00:00
+              - pickupTime:
+                  startsAt: 2000-01-23T04:56:07.000+00:00
+                  endsAt: 2000-01-23T04:56:07.000+00:00
+                dropoffTime:
+                  startsAt: 2000-01-23T04:56:07.000+00:00
+                  endsAt: 2000-01-23T04:56:07.000+00:00
               content:
                 localeCode: localeCode
                 name: name
@@ -1937,6 +1564,7 @@ components:
                 - null
                 value: value
                 key: key
+            fulfillmentMethod: fulfillmentMethod
             carrierId: carrierId
             customAttributes:
             - childAttributes:
@@ -1954,13 +1582,6 @@ components:
               amount: 0.8008281904610115
               code: code
               data: "{}"
-              shippingItemRates:
-              - itemId: itemId
-                amount: 5.962133916683182
-                quantity: 1
-              - itemId: itemId
-                amount: 5.962133916683182
-                quantity: 1
               messages:
               - severity: severity
                 helpLink: helpLink
@@ -1968,6 +1589,26 @@ components:
               - severity: severity
                 helpLink: helpLink
                 message: message
+              shippingItemRates:
+              - itemId: itemId
+                amount: 1.4658129805029452
+                quantity: 5
+              - itemId: itemId
+                amount: 1.4658129805029452
+                quantity: 5
+              windows:
+              - pickupTime:
+                  startsAt: 2000-01-23T04:56:07.000+00:00
+                  endsAt: 2000-01-23T04:56:07.000+00:00
+                dropoffTime:
+                  startsAt: 2000-01-23T04:56:07.000+00:00
+                  endsAt: 2000-01-23T04:56:07.000+00:00
+              - pickupTime:
+                  startsAt: 2000-01-23T04:56:07.000+00:00
+                  endsAt: 2000-01-23T04:56:07.000+00:00
+                dropoffTime:
+                  startsAt: 2000-01-23T04:56:07.000+00:00
+                  endsAt: 2000-01-23T04:56:07.000+00:00
               content:
                 localeCode: localeCode
                 name: name
@@ -1986,13 +1627,6 @@ components:
               amount: 0.8008281904610115
               code: code
               data: "{}"
-              shippingItemRates:
-              - itemId: itemId
-                amount: 5.962133916683182
-                quantity: 1
-              - itemId: itemId
-                amount: 5.962133916683182
-                quantity: 1
               messages:
               - severity: severity
                 helpLink: helpLink
@@ -2000,6 +1634,26 @@ components:
               - severity: severity
                 helpLink: helpLink
                 message: message
+              shippingItemRates:
+              - itemId: itemId
+                amount: 1.4658129805029452
+                quantity: 5
+              - itemId: itemId
+                amount: 1.4658129805029452
+                quantity: 5
+              windows:
+              - pickupTime:
+                  startsAt: 2000-01-23T04:56:07.000+00:00
+                  endsAt: 2000-01-23T04:56:07.000+00:00
+                dropoffTime:
+                  startsAt: 2000-01-23T04:56:07.000+00:00
+                  endsAt: 2000-01-23T04:56:07.000+00:00
+              - pickupTime:
+                  startsAt: 2000-01-23T04:56:07.000+00:00
+                  endsAt: 2000-01-23T04:56:07.000+00:00
+                dropoffTime:
+                  startsAt: 2000-01-23T04:56:07.000+00:00
+                  endsAt: 2000-01-23T04:56:07.000+00:00
               content:
                 localeCode: localeCode
                 name: name
@@ -2014,6 +1668,7 @@ components:
                 - null
                 value: value
                 key: key
+            fulfillmentMethod: fulfillmentMethod
             carrierId: carrierId
             customAttributes:
             - childAttributes:
@@ -2026,359 +1681,469 @@ components:
               - null
               value: value
               key: key
+          resolvedShippingZoneCode: resolvedShippingZoneCode
+          shippingZoneCodes:
+          - shippingZoneCodes
+          - shippingZoneCodes
+          id: id
+        componentRates:
+        - rates:
+          - shippingRates:
+            - daysInTransit: 6
+              amount: 0.8008281904610115
+              code: code
+              data: "{}"
+              messages:
+              - severity: severity
+                helpLink: helpLink
+                message: message
+              - severity: severity
+                helpLink: helpLink
+                message: message
+              shippingItemRates:
+              - itemId: itemId
+                amount: 1.4658129805029452
+                quantity: 5
+              - itemId: itemId
+                amount: 1.4658129805029452
+                quantity: 5
+              windows:
+              - pickupTime:
+                  startsAt: 2000-01-23T04:56:07.000+00:00
+                  endsAt: 2000-01-23T04:56:07.000+00:00
+                dropoffTime:
+                  startsAt: 2000-01-23T04:56:07.000+00:00
+                  endsAt: 2000-01-23T04:56:07.000+00:00
+              - pickupTime:
+                  startsAt: 2000-01-23T04:56:07.000+00:00
+                  endsAt: 2000-01-23T04:56:07.000+00:00
+                dropoffTime:
+                  startsAt: 2000-01-23T04:56:07.000+00:00
+                  endsAt: 2000-01-23T04:56:07.000+00:00
+              content:
+                localeCode: localeCode
+                name: name
+              customAttributes:
+              - childAttributes:
+                - null
+                - null
+                value: value
+                key: key
+              - childAttributes:
+                - null
+                - null
+                value: value
+                key: key
+            - daysInTransit: 6
+              amount: 0.8008281904610115
+              code: code
+              data: "{}"
+              messages:
+              - severity: severity
+                helpLink: helpLink
+                message: message
+              - severity: severity
+                helpLink: helpLink
+                message: message
+              shippingItemRates:
+              - itemId: itemId
+                amount: 1.4658129805029452
+                quantity: 5
+              - itemId: itemId
+                amount: 1.4658129805029452
+                quantity: 5
+              windows:
+              - pickupTime:
+                  startsAt: 2000-01-23T04:56:07.000+00:00
+                  endsAt: 2000-01-23T04:56:07.000+00:00
+                dropoffTime:
+                  startsAt: 2000-01-23T04:56:07.000+00:00
+                  endsAt: 2000-01-23T04:56:07.000+00:00
+              - pickupTime:
+                  startsAt: 2000-01-23T04:56:07.000+00:00
+                  endsAt: 2000-01-23T04:56:07.000+00:00
+                dropoffTime:
+                  startsAt: 2000-01-23T04:56:07.000+00:00
+                  endsAt: 2000-01-23T04:56:07.000+00:00
+              content:
+                localeCode: localeCode
+                name: name
+              customAttributes:
+              - childAttributes:
+                - null
+                - null
+                value: value
+                key: key
+              - childAttributes:
+                - null
+                - null
+                value: value
+                key: key
+            fulfillmentMethod: fulfillmentMethod
+            carrierId: carrierId
+            customAttributes:
+            - childAttributes:
+              - null
+              - null
+              value: value
+              key: key
+            - childAttributes:
+              - null
+              - null
+              value: value
+              key: key
+          - shippingRates:
+            - daysInTransit: 6
+              amount: 0.8008281904610115
+              code: code
+              data: "{}"
+              messages:
+              - severity: severity
+                helpLink: helpLink
+                message: message
+              - severity: severity
+                helpLink: helpLink
+                message: message
+              shippingItemRates:
+              - itemId: itemId
+                amount: 1.4658129805029452
+                quantity: 5
+              - itemId: itemId
+                amount: 1.4658129805029452
+                quantity: 5
+              windows:
+              - pickupTime:
+                  startsAt: 2000-01-23T04:56:07.000+00:00
+                  endsAt: 2000-01-23T04:56:07.000+00:00
+                dropoffTime:
+                  startsAt: 2000-01-23T04:56:07.000+00:00
+                  endsAt: 2000-01-23T04:56:07.000+00:00
+              - pickupTime:
+                  startsAt: 2000-01-23T04:56:07.000+00:00
+                  endsAt: 2000-01-23T04:56:07.000+00:00
+                dropoffTime:
+                  startsAt: 2000-01-23T04:56:07.000+00:00
+                  endsAt: 2000-01-23T04:56:07.000+00:00
+              content:
+                localeCode: localeCode
+                name: name
+              customAttributes:
+              - childAttributes:
+                - null
+                - null
+                value: value
+                key: key
+              - childAttributes:
+                - null
+                - null
+                value: value
+                key: key
+            - daysInTransit: 6
+              amount: 0.8008281904610115
+              code: code
+              data: "{}"
+              messages:
+              - severity: severity
+                helpLink: helpLink
+                message: message
+              - severity: severity
+                helpLink: helpLink
+                message: message
+              shippingItemRates:
+              - itemId: itemId
+                amount: 1.4658129805029452
+                quantity: 5
+              - itemId: itemId
+                amount: 1.4658129805029452
+                quantity: 5
+              windows:
+              - pickupTime:
+                  startsAt: 2000-01-23T04:56:07.000+00:00
+                  endsAt: 2000-01-23T04:56:07.000+00:00
+                dropoffTime:
+                  startsAt: 2000-01-23T04:56:07.000+00:00
+                  endsAt: 2000-01-23T04:56:07.000+00:00
+              - pickupTime:
+                  startsAt: 2000-01-23T04:56:07.000+00:00
+                  endsAt: 2000-01-23T04:56:07.000+00:00
+                dropoffTime:
+                  startsAt: 2000-01-23T04:56:07.000+00:00
+                  endsAt: 2000-01-23T04:56:07.000+00:00
+              content:
+                localeCode: localeCode
+                name: name
+              customAttributes:
+              - childAttributes:
+                - null
+                - null
+                value: value
+                key: key
+              - childAttributes:
+                - null
+                - null
+                value: value
+                key: key
+            fulfillmentMethod: fulfillmentMethod
+            carrierId: carrierId
+            customAttributes:
+            - childAttributes:
+              - null
+              - null
+              value: value
+              key: key
+            - childAttributes:
+              - null
+              - null
+              value: value
+              key: key
+          resolvedShippingZoneCode: resolvedShippingZoneCode
+          shippingZoneCodes:
+          - shippingZoneCodes
+          - shippingZoneCodes
+          id: id
+        - rates:
+          - shippingRates:
+            - daysInTransit: 6
+              amount: 0.8008281904610115
+              code: code
+              data: "{}"
+              messages:
+              - severity: severity
+                helpLink: helpLink
+                message: message
+              - severity: severity
+                helpLink: helpLink
+                message: message
+              shippingItemRates:
+              - itemId: itemId
+                amount: 1.4658129805029452
+                quantity: 5
+              - itemId: itemId
+                amount: 1.4658129805029452
+                quantity: 5
+              windows:
+              - pickupTime:
+                  startsAt: 2000-01-23T04:56:07.000+00:00
+                  endsAt: 2000-01-23T04:56:07.000+00:00
+                dropoffTime:
+                  startsAt: 2000-01-23T04:56:07.000+00:00
+                  endsAt: 2000-01-23T04:56:07.000+00:00
+              - pickupTime:
+                  startsAt: 2000-01-23T04:56:07.000+00:00
+                  endsAt: 2000-01-23T04:56:07.000+00:00
+                dropoffTime:
+                  startsAt: 2000-01-23T04:56:07.000+00:00
+                  endsAt: 2000-01-23T04:56:07.000+00:00
+              content:
+                localeCode: localeCode
+                name: name
+              customAttributes:
+              - childAttributes:
+                - null
+                - null
+                value: value
+                key: key
+              - childAttributes:
+                - null
+                - null
+                value: value
+                key: key
+            - daysInTransit: 6
+              amount: 0.8008281904610115
+              code: code
+              data: "{}"
+              messages:
+              - severity: severity
+                helpLink: helpLink
+                message: message
+              - severity: severity
+                helpLink: helpLink
+                message: message
+              shippingItemRates:
+              - itemId: itemId
+                amount: 1.4658129805029452
+                quantity: 5
+              - itemId: itemId
+                amount: 1.4658129805029452
+                quantity: 5
+              windows:
+              - pickupTime:
+                  startsAt: 2000-01-23T04:56:07.000+00:00
+                  endsAt: 2000-01-23T04:56:07.000+00:00
+                dropoffTime:
+                  startsAt: 2000-01-23T04:56:07.000+00:00
+                  endsAt: 2000-01-23T04:56:07.000+00:00
+              - pickupTime:
+                  startsAt: 2000-01-23T04:56:07.000+00:00
+                  endsAt: 2000-01-23T04:56:07.000+00:00
+                dropoffTime:
+                  startsAt: 2000-01-23T04:56:07.000+00:00
+                  endsAt: 2000-01-23T04:56:07.000+00:00
+              content:
+                localeCode: localeCode
+                name: name
+              customAttributes:
+              - childAttributes:
+                - null
+                - null
+                value: value
+                key: key
+              - childAttributes:
+                - null
+                - null
+                value: value
+                key: key
+            fulfillmentMethod: fulfillmentMethod
+            carrierId: carrierId
+            customAttributes:
+            - childAttributes:
+              - null
+              - null
+              value: value
+              key: key
+            - childAttributes:
+              - null
+              - null
+              value: value
+              key: key
+          - shippingRates:
+            - daysInTransit: 6
+              amount: 0.8008281904610115
+              code: code
+              data: "{}"
+              messages:
+              - severity: severity
+                helpLink: helpLink
+                message: message
+              - severity: severity
+                helpLink: helpLink
+                message: message
+              shippingItemRates:
+              - itemId: itemId
+                amount: 1.4658129805029452
+                quantity: 5
+              - itemId: itemId
+                amount: 1.4658129805029452
+                quantity: 5
+              windows:
+              - pickupTime:
+                  startsAt: 2000-01-23T04:56:07.000+00:00
+                  endsAt: 2000-01-23T04:56:07.000+00:00
+                dropoffTime:
+                  startsAt: 2000-01-23T04:56:07.000+00:00
+                  endsAt: 2000-01-23T04:56:07.000+00:00
+              - pickupTime:
+                  startsAt: 2000-01-23T04:56:07.000+00:00
+                  endsAt: 2000-01-23T04:56:07.000+00:00
+                dropoffTime:
+                  startsAt: 2000-01-23T04:56:07.000+00:00
+                  endsAt: 2000-01-23T04:56:07.000+00:00
+              content:
+                localeCode: localeCode
+                name: name
+              customAttributes:
+              - childAttributes:
+                - null
+                - null
+                value: value
+                key: key
+              - childAttributes:
+                - null
+                - null
+                value: value
+                key: key
+            - daysInTransit: 6
+              amount: 0.8008281904610115
+              code: code
+              data: "{}"
+              messages:
+              - severity: severity
+                helpLink: helpLink
+                message: message
+              - severity: severity
+                helpLink: helpLink
+                message: message
+              shippingItemRates:
+              - itemId: itemId
+                amount: 1.4658129805029452
+                quantity: 5
+              - itemId: itemId
+                amount: 1.4658129805029452
+                quantity: 5
+              windows:
+              - pickupTime:
+                  startsAt: 2000-01-23T04:56:07.000+00:00
+                  endsAt: 2000-01-23T04:56:07.000+00:00
+                dropoffTime:
+                  startsAt: 2000-01-23T04:56:07.000+00:00
+                  endsAt: 2000-01-23T04:56:07.000+00:00
+              - pickupTime:
+                  startsAt: 2000-01-23T04:56:07.000+00:00
+                  endsAt: 2000-01-23T04:56:07.000+00:00
+                dropoffTime:
+                  startsAt: 2000-01-23T04:56:07.000+00:00
+                  endsAt: 2000-01-23T04:56:07.000+00:00
+              content:
+                localeCode: localeCode
+                name: name
+              customAttributes:
+              - childAttributes:
+                - null
+                - null
+                value: value
+                key: key
+              - childAttributes:
+                - null
+                - null
+                value: value
+                key: key
+            fulfillmentMethod: fulfillmentMethod
+            carrierId: carrierId
+            customAttributes:
+            - childAttributes:
+              - null
+              - null
+              value: value
+              key: key
+            - childAttributes:
+              - null
+              - null
+              value: value
+              key: key
+          resolvedShippingZoneCode: resolvedShippingZoneCode
           shippingZoneCodes:
           - shippingZoneCodes
           - shippingZoneCodes
           id: id
         id: id
-        componentRates:
-        - resolvedShippingZoneCode: resolvedShippingZoneCode
-          rates:
-          - shippingRates:
-            - daysInTransit: 6
-              amount: 0.8008281904610115
-              code: code
-              data: "{}"
-              shippingItemRates:
-              - itemId: itemId
-                amount: 5.962133916683182
-                quantity: 1
-              - itemId: itemId
-                amount: 5.962133916683182
-                quantity: 1
-              messages:
-              - severity: severity
-                helpLink: helpLink
-                message: message
-              - severity: severity
-                helpLink: helpLink
-                message: message
-              content:
-                localeCode: localeCode
-                name: name
-              customAttributes:
-              - childAttributes:
-                - null
-                - null
-                value: value
-                key: key
-              - childAttributes:
-                - null
-                - null
-                value: value
-                key: key
-            - daysInTransit: 6
-              amount: 0.8008281904610115
-              code: code
-              data: "{}"
-              shippingItemRates:
-              - itemId: itemId
-                amount: 5.962133916683182
-                quantity: 1
-              - itemId: itemId
-                amount: 5.962133916683182
-                quantity: 1
-              messages:
-              - severity: severity
-                helpLink: helpLink
-                message: message
-              - severity: severity
-                helpLink: helpLink
-                message: message
-              content:
-                localeCode: localeCode
-                name: name
-              customAttributes:
-              - childAttributes:
-                - null
-                - null
-                value: value
-                key: key
-              - childAttributes:
-                - null
-                - null
-                value: value
-                key: key
-            carrierId: carrierId
-            customAttributes:
-            - childAttributes:
-              - null
-              - null
-              value: value
-              key: key
-            - childAttributes:
-              - null
-              - null
-              value: value
-              key: key
-          - shippingRates:
-            - daysInTransit: 6
-              amount: 0.8008281904610115
-              code: code
-              data: "{}"
-              shippingItemRates:
-              - itemId: itemId
-                amount: 5.962133916683182
-                quantity: 1
-              - itemId: itemId
-                amount: 5.962133916683182
-                quantity: 1
-              messages:
-              - severity: severity
-                helpLink: helpLink
-                message: message
-              - severity: severity
-                helpLink: helpLink
-                message: message
-              content:
-                localeCode: localeCode
-                name: name
-              customAttributes:
-              - childAttributes:
-                - null
-                - null
-                value: value
-                key: key
-              - childAttributes:
-                - null
-                - null
-                value: value
-                key: key
-            - daysInTransit: 6
-              amount: 0.8008281904610115
-              code: code
-              data: "{}"
-              shippingItemRates:
-              - itemId: itemId
-                amount: 5.962133916683182
-                quantity: 1
-              - itemId: itemId
-                amount: 5.962133916683182
-                quantity: 1
-              messages:
-              - severity: severity
-                helpLink: helpLink
-                message: message
-              - severity: severity
-                helpLink: helpLink
-                message: message
-              content:
-                localeCode: localeCode
-                name: name
-              customAttributes:
-              - childAttributes:
-                - null
-                - null
-                value: value
-                key: key
-              - childAttributes:
-                - null
-                - null
-                value: value
-                key: key
-            carrierId: carrierId
-            customAttributes:
-            - childAttributes:
-              - null
-              - null
-              value: value
-              key: key
-            - childAttributes:
-              - null
-              - null
-              value: value
-              key: key
-          shippingZoneCodes:
-          - shippingZoneCodes
-          - shippingZoneCodes
-          id: id
-        - resolvedShippingZoneCode: resolvedShippingZoneCode
-          rates:
-          - shippingRates:
-            - daysInTransit: 6
-              amount: 0.8008281904610115
-              code: code
-              data: "{}"
-              shippingItemRates:
-              - itemId: itemId
-                amount: 5.962133916683182
-                quantity: 1
-              - itemId: itemId
-                amount: 5.962133916683182
-                quantity: 1
-              messages:
-              - severity: severity
-                helpLink: helpLink
-                message: message
-              - severity: severity
-                helpLink: helpLink
-                message: message
-              content:
-                localeCode: localeCode
-                name: name
-              customAttributes:
-              - childAttributes:
-                - null
-                - null
-                value: value
-                key: key
-              - childAttributes:
-                - null
-                - null
-                value: value
-                key: key
-            - daysInTransit: 6
-              amount: 0.8008281904610115
-              code: code
-              data: "{}"
-              shippingItemRates:
-              - itemId: itemId
-                amount: 5.962133916683182
-                quantity: 1
-              - itemId: itemId
-                amount: 5.962133916683182
-                quantity: 1
-              messages:
-              - severity: severity
-                helpLink: helpLink
-                message: message
-              - severity: severity
-                helpLink: helpLink
-                message: message
-              content:
-                localeCode: localeCode
-                name: name
-              customAttributes:
-              - childAttributes:
-                - null
-                - null
-                value: value
-                key: key
-              - childAttributes:
-                - null
-                - null
-                value: value
-                key: key
-            carrierId: carrierId
-            customAttributes:
-            - childAttributes:
-              - null
-              - null
-              value: value
-              key: key
-            - childAttributes:
-              - null
-              - null
-              value: value
-              key: key
-          - shippingRates:
-            - daysInTransit: 6
-              amount: 0.8008281904610115
-              code: code
-              data: "{}"
-              shippingItemRates:
-              - itemId: itemId
-                amount: 5.962133916683182
-                quantity: 1
-              - itemId: itemId
-                amount: 5.962133916683182
-                quantity: 1
-              messages:
-              - severity: severity
-                helpLink: helpLink
-                message: message
-              - severity: severity
-                helpLink: helpLink
-                message: message
-              content:
-                localeCode: localeCode
-                name: name
-              customAttributes:
-              - childAttributes:
-                - null
-                - null
-                value: value
-                key: key
-              - childAttributes:
-                - null
-                - null
-                value: value
-                key: key
-            - daysInTransit: 6
-              amount: 0.8008281904610115
-              code: code
-              data: "{}"
-              shippingItemRates:
-              - itemId: itemId
-                amount: 5.962133916683182
-                quantity: 1
-              - itemId: itemId
-                amount: 5.962133916683182
-                quantity: 1
-              messages:
-              - severity: severity
-                helpLink: helpLink
-                message: message
-              - severity: severity
-                helpLink: helpLink
-                message: message
-              content:
-                localeCode: localeCode
-                name: name
-              customAttributes:
-              - childAttributes:
-                - null
-                - null
-                value: value
-                key: key
-              - childAttributes:
-                - null
-                - null
-                value: value
-                key: key
-            carrierId: carrierId
-            customAttributes:
-            - childAttributes:
-              - null
-              - null
-              value: value
-              key: key
-            - childAttributes:
-              - null
-              - null
-              value: value
-              key: key
-          shippingZoneCodes:
-          - shippingZoneCodes
-          - shippingZoneCodes
-          id: id
       properties:
-        id:
-          nullable: true
-          type: string
-        ratesResponse:
-          $ref: '#/components/schemas/RatesResponse'
         componentRates:
           items:
             $ref: '#/components/schemas/RatesResponse'
           nullable: true
           type: array
+        id:
+          nullable: true
+          type: string
+        ratesResponse:
+          $ref: '#/components/schemas/RatesResponse'
       type: object
-    CustomerReferences:
-      additionalProperties: false
-      example:
-        value: value
-        key: key
+    RequestItem:
       properties:
-        key:
+        data:
+          nullable: true
+          type: object
+        itemId:
           nullable: true
           type: string
-        value:
+        quantity:
+          format: int32
           nullable: true
-          type: string
+          type: integer
+        unitMeasurements:
+          $ref: '#/components/schemas/ItemMeasurements'
       type: object
     ShipmentRequest:
-      additionalProperties: false
       example:
         shippingServiceType: shippingServiceType
         shipment:
@@ -2388,20 +2153,20 @@ components:
           origin:
             firstName: firstName
             address:
-              postalOrZipCode: postalOrZipCode
               isValidated: true
+              postalOrZipCode: postalOrZipCode
               address3: address3
               stateOrProvince: stateOrProvince
               address2: address2
               address1: address1
-              countryCode: countryCode
               addressType: addressType
+              countryCode: countryCode
               address4: address4
               cityOrTown: cityOrTown
             companyOrOrganization: companyOrOrganization
             lastNameOrSurname: lastNameOrSurname
             middleNameOrInitial: middleNameOrInitial
-            id: 6
+            id: 5
             email: email
             phoneNumbers:
               work: work
@@ -2410,44 +2175,45 @@ components:
           destination:
             firstName: firstName
             address:
-              postalOrZipCode: postalOrZipCode
               isValidated: true
+              postalOrZipCode: postalOrZipCode
               address3: address3
               stateOrProvince: stateOrProvince
               address2: address2
               address1: address1
-              countryCode: countryCode
               addressType: addressType
+              countryCode: countryCode
               address4: address4
               cityOrTown: cityOrTown
             companyOrOrganization: companyOrOrganization
             lastNameOrSurname: lastNameOrSurname
             middleNameOrInitial: middleNameOrInitial
-            id: 6
+            id: 5
             email: email
             phoneNumbers:
               work: work
               mobile: mobile
               home: home
+          estimatedShipmentDate: 2000-01-23T04:56:07.000+00:00
           packages:
           - productSummaries:
             - productCode: productCode
-              quantity: 9
-              price: 3.616076749251911
+              quantity: 4
+              price: 2.027123023002322
               unitMeasurements:
-                width:
-                  unit: unit
-                  value: 2.3021358869347655
+                girth: 7.386281948385884
                 length:
                   unit: unit
-                  value: 2.3021358869347655
-                girth: 7.061401241503109
+                  value: 9.301444243932576
+                width:
+                  unit: unit
+                  value: 9.301444243932576
                 weight:
                   unit: unit
-                  value: 2.3021358869347655
+                  value: 9.301444243932576
                 height:
                   unit: unit
-                  value: 2.3021358869347655
+                  value: 9.301444243932576
               options:
               - dataType: dataType
                 value: ""
@@ -2457,9 +2223,10 @@ components:
                 attributeFQN: attributeFQN
               categories:
               - parent: null
-                id: 5
+                id: 3
               - parent: null
-                id: 5
+                id: 3
+              productDescription: productDescription
               productType: productType
               properties:
               - dataType: dataType
@@ -2472,24 +2239,23 @@ components:
                 - ""
                 - ""
                 attributeFQN: attributeFQN
-              productDescription: productDescription
             - productCode: productCode
-              quantity: 9
-              price: 3.616076749251911
+              quantity: 4
+              price: 2.027123023002322
               unitMeasurements:
-                width:
-                  unit: unit
-                  value: 2.3021358869347655
+                girth: 7.386281948385884
                 length:
                   unit: unit
-                  value: 2.3021358869347655
-                girth: 7.061401241503109
+                  value: 9.301444243932576
+                width:
+                  unit: unit
+                  value: 9.301444243932576
                 weight:
                   unit: unit
-                  value: 2.3021358869347655
+                  value: 9.301444243932576
                 height:
                   unit: unit
-                  value: 2.3021358869347655
+                  value: 9.301444243932576
               options:
               - dataType: dataType
                 value: ""
@@ -2499,9 +2265,10 @@ components:
                 attributeFQN: attributeFQN
               categories:
               - parent: null
-                id: 5
+                id: 3
               - parent: null
-                id: 5
+                id: 3
+              productDescription: productDescription
               productType: productType
               properties:
               - dataType: dataType
@@ -2514,25 +2281,11 @@ components:
                 - ""
                 - ""
                 attributeFQN: attributeFQN
-              productDescription: productDescription
-            requiresSignature: true
+            signatureOption: signatureOption
             isGift: true
             id: id
-            contentsValue: 1.4658129805029452
+            contentsValue: 7.061401241503109
             packagingType: packagingType
-            measurements:
-              width:
-                unit: unit
-                value: 2.3021358869347655
-              length:
-                unit: unit
-                value: 2.3021358869347655
-              weight:
-                unit: unit
-                value: 2.3021358869347655
-              height:
-                unit: unit
-                value: 2.3021358869347655
             customAttributes:
             - childAttributes:
               - null
@@ -2544,24 +2297,37 @@ components:
               - null
               value: value
               key: key
+            measurements:
+              length:
+                unit: unit
+                value: 9.301444243932576
+              width:
+                unit: unit
+                value: 9.301444243932576
+              weight:
+                unit: unit
+                value: 9.301444243932576
+              height:
+                unit: unit
+                value: 9.301444243932576
           - productSummaries:
             - productCode: productCode
-              quantity: 9
-              price: 3.616076749251911
+              quantity: 4
+              price: 2.027123023002322
               unitMeasurements:
-                width:
-                  unit: unit
-                  value: 2.3021358869347655
+                girth: 7.386281948385884
                 length:
                   unit: unit
-                  value: 2.3021358869347655
-                girth: 7.061401241503109
+                  value: 9.301444243932576
+                width:
+                  unit: unit
+                  value: 9.301444243932576
                 weight:
                   unit: unit
-                  value: 2.3021358869347655
+                  value: 9.301444243932576
                 height:
                   unit: unit
-                  value: 2.3021358869347655
+                  value: 9.301444243932576
               options:
               - dataType: dataType
                 value: ""
@@ -2571,9 +2337,10 @@ components:
                 attributeFQN: attributeFQN
               categories:
               - parent: null
-                id: 5
+                id: 3
               - parent: null
-                id: 5
+                id: 3
+              productDescription: productDescription
               productType: productType
               properties:
               - dataType: dataType
@@ -2586,24 +2353,23 @@ components:
                 - ""
                 - ""
                 attributeFQN: attributeFQN
-              productDescription: productDescription
             - productCode: productCode
-              quantity: 9
-              price: 3.616076749251911
+              quantity: 4
+              price: 2.027123023002322
               unitMeasurements:
-                width:
-                  unit: unit
-                  value: 2.3021358869347655
+                girth: 7.386281948385884
                 length:
                   unit: unit
-                  value: 2.3021358869347655
-                girth: 7.061401241503109
+                  value: 9.301444243932576
+                width:
+                  unit: unit
+                  value: 9.301444243932576
                 weight:
                   unit: unit
-                  value: 2.3021358869347655
+                  value: 9.301444243932576
                 height:
                   unit: unit
-                  value: 2.3021358869347655
+                  value: 9.301444243932576
               options:
               - dataType: dataType
                 value: ""
@@ -2613,9 +2379,10 @@ components:
                 attributeFQN: attributeFQN
               categories:
               - parent: null
-                id: 5
+                id: 3
               - parent: null
-                id: 5
+                id: 3
+              productDescription: productDescription
               productType: productType
               properties:
               - dataType: dataType
@@ -2628,25 +2395,11 @@ components:
                 - ""
                 - ""
                 attributeFQN: attributeFQN
-              productDescription: productDescription
-            requiresSignature: true
+            signatureOption: signatureOption
             isGift: true
             id: id
-            contentsValue: 1.4658129805029452
+            contentsValue: 7.061401241503109
             packagingType: packagingType
-            measurements:
-              width:
-                unit: unit
-                value: 2.3021358869347655
-              length:
-                unit: unit
-                value: 2.3021358869347655
-              weight:
-                unit: unit
-                value: 2.3021358869347655
-              height:
-                unit: unit
-                value: 2.3021358869347655
             customAttributes:
             - childAttributes:
               - null
@@ -2658,9 +2411,21 @@ components:
               - null
               value: value
               key: key
-          estimatedShipmentDate: 2000-01-23T04:56:07.000+00:00
+            measurements:
+              length:
+                unit: unit
+                value: 9.301444243932576
+              width:
+                unit: unit
+                value: 9.301444243932576
+              weight:
+                unit: unit
+                value: 9.301444243932576
+              height:
+                unit: unit
+                value: 9.301444243932576
           fulfillmentLocationCode: fulfillmentLocationCode
-          orderTotal: 0.8008281904610115
+          orderTotal: 2.3021358869347655
           customAttributes:
           - childAttributes:
             - null
@@ -2672,14 +2437,25 @@ components:
             - null
             value: value
             key: key
-        requiresSignature: true
-        shipmentRequestType: shipmentRequestType
-        labelFormat: labelFormat
         customerReferences:
         - value: value
           key: key
         - value: value
           key: key
+        consolidationReferences:
+        - relatedShipmentNumber: 6
+          relatedOrderNumber: 0
+          relatedOrderId: relatedOrderId
+        - relatedShipmentNumber: 6
+          relatedOrderNumber: 0
+          relatedOrderId: relatedOrderId
+        fulfillmentMethod: fulfillmentMethod
+        relatedOrderId: relatedOrderId
+        relatedShipmentNumber: 5
+        labelFormat: labelFormat
+        shipmentRequestType: shipmentRequestType
+        relatedOrderNumber: 1
+        signatureOption: signatureOption
         carrierId: carrierId
         isoCurrencyCode: isoCurrencyCode
         customAttributes:
@@ -2694,76 +2470,427 @@ components:
           value: value
           key: key
       properties:
-        isoCurrencyCode:
+        carrierId:
           nullable: true
           type: string
-        shipment:
-          $ref: '#/components/schemas/ShippingRuntimeShipment'
+        consolidationReferences:
+          description: "Consolidation references for Order Number, Shipment Number\
+            \ and Order Id"
+          items:
+            $ref: '#/components/schemas/ConsolidationReference'
+          nullable: true
+          type: array
         customAttributes:
-          description: "Carrier specific options\r\n\r\nEx: RequiresDeliveryConfirmation\
-            \ when using usps with non-express mail service type."
+          description: |-
+            Carrier specific options
+
+            Ex: RequiresDeliveryConfirmation when using usps with non-express mail service type.
           items:
             $ref: '#/components/schemas/CustomAttribute'
           nullable: true
           type: array
-        carrierId:
+        customerReferences:
+          items:
+            $ref: '#/components/schemas/CustomerReferences'
+          nullable: true
+          type: array
+        fulfillmentMethod:
+          description: Fulfillment method for the shipment. STH / Delivery. Empty
+            will be assumed as STH.
+          nullable: true
+          type: string
+        isoCurrencyCode:
+          nullable: true
+          type: string
+        labelFormat:
+          description: |-
+            Returns the Label in the requested format.
+            Specify either "LASER" or "THERMAL" format.
+            Actual supported image formats vary by carrier.
+          nullable: true
+          type: string
+        relatedOrderId:
+          description: |-
+            The related Order ID for this shipment request.
+            Informational only.
+          nullable: true
+          type: string
+        relatedOrderNumber:
+          description: |-
+            The related Order Number for this shipment request.
+            Informational only.
+          format: int32
+          nullable: true
+          type: integer
+        relatedShipmentNumber:
+          description: |-
+            The related Shipment Number for this shipment request.
+            Informational only.
+          format: int32
+          nullable: true
+          type: integer
+        shipment:
+          $ref: '#/components/schemas/ShippingRuntimeShipment'
+        shipmentRequestType:
+          description: Selected Shipment Request Type.
           nullable: true
           type: string
         shippingServiceType:
           description: Selected Shipping Service Type.
           nullable: true
           type: string
-        shipmentRequestType:
-          description: Selected Shipment Request Type.
+        signatureOption:
+          description: |-
+            Specify an optional signature option for this shipment.
+            All packages will inherit this option value automatically.
+            Set this option on the package level to override this value.
           nullable: true
           type: string
-        requiresSignature:
-          description: "Designates that the shipment requires a signature for delivery\r\
-            \nNot fully implemented..."
-          nullable: true
-          type: boolean
-        labelFormat:
-          nullable: true
-          type: string
-        customerReferences:
-          items:
-            $ref: '#/components/schemas/CustomerReferences'
-          nullable: true
-          type: array
-      type: object
-    Money:
-      additionalProperties: false
-      example:
-        currencyCode: currencyCode
-        value: 0.8008281904610115
-      properties:
-        currencyCode:
-          nullable: true
-          type: string
-        value:
-          format: double
-          type: number
       type: object
     ShippingLabel:
-      additionalProperties: false
       example:
         imageFormat: imageFormat
         imageData: imageData
         labelUrl: labelUrl
       properties:
-        imageFormat:
-          nullable: true
-          type: string
         imageData:
           format: byte
+          nullable: true
+          type: string
+        imageFormat:
           nullable: true
           type: string
         labelUrl:
           nullable: true
           type: string
       type: object
-    PackageResponse:
-      additionalProperties: false
+    ShippingRateLocalizedContent:
+      example:
+        localeCode: localeCode
+        name: name
+      properties:
+        localeCode:
+          nullable: true
+          type: string
+        name:
+          nullable: true
+          type: string
+      type: object
+    ShippingRateValidationMessage:
+      description: Shipping Rate Validation Message
+      example:
+        severity: severity
+        helpLink: helpLink
+        message: message
+      properties:
+        helpLink:
+          description: Help Link
+          nullable: true
+          type: string
+        message:
+          description: Message
+          nullable: true
+          type: string
+        severity:
+          description: Severity
+          nullable: true
+          type: string
+      type: object
+    ShippingRuntimeCarrier:
+      description: A Carrier definition supported by Shipping Runtime.
+      example:
+        auditInfo:
+          createBy: createBy
+          updateDate: 2000-01-23T04:56:07.000+00:00
+          updateBy: updateBy
+          createDate: 2000-01-23T04:56:07.000+00:00
+        features:
+        - features
+        - features
+        name: name
+        description: description
+        certified: true
+        carrierId: carrierId
+        isBuiltIn: true
+        logoUrl: logoUrl
+      properties:
+        auditInfo:
+          $ref: '#/components/schemas/AdminUserAuditInfo'
+        carrierId:
+          nullable: true
+          type: string
+        certified:
+          nullable: true
+          type: boolean
+        description:
+          nullable: true
+          type: string
+        features:
+          items:
+            type: string
+          nullable: true
+          type: array
+        isBuiltIn:
+          type: boolean
+        logoUrl:
+          nullable: true
+          type: string
+        name:
+          nullable: true
+          type: string
+      type: object
+    ShippingRuntimeCategory:
+      description: Categories to which the product belongs.
+      example:
+        parent: null
+        id: 3
+      properties:
+        id:
+          format: int32
+          type: integer
+        parent:
+          $ref: '#/components/schemas/ShippingRuntimeCategory'
+      type: object
+    ShippingRuntimeDeliveryWindow:
+      example:
+        pickupTime:
+          startsAt: 2000-01-23T04:56:07.000+00:00
+          endsAt: 2000-01-23T04:56:07.000+00:00
+        dropoffTime:
+          startsAt: 2000-01-23T04:56:07.000+00:00
+          endsAt: 2000-01-23T04:56:07.000+00:00
+      properties:
+        dropoffTime:
+          $ref: '#/components/schemas/TimeWindow'
+        pickupTime:
+          $ref: '#/components/schemas/TimeWindow'
+      type: object
+    ShippingRuntimeEstimatedDeliveryDate:
+      example:
+        serviceType: serviceType
+        data: "{}"
+        fulfillmentMethod: fulfillmentMethod
+        messages:
+        - severity: severity
+          helpLink: helpLink
+          message: message
+        - severity: severity
+          helpLink: helpLink
+          message: message
+        deliveryDate: deliveryDate
+        windows:
+        - pickupTime:
+            startsAt: 2000-01-23T04:56:07.000+00:00
+            endsAt: 2000-01-23T04:56:07.000+00:00
+          dropoffTime:
+            startsAt: 2000-01-23T04:56:07.000+00:00
+            endsAt: 2000-01-23T04:56:07.000+00:00
+        - pickupTime:
+            startsAt: 2000-01-23T04:56:07.000+00:00
+            endsAt: 2000-01-23T04:56:07.000+00:00
+          dropoffTime:
+            startsAt: 2000-01-23T04:56:07.000+00:00
+            endsAt: 2000-01-23T04:56:07.000+00:00
+      properties:
+        data:
+          nullable: true
+          type: object
+        deliveryDate:
+          nullable: true
+          type: string
+        fulfillmentMethod:
+          nullable: true
+          type: string
+        messages:
+          items:
+            $ref: '#/components/schemas/ShippingRateValidationMessage'
+          nullable: true
+          type: array
+        serviceType:
+          nullable: true
+          type: string
+        windows:
+          items:
+            $ref: '#/components/schemas/ShippingRuntimeDeliveryWindow'
+          nullable: true
+          type: array
+      type: object
+    ShippingRuntimePackage:
+      example:
+        productSummaries:
+        - productCode: productCode
+          quantity: 4
+          price: 2.027123023002322
+          unitMeasurements:
+            girth: 7.386281948385884
+            length:
+              unit: unit
+              value: 9.301444243932576
+            width:
+              unit: unit
+              value: 9.301444243932576
+            weight:
+              unit: unit
+              value: 9.301444243932576
+            height:
+              unit: unit
+              value: 9.301444243932576
+          options:
+          - dataType: dataType
+            value: ""
+            attributeFQN: attributeFQN
+          - dataType: dataType
+            value: ""
+            attributeFQN: attributeFQN
+          categories:
+          - parent: null
+            id: 3
+          - parent: null
+            id: 3
+          productDescription: productDescription
+          productType: productType
+          properties:
+          - dataType: dataType
+            values:
+            - ""
+            - ""
+            attributeFQN: attributeFQN
+          - dataType: dataType
+            values:
+            - ""
+            - ""
+            attributeFQN: attributeFQN
+        - productCode: productCode
+          quantity: 4
+          price: 2.027123023002322
+          unitMeasurements:
+            girth: 7.386281948385884
+            length:
+              unit: unit
+              value: 9.301444243932576
+            width:
+              unit: unit
+              value: 9.301444243932576
+            weight:
+              unit: unit
+              value: 9.301444243932576
+            height:
+              unit: unit
+              value: 9.301444243932576
+          options:
+          - dataType: dataType
+            value: ""
+            attributeFQN: attributeFQN
+          - dataType: dataType
+            value: ""
+            attributeFQN: attributeFQN
+          categories:
+          - parent: null
+            id: 3
+          - parent: null
+            id: 3
+          productDescription: productDescription
+          productType: productType
+          properties:
+          - dataType: dataType
+            values:
+            - ""
+            - ""
+            attributeFQN: attributeFQN
+          - dataType: dataType
+            values:
+            - ""
+            - ""
+            attributeFQN: attributeFQN
+        signatureOption: signatureOption
+        isGift: true
+        id: id
+        contentsValue: 7.061401241503109
+        packagingType: packagingType
+        customAttributes:
+        - childAttributes:
+          - null
+          - null
+          value: value
+          key: key
+        - childAttributes:
+          - null
+          - null
+          value: value
+          key: key
+        measurements:
+          length:
+            unit: unit
+            value: 9.301444243932576
+          width:
+            unit: unit
+            value: 9.301444243932576
+          weight:
+            unit: unit
+            value: 9.301444243932576
+          height:
+            unit: unit
+            value: 9.301444243932576
+      properties:
+        contentsValue:
+          format: double
+          nullable: true
+          type: number
+        customAttributes:
+          items:
+            $ref: '#/components/schemas/CustomAttribute'
+          nullable: true
+          type: array
+        id:
+          nullable: true
+          type: string
+        isGift:
+          nullable: true
+          type: boolean
+        measurements:
+          $ref: '#/components/schemas/ShippingRuntimePackageMeasurements'
+        packagingType:
+          description: Selected PackagingType.  Shipping provider dependent.
+          nullable: true
+          type: string
+        productSummaries:
+          description: Product details in the package
+          items:
+            $ref: '#/components/schemas/ProductSummary'
+          nullable: true
+          type: array
+        signatureOption:
+          description: |-
+            Specify an optional signature option for this package.
+            If not specified, will inherit the option value from the shipment.
+          nullable: true
+          type: string
+      type: object
+    ShippingRuntimePackageMeasurements:
+      example:
+        length:
+          unit: unit
+          value: 9.301444243932576
+        width:
+          unit: unit
+          value: 9.301444243932576
+        weight:
+          unit: unit
+          value: 9.301444243932576
+        height:
+          unit: unit
+          value: 9.301444243932576
+      properties:
+        height:
+          $ref: '#/components/schemas/CommerceRuntimeMeasurement'
+        length:
+          $ref: '#/components/schemas/CommerceRuntimeMeasurement'
+        weight:
+          $ref: '#/components/schemas/CommerceRuntimeMeasurement'
+        width:
+          $ref: '#/components/schemas/CommerceRuntimeMeasurement'
+      type: object
+    ShippingRuntimePackageResponse:
       example:
         integratorId: integratorId
         id: id
@@ -2784,43 +2911,383 @@ components:
           value: value
           key: key
       properties:
-        id:
-          nullable: true
-          type: string
-        trackingNumber:
-          nullable: true
-          type: string
-        label:
-          $ref: '#/components/schemas/ShippingLabel'
         customAttributes:
           items:
             $ref: '#/components/schemas/CustomAttribute'
           nullable: true
           type: array
+        id:
+          nullable: true
+          type: string
         integratorId:
           description: Easypost ShipmentId required for manifests
           nullable: true
           type: string
+        label:
+          $ref: '#/components/schemas/ShippingLabel'
+        trackingNumber:
+          nullable: true
+          type: string
       type: object
-    Notification:
-      additionalProperties: false
+    ShippingRuntimeProductOption:
       example:
-        code: code
-        source: source
-        message: message
+        dataType: dataType
+        value: ""
+        attributeFQN: attributeFQN
       properties:
-        source:
+        attributeFQN:
           nullable: true
           type: string
-        message:
+        dataType:
           nullable: true
           type: string
-        code:
+        value:
           nullable: true
-          type: string
       type: object
-    ShipmentResponse:
-      additionalProperties: false
+    ShippingRuntimeProductProperty:
+      example:
+        dataType: dataType
+        values:
+        - ""
+        - ""
+        attributeFQN: attributeFQN
+      properties:
+        attributeFQN:
+          nullable: true
+          type: string
+        dataType:
+          nullable: true
+          type: string
+        values:
+          items: {}
+          nullable: true
+          type: array
+      type: object
+    ShippingRuntimeShipment:
+      example:
+        shippingMethodCodes:
+        - shippingMethodCodes
+        - shippingMethodCodes
+        origin:
+          firstName: firstName
+          address:
+            isValidated: true
+            postalOrZipCode: postalOrZipCode
+            address3: address3
+            stateOrProvince: stateOrProvince
+            address2: address2
+            address1: address1
+            addressType: addressType
+            countryCode: countryCode
+            address4: address4
+            cityOrTown: cityOrTown
+          companyOrOrganization: companyOrOrganization
+          lastNameOrSurname: lastNameOrSurname
+          middleNameOrInitial: middleNameOrInitial
+          id: 5
+          email: email
+          phoneNumbers:
+            work: work
+            mobile: mobile
+            home: home
+        destination:
+          firstName: firstName
+          address:
+            isValidated: true
+            postalOrZipCode: postalOrZipCode
+            address3: address3
+            stateOrProvince: stateOrProvince
+            address2: address2
+            address1: address1
+            addressType: addressType
+            countryCode: countryCode
+            address4: address4
+            cityOrTown: cityOrTown
+          companyOrOrganization: companyOrOrganization
+          lastNameOrSurname: lastNameOrSurname
+          middleNameOrInitial: middleNameOrInitial
+          id: 5
+          email: email
+          phoneNumbers:
+            work: work
+            mobile: mobile
+            home: home
+        estimatedShipmentDate: 2000-01-23T04:56:07.000+00:00
+        packages:
+        - productSummaries:
+          - productCode: productCode
+            quantity: 4
+            price: 2.027123023002322
+            unitMeasurements:
+              girth: 7.386281948385884
+              length:
+                unit: unit
+                value: 9.301444243932576
+              width:
+                unit: unit
+                value: 9.301444243932576
+              weight:
+                unit: unit
+                value: 9.301444243932576
+              height:
+                unit: unit
+                value: 9.301444243932576
+            options:
+            - dataType: dataType
+              value: ""
+              attributeFQN: attributeFQN
+            - dataType: dataType
+              value: ""
+              attributeFQN: attributeFQN
+            categories:
+            - parent: null
+              id: 3
+            - parent: null
+              id: 3
+            productDescription: productDescription
+            productType: productType
+            properties:
+            - dataType: dataType
+              values:
+              - ""
+              - ""
+              attributeFQN: attributeFQN
+            - dataType: dataType
+              values:
+              - ""
+              - ""
+              attributeFQN: attributeFQN
+          - productCode: productCode
+            quantity: 4
+            price: 2.027123023002322
+            unitMeasurements:
+              girth: 7.386281948385884
+              length:
+                unit: unit
+                value: 9.301444243932576
+              width:
+                unit: unit
+                value: 9.301444243932576
+              weight:
+                unit: unit
+                value: 9.301444243932576
+              height:
+                unit: unit
+                value: 9.301444243932576
+            options:
+            - dataType: dataType
+              value: ""
+              attributeFQN: attributeFQN
+            - dataType: dataType
+              value: ""
+              attributeFQN: attributeFQN
+            categories:
+            - parent: null
+              id: 3
+            - parent: null
+              id: 3
+            productDescription: productDescription
+            productType: productType
+            properties:
+            - dataType: dataType
+              values:
+              - ""
+              - ""
+              attributeFQN: attributeFQN
+            - dataType: dataType
+              values:
+              - ""
+              - ""
+              attributeFQN: attributeFQN
+          signatureOption: signatureOption
+          isGift: true
+          id: id
+          contentsValue: 7.061401241503109
+          packagingType: packagingType
+          customAttributes:
+          - childAttributes:
+            - null
+            - null
+            value: value
+            key: key
+          - childAttributes:
+            - null
+            - null
+            value: value
+            key: key
+          measurements:
+            length:
+              unit: unit
+              value: 9.301444243932576
+            width:
+              unit: unit
+              value: 9.301444243932576
+            weight:
+              unit: unit
+              value: 9.301444243932576
+            height:
+              unit: unit
+              value: 9.301444243932576
+        - productSummaries:
+          - productCode: productCode
+            quantity: 4
+            price: 2.027123023002322
+            unitMeasurements:
+              girth: 7.386281948385884
+              length:
+                unit: unit
+                value: 9.301444243932576
+              width:
+                unit: unit
+                value: 9.301444243932576
+              weight:
+                unit: unit
+                value: 9.301444243932576
+              height:
+                unit: unit
+                value: 9.301444243932576
+            options:
+            - dataType: dataType
+              value: ""
+              attributeFQN: attributeFQN
+            - dataType: dataType
+              value: ""
+              attributeFQN: attributeFQN
+            categories:
+            - parent: null
+              id: 3
+            - parent: null
+              id: 3
+            productDescription: productDescription
+            productType: productType
+            properties:
+            - dataType: dataType
+              values:
+              - ""
+              - ""
+              attributeFQN: attributeFQN
+            - dataType: dataType
+              values:
+              - ""
+              - ""
+              attributeFQN: attributeFQN
+          - productCode: productCode
+            quantity: 4
+            price: 2.027123023002322
+            unitMeasurements:
+              girth: 7.386281948385884
+              length:
+                unit: unit
+                value: 9.301444243932576
+              width:
+                unit: unit
+                value: 9.301444243932576
+              weight:
+                unit: unit
+                value: 9.301444243932576
+              height:
+                unit: unit
+                value: 9.301444243932576
+            options:
+            - dataType: dataType
+              value: ""
+              attributeFQN: attributeFQN
+            - dataType: dataType
+              value: ""
+              attributeFQN: attributeFQN
+            categories:
+            - parent: null
+              id: 3
+            - parent: null
+              id: 3
+            productDescription: productDescription
+            productType: productType
+            properties:
+            - dataType: dataType
+              values:
+              - ""
+              - ""
+              attributeFQN: attributeFQN
+            - dataType: dataType
+              values:
+              - ""
+              - ""
+              attributeFQN: attributeFQN
+          signatureOption: signatureOption
+          isGift: true
+          id: id
+          contentsValue: 7.061401241503109
+          packagingType: packagingType
+          customAttributes:
+          - childAttributes:
+            - null
+            - null
+            value: value
+            key: key
+          - childAttributes:
+            - null
+            - null
+            value: value
+            key: key
+          measurements:
+            length:
+              unit: unit
+              value: 9.301444243932576
+            width:
+              unit: unit
+              value: 9.301444243932576
+            weight:
+              unit: unit
+              value: 9.301444243932576
+            height:
+              unit: unit
+              value: 9.301444243932576
+        fulfillmentLocationCode: fulfillmentLocationCode
+        orderTotal: 2.3021358869347655
+        customAttributes:
+        - childAttributes:
+          - null
+          - null
+          value: value
+          key: key
+        - childAttributes:
+          - null
+          - null
+          value: value
+          key: key
+      properties:
+        customAttributes:
+          items:
+            $ref: '#/components/schemas/CustomAttribute'
+          nullable: true
+          type: array
+        destination:
+          $ref: '#/components/schemas/CommerceRuntimeContact'
+        estimatedShipmentDate:
+          format: date-time
+          nullable: true
+          type: string
+        fulfillmentLocationCode:
+          nullable: true
+          type: string
+        orderTotal:
+          format: double
+          nullable: true
+          type: number
+        origin:
+          $ref: '#/components/schemas/CommerceRuntimeContact'
+        packages:
+          items:
+            $ref: '#/components/schemas/ShippingRuntimePackage'
+          nullable: true
+          type: array
+        shippingMethodCodes:
+          items:
+            type: string
+          nullable: true
+          type: array
+      type: object
+    ShippingRuntimeShipmentResponse:
       example:
         shippingTotal:
           currencyCode: currencyCode
@@ -2883,529 +3350,54 @@ components:
           value: value
           key: key
       properties:
+        customAttributes:
+          items:
+            $ref: '#/components/schemas/CustomAttribute'
+          nullable: true
+          type: array
+        isSuccessful:
+          type: boolean
+        messages:
+          items:
+            $ref: '#/components/schemas/Notification'
+          nullable: true
+          type: array
+        packageResponses:
+          items:
+            $ref: '#/components/schemas/ShippingRuntimePackageResponse'
+          nullable: true
+          type: array
         shippingTotal:
           $ref: '#/components/schemas/Money'
         trackingNumber:
           nullable: true
           type: string
-        packageResponses:
-          items:
-            $ref: '#/components/schemas/PackageResponse'
-          nullable: true
-          type: array
-        customAttributes:
-          items:
-            $ref: '#/components/schemas/CustomAttribute'
-          nullable: true
-          type: array
-        messages:
-          items:
-            $ref: '#/components/schemas/Notification'
-          nullable: true
-          type: array
-        isSuccessful:
-          type: boolean
       type: object
-    ManifestResponse:
-      additionalProperties: false
+    ShippingRuntimeShippingItemRate:
+      description: The shipping rate for a particular line item
       example:
-        includedShipments:
-        - integratorIds:
-          - integratorIds
-          - integratorIds
-          shipmentNumber: 0
-        - integratorIds:
-          - integratorIds
-          - integratorIds
-          shipmentNumber: 0
-        isSuccessful: true
-        manifestUrl: manifestUrl
-        messages:
-        - code: code
-          source: source
-          message: message
-        - code: code
-          source: source
-          message: message
-        manifestId: manifestId
-        carrierId: carrierId
-        locationCode: locationCode
+        itemId: itemId
+        amount: 1.4658129805029452
+        quantity: 5
       properties:
-        manifestId:
-          nullable: true
-          type: string
-        manifestUrl:
-          nullable: true
-          type: string
-        carrierId:
-          nullable: true
-          type: string
-        locationCode:
-          nullable: true
-          type: string
-        includedShipments:
-          items:
-            $ref: '#/components/schemas/ShippingRuntimeManifestShipment'
-          nullable: true
-          type: array
-        messages:
-          items:
-            $ref: '#/components/schemas/Notification'
-          nullable: true
-          type: array
-        isSuccessful:
-          type: boolean
-      type: object
-    CancelLabelRequest:
-      additionalProperties: false
-      example:
-        integratorIds:
-        - integratorIds
-        - integratorIds
-        carrierId: carrierId
-        fulfillmentLocationCode: fulfillmentLocationCode
-      properties:
-        integratorIds:
-          items:
-            type: string
-          nullable: true
-          type: array
-        carrierId:
-          nullable: true
-          type: string
-        fulfillmentLocationCode:
-          nullable: true
-          type: string
-      type: object
-    LabelStatus:
-      additionalProperties: false
-      example:
-        integratorId: integratorId
-        refundStatus: refundStatus
-      properties:
-        integratorId:
-          nullable: true
-          type: string
-        refundStatus:
-          nullable: true
-          type: string
-      type: object
-    CancelLabelResponse:
-      additionalProperties: false
-      example:
-        isSuccessful: true
-        messages:
-        - code: code
-          source: source
-          message: message
-        - code: code
-          source: source
-          message: message
-        labelStatus:
-        - integratorId: integratorId
-          refundStatus: refundStatus
-        - integratorId: integratorId
-          refundStatus: refundStatus
-      properties:
-        labelStatus:
-          items:
-            $ref: '#/components/schemas/LabelStatus'
-          nullable: true
-          type: array
-        messages:
-          items:
-            $ref: '#/components/schemas/Notification'
-          nullable: true
-          type: array
-        isSuccessful:
-          type: boolean
-      type: object
-    AdminUserAuditInfo:
-      additionalProperties: false
-      example:
-        updateDate: 2000-01-23T04:56:07.000+00:00
-        createBy: createBy
-        updateBy: updateBy
-        createDate: 2000-01-23T04:56:07.000+00:00
-      properties:
-        updateDate:
-          format: date-time
-          nullable: true
-          type: string
-        createDate:
-          format: date-time
-          nullable: true
-          type: string
-        updateBy:
-          nullable: true
-          type: string
-        createBy:
-          nullable: true
-          type: string
-      type: object
-    ShippingRuntimePackage:
-      additionalProperties: false
-      example:
-        productSummaries:
-        - productCode: productCode
-          quantity: 9
-          price: 3.616076749251911
-          unitMeasurements:
-            width:
-              unit: unit
-              value: 2.3021358869347655
-            length:
-              unit: unit
-              value: 2.3021358869347655
-            girth: 7.061401241503109
-            weight:
-              unit: unit
-              value: 2.3021358869347655
-            height:
-              unit: unit
-              value: 2.3021358869347655
-          options:
-          - dataType: dataType
-            value: ""
-            attributeFQN: attributeFQN
-          - dataType: dataType
-            value: ""
-            attributeFQN: attributeFQN
-          categories:
-          - parent: null
-            id: 5
-          - parent: null
-            id: 5
-          productType: productType
-          properties:
-          - dataType: dataType
-            values:
-            - ""
-            - ""
-            attributeFQN: attributeFQN
-          - dataType: dataType
-            values:
-            - ""
-            - ""
-            attributeFQN: attributeFQN
-          productDescription: productDescription
-        - productCode: productCode
-          quantity: 9
-          price: 3.616076749251911
-          unitMeasurements:
-            width:
-              unit: unit
-              value: 2.3021358869347655
-            length:
-              unit: unit
-              value: 2.3021358869347655
-            girth: 7.061401241503109
-            weight:
-              unit: unit
-              value: 2.3021358869347655
-            height:
-              unit: unit
-              value: 2.3021358869347655
-          options:
-          - dataType: dataType
-            value: ""
-            attributeFQN: attributeFQN
-          - dataType: dataType
-            value: ""
-            attributeFQN: attributeFQN
-          categories:
-          - parent: null
-            id: 5
-          - parent: null
-            id: 5
-          productType: productType
-          properties:
-          - dataType: dataType
-            values:
-            - ""
-            - ""
-            attributeFQN: attributeFQN
-          - dataType: dataType
-            values:
-            - ""
-            - ""
-            attributeFQN: attributeFQN
-          productDescription: productDescription
-        requiresSignature: true
-        isGift: true
-        id: id
-        contentsValue: 1.4658129805029452
-        packagingType: packagingType
-        measurements:
-          width:
-            unit: unit
-            value: 2.3021358869347655
-          length:
-            unit: unit
-            value: 2.3021358869347655
-          weight:
-            unit: unit
-            value: 2.3021358869347655
-          height:
-            unit: unit
-            value: 2.3021358869347655
-        customAttributes:
-        - childAttributes:
-          - null
-          - null
-          value: value
-          key: key
-        - childAttributes:
-          - null
-          - null
-          value: value
-          key: key
-      properties:
-        id:
-          nullable: true
-          type: string
-        contentsValue:
+        amount:
           format: double
           nullable: true
           type: number
-        measurements:
-          $ref: '#/components/schemas/ReservationWebAPIPackageMeasurements'
-        isGift:
-          nullable: true
-          type: boolean
-        customAttributes:
-          items:
-            $ref: '#/components/schemas/CustomAttribute'
-          nullable: true
-          type: array
-        requiresSignature:
-          description: Package delivery requires a signature when true.
-          nullable: true
-          type: boolean
-        packagingType:
-          description: Selected PackagingType.  Shipping provider dependent.
+        itemId:
           nullable: true
           type: string
-        productSummaries:
-          description: Product details in the package
-          items:
-            $ref: '#/components/schemas/ProductSummary'
-          nullable: true
-          type: array
-      type: object
-    CommerceRuntimePhone:
-      additionalProperties: false
-      example:
-        work: work
-        mobile: mobile
-        home: home
-      properties:
-        home:
-          nullable: true
-          type: string
-        mobile:
-          nullable: true
-          type: string
-        work:
-          nullable: true
-          type: string
-      type: object
-    CommerceRuntimeAddress:
-      additionalProperties: false
-      example:
-        postalOrZipCode: postalOrZipCode
-        isValidated: true
-        address3: address3
-        stateOrProvince: stateOrProvince
-        address2: address2
-        address1: address1
-        countryCode: countryCode
-        addressType: addressType
-        address4: address4
-        cityOrTown: cityOrTown
-      properties:
-        address1:
-          nullable: true
-          type: string
-        address2:
-          nullable: true
-          type: string
-        address3:
-          nullable: true
-          type: string
-        address4:
-          nullable: true
-          type: string
-        cityOrTown:
-          nullable: true
-          type: string
-        stateOrProvince:
-          nullable: true
-          type: string
-        postalOrZipCode:
-          nullable: true
-          type: string
-        countryCode:
-          nullable: true
-          type: string
-        addressType:
-          nullable: true
-          type: string
-        isValidated:
-          nullable: true
-          type: boolean
-      type: object
-    CommerceRuntimeContact:
-      additionalProperties: false
-      example:
-        firstName: firstName
-        address:
-          postalOrZipCode: postalOrZipCode
-          isValidated: true
-          address3: address3
-          stateOrProvince: stateOrProvince
-          address2: address2
-          address1: address1
-          countryCode: countryCode
-          addressType: addressType
-          address4: address4
-          cityOrTown: cityOrTown
-        companyOrOrganization: companyOrOrganization
-        lastNameOrSurname: lastNameOrSurname
-        middleNameOrInitial: middleNameOrInitial
-        id: 6
-        email: email
-        phoneNumbers:
-          work: work
-          mobile: mobile
-          home: home
-      properties:
-        id:
+        quantity:
           format: int32
           nullable: true
           type: integer
-        email:
-          nullable: true
-          type: string
-        firstName:
-          nullable: true
-          type: string
-        middleNameOrInitial:
-          nullable: true
-          type: string
-        lastNameOrSurname:
-          nullable: true
-          type: string
-        companyOrOrganization:
-          nullable: true
-          type: string
-        phoneNumbers:
-          $ref: '#/components/schemas/CommerceRuntimePhone'
-        address:
-          $ref: '#/components/schemas/CommerceRuntimeAddress'
-      type: object
-    CommerceRuntimeMeasurement:
-      additionalProperties: false
-      example:
-        unit: unit
-        value: 2.3021358869347655
-      properties:
-        unit:
-          nullable: true
-          type: string
-        value:
-          format: double
-          nullable: true
-          type: number
-      type: object
-    ReservationWebAPIPackageMeasurements:
-      additionalProperties: false
-      example:
-        width:
-          unit: unit
-          value: 2.3021358869347655
-        length:
-          unit: unit
-          value: 2.3021358869347655
-        weight:
-          unit: unit
-          value: 2.3021358869347655
-        height:
-          unit: unit
-          value: 2.3021358869347655
-      properties:
-        height:
-          $ref: '#/components/schemas/CommerceRuntimeMeasurement'
-        width:
-          $ref: '#/components/schemas/CommerceRuntimeMeasurement'
-        length:
-          $ref: '#/components/schemas/CommerceRuntimeMeasurement'
-        weight:
-          $ref: '#/components/schemas/CommerceRuntimeMeasurement'
-      type: object
-    ShippingRuntimeProductOption:
-      additionalProperties: false
-      example:
-        dataType: dataType
-        value: ""
-        attributeFQN: attributeFQN
-      properties:
-        attributeFQN:
-          nullable: true
-          type: string
-        dataType:
-          nullable: true
-          type: string
-        value:
-          nullable: true
-      type: object
-    ShippingRuntimeProductProperty:
-      additionalProperties: false
-      example:
-        dataType: dataType
-        values:
-        - ""
-        - ""
-        attributeFQN: attributeFQN
-      properties:
-        attributeFQN:
-          nullable: true
-          type: string
-        dataType:
-          nullable: true
-          type: string
-        values:
-          items: {}
-          nullable: true
-          type: array
-      type: object
-    ShippingRuntimeCategory:
-      additionalProperties: false
-      description: Categories to which the product belongs.
-      example:
-        parent: null
-        id: 5
-      properties:
-        id:
-          format: int32
-          type: integer
-        parent:
-          $ref: '#/components/schemas/ShippingRuntimeCategory'
       type: object
     ShippingRuntimeShippingRate:
-      additionalProperties: false
       example:
         daysInTransit: 6
         amount: 0.8008281904610115
         code: code
         data: "{}"
-        shippingItemRates:
-        - itemId: itemId
-          amount: 5.962133916683182
-          quantity: 1
-        - itemId: itemId
-          amount: 5.962133916683182
-          quantity: 1
         messages:
         - severity: severity
           helpLink: helpLink
@@ -3413,6 +3405,26 @@ components:
         - severity: severity
           helpLink: helpLink
           message: message
+        shippingItemRates:
+        - itemId: itemId
+          amount: 1.4658129805029452
+          quantity: 5
+        - itemId: itemId
+          amount: 1.4658129805029452
+          quantity: 5
+        windows:
+        - pickupTime:
+            startsAt: 2000-01-23T04:56:07.000+00:00
+            endsAt: 2000-01-23T04:56:07.000+00:00
+          dropoffTime:
+            startsAt: 2000-01-23T04:56:07.000+00:00
+            endsAt: 2000-01-23T04:56:07.000+00:00
+        - pickupTime:
+            startsAt: 2000-01-23T04:56:07.000+00:00
+            endsAt: 2000-01-23T04:56:07.000+00:00
+          dropoffTime:
+            startsAt: 2000-01-23T04:56:07.000+00:00
+            endsAt: 2000-01-23T04:56:07.000+00:00
         content:
           localeCode: localeCode
           name: name
@@ -3428,456 +3440,324 @@ components:
           value: value
           key: key
       properties:
+        amount:
+          format: double
+          nullable: true
+          type: number
         code:
           nullable: true
           type: string
         content:
           $ref: '#/components/schemas/ShippingRateLocalizedContent'
-        amount:
-          format: double
-          nullable: true
-          type: number
-        daysInTransit:
-          format: int32
-          nullable: true
-          type: integer
-        shippingItemRates:
-          items:
-            $ref: '#/components/schemas/ShippingItemRate'
-          nullable: true
-          type: array
         customAttributes:
           items:
             $ref: '#/components/schemas/CustomAttribute'
-          nullable: true
-          type: array
-        messages:
-          items:
-            $ref: '#/components/schemas/ShippingRateValidationMessage'
           nullable: true
           type: array
         data:
           nullable: true
           type: object
+        daysInTransit:
+          format: int32
+          nullable: true
+          type: integer
+        messages:
+          items:
+            $ref: '#/components/schemas/ShippingRateValidationMessage'
+          nullable: true
+          type: array
+        shippingItemRates:
+          items:
+            $ref: '#/components/schemas/ShippingRuntimeShippingItemRate'
+          nullable: true
+          type: array
+        windows:
+          items:
+            $ref: '#/components/schemas/ShippingRuntimeDeliveryWindow'
+          nullable: true
+          type: array
       type: object
-    ShippingRuntimeShipment:
-      additionalProperties: false
+    TimeWindow:
+      description: Represents a time window with a start and end time.
       example:
-        shippingMethodCodes:
-        - shippingMethodCodes
-        - shippingMethodCodes
-        origin:
-          firstName: firstName
-          address:
-            postalOrZipCode: postalOrZipCode
-            isValidated: true
-            address3: address3
-            stateOrProvince: stateOrProvince
-            address2: address2
-            address1: address1
-            countryCode: countryCode
-            addressType: addressType
-            address4: address4
-            cityOrTown: cityOrTown
-          companyOrOrganization: companyOrOrganization
-          lastNameOrSurname: lastNameOrSurname
-          middleNameOrInitial: middleNameOrInitial
-          id: 6
-          email: email
-          phoneNumbers:
-            work: work
-            mobile: mobile
-            home: home
-        destination:
-          firstName: firstName
-          address:
-            postalOrZipCode: postalOrZipCode
-            isValidated: true
-            address3: address3
-            stateOrProvince: stateOrProvince
-            address2: address2
-            address1: address1
-            countryCode: countryCode
-            addressType: addressType
-            address4: address4
-            cityOrTown: cityOrTown
-          companyOrOrganization: companyOrOrganization
-          lastNameOrSurname: lastNameOrSurname
-          middleNameOrInitial: middleNameOrInitial
-          id: 6
-          email: email
-          phoneNumbers:
-            work: work
-            mobile: mobile
-            home: home
-        packages:
-        - productSummaries:
-          - productCode: productCode
-            quantity: 9
-            price: 3.616076749251911
-            unitMeasurements:
-              width:
-                unit: unit
-                value: 2.3021358869347655
-              length:
-                unit: unit
-                value: 2.3021358869347655
-              girth: 7.061401241503109
-              weight:
-                unit: unit
-                value: 2.3021358869347655
-              height:
-                unit: unit
-                value: 2.3021358869347655
-            options:
-            - dataType: dataType
-              value: ""
-              attributeFQN: attributeFQN
-            - dataType: dataType
-              value: ""
-              attributeFQN: attributeFQN
-            categories:
-            - parent: null
-              id: 5
-            - parent: null
-              id: 5
-            productType: productType
-            properties:
-            - dataType: dataType
-              values:
-              - ""
-              - ""
-              attributeFQN: attributeFQN
-            - dataType: dataType
-              values:
-              - ""
-              - ""
-              attributeFQN: attributeFQN
-            productDescription: productDescription
-          - productCode: productCode
-            quantity: 9
-            price: 3.616076749251911
-            unitMeasurements:
-              width:
-                unit: unit
-                value: 2.3021358869347655
-              length:
-                unit: unit
-                value: 2.3021358869347655
-              girth: 7.061401241503109
-              weight:
-                unit: unit
-                value: 2.3021358869347655
-              height:
-                unit: unit
-                value: 2.3021358869347655
-            options:
-            - dataType: dataType
-              value: ""
-              attributeFQN: attributeFQN
-            - dataType: dataType
-              value: ""
-              attributeFQN: attributeFQN
-            categories:
-            - parent: null
-              id: 5
-            - parent: null
-              id: 5
-            productType: productType
-            properties:
-            - dataType: dataType
-              values:
-              - ""
-              - ""
-              attributeFQN: attributeFQN
-            - dataType: dataType
-              values:
-              - ""
-              - ""
-              attributeFQN: attributeFQN
-            productDescription: productDescription
-          requiresSignature: true
-          isGift: true
-          id: id
-          contentsValue: 1.4658129805029452
-          packagingType: packagingType
-          measurements:
-            width:
-              unit: unit
-              value: 2.3021358869347655
-            length:
-              unit: unit
-              value: 2.3021358869347655
-            weight:
-              unit: unit
-              value: 2.3021358869347655
-            height:
-              unit: unit
-              value: 2.3021358869347655
-          customAttributes:
-          - childAttributes:
-            - null
-            - null
-            value: value
-            key: key
-          - childAttributes:
-            - null
-            - null
-            value: value
-            key: key
-        - productSummaries:
-          - productCode: productCode
-            quantity: 9
-            price: 3.616076749251911
-            unitMeasurements:
-              width:
-                unit: unit
-                value: 2.3021358869347655
-              length:
-                unit: unit
-                value: 2.3021358869347655
-              girth: 7.061401241503109
-              weight:
-                unit: unit
-                value: 2.3021358869347655
-              height:
-                unit: unit
-                value: 2.3021358869347655
-            options:
-            - dataType: dataType
-              value: ""
-              attributeFQN: attributeFQN
-            - dataType: dataType
-              value: ""
-              attributeFQN: attributeFQN
-            categories:
-            - parent: null
-              id: 5
-            - parent: null
-              id: 5
-            productType: productType
-            properties:
-            - dataType: dataType
-              values:
-              - ""
-              - ""
-              attributeFQN: attributeFQN
-            - dataType: dataType
-              values:
-              - ""
-              - ""
-              attributeFQN: attributeFQN
-            productDescription: productDescription
-          - productCode: productCode
-            quantity: 9
-            price: 3.616076749251911
-            unitMeasurements:
-              width:
-                unit: unit
-                value: 2.3021358869347655
-              length:
-                unit: unit
-                value: 2.3021358869347655
-              girth: 7.061401241503109
-              weight:
-                unit: unit
-                value: 2.3021358869347655
-              height:
-                unit: unit
-                value: 2.3021358869347655
-            options:
-            - dataType: dataType
-              value: ""
-              attributeFQN: attributeFQN
-            - dataType: dataType
-              value: ""
-              attributeFQN: attributeFQN
-            categories:
-            - parent: null
-              id: 5
-            - parent: null
-              id: 5
-            productType: productType
-            properties:
-            - dataType: dataType
-              values:
-              - ""
-              - ""
-              attributeFQN: attributeFQN
-            - dataType: dataType
-              values:
-              - ""
-              - ""
-              attributeFQN: attributeFQN
-            productDescription: productDescription
-          requiresSignature: true
-          isGift: true
-          id: id
-          contentsValue: 1.4658129805029452
-          packagingType: packagingType
-          measurements:
-            width:
-              unit: unit
-              value: 2.3021358869347655
-            length:
-              unit: unit
-              value: 2.3021358869347655
-            weight:
-              unit: unit
-              value: 2.3021358869347655
-            height:
-              unit: unit
-              value: 2.3021358869347655
-          customAttributes:
-          - childAttributes:
-            - null
-            - null
-            value: value
-            key: key
-          - childAttributes:
-            - null
-            - null
-            value: value
-            key: key
-        estimatedShipmentDate: 2000-01-23T04:56:07.000+00:00
-        fulfillmentLocationCode: fulfillmentLocationCode
-        orderTotal: 0.8008281904610115
-        customAttributes:
-        - childAttributes:
-          - null
-          - null
-          value: value
-          key: key
-        - childAttributes:
-          - null
-          - null
-          value: value
-          key: key
+        startsAt: 2000-01-23T04:56:07.000+00:00
+        endsAt: 2000-01-23T04:56:07.000+00:00
       properties:
-        orderTotal:
-          format: double
-          nullable: true
-          type: number
-        origin:
-          $ref: '#/components/schemas/CommerceRuntimeContact'
-        destination:
-          $ref: '#/components/schemas/CommerceRuntimeContact'
-        fulfillmentLocationCode:
-          nullable: true
-          type: string
-        packages:
-          items:
-            $ref: '#/components/schemas/ShippingRuntimePackage'
-          nullable: true
-          type: array
-        shippingMethodCodes:
-          items:
-            type: string
-          nullable: true
-          type: array
-        customAttributes:
-          items:
-            $ref: '#/components/schemas/CustomAttribute'
-          nullable: true
-          type: array
-        estimatedShipmentDate:
+        endsAt:
+          description: Gets or sets the end time of the time window.
           format: date-time
           nullable: true
           type: string
+        startsAt:
+          description: Gets or sets the start time of the time window.
+          format: date-time
+          type: string
       type: object
-    ShippingRuntimeManifestShipment:
-      additionalProperties: false
+    TransitTimesItem:
+      allOf:
+      - $ref: '#/components/schemas/RequestItem'
+      - $ref: '#/components/schemas/TransitTimesItem_allOf'
+    TransitTimesRequest:
       example:
-        integratorIds:
-        - integratorIds
-        - integratorIds
-        shipmentNumber: 0
+        destinationAddress:
+          isValidated: true
+          postalOrZipCode: postalOrZipCode
+          address3: address3
+          stateOrProvince: stateOrProvince
+          address2: address2
+          address1: address1
+          addressType: addressType
+          countryCode: countryCode
+          address4: address4
+          cityOrTown: cityOrTown
+        data: "{}"
+        originAddress:
+          isValidated: true
+          postalOrZipCode: postalOrZipCode
+          address3: address3
+          stateOrProvince: stateOrProvince
+          address2: address2
+          address1: address1
+          addressType: addressType
+          countryCode: countryCode
+          address4: address4
+          cityOrTown: cityOrTown
+        originLocationCode: originLocationCode
+        fulfillmentMethod: fulfillmentMethod
+        shipDate: 2000-01-23T04:56:07.000+00:00
+        shippingServiceTypes:
+        - shippingServiceTypes
+        - shippingServiceTypes
+        items:
+        - null
+        - null
       properties:
-        shipmentNumber:
-          description: Kibo-ShipmentNumber
-          format: int32
-          type: integer
-        integratorIds:
-          description: List of EasyPost Integration ShipmentIds. Each package under
-            the shipment has its own easypost-shipmentid
+        data:
+          description: Custom data for the request
+          nullable: true
+          type: object
+        destinationAddress:
+          $ref: '#/components/schemas/CommerceRuntimeAddress'
+        fulfillmentMethod:
+          nullable: true
+          type: string
+        items:
+          items:
+            $ref: '#/components/schemas/TransitTimesItem'
+          nullable: true
+          type: array
+        originAddress:
+          $ref: '#/components/schemas/CommerceRuntimeAddress'
+        originLocationCode:
+          nullable: true
+          type: string
+        shipDate:
+          format: date-time
+          type: string
+        shippingServiceTypes:
           items:
             type: string
           nullable: true
           type: array
       type: object
-    ShippingRuntimeManifestRequest:
-      additionalProperties: false
+    TransitTimesResponse:
       example:
-        includedShipments:
-        - integratorIds:
-          - integratorIds
-          - integratorIds
-          shipmentNumber: 0
-        - integratorIds:
-          - integratorIds
-          - integratorIds
-          shipmentNumber: 0
-        carrierId: carrierId
-        locationCode: locationCode
+        destinationAddress:
+          isValidated: true
+          postalOrZipCode: postalOrZipCode
+          address3: address3
+          stateOrProvince: stateOrProvince
+          address2: address2
+          address1: address1
+          addressType: addressType
+          countryCode: countryCode
+          address4: address4
+          cityOrTown: cityOrTown
+        data: "{}"
+        originLocationCode: originLocationCode
+        transitTimes:
+        - estimatedDeliveryDates:
+          - serviceType: serviceType
+            data: "{}"
+            fulfillmentMethod: fulfillmentMethod
+            messages:
+            - severity: severity
+              helpLink: helpLink
+              message: message
+            - severity: severity
+              helpLink: helpLink
+              message: message
+            deliveryDate: deliveryDate
+            windows:
+            - pickupTime:
+                startsAt: 2000-01-23T04:56:07.000+00:00
+                endsAt: 2000-01-23T04:56:07.000+00:00
+              dropoffTime:
+                startsAt: 2000-01-23T04:56:07.000+00:00
+                endsAt: 2000-01-23T04:56:07.000+00:00
+            - pickupTime:
+                startsAt: 2000-01-23T04:56:07.000+00:00
+                endsAt: 2000-01-23T04:56:07.000+00:00
+              dropoffTime:
+                startsAt: 2000-01-23T04:56:07.000+00:00
+                endsAt: 2000-01-23T04:56:07.000+00:00
+          - serviceType: serviceType
+            data: "{}"
+            fulfillmentMethod: fulfillmentMethod
+            messages:
+            - severity: severity
+              helpLink: helpLink
+              message: message
+            - severity: severity
+              helpLink: helpLink
+              message: message
+            deliveryDate: deliveryDate
+            windows:
+            - pickupTime:
+                startsAt: 2000-01-23T04:56:07.000+00:00
+                endsAt: 2000-01-23T04:56:07.000+00:00
+              dropoffTime:
+                startsAt: 2000-01-23T04:56:07.000+00:00
+                endsAt: 2000-01-23T04:56:07.000+00:00
+            - pickupTime:
+                startsAt: 2000-01-23T04:56:07.000+00:00
+                endsAt: 2000-01-23T04:56:07.000+00:00
+              dropoffTime:
+                startsAt: 2000-01-23T04:56:07.000+00:00
+                endsAt: 2000-01-23T04:56:07.000+00:00
+          itemIds:
+          - itemIds
+          - itemIds
+          carrierId: carrierId
+        - estimatedDeliveryDates:
+          - serviceType: serviceType
+            data: "{}"
+            fulfillmentMethod: fulfillmentMethod
+            messages:
+            - severity: severity
+              helpLink: helpLink
+              message: message
+            - severity: severity
+              helpLink: helpLink
+              message: message
+            deliveryDate: deliveryDate
+            windows:
+            - pickupTime:
+                startsAt: 2000-01-23T04:56:07.000+00:00
+                endsAt: 2000-01-23T04:56:07.000+00:00
+              dropoffTime:
+                startsAt: 2000-01-23T04:56:07.000+00:00
+                endsAt: 2000-01-23T04:56:07.000+00:00
+            - pickupTime:
+                startsAt: 2000-01-23T04:56:07.000+00:00
+                endsAt: 2000-01-23T04:56:07.000+00:00
+              dropoffTime:
+                startsAt: 2000-01-23T04:56:07.000+00:00
+                endsAt: 2000-01-23T04:56:07.000+00:00
+          - serviceType: serviceType
+            data: "{}"
+            fulfillmentMethod: fulfillmentMethod
+            messages:
+            - severity: severity
+              helpLink: helpLink
+              message: message
+            - severity: severity
+              helpLink: helpLink
+              message: message
+            deliveryDate: deliveryDate
+            windows:
+            - pickupTime:
+                startsAt: 2000-01-23T04:56:07.000+00:00
+                endsAt: 2000-01-23T04:56:07.000+00:00
+              dropoffTime:
+                startsAt: 2000-01-23T04:56:07.000+00:00
+                endsAt: 2000-01-23T04:56:07.000+00:00
+            - pickupTime:
+                startsAt: 2000-01-23T04:56:07.000+00:00
+                endsAt: 2000-01-23T04:56:07.000+00:00
+              dropoffTime:
+                startsAt: 2000-01-23T04:56:07.000+00:00
+                endsAt: 2000-01-23T04:56:07.000+00:00
+          itemIds:
+          - itemIds
+          - itemIds
+          carrierId: carrierId
+        shipDate: 2000-01-23T04:56:07.000+00:00
+        items:
+        - null
+        - null
       properties:
-        carrierId:
+        data:
           nullable: true
-          type: string
-        includedShipments:
+          type: object
+        destinationAddress:
+          $ref: '#/components/schemas/CommerceRuntimeAddress'
+        items:
           items:
-            $ref: '#/components/schemas/ShippingRuntimeManifestShipment'
+            $ref: '#/components/schemas/TransitTimesItem'
           nullable: true
           type: array
-        locationCode:
+        originLocationCode:
           nullable: true
           type: string
+        shipDate:
+          format: date-time
+          type: string
+        transitTimes:
+          items:
+            $ref: '#/components/schemas/CarrierTransitTimes'
+          nullable: true
+          type: array
       type: object
-    ShippingRuntimeCarrier:
-      additionalProperties: false
-      description: A Carrier definition supported by Shipping Runtime.
-      example:
-        auditInfo:
-          updateDate: 2000-01-23T04:56:07.000+00:00
-          createBy: createBy
-          updateBy: updateBy
-          createDate: 2000-01-23T04:56:07.000+00:00
-        name: name
-        description: description
-        certified: true
-        carrierId: carrierId
-        isBuiltIn: true
-        logoUrl: logoUrl
+    ExternalRateRequest_allOf:
       properties:
-        carrierId:
+        carrierRates:
+          description: The list of carriers and their respected rates for which this
+            request needs calculated
+          items:
+            $ref: '#/components/schemas/CarrierMethods'
           nullable: true
-          type: string
-        isBuiltIn:
-          type: boolean
-        certified:
-          nullable: true
-          type: boolean
-        name:
-          nullable: true
-          type: string
-        description:
-          nullable: true
-          type: string
-        logoUrl:
-          nullable: true
-          type: string
-        auditInfo:
-          $ref: '#/components/schemas/AdminUserAuditInfo'
+          type: array
       type: object
+      example: null
+    RateRequestItem_allOf:
+      properties:
+        fulfillmentMethod:
+          description: The fulfillment method on item to fetch rates for. Supported
+            values are Ship and Delivery. Will assume Ship if nothing is passed.
+          nullable: true
+          type: string
+        itemTotal:
+          description: Item total.
+          format: int32
+          nullable: true
+          type: integer
+        productSummaries:
+          description: "If Product Summaries are populated, this information will\
+            \ be utilized in Product Rules (e.g. ProductCode eq \"ABC\" or (Weight.Unit\
+            \ eq \"lbs\" and Weight.Value ge 50)"
+          items:
+            $ref: '#/components/schemas/ProductSummary'
+          nullable: true
+          type: array
+        shipsByItself:
+          nullable: true
+          type: boolean
+      type: object
+      example: null
+    TransitTimesItem_allOf:
+      properties:
+        productCode:
+          nullable: true
+          type: string
+      type: object
+      example: null
   securitySchemes:
     bearerAuth:
       bearerFormat: JWT
-      description: JWT Authorization header using the Bearer scheme.
+      description: "JWT Authorization header using the Bearer scheme. \r\n\r\n Enter\
+        \ 'Bearer' [space] and then your token in the text input below.\r\n\r\nExample:\
+        \ \"Bearer 12345abcdef\""
       scheme: bearer
       type: http
-    clientOauth2:
-      flows:
-        clientCredentials:
-          scopes: {}
-          tokenUrl: /api/platform/applications/authtickets/oauth
-      type: oauth2
 

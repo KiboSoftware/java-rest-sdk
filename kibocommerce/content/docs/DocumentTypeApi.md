@@ -12,11 +12,11 @@ All URIs are relative to *http://https:/api*
 
 <a name="createDocumentType"></a>
 # **createDocumentType**
-> DocumentType createDocumentType(documentType)
+> DocumentType createDocumentType(responseFields, documentType)
 
 Create Document Type
 
-Create Document Type
+Create Document Type. All documents have a Document Type that describes the schema that the document must implement and its associated metadata, and is validated whenever a document is created or modified. The immutable types defined out-of-the-box are web_page, entityEditor, document, image, snippets, productContent, categoryContent, pageTemplateContent, emailTemplateContent, and folder.
 
 ### Example
 ```java
@@ -37,14 +37,11 @@ public class Example {
     HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
     bearerAuth.setBearerToken("BEARER TOKEN");
 
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
-
     DocumentTypeApi apiInstance = new DocumentTypeApi(defaultClient);
+    String responseFields = "responseFields_example"; // String | limits which fields are returned in the response body
     DocumentType documentType = new DocumentType(); // DocumentType | 
     try {
-      DocumentType result = apiInstance.createDocumentType(documentType);
+      DocumentType result = apiInstance.createDocumentType(responseFields, documentType);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling DocumentTypeApi#createDocumentType");
@@ -61,6 +58,7 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
+| **responseFields** | **String**| limits which fields are returned in the response body | [optional] |
 | **documentType** | [**DocumentType**](DocumentType.md)|  | [optional] |
 
 ### Return type
@@ -69,21 +67,21 @@ public class Example {
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth), [clientOauth2](../README.md#clientOauth2)
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
- - **Content-Type**: text/plain, application/octet-stream, application/json
+ - **Content-Type**: application/json, application/octet-stream, text/plain
  - **Accept**: application/json, text/json, text/plain
 
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Success |  -  |
+| **200** | OK |  -  |
 
 <a name="getDocumentType"></a>
 # **getDocumentType**
-> DocumentType getDocumentType(documentTypeName)
+> DocumentType getDocumentType(documentTypeName, responseFields)
 
 Get Document Type
 
@@ -108,14 +106,11 @@ public class Example {
     HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
     bearerAuth.setBearerToken("BEARER TOKEN");
 
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
-
     DocumentTypeApi apiInstance = new DocumentTypeApi(defaultClient);
     String documentTypeName = "documentTypeName_example"; // String | 
+    String responseFields = "responseFields_example"; // String | limits which fields are returned in the response body
     try {
-      DocumentType result = apiInstance.getDocumentType(documentTypeName);
+      DocumentType result = apiInstance.getDocumentType(documentTypeName, responseFields);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling DocumentTypeApi#getDocumentType");
@@ -133,6 +128,7 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **documentTypeName** | **String**|  | |
+| **responseFields** | **String**| limits which fields are returned in the response body | [optional] |
 
 ### Return type
 
@@ -140,7 +136,7 @@ public class Example {
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth), [clientOauth2](../README.md#clientOauth2)
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
@@ -150,15 +146,15 @@ public class Example {
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Success |  -  |
+| **200** | OK |  -  |
 
 <a name="getDocumentTypes"></a>
 # **getDocumentTypes**
-> DocumentTypeCollection getDocumentTypes(pageSize, startIndex)
+> DocumentTypeCollection getDocumentTypes(pageSize, startIndex, responseFields)
 
 Get Document Types
 
-Get Document Types
+Get Document Types. All documents have a Document Type that describes the schema that the document must implement and its associated metadata, and is validated whenever a document is created or modified. The immutable types defined out-of-the-box are web_page, entityEditor, document, image, snippets, productContent, categoryContent, pageTemplateContent, emailTemplateContent, and folder.
 
 ### Example
 ```java
@@ -179,15 +175,12 @@ public class Example {
     HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
     bearerAuth.setBearerToken("BEARER TOKEN");
 
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
-
     DocumentTypeApi apiInstance = new DocumentTypeApi(defaultClient);
     Integer pageSize = 56; // Integer | 
     Integer startIndex = 56; // Integer | 
+    String responseFields = "responseFields_example"; // String | limits which fields are returned in the response body
     try {
-      DocumentTypeCollection result = apiInstance.getDocumentTypes(pageSize, startIndex);
+      DocumentTypeCollection result = apiInstance.getDocumentTypes(pageSize, startIndex, responseFields);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling DocumentTypeApi#getDocumentTypes");
@@ -206,6 +199,7 @@ public class Example {
 |------------- | ------------- | ------------- | -------------|
 | **pageSize** | **Integer**|  | [optional] |
 | **startIndex** | **Integer**|  | [optional] |
+| **responseFields** | **String**| limits which fields are returned in the response body | [optional] |
 
 ### Return type
 
@@ -213,7 +207,7 @@ public class Example {
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth), [clientOauth2](../README.md#clientOauth2)
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
@@ -223,11 +217,11 @@ public class Example {
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Success |  -  |
+| **200** | OK |  -  |
 
 <a name="updateDocumentType"></a>
 # **updateDocumentType**
-> DocumentType updateDocumentType(documentTypeName, documentType)
+> DocumentType updateDocumentType(documentTypeName, responseFields, documentType)
 
 Update Document Type
 
@@ -252,15 +246,12 @@ public class Example {
     HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
     bearerAuth.setBearerToken("BEARER TOKEN");
 
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
-
     DocumentTypeApi apiInstance = new DocumentTypeApi(defaultClient);
     String documentTypeName = "documentTypeName_example"; // String | 
+    String responseFields = "responseFields_example"; // String | limits which fields are returned in the response body
     DocumentType documentType = new DocumentType(); // DocumentType | 
     try {
-      DocumentType result = apiInstance.updateDocumentType(documentTypeName, documentType);
+      DocumentType result = apiInstance.updateDocumentType(documentTypeName, responseFields, documentType);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling DocumentTypeApi#updateDocumentType");
@@ -278,6 +269,7 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **documentTypeName** | **String**|  | |
+| **responseFields** | **String**| limits which fields are returned in the response body | [optional] |
 | **documentType** | [**DocumentType**](DocumentType.md)|  | [optional] |
 
 ### Return type
@@ -286,15 +278,15 @@ public class Example {
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth), [clientOauth2](../README.md#clientOauth2)
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
- - **Content-Type**: text/plain, application/octet-stream, application/json
+ - **Content-Type**: application/json, application/octet-stream, text/plain
  - **Accept**: application/json, text/json, text/plain
 
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Success |  -  |
+| **200** | OK |  -  |
 

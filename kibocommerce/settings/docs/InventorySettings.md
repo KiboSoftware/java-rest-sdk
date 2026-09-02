@@ -7,10 +7,9 @@
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
-|**inventoryExportJob** | [**InventoryExportJob**](InventoryExportJob.md) |  |  [optional] |
-|**reserveCartInventoryInterval** | **Integer** |  |  [optional] |
-|**locationFulfillmentTypeSettings** | [**List&lt;LocationFulfillmentTypeSetting&gt;**](LocationFulfillmentTypeSetting.md) |  |  [optional] |
 |**auditInfo** | [**AdminUserAuditInfo**](AdminUserAuditInfo.md) |  |  [optional] |
+|**inventoryExportJob** | [**InventoryExportJob**](InventoryExportJob.md) |  |  [optional] |
+|**locationFulfillmentTypeSettings** | [**List&lt;LocationFulfillmentTypeSetting&gt;**](LocationFulfillmentTypeSetting.md) |  |  [optional] |
 
 
 ## Implemented Interfaces

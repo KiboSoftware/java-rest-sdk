@@ -1,8 +1,8 @@
 /*
  * Kibo Catalog Admin Services
- * OpenAPI Spec for Kibo Catalog Admin Services
+ * <div id=\"overview_CATALOG_ADMIN\">             <h2>CATALOG ADMINISTRATION</h2>             <p>The Catalog Administration APIs are a collection of resources for configuring the catalogs and products offered to your shoppers, including                 discounts and coupon sets, faceting, price lists, and different types or variations of products. See the                 <a href=\"/concept-guides/catalog\">Catalog user guides</a>                 for information about the related features in the Unified Commerce Admin.</p>             <p>Use the <strong>Attributes</strong> resource to manage localization and attribute configurations for your catalogs. This current version of the Attributes API includes localizedContent to                 support <a href=\"/pages/catalog-structure#multi-locale-catalogs\">multi-locale catalogs</a>, which was not present in the legacy API model. If                 you were a client prior to May 2024 and have upgraded your implementation to support this feature,                 you can still access attribute data that has not yet been rewritten to the new model by providing                 an x-api-version header set to \"1\". </p>             <p>Use the <strong>Categories</strong> resource to organize products and control where they appear on the storefront. Create                 and maintain a hierarchy of categories and subcategories where the site will store properties. This current version of the Categories API includes localizedContent to                 support <a href=\"/pages/catalog-structure#multi-locale-catalogs\">multi-locale catalogs</a>, which was not present in the legacy API model. If                 you were a client prior to May 2024 and have upgraded your implementation to support this feature,                 you can still access category data that has not yet been rewritten to the new model by providing                 an x-api-version header set to \"1\". </p>             <p>Use the <strong>Coupon Sets</strong> resource to view and create coupon sets. You can use coupon sets to group multiple                 coupon codes together and associate them with one or more discounts.</p>             <p>Use the <strong>Currency</strong> resource to manage the currency localization rules and exchange rates for any of the                 currencies that are supported for placing orders in.</p>             <p>Use the <strong>Discounts</strong> and <strong>Discount Settings</strong> resources to define and manage discounts to apply to products, product categories, or                 orders. This current version of the Discounts API includes localizedContent to                 support <a href=\"/pages/catalog-structure#multi-locale-catalogs\">multi-locale catalogs</a>, which was not present in the legacy Products API model. If                 you were a client prior to May 2024 and have upgraded your implementation to support this feature,                 you can still access discount data that has not yet been rewritten to the new model by providing                 an x-api-version header set to \"1\". </p>             <p>Use the <strong>Facets</strong> resource to manage the facets shoppers use to filter product display results on a                 storefront. Facets can include categories, product attributes, or prices, and use either a range of                 values or discrete values.</p>             <p>Use the <strong>Master Catalog</strong> resource to view details of the master catalogs associated with a tenant and to                 manage the product publishing mode for each master catalog.</p>             <p>Use the <strong>Price Lists</strong> resources to view and create price lists. You can use price lists to override the                 catalog pricing of products for specific customer segments and/or sites.</p>             <p>Use the <strong>Products</strong>, <strong>Product Types/Extras/Options/Properties</strong>, and <strong>Product Sort Definitions</strong> resources to create new product definitions in the master catalog and determine which                 catalogs will feature products. This current version of the Products API includes localizedContent to                 support <a href=\"/pages/catalog-structure#multi-locale-catalogs\">multi-locale catalogs</a>, which was not present in the legacy Products API model. If                 you were a client prior to May 2024 and have upgraded your implementation to support this feature,                 you can still access product data that has not yet been rewritten to the new model by providing                 an x-api-version header set to \"1\".</p>             <p>Use the <strong>Publishing</strong> resource to publish pending product updates together as part of a set.</p>             <p>Use the <strong>Search</strong> resource to manage all settings and options for providing product search on your site, as                 well as search tuning rules.</p>         </div>
  *
- * The version of the OpenAPI document: 1.0.0
+ * The version of the OpenAPI document: v1
  * 
  *
  * NOTE: This class is auto generated by OpenAPI Generator (https://openapi-generator.tech).
@@ -20,10 +20,13 @@ import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
+import com.kibocommerce.sdk.catalogadministration.models.CustomProperty;
 import com.kibocommerce.sdk.catalogadministration.models.StackingConfiguration;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 import org.openapitools.jackson.nullable.JsonNullable;
 import java.io.Serializable;
 
@@ -56,6 +59,18 @@ import com.kibocommerce.sdk.common.JSON;
 public class DiscountSettings implements Serializable {
   private static final long serialVersionUID = 1L;
 
+  public static final String SERIALIZED_NAME_CUSTOM_PROPERTIES = "customProperties";
+  @SerializedName(SERIALIZED_NAME_CUSTOM_PROPERTIES)
+  private List<CustomProperty> customProperties = null;
+
+  public static final String SERIALIZED_NAME_DO_NOT_APPLY_TO_HANDLING_FEES = "doNotApplyToHandlingFees";
+  @SerializedName(SERIALIZED_NAME_DO_NOT_APPLY_TO_HANDLING_FEES)
+  private Boolean doNotApplyToHandlingFees;
+
+  public static final String SERIALIZED_NAME_REJECT_SELF_DEFEATING_DISCOUNTS = "rejectSelfDefeatingDiscounts";
+  @SerializedName(SERIALIZED_NAME_REJECT_SELF_DEFEATING_DISCOUNTS)
+  private Boolean rejectSelfDefeatingDiscounts;
+
   public static final String SERIALIZED_NAME_STACKING_CONFIGURATION = "stackingConfiguration";
   @SerializedName(SERIALIZED_NAME_STACKING_CONFIGURATION)
   private StackingConfiguration stackingConfiguration;
@@ -64,12 +79,85 @@ public class DiscountSettings implements Serializable {
   @SerializedName(SERIALIZED_NAME_USE_POST_DISCOUNTED_ORDER_VALUE)
   private Boolean usePostDiscountedOrderValue;
 
-  public static final String SERIALIZED_NAME_DO_NOT_APPLY_TO_HANDLING_FEES = "doNotApplyToHandlingFees";
-  @SerializedName(SERIALIZED_NAME_DO_NOT_APPLY_TO_HANDLING_FEES)
-  private Boolean doNotApplyToHandlingFees;
-
   public DiscountSettings() {
   }
+
+  public DiscountSettings customProperties(List<CustomProperty> customProperties) {
+    
+    this.customProperties = customProperties;
+    return this;
+  }
+
+  public DiscountSettings addCustomPropertiesItem(CustomProperty customPropertiesItem) {
+    if (this.customProperties == null) {
+      this.customProperties = new ArrayList<>();
+    }
+    this.customProperties.add(customPropertiesItem);
+    return this;
+  }
+
+   /**
+   * Discount settings additional custom properties for storing property codes and names.
+   * @return customProperties
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "Discount settings additional custom properties for storing property codes and names.")
+
+  public List<CustomProperty> getCustomProperties() {
+    return customProperties;
+  }
+
+
+  public void setCustomProperties(List<CustomProperty> customProperties) {
+    this.customProperties = customProperties;
+  }
+
+
+  public DiscountSettings doNotApplyToHandlingFees(Boolean doNotApplyToHandlingFees) {
+    
+    this.doNotApplyToHandlingFees = doNotApplyToHandlingFees;
+    return this;
+  }
+
+   /**
+   * Prevents discounts from applying to handling fees
+   * @return doNotApplyToHandlingFees
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "Prevents discounts from applying to handling fees")
+
+  public Boolean getDoNotApplyToHandlingFees() {
+    return doNotApplyToHandlingFees;
+  }
+
+
+  public void setDoNotApplyToHandlingFees(Boolean doNotApplyToHandlingFees) {
+    this.doNotApplyToHandlingFees = doNotApplyToHandlingFees;
+  }
+
+
+  public DiscountSettings rejectSelfDefeatingDiscounts(Boolean rejectSelfDefeatingDiscounts) {
+    
+    this.rejectSelfDefeatingDiscounts = rejectSelfDefeatingDiscounts;
+    return this;
+  }
+
+   /**
+   * When true, the line-item planning loop rejects discounts whose application would violate their own minimum order amount constraint.
+   * @return rejectSelfDefeatingDiscounts
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "When true, the line-item planning loop rejects discounts whose application would violate their own minimum order amount constraint.")
+
+  public Boolean getRejectSelfDefeatingDiscounts() {
+    return rejectSelfDefeatingDiscounts;
+  }
+
+
+  public void setRejectSelfDefeatingDiscounts(Boolean rejectSelfDefeatingDiscounts) {
+    this.rejectSelfDefeatingDiscounts = rejectSelfDefeatingDiscounts;
+  }
+
 
   public DiscountSettings stackingConfiguration(StackingConfiguration stackingConfiguration) {
     
@@ -117,29 +205,6 @@ public class DiscountSettings implements Serializable {
   }
 
 
-  public DiscountSettings doNotApplyToHandlingFees(Boolean doNotApplyToHandlingFees) {
-    
-    this.doNotApplyToHandlingFees = doNotApplyToHandlingFees;
-    return this;
-  }
-
-   /**
-   * Prevents discounts from applying to handling fees
-   * @return doNotApplyToHandlingFees
-  **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(value = "Prevents discounts from applying to handling fees")
-
-  public Boolean getDoNotApplyToHandlingFees() {
-    return doNotApplyToHandlingFees;
-  }
-
-
-  public void setDoNotApplyToHandlingFees(Boolean doNotApplyToHandlingFees) {
-    this.doNotApplyToHandlingFees = doNotApplyToHandlingFees;
-  }
-
-
 
   @Override
   public boolean equals(Object o) {
@@ -150,9 +215,11 @@ public class DiscountSettings implements Serializable {
       return false;
     }
     DiscountSettings discountSettings = (DiscountSettings) o;
-    return Objects.equals(this.stackingConfiguration, discountSettings.stackingConfiguration) &&
-        Objects.equals(this.usePostDiscountedOrderValue, discountSettings.usePostDiscountedOrderValue) &&
-        Objects.equals(this.doNotApplyToHandlingFees, discountSettings.doNotApplyToHandlingFees);
+    return Objects.equals(this.customProperties, discountSettings.customProperties) &&
+        Objects.equals(this.doNotApplyToHandlingFees, discountSettings.doNotApplyToHandlingFees) &&
+        Objects.equals(this.rejectSelfDefeatingDiscounts, discountSettings.rejectSelfDefeatingDiscounts) &&
+        Objects.equals(this.stackingConfiguration, discountSettings.stackingConfiguration) &&
+        Objects.equals(this.usePostDiscountedOrderValue, discountSettings.usePostDiscountedOrderValue);
   }
 
   private static <T> boolean equalsNullable(JsonNullable<T> a, JsonNullable<T> b) {
@@ -161,7 +228,7 @@ public class DiscountSettings implements Serializable {
 
   @Override
   public int hashCode() {
-    return Objects.hash(stackingConfiguration, usePostDiscountedOrderValue, doNotApplyToHandlingFees);
+    return Objects.hash(customProperties, doNotApplyToHandlingFees, rejectSelfDefeatingDiscounts, stackingConfiguration, usePostDiscountedOrderValue);
   }
 
   private static <T> int hashCodeNullable(JsonNullable<T> a) {
@@ -175,9 +242,11 @@ public class DiscountSettings implements Serializable {
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class DiscountSettings {\n");
+    sb.append("    customProperties: ").append(toIndentedString(customProperties)).append("\n");
+    sb.append("    doNotApplyToHandlingFees: ").append(toIndentedString(doNotApplyToHandlingFees)).append("\n");
+    sb.append("    rejectSelfDefeatingDiscounts: ").append(toIndentedString(rejectSelfDefeatingDiscounts)).append("\n");
     sb.append("    stackingConfiguration: ").append(toIndentedString(stackingConfiguration)).append("\n");
     sb.append("    usePostDiscountedOrderValue: ").append(toIndentedString(usePostDiscountedOrderValue)).append("\n");
-    sb.append("    doNotApplyToHandlingFees: ").append(toIndentedString(doNotApplyToHandlingFees)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -200,9 +269,11 @@ public class DiscountSettings implements Serializable {
   static {
     // a set of all properties/fields (JSON key names)
     openapiFields = new HashSet<String>();
+    openapiFields.add("customProperties");
+    openapiFields.add("doNotApplyToHandlingFees");
+    openapiFields.add("rejectSelfDefeatingDiscounts");
     openapiFields.add("stackingConfiguration");
     openapiFields.add("usePostDiscountedOrderValue");
-    openapiFields.add("doNotApplyToHandlingFees");
 
     // a set of required properties/fields (JSON key names)
     openapiRequiredFields = new HashSet<String>();
@@ -229,6 +300,20 @@ public class DiscountSettings implements Serializable {
       //    }
       //  }
       
+      if (jsonObj.get("customProperties") != null && !jsonObj.get("customProperties").isJsonNull()) {
+        JsonArray jsonArraycustomProperties = jsonObj.getAsJsonArray("customProperties");
+        if (jsonArraycustomProperties != null) {
+          // ensure the json data is an array
+          if (!jsonObj.get("customProperties").isJsonArray()) {
+            throw new IllegalArgumentException(String.format("Expected the field `customProperties` to be an array in the JSON string but got `%s`", jsonObj.get("customProperties").toString()));
+          }
+
+          // validate the optional field `customProperties` (array)
+          for (int i = 0; i < jsonArraycustomProperties.size(); i++) {
+            CustomProperty.validateJsonObject(jsonArraycustomProperties.get(i).getAsJsonObject());
+          };
+        }
+      }
       // validate the optional field `stackingConfiguration`
       if (jsonObj.get("stackingConfiguration") != null && !jsonObj.get("stackingConfiguration").isJsonNull()) {
         StackingConfiguration.validateJsonObject(jsonObj.getAsJsonObject("stackingConfiguration"));

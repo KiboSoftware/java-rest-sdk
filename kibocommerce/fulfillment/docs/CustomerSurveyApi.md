@@ -4,18 +4,18 @@ All URIs are relative to *http://https:/api*
 
 | Method | HTTP request | Description |
 |------------- | ------------- | -------------|
-| [**createSurveyUsingPOST**](CustomerSurveyApi.md#createSurveyUsingPOST) | **POST** /commerce/shipments/{shipmentNumber}/surveys | Create Survey |
-| [**getSurveyUsingGET**](CustomerSurveyApi.md#getSurveyUsingGET) | **GET** /commerce/shipments/surveys/{id} | Get Survey |
-| [**getSurveysUsingGET**](CustomerSurveyApi.md#getSurveysUsingGET) | **GET** /commerce/shipments/{shipmentNumber}/surveys | Get Surveys |
+| [**createSurvey**](CustomerSurveyApi.md#createSurvey) | **POST** /commerce/shipments/{shipmentNumber}/surveys | createSurvey |
+| [**getSurvey**](CustomerSurveyApi.md#getSurvey) | **GET** /commerce/shipments/surveys/{id} | Get Customer Survey |
+| [**getSurveys**](CustomerSurveyApi.md#getSurveys) | **GET** /commerce/shipments/{shipmentNumber}/surveys | getSurveys |
 
 
-<a name="createSurveyUsingPOST"></a>
-# **createSurveyUsingPOST**
-> EntityModelOfCustomerSurvey createSurveyUsingPOST(shipmentNumber, customerSurvey)
+<a name="createSurvey"></a>
+# **createSurvey**
+> EntityModelOfCustomerSurvey createSurvey(shipmentNumber, customerSurveyDto)
 
-Create Survey
+createSurvey
 
-Create Survey
+Create a customer survey for a shipment.
 
 ### Example
 ```java
@@ -23,7 +23,6 @@ Create Survey
 import com.kibocommerce.sdk.fulfillment.ApiClient;
 import com.kibocommerce.sdk.fulfillment.ApiException;
 import com.kibocommerce.sdk.fulfillment.Configuration;
-import com.kibocommerce.sdk.fulfillment.auth.*;
 import com.kibocommerce.sdk.fulfillment.models.*;
 import com.kibocommerce.sdk.fulfillment.api.CustomerSurveyApi;
 
@@ -31,23 +30,15 @@ public class Example {
   public static void main(String[] args) {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
     defaultClient.setBasePath("http://https:/api");
-    
-    // Configure HTTP bearer authorization: bearerAuth
-    HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
-    bearerAuth.setBearerToken("BEARER TOKEN");
-
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
 
     CustomerSurveyApi apiInstance = new CustomerSurveyApi(defaultClient);
     Integer shipmentNumber = 56; // Integer | shipmentNumber
-    CustomerSurvey customerSurvey = new CustomerSurvey(); // CustomerSurvey | 
+    CustomerSurvey customerSurveyDto = new CustomerSurvey(); // CustomerSurvey | customerSurveyDto
     try {
-      EntityModelOfCustomerSurvey result = apiInstance.createSurveyUsingPOST(shipmentNumber, customerSurvey);
+      EntityModelOfCustomerSurvey result = apiInstance.createSurvey(shipmentNumber, customerSurveyDto);
       System.out.println(result);
     } catch (ApiException e) {
-      System.err.println("Exception when calling CustomerSurveyApi#createSurveyUsingPOST");
+      System.err.println("Exception when calling CustomerSurveyApi#createSurvey");
       System.err.println("Status code: " + e.getCode());
       System.err.println("Reason: " + e.getResponseBody());
       System.err.println("Response headers: " + e.getResponseHeaders());
@@ -62,7 +53,7 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **shipmentNumber** | **Integer**| shipmentNumber | |
-| **customerSurvey** | [**CustomerSurvey**](CustomerSurvey.md)|  | [optional] |
+| **customerSurveyDto** | [**CustomerSurvey**](CustomerSurvey.md)| customerSurveyDto | |
 
 ### Return type
 
@@ -70,12 +61,12 @@ public class Example {
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth), [clientOauth2](../README.md#clientOauth2)
+No authorization required
 
 ### HTTP request headers
 
  - **Content-Type**: application/json
- - **Accept**: application/json, application/xml, application/hal+json
+ - **Accept**: application/hal+json, application/json, application/xml
 
 ### HTTP response details
 | Status code | Description | Response headers |
@@ -86,13 +77,13 @@ public class Example {
 | **403** | Forbidden |  -  |
 | **404** | Not Found |  -  |
 
-<a name="getSurveyUsingGET"></a>
-# **getSurveyUsingGET**
-> EntityModelOfCustomerSurvey getSurveyUsingGET(id)
+<a name="getSurvey"></a>
+# **getSurvey**
+> EntityModelOfCustomerSurvey getSurvey(id)
 
-Get Survey
+Get Customer Survey
 
-Get Survey
+Get a specific customer survey by ID.
 
 ### Example
 ```java
@@ -100,7 +91,6 @@ Get Survey
 import com.kibocommerce.sdk.fulfillment.ApiClient;
 import com.kibocommerce.sdk.fulfillment.ApiException;
 import com.kibocommerce.sdk.fulfillment.Configuration;
-import com.kibocommerce.sdk.fulfillment.auth.*;
 import com.kibocommerce.sdk.fulfillment.models.*;
 import com.kibocommerce.sdk.fulfillment.api.CustomerSurveyApi;
 
@@ -108,22 +98,14 @@ public class Example {
   public static void main(String[] args) {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
     defaultClient.setBasePath("http://https:/api");
-    
-    // Configure HTTP bearer authorization: bearerAuth
-    HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
-    bearerAuth.setBearerToken("BEARER TOKEN");
-
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
 
     CustomerSurveyApi apiInstance = new CustomerSurveyApi(defaultClient);
     String id = "id_example"; // String | id
     try {
-      EntityModelOfCustomerSurvey result = apiInstance.getSurveyUsingGET(id);
+      EntityModelOfCustomerSurvey result = apiInstance.getSurvey(id);
       System.out.println(result);
     } catch (ApiException e) {
-      System.err.println("Exception when calling CustomerSurveyApi#getSurveyUsingGET");
+      System.err.println("Exception when calling CustomerSurveyApi#getSurvey");
       System.err.println("Status code: " + e.getCode());
       System.err.println("Reason: " + e.getResponseBody());
       System.err.println("Response headers: " + e.getResponseHeaders());
@@ -145,12 +127,12 @@ public class Example {
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth), [clientOauth2](../README.md#clientOauth2)
+No authorization required
 
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: application/json, application/xml, application/hal+json
+ - **Accept**: application/hal+json, application/json, application/xml
 
 ### HTTP response details
 | Status code | Description | Response headers |
@@ -160,13 +142,13 @@ public class Example {
 | **403** | Forbidden |  -  |
 | **404** | Not Found |  -  |
 
-<a name="getSurveysUsingGET"></a>
-# **getSurveysUsingGET**
-> CollectionModelOfEntityModelOfCustomerSurvey getSurveysUsingGET(shipmentNumber)
+<a name="getSurveys"></a>
+# **getSurveys**
+> CollectionModelOfEntityModelOfCustomerSurvey getSurveys(shipmentNumber)
 
-Get Surveys
+getSurveys
 
-Get Surveys
+Get the customer surveys of a shipment.
 
 ### Example
 ```java
@@ -174,7 +156,6 @@ Get Surveys
 import com.kibocommerce.sdk.fulfillment.ApiClient;
 import com.kibocommerce.sdk.fulfillment.ApiException;
 import com.kibocommerce.sdk.fulfillment.Configuration;
-import com.kibocommerce.sdk.fulfillment.auth.*;
 import com.kibocommerce.sdk.fulfillment.models.*;
 import com.kibocommerce.sdk.fulfillment.api.CustomerSurveyApi;
 
@@ -182,22 +163,14 @@ public class Example {
   public static void main(String[] args) {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
     defaultClient.setBasePath("http://https:/api");
-    
-    // Configure HTTP bearer authorization: bearerAuth
-    HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
-    bearerAuth.setBearerToken("BEARER TOKEN");
-
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
 
     CustomerSurveyApi apiInstance = new CustomerSurveyApi(defaultClient);
     Integer shipmentNumber = 56; // Integer | shipmentNumber
     try {
-      CollectionModelOfEntityModelOfCustomerSurvey result = apiInstance.getSurveysUsingGET(shipmentNumber);
+      CollectionModelOfEntityModelOfCustomerSurvey result = apiInstance.getSurveys(shipmentNumber);
       System.out.println(result);
     } catch (ApiException e) {
-      System.err.println("Exception when calling CustomerSurveyApi#getSurveysUsingGET");
+      System.err.println("Exception when calling CustomerSurveyApi#getSurveys");
       System.err.println("Status code: " + e.getCode());
       System.err.println("Reason: " + e.getResponseBody());
       System.err.println("Response headers: " + e.getResponseHeaders());
@@ -219,12 +192,12 @@ public class Example {
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth), [clientOauth2](../README.md#clientOauth2)
+No authorization required
 
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: application/json, application/xml, application/hal+json
+ - **Accept**: application/hal+json, application/json, application/xml
 
 ### HTTP response details
 | Status code | Description | Response headers |

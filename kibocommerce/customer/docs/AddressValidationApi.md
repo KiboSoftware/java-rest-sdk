@@ -9,7 +9,7 @@ All URIs are relative to *http://https:/api*
 
 <a name="validateAddress"></a>
 # **validateAddress**
-> AddressValidationResponse validateAddress(addressValidationRequest)
+> AddressValidationResponse validateAddress(responseFields, addressValidationRequest)
 
 Validate Address
 
@@ -34,14 +34,11 @@ public class Example {
     HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
     bearerAuth.setBearerToken("BEARER TOKEN");
 
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
-
     AddressValidationApi apiInstance = new AddressValidationApi(defaultClient);
+    String responseFields = "responseFields_example"; // String | limits which fields are returned in the response body
     AddressValidationRequest addressValidationRequest = new AddressValidationRequest(); // AddressValidationRequest | 
     try {
-      AddressValidationResponse result = apiInstance.validateAddress(addressValidationRequest);
+      AddressValidationResponse result = apiInstance.validateAddress(responseFields, addressValidationRequest);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling AddressValidationApi#validateAddress");
@@ -58,6 +55,7 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
+| **responseFields** | **String**| limits which fields are returned in the response body | [optional] |
 | **addressValidationRequest** | [**AddressValidationRequest**](AddressValidationRequest.md)|  | [optional] |
 
 ### Return type
@@ -66,7 +64,7 @@ public class Example {
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth), [clientOauth2](../README.md#clientOauth2)
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
@@ -76,5 +74,5 @@ public class Example {
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Success |  -  |
+| **200** | OK |  -  |
 

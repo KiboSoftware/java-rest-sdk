@@ -7,15 +7,16 @@
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
-|**format** | **String** |  |  [optional] |
-|**resource** | **String** |  |  [optional] |
-|**fields** | **List&lt;String&gt;** |  |  [optional] |
-|**deleteOmitted** | **Boolean** |  |  [optional] |
-|**status** | **String** |  |  [optional] |
-|**isComplete** | **Boolean** |  |  [optional] |
-|**statusMessage** | **String** |  |  [optional] |
-|**stateDetails** | **String** |  |  [optional] |
+|**allowSyscalcValueUpdates** | **Boolean** |  |  [optional] |
 |**_configuration** | **Object** |  |  [optional] |
+|**deleteOmitted** | **Boolean** |  |  [optional] |
+|**fields** | **List&lt;String&gt;** |  |  [optional] |
+|**format** | **String** |  |  [optional] |
+|**isComplete** | **Boolean** |  |  [optional] |
+|**resource** | **String** |  |  [optional] |
+|**stateDetails** | **String** |  |  [optional] |
+|**status** | **String** |  |  [optional] |
+|**statusMessage** | **String** |  |  [optional] |
 
 
 ## Implemented Interfaces

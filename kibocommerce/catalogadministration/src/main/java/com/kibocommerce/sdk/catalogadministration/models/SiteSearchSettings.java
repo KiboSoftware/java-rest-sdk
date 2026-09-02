@@ -1,8 +1,8 @@
 /*
  * Kibo Catalog Admin Services
- * OpenAPI Spec for Kibo Catalog Admin Services
+ * <div id=\"overview_CATALOG_ADMIN\">             <h2>CATALOG ADMINISTRATION</h2>             <p>The Catalog Administration APIs are a collection of resources for configuring the catalogs and products offered to your shoppers, including                 discounts and coupon sets, faceting, price lists, and different types or variations of products. See the                 <a href=\"/concept-guides/catalog\">Catalog user guides</a>                 for information about the related features in the Unified Commerce Admin.</p>             <p>Use the <strong>Attributes</strong> resource to manage localization and attribute configurations for your catalogs. This current version of the Attributes API includes localizedContent to                 support <a href=\"/pages/catalog-structure#multi-locale-catalogs\">multi-locale catalogs</a>, which was not present in the legacy API model. If                 you were a client prior to May 2024 and have upgraded your implementation to support this feature,                 you can still access attribute data that has not yet been rewritten to the new model by providing                 an x-api-version header set to \"1\". </p>             <p>Use the <strong>Categories</strong> resource to organize products and control where they appear on the storefront. Create                 and maintain a hierarchy of categories and subcategories where the site will store properties. This current version of the Categories API includes localizedContent to                 support <a href=\"/pages/catalog-structure#multi-locale-catalogs\">multi-locale catalogs</a>, which was not present in the legacy API model. If                 you were a client prior to May 2024 and have upgraded your implementation to support this feature,                 you can still access category data that has not yet been rewritten to the new model by providing                 an x-api-version header set to \"1\". </p>             <p>Use the <strong>Coupon Sets</strong> resource to view and create coupon sets. You can use coupon sets to group multiple                 coupon codes together and associate them with one or more discounts.</p>             <p>Use the <strong>Currency</strong> resource to manage the currency localization rules and exchange rates for any of the                 currencies that are supported for placing orders in.</p>             <p>Use the <strong>Discounts</strong> and <strong>Discount Settings</strong> resources to define and manage discounts to apply to products, product categories, or                 orders. This current version of the Discounts API includes localizedContent to                 support <a href=\"/pages/catalog-structure#multi-locale-catalogs\">multi-locale catalogs</a>, which was not present in the legacy Products API model. If                 you were a client prior to May 2024 and have upgraded your implementation to support this feature,                 you can still access discount data that has not yet been rewritten to the new model by providing                 an x-api-version header set to \"1\". </p>             <p>Use the <strong>Facets</strong> resource to manage the facets shoppers use to filter product display results on a                 storefront. Facets can include categories, product attributes, or prices, and use either a range of                 values or discrete values.</p>             <p>Use the <strong>Master Catalog</strong> resource to view details of the master catalogs associated with a tenant and to                 manage the product publishing mode for each master catalog.</p>             <p>Use the <strong>Price Lists</strong> resources to view and create price lists. You can use price lists to override the                 catalog pricing of products for specific customer segments and/or sites.</p>             <p>Use the <strong>Products</strong>, <strong>Product Types/Extras/Options/Properties</strong>, and <strong>Product Sort Definitions</strong> resources to create new product definitions in the master catalog and determine which                 catalogs will feature products. This current version of the Products API includes localizedContent to                 support <a href=\"/pages/catalog-structure#multi-locale-catalogs\">multi-locale catalogs</a>, which was not present in the legacy Products API model. If                 you were a client prior to May 2024 and have upgraded your implementation to support this feature,                 you can still access product data that has not yet been rewritten to the new model by providing                 an x-api-version header set to \"1\".</p>             <p>Use the <strong>Publishing</strong> resource to publish pending product updates together as part of a set.</p>             <p>Use the <strong>Search</strong> resource to manage all settings and options for providing product search on your site, as                 well as search tuning rules.</p>         </div>
  *
- * The version of the OpenAPI document: 1.0.0
+ * The version of the OpenAPI document: v1
  * 
  *
  * NOTE: This class is auto generated by OpenAPI Generator (https://openapi-generator.tech).
@@ -24,6 +24,7 @@ import com.kibocommerce.sdk.catalogadministration.models.CatalogAdminsSpellcheck
 import com.kibocommerce.sdk.catalogadministration.models.FieldValueBoost;
 import com.kibocommerce.sdk.catalogadministration.models.SiteSearchFieldWeight;
 import com.kibocommerce.sdk.catalogadministration.models.TypoTolerance;
+import com.kibocommerce.sdk.catalogadministration.models.VectorSearchSettings;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
@@ -60,13 +61,9 @@ import com.kibocommerce.sdk.common.JSON;
 public class SiteSearchSettings implements Serializable {
   private static final long serialVersionUID = 1L;
 
-  public static final String SERIALIZED_NAME_SOW_BEHAVIOR = "sowBehavior";
-  @SerializedName(SERIALIZED_NAME_SOW_BEHAVIOR)
-  private Integer sowBehavior;
-
-  public static final String SERIALIZED_NAME_FIELD_WEIGHTS = "fieldWeights";
-  @SerializedName(SERIALIZED_NAME_FIELD_WEIGHTS)
-  private List<SiteSearchFieldWeight> fieldWeights = null;
+  public static final String SERIALIZED_NAME_CROSS_FIELD_ADDITIVE_SCORE_FACTOR = "crossFieldAdditiveScoreFactor";
+  @SerializedName(SERIALIZED_NAME_CROSS_FIELD_ADDITIVE_SCORE_FACTOR)
+  private Double crossFieldAdditiveScoreFactor;
 
   public static final String SERIALIZED_NAME_CUSTOM_BOOSTS = "customBoosts";
   @SerializedName(SERIALIZED_NAME_CUSTOM_BOOSTS)
@@ -76,21 +73,17 @@ public class SiteSearchSettings implements Serializable {
   @SerializedName(SERIALIZED_NAME_FIELD_VALUE_BOOST)
   private FieldValueBoost fieldValueBoost;
 
-  public static final String SERIALIZED_NAME_MULTI_TERM_SYN_MINIMUM_MATCH_PERCENTS = "multiTermSynMinimumMatchPercents";
-  @SerializedName(SERIALIZED_NAME_MULTI_TERM_SYN_MINIMUM_MATCH_PERCENTS)
-  private List<Integer> multiTermSynMinimumMatchPercents = null;
+  public static final String SERIALIZED_NAME_FIELD_WEIGHTS = "fieldWeights";
+  @SerializedName(SERIALIZED_NAME_FIELD_WEIGHTS)
+  private List<SiteSearchFieldWeight> fieldWeights = null;
 
   public static final String SERIALIZED_NAME_MINIMUM_MATCH_PERCENTS = "minimumMatchPercents";
   @SerializedName(SERIALIZED_NAME_MINIMUM_MATCH_PERCENTS)
   private List<Integer> minimumMatchPercents = null;
 
-  public static final String SERIALIZED_NAME_PHRASE_SLOP = "phraseSlop";
-  @SerializedName(SERIALIZED_NAME_PHRASE_SLOP)
-  private Integer phraseSlop;
-
-  public static final String SERIALIZED_NAME_TWO_WORD_PHRASE_BOOST = "twoWordPhraseBoost";
-  @SerializedName(SERIALIZED_NAME_TWO_WORD_PHRASE_BOOST)
-  private Boolean twoWordPhraseBoost;
+  public static final String SERIALIZED_NAME_MULTI_TERM_SYN_MINIMUM_MATCH_PERCENTS = "multiTermSynMinimumMatchPercents";
+  @SerializedName(SERIALIZED_NAME_MULTI_TERM_SYN_MINIMUM_MATCH_PERCENTS)
+  private List<Integer> multiTermSynMinimumMatchPercents = null;
 
   public static final String SERIALIZED_NAME_PERSONALIZATION_EXPERIENCE = "personalizationExperience";
   @SerializedName(SERIALIZED_NAME_PERSONALIZATION_EXPERIENCE)
@@ -100,76 +93,61 @@ public class SiteSearchSettings implements Serializable {
   @SerializedName(SERIALIZED_NAME_PERSONALIZATION_FACTOR)
   private Double personalizationFactor;
 
+  public static final String SERIALIZED_NAME_PHRASE_SLOP = "phraseSlop";
+  @SerializedName(SERIALIZED_NAME_PHRASE_SLOP)
+  private Integer phraseSlop;
+
   public static final String SERIALIZED_NAME_SEARCH_CHILD_PRODUCTS_BY_DEFAULT = "searchChildProductsByDefault";
   @SerializedName(SERIALIZED_NAME_SEARCH_CHILD_PRODUCTS_BY_DEFAULT)
   private Boolean searchChildProductsByDefault;
 
-  public static final String SERIALIZED_NAME_CROSS_FIELD_ADDITIVE_SCORE_FACTOR = "crossFieldAdditiveScoreFactor";
-  @SerializedName(SERIALIZED_NAME_CROSS_FIELD_ADDITIVE_SCORE_FACTOR)
-  private Double crossFieldAdditiveScoreFactor;
+  public static final String SERIALIZED_NAME_SEARCH_MODE = "searchMode";
+  @SerializedName(SERIALIZED_NAME_SEARCH_MODE)
+  private Integer searchMode;
 
-  public static final String SERIALIZED_NAME_TYPO_TOLERANCE = "typoTolerance";
-  @SerializedName(SERIALIZED_NAME_TYPO_TOLERANCE)
-  private TypoTolerance typoTolerance;
+  public static final String SERIALIZED_NAME_SOW_BEHAVIOR = "sowBehavior";
+  @SerializedName(SERIALIZED_NAME_SOW_BEHAVIOR)
+  private Integer sowBehavior;
 
   public static final String SERIALIZED_NAME_SPELLCHECK = "spellcheck";
   @SerializedName(SERIALIZED_NAME_SPELLCHECK)
   private CatalogAdminsSpellcheck spellcheck;
 
+  public static final String SERIALIZED_NAME_TWO_WORD_PHRASE_BOOST = "twoWordPhraseBoost";
+  @SerializedName(SERIALIZED_NAME_TWO_WORD_PHRASE_BOOST)
+  private Boolean twoWordPhraseBoost;
+
+  public static final String SERIALIZED_NAME_TYPO_TOLERANCE = "typoTolerance";
+  @SerializedName(SERIALIZED_NAME_TYPO_TOLERANCE)
+  private TypoTolerance typoTolerance;
+
+  public static final String SERIALIZED_NAME_VECTOR_SETTINGS = "vectorSettings";
+  @SerializedName(SERIALIZED_NAME_VECTOR_SETTINGS)
+  private VectorSearchSettings vectorSettings;
+
   public SiteSearchSettings() {
   }
 
-  public SiteSearchSettings sowBehavior(Integer sowBehavior) {
+  public SiteSearchSettings crossFieldAdditiveScoreFactor(Double crossFieldAdditiveScoreFactor) {
     
-    this.sowBehavior = sowBehavior;
+    this.crossFieldAdditiveScoreFactor = crossFieldAdditiveScoreFactor;
     return this;
   }
 
    /**
-   * controls sowBehavior (Never&#x3D;0, Always&#x3D;1, WhenNoMultiTermSyn&#x3D;2)  never sow&#x3D;false, always sow&#x3D;true,  WhenNoMultiTermSyn &#x3D; (depends on existance of multitermsynonym match in query)
-   * @return sowBehavior
-  **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(value = "controls sowBehavior (Never=0, Always=1, WhenNoMultiTermSyn=2)  never sow=false, always sow=true,  WhenNoMultiTermSyn = (depends on existance of multitermsynonym match in query)")
-
-  public Integer getSowBehavior() {
-    return sowBehavior;
-  }
-
-
-  public void setSowBehavior(Integer sowBehavior) {
-    this.sowBehavior = sowBehavior;
-  }
-
-
-  public SiteSearchSettings fieldWeights(List<SiteSearchFieldWeight> fieldWeights) {
-    
-    this.fieldWeights = fieldWeights;
-    return this;
-  }
-
-  public SiteSearchSettings addFieldWeightsItem(SiteSearchFieldWeight fieldWeightsItem) {
-    if (this.fieldWeights == null) {
-      this.fieldWeights = new ArrayList<>();
-    }
-    this.fieldWeights.add(fieldWeightsItem);
-    return this;
-  }
-
-   /**
-   * Get fieldWeights
-   * @return fieldWeights
+   * Get crossFieldAdditiveScoreFactor
+   * @return crossFieldAdditiveScoreFactor
   **/
   @javax.annotation.Nullable
   @ApiModelProperty(value = "")
 
-  public List<SiteSearchFieldWeight> getFieldWeights() {
-    return fieldWeights;
+  public Double getCrossFieldAdditiveScoreFactor() {
+    return crossFieldAdditiveScoreFactor;
   }
 
 
-  public void setFieldWeights(List<SiteSearchFieldWeight> fieldWeights) {
-    this.fieldWeights = fieldWeights;
+  public void setCrossFieldAdditiveScoreFactor(Double crossFieldAdditiveScoreFactor) {
+    this.crossFieldAdditiveScoreFactor = crossFieldAdditiveScoreFactor;
   }
 
 
@@ -227,34 +205,34 @@ public class SiteSearchSettings implements Serializable {
   }
 
 
-  public SiteSearchSettings multiTermSynMinimumMatchPercents(List<Integer> multiTermSynMinimumMatchPercents) {
+  public SiteSearchSettings fieldWeights(List<SiteSearchFieldWeight> fieldWeights) {
     
-    this.multiTermSynMinimumMatchPercents = multiTermSynMinimumMatchPercents;
+    this.fieldWeights = fieldWeights;
     return this;
   }
 
-  public SiteSearchSettings addMultiTermSynMinimumMatchPercentsItem(Integer multiTermSynMinimumMatchPercentsItem) {
-    if (this.multiTermSynMinimumMatchPercents == null) {
-      this.multiTermSynMinimumMatchPercents = new ArrayList<>();
+  public SiteSearchSettings addFieldWeightsItem(SiteSearchFieldWeight fieldWeightsItem) {
+    if (this.fieldWeights == null) {
+      this.fieldWeights = new ArrayList<>();
     }
-    this.multiTermSynMinimumMatchPercents.add(multiTermSynMinimumMatchPercentsItem);
+    this.fieldWeights.add(fieldWeightsItem);
     return this;
   }
 
    /**
-   * if values present is used for mm when sowBehavior.WhenNoMultiTermSyn and multi term sym match found in query  if no values are present or null fallback to MinMatchPercents
-   * @return multiTermSynMinimumMatchPercents
+   * Get fieldWeights
+   * @return fieldWeights
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "if values present is used for mm when sowBehavior.WhenNoMultiTermSyn and multi term sym match found in query  if no values are present or null fallback to MinMatchPercents")
+  @ApiModelProperty(value = "")
 
-  public List<Integer> getMultiTermSynMinimumMatchPercents() {
-    return multiTermSynMinimumMatchPercents;
+  public List<SiteSearchFieldWeight> getFieldWeights() {
+    return fieldWeights;
   }
 
 
-  public void setMultiTermSynMinimumMatchPercents(List<Integer> multiTermSynMinimumMatchPercents) {
-    this.multiTermSynMinimumMatchPercents = multiTermSynMinimumMatchPercents;
+  public void setFieldWeights(List<SiteSearchFieldWeight> fieldWeights) {
+    this.fieldWeights = fieldWeights;
   }
 
 
@@ -289,49 +267,34 @@ public class SiteSearchSettings implements Serializable {
   }
 
 
-  public SiteSearchSettings phraseSlop(Integer phraseSlop) {
+  public SiteSearchSettings multiTermSynMinimumMatchPercents(List<Integer> multiTermSynMinimumMatchPercents) {
     
-    this.phraseSlop = phraseSlop;
+    this.multiTermSynMinimumMatchPercents = multiTermSynMinimumMatchPercents;
+    return this;
+  }
+
+  public SiteSearchSettings addMultiTermSynMinimumMatchPercentsItem(Integer multiTermSynMinimumMatchPercentsItem) {
+    if (this.multiTermSynMinimumMatchPercents == null) {
+      this.multiTermSynMinimumMatchPercents = new ArrayList<>();
+    }
+    this.multiTermSynMinimumMatchPercents.add(multiTermSynMinimumMatchPercentsItem);
     return this;
   }
 
    /**
-   * Get phraseSlop
-   * @return phraseSlop
+   * if values present is used for mm when sowBehavior.WhenNoMultiTermSyn and multi term sym match found in query if no values are present or null fallback to MinMatchPercents
+   * @return multiTermSynMinimumMatchPercents
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
+  @ApiModelProperty(value = "if values present is used for mm when sowBehavior.WhenNoMultiTermSyn and multi term sym match found in query if no values are present or null fallback to MinMatchPercents")
 
-  public Integer getPhraseSlop() {
-    return phraseSlop;
+  public List<Integer> getMultiTermSynMinimumMatchPercents() {
+    return multiTermSynMinimumMatchPercents;
   }
 
 
-  public void setPhraseSlop(Integer phraseSlop) {
-    this.phraseSlop = phraseSlop;
-  }
-
-
-  public SiteSearchSettings twoWordPhraseBoost(Boolean twoWordPhraseBoost) {
-    
-    this.twoWordPhraseBoost = twoWordPhraseBoost;
-    return this;
-  }
-
-   /**
-   * if true, 2 word shingles used for phrase boosting based on fields with phrase weights greater than 0  if false, only full phrase mathing used for phrase boosting
-   * @return twoWordPhraseBoost
-  **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(value = "if true, 2 word shingles used for phrase boosting based on fields with phrase weights greater than 0  if false, only full phrase mathing used for phrase boosting")
-
-  public Boolean getTwoWordPhraseBoost() {
-    return twoWordPhraseBoost;
-  }
-
-
-  public void setTwoWordPhraseBoost(Boolean twoWordPhraseBoost) {
-    this.twoWordPhraseBoost = twoWordPhraseBoost;
+  public void setMultiTermSynMinimumMatchPercents(List<Integer> multiTermSynMinimumMatchPercents) {
+    this.multiTermSynMinimumMatchPercents = multiTermSynMinimumMatchPercents;
   }
 
 
@@ -381,6 +344,29 @@ public class SiteSearchSettings implements Serializable {
   }
 
 
+  public SiteSearchSettings phraseSlop(Integer phraseSlop) {
+    
+    this.phraseSlop = phraseSlop;
+    return this;
+  }
+
+   /**
+   * Get phraseSlop
+   * @return phraseSlop
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
+
+  public Integer getPhraseSlop() {
+    return phraseSlop;
+  }
+
+
+  public void setPhraseSlop(Integer phraseSlop) {
+    this.phraseSlop = phraseSlop;
+  }
+
+
   public SiteSearchSettings searchChildProductsByDefault(Boolean searchChildProductsByDefault) {
     
     this.searchChildProductsByDefault = searchChildProductsByDefault;
@@ -404,49 +390,49 @@ public class SiteSearchSettings implements Serializable {
   }
 
 
-  public SiteSearchSettings crossFieldAdditiveScoreFactor(Double crossFieldAdditiveScoreFactor) {
+  public SiteSearchSettings searchMode(Integer searchMode) {
     
-    this.crossFieldAdditiveScoreFactor = crossFieldAdditiveScoreFactor;
+    this.searchMode = searchMode;
     return this;
   }
 
    /**
-   * Get crossFieldAdditiveScoreFactor
-   * @return crossFieldAdditiveScoreFactor
+   * Get searchMode
+   * @return searchMode
   **/
   @javax.annotation.Nullable
   @ApiModelProperty(value = "")
 
-  public Double getCrossFieldAdditiveScoreFactor() {
-    return crossFieldAdditiveScoreFactor;
+  public Integer getSearchMode() {
+    return searchMode;
   }
 
 
-  public void setCrossFieldAdditiveScoreFactor(Double crossFieldAdditiveScoreFactor) {
-    this.crossFieldAdditiveScoreFactor = crossFieldAdditiveScoreFactor;
+  public void setSearchMode(Integer searchMode) {
+    this.searchMode = searchMode;
   }
 
 
-  public SiteSearchSettings typoTolerance(TypoTolerance typoTolerance) {
+  public SiteSearchSettings sowBehavior(Integer sowBehavior) {
     
-    this.typoTolerance = typoTolerance;
+    this.sowBehavior = sowBehavior;
     return this;
   }
 
    /**
-   * Get typoTolerance
-   * @return typoTolerance
+   * controls sowBehavior (Never&#x3D;0, Always&#x3D;1, WhenNoMultiTermSyn&#x3D;2) never sow&#x3D;false, always sow&#x3D;true,  WhenNoMultiTermSyn &#x3D; (depends on existance of multitermsynonym match in query)
+   * @return sowBehavior
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
+  @ApiModelProperty(value = "controls sowBehavior (Never=0, Always=1, WhenNoMultiTermSyn=2) never sow=false, always sow=true,  WhenNoMultiTermSyn = (depends on existance of multitermsynonym match in query)")
 
-  public TypoTolerance getTypoTolerance() {
-    return typoTolerance;
+  public Integer getSowBehavior() {
+    return sowBehavior;
   }
 
 
-  public void setTypoTolerance(TypoTolerance typoTolerance) {
-    this.typoTolerance = typoTolerance;
+  public void setSowBehavior(Integer sowBehavior) {
+    this.sowBehavior = sowBehavior;
   }
 
 
@@ -473,6 +459,75 @@ public class SiteSearchSettings implements Serializable {
   }
 
 
+  public SiteSearchSettings twoWordPhraseBoost(Boolean twoWordPhraseBoost) {
+    
+    this.twoWordPhraseBoost = twoWordPhraseBoost;
+    return this;
+  }
+
+   /**
+   * if true, 2 word shingles used for phrase boosting based on fields with phrase weights greater than 0 if false, only full phrase mathing used for phrase boosting
+   * @return twoWordPhraseBoost
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "if true, 2 word shingles used for phrase boosting based on fields with phrase weights greater than 0 if false, only full phrase mathing used for phrase boosting")
+
+  public Boolean getTwoWordPhraseBoost() {
+    return twoWordPhraseBoost;
+  }
+
+
+  public void setTwoWordPhraseBoost(Boolean twoWordPhraseBoost) {
+    this.twoWordPhraseBoost = twoWordPhraseBoost;
+  }
+
+
+  public SiteSearchSettings typoTolerance(TypoTolerance typoTolerance) {
+    
+    this.typoTolerance = typoTolerance;
+    return this;
+  }
+
+   /**
+   * Get typoTolerance
+   * @return typoTolerance
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
+
+  public TypoTolerance getTypoTolerance() {
+    return typoTolerance;
+  }
+
+
+  public void setTypoTolerance(TypoTolerance typoTolerance) {
+    this.typoTolerance = typoTolerance;
+  }
+
+
+  public SiteSearchSettings vectorSettings(VectorSearchSettings vectorSettings) {
+    
+    this.vectorSettings = vectorSettings;
+    return this;
+  }
+
+   /**
+   * Get vectorSettings
+   * @return vectorSettings
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
+
+  public VectorSearchSettings getVectorSettings() {
+    return vectorSettings;
+  }
+
+
+  public void setVectorSettings(VectorSearchSettings vectorSettings) {
+    this.vectorSettings = vectorSettings;
+  }
+
+
 
   @Override
   public boolean equals(Object o) {
@@ -483,20 +538,22 @@ public class SiteSearchSettings implements Serializable {
       return false;
     }
     SiteSearchSettings siteSearchSettings = (SiteSearchSettings) o;
-    return Objects.equals(this.sowBehavior, siteSearchSettings.sowBehavior) &&
-        Objects.equals(this.fieldWeights, siteSearchSettings.fieldWeights) &&
+    return Objects.equals(this.crossFieldAdditiveScoreFactor, siteSearchSettings.crossFieldAdditiveScoreFactor) &&
         Objects.equals(this.customBoosts, siteSearchSettings.customBoosts) &&
         Objects.equals(this.fieldValueBoost, siteSearchSettings.fieldValueBoost) &&
-        Objects.equals(this.multiTermSynMinimumMatchPercents, siteSearchSettings.multiTermSynMinimumMatchPercents) &&
+        Objects.equals(this.fieldWeights, siteSearchSettings.fieldWeights) &&
         Objects.equals(this.minimumMatchPercents, siteSearchSettings.minimumMatchPercents) &&
-        Objects.equals(this.phraseSlop, siteSearchSettings.phraseSlop) &&
-        Objects.equals(this.twoWordPhraseBoost, siteSearchSettings.twoWordPhraseBoost) &&
+        Objects.equals(this.multiTermSynMinimumMatchPercents, siteSearchSettings.multiTermSynMinimumMatchPercents) &&
         Objects.equals(this.personalizationExperience, siteSearchSettings.personalizationExperience) &&
         Objects.equals(this.personalizationFactor, siteSearchSettings.personalizationFactor) &&
+        Objects.equals(this.phraseSlop, siteSearchSettings.phraseSlop) &&
         Objects.equals(this.searchChildProductsByDefault, siteSearchSettings.searchChildProductsByDefault) &&
-        Objects.equals(this.crossFieldAdditiveScoreFactor, siteSearchSettings.crossFieldAdditiveScoreFactor) &&
+        Objects.equals(this.searchMode, siteSearchSettings.searchMode) &&
+        Objects.equals(this.sowBehavior, siteSearchSettings.sowBehavior) &&
+        Objects.equals(this.spellcheck, siteSearchSettings.spellcheck) &&
+        Objects.equals(this.twoWordPhraseBoost, siteSearchSettings.twoWordPhraseBoost) &&
         Objects.equals(this.typoTolerance, siteSearchSettings.typoTolerance) &&
-        Objects.equals(this.spellcheck, siteSearchSettings.spellcheck);
+        Objects.equals(this.vectorSettings, siteSearchSettings.vectorSettings);
   }
 
   private static <T> boolean equalsNullable(JsonNullable<T> a, JsonNullable<T> b) {
@@ -505,7 +562,7 @@ public class SiteSearchSettings implements Serializable {
 
   @Override
   public int hashCode() {
-    return Objects.hash(sowBehavior, fieldWeights, customBoosts, fieldValueBoost, multiTermSynMinimumMatchPercents, minimumMatchPercents, phraseSlop, twoWordPhraseBoost, personalizationExperience, personalizationFactor, searchChildProductsByDefault, crossFieldAdditiveScoreFactor, typoTolerance, spellcheck);
+    return Objects.hash(crossFieldAdditiveScoreFactor, customBoosts, fieldValueBoost, fieldWeights, minimumMatchPercents, multiTermSynMinimumMatchPercents, personalizationExperience, personalizationFactor, phraseSlop, searchChildProductsByDefault, searchMode, sowBehavior, spellcheck, twoWordPhraseBoost, typoTolerance, vectorSettings);
   }
 
   private static <T> int hashCodeNullable(JsonNullable<T> a) {
@@ -519,20 +576,22 @@ public class SiteSearchSettings implements Serializable {
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class SiteSearchSettings {\n");
-    sb.append("    sowBehavior: ").append(toIndentedString(sowBehavior)).append("\n");
-    sb.append("    fieldWeights: ").append(toIndentedString(fieldWeights)).append("\n");
+    sb.append("    crossFieldAdditiveScoreFactor: ").append(toIndentedString(crossFieldAdditiveScoreFactor)).append("\n");
     sb.append("    customBoosts: ").append(toIndentedString(customBoosts)).append("\n");
     sb.append("    fieldValueBoost: ").append(toIndentedString(fieldValueBoost)).append("\n");
-    sb.append("    multiTermSynMinimumMatchPercents: ").append(toIndentedString(multiTermSynMinimumMatchPercents)).append("\n");
+    sb.append("    fieldWeights: ").append(toIndentedString(fieldWeights)).append("\n");
     sb.append("    minimumMatchPercents: ").append(toIndentedString(minimumMatchPercents)).append("\n");
-    sb.append("    phraseSlop: ").append(toIndentedString(phraseSlop)).append("\n");
-    sb.append("    twoWordPhraseBoost: ").append(toIndentedString(twoWordPhraseBoost)).append("\n");
+    sb.append("    multiTermSynMinimumMatchPercents: ").append(toIndentedString(multiTermSynMinimumMatchPercents)).append("\n");
     sb.append("    personalizationExperience: ").append(toIndentedString(personalizationExperience)).append("\n");
     sb.append("    personalizationFactor: ").append(toIndentedString(personalizationFactor)).append("\n");
+    sb.append("    phraseSlop: ").append(toIndentedString(phraseSlop)).append("\n");
     sb.append("    searchChildProductsByDefault: ").append(toIndentedString(searchChildProductsByDefault)).append("\n");
-    sb.append("    crossFieldAdditiveScoreFactor: ").append(toIndentedString(crossFieldAdditiveScoreFactor)).append("\n");
-    sb.append("    typoTolerance: ").append(toIndentedString(typoTolerance)).append("\n");
+    sb.append("    searchMode: ").append(toIndentedString(searchMode)).append("\n");
+    sb.append("    sowBehavior: ").append(toIndentedString(sowBehavior)).append("\n");
     sb.append("    spellcheck: ").append(toIndentedString(spellcheck)).append("\n");
+    sb.append("    twoWordPhraseBoost: ").append(toIndentedString(twoWordPhraseBoost)).append("\n");
+    sb.append("    typoTolerance: ").append(toIndentedString(typoTolerance)).append("\n");
+    sb.append("    vectorSettings: ").append(toIndentedString(vectorSettings)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -555,20 +614,22 @@ public class SiteSearchSettings implements Serializable {
   static {
     // a set of all properties/fields (JSON key names)
     openapiFields = new HashSet<String>();
-    openapiFields.add("sowBehavior");
-    openapiFields.add("fieldWeights");
+    openapiFields.add("crossFieldAdditiveScoreFactor");
     openapiFields.add("customBoosts");
     openapiFields.add("fieldValueBoost");
-    openapiFields.add("multiTermSynMinimumMatchPercents");
+    openapiFields.add("fieldWeights");
     openapiFields.add("minimumMatchPercents");
-    openapiFields.add("phraseSlop");
-    openapiFields.add("twoWordPhraseBoost");
+    openapiFields.add("multiTermSynMinimumMatchPercents");
     openapiFields.add("personalizationExperience");
     openapiFields.add("personalizationFactor");
+    openapiFields.add("phraseSlop");
     openapiFields.add("searchChildProductsByDefault");
-    openapiFields.add("crossFieldAdditiveScoreFactor");
-    openapiFields.add("typoTolerance");
+    openapiFields.add("searchMode");
+    openapiFields.add("sowBehavior");
     openapiFields.add("spellcheck");
+    openapiFields.add("twoWordPhraseBoost");
+    openapiFields.add("typoTolerance");
+    openapiFields.add("vectorSettings");
 
     // a set of required properties/fields (JSON key names)
     openapiRequiredFields = new HashSet<String>();
@@ -595,6 +656,14 @@ public class SiteSearchSettings implements Serializable {
       //    }
       //  }
       
+      // ensure the json data is an array
+      if (!jsonObj.get("customBoosts").isJsonArray()) {
+        throw new IllegalArgumentException(String.format("Expected the field `customBoosts` to be an array in the JSON string but got `%s`", jsonObj.get("customBoosts").toString()));
+      }
+      // validate the optional field `fieldValueBoost`
+      if (jsonObj.get("fieldValueBoost") != null && !jsonObj.get("fieldValueBoost").isJsonNull()) {
+        FieldValueBoost.validateJsonObject(jsonObj.getAsJsonObject("fieldValueBoost"));
+      }
       if (jsonObj.get("fieldWeights") != null && !jsonObj.get("fieldWeights").isJsonNull()) {
         JsonArray jsonArrayfieldWeights = jsonObj.getAsJsonArray("fieldWeights");
         if (jsonArrayfieldWeights != null) {
@@ -610,31 +679,27 @@ public class SiteSearchSettings implements Serializable {
         }
       }
       // ensure the json data is an array
-      if (!jsonObj.get("customBoosts").isJsonArray()) {
-        throw new IllegalArgumentException(String.format("Expected the field `customBoosts` to be an array in the JSON string but got `%s`", jsonObj.get("customBoosts").toString()));
-      }
-      // validate the optional field `fieldValueBoost`
-      if (jsonObj.get("fieldValueBoost") != null && !jsonObj.get("fieldValueBoost").isJsonNull()) {
-        FieldValueBoost.validateJsonObject(jsonObj.getAsJsonObject("fieldValueBoost"));
+      if (!jsonObj.get("minimumMatchPercents").isJsonArray()) {
+        throw new IllegalArgumentException(String.format("Expected the field `minimumMatchPercents` to be an array in the JSON string but got `%s`", jsonObj.get("minimumMatchPercents").toString()));
       }
       // ensure the json data is an array
       if (!jsonObj.get("multiTermSynMinimumMatchPercents").isJsonArray()) {
         throw new IllegalArgumentException(String.format("Expected the field `multiTermSynMinimumMatchPercents` to be an array in the JSON string but got `%s`", jsonObj.get("multiTermSynMinimumMatchPercents").toString()));
       }
-      // ensure the json data is an array
-      if (!jsonObj.get("minimumMatchPercents").isJsonArray()) {
-        throw new IllegalArgumentException(String.format("Expected the field `minimumMatchPercents` to be an array in the JSON string but got `%s`", jsonObj.get("minimumMatchPercents").toString()));
-      }
       if ((jsonObj.get("personalizationExperience") != null && !jsonObj.get("personalizationExperience").isJsonNull()) && !jsonObj.get("personalizationExperience").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format("Expected the field `personalizationExperience` to be a primitive type in the JSON string but got `%s`", jsonObj.get("personalizationExperience").toString()));
+      }
+      // validate the optional field `spellcheck`
+      if (jsonObj.get("spellcheck") != null && !jsonObj.get("spellcheck").isJsonNull()) {
+        CatalogAdminsSpellcheck.validateJsonObject(jsonObj.getAsJsonObject("spellcheck"));
       }
       // validate the optional field `typoTolerance`
       if (jsonObj.get("typoTolerance") != null && !jsonObj.get("typoTolerance").isJsonNull()) {
         TypoTolerance.validateJsonObject(jsonObj.getAsJsonObject("typoTolerance"));
       }
-      // validate the optional field `spellcheck`
-      if (jsonObj.get("spellcheck") != null && !jsonObj.get("spellcheck").isJsonNull()) {
-        CatalogAdminsSpellcheck.validateJsonObject(jsonObj.getAsJsonObject("spellcheck"));
+      // validate the optional field `vectorSettings`
+      if (jsonObj.get("vectorSettings") != null && !jsonObj.get("vectorSettings").isJsonNull()) {
+        VectorSearchSettings.validateJsonObject(jsonObj.getAsJsonObject("vectorSettings"));
       }
   }
 

@@ -18,11 +18,11 @@ All URIs are relative to *http://https:/api*
 
 <a name="addCredit"></a>
 # **addCredit**
-> CustomerCredit addCredit(userId, customerCredit)
+> CustomerCredit addCredit(userId, responseFields, customerCredit)
 
 Add Credit
 
-Adds credit to user account.
+Adds credit to user account. Store credit can represent a static amount the customer can redeem at any of the tenant&#39;s sites, or a gift card registered for a customer account.
 
 ### Example
 ```java
@@ -43,15 +43,12 @@ public class Example {
     HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
     bearerAuth.setBearerToken("BEARER TOKEN");
 
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
-
     CreditApi apiInstance = new CreditApi(defaultClient);
     String userId = "userId_example"; // String | 
+    String responseFields = "responseFields_example"; // String | limits which fields are returned in the response body
     CustomerCredit customerCredit = new CustomerCredit(); // CustomerCredit | 
     try {
-      CustomerCredit result = apiInstance.addCredit(userId, customerCredit);
+      CustomerCredit result = apiInstance.addCredit(userId, responseFields, customerCredit);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling CreditApi#addCredit");
@@ -69,6 +66,7 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **userId** | **String**|  | [optional] |
+| **responseFields** | **String**| limits which fields are returned in the response body | [optional] |
 | **customerCredit** | [**CustomerCredit**](CustomerCredit.md)|  | [optional] |
 
 ### Return type
@@ -77,7 +75,7 @@ public class Example {
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth), [clientOauth2](../README.md#clientOauth2)
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
@@ -87,11 +85,11 @@ public class Example {
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Success |  -  |
+| **200** | OK |  -  |
 
 <a name="addTransaction"></a>
 # **addTransaction**
-> CreditTransaction addTransaction(code, creditTransaction)
+> CreditTransaction addTransaction(code, responseFields, creditTransaction)
 
 Add Transaction
 
@@ -116,15 +114,12 @@ public class Example {
     HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
     bearerAuth.setBearerToken("BEARER TOKEN");
 
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
-
     CreditApi apiInstance = new CreditApi(defaultClient);
     String code = "code_example"; // String | 
+    String responseFields = "responseFields_example"; // String | limits which fields are returned in the response body
     CreditTransaction creditTransaction = new CreditTransaction(); // CreditTransaction | 
     try {
-      CreditTransaction result = apiInstance.addTransaction(code, creditTransaction);
+      CreditTransaction result = apiInstance.addTransaction(code, responseFields, creditTransaction);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling CreditApi#addTransaction");
@@ -142,6 +137,7 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **code** | **String**|  | |
+| **responseFields** | **String**| limits which fields are returned in the response body | [optional] |
 | **creditTransaction** | [**CreditTransaction**](CreditTransaction.md)|  | [optional] |
 
 ### Return type
@@ -150,7 +146,7 @@ public class Example {
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth), [clientOauth2](../README.md#clientOauth2)
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
@@ -160,11 +156,11 @@ public class Example {
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Success |  -  |
+| **200** | OK |  -  |
 
 <a name="associateCreditToShopper"></a>
 # **associateCreditToShopper**
-> CustomerCredit associateCreditToShopper(code)
+> CustomerCredit associateCreditToShopper(code, responseFields)
 
 Associate Credit To Shopper
 
@@ -189,14 +185,11 @@ public class Example {
     HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
     bearerAuth.setBearerToken("BEARER TOKEN");
 
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
-
     CreditApi apiInstance = new CreditApi(defaultClient);
     String code = "code_example"; // String | 
+    String responseFields = "responseFields_example"; // String | limits which fields are returned in the response body
     try {
-      CustomerCredit result = apiInstance.associateCreditToShopper(code);
+      CustomerCredit result = apiInstance.associateCreditToShopper(code, responseFields);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling CreditApi#associateCreditToShopper");
@@ -214,6 +207,7 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **code** | **String**|  | |
+| **responseFields** | **String**| limits which fields are returned in the response body | [optional] |
 
 ### Return type
 
@@ -221,7 +215,7 @@ public class Example {
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth), [clientOauth2](../README.md#clientOauth2)
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
@@ -231,7 +225,7 @@ public class Example {
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Success |  -  |
+| **200** | OK |  -  |
 
 <a name="deleteCredit"></a>
 # **deleteCredit**
@@ -260,10 +254,6 @@ public class Example {
     HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
     bearerAuth.setBearerToken("BEARER TOKEN");
 
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
-
     CreditApi apiInstance = new CreditApi(defaultClient);
     String code = "code_example"; // String | 
     try {
@@ -291,7 +281,7 @@ null (empty response body)
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth), [clientOauth2](../README.md#clientOauth2)
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
@@ -301,11 +291,11 @@ null (empty response body)
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Success |  -  |
+| **200** | OK |  -  |
 
 <a name="getAuditEntries"></a>
 # **getAuditEntries**
-> CreditAuditEntryCollection getAuditEntries(code, startIndex, pageSize, sortBy, filter)
+> CreditAuditEntryCollection getAuditEntries(code, startIndex, pageSize, sortBy, filter, responseFields)
 
 Get Audit Entries
 
@@ -330,18 +320,15 @@ public class Example {
     HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
     bearerAuth.setBearerToken("BEARER TOKEN");
 
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
-
     CreditApi apiInstance = new CreditApi(defaultClient);
     String code = "code_example"; // String | 
     Integer startIndex = 0; // Integer | 
     Integer pageSize = 0; // Integer | 
     String sortBy = "sortBy_example"; // String | 
     String filter = "filter_example"; // String | 
+    String responseFields = "responseFields_example"; // String | limits which fields are returned in the response body
     try {
-      CreditAuditEntryCollection result = apiInstance.getAuditEntries(code, startIndex, pageSize, sortBy, filter);
+      CreditAuditEntryCollection result = apiInstance.getAuditEntries(code, startIndex, pageSize, sortBy, filter, responseFields);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling CreditApi#getAuditEntries");
@@ -363,6 +350,7 @@ public class Example {
 | **pageSize** | **Integer**|  | [optional] [default to 0] |
 | **sortBy** | **String**|  | [optional] |
 | **filter** | **String**|  | [optional] |
+| **responseFields** | **String**| limits which fields are returned in the response body | [optional] |
 
 ### Return type
 
@@ -370,7 +358,7 @@ public class Example {
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth), [clientOauth2](../README.md#clientOauth2)
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
@@ -380,11 +368,11 @@ public class Example {
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Success |  -  |
+| **200** | OK |  -  |
 
 <a name="getCredit"></a>
 # **getCredit**
-> CustomerCredit getCredit(code)
+> CustomerCredit getCredit(code, responseFields)
 
 Get credit
 
@@ -409,14 +397,11 @@ public class Example {
     HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
     bearerAuth.setBearerToken("BEARER TOKEN");
 
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
-
     CreditApi apiInstance = new CreditApi(defaultClient);
     String code = "code_example"; // String | 
+    String responseFields = "responseFields_example"; // String | limits which fields are returned in the response body
     try {
-      CustomerCredit result = apiInstance.getCredit(code);
+      CustomerCredit result = apiInstance.getCredit(code, responseFields);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling CreditApi#getCredit");
@@ -434,6 +419,7 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **code** | **String**|  | |
+| **responseFields** | **String**| limits which fields are returned in the response body | [optional] |
 
 ### Return type
 
@@ -441,7 +427,7 @@ public class Example {
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth), [clientOauth2](../README.md#clientOauth2)
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
@@ -451,11 +437,11 @@ public class Example {
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Success |  -  |
+| **200** | OK |  -  |
 
 <a name="getCredits"></a>
 # **getCredits**
-> CreditCollection getCredits(startIndex, pageSize, sortBy, filter)
+> CreditCollection getCredits(startIndex, pageSize, sortBy, filter, responseFields)
 
 Get Credits
 
@@ -480,17 +466,14 @@ public class Example {
     HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
     bearerAuth.setBearerToken("BEARER TOKEN");
 
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
-
     CreditApi apiInstance = new CreditApi(defaultClient);
     Integer startIndex = 0; // Integer | 
     Integer pageSize = 0; // Integer | 
     String sortBy = "sortBy_example"; // String | 
     String filter = "filter_example"; // String | 
+    String responseFields = "responseFields_example"; // String | limits which fields are returned in the response body
     try {
-      CreditCollection result = apiInstance.getCredits(startIndex, pageSize, sortBy, filter);
+      CreditCollection result = apiInstance.getCredits(startIndex, pageSize, sortBy, filter, responseFields);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling CreditApi#getCredits");
@@ -511,6 +494,7 @@ public class Example {
 | **pageSize** | **Integer**|  | [optional] [default to 0] |
 | **sortBy** | **String**|  | [optional] |
 | **filter** | **String**|  | [optional] |
+| **responseFields** | **String**| limits which fields are returned in the response body | [optional] |
 
 ### Return type
 
@@ -518,7 +502,7 @@ public class Example {
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth), [clientOauth2](../README.md#clientOauth2)
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
@@ -528,11 +512,11 @@ public class Example {
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Success |  -  |
+| **200** | OK |  -  |
 
 <a name="getTransactions"></a>
 # **getTransactions**
-> CreditTransactionCollection getTransactions(code, startIndex, pageSize, sortBy, filter)
+> CreditTransactionCollection getTransactions(code, startIndex, pageSize, sortBy, filter, responseFields)
 
 Get Transactions
 
@@ -557,18 +541,15 @@ public class Example {
     HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
     bearerAuth.setBearerToken("BEARER TOKEN");
 
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
-
     CreditApi apiInstance = new CreditApi(defaultClient);
     String code = "code_example"; // String | 
     Integer startIndex = 0; // Integer | 
     Integer pageSize = 0; // Integer | 
     String sortBy = "sortBy_example"; // String | 
     String filter = "filter_example"; // String | 
+    String responseFields = "responseFields_example"; // String | limits which fields are returned in the response body
     try {
-      CreditTransactionCollection result = apiInstance.getTransactions(code, startIndex, pageSize, sortBy, filter);
+      CreditTransactionCollection result = apiInstance.getTransactions(code, startIndex, pageSize, sortBy, filter, responseFields);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling CreditApi#getTransactions");
@@ -590,6 +571,7 @@ public class Example {
 | **pageSize** | **Integer**|  | [optional] [default to 0] |
 | **sortBy** | **String**|  | [optional] |
 | **filter** | **String**|  | [optional] |
+| **responseFields** | **String**| limits which fields are returned in the response body | [optional] |
 
 ### Return type
 
@@ -597,7 +579,7 @@ public class Example {
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth), [clientOauth2](../README.md#clientOauth2)
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
@@ -607,11 +589,11 @@ public class Example {
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Success |  -  |
+| **200** | OK |  -  |
 
 <a name="resendCreditCreatedEmail"></a>
 # **resendCreditCreatedEmail**
-> resendCreditCreatedEmail(code, userId)
+> resendCreditCreatedEmail(code, userId, responseFields)
 
 Resend Credit Created Email
 
@@ -636,15 +618,12 @@ public class Example {
     HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
     bearerAuth.setBearerToken("BEARER TOKEN");
 
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
-
     CreditApi apiInstance = new CreditApi(defaultClient);
     String code = "code_example"; // String | 
     String userId = "userId_example"; // String | 
+    String responseFields = "responseFields_example"; // String | limits which fields are returned in the response body
     try {
-      apiInstance.resendCreditCreatedEmail(code, userId);
+      apiInstance.resendCreditCreatedEmail(code, userId, responseFields);
     } catch (ApiException e) {
       System.err.println("Exception when calling CreditApi#resendCreditCreatedEmail");
       System.err.println("Status code: " + e.getCode());
@@ -662,6 +641,7 @@ public class Example {
 |------------- | ------------- | ------------- | -------------|
 | **code** | **String**|  | |
 | **userId** | **String**|  | [optional] |
+| **responseFields** | **String**| limits which fields are returned in the response body | [optional] |
 
 ### Return type
 
@@ -669,7 +649,7 @@ null (empty response body)
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth), [clientOauth2](../README.md#clientOauth2)
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
@@ -679,11 +659,11 @@ null (empty response body)
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Success |  -  |
+| **200** | OK |  -  |
 
 <a name="updateCredit"></a>
 # **updateCredit**
-> CustomerCredit updateCredit(code, customerCredit)
+> CustomerCredit updateCredit(code, responseFields, customerCredit)
 
 Update Credit
 
@@ -708,15 +688,12 @@ public class Example {
     HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
     bearerAuth.setBearerToken("BEARER TOKEN");
 
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
-
     CreditApi apiInstance = new CreditApi(defaultClient);
     String code = "code_example"; // String | 
+    String responseFields = "responseFields_example"; // String | limits which fields are returned in the response body
     CustomerCredit customerCredit = new CustomerCredit(); // CustomerCredit | 
     try {
-      CustomerCredit result = apiInstance.updateCredit(code, customerCredit);
+      CustomerCredit result = apiInstance.updateCredit(code, responseFields, customerCredit);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling CreditApi#updateCredit");
@@ -734,6 +711,7 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **code** | **String**|  | |
+| **responseFields** | **String**| limits which fields are returned in the response body | [optional] |
 | **customerCredit** | [**CustomerCredit**](CustomerCredit.md)|  | [optional] |
 
 ### Return type
@@ -742,7 +720,7 @@ public class Example {
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth), [clientOauth2](../README.md#clientOauth2)
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
@@ -752,5 +730,5 @@ public class Example {
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Success |  -  |
+| **200** | OK |  -  |
 

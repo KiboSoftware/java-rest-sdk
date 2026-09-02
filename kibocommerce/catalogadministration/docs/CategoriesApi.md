@@ -4,30 +4,31 @@ All URIs are relative to *http://https:/api*
 
 | Method | HTTP request | Description |
 |------------- | ------------- | -------------|
-| [**addCategory**](CategoriesApi.md#addCategory) | **POST** /commerce/catalog/admin/categories | Add category |
-| [**addCategoryAttribute**](CategoriesApi.md#addCategoryAttribute) | **POST** /commerce/catalog/admin/categories/{categoryId}/attributes | Add category attribute |
-| [**addProductsToCategory**](CategoriesApi.md#addProductsToCategory) | **POST** /commerce/catalog/admin/categories/{categoryId}/add-products | Add products to category |
-| [**deleteCategoryAttribute**](CategoriesApi.md#deleteCategoryAttribute) | **DELETE** /commerce/catalog/admin/categories/{categoryId}/attributes/{attributeFQN} | Delete category attribute |
-| [**deleteCategoryById**](CategoriesApi.md#deleteCategoryById) | **DELETE** /commerce/catalog/admin/categories/{categoryId} | Delete category |
-| [**getCategories**](CategoriesApi.md#getCategories) | **GET** /commerce/catalog/admin/categories | Get categories |
-| [**getCategory**](CategoriesApi.md#getCategory) | **GET** /commerce/catalog/admin/categories/{categoryId} | Get category |
-| [**getCategoryAttribute**](CategoriesApi.md#getCategoryAttribute) | **GET** /commerce/catalog/admin/categories/{categoryId}/attributes/{attributeFQN} | Get category attribute |
-| [**getCategoryAttributes**](CategoriesApi.md#getCategoryAttributes) | **GET** /commerce/catalog/admin/categories/{categoryId}/attributes | Get category attributes |
-| [**getChildCategories**](CategoriesApi.md#getChildCategories) | **GET** /commerce/catalog/admin/categories/{categoryId}/children | Get child categories |
-| [**removeProductsFromCategory**](CategoriesApi.md#removeProductsFromCategory) | **POST** /commerce/catalog/admin/categories/{categoryId}/remove-products | Remove products from category |
-| [**updateCategory**](CategoriesApi.md#updateCategory) | **PUT** /commerce/catalog/admin/categories/{categoryId} | Update category |
-| [**updateCategoryAttribute**](CategoriesApi.md#updateCategoryAttribute) | **PUT** /commerce/catalog/admin/categories/{categoryId}/attributes/{attributeFQN} | Update category attribute |
-| [**validateDynamicExpression**](CategoriesApi.md#validateDynamicExpression) | **POST** /commerce/catalog/admin/categories/ValidateDynamicExpression | Validate dynamic category expression |
-| [**validateRealTimeDynamicExpression**](CategoriesApi.md#validateRealTimeDynamicExpression) | **POST** /commerce/catalog/admin/categories/ValidateRealTimeDynamicExpression | Validate realtime dynamic category expression |
+| [**addCategory**](CategoriesApi.md#addCategory) | **POST** /commerce/catalog/admin/categories | Add Category |
+| [**addCategoryAttribute**](CategoriesApi.md#addCategoryAttribute) | **POST** /commerce/catalog/admin/categories/{categoryId}/attributes | Add Category Attribute |
+| [**addProductsToCategory**](CategoriesApi.md#addProductsToCategory) | **POST** /commerce/catalog/admin/categories/{categoryId}/add-products | Add Products to Category |
+| [**deleteCategoryAttribute**](CategoriesApi.md#deleteCategoryAttribute) | **DELETE** /commerce/catalog/admin/categories/{categoryId}/attributes/{attributeFQN} | Delete Category Attribute |
+| [**deleteCategoryById**](CategoriesApi.md#deleteCategoryById) | **DELETE** /commerce/catalog/admin/categories/{categoryId} | Delete Category |
+| [**getCategories**](CategoriesApi.md#getCategories) | **GET** /commerce/catalog/admin/categories | Get Categories |
+| [**getCategory**](CategoriesApi.md#getCategory) | **GET** /commerce/catalog/admin/categories/{categoryId} | Get Category |
+| [**getCategoryAttribute**](CategoriesApi.md#getCategoryAttribute) | **GET** /commerce/catalog/admin/categories/{categoryId}/attributes/{attributeFQN} | Get Category Attribute |
+| [**getCategoryAttributes**](CategoriesApi.md#getCategoryAttributes) | **GET** /commerce/catalog/admin/categories/{categoryId}/attributes | Get Category Attributes |
+| [**getChildCategories**](CategoriesApi.md#getChildCategories) | **GET** /commerce/catalog/admin/categories/{categoryId}/children | Get Child Categories |
+| [**removeProductsFromCategory**](CategoriesApi.md#removeProductsFromCategory) | **POST** /commerce/catalog/admin/categories/{categoryId}/remove-products | Remove Products from Category |
+| [**searchCategoryAttributes**](CategoriesApi.md#searchCategoryAttributes) | **GET** /commerce/catalog/admin/categories/searchCategoryAttributes | Search Category Attributes |
+| [**updateCategory**](CategoriesApi.md#updateCategory) | **PUT** /commerce/catalog/admin/categories/{categoryId} | Update Category |
+| [**updateCategoryAttribute**](CategoriesApi.md#updateCategoryAttribute) | **PUT** /commerce/catalog/admin/categories/{categoryId}/attributes/{attributeFQN} | Update Category Attribute |
+| [**validateDynamicExpression**](CategoriesApi.md#validateDynamicExpression) | **POST** /commerce/catalog/admin/categories/ValidateDynamicExpression | Validate Dynamic Category Expression |
+| [**validateRealTimeDynamicExpression**](CategoriesApi.md#validateRealTimeDynamicExpression) | **POST** /commerce/catalog/admin/categories/ValidateRealTimeDynamicExpression | Validate Realtime Dynamic Category Expression |
 
 
 <a name="addCategory"></a>
 # **addCategory**
-> CatalogAdminsCategory addCategory(incrementSequence, useProvidedId, catalogAdminsCategory)
+> CatalogAdminsCategory addCategory(incrementSequence, useProvidedId, responseFields, catalogAdminsCategory)
 
-Add category
+Add Category
 
-dds a new category to the catalog&#39;s category hierarchy. Specify a ParentCategoryID to determine where to locate the category in the hierarchy; if not specified it becomes a top-level category.
+Adds a new category to the catalog&#39;s category hierarchy. Specify a ParentCategoryID to determine where to locate the category in the hierarchy; if not specified it becomes a top-level category. This current version of the Categories API includes localizedContent to support &lt;a href&#x3D;\&quot;/pages/catalog-structure#multi-locale-catalogs\&quot;&gt;multi-locale catalogs&lt;/a&gt;, which was not present in the previous API model. If you were a client prior to May 2024 and have upgraded your implementation to support this feature, you can still access category data that has not yet been rewritten to the new model by providing an x-api-version header set to \&quot;1\&quot;. 
 
 ### Example
 ```java
@@ -48,16 +49,13 @@ public class Example {
     HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
     bearerAuth.setBearerToken("BEARER TOKEN");
 
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
-
     CategoriesApi apiInstance = new CategoriesApi(defaultClient);
     Boolean incrementSequence = false; // Boolean | Sets the sequence number of the category to the current max sequence value plus 1 (e.g. 5 + 1 = 6)
     Boolean useProvidedId = false; // Boolean | If true, the provided Id value will be used as the CategoryId. If omitted or false, the system will generate a CategoryId
+    String responseFields = "responseFields_example"; // String | limits which fields are returned in the response body
     CatalogAdminsCategory catalogAdminsCategory = new CatalogAdminsCategory(); // CatalogAdminsCategory | Properties of the new category. Required properties ParentCategoryID and Content.Name.
     try {
-      CatalogAdminsCategory result = apiInstance.addCategory(incrementSequence, useProvidedId, catalogAdminsCategory);
+      CatalogAdminsCategory result = apiInstance.addCategory(incrementSequence, useProvidedId, responseFields, catalogAdminsCategory);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling CategoriesApi#addCategory");
@@ -76,6 +74,7 @@ public class Example {
 |------------- | ------------- | ------------- | -------------|
 | **incrementSequence** | **Boolean**| Sets the sequence number of the category to the current max sequence value plus 1 (e.g. 5 + 1 &#x3D; 6) | [optional] [default to false] |
 | **useProvidedId** | **Boolean**| If true, the provided Id value will be used as the CategoryId. If omitted or false, the system will generate a CategoryId | [optional] [default to false] |
+| **responseFields** | **String**| limits which fields are returned in the response body | [optional] |
 | **catalogAdminsCategory** | [**CatalogAdminsCategory**](CatalogAdminsCategory.md)| Properties of the new category. Required properties ParentCategoryID and Content.Name. | [optional] |
 
 ### Return type
@@ -84,7 +83,7 @@ public class Example {
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth), [clientOauth2](../README.md#clientOauth2)
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
@@ -94,15 +93,15 @@ public class Example {
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Success |  -  |
+| **200** | OK |  -  |
 
 <a name="addCategoryAttribute"></a>
 # **addCategoryAttribute**
-> CatalogAdminsCategoryAttribute addCategoryAttribute(categoryId, catalogAdminsCategoryAttribute)
+> CatalogAdminsCategoryAttribute addCategoryAttribute(categoryId, responseFields, catalogAdminsCategoryAttribute)
 
-Add category attribute
+Add Category Attribute
 
-Adds a new category attribute to the category.
+Adds a new category attribute to the category. This current version of the Categories API includes localizedContent to support &lt;a href&#x3D;\&quot;/pages/catalog-structure#multi-locale-catalogs\&quot;&gt;multi-locale catalogs&lt;/a&gt;, which was not present in the previous API model. If you were a client prior to May 2024 and have upgraded your implementation to support this feature, you can still access category data that has not yet been rewritten to the new model by providing an x-api-version header set to \&quot;1\&quot;.
 
 ### Example
 ```java
@@ -123,15 +122,12 @@ public class Example {
     HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
     bearerAuth.setBearerToken("BEARER TOKEN");
 
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
-
     CategoriesApi apiInstance = new CategoriesApi(defaultClient);
     Integer categoryId = 56; // Integer | 
+    String responseFields = "responseFields_example"; // String | limits which fields are returned in the response body
     CatalogAdminsCategoryAttribute catalogAdminsCategoryAttribute = new CatalogAdminsCategoryAttribute(); // CatalogAdminsCategoryAttribute | 
     try {
-      CatalogAdminsCategoryAttribute result = apiInstance.addCategoryAttribute(categoryId, catalogAdminsCategoryAttribute);
+      CatalogAdminsCategoryAttribute result = apiInstance.addCategoryAttribute(categoryId, responseFields, catalogAdminsCategoryAttribute);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling CategoriesApi#addCategoryAttribute");
@@ -149,6 +145,7 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **categoryId** | **Integer**|  | |
+| **responseFields** | **String**| limits which fields are returned in the response body | [optional] |
 | **catalogAdminsCategoryAttribute** | [**CatalogAdminsCategoryAttribute**](CatalogAdminsCategoryAttribute.md)|  | [optional] |
 
 ### Return type
@@ -157,7 +154,7 @@ public class Example {
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth), [clientOauth2](../README.md#clientOauth2)
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
@@ -167,13 +164,13 @@ public class Example {
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Success |  -  |
+| **200** | OK |  -  |
 
 <a name="addProductsToCategory"></a>
 # **addProductsToCategory**
-> addProductsToCategory(categoryId, requestBody)
+> addProductsToCategory(categoryId, responseFields, requestBody)
 
-Add products to category
+Add Products to Category
 
 Adds the products in the provided product code list to the specified category.
 
@@ -196,15 +193,12 @@ public class Example {
     HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
     bearerAuth.setBearerToken("BEARER TOKEN");
 
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
-
     CategoriesApi apiInstance = new CategoriesApi(defaultClient);
     Integer categoryId = 56; // Integer | Unique identifier of the category that you want produts added to.
+    String responseFields = "responseFields_example"; // String | limits which fields are returned in the response body
     List<String> requestBody = Arrays.asList(); // List<String> | A list of products to be added to the category.
     try {
-      apiInstance.addProductsToCategory(categoryId, requestBody);
+      apiInstance.addProductsToCategory(categoryId, responseFields, requestBody);
     } catch (ApiException e) {
       System.err.println("Exception when calling CategoriesApi#addProductsToCategory");
       System.err.println("Status code: " + e.getCode());
@@ -221,6 +215,7 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **categoryId** | **Integer**| Unique identifier of the category that you want produts added to. | |
+| **responseFields** | **String**| limits which fields are returned in the response body | [optional] |
 | **requestBody** | [**List&lt;String&gt;**](String.md)| A list of products to be added to the category. | [optional] |
 
 ### Return type
@@ -229,7 +224,7 @@ null (empty response body)
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth), [clientOauth2](../README.md#clientOauth2)
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
@@ -239,13 +234,13 @@ null (empty response body)
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Success |  -  |
+| **200** | OK |  -  |
 
 <a name="deleteCategoryAttribute"></a>
 # **deleteCategoryAttribute**
 > deleteCategoryAttribute(categoryId, attributeFQN)
 
-Delete category attribute
+Delete Category Attribute
 
 Deletes the category attribute specified by its attributeFQN.
 
@@ -267,10 +262,6 @@ public class Example {
     // Configure HTTP bearer authorization: bearerAuth
     HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
     bearerAuth.setBearerToken("BEARER TOKEN");
-
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
 
     CategoriesApi apiInstance = new CategoriesApi(defaultClient);
     Integer categoryId = 56; // Integer | 
@@ -301,7 +292,7 @@ null (empty response body)
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth), [clientOauth2](../README.md#clientOauth2)
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
@@ -311,15 +302,15 @@ null (empty response body)
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Success |  -  |
+| **200** | OK |  -  |
 
 <a name="deleteCategoryById"></a>
 # **deleteCategoryById**
 > deleteCategoryById(categoryId, cascadeDelete, forceDelete, reassignToParent)
 
-Delete category
+Delete Category
 
-Deletes the category specified by its category ID.
+Deletes the category specified by its category ID. This current version of the Categories API includes localizedContent to support &lt;a href&#x3D;\&quot;/pages/catalog-structure#multi-locale-catalogs\&quot;&gt;multi-locale catalogs&lt;/a&gt;, which was not present in the previous API model. If you were a client prior to May 2024 and have upgraded your implementation to support this feature, you can still access category data that has not yet been rewritten to the new model by providing an x-api-version header set to \&quot;1\&quot;.
 
 ### Example
 ```java
@@ -339,10 +330,6 @@ public class Example {
     // Configure HTTP bearer authorization: bearerAuth
     HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
     bearerAuth.setBearerToken("BEARER TOKEN");
-
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
 
     CategoriesApi apiInstance = new CategoriesApi(defaultClient);
     Integer categoryId = 56; // Integer | Unique identifier of the category that you want to delete.
@@ -377,7 +364,7 @@ null (empty response body)
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth), [clientOauth2](../README.md#clientOauth2)
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
@@ -387,15 +374,15 @@ null (empty response body)
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Success |  -  |
+| **200** | OK |  -  |
 
 <a name="getCategories"></a>
 # **getCategories**
-> CatalogAdminsCategoryPagedCollection getCategories(startIndex, pageSize, sortBy, filter, includeAttributes, responseGroups)
+> CatalogAdminsCategoryPagedCollection getCategories(startIndex, pageSize, sortBy, filter, includeAttributes, responseGroups, responseFields)
 
-Get categories
+Get Categories
 
-Retrieves a list of categories according to any specified filter criteria and sort options.
+Retrieves a list of categories according to any specified filter criteria and sort options. This current version of the Categories API includes localizedContent to support &lt;a href&#x3D;\&quot;/pages/catalog-structure#multi-locale-catalogs\&quot;&gt;multi-locale catalogs&lt;/a&gt;, which was not present in the previous API model. If you were a client prior to May 2024 and have upgraded your implementation to support this feature, you can still access category data that has not yet been rewritten to the new model by providing an x-api-version header set to \&quot;1\&quot;. 
 
 ### Example
 ```java
@@ -416,10 +403,6 @@ public class Example {
     HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
     bearerAuth.setBearerToken("BEARER TOKEN");
 
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
-
     CategoriesApi apiInstance = new CategoriesApi(defaultClient);
     Integer startIndex = 0; // Integer | Used to page results from a query. Indicates the zero-based offset in the complete result set where the returned entities begin. The default value is 0.
     Integer pageSize = 0; // Integer | Used to page results from a query. Indicates the maximum number of entities to return from a query. The default value is 20 and the maximum value is 200.
@@ -427,8 +410,9 @@ public class Example {
     String filter = "filter_example"; // String | A set of filter expressions representing the search parameters for a query: eq=equals, ne=not equals, gt=greater than, lt = less than or equals, gt = greater than or equals, lt = less than or equals, sw = starts with, or cont = contains. Optional.
     Boolean includeAttributes = false; // Boolean | 
     String responseGroups = "responseGroups_example"; // String | 
+    String responseFields = "responseFields_example"; // String | limits which fields are returned in the response body
     try {
-      CatalogAdminsCategoryPagedCollection result = apiInstance.getCategories(startIndex, pageSize, sortBy, filter, includeAttributes, responseGroups);
+      CatalogAdminsCategoryPagedCollection result = apiInstance.getCategories(startIndex, pageSize, sortBy, filter, includeAttributes, responseGroups, responseFields);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling CategoriesApi#getCategories");
@@ -451,6 +435,7 @@ public class Example {
 | **filter** | **String**| A set of filter expressions representing the search parameters for a query: eq&#x3D;equals, ne&#x3D;not equals, gt&#x3D;greater than, lt &#x3D; less than or equals, gt &#x3D; greater than or equals, lt &#x3D; less than or equals, sw &#x3D; starts with, or cont &#x3D; contains. Optional. | [optional] |
 | **includeAttributes** | **Boolean**|  | [optional] [default to false] |
 | **responseGroups** | **String**|  | [optional] |
+| **responseFields** | **String**| limits which fields are returned in the response body | [optional] |
 
 ### Return type
 
@@ -458,7 +443,7 @@ public class Example {
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth), [clientOauth2](../README.md#clientOauth2)
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
@@ -468,15 +453,15 @@ public class Example {
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Success |  -  |
+| **200** | OK |  -  |
 
 <a name="getCategory"></a>
 # **getCategory**
-> CatalogAdminsCategory getCategory(categoryId, includeAttributes)
+> CatalogAdminsCategory getCategory(categoryId, includeAttributes, responseFields)
 
-Get category
+Get Category
 
-Retrieves the details of a single category.
+Retrieves the details of a single category. This current version of the Categories API includes localizedContent to support &lt;a href&#x3D;\&quot;/pages/catalog-structure#multi-locale-catalogs\&quot;&gt;multi-locale catalogs&lt;/a&gt;, which was not present in the previous API model. If you were a client prior to May 2024 and have upgraded your implementation to support this feature, you can still access category data that has not yet been rewritten to the new model by providing an x-api-version header set to \&quot;1\&quot;.
 
 ### Example
 ```java
@@ -497,15 +482,12 @@ public class Example {
     HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
     bearerAuth.setBearerToken("BEARER TOKEN");
 
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
-
     CategoriesApi apiInstance = new CategoriesApi(defaultClient);
     Integer categoryId = 56; // Integer | Unique identifier of the category.
     Boolean includeAttributes = false; // Boolean | 
+    String responseFields = "responseFields_example"; // String | limits which fields are returned in the response body
     try {
-      CatalogAdminsCategory result = apiInstance.getCategory(categoryId, includeAttributes);
+      CatalogAdminsCategory result = apiInstance.getCategory(categoryId, includeAttributes, responseFields);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling CategoriesApi#getCategory");
@@ -524,6 +506,7 @@ public class Example {
 |------------- | ------------- | ------------- | -------------|
 | **categoryId** | **Integer**| Unique identifier of the category. | |
 | **includeAttributes** | **Boolean**|  | [optional] [default to false] |
+| **responseFields** | **String**| limits which fields are returned in the response body | [optional] |
 
 ### Return type
 
@@ -531,7 +514,7 @@ public class Example {
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth), [clientOauth2](../README.md#clientOauth2)
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
@@ -541,15 +524,15 @@ public class Example {
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Success |  -  |
+| **200** | OK |  -  |
 
 <a name="getCategoryAttribute"></a>
 # **getCategoryAttribute**
-> CatalogAdminsCategoryAttribute getCategoryAttribute(categoryId, attributeFQN)
+> CatalogAdminsCategoryAttribute getCategoryAttribute(categoryId, attributeFQN, responseFields)
 
-Get category attribute
+Get Category Attribute
 
-Retrieves the details of a single category attribute.
+Retrieves the details of a single category attribute. This current version of the Categories API includes localizedContent to support &lt;a href&#x3D;\&quot;/pages/catalog-structure#multi-locale-catalogs\&quot;&gt;multi-locale catalogs&lt;/a&gt;, which was not present in the previous API model. If you were a client prior to May 2024 and have upgraded your implementation to support this feature, you can still access category data that has not yet been rewritten to the new model by providing an x-api-version header set to \&quot;1\&quot;.
 
 ### Example
 ```java
@@ -570,15 +553,12 @@ public class Example {
     HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
     bearerAuth.setBearerToken("BEARER TOKEN");
 
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
-
     CategoriesApi apiInstance = new CategoriesApi(defaultClient);
     Integer categoryId = 56; // Integer | 
     String attributeFQN = "attributeFQN_example"; // String | 
+    String responseFields = "responseFields_example"; // String | limits which fields are returned in the response body
     try {
-      CatalogAdminsCategoryAttribute result = apiInstance.getCategoryAttribute(categoryId, attributeFQN);
+      CatalogAdminsCategoryAttribute result = apiInstance.getCategoryAttribute(categoryId, attributeFQN, responseFields);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling CategoriesApi#getCategoryAttribute");
@@ -597,6 +577,7 @@ public class Example {
 |------------- | ------------- | ------------- | -------------|
 | **categoryId** | **Integer**|  | |
 | **attributeFQN** | **String**|  | |
+| **responseFields** | **String**| limits which fields are returned in the response body | [optional] |
 
 ### Return type
 
@@ -604,7 +585,7 @@ public class Example {
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth), [clientOauth2](../README.md#clientOauth2)
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
@@ -614,15 +595,15 @@ public class Example {
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Success |  -  |
+| **200** | OK |  -  |
 
 <a name="getCategoryAttributes"></a>
 # **getCategoryAttributes**
-> CategoryAttributeCollection getCategoryAttributes(categoryId, startIndex, pageSize, sortBy, filter)
+> CategoryAttributeCollection getCategoryAttributes(categoryId, startIndex, pageSize, sortBy, filter, responseFields)
 
-Get category attributes
+Get Category Attributes
 
-Retrieves a list of category attributes.
+Retrieves a list of category attributes. This current version of the Categories API includes localizedContent to support &lt;a href&#x3D;\&quot;/pages/catalog-structure#multi-locale-catalogs\&quot;&gt;multi-locale catalogs&lt;/a&gt;, which was not present in the previous API model. If you were a client prior to May 2024 and have upgraded your implementation to support this feature, you can still access category data that has not yet been rewritten to the new model by providing an x-api-version header set to \&quot;1\&quot;.
 
 ### Example
 ```java
@@ -643,18 +624,15 @@ public class Example {
     HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
     bearerAuth.setBearerToken("BEARER TOKEN");
 
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
-
     CategoriesApi apiInstance = new CategoriesApi(defaultClient);
     Integer categoryId = 56; // Integer | 
     Integer startIndex = 0; // Integer | 
     Integer pageSize = 20; // Integer | 
     String sortBy = ""; // String | 
     String filter = ""; // String | 
+    String responseFields = "responseFields_example"; // String | limits which fields are returned in the response body
     try {
-      CategoryAttributeCollection result = apiInstance.getCategoryAttributes(categoryId, startIndex, pageSize, sortBy, filter);
+      CategoryAttributeCollection result = apiInstance.getCategoryAttributes(categoryId, startIndex, pageSize, sortBy, filter, responseFields);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling CategoriesApi#getCategoryAttributes");
@@ -676,6 +654,7 @@ public class Example {
 | **pageSize** | **Integer**|  | [optional] [default to 20] |
 | **sortBy** | **String**|  | [optional] [default to ] |
 | **filter** | **String**|  | [optional] [default to ] |
+| **responseFields** | **String**| limits which fields are returned in the response body | [optional] |
 
 ### Return type
 
@@ -683,7 +662,7 @@ public class Example {
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth), [clientOauth2](../README.md#clientOauth2)
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
@@ -693,15 +672,15 @@ public class Example {
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Success |  -  |
+| **200** | OK |  -  |
 
 <a name="getChildCategories"></a>
 # **getChildCategories**
-> CatalogAdminsCategoryCollection getChildCategories(categoryId)
+> CatalogAdminsCategoryCollection getChildCategories(categoryId, responseFields)
 
-Get child categories
+Get Child Categories
 
-Retrieves the immediate subcategories of a category.
+Retrieves the immediate subcategories of a category. This current version of the Categories API includes localizedContent to support &lt;a href&#x3D;\&quot;/pages/catalog-structure#multi-locale-catalogs\&quot;&gt;multi-locale catalogs&lt;/a&gt;, which was not present in the previous API model. If you were a client prior to May 2024 and have upgraded your implementation to support this feature, you can still access category data that has not yet been rewritten to the new model by providing an x-api-version header set to \&quot;1\&quot;.
 
 ### Example
 ```java
@@ -722,14 +701,11 @@ public class Example {
     HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
     bearerAuth.setBearerToken("BEARER TOKEN");
 
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
-
     CategoriesApi apiInstance = new CategoriesApi(defaultClient);
     Integer categoryId = 56; // Integer | Unique identifier of the category whose subcategories you want to get.
+    String responseFields = "responseFields_example"; // String | limits which fields are returned in the response body
     try {
-      CatalogAdminsCategoryCollection result = apiInstance.getChildCategories(categoryId);
+      CatalogAdminsCategoryCollection result = apiInstance.getChildCategories(categoryId, responseFields);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling CategoriesApi#getChildCategories");
@@ -747,6 +723,7 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **categoryId** | **Integer**| Unique identifier of the category whose subcategories you want to get. | |
+| **responseFields** | **String**| limits which fields are returned in the response body | [optional] |
 
 ### Return type
 
@@ -754,7 +731,7 @@ public class Example {
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth), [clientOauth2](../README.md#clientOauth2)
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
@@ -764,13 +741,13 @@ public class Example {
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Success |  -  |
+| **200** | OK |  -  |
 
 <a name="removeProductsFromCategory"></a>
 # **removeProductsFromCategory**
-> removeProductsFromCategory(categoryId, requestBody)
+> removeProductsFromCategory(categoryId, responseFields, requestBody)
 
-Remove products from category
+Remove Products from Category
 
 Removes the products in the provided product code list from the specified category.
 
@@ -793,15 +770,12 @@ public class Example {
     HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
     bearerAuth.setBearerToken("BEARER TOKEN");
 
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
-
     CategoriesApi apiInstance = new CategoriesApi(defaultClient);
     Integer categoryId = 56; // Integer | Unique identifier of the category that you want products removed from.
+    String responseFields = "responseFields_example"; // String | limits which fields are returned in the response body
     List<String> requestBody = Arrays.asList(); // List<String> | A list of products to be removed from the category.
     try {
-      apiInstance.removeProductsFromCategory(categoryId, requestBody);
+      apiInstance.removeProductsFromCategory(categoryId, responseFields, requestBody);
     } catch (ApiException e) {
       System.err.println("Exception when calling CategoriesApi#removeProductsFromCategory");
       System.err.println("Status code: " + e.getCode());
@@ -818,6 +792,7 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **categoryId** | **Integer**| Unique identifier of the category that you want products removed from. | |
+| **responseFields** | **String**| limits which fields are returned in the response body | [optional] |
 | **requestBody** | [**List&lt;String&gt;**](String.md)| A list of products to be removed from the category. | [optional] |
 
 ### Return type
@@ -826,7 +801,7 @@ null (empty response body)
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth), [clientOauth2](../README.md#clientOauth2)
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
@@ -836,15 +811,15 @@ null (empty response body)
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Success |  -  |
+| **200** | OK |  -  |
 
-<a name="updateCategory"></a>
-# **updateCategory**
-> CatalogAdminsCategory updateCategory(categoryId, cascadeVisibility, catalogAdminsCategory)
+<a name="searchCategoryAttributes"></a>
+# **searchCategoryAttributes**
+> CatalogAdminsCategoryPagedCollection searchCategoryAttributes(startIndex, pageSize, sortBy, filter, includeAttributes, responseGroups, responseFields)
 
-Update category
+Search Category Attributes
 
-Modifies a category such as moving it to another location in the category tree, or changing          whether it is visible on the storefront. This PUT replaces the existing resource, so be sure          to include all the information that you want to maintain for the category. Any unspecified          properties are set to null.
+Retrieves a list of categories according to any specified filter criteria and sort options for attributes. This current version of the Categories API includes localizedContent to support &lt;a href&#x3D;\&quot;/pages/catalog-structure#multi-locale-catalogs\&quot;&gt;multi-locale catalogs&lt;/a&gt;, which was not present in the previous API model. If you were a client prior to May 2024 and have upgraded your implementation to support this feature, you can still access category data that has not yet been rewritten to the new model by providing an x-api-version header set to \&quot;1\&quot;. 
 
 ### Example
 ```java
@@ -865,16 +840,92 @@ public class Example {
     HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
     bearerAuth.setBearerToken("BEARER TOKEN");
 
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
+    CategoriesApi apiInstance = new CategoriesApi(defaultClient);
+    Integer startIndex = 0; // Integer | 
+    Integer pageSize = 0; // Integer | 
+    String sortBy = "sortBy_example"; // String | 
+    String filter = "filter_example"; // String | 
+    Boolean includeAttributes = false; // Boolean | 
+    String responseGroups = "responseGroups_example"; // String | 
+    String responseFields = "responseFields_example"; // String | limits which fields are returned in the response body
+    try {
+      CatalogAdminsCategoryPagedCollection result = apiInstance.searchCategoryAttributes(startIndex, pageSize, sortBy, filter, includeAttributes, responseGroups, responseFields);
+      System.out.println(result);
+    } catch (ApiException e) {
+      System.err.println("Exception when calling CategoriesApi#searchCategoryAttributes");
+      System.err.println("Status code: " + e.getCode());
+      System.err.println("Reason: " + e.getResponseBody());
+      System.err.println("Response headers: " + e.getResponseHeaders());
+      e.printStackTrace();
+    }
+  }
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **startIndex** | **Integer**|  | [optional] [default to 0] |
+| **pageSize** | **Integer**|  | [optional] [default to 0] |
+| **sortBy** | **String**|  | [optional] |
+| **filter** | **String**|  | [optional] |
+| **includeAttributes** | **Boolean**|  | [optional] [default to false] |
+| **responseGroups** | **String**|  | [optional] |
+| **responseFields** | **String**| limits which fields are returned in the response body | [optional] |
+
+### Return type
+
+[**CatalogAdminsCategoryPagedCollection**](CatalogAdminsCategoryPagedCollection.md)
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json, text/json, text/plain
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | OK |  -  |
+
+<a name="updateCategory"></a>
+# **updateCategory**
+> CatalogAdminsCategory updateCategory(categoryId, cascadeVisibility, responseFields, catalogAdminsCategory)
+
+Update Category
+
+Modifies a category such as moving it to another location in the category tree, or changing whether it is visible on the storefront. This PUT replaces the existing resource, so be sure to include all the information that you want to maintain for the category. Any unspecified properties are set to null.&lt;br&gt;&lt;br&gt;This current version of the Categories API includes localizedContent to support &lt;a href&#x3D;\&quot;/pages/catalog-structure#multi-locale-catalogs\&quot;&gt;multi-locale catalogs&lt;/a&gt;, which was not present in the previous API model. If you were a client prior to May 2024 and have upgraded your implementation to support this feature, you can still access category data that has not yet been rewritten to the new model by providing an x-api-version header set to \&quot;1\&quot;.
+
+### Example
+```java
+// Import classes:
+import com.kibocommerce.sdk.catalogadministration.ApiClient;
+import com.kibocommerce.sdk.catalogadministration.ApiException;
+import com.kibocommerce.sdk.catalogadministration.Configuration;
+import com.kibocommerce.sdk.catalogadministration.auth.*;
+import com.kibocommerce.sdk.catalogadministration.models.*;
+import com.kibocommerce.sdk.catalogadministration.api.CategoriesApi;
+
+public class Example {
+  public static void main(String[] args) {
+    ApiClient defaultClient = Configuration.getDefaultApiClient();
+    defaultClient.setBasePath("http://https:/api");
+    
+    // Configure HTTP bearer authorization: bearerAuth
+    HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+    bearerAuth.setBearerToken("BEARER TOKEN");
 
     CategoriesApi apiInstance = new CategoriesApi(defaultClient);
     Integer categoryId = 56; // Integer | Unique identifier of the category that you want to modify. Required.
     Boolean cascadeVisibility = false; // Boolean | If true, when changing the display option for the category, change it for all subcategories also. Optional.
+    String responseFields = "responseFields_example"; // String | limits which fields are returned in the response body
     CatalogAdminsCategory catalogAdminsCategory = new CatalogAdminsCategory(); // CatalogAdminsCategory | Properties of the category that you want to modify. Required properties ParentCategoryID and Content.Name.
     try {
-      CatalogAdminsCategory result = apiInstance.updateCategory(categoryId, cascadeVisibility, catalogAdminsCategory);
+      CatalogAdminsCategory result = apiInstance.updateCategory(categoryId, cascadeVisibility, responseFields, catalogAdminsCategory);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling CategoriesApi#updateCategory");
@@ -893,6 +944,7 @@ public class Example {
 |------------- | ------------- | ------------- | -------------|
 | **categoryId** | **Integer**| Unique identifier of the category that you want to modify. Required. | |
 | **cascadeVisibility** | **Boolean**| If true, when changing the display option for the category, change it for all subcategories also. Optional. | [optional] [default to false] |
+| **responseFields** | **String**| limits which fields are returned in the response body | [optional] |
 | **catalogAdminsCategory** | [**CatalogAdminsCategory**](CatalogAdminsCategory.md)| Properties of the category that you want to modify. Required properties ParentCategoryID and Content.Name. | [optional] |
 
 ### Return type
@@ -901,7 +953,7 @@ public class Example {
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth), [clientOauth2](../README.md#clientOauth2)
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
@@ -911,15 +963,15 @@ public class Example {
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Success |  -  |
+| **200** | OK |  -  |
 
 <a name="updateCategoryAttribute"></a>
 # **updateCategoryAttribute**
-> CatalogAdminsCategoryAttribute updateCategoryAttribute(categoryId, attributeFQN, catalogAdminsCategoryAttribute)
+> CatalogAdminsCategoryAttribute updateCategoryAttribute(categoryId, attributeFQN, responseFields, catalogAdminsCategoryAttribute)
 
-Update category attribute
+Update Category Attribute
 
-Modifies the category attribute.
+Modifies the category attribute. This current version of the Categories API includes localizedContent to support &lt;a href&#x3D;\&quot;/pages/catalog-structure#multi-locale-catalogs\&quot;&gt;multi-locale catalogs&lt;/a&gt;, which was not present in the previous API model. If you were a client prior to May 2024 and have upgraded your implementation to support this feature, you can still access category data that has not yet been rewritten to the new model by providing an x-api-version header set to \&quot;1\&quot;.
 
 ### Example
 ```java
@@ -940,16 +992,13 @@ public class Example {
     HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
     bearerAuth.setBearerToken("BEARER TOKEN");
 
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
-
     CategoriesApi apiInstance = new CategoriesApi(defaultClient);
     Integer categoryId = 56; // Integer | 
     String attributeFQN = "attributeFQN_example"; // String | 
+    String responseFields = "responseFields_example"; // String | limits which fields are returned in the response body
     CatalogAdminsCategoryAttribute catalogAdminsCategoryAttribute = new CatalogAdminsCategoryAttribute(); // CatalogAdminsCategoryAttribute | 
     try {
-      CatalogAdminsCategoryAttribute result = apiInstance.updateCategoryAttribute(categoryId, attributeFQN, catalogAdminsCategoryAttribute);
+      CatalogAdminsCategoryAttribute result = apiInstance.updateCategoryAttribute(categoryId, attributeFQN, responseFields, catalogAdminsCategoryAttribute);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling CategoriesApi#updateCategoryAttribute");
@@ -968,6 +1017,7 @@ public class Example {
 |------------- | ------------- | ------------- | -------------|
 | **categoryId** | **Integer**|  | |
 | **attributeFQN** | **String**|  | |
+| **responseFields** | **String**| limits which fields are returned in the response body | [optional] |
 | **catalogAdminsCategoryAttribute** | [**CatalogAdminsCategoryAttribute**](CatalogAdminsCategoryAttribute.md)|  | [optional] |
 
 ### Return type
@@ -976,7 +1026,7 @@ public class Example {
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth), [clientOauth2](../README.md#clientOauth2)
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
@@ -986,15 +1036,15 @@ public class Example {
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Success |  -  |
+| **200** | OK |  -  |
 
 <a name="validateDynamicExpression"></a>
 # **validateDynamicExpression**
-> DynamicExpression validateDynamicExpression(dynamicExpression)
+> CatalogAdminsDynamicExpression validateDynamicExpression(responseFields, catalogAdminsDynamicExpression)
 
-Validate dynamic category expression
+Validate Dynamic Category Expression
 
-
+Validate an expression for a dynamic category.
 
 ### Example
 ```java
@@ -1015,14 +1065,11 @@ public class Example {
     HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
     bearerAuth.setBearerToken("BEARER TOKEN");
 
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
-
     CategoriesApi apiInstance = new CategoriesApi(defaultClient);
-    DynamicExpression dynamicExpression = new DynamicExpression(); // DynamicExpression | 
+    String responseFields = "responseFields_example"; // String | limits which fields are returned in the response body
+    CatalogAdminsDynamicExpression catalogAdminsDynamicExpression = new CatalogAdminsDynamicExpression(); // CatalogAdminsDynamicExpression | 
     try {
-      DynamicExpression result = apiInstance.validateDynamicExpression(dynamicExpression);
+      CatalogAdminsDynamicExpression result = apiInstance.validateDynamicExpression(responseFields, catalogAdminsDynamicExpression);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling CategoriesApi#validateDynamicExpression");
@@ -1039,15 +1086,16 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **dynamicExpression** | [**DynamicExpression**](DynamicExpression.md)|  | [optional] |
+| **responseFields** | **String**| limits which fields are returned in the response body | [optional] |
+| **catalogAdminsDynamicExpression** | [**CatalogAdminsDynamicExpression**](CatalogAdminsDynamicExpression.md)|  | [optional] |
 
 ### Return type
 
-[**DynamicExpression**](DynamicExpression.md)
+[**CatalogAdminsDynamicExpression**](CatalogAdminsDynamicExpression.md)
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth), [clientOauth2](../README.md#clientOauth2)
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
@@ -1057,15 +1105,15 @@ public class Example {
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Success |  -  |
+| **200** | OK |  -  |
 
 <a name="validateRealTimeDynamicExpression"></a>
 # **validateRealTimeDynamicExpression**
-> DynamicExpression validateRealTimeDynamicExpression(dynamicExpression)
+> CatalogAdminsDynamicExpression validateRealTimeDynamicExpression(responseFields, catalogAdminsDynamicExpression)
 
-Validate realtime dynamic category expression
+Validate Realtime Dynamic Category Expression
 
-
+Validate an expression for a realtime dynamic category.
 
 ### Example
 ```java
@@ -1086,14 +1134,11 @@ public class Example {
     HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
     bearerAuth.setBearerToken("BEARER TOKEN");
 
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
-
     CategoriesApi apiInstance = new CategoriesApi(defaultClient);
-    DynamicExpression dynamicExpression = new DynamicExpression(); // DynamicExpression | 
+    String responseFields = "responseFields_example"; // String | limits which fields are returned in the response body
+    CatalogAdminsDynamicExpression catalogAdminsDynamicExpression = new CatalogAdminsDynamicExpression(); // CatalogAdminsDynamicExpression | 
     try {
-      DynamicExpression result = apiInstance.validateRealTimeDynamicExpression(dynamicExpression);
+      CatalogAdminsDynamicExpression result = apiInstance.validateRealTimeDynamicExpression(responseFields, catalogAdminsDynamicExpression);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling CategoriesApi#validateRealTimeDynamicExpression");
@@ -1110,15 +1155,16 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **dynamicExpression** | [**DynamicExpression**](DynamicExpression.md)|  | [optional] |
+| **responseFields** | **String**| limits which fields are returned in the response body | [optional] |
+| **catalogAdminsDynamicExpression** | [**CatalogAdminsDynamicExpression**](CatalogAdminsDynamicExpression.md)|  | [optional] |
 
 ### Return type
 
-[**DynamicExpression**](DynamicExpression.md)
+[**CatalogAdminsDynamicExpression**](CatalogAdminsDynamicExpression.md)
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth), [clientOauth2](../README.md#clientOauth2)
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
@@ -1128,5 +1174,5 @@ public class Example {
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Success |  -  |
+| **200** | OK |  -  |
 

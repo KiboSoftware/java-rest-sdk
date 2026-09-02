@@ -1,8 +1,8 @@
 /*
  * Kibo Catalog Admin Services
- * OpenAPI Spec for Kibo Catalog Admin Services
+ * <div id=\"overview_CATALOG_ADMIN\">             <h2>CATALOG ADMINISTRATION</h2>             <p>The Catalog Administration APIs are a collection of resources for configuring the catalogs and products offered to your shoppers, including                 discounts and coupon sets, faceting, price lists, and different types or variations of products. See the                 <a href=\"/concept-guides/catalog\">Catalog user guides</a>                 for information about the related features in the Unified Commerce Admin.</p>             <p>Use the <strong>Attributes</strong> resource to manage localization and attribute configurations for your catalogs. This current version of the Attributes API includes localizedContent to                 support <a href=\"/pages/catalog-structure#multi-locale-catalogs\">multi-locale catalogs</a>, which was not present in the legacy API model. If                 you were a client prior to May 2024 and have upgraded your implementation to support this feature,                 you can still access attribute data that has not yet been rewritten to the new model by providing                 an x-api-version header set to \"1\". </p>             <p>Use the <strong>Categories</strong> resource to organize products and control where they appear on the storefront. Create                 and maintain a hierarchy of categories and subcategories where the site will store properties. This current version of the Categories API includes localizedContent to                 support <a href=\"/pages/catalog-structure#multi-locale-catalogs\">multi-locale catalogs</a>, which was not present in the legacy API model. If                 you were a client prior to May 2024 and have upgraded your implementation to support this feature,                 you can still access category data that has not yet been rewritten to the new model by providing                 an x-api-version header set to \"1\". </p>             <p>Use the <strong>Coupon Sets</strong> resource to view and create coupon sets. You can use coupon sets to group multiple                 coupon codes together and associate them with one or more discounts.</p>             <p>Use the <strong>Currency</strong> resource to manage the currency localization rules and exchange rates for any of the                 currencies that are supported for placing orders in.</p>             <p>Use the <strong>Discounts</strong> and <strong>Discount Settings</strong> resources to define and manage discounts to apply to products, product categories, or                 orders. This current version of the Discounts API includes localizedContent to                 support <a href=\"/pages/catalog-structure#multi-locale-catalogs\">multi-locale catalogs</a>, which was not present in the legacy Products API model. If                 you were a client prior to May 2024 and have upgraded your implementation to support this feature,                 you can still access discount data that has not yet been rewritten to the new model by providing                 an x-api-version header set to \"1\". </p>             <p>Use the <strong>Facets</strong> resource to manage the facets shoppers use to filter product display results on a                 storefront. Facets can include categories, product attributes, or prices, and use either a range of                 values or discrete values.</p>             <p>Use the <strong>Master Catalog</strong> resource to view details of the master catalogs associated with a tenant and to                 manage the product publishing mode for each master catalog.</p>             <p>Use the <strong>Price Lists</strong> resources to view and create price lists. You can use price lists to override the                 catalog pricing of products for specific customer segments and/or sites.</p>             <p>Use the <strong>Products</strong>, <strong>Product Types/Extras/Options/Properties</strong>, and <strong>Product Sort Definitions</strong> resources to create new product definitions in the master catalog and determine which                 catalogs will feature products. This current version of the Products API includes localizedContent to                 support <a href=\"/pages/catalog-structure#multi-locale-catalogs\">multi-locale catalogs</a>, which was not present in the legacy Products API model. If                 you were a client prior to May 2024 and have upgraded your implementation to support this feature,                 you can still access product data that has not yet been rewritten to the new model by providing                 an x-api-version header set to \"1\".</p>             <p>Use the <strong>Publishing</strong> resource to publish pending product updates together as part of a set.</p>             <p>Use the <strong>Search</strong> resource to manage all settings and options for providing product search on your site, as                 well as search tuning rules.</p>         </div>
  *
- * The version of the OpenAPI document: 1.0.0
+ * The version of the OpenAPI document: v1
  * 
  *
  * NOTE: This class is auto generated by OpenAPI Generator (https://openapi-generator.tech).
@@ -102,7 +102,7 @@ public class SearchProductSuggestSettingsApi {
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
      </table>
      */
     public okhttp3.Call deleteProductSuggestSettingsCall(String name, final ApiCallback _callback) throws ApiException {
@@ -147,7 +147,7 @@ public class SearchProductSuggestSettingsApi {
             localVarHeaderParams.put("Content-Type", localVarContentType);
         }
 
-        String[] localVarAuthNames = new String[] { "bearerAuth", "clientOauth2" };
+        String[] localVarAuthNames = new String[] { "bearerAuth" };
         return localVarApiClient.buildCall(basePath, localVarPath, "DELETE", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
     }
 
@@ -166,14 +166,14 @@ public class SearchProductSuggestSettingsApi {
     }
 
     /**
-     * Delete product suggest settings
+     * Delete Product Suggest Settings
      * Deletes the ProductSuggestSettings for a specific SearchSetting by name.
      * @param name  (required)
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
      </table>
      */
     public void deleteProductSuggestSettings(String name) throws ApiException {
@@ -181,7 +181,7 @@ public class SearchProductSuggestSettingsApi {
     }
 
     /**
-     * Delete product suggest settings
+     * Delete Product Suggest Settings
      * Deletes the ProductSuggestSettings for a specific SearchSetting by name.
      * @param name  (required)
      * @return ApiResponse&lt;Void&gt;
@@ -189,7 +189,7 @@ public class SearchProductSuggestSettingsApi {
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
      </table>
      */
     public ApiResponse<Void> deleteProductSuggestSettingsWithHttpInfo(String name) throws ApiException {
@@ -198,7 +198,7 @@ public class SearchProductSuggestSettingsApi {
     }
 
     /**
-     * Delete product suggest settings (asynchronously)
+     * Delete Product Suggest Settings (asynchronously)
      * Deletes the ProductSuggestSettings for a specific SearchSetting by name.
      * @param name  (required)
      * @param _callback The callback to be executed when the API call finishes
@@ -207,7 +207,7 @@ public class SearchProductSuggestSettingsApi {
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
      </table>
      */
     public okhttp3.Call deleteProductSuggestSettingsAsync(String name, final ApiCallback<Void> _callback) throws ApiException {
@@ -219,16 +219,17 @@ public class SearchProductSuggestSettingsApi {
     /**
      * Build call for getProductSuggestSettings
      * @param name  (required)
+     * @param responseFields limits which fields are returned in the response body (optional)
      * @param _callback Callback for upload/download progress
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call getProductSuggestSettingsCall(String name, final ApiCallback _callback) throws ApiException {
+    public okhttp3.Call getProductSuggestSettingsCall(String name, String responseFields, final ApiCallback _callback) throws ApiException {
         String basePath = null;
         // Operation Servers
         String[] localBasePaths = new String[] {  };
@@ -254,6 +255,10 @@ public class SearchProductSuggestSettingsApi {
         Map<String, String> localVarCookieParams = new HashMap<String, String>();
         Map<String, Object> localVarFormParams = new HashMap<String, Object>();
 
+        if (responseFields != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("responseFields", responseFields));
+        }
+
         final String[] localVarAccepts = {
             "application/json", "text/json", "text/plain"
         };
@@ -270,12 +275,12 @@ public class SearchProductSuggestSettingsApi {
             localVarHeaderParams.put("Content-Type", localVarContentType);
         }
 
-        String[] localVarAuthNames = new String[] { "bearerAuth", "clientOauth2" };
+        String[] localVarAuthNames = new String[] { "bearerAuth" };
         return localVarApiClient.buildCall(basePath, localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call getProductSuggestSettingsValidateBeforeCall(String name, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call getProductSuggestSettingsValidateBeforeCall(String name, String responseFields, final ApiCallback _callback) throws ApiException {
         
         // verify the required parameter 'name' is set
         if (name == null) {
@@ -283,62 +288,65 @@ public class SearchProductSuggestSettingsApi {
         }
         
 
-        okhttp3.Call localVarCall = getProductSuggestSettingsCall(name, _callback);
+        okhttp3.Call localVarCall = getProductSuggestSettingsCall(name, responseFields, _callback);
         return localVarCall;
 
     }
 
     /**
-     * Get [roduct suggest settings
+     * Get Product Suggest Settings
      * Get ProductSuggestSettings for a specific SearchSettings by name.
      * @param name  (required)
+     * @param responseFields limits which fields are returned in the response body (optional)
      * @return SuggestSettings
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
      </table>
      */
-    public SuggestSettings getProductSuggestSettings(String name) throws ApiException {
-        ApiResponse<SuggestSettings> localVarResp = getProductSuggestSettingsWithHttpInfo(name);
+    public SuggestSettings getProductSuggestSettings(String name, String responseFields) throws ApiException {
+        ApiResponse<SuggestSettings> localVarResp = getProductSuggestSettingsWithHttpInfo(name, responseFields);
         return localVarResp.getData();
     }
 
     /**
-     * Get [roduct suggest settings
+     * Get Product Suggest Settings
      * Get ProductSuggestSettings for a specific SearchSettings by name.
      * @param name  (required)
+     * @param responseFields limits which fields are returned in the response body (optional)
      * @return ApiResponse&lt;SuggestSettings&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<SuggestSettings> getProductSuggestSettingsWithHttpInfo(String name) throws ApiException {
-        okhttp3.Call localVarCall = getProductSuggestSettingsValidateBeforeCall(name, null);
+    public ApiResponse<SuggestSettings> getProductSuggestSettingsWithHttpInfo(String name, String responseFields) throws ApiException {
+        okhttp3.Call localVarCall = getProductSuggestSettingsValidateBeforeCall(name, responseFields, null);
         Type localVarReturnType = new TypeToken<SuggestSettings>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
 
     /**
-     * Get [roduct suggest settings (asynchronously)
+     * Get Product Suggest Settings (asynchronously)
      * Get ProductSuggestSettings for a specific SearchSettings by name.
      * @param name  (required)
+     * @param responseFields limits which fields are returned in the response body (optional)
      * @param _callback The callback to be executed when the API call finishes
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call getProductSuggestSettingsAsync(String name, final ApiCallback<SuggestSettings> _callback) throws ApiException {
+    public okhttp3.Call getProductSuggestSettingsAsync(String name, String responseFields, final ApiCallback<SuggestSettings> _callback) throws ApiException {
 
-        okhttp3.Call localVarCall = getProductSuggestSettingsValidateBeforeCall(name, _callback);
+        okhttp3.Call localVarCall = getProductSuggestSettingsValidateBeforeCall(name, responseFields, _callback);
         Type localVarReturnType = new TypeToken<SuggestSettings>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
@@ -346,6 +354,7 @@ public class SearchProductSuggestSettingsApi {
     /**
      * Build call for updateProductSuggestSettings
      * @param name  (required)
+     * @param responseFields limits which fields are returned in the response body (optional)
      * @param productSuggestSettings  (optional)
      * @param _callback Callback for upload/download progress
      * @return Call to execute
@@ -353,10 +362,10 @@ public class SearchProductSuggestSettingsApi {
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call updateProductSuggestSettingsCall(String name, ProductSuggestSettings productSuggestSettings, final ApiCallback _callback) throws ApiException {
+    public okhttp3.Call updateProductSuggestSettingsCall(String name, String responseFields, ProductSuggestSettings productSuggestSettings, final ApiCallback _callback) throws ApiException {
         String basePath = null;
         // Operation Servers
         String[] localBasePaths = new String[] {  };
@@ -382,6 +391,10 @@ public class SearchProductSuggestSettingsApi {
         Map<String, String> localVarCookieParams = new HashMap<String, String>();
         Map<String, Object> localVarFormParams = new HashMap<String, Object>();
 
+        if (responseFields != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("responseFields", responseFields));
+        }
+
         final String[] localVarAccepts = {
             "application/json", "text/json", "text/plain"
         };
@@ -398,12 +411,12 @@ public class SearchProductSuggestSettingsApi {
             localVarHeaderParams.put("Content-Type", localVarContentType);
         }
 
-        String[] localVarAuthNames = new String[] { "bearerAuth", "clientOauth2" };
+        String[] localVarAuthNames = new String[] { "bearerAuth" };
         return localVarApiClient.buildCall(basePath, localVarPath, "PUT", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call updateProductSuggestSettingsValidateBeforeCall(String name, ProductSuggestSettings productSuggestSettings, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call updateProductSuggestSettingsValidateBeforeCall(String name, String responseFields, ProductSuggestSettings productSuggestSettings, final ApiCallback _callback) throws ApiException {
         
         // verify the required parameter 'name' is set
         if (name == null) {
@@ -411,52 +424,55 @@ public class SearchProductSuggestSettingsApi {
         }
         
 
-        okhttp3.Call localVarCall = updateProductSuggestSettingsCall(name, productSuggestSettings, _callback);
+        okhttp3.Call localVarCall = updateProductSuggestSettingsCall(name, responseFields, productSuggestSettings, _callback);
         return localVarCall;
 
     }
 
     /**
-     * Add/Update product suggest settings
-     * Adds or Updates (Upsert) the ProductSuggestSettings for a specific SearchSetting by name.
+     * Update Product Suggest Settings
+     * Adds or updates the ProductSuggestSettings for a specific SearchSetting by name.
      * @param name  (required)
+     * @param responseFields limits which fields are returned in the response body (optional)
      * @param productSuggestSettings  (optional)
      * @return ProductSuggestSettings
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
      </table>
      */
-    public ProductSuggestSettings updateProductSuggestSettings(String name, ProductSuggestSettings productSuggestSettings) throws ApiException {
-        ApiResponse<ProductSuggestSettings> localVarResp = updateProductSuggestSettingsWithHttpInfo(name, productSuggestSettings);
+    public ProductSuggestSettings updateProductSuggestSettings(String name, String responseFields, ProductSuggestSettings productSuggestSettings) throws ApiException {
+        ApiResponse<ProductSuggestSettings> localVarResp = updateProductSuggestSettingsWithHttpInfo(name, responseFields, productSuggestSettings);
         return localVarResp.getData();
     }
 
     /**
-     * Add/Update product suggest settings
-     * Adds or Updates (Upsert) the ProductSuggestSettings for a specific SearchSetting by name.
+     * Update Product Suggest Settings
+     * Adds or updates the ProductSuggestSettings for a specific SearchSetting by name.
      * @param name  (required)
+     * @param responseFields limits which fields are returned in the response body (optional)
      * @param productSuggestSettings  (optional)
      * @return ApiResponse&lt;ProductSuggestSettings&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<ProductSuggestSettings> updateProductSuggestSettingsWithHttpInfo(String name, ProductSuggestSettings productSuggestSettings) throws ApiException {
-        okhttp3.Call localVarCall = updateProductSuggestSettingsValidateBeforeCall(name, productSuggestSettings, null);
+    public ApiResponse<ProductSuggestSettings> updateProductSuggestSettingsWithHttpInfo(String name, String responseFields, ProductSuggestSettings productSuggestSettings) throws ApiException {
+        okhttp3.Call localVarCall = updateProductSuggestSettingsValidateBeforeCall(name, responseFields, productSuggestSettings, null);
         Type localVarReturnType = new TypeToken<ProductSuggestSettings>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
 
     /**
-     * Add/Update product suggest settings (asynchronously)
-     * Adds or Updates (Upsert) the ProductSuggestSettings for a specific SearchSetting by name.
+     * Update Product Suggest Settings (asynchronously)
+     * Adds or updates the ProductSuggestSettings for a specific SearchSetting by name.
      * @param name  (required)
+     * @param responseFields limits which fields are returned in the response body (optional)
      * @param productSuggestSettings  (optional)
      * @param _callback The callback to be executed when the API call finishes
      * @return The request call
@@ -464,12 +480,12 @@ public class SearchProductSuggestSettingsApi {
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call updateProductSuggestSettingsAsync(String name, ProductSuggestSettings productSuggestSettings, final ApiCallback<ProductSuggestSettings> _callback) throws ApiException {
+    public okhttp3.Call updateProductSuggestSettingsAsync(String name, String responseFields, ProductSuggestSettings productSuggestSettings, final ApiCallback<ProductSuggestSettings> _callback) throws ApiException {
 
-        okhttp3.Call localVarCall = updateProductSuggestSettingsValidateBeforeCall(name, productSuggestSettings, _callback);
+        okhttp3.Call localVarCall = updateProductSuggestSettingsValidateBeforeCall(name, responseFields, productSuggestSettings, _callback);
         Type localVarReturnType = new TypeToken<ProductSuggestSettings>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;

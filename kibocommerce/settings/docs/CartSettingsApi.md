@@ -4,18 +4,18 @@ All URIs are relative to *http://https:/api*
 
 | Method | HTTP request | Description |
 |------------- | ------------- | -------------|
-| [**createCartSettings**](CartSettingsApi.md#createCartSettings) | **POST** /commerce/settings/cart/cartsettings | Create cart settings |
-| [**getCartSettings**](CartSettingsApi.md#getCartSettings) | **GET** /commerce/settings/cart/cartsettings | Retrieves existing cart settings |
+| [**createCartSettings**](CartSettingsApi.md#createCartSettings) | **POST** /commerce/settings/cart/cartsettings | Create Cart Settings |
+| [**getCartSettings**](CartSettingsApi.md#getCartSettings) | **GET** /commerce/settings/cart/cartsettings | Get Cart Settings |
 | [**updateCartSettings**](CartSettingsApi.md#updateCartSettings) | **PUT** /commerce/settings/cart/cartsettings | Update Cart Settings |
 
 
 <a name="createCartSettings"></a>
 # **createCartSettings**
-> CartSettings createCartSettings(cartSettings)
+> CartSettings createCartSettings(responseFields, cartSettings)
 
-Create cart settings
+Create Cart Settings
 
-Creates new cart settings for a site
+Creates new cart settings. If enabling the Handling Fee, note that doing so does not display handling fees as line items in your storefront&#39;s checkout page. Rather, it simply includes the cost of the handling fees in the total. To display handling fees as line items in the checkout page, ask your theme developer to make the necessary changes.
 
 ### Example
 ```java
@@ -36,14 +36,11 @@ public class Example {
     HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
     bearerAuth.setBearerToken("BEARER TOKEN");
 
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
-
     CartSettingsApi apiInstance = new CartSettingsApi(defaultClient);
+    String responseFields = "responseFields_example"; // String | limits which fields are returned in the response body
     CartSettings cartSettings = new CartSettings(); // CartSettings | 
     try {
-      CartSettings result = apiInstance.createCartSettings(cartSettings);
+      CartSettings result = apiInstance.createCartSettings(responseFields, cartSettings);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling CartSettingsApi#createCartSettings");
@@ -60,6 +57,7 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
+| **responseFields** | **String**| limits which fields are returned in the response body | [optional] |
 | **cartSettings** | [**CartSettings**](CartSettings.md)|  | [optional] |
 
 ### Return type
@@ -68,7 +66,7 @@ public class Example {
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth), [clientOauth2](../README.md#clientOauth2)
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
@@ -78,15 +76,15 @@ public class Example {
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Success |  -  |
+| **200** | OK |  -  |
 
 <a name="getCartSettings"></a>
 # **getCartSettings**
-> CartSettings getCartSettings()
+> CartSettings getCartSettings(responseFields)
 
-Retrieves existing cart settings
+Get Cart Settings
 
-Retrieves existing cart settings for a site
+Retrieves existing cart settings.
 
 ### Example
 ```java
@@ -107,13 +105,10 @@ public class Example {
     HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
     bearerAuth.setBearerToken("BEARER TOKEN");
 
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
-
     CartSettingsApi apiInstance = new CartSettingsApi(defaultClient);
+    String responseFields = "responseFields_example"; // String | limits which fields are returned in the response body
     try {
-      CartSettings result = apiInstance.getCartSettings();
+      CartSettings result = apiInstance.getCartSettings(responseFields);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling CartSettingsApi#getCartSettings");
@@ -127,7 +122,10 @@ public class Example {
 ```
 
 ### Parameters
-This endpoint does not need any parameter.
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **responseFields** | **String**| limits which fields are returned in the response body | [optional] |
 
 ### Return type
 
@@ -135,7 +133,7 @@ This endpoint does not need any parameter.
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth), [clientOauth2](../README.md#clientOauth2)
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
@@ -145,15 +143,15 @@ This endpoint does not need any parameter.
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Success |  -  |
+| **200** | OK |  -  |
 
 <a name="updateCartSettings"></a>
 # **updateCartSettings**
-> CartSettings updateCartSettings(cartSettings)
+> CartSettings updateCartSettings(responseFields, cartSettings)
 
 Update Cart Settings
 
-Modifies existing cart settings for a site
+Modifies existing cart settings. If enabling the Handling Fee, note that doing so does not display handling fees as line items in your storefront&#39;s checkout page. Rather, it simply includes the cost of the handling fees in the total. To display handling fees as line items in the checkout page, ask your theme developer to make the necessary changes.
 
 ### Example
 ```java
@@ -174,14 +172,11 @@ public class Example {
     HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
     bearerAuth.setBearerToken("BEARER TOKEN");
 
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
-
     CartSettingsApi apiInstance = new CartSettingsApi(defaultClient);
+    String responseFields = "responseFields_example"; // String | limits which fields are returned in the response body
     CartSettings cartSettings = new CartSettings(); // CartSettings | 
     try {
-      CartSettings result = apiInstance.updateCartSettings(cartSettings);
+      CartSettings result = apiInstance.updateCartSettings(responseFields, cartSettings);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling CartSettingsApi#updateCartSettings");
@@ -198,6 +193,7 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
+| **responseFields** | **String**| limits which fields are returned in the response body | [optional] |
 | **cartSettings** | [**CartSettings**](CartSettings.md)|  | [optional] |
 
 ### Return type
@@ -206,7 +202,7 @@ public class Example {
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth), [clientOauth2](../README.md#clientOauth2)
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
@@ -216,5 +212,5 @@ public class Example {
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Success |  -  |
+| **200** | OK |  -  |
 

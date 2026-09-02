@@ -13,7 +13,7 @@ on:
 
 jobs:
   build:
-    name: Build Kibo ShippingRuntime Service
+    name: Build Shipping Admin
     runs-on: ubuntu-latest
     strategy:
       matrix:

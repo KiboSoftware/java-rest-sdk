@@ -7,14 +7,14 @@
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
-|**id** | **String** | Card ID from Payment Service |  [optional] |
-|**nameOnCard** | **String** |  |  [optional] |
+|**cardNumberPart** | **String** |  |  [optional] |
 |**cardType** | **String** |  |  [optional] |
+|**contactId** | **Integer** |  |  [optional] |
 |**expireMonth** | **Integer** |  |  [optional] |
 |**expireYear** | **Integer** |  |  [optional] |
-|**cardNumberPart** | **String** |  |  [optional] |
-|**contactId** | **Integer** |  |  [optional] |
+|**id** | **String** | Card ID from Payment Service |  [optional] |
 |**isDefaultPayMethod** | **Boolean** |  |  [optional] |
+|**nameOnCard** | **String** |  |  [optional] |
 
 
 ## Implemented Interfaces

@@ -7,14 +7,14 @@
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
+|**content** | [**ContentHttpContent**](ContentHttpContent.md) |  |  [optional] |
+|**headers** | [**List&lt;KeyValuePair&gt;**](KeyValuePair.md) |  |  [optional] [readonly] |
+|**method** | [**HttpMethod**](HttpMethod.md) |  |  [optional] |
+|**options** | **Map&lt;String, Object&gt;** |  |  [optional] [readonly] |
+|**properties** | **Map&lt;String, Object&gt;** |  |  [optional] [readonly] |
+|**requestUri** | **URI** |  |  [optional] |
 |**version** | **String** |  |  [optional] |
 |**versionPolicy** | **ContentHttpVersionPolicy** |  |  [optional] |
-|**content** | [**ContentHttpContent**](ContentHttpContent.md) |  |  [optional] |
-|**method** | [**HttpMethod**](HttpMethod.md) |  |  [optional] |
-|**requestUri** | **URI** |  |  [optional] |
-|**headers** | [**List&lt;KeyValuePair2&gt;**](KeyValuePair2.md) |  |  [optional] [readonly] |
-|**properties** | **Map&lt;String, Object&gt;** |  |  [optional] [readonly] |
-|**options** | **Map&lt;String, Object&gt;** |  |  [optional] [readonly] |
 
 
 ## Implemented Interfaces

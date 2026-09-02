@@ -4,19 +4,21 @@ All URIs are relative to *http://https:/api*
 
 | Method | HTTP request | Description |
 |------------- | ------------- | -------------|
-| [**addExtendedProperties**](CartApi.md#addExtendedProperties) | **POST** /commerce/carts/current/extendedproperties | Adds extended properties |
+| [**addExtendedProperties**](CartApi.md#addExtendedProperties) | **POST** /commerce/carts/current/extendedproperties | Adds Extended Properties |
 | [**addItemToCart**](CartApi.md#addItemToCart) | **POST** /commerce/carts/current/items | Add Item To Cart |
 | [**addItemToCartByCartId**](CartApi.md#addItemToCartByCartId) | **POST** /commerce/carts/{cartId}/items | Add Item To Cart By CartId |
 | [**addItemsToCart**](CartApi.md#addItemsToCart) | **POST** /commerce/carts/current/bulkitems | Add Items To Cart |
 | [**addItemsToCartByCartId**](CartApi.md#addItemsToCartByCartId) | **POST** /commerce/carts/{cartId}/bulkitems | Add Items To Cart By CartId |
 | [**applyCoupon**](CartApi.md#applyCoupon) | **PUT** /commerce/carts/{cartId}/coupons/{couponCode} | Apply Coupon |
-| [**deleteCart**](CartApi.md#deleteCart) | **DELETE** /commerce/carts/{cartId} | Delete cart |
+| [**deleteCart**](CartApi.md#deleteCart) | **DELETE** /commerce/carts/{cartId} | Delete Cart |
 | [**deleteCartItem**](CartApi.md#deleteCartItem) | **DELETE** /commerce/carts/current/items/{cartItemId} | Delete Cart Item |
 | [**deleteCartItemByCartId**](CartApi.md#deleteCartItemByCartId) | **DELETE** /commerce/carts/{cartId}/items/{cartItemId} | Delete Cart Item By CartId |
+| [**deleteCartItems**](CartApi.md#deleteCartItems) | **PUT** /commerce/carts/current/bulkitems/delete | Delete Multiple Cart Items |
+| [**deleteCartItemsByCartId**](CartApi.md#deleteCartItemsByCartId) | **PUT** /commerce/carts/{cartId}/bulkitems/delete | Delete Multiple Cart Items By CartId |
 | [**deleteCurrentCart**](CartApi.md#deleteCurrentCart) | **DELETE** /commerce/carts/current | Delete Current Cart |
-| [**deleteExtendedProperties**](CartApi.md#deleteExtendedProperties) | **DELETE** /commerce/carts/current/extendedproperties | Delete extended properties. |
+| [**deleteExtendedProperties**](CartApi.md#deleteExtendedProperties) | **DELETE** /commerce/carts/current/extendedproperties | Delete Extended Properties. |
 | [**deleteExtendedProperty**](CartApi.md#deleteExtendedProperty) | **DELETE** /commerce/carts/current/extendedproperties/{key} | Delete Extended Property |
-| [**deleteUserCart**](CartApi.md#deleteUserCart) | **DELETE** /commerce/carts/{userId} | Delete User Cart |
+| [**deleteUserCart**](CartApi.md#deleteUserCart) | **DELETE** /commerce/carts/user/{userId} | Delete User Cart |
 | [**getCart**](CartApi.md#getCart) | **GET** /commerce/carts/{cartId} | Get Cart |
 | [**getCartItem**](CartApi.md#getCartItem) | **GET** /commerce/carts/current/items/{cartItemId} | Get Cart Item |
 | [**getCartItemByCartId**](CartApi.md#getCartItemByCartId) | **GET** /commerce/carts/{cartId}/items/{cartItemId} | Get Cart Item By CartId |
@@ -43,16 +45,18 @@ All URIs are relative to *http://https:/api*
 | [**updateCartItemByCartId**](CartApi.md#updateCartItemByCartId) | **PUT** /commerce/carts/{cartId}/items/{cartItemId} | Update Cart Item By CartId |
 | [**updateCartItemQuantity**](CartApi.md#updateCartItemQuantity) | **PUT** /commerce/carts/current/items/{cartItemId}/{quantity} | Update Cart Item Quantity |
 | [**updateCartItemQuantityByCartId**](CartApi.md#updateCartItemQuantityByCartId) | **PUT** /commerce/carts/{cartId}/items/{cartItemId}/{quantity} | Update Cart Item Quantity By CartId |
+| [**updateCartItems**](CartApi.md#updateCartItems) | **PUT** /commerce/carts/current/bulkitems | Update Cart Items |
+| [**updateCartItemsByCartId**](CartApi.md#updateCartItemsByCartId) | **PUT** /commerce/carts/{cartId}/bulkitems | Update Cart Items By CartId |
 | [**updateExtendedProperties**](CartApi.md#updateExtendedProperties) | **PUT** /commerce/carts/current/extendedproperties | Update Extended Properties |
-| [**updateExtendedProperty**](CartApi.md#updateExtendedProperty) | **PUT** /commerce/carts/current/extendedproperties/{key} | Update extended property |
+| [**updateExtendedProperty**](CartApi.md#updateExtendedProperty) | **PUT** /commerce/carts/current/extendedproperties/{key} | Update Extended Property |
 | [**updateUserCart**](CartApi.md#updateUserCart) | **PUT** /commerce/carts/user/{userId} | Update User Cart |
 
 
 <a name="addExtendedProperties"></a>
 # **addExtendedProperties**
-> List&lt;ExtendedProperty&gt; addExtendedProperties(extendedProperty)
+> List&lt;ExtendedProperty&gt; addExtendedProperties(responseFields, extendedProperty)
 
-Adds extended properties
+Adds Extended Properties
 
 Add Extended Properties on the current cart. Store an arbitrary number of cart extended properties such as tracking strings, marketing sources, affiliates, sales personnel/data, and so on, on a per cart basis. Each cart may have none, one, or more than one entry in the extended properties collection, and all values in the extended properties collection are represented as strings. When you create an order from a cart, all extended properties are retained from the cart and copied to the order.
 
@@ -75,14 +79,11 @@ public class Example {
     HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
     bearerAuth.setBearerToken("BEARER TOKEN");
 
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
-
     CartApi apiInstance = new CartApi(defaultClient);
+    String responseFields = "responseFields_example"; // String | limits which fields are returned in the response body
     List<ExtendedProperty> extendedProperty = Arrays.asList(); // List<ExtendedProperty> | Extended properties
     try {
-      List<ExtendedProperty> result = apiInstance.addExtendedProperties(extendedProperty);
+      List<ExtendedProperty> result = apiInstance.addExtendedProperties(responseFields, extendedProperty);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling CartApi#addExtendedProperties");
@@ -99,6 +100,7 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
+| **responseFields** | **String**| limits which fields are returned in the response body | [optional] |
 | **extendedProperty** | [**List&lt;ExtendedProperty&gt;**](ExtendedProperty.md)| Extended properties | [optional] |
 
 ### Return type
@@ -107,7 +109,7 @@ public class Example {
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth), [clientOauth2](../README.md#clientOauth2)
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
@@ -117,11 +119,11 @@ public class Example {
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Success |  -  |
+| **200** | OK |  -  |
 
 <a name="addItemToCart"></a>
 # **addItemToCart**
-> CartItem addItemToCart(zipCode, cartItem)
+> CartItem addItemToCart(zipCode, responseFields, cartItem)
 
 Add Item To Cart
 
@@ -146,15 +148,12 @@ public class Example {
     HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
     bearerAuth.setBearerToken("BEARER TOKEN");
 
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
-
     CartApi apiInstance = new CartApi(defaultClient);
     String zipCode = "zipCode_example"; // String | Zip Code used for inventory reservation if cart having STH items.
+    String responseFields = "responseFields_example"; // String | limits which fields are returned in the response body
     CartItem cartItem = new CartItem(); // CartItem | All properties of the new cart item. Required property: Product.ProductCode.
     try {
-      CartItem result = apiInstance.addItemToCart(zipCode, cartItem);
+      CartItem result = apiInstance.addItemToCart(zipCode, responseFields, cartItem);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling CartApi#addItemToCart");
@@ -172,6 +171,7 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **zipCode** | **String**| Zip Code used for inventory reservation if cart having STH items. | [optional] |
+| **responseFields** | **String**| limits which fields are returned in the response body | [optional] |
 | **cartItem** | [**CartItem**](CartItem.md)| All properties of the new cart item. Required property: Product.ProductCode. | [optional] |
 
 ### Return type
@@ -180,7 +180,7 @@ public class Example {
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth), [clientOauth2](../README.md#clientOauth2)
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
@@ -190,15 +190,15 @@ public class Example {
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Success |  -  |
+| **200** | OK |  -  |
 
 <a name="addItemToCartByCartId"></a>
 # **addItemToCartByCartId**
-> CartItem addItemToCartByCartId(cartId, zipCode, cartItem)
+> CartItem addItemToCartByCartId(cartId, zipCode, responseFields, cartItem)
 
 Add Item To Cart By CartId
 
-\&quot;Adds a product or a cart item to the cart specified by the cart ID.
+Adds a product or a cart item to the cart specified by the cart ID.
 
 ### Example
 ```java
@@ -219,16 +219,13 @@ public class Example {
     HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
     bearerAuth.setBearerToken("BEARER TOKEN");
 
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
-
     CartApi apiInstance = new CartApi(defaultClient);
     String cartId = "cartId_example"; // String | Unique identifier of the cart.
     String zipCode = "zipCode_example"; // String | Zip Code used for inventory reservation if cart having STH items.
+    String responseFields = "responseFields_example"; // String | limits which fields are returned in the response body
     CartItem cartItem = new CartItem(); // CartItem | All properties of the new cart item. Required property: Product.ProductCode.
     try {
-      CartItem result = apiInstance.addItemToCartByCartId(cartId, zipCode, cartItem);
+      CartItem result = apiInstance.addItemToCartByCartId(cartId, zipCode, responseFields, cartItem);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling CartApi#addItemToCartByCartId");
@@ -247,6 +244,7 @@ public class Example {
 |------------- | ------------- | ------------- | -------------|
 | **cartId** | **String**| Unique identifier of the cart. | |
 | **zipCode** | **String**| Zip Code used for inventory reservation if cart having STH items. | [optional] |
+| **responseFields** | **String**| limits which fields are returned in the response body | [optional] |
 | **cartItem** | [**CartItem**](CartItem.md)| All properties of the new cart item. Required property: Product.ProductCode. | [optional] |
 
 ### Return type
@@ -255,7 +253,7 @@ public class Example {
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth), [clientOauth2](../README.md#clientOauth2)
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
@@ -265,11 +263,11 @@ public class Example {
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Success |  -  |
+| **200** | OK |  -  |
 
 <a name="addItemsToCart"></a>
 # **addItemsToCart**
-> addItemsToCart(throwErrorOnInvalidItems, zipCode, cartItem)
+> addItemsToCart(throwErrorOnInvalidItems, zipCode, responseFields, cartItem)
 
 Add Items To Cart
 
@@ -294,16 +292,13 @@ public class Example {
     HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
     bearerAuth.setBearerToken("BEARER TOKEN");
 
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
-
     CartApi apiInstance = new CartApi(defaultClient);
     Boolean throwErrorOnInvalidItems = true; // Boolean | When set to true none of the items will be added when some items are invalid. when set to false valid items are added and invalid items are removed
     String zipCode = "zipCode_example"; // String | Zip Code used for inventory reservation if cart having STH items.
+    String responseFields = "responseFields_example"; // String | limits which fields are returned in the response body
     List<CartItem> cartItem = Arrays.asList(); // List<CartItem> | The items to add to the cart
     try {
-      apiInstance.addItemsToCart(throwErrorOnInvalidItems, zipCode, cartItem);
+      apiInstance.addItemsToCart(throwErrorOnInvalidItems, zipCode, responseFields, cartItem);
     } catch (ApiException e) {
       System.err.println("Exception when calling CartApi#addItemsToCart");
       System.err.println("Status code: " + e.getCode());
@@ -321,6 +316,7 @@ public class Example {
 |------------- | ------------- | ------------- | -------------|
 | **throwErrorOnInvalidItems** | **Boolean**| When set to true none of the items will be added when some items are invalid. when set to false valid items are added and invalid items are removed | [optional] |
 | **zipCode** | **String**| Zip Code used for inventory reservation if cart having STH items. | [optional] |
+| **responseFields** | **String**| limits which fields are returned in the response body | [optional] |
 | **cartItem** | [**List&lt;CartItem&gt;**](CartItem.md)| The items to add to the cart | [optional] |
 
 ### Return type
@@ -329,7 +325,7 @@ null (empty response body)
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth), [clientOauth2](../README.md#clientOauth2)
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
@@ -339,11 +335,11 @@ null (empty response body)
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Success |  -  |
+| **200** | OK |  -  |
 
 <a name="addItemsToCartByCartId"></a>
 # **addItemsToCartByCartId**
-> addItemsToCartByCartId(cartId, throwErrorOnInvalidItems, zipCode, cartItem)
+> addItemsToCartByCartId(cartId, throwErrorOnInvalidItems, zipCode, responseFields, cartItem)
 
 Add Items To Cart By CartId
 
@@ -368,17 +364,14 @@ public class Example {
     HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
     bearerAuth.setBearerToken("BEARER TOKEN");
 
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
-
     CartApi apiInstance = new CartApi(defaultClient);
     String cartId = "cartId_example"; // String | Unique identifier of the cart.
     Boolean throwErrorOnInvalidItems = true; // Boolean | When set to true none of the items will be added when some items are invalid. when set to false valid items are added and invalid items are removed
     String zipCode = "zipCode_example"; // String | Zip Code used for inventory reservation if cart having STH items.
+    String responseFields = "responseFields_example"; // String | limits which fields are returned in the response body
     List<CartItem> cartItem = Arrays.asList(); // List<CartItem> | The items to add to the cart
     try {
-      apiInstance.addItemsToCartByCartId(cartId, throwErrorOnInvalidItems, zipCode, cartItem);
+      apiInstance.addItemsToCartByCartId(cartId, throwErrorOnInvalidItems, zipCode, responseFields, cartItem);
     } catch (ApiException e) {
       System.err.println("Exception when calling CartApi#addItemsToCartByCartId");
       System.err.println("Status code: " + e.getCode());
@@ -397,6 +390,7 @@ public class Example {
 | **cartId** | **String**| Unique identifier of the cart. | |
 | **throwErrorOnInvalidItems** | **Boolean**| When set to true none of the items will be added when some items are invalid. when set to false valid items are added and invalid items are removed | [optional] |
 | **zipCode** | **String**| Zip Code used for inventory reservation if cart having STH items. | [optional] |
+| **responseFields** | **String**| limits which fields are returned in the response body | [optional] |
 | **cartItem** | [**List&lt;CartItem&gt;**](CartItem.md)| The items to add to the cart | [optional] |
 
 ### Return type
@@ -405,7 +399,7 @@ null (empty response body)
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth), [clientOauth2](../README.md#clientOauth2)
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
@@ -415,11 +409,11 @@ null (empty response body)
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Success |  -  |
+| **200** | OK |  -  |
 
 <a name="applyCoupon"></a>
 # **applyCoupon**
-> Cart applyCoupon(cartId, couponCode)
+> Cart applyCoupon(cartId, couponCode, responseFields)
 
 Apply Coupon
 
@@ -444,15 +438,12 @@ public class Example {
     HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
     bearerAuth.setBearerToken("BEARER TOKEN");
 
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
-
     CartApi apiInstance = new CartApi(defaultClient);
     String cartId = "cartId_example"; // String | Unique identifier of the cart with which to associate the coupon.
     String couponCode = "couponCode_example"; // String | Coupon code that the customer supplies to get the discounted price.
+    String responseFields = "responseFields_example"; // String | limits which fields are returned in the response body
     try {
-      Cart result = apiInstance.applyCoupon(cartId, couponCode);
+      Cart result = apiInstance.applyCoupon(cartId, couponCode, responseFields);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling CartApi#applyCoupon");
@@ -471,6 +462,7 @@ public class Example {
 |------------- | ------------- | ------------- | -------------|
 | **cartId** | **String**| Unique identifier of the cart with which to associate the coupon. | |
 | **couponCode** | **String**| Coupon code that the customer supplies to get the discounted price. | |
+| **responseFields** | **String**| limits which fields are returned in the response body | [optional] |
 
 ### Return type
 
@@ -478,7 +470,7 @@ public class Example {
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth), [clientOauth2](../README.md#clientOauth2)
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
@@ -488,13 +480,13 @@ public class Example {
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Success |  -  |
+| **200** | OK |  -  |
 
 <a name="deleteCart"></a>
 # **deleteCart**
 > deleteCart(cartId)
 
-Delete cart
+Delete Cart
 
 Deletes the cart by cart ID.
 
@@ -516,10 +508,6 @@ public class Example {
     // Configure HTTP bearer authorization: bearerAuth
     HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
     bearerAuth.setBearerToken("BEARER TOKEN");
-
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
 
     CartApi apiInstance = new CartApi(defaultClient);
     String cartId = "cartId_example"; // String | Unique identifier of the cart.
@@ -548,7 +536,7 @@ null (empty response body)
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth), [clientOauth2](../README.md#clientOauth2)
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
@@ -558,7 +546,7 @@ null (empty response body)
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Success |  -  |
+| **200** | OK |  -  |
 
 <a name="deleteCartItem"></a>
 # **deleteCartItem**
@@ -587,10 +575,6 @@ public class Example {
     HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
     bearerAuth.setBearerToken("BEARER TOKEN");
 
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
-
     CartApi apiInstance = new CartApi(defaultClient);
     String cartItemId = "cartItemId_example"; // String | Unique identifier of the cart item.
     try {
@@ -618,7 +602,7 @@ null (empty response body)
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth), [clientOauth2](../README.md#clientOauth2)
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
@@ -628,7 +612,7 @@ null (empty response body)
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Success |  -  |
+| **200** | OK |  -  |
 
 <a name="deleteCartItemByCartId"></a>
 # **deleteCartItemByCartId**
@@ -656,10 +640,6 @@ public class Example {
     // Configure HTTP bearer authorization: bearerAuth
     HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
     bearerAuth.setBearerToken("BEARER TOKEN");
-
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
 
     CartApi apiInstance = new CartApi(defaultClient);
     String cartId = "cartId_example"; // String | Unique identifier of the cart.
@@ -690,7 +670,7 @@ null (empty response body)
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth), [clientOauth2](../README.md#clientOauth2)
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
@@ -700,15 +680,15 @@ null (empty response body)
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Success |  -  |
+| **200** | OK |  -  |
 
-<a name="deleteCurrentCart"></a>
-# **deleteCurrentCart**
-> deleteCurrentCart()
+<a name="deleteCartItems"></a>
+# **deleteCartItems**
+> deleteCartItems(responseFields, requestBody)
 
-Delete Current Cart
+Delete Multiple Cart Items
 
-eletes the cart of the current shopper.
+Removes multiple cart items from the cart of the current shopper in a single operation.
 
 ### Example
 ```java
@@ -729,9 +709,143 @@ public class Example {
     HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
     bearerAuth.setBearerToken("BEARER TOKEN");
 
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
+    CartApi apiInstance = new CartApi(defaultClient);
+    String responseFields = "responseFields_example"; // String | limits which fields are returned in the response body
+    List<String> requestBody = Arrays.asList(); // List<String> | List of cart item IDs to remove
+    try {
+      apiInstance.deleteCartItems(responseFields, requestBody);
+    } catch (ApiException e) {
+      System.err.println("Exception when calling CartApi#deleteCartItems");
+      System.err.println("Status code: " + e.getCode());
+      System.err.println("Reason: " + e.getResponseBody());
+      System.err.println("Response headers: " + e.getResponseHeaders());
+      e.printStackTrace();
+    }
+  }
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **responseFields** | **String**| limits which fields are returned in the response body | [optional] |
+| **requestBody** | [**List&lt;String&gt;**](String.md)| List of cart item IDs to remove | [optional] |
+
+### Return type
+
+null (empty response body)
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: Not defined
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | OK |  -  |
+
+<a name="deleteCartItemsByCartId"></a>
+# **deleteCartItemsByCartId**
+> deleteCartItemsByCartId(cartId, responseFields, requestBody)
+
+Delete Multiple Cart Items By CartId
+
+Removes multiple cart items from the specified cart in a single operation.
+
+### Example
+```java
+// Import classes:
+import com.kibocommerce.sdk.commerce.ApiClient;
+import com.kibocommerce.sdk.commerce.ApiException;
+import com.kibocommerce.sdk.commerce.Configuration;
+import com.kibocommerce.sdk.commerce.auth.*;
+import com.kibocommerce.sdk.commerce.models.*;
+import com.kibocommerce.sdk.commerce.api.CartApi;
+
+public class Example {
+  public static void main(String[] args) {
+    ApiClient defaultClient = Configuration.getDefaultApiClient();
+    defaultClient.setBasePath("http://https:/api");
+    
+    // Configure HTTP bearer authorization: bearerAuth
+    HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+    bearerAuth.setBearerToken("BEARER TOKEN");
+
+    CartApi apiInstance = new CartApi(defaultClient);
+    String cartId = "cartId_example"; // String | Unique identifier of the cart
+    String responseFields = "responseFields_example"; // String | limits which fields are returned in the response body
+    List<String> requestBody = Arrays.asList(); // List<String> | List of cart item IDs to remove
+    try {
+      apiInstance.deleteCartItemsByCartId(cartId, responseFields, requestBody);
+    } catch (ApiException e) {
+      System.err.println("Exception when calling CartApi#deleteCartItemsByCartId");
+      System.err.println("Status code: " + e.getCode());
+      System.err.println("Reason: " + e.getResponseBody());
+      System.err.println("Response headers: " + e.getResponseHeaders());
+      e.printStackTrace();
+    }
+  }
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **cartId** | **String**| Unique identifier of the cart | |
+| **responseFields** | **String**| limits which fields are returned in the response body | [optional] |
+| **requestBody** | [**List&lt;String&gt;**](String.md)| List of cart item IDs to remove | [optional] |
+
+### Return type
+
+null (empty response body)
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: Not defined
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | OK |  -  |
+
+<a name="deleteCurrentCart"></a>
+# **deleteCurrentCart**
+> deleteCurrentCart()
+
+Delete Current Cart
+
+Deletes the cart of the current shopper.
+
+### Example
+```java
+// Import classes:
+import com.kibocommerce.sdk.commerce.ApiClient;
+import com.kibocommerce.sdk.commerce.ApiException;
+import com.kibocommerce.sdk.commerce.Configuration;
+import com.kibocommerce.sdk.commerce.auth.*;
+import com.kibocommerce.sdk.commerce.models.*;
+import com.kibocommerce.sdk.commerce.api.CartApi;
+
+public class Example {
+  public static void main(String[] args) {
+    ApiClient defaultClient = Configuration.getDefaultApiClient();
+    defaultClient.setBasePath("http://https:/api");
+    
+    // Configure HTTP bearer authorization: bearerAuth
+    HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+    bearerAuth.setBearerToken("BEARER TOKEN");
 
     CartApi apiInstance = new CartApi(defaultClient);
     try {
@@ -756,7 +870,7 @@ null (empty response body)
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth), [clientOauth2](../README.md#clientOauth2)
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
@@ -766,13 +880,13 @@ null (empty response body)
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Success |  -  |
+| **200** | OK |  -  |
 
 <a name="deleteExtendedProperties"></a>
 # **deleteExtendedProperties**
 > deleteExtendedProperties(requestBody)
 
-Delete extended properties.
+Delete Extended Properties.
 
 Delete extended properties on the current cart.
 
@@ -794,10 +908,6 @@ public class Example {
     // Configure HTTP bearer authorization: bearerAuth
     HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
     bearerAuth.setBearerToken("BEARER TOKEN");
-
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
 
     CartApi apiInstance = new CartApi(defaultClient);
     List<String> requestBody = Arrays.asList(); // List<String> | Extended properties.
@@ -826,7 +936,7 @@ null (empty response body)
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth), [clientOauth2](../README.md#clientOauth2)
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
@@ -836,7 +946,7 @@ null (empty response body)
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Success |  -  |
+| **200** | OK |  -  |
 
 <a name="deleteExtendedProperty"></a>
 # **deleteExtendedProperty**
@@ -865,10 +975,6 @@ public class Example {
     HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
     bearerAuth.setBearerToken("BEARER TOKEN");
 
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
-
     CartApi apiInstance = new CartApi(defaultClient);
     String key = "key_example"; // String | Unique identifier of the extended property
     try {
@@ -896,7 +1002,7 @@ null (empty response body)
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth), [clientOauth2](../README.md#clientOauth2)
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
@@ -906,11 +1012,11 @@ null (empty response body)
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Success |  -  |
+| **200** | OK |  -  |
 
 <a name="deleteUserCart"></a>
 # **deleteUserCart**
-> deleteUserCart(userId)
+> deleteUserCart(userId, accountId)
 
 Delete User Cart
 
@@ -935,14 +1041,11 @@ public class Example {
     HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
     bearerAuth.setBearerToken("BEARER TOKEN");
 
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
-
     CartApi apiInstance = new CartApi(defaultClient);
     String userId = "userId_example"; // String | Unique identifier of the user.
+    Integer accountId = 56; // Integer | Unique identifier of the customer account.
     try {
-      apiInstance.deleteUserCart(userId);
+      apiInstance.deleteUserCart(userId, accountId);
     } catch (ApiException e) {
       System.err.println("Exception when calling CartApi#deleteUserCart");
       System.err.println("Status code: " + e.getCode());
@@ -959,6 +1062,7 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **userId** | **String**| Unique identifier of the user. | |
+| **accountId** | **Integer**| Unique identifier of the customer account. | [optional] |
 
 ### Return type
 
@@ -966,7 +1070,7 @@ null (empty response body)
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth), [clientOauth2](../README.md#clientOauth2)
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
@@ -976,11 +1080,11 @@ null (empty response body)
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Success |  -  |
+| **200** | OK |  -  |
 
 <a name="getCart"></a>
 # **getCart**
-> Cart getCart(cartId)
+> Cart getCart(cartId, responseFields)
 
 Get Cart
 
@@ -1005,14 +1109,11 @@ public class Example {
     HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
     bearerAuth.setBearerToken("BEARER TOKEN");
 
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
-
     CartApi apiInstance = new CartApi(defaultClient);
     String cartId = "cartId_example"; // String | Unique identifier of the cart.
+    String responseFields = "responseFields_example"; // String | limits which fields are returned in the response body
     try {
-      Cart result = apiInstance.getCart(cartId);
+      Cart result = apiInstance.getCart(cartId, responseFields);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling CartApi#getCart");
@@ -1030,6 +1131,7 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **cartId** | **String**| Unique identifier of the cart. | |
+| **responseFields** | **String**| limits which fields are returned in the response body | [optional] |
 
 ### Return type
 
@@ -1037,7 +1139,7 @@ public class Example {
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth), [clientOauth2](../README.md#clientOauth2)
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
@@ -1047,11 +1149,11 @@ public class Example {
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Success |  -  |
+| **200** | OK |  -  |
 
 <a name="getCartItem"></a>
 # **getCartItem**
-> CartItem getCartItem(cartItemId)
+> CartItem getCartItem(cartItemId, responseFields)
 
 Get Cart Item
 
@@ -1076,14 +1178,11 @@ public class Example {
     HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
     bearerAuth.setBearerToken("BEARER TOKEN");
 
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
-
     CartApi apiInstance = new CartApi(defaultClient);
     String cartItemId = "cartItemId_example"; // String | Unique identifier of the cart item.
+    String responseFields = "responseFields_example"; // String | limits which fields are returned in the response body
     try {
-      CartItem result = apiInstance.getCartItem(cartItemId);
+      CartItem result = apiInstance.getCartItem(cartItemId, responseFields);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling CartApi#getCartItem");
@@ -1101,6 +1200,7 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **cartItemId** | **String**| Unique identifier of the cart item. | |
+| **responseFields** | **String**| limits which fields are returned in the response body | [optional] |
 
 ### Return type
 
@@ -1108,7 +1208,7 @@ public class Example {
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth), [clientOauth2](../README.md#clientOauth2)
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
@@ -1118,11 +1218,11 @@ public class Example {
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Success |  -  |
+| **200** | OK |  -  |
 
 <a name="getCartItemByCartId"></a>
 # **getCartItemByCartId**
-> CartItem getCartItemByCartId(cartId, cartItemId)
+> CartItem getCartItemByCartId(cartId, cartItemId, responseFields)
 
 Get Cart Item By CartId
 
@@ -1147,15 +1247,12 @@ public class Example {
     HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
     bearerAuth.setBearerToken("BEARER TOKEN");
 
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
-
     CartApi apiInstance = new CartApi(defaultClient);
     String cartId = "cartId_example"; // String | Unique identifier of the cart.
     String cartItemId = "cartItemId_example"; // String | Unique identifier of the cart item.
+    String responseFields = "responseFields_example"; // String | limits which fields are returned in the response body
     try {
-      CartItem result = apiInstance.getCartItemByCartId(cartId, cartItemId);
+      CartItem result = apiInstance.getCartItemByCartId(cartId, cartItemId, responseFields);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling CartApi#getCartItemByCartId");
@@ -1174,6 +1271,7 @@ public class Example {
 |------------- | ------------- | ------------- | -------------|
 | **cartId** | **String**| Unique identifier of the cart. | |
 | **cartItemId** | **String**| Unique identifier of the cart item. | |
+| **responseFields** | **String**| limits which fields are returned in the response body | [optional] |
 
 ### Return type
 
@@ -1181,7 +1279,7 @@ public class Example {
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth), [clientOauth2](../README.md#clientOauth2)
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
@@ -1191,11 +1289,11 @@ public class Example {
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Success |  -  |
+| **200** | OK |  -  |
 
 <a name="getCartItems"></a>
 # **getCartItems**
-> CartItemCollection getCartItems()
+> CartItemCollection getCartItems(responseFields)
 
 Get Cart Items
 
@@ -1220,13 +1318,10 @@ public class Example {
     HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
     bearerAuth.setBearerToken("BEARER TOKEN");
 
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
-
     CartApi apiInstance = new CartApi(defaultClient);
+    String responseFields = "responseFields_example"; // String | limits which fields are returned in the response body
     try {
-      CartItemCollection result = apiInstance.getCartItems();
+      CartItemCollection result = apiInstance.getCartItems(responseFields);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling CartApi#getCartItems");
@@ -1240,7 +1335,10 @@ public class Example {
 ```
 
 ### Parameters
-This endpoint does not need any parameter.
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **responseFields** | **String**| limits which fields are returned in the response body | [optional] |
 
 ### Return type
 
@@ -1248,7 +1346,7 @@ This endpoint does not need any parameter.
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth), [clientOauth2](../README.md#clientOauth2)
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
@@ -1258,11 +1356,11 @@ This endpoint does not need any parameter.
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Success |  -  |
+| **200** | OK |  -  |
 
 <a name="getCartItemsByCartId"></a>
 # **getCartItemsByCartId**
-> CartItemCollection getCartItemsByCartId(cartId)
+> CartItemCollection getCartItemsByCartId(cartId, responseFields)
 
 Get Cart Items By CartId
 
@@ -1287,14 +1385,11 @@ public class Example {
     HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
     bearerAuth.setBearerToken("BEARER TOKEN");
 
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
-
     CartApi apiInstance = new CartApi(defaultClient);
     String cartId = "cartId_example"; // String | Unique identifier of the cart.
+    String responseFields = "responseFields_example"; // String | limits which fields are returned in the response body
     try {
-      CartItemCollection result = apiInstance.getCartItemsByCartId(cartId);
+      CartItemCollection result = apiInstance.getCartItemsByCartId(cartId, responseFields);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling CartApi#getCartItemsByCartId");
@@ -1312,6 +1407,7 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **cartId** | **String**| Unique identifier of the cart. | |
+| **responseFields** | **String**| limits which fields are returned in the response body | [optional] |
 
 ### Return type
 
@@ -1319,7 +1415,7 @@ public class Example {
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth), [clientOauth2](../README.md#clientOauth2)
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
@@ -1329,11 +1425,11 @@ public class Example {
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Success |  -  |
+| **200** | OK |  -  |
 
 <a name="getCartSummary"></a>
 # **getCartSummary**
-> CartSummary getCartSummary()
+> CartSummary getCartSummary(responseFields)
 
 Get Cart Summary
 
@@ -1358,13 +1454,10 @@ public class Example {
     HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
     bearerAuth.setBearerToken("BEARER TOKEN");
 
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
-
     CartApi apiInstance = new CartApi(defaultClient);
+    String responseFields = "responseFields_example"; // String | limits which fields are returned in the response body
     try {
-      CartSummary result = apiInstance.getCartSummary();
+      CartSummary result = apiInstance.getCartSummary(responseFields);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling CartApi#getCartSummary");
@@ -1378,7 +1471,10 @@ public class Example {
 ```
 
 ### Parameters
-This endpoint does not need any parameter.
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **responseFields** | **String**| limits which fields are returned in the response body | [optional] |
 
 ### Return type
 
@@ -1386,7 +1482,7 @@ This endpoint does not need any parameter.
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth), [clientOauth2](../README.md#clientOauth2)
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
@@ -1396,11 +1492,11 @@ This endpoint does not need any parameter.
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Success |  -  |
+| **200** | OK |  -  |
 
 <a name="getCartSummaryByCartId"></a>
 # **getCartSummaryByCartId**
-> CartSummary getCartSummaryByCartId(cartId)
+> CartSummary getCartSummaryByCartId(cartId, responseFields)
 
 Get Cart Summary By Cart Id
 
@@ -1425,14 +1521,11 @@ public class Example {
     HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
     bearerAuth.setBearerToken("BEARER TOKEN");
 
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
-
     CartApi apiInstance = new CartApi(defaultClient);
     String cartId = "cartId_example"; // String | 
+    String responseFields = "responseFields_example"; // String | limits which fields are returned in the response body
     try {
-      CartSummary result = apiInstance.getCartSummaryByCartId(cartId);
+      CartSummary result = apiInstance.getCartSummaryByCartId(cartId, responseFields);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling CartApi#getCartSummaryByCartId");
@@ -1450,6 +1543,7 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **cartId** | **String**|  | |
+| **responseFields** | **String**| limits which fields are returned in the response body | [optional] |
 
 ### Return type
 
@@ -1457,7 +1551,7 @@ public class Example {
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth), [clientOauth2](../README.md#clientOauth2)
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
@@ -1467,11 +1561,11 @@ public class Example {
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Success |  -  |
+| **200** | OK |  -  |
 
 <a name="getExtendedProperties"></a>
 # **getExtendedProperties**
-> List&lt;ExtendedProperty&gt; getExtendedProperties()
+> List&lt;ExtendedProperty&gt; getExtendedProperties(responseFields)
 
 Get Extended Properties
 
@@ -1496,13 +1590,10 @@ public class Example {
     HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
     bearerAuth.setBearerToken("BEARER TOKEN");
 
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
-
     CartApi apiInstance = new CartApi(defaultClient);
+    String responseFields = "responseFields_example"; // String | limits which fields are returned in the response body
     try {
-      List<ExtendedProperty> result = apiInstance.getExtendedProperties();
+      List<ExtendedProperty> result = apiInstance.getExtendedProperties(responseFields);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling CartApi#getExtendedProperties");
@@ -1516,7 +1607,10 @@ public class Example {
 ```
 
 ### Parameters
-This endpoint does not need any parameter.
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **responseFields** | **String**| limits which fields are returned in the response body | [optional] |
 
 ### Return type
 
@@ -1524,7 +1618,7 @@ This endpoint does not need any parameter.
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth), [clientOauth2](../README.md#clientOauth2)
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
@@ -1534,11 +1628,11 @@ This endpoint does not need any parameter.
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Success |  -  |
+| **200** | OK |  -  |
 
 <a name="getMessages"></a>
 # **getMessages**
-> CartChangeMessageCollection getMessages()
+> CartChangeMessageCollection getMessages(responseFields)
 
 Get Messages
 
@@ -1563,13 +1657,10 @@ public class Example {
     HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
     bearerAuth.setBearerToken("BEARER TOKEN");
 
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
-
     CartApi apiInstance = new CartApi(defaultClient);
+    String responseFields = "responseFields_example"; // String | limits which fields are returned in the response body
     try {
-      CartChangeMessageCollection result = apiInstance.getMessages();
+      CartChangeMessageCollection result = apiInstance.getMessages(responseFields);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling CartApi#getMessages");
@@ -1583,7 +1674,10 @@ public class Example {
 ```
 
 ### Parameters
-This endpoint does not need any parameter.
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **responseFields** | **String**| limits which fields are returned in the response body | [optional] |
 
 ### Return type
 
@@ -1591,7 +1685,7 @@ This endpoint does not need any parameter.
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth), [clientOauth2](../README.md#clientOauth2)
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
@@ -1601,11 +1695,11 @@ This endpoint does not need any parameter.
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Success |  -  |
+| **200** | OK |  -  |
 
 <a name="getOrCreateCart"></a>
 # **getOrCreateCart**
-> Cart getOrCreateCart()
+> Cart getOrCreateCart(responseFields)
 
 Get Or Create Cart
 
@@ -1630,13 +1724,10 @@ public class Example {
     HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
     bearerAuth.setBearerToken("BEARER TOKEN");
 
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
-
     CartApi apiInstance = new CartApi(defaultClient);
+    String responseFields = "responseFields_example"; // String | limits which fields are returned in the response body
     try {
-      Cart result = apiInstance.getOrCreateCart();
+      Cart result = apiInstance.getOrCreateCart(responseFields);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling CartApi#getOrCreateCart");
@@ -1650,7 +1741,10 @@ public class Example {
 ```
 
 ### Parameters
-This endpoint does not need any parameter.
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **responseFields** | **String**| limits which fields are returned in the response body | [optional] |
 
 ### Return type
 
@@ -1658,7 +1752,7 @@ This endpoint does not need any parameter.
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth), [clientOauth2](../README.md#clientOauth2)
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
@@ -1668,11 +1762,11 @@ This endpoint does not need any parameter.
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Success |  -  |
+| **200** | OK |  -  |
 
 <a name="getOrCreateUserCart"></a>
 # **getOrCreateUserCart**
-> Cart getOrCreateUserCart(userId)
+> Cart getOrCreateUserCart(userId, accountId, responseFields)
 
 Get Or Create User Cart
 
@@ -1697,14 +1791,12 @@ public class Example {
     HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
     bearerAuth.setBearerToken("BEARER TOKEN");
 
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
-
     CartApi apiInstance = new CartApi(defaultClient);
     String userId = "userId_example"; // String | Unique identifier of the user.
+    Integer accountId = 56; // Integer | Unique identifier of the customer account.
+    String responseFields = "responseFields_example"; // String | limits which fields are returned in the response body
     try {
-      Cart result = apiInstance.getOrCreateUserCart(userId);
+      Cart result = apiInstance.getOrCreateUserCart(userId, accountId, responseFields);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling CartApi#getOrCreateUserCart");
@@ -1722,6 +1814,8 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **userId** | **String**| Unique identifier of the user. | |
+| **accountId** | **Integer**| Unique identifier of the customer account. | [optional] |
+| **responseFields** | **String**| limits which fields are returned in the response body | [optional] |
 
 ### Return type
 
@@ -1729,7 +1823,7 @@ public class Example {
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth), [clientOauth2](../README.md#clientOauth2)
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
@@ -1739,11 +1833,11 @@ public class Example {
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Success |  -  |
+| **200** | OK |  -  |
 
 <a name="getUserCart"></a>
 # **getUserCart**
-> Cart getUserCart(userId)
+> Cart getUserCart(userId, accountId, responseFields)
 
 Get User Cart
 
@@ -1768,14 +1862,12 @@ public class Example {
     HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
     bearerAuth.setBearerToken("BEARER TOKEN");
 
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
-
     CartApi apiInstance = new CartApi(defaultClient);
     String userId = "userId_example"; // String | Unique identifier of the user.
+    Integer accountId = 56; // Integer | Unique identifier of the customer account.
+    String responseFields = "responseFields_example"; // String | limits which fields are returned in the response body
     try {
-      Cart result = apiInstance.getUserCart(userId);
+      Cart result = apiInstance.getUserCart(userId, accountId, responseFields);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling CartApi#getUserCart");
@@ -1793,6 +1885,8 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **userId** | **String**| Unique identifier of the user. | |
+| **accountId** | **Integer**| Unique identifier of the customer account. | [optional] |
+| **responseFields** | **String**| limits which fields are returned in the response body | [optional] |
 
 ### Return type
 
@@ -1800,7 +1894,7 @@ public class Example {
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth), [clientOauth2](../README.md#clientOauth2)
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
@@ -1810,11 +1904,11 @@ public class Example {
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Success |  -  |
+| **200** | OK |  -  |
 
 <a name="getUserCartSummary"></a>
 # **getUserCartSummary**
-> CartSummary getUserCartSummary(userId)
+> CartSummary getUserCartSummary(userId, accountId, responseFields)
 
 Get User Cart Summary
 
@@ -1839,14 +1933,12 @@ public class Example {
     HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
     bearerAuth.setBearerToken("BEARER TOKEN");
 
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
-
     CartApi apiInstance = new CartApi(defaultClient);
     String userId = "userId_example"; // String | Unique identifier of the user.
+    Integer accountId = 56; // Integer | Unique identifier of the customer account.
+    String responseFields = "responseFields_example"; // String | limits which fields are returned in the response body
     try {
-      CartSummary result = apiInstance.getUserCartSummary(userId);
+      CartSummary result = apiInstance.getUserCartSummary(userId, accountId, responseFields);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling CartApi#getUserCartSummary");
@@ -1864,6 +1956,8 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **userId** | **String**| Unique identifier of the user. | |
+| **accountId** | **Integer**| Unique identifier of the customer account. | [optional] |
+| **responseFields** | **String**| limits which fields are returned in the response body | [optional] |
 
 ### Return type
 
@@ -1871,7 +1965,7 @@ public class Example {
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth), [clientOauth2](../README.md#clientOauth2)
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
@@ -1881,11 +1975,11 @@ public class Example {
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Success |  -  |
+| **200** | OK |  -  |
 
 <a name="rejectSuggestedDiscount"></a>
 # **rejectSuggestedDiscount**
-> Cart rejectSuggestedDiscount(cartId, discountId)
+> Cart rejectSuggestedDiscount(cartId, discountId, responseFields)
 
 Reject Suggested Discount
 
@@ -1910,15 +2004,12 @@ public class Example {
     HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
     bearerAuth.setBearerToken("BEARER TOKEN");
 
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
-
     CartApi apiInstance = new CartApi(defaultClient);
     String cartId = "cartId_example"; // String | Unique Identifier of the Cart
     Integer discountId = 56; // Integer | 
+    String responseFields = "responseFields_example"; // String | limits which fields are returned in the response body
     try {
-      Cart result = apiInstance.rejectSuggestedDiscount(cartId, discountId);
+      Cart result = apiInstance.rejectSuggestedDiscount(cartId, discountId, responseFields);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling CartApi#rejectSuggestedDiscount");
@@ -1937,6 +2028,7 @@ public class Example {
 |------------- | ------------- | ------------- | -------------|
 | **cartId** | **String**| Unique Identifier of the Cart | |
 | **discountId** | **Integer**|  | |
+| **responseFields** | **String**| limits which fields are returned in the response body | [optional] |
 
 ### Return type
 
@@ -1944,7 +2036,7 @@ public class Example {
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth), [clientOauth2](../README.md#clientOauth2)
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
@@ -1954,7 +2046,7 @@ public class Example {
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Success |  -  |
+| **200** | OK |  -  |
 
 <a name="removeAllCartItems"></a>
 # **removeAllCartItems**
@@ -1983,10 +2075,6 @@ public class Example {
     HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
     bearerAuth.setBearerToken("BEARER TOKEN");
 
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
-
     CartApi apiInstance = new CartApi(defaultClient);
     try {
       Cart result = apiInstance.removeAllCartItems();
@@ -2011,7 +2099,7 @@ This endpoint does not need any parameter.
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth), [clientOauth2](../README.md#clientOauth2)
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
@@ -2021,7 +2109,7 @@ This endpoint does not need any parameter.
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Success |  -  |
+| **200** | OK |  -  |
 
 <a name="removeAllCartItemsByCartId"></a>
 # **removeAllCartItemsByCartId**
@@ -2049,10 +2137,6 @@ public class Example {
     // Configure HTTP bearer authorization: bearerAuth
     HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
     bearerAuth.setBearerToken("BEARER TOKEN");
-
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
 
     CartApi apiInstance = new CartApi(defaultClient);
     String cartId = "cartId_example"; // String | Unique identifier of the cart.
@@ -2082,7 +2166,7 @@ public class Example {
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth), [clientOauth2](../README.md#clientOauth2)
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
@@ -2092,7 +2176,7 @@ public class Example {
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Success |  -  |
+| **200** | OK |  -  |
 
 <a name="removeAllMessages"></a>
 # **removeAllMessages**
@@ -2121,10 +2205,6 @@ public class Example {
     HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
     bearerAuth.setBearerToken("BEARER TOKEN");
 
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
-
     CartApi apiInstance = new CartApi(defaultClient);
     try {
       apiInstance.removeAllMessages();
@@ -2148,7 +2228,7 @@ null (empty response body)
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth), [clientOauth2](../README.md#clientOauth2)
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
@@ -2158,7 +2238,7 @@ null (empty response body)
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Success |  -  |
+| **200** | OK |  -  |
 
 <a name="removeCoupon"></a>
 # **removeCoupon**
@@ -2166,7 +2246,7 @@ null (empty response body)
 
 Remove Coupon
 
-Remove Coupon
+Remove a coupon that had been previously applied to the cart.
 
 ### Example
 ```java
@@ -2186,10 +2266,6 @@ public class Example {
     // Configure HTTP bearer authorization: bearerAuth
     HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
     bearerAuth.setBearerToken("BEARER TOKEN");
-
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
 
     CartApi apiInstance = new CartApi(defaultClient);
     String cartId = "cartId_example"; // String | Unique identifier of the cart with the coupon you want to remove.
@@ -2221,7 +2297,7 @@ public class Example {
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth), [clientOauth2](../README.md#clientOauth2)
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
@@ -2231,7 +2307,7 @@ public class Example {
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Success |  -  |
+| **200** | OK |  -  |
 
 <a name="removeCoupons"></a>
 # **removeCoupons**
@@ -2259,10 +2335,6 @@ public class Example {
     // Configure HTTP bearer authorization: bearerAuth
     HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
     bearerAuth.setBearerToken("BEARER TOKEN");
-
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
 
     CartApi apiInstance = new CartApi(defaultClient);
     String cartId = "cartId_example"; // String | Unique identifier of the cart with the coupon you want to remove.
@@ -2292,7 +2364,7 @@ public class Example {
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth), [clientOauth2](../README.md#clientOauth2)
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
@@ -2302,7 +2374,7 @@ public class Example {
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Success |  -  |
+| **200** | OK |  -  |
 
 <a name="removeMessage"></a>
 # **removeMessage**
@@ -2331,10 +2403,6 @@ public class Example {
     HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
     bearerAuth.setBearerToken("BEARER TOKEN");
 
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
-
     CartApi apiInstance = new CartApi(defaultClient);
     String messageId = "messageId_example"; // String | Unique identifier of the message to delete.
     try {
@@ -2362,7 +2430,7 @@ null (empty response body)
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth), [clientOauth2](../README.md#clientOauth2)
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
@@ -2372,11 +2440,11 @@ null (empty response body)
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Success |  -  |
+| **200** | OK |  -  |
 
 <a name="updateCart"></a>
 # **updateCart**
-> Cart updateCart(cart)
+> Cart updateCart(responseFields, cart)
 
 Update Cart
 
@@ -2401,14 +2469,11 @@ public class Example {
     HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
     bearerAuth.setBearerToken("BEARER TOKEN");
 
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
-
     CartApi apiInstance = new CartApi(defaultClient);
+    String responseFields = "responseFields_example"; // String | limits which fields are returned in the response body
     Cart cart = new Cart(); // Cart | All properties of the cart to update. Required property: Product.ProductCode.
     try {
-      Cart result = apiInstance.updateCart(cart);
+      Cart result = apiInstance.updateCart(responseFields, cart);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling CartApi#updateCart");
@@ -2425,6 +2490,7 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
+| **responseFields** | **String**| limits which fields are returned in the response body | [optional] |
 | **cart** | [**Cart**](Cart.md)| All properties of the cart to update. Required property: Product.ProductCode. | [optional] |
 
 ### Return type
@@ -2433,7 +2499,7 @@ public class Example {
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth), [clientOauth2](../README.md#clientOauth2)
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
@@ -2443,11 +2509,11 @@ public class Example {
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Success |  -  |
+| **200** | OK |  -  |
 
 <a name="updateCartByCartId"></a>
 # **updateCartByCartId**
-> Cart updateCartByCartId(cartId, cart)
+> Cart updateCartByCartId(cartId, responseFields, cart)
 
 Update Cart By Cart Id
 
@@ -2472,15 +2538,12 @@ public class Example {
     HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
     bearerAuth.setBearerToken("BEARER TOKEN");
 
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
-
     CartApi apiInstance = new CartApi(defaultClient);
     String cartId = "cartId_example"; // String | Unique identifier of the cart.
+    String responseFields = "responseFields_example"; // String | limits which fields are returned in the response body
     Cart cart = new Cart(); // Cart | All properties of the cart to update. Required property: Product.ProductCode.
     try {
-      Cart result = apiInstance.updateCartByCartId(cartId, cart);
+      Cart result = apiInstance.updateCartByCartId(cartId, responseFields, cart);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling CartApi#updateCartByCartId");
@@ -2498,6 +2561,7 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **cartId** | **String**| Unique identifier of the cart. | |
+| **responseFields** | **String**| limits which fields are returned in the response body | [optional] |
 | **cart** | [**Cart**](Cart.md)| All properties of the cart to update. Required property: Product.ProductCode. | [optional] |
 
 ### Return type
@@ -2506,7 +2570,7 @@ public class Example {
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth), [clientOauth2](../README.md#clientOauth2)
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
@@ -2516,11 +2580,11 @@ public class Example {
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Success |  -  |
+| **200** | OK |  -  |
 
 <a name="updateCartItem"></a>
 # **updateCartItem**
-> CartItem updateCartItem(cartItemId, zipCode, cartItem)
+> CartItem updateCartItem(cartItemId, zipCode, responseFields, cartItem)
 
 Update Cart Item
 
@@ -2545,16 +2609,13 @@ public class Example {
     HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
     bearerAuth.setBearerToken("BEARER TOKEN");
 
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
-
     CartApi apiInstance = new CartApi(defaultClient);
     String cartItemId = "cartItemId_example"; // String | Unique identifier of the cart item.
     String zipCode = "zipCode_example"; // String | 
+    String responseFields = "responseFields_example"; // String | limits which fields are returned in the response body
     CartItem cartItem = new CartItem(); // CartItem | All properties of the updated cart item. Required property: Product.ProductCode.
     try {
-      CartItem result = apiInstance.updateCartItem(cartItemId, zipCode, cartItem);
+      CartItem result = apiInstance.updateCartItem(cartItemId, zipCode, responseFields, cartItem);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling CartApi#updateCartItem");
@@ -2573,6 +2634,7 @@ public class Example {
 |------------- | ------------- | ------------- | -------------|
 | **cartItemId** | **String**| Unique identifier of the cart item. | |
 | **zipCode** | **String**|  | [optional] |
+| **responseFields** | **String**| limits which fields are returned in the response body | [optional] |
 | **cartItem** | [**CartItem**](CartItem.md)| All properties of the updated cart item. Required property: Product.ProductCode. | [optional] |
 
 ### Return type
@@ -2581,7 +2643,7 @@ public class Example {
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth), [clientOauth2](../README.md#clientOauth2)
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
@@ -2591,11 +2653,11 @@ public class Example {
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Success |  -  |
+| **200** | OK |  -  |
 
 <a name="updateCartItemByCartId"></a>
 # **updateCartItemByCartId**
-> CartItem updateCartItemByCartId(cartId, cartItemId, zipCode, cartItem)
+> CartItem updateCartItemByCartId(cartId, cartItemId, zipCode, responseFields, cartItem)
 
 Update Cart Item By CartId
 
@@ -2620,17 +2682,14 @@ public class Example {
     HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
     bearerAuth.setBearerToken("BEARER TOKEN");
 
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
-
     CartApi apiInstance = new CartApi(defaultClient);
     String cartId = "cartId_example"; // String | Unique identifier of the cart.
     String cartItemId = "cartItemId_example"; // String | Unique identifier of the cart item.
     String zipCode = "zipCode_example"; // String | 
+    String responseFields = "responseFields_example"; // String | limits which fields are returned in the response body
     CartItem cartItem = new CartItem(); // CartItem | All properties of the updated cart item. Required property: Product.ProductCode.
     try {
-      CartItem result = apiInstance.updateCartItemByCartId(cartId, cartItemId, zipCode, cartItem);
+      CartItem result = apiInstance.updateCartItemByCartId(cartId, cartItemId, zipCode, responseFields, cartItem);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling CartApi#updateCartItemByCartId");
@@ -2650,6 +2709,7 @@ public class Example {
 | **cartId** | **String**| Unique identifier of the cart. | |
 | **cartItemId** | **String**| Unique identifier of the cart item. | |
 | **zipCode** | **String**|  | [optional] |
+| **responseFields** | **String**| limits which fields are returned in the response body | [optional] |
 | **cartItem** | [**CartItem**](CartItem.md)| All properties of the updated cart item. Required property: Product.ProductCode. | [optional] |
 
 ### Return type
@@ -2658,7 +2718,7 @@ public class Example {
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth), [clientOauth2](../README.md#clientOauth2)
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
@@ -2668,11 +2728,11 @@ public class Example {
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Success |  -  |
+| **200** | OK |  -  |
 
 <a name="updateCartItemQuantity"></a>
 # **updateCartItemQuantity**
-> CartItem updateCartItemQuantity(cartItemId, quantity)
+> CartItem updateCartItemQuantity(cartItemId, quantity, responseFields, itemQuantityUpdate)
 
 Update Cart Item Quantity
 
@@ -2697,15 +2757,13 @@ public class Example {
     HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
     bearerAuth.setBearerToken("BEARER TOKEN");
 
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
-
     CartApi apiInstance = new CartApi(defaultClient);
     String cartItemId = "cartItemId_example"; // String | Unique identifier of the cart item.
     Integer quantity = 56; // Integer | New quantity for the specified cart item.
+    String responseFields = "responseFields_example"; // String | limits which fields are returned in the response body
+    ItemQuantityUpdate itemQuantityUpdate = new ItemQuantityUpdate(); // ItemQuantityUpdate | Update fields on the item.
     try {
-      CartItem result = apiInstance.updateCartItemQuantity(cartItemId, quantity);
+      CartItem result = apiInstance.updateCartItemQuantity(cartItemId, quantity, responseFields, itemQuantityUpdate);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling CartApi#updateCartItemQuantity");
@@ -2724,6 +2782,8 @@ public class Example {
 |------------- | ------------- | ------------- | -------------|
 | **cartItemId** | **String**| Unique identifier of the cart item. | |
 | **quantity** | **Integer**| New quantity for the specified cart item. | |
+| **responseFields** | **String**| limits which fields are returned in the response body | [optional] |
+| **itemQuantityUpdate** | [**ItemQuantityUpdate**](ItemQuantityUpdate.md)| Update fields on the item. | [optional] |
 
 ### Return type
 
@@ -2731,21 +2791,21 @@ public class Example {
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth), [clientOauth2](../README.md#clientOauth2)
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
+ - **Content-Type**: application/json
  - **Accept**: application/json, text/json, text/plain
 
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Success |  -  |
+| **200** | OK |  -  |
 
 <a name="updateCartItemQuantityByCartId"></a>
 # **updateCartItemQuantityByCartId**
-> CartItem updateCartItemQuantityByCartId(cartId, cartItemId, quantity)
+> CartItem updateCartItemQuantityByCartId(cartId, cartItemId, quantity, responseFields, itemQuantityUpdate)
 
 Update Cart Item Quantity By CartId
 
@@ -2770,16 +2830,14 @@ public class Example {
     HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
     bearerAuth.setBearerToken("BEARER TOKEN");
 
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
-
     CartApi apiInstance = new CartApi(defaultClient);
     String cartId = "cartId_example"; // String | Unique identifier of the cart.
     String cartItemId = "cartItemId_example"; // String | Unique identifier of the cart item.
     Integer quantity = 56; // Integer | New quantity for the specified cart item.
+    String responseFields = "responseFields_example"; // String | limits which fields are returned in the response body
+    ItemQuantityUpdate itemQuantityUpdate = new ItemQuantityUpdate(); // ItemQuantityUpdate | 
     try {
-      CartItem result = apiInstance.updateCartItemQuantityByCartId(cartId, cartItemId, quantity);
+      CartItem result = apiInstance.updateCartItemQuantityByCartId(cartId, cartItemId, quantity, responseFields, itemQuantityUpdate);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling CartApi#updateCartItemQuantityByCartId");
@@ -2799,6 +2857,8 @@ public class Example {
 | **cartId** | **String**| Unique identifier of the cart. | |
 | **cartItemId** | **String**| Unique identifier of the cart item. | |
 | **quantity** | **Integer**| New quantity for the specified cart item. | |
+| **responseFields** | **String**| limits which fields are returned in the response body | [optional] |
+| **itemQuantityUpdate** | [**ItemQuantityUpdate**](ItemQuantityUpdate.md)|  | [optional] |
 
 ### Return type
 
@@ -2806,21 +2866,173 @@ public class Example {
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth), [clientOauth2](../README.md#clientOauth2)
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
+ - **Content-Type**: application/json
  - **Accept**: application/json, text/json, text/plain
 
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Success |  -  |
+| **200** | OK |  -  |
+
+<a name="updateCartItems"></a>
+# **updateCartItems**
+> List&lt;CartItem&gt; updateCartItems(throwErrorOnInvalidItems, zipCode, removeInvalidItems, responseFields, cartItem)
+
+Update Cart Items
+
+Updates multiple cart items in the cart of the current shopper.
+
+### Example
+```java
+// Import classes:
+import com.kibocommerce.sdk.commerce.ApiClient;
+import com.kibocommerce.sdk.commerce.ApiException;
+import com.kibocommerce.sdk.commerce.Configuration;
+import com.kibocommerce.sdk.commerce.auth.*;
+import com.kibocommerce.sdk.commerce.models.*;
+import com.kibocommerce.sdk.commerce.api.CartApi;
+
+public class Example {
+  public static void main(String[] args) {
+    ApiClient defaultClient = Configuration.getDefaultApiClient();
+    defaultClient.setBasePath("http://https:/api");
+    
+    // Configure HTTP bearer authorization: bearerAuth
+    HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+    bearerAuth.setBearerToken("BEARER TOKEN");
+
+    CartApi apiInstance = new CartApi(defaultClient);
+    Boolean throwErrorOnInvalidItems = true; // Boolean | When set to true none of the items will be updated when some items are invalid. when set to false valid items are updated and invalid items are reverted or removed based on removeInvalidItems flag
+    String zipCode = "zipCode_example"; // String | Zip Code used for inventory reservation if cart having STH items.
+    Boolean removeInvalidItems = true; // Boolean | When set to true and throwErrorOnInvalidItems is false, invalid items will be removed from cart instead of reverted. This parameter is ignored when throwErrorOnInvalidItems is true.
+    String responseFields = "responseFields_example"; // String | limits which fields are returned in the response body
+    List<CartItem> cartItem = Arrays.asList(); // List<CartItem> | The items to update in the cart. Each item must include Id property.
+    try {
+      List<CartItem> result = apiInstance.updateCartItems(throwErrorOnInvalidItems, zipCode, removeInvalidItems, responseFields, cartItem);
+      System.out.println(result);
+    } catch (ApiException e) {
+      System.err.println("Exception when calling CartApi#updateCartItems");
+      System.err.println("Status code: " + e.getCode());
+      System.err.println("Reason: " + e.getResponseBody());
+      System.err.println("Response headers: " + e.getResponseHeaders());
+      e.printStackTrace();
+    }
+  }
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **throwErrorOnInvalidItems** | **Boolean**| When set to true none of the items will be updated when some items are invalid. when set to false valid items are updated and invalid items are reverted or removed based on removeInvalidItems flag | [optional] |
+| **zipCode** | **String**| Zip Code used for inventory reservation if cart having STH items. | [optional] |
+| **removeInvalidItems** | **Boolean**| When set to true and throwErrorOnInvalidItems is false, invalid items will be removed from cart instead of reverted. This parameter is ignored when throwErrorOnInvalidItems is true. | [optional] |
+| **responseFields** | **String**| limits which fields are returned in the response body | [optional] |
+| **cartItem** | [**List&lt;CartItem&gt;**](CartItem.md)| The items to update in the cart. Each item must include Id property. | [optional] |
+
+### Return type
+
+[**List&lt;CartItem&gt;**](CartItem.md)
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json, text/json, text/plain
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | OK |  -  |
+
+<a name="updateCartItemsByCartId"></a>
+# **updateCartItemsByCartId**
+> List&lt;CartItem&gt; updateCartItemsByCartId(cartId, throwErrorOnInvalidItems, zipCode, removeInvalidItems, responseFields, cartItem)
+
+Update Cart Items By CartId
+
+Updates multiple cart items in the cart specified by cartId.
+
+### Example
+```java
+// Import classes:
+import com.kibocommerce.sdk.commerce.ApiClient;
+import com.kibocommerce.sdk.commerce.ApiException;
+import com.kibocommerce.sdk.commerce.Configuration;
+import com.kibocommerce.sdk.commerce.auth.*;
+import com.kibocommerce.sdk.commerce.models.*;
+import com.kibocommerce.sdk.commerce.api.CartApi;
+
+public class Example {
+  public static void main(String[] args) {
+    ApiClient defaultClient = Configuration.getDefaultApiClient();
+    defaultClient.setBasePath("http://https:/api");
+    
+    // Configure HTTP bearer authorization: bearerAuth
+    HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+    bearerAuth.setBearerToken("BEARER TOKEN");
+
+    CartApi apiInstance = new CartApi(defaultClient);
+    String cartId = "cartId_example"; // String | Unique identifier of the cart.
+    Boolean throwErrorOnInvalidItems = true; // Boolean | When set to true none of the items will be updated when some items are invalid. when set to false valid items are updated and invalid items are reverted or removed based on removeInvalidItems flag
+    String zipCode = "zipCode_example"; // String | Zip Code used for inventory reservation if cart having STH items.
+    Boolean removeInvalidItems = true; // Boolean | When set to true and throwErrorOnInvalidItems is false, invalid items will be removed from cart instead of reverted. This parameter is ignored when throwErrorOnInvalidItems is true.
+    String responseFields = "responseFields_example"; // String | limits which fields are returned in the response body
+    List<CartItem> cartItem = Arrays.asList(); // List<CartItem> | The items to update in the cart. Each item must include Id property.
+    try {
+      List<CartItem> result = apiInstance.updateCartItemsByCartId(cartId, throwErrorOnInvalidItems, zipCode, removeInvalidItems, responseFields, cartItem);
+      System.out.println(result);
+    } catch (ApiException e) {
+      System.err.println("Exception when calling CartApi#updateCartItemsByCartId");
+      System.err.println("Status code: " + e.getCode());
+      System.err.println("Reason: " + e.getResponseBody());
+      System.err.println("Response headers: " + e.getResponseHeaders());
+      e.printStackTrace();
+    }
+  }
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **cartId** | **String**| Unique identifier of the cart. | |
+| **throwErrorOnInvalidItems** | **Boolean**| When set to true none of the items will be updated when some items are invalid. when set to false valid items are updated and invalid items are reverted or removed based on removeInvalidItems flag | [optional] |
+| **zipCode** | **String**| Zip Code used for inventory reservation if cart having STH items. | [optional] |
+| **removeInvalidItems** | **Boolean**| When set to true and throwErrorOnInvalidItems is false, invalid items will be removed from cart instead of reverted. This parameter is ignored when throwErrorOnInvalidItems is true. | [optional] |
+| **responseFields** | **String**| limits which fields are returned in the response body | [optional] |
+| **cartItem** | [**List&lt;CartItem&gt;**](CartItem.md)| The items to update in the cart. Each item must include Id property. | [optional] |
+
+### Return type
+
+[**List&lt;CartItem&gt;**](CartItem.md)
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json, text/json, text/plain
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | OK |  -  |
 
 <a name="updateExtendedProperties"></a>
 # **updateExtendedProperties**
-> List&lt;ExtendedProperty&gt; updateExtendedProperties(upsert, extendedProperty)
+> List&lt;ExtendedProperty&gt; updateExtendedProperties(upsert, responseFields, extendedProperty)
 
 Update Extended Properties
 
@@ -2845,15 +3057,12 @@ public class Example {
     HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
     bearerAuth.setBearerToken("BEARER TOKEN");
 
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
-
     CartApi apiInstance = new CartApi(defaultClient);
     Boolean upsert = false; // Boolean | Allow insert or update
+    String responseFields = "responseFields_example"; // String | limits which fields are returned in the response body
     List<ExtendedProperty> extendedProperty = Arrays.asList(); // List<ExtendedProperty> | Extended properties
     try {
-      List<ExtendedProperty> result = apiInstance.updateExtendedProperties(upsert, extendedProperty);
+      List<ExtendedProperty> result = apiInstance.updateExtendedProperties(upsert, responseFields, extendedProperty);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling CartApi#updateExtendedProperties");
@@ -2871,6 +3080,7 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **upsert** | **Boolean**| Allow insert or update | [optional] [default to false] |
+| **responseFields** | **String**| limits which fields are returned in the response body | [optional] |
 | **extendedProperty** | [**List&lt;ExtendedProperty&gt;**](ExtendedProperty.md)| Extended properties | [optional] |
 
 ### Return type
@@ -2879,7 +3089,7 @@ public class Example {
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth), [clientOauth2](../README.md#clientOauth2)
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
@@ -2889,13 +3099,13 @@ public class Example {
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Success |  -  |
+| **200** | OK |  -  |
 
 <a name="updateExtendedProperty"></a>
 # **updateExtendedProperty**
-> ExtendedProperty updateExtendedProperty(key, upsert, extendedProperty)
+> ExtendedProperty updateExtendedProperty(key, upsert, responseFields, extendedProperty)
 
-Update extended property
+Update Extended Property
 
 Update extended property on the current cart using the key.
 
@@ -2918,16 +3128,13 @@ public class Example {
     HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
     bearerAuth.setBearerToken("BEARER TOKEN");
 
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
-
     CartApi apiInstance = new CartApi(defaultClient);
     String key = "key_example"; // String | Unique identifier of the cart item
     Boolean upsert = false; // Boolean | Extended property
+    String responseFields = "responseFields_example"; // String | limits which fields are returned in the response body
     ExtendedProperty extendedProperty = new ExtendedProperty(); // ExtendedProperty | Extended property
     try {
-      ExtendedProperty result = apiInstance.updateExtendedProperty(key, upsert, extendedProperty);
+      ExtendedProperty result = apiInstance.updateExtendedProperty(key, upsert, responseFields, extendedProperty);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling CartApi#updateExtendedProperty");
@@ -2946,6 +3153,7 @@ public class Example {
 |------------- | ------------- | ------------- | -------------|
 | **key** | **String**| Unique identifier of the cart item | |
 | **upsert** | **Boolean**| Extended property | [optional] [default to false] |
+| **responseFields** | **String**| limits which fields are returned in the response body | [optional] |
 | **extendedProperty** | [**ExtendedProperty**](ExtendedProperty.md)| Extended property | [optional] |
 
 ### Return type
@@ -2954,7 +3162,7 @@ public class Example {
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth), [clientOauth2](../README.md#clientOauth2)
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
@@ -2964,11 +3172,11 @@ public class Example {
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Success |  -  |
+| **200** | OK |  -  |
 
 <a name="updateUserCart"></a>
 # **updateUserCart**
-> Cart updateUserCart(userId, cart)
+> Cart updateUserCart(userId, accountId, responseFields, cart)
 
 Update User Cart
 
@@ -2993,15 +3201,13 @@ public class Example {
     HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
     bearerAuth.setBearerToken("BEARER TOKEN");
 
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
-
     CartApi apiInstance = new CartApi(defaultClient);
     String userId = "userId_example"; // String | Unique identifier of the user.
+    Integer accountId = 56; // Integer | Unique identifier of the customer account.
+    String responseFields = "responseFields_example"; // String | limits which fields are returned in the response body
     Cart cart = new Cart(); // Cart | All properties of the cart to update. Required property: Product.ProductCode.
     try {
-      Cart result = apiInstance.updateUserCart(userId, cart);
+      Cart result = apiInstance.updateUserCart(userId, accountId, responseFields, cart);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling CartApi#updateUserCart");
@@ -3019,6 +3225,8 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **userId** | **String**| Unique identifier of the user. | |
+| **accountId** | **Integer**| Unique identifier of the customer account. | [optional] |
+| **responseFields** | **String**| limits which fields are returned in the response body | [optional] |
 | **cart** | [**Cart**](Cart.md)| All properties of the cart to update. Required property: Product.ProductCode. | [optional] |
 
 ### Return type
@@ -3027,7 +3235,7 @@ public class Example {
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth), [clientOauth2](../README.md#clientOauth2)
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
@@ -3037,5 +3245,5 @@ public class Example {
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Success |  -  |
+| **200** | OK |  -  |
 

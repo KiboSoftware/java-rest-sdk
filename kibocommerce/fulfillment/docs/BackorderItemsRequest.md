@@ -9,6 +9,7 @@
 |------------ | ------------- | ------------- | -------------|
 |**isUserAction** | **Boolean** |  |  [optional] |
 |**items** | [**List&lt;BackorderItem&gt;**](BackorderItem.md) |  |  [optional] |
+|**runId** | **String** |  |  [optional] |
 
 
 ## Implemented Interfaces

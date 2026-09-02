@@ -13,11 +13,11 @@ All URIs are relative to *http://https:/api*
 
 <a name="createAttribute"></a>
 # **createAttribute**
-> CommerceRuntimeAttribute createAttribute(commerceRuntimeAttribute)
+> CustomerAttribute2 createAttribute(responseFields, customerAttribute2)
 
 Create Attribute
 
-Create Attribute
+Customer attributes are custom attributes that you can apply to customer accounts to add further definition for special uses, such as marketing campaigns, or discounts.
 
 ### Example
 ```java
@@ -38,14 +38,11 @@ public class Example {
     HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
     bearerAuth.setBearerToken("BEARER TOKEN");
 
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
-
     CustomerAttributeDefinitionApi apiInstance = new CustomerAttributeDefinitionApi(defaultClient);
-    CommerceRuntimeAttribute commerceRuntimeAttribute = new CommerceRuntimeAttribute(); // CommerceRuntimeAttribute | 
+    String responseFields = "responseFields_example"; // String | limits which fields are returned in the response body
+    CustomerAttribute2 customerAttribute2 = new CustomerAttribute2(); // CustomerAttribute2 | 
     try {
-      CommerceRuntimeAttribute result = apiInstance.createAttribute(commerceRuntimeAttribute);
+      CustomerAttribute2 result = apiInstance.createAttribute(responseFields, customerAttribute2);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling CustomerAttributeDefinitionApi#createAttribute");
@@ -62,15 +59,16 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **commerceRuntimeAttribute** | [**CommerceRuntimeAttribute**](CommerceRuntimeAttribute.md)|  | [optional] |
+| **responseFields** | **String**| limits which fields are returned in the response body | [optional] |
+| **customerAttribute2** | [**CustomerAttribute2**](CustomerAttribute2.md)|  | [optional] |
 
 ### Return type
 
-[**CommerceRuntimeAttribute**](CommerceRuntimeAttribute.md)
+[**CustomerAttribute2**](CustomerAttribute2.md)
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth), [clientOauth2](../README.md#clientOauth2)
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
@@ -80,15 +78,15 @@ public class Example {
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Success |  -  |
+| **200** | OK |  -  |
 
 <a name="getAttribute"></a>
 # **getAttribute**
-> CommerceRuntimeAttribute getAttribute(attributeFQN, responseGroups)
+> CustomerAttribute2 getAttribute(attributeFQN, responseGroups, responseFields)
 
 Get Attribute
 
-Get Attribute
+Customer attributes are custom attributes that you can apply to customer accounts to add further definition for special uses, such as marketing campaigns, or discounts.
 
 ### Example
 ```java
@@ -109,15 +107,12 @@ public class Example {
     HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
     bearerAuth.setBearerToken("BEARER TOKEN");
 
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
-
     CustomerAttributeDefinitionApi apiInstance = new CustomerAttributeDefinitionApi(defaultClient);
     String attributeFQN = "attributeFQN_example"; // String | 
     String responseGroups = "responseGroups_example"; // String | 
+    String responseFields = "responseFields_example"; // String | limits which fields are returned in the response body
     try {
-      CommerceRuntimeAttribute result = apiInstance.getAttribute(attributeFQN, responseGroups);
+      CustomerAttribute2 result = apiInstance.getAttribute(attributeFQN, responseGroups, responseFields);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling CustomerAttributeDefinitionApi#getAttribute");
@@ -136,14 +131,15 @@ public class Example {
 |------------- | ------------- | ------------- | -------------|
 | **attributeFQN** | **String**|  | |
 | **responseGroups** | **String**|  | [optional] |
+| **responseFields** | **String**| limits which fields are returned in the response body | [optional] |
 
 ### Return type
 
-[**CommerceRuntimeAttribute**](CommerceRuntimeAttribute.md)
+[**CustomerAttribute2**](CustomerAttribute2.md)
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth), [clientOauth2](../README.md#clientOauth2)
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
@@ -153,15 +149,15 @@ public class Example {
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Success |  -  |
+| **200** | OK |  -  |
 
 <a name="getAttributeVocabularyValues"></a>
 # **getAttributeVocabularyValues**
-> List&lt;CommerceRuntimeAttributeVocabularyValue&gt; getAttributeVocabularyValues(attributeFQN, responseGroups)
+> List&lt;CommerceRuntimeAttributeVocabularyValue&gt; getAttributeVocabularyValues(attributeFQN, responseGroups, responseFields)
 
 Get Attribute Vocabulary Values
 
-Get Attribute Vocabulary Values
+Retrieves the details of attribute vocabulary values.
 
 ### Example
 ```java
@@ -182,15 +178,12 @@ public class Example {
     HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
     bearerAuth.setBearerToken("BEARER TOKEN");
 
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
-
     CustomerAttributeDefinitionApi apiInstance = new CustomerAttributeDefinitionApi(defaultClient);
     String attributeFQN = "attributeFQN_example"; // String | 
     String responseGroups = "responseGroups_example"; // String | 
+    String responseFields = "responseFields_example"; // String | limits which fields are returned in the response body
     try {
-      List<CommerceRuntimeAttributeVocabularyValue> result = apiInstance.getAttributeVocabularyValues(attributeFQN, responseGroups);
+      List<CommerceRuntimeAttributeVocabularyValue> result = apiInstance.getAttributeVocabularyValues(attributeFQN, responseGroups, responseFields);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling CustomerAttributeDefinitionApi#getAttributeVocabularyValues");
@@ -209,6 +202,7 @@ public class Example {
 |------------- | ------------- | ------------- | -------------|
 | **attributeFQN** | **String**|  | |
 | **responseGroups** | **String**|  | [optional] |
+| **responseFields** | **String**| limits which fields are returned in the response body | [optional] |
 
 ### Return type
 
@@ -216,7 +210,7 @@ public class Example {
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth), [clientOauth2](../README.md#clientOauth2)
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
@@ -226,15 +220,15 @@ public class Example {
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Success |  -  |
+| **200** | OK |  -  |
 
 <a name="getAttributes"></a>
 # **getAttributes**
-> CommerceRuntimeAttributeCollection getAttributes(startIndex, pageSize, sortBy, responseGroups, filter)
+> CommerceRuntimeAttributeCollection getAttributes(startIndex, pageSize, sortBy, responseGroups, filter, responseFields)
 
 Get Attributes
 
-Get Attributes
+Customer attributes are custom attributes that you can apply to customer accounts to add further definition for special uses, such as marketing campaigns, or discounts.
 
 ### Example
 ```java
@@ -255,18 +249,15 @@ public class Example {
     HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
     bearerAuth.setBearerToken("BEARER TOKEN");
 
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
-
     CustomerAttributeDefinitionApi apiInstance = new CustomerAttributeDefinitionApi(defaultClient);
     Integer startIndex = 0; // Integer | 
     Integer pageSize = 0; // Integer | 
     String sortBy = "sortBy_example"; // String | 
     String responseGroups = "responseGroups_example"; // String | 
     String filter = "filter_example"; // String | 
+    String responseFields = "responseFields_example"; // String | limits which fields are returned in the response body
     try {
-      CommerceRuntimeAttributeCollection result = apiInstance.getAttributes(startIndex, pageSize, sortBy, responseGroups, filter);
+      CommerceRuntimeAttributeCollection result = apiInstance.getAttributes(startIndex, pageSize, sortBy, responseGroups, filter, responseFields);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling CustomerAttributeDefinitionApi#getAttributes");
@@ -288,6 +279,7 @@ public class Example {
 | **sortBy** | **String**|  | [optional] |
 | **responseGroups** | **String**|  | [optional] |
 | **filter** | **String**|  | [optional] |
+| **responseFields** | **String**| limits which fields are returned in the response body | [optional] |
 
 ### Return type
 
@@ -295,7 +287,7 @@ public class Example {
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth), [clientOauth2](../README.md#clientOauth2)
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
@@ -305,15 +297,15 @@ public class Example {
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Success |  -  |
+| **200** | OK |  -  |
 
 <a name="updateAttribute"></a>
 # **updateAttribute**
-> CommerceRuntimeAttribute updateAttribute(attributeFQN, commerceRuntimeAttribute)
+> CustomerAttribute2 updateAttribute(attributeFQN, responseFields, customerAttribute2)
 
 Update Attribute
 
-Update Attribute
+Customer attributes are custom attributes that you can apply to customer accounts to add further definition for special uses, such as marketing campaigns, or discounts.
 
 ### Example
 ```java
@@ -334,15 +326,12 @@ public class Example {
     HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
     bearerAuth.setBearerToken("BEARER TOKEN");
 
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
-
     CustomerAttributeDefinitionApi apiInstance = new CustomerAttributeDefinitionApi(defaultClient);
     String attributeFQN = "attributeFQN_example"; // String | 
-    CommerceRuntimeAttribute commerceRuntimeAttribute = new CommerceRuntimeAttribute(); // CommerceRuntimeAttribute | 
+    String responseFields = "responseFields_example"; // String | limits which fields are returned in the response body
+    CustomerAttribute2 customerAttribute2 = new CustomerAttribute2(); // CustomerAttribute2 | 
     try {
-      CommerceRuntimeAttribute result = apiInstance.updateAttribute(attributeFQN, commerceRuntimeAttribute);
+      CustomerAttribute2 result = apiInstance.updateAttribute(attributeFQN, responseFields, customerAttribute2);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling CustomerAttributeDefinitionApi#updateAttribute");
@@ -360,15 +349,16 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **attributeFQN** | **String**|  | |
-| **commerceRuntimeAttribute** | [**CommerceRuntimeAttribute**](CommerceRuntimeAttribute.md)|  | [optional] |
+| **responseFields** | **String**| limits which fields are returned in the response body | [optional] |
+| **customerAttribute2** | [**CustomerAttribute2**](CustomerAttribute2.md)|  | [optional] |
 
 ### Return type
 
-[**CommerceRuntimeAttribute**](CommerceRuntimeAttribute.md)
+[**CustomerAttribute2**](CustomerAttribute2.md)
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth), [clientOauth2](../README.md#clientOauth2)
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
@@ -378,5 +368,5 @@ public class Example {
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Success |  -  |
+| **200** | OK |  -  |
 

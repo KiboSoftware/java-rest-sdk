@@ -7,8 +7,8 @@
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
-|**futureDateLimitUnit** | **String** |  |  [optional] |
 |**futureDateLimitQuantity** | **Integer** |  |  [optional] |
+|**futureDateLimitUnit** | **String** |  |  [optional] |
 
 
 ## Implemented Interfaces

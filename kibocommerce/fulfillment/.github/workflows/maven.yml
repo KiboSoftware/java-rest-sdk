@@ -13,7 +13,7 @@ on:
 
 jobs:
   build:
-    name: Build Kibo Fulfillment Service
+    name: Build Fulfillment  - Production Profile
     runs-on: ubuntu-latest
     strategy:
       matrix:

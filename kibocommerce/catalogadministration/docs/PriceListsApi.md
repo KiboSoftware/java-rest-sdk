@@ -4,20 +4,20 @@ All URIs are relative to *http://https:/api*
 
 | Method | HTTP request | Description |
 |------------- | ------------- | -------------|
-| [**addPriceList**](PriceListsApi.md#addPriceList) | **POST** /commerce/catalog/admin/pricelists | Add price list |
-| [**deletePriceList**](PriceListsApi.md#deletePriceList) | **DELETE** /commerce/catalog/admin/pricelists/{priceListCode} | Delete price list |
-| [**getPriceList**](PriceListsApi.md#getPriceList) | **GET** /commerce/catalog/admin/pricelists/{priceListCode} | Get price list |
-| [**getPriceLists**](PriceListsApi.md#getPriceLists) | **GET** /commerce/catalog/admin/pricelists | Get price lists |
-| [**updatePriceList**](PriceListsApi.md#updatePriceList) | **PUT** /commerce/catalog/admin/pricelists/{priceListCode} | Update price list |
+| [**addPriceList**](PriceListsApi.md#addPriceList) | **POST** /commerce/catalog/admin/pricelists | Add Price List |
+| [**deletePriceList**](PriceListsApi.md#deletePriceList) | **DELETE** /commerce/catalog/admin/pricelists/{priceListCode} | Delete Price List |
+| [**getPriceList**](PriceListsApi.md#getPriceList) | **GET** /commerce/catalog/admin/pricelists/{priceListCode} | Get Price List |
+| [**getPriceLists**](PriceListsApi.md#getPriceLists) | **GET** /commerce/catalog/admin/pricelists | Get Price Lists |
+| [**updatePriceList**](PriceListsApi.md#updatePriceList) | **PUT** /commerce/catalog/admin/pricelists/{priceListCode} | Update Price List |
 
 
 <a name="addPriceList"></a>
 # **addPriceList**
-> CatalogAdminsPriceList addPriceList(catalogAdminsPriceList)
+> CatalogAdminsPriceList addPriceList(responseFields, catalogAdminsPriceList)
 
-Add price list
+Add Price List
 
-
+Creates a price list.
 
 ### Example
 ```java
@@ -38,14 +38,11 @@ public class Example {
     HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
     bearerAuth.setBearerToken("BEARER TOKEN");
 
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
-
     PriceListsApi apiInstance = new PriceListsApi(defaultClient);
+    String responseFields = "responseFields_example"; // String | limits which fields are returned in the response body
     CatalogAdminsPriceList catalogAdminsPriceList = new CatalogAdminsPriceList(); // CatalogAdminsPriceList | 
     try {
-      CatalogAdminsPriceList result = apiInstance.addPriceList(catalogAdminsPriceList);
+      CatalogAdminsPriceList result = apiInstance.addPriceList(responseFields, catalogAdminsPriceList);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling PriceListsApi#addPriceList");
@@ -62,6 +59,7 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
+| **responseFields** | **String**| limits which fields are returned in the response body | [optional] |
 | **catalogAdminsPriceList** | [**CatalogAdminsPriceList**](CatalogAdminsPriceList.md)|  | [optional] |
 
 ### Return type
@@ -70,7 +68,7 @@ public class Example {
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth), [clientOauth2](../README.md#clientOauth2)
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
@@ -80,15 +78,15 @@ public class Example {
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Success |  -  |
+| **200** | OK |  -  |
 
 <a name="deletePriceList"></a>
 # **deletePriceList**
 > deletePriceList(priceListCode, cascadeDeleteEntries)
 
-Delete price list
+Delete Price List
 
-
+Deletes a price list by its code.
 
 ### Example
 ```java
@@ -108,10 +106,6 @@ public class Example {
     // Configure HTTP bearer authorization: bearerAuth
     HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
     bearerAuth.setBearerToken("BEARER TOKEN");
-
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
 
     PriceListsApi apiInstance = new PriceListsApi(defaultClient);
     String priceListCode = "priceListCode_example"; // String | 
@@ -142,7 +136,7 @@ null (empty response body)
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth), [clientOauth2](../README.md#clientOauth2)
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
@@ -152,15 +146,15 @@ null (empty response body)
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Success |  -  |
+| **200** | OK |  -  |
 
 <a name="getPriceList"></a>
 # **getPriceList**
-> CatalogAdminsPriceList getPriceList(priceListCode)
+> CatalogAdminsPriceList getPriceList(priceListCode, responseFields)
 
-Get price list
+Get Price List
 
-
+Retrieves a price list by its code.
 
 ### Example
 ```java
@@ -181,14 +175,11 @@ public class Example {
     HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
     bearerAuth.setBearerToken("BEARER TOKEN");
 
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
-
     PriceListsApi apiInstance = new PriceListsApi(defaultClient);
     String priceListCode = "priceListCode_example"; // String | 
+    String responseFields = "responseFields_example"; // String | limits which fields are returned in the response body
     try {
-      CatalogAdminsPriceList result = apiInstance.getPriceList(priceListCode);
+      CatalogAdminsPriceList result = apiInstance.getPriceList(priceListCode, responseFields);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling PriceListsApi#getPriceList");
@@ -206,6 +197,7 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **priceListCode** | **String**|  | |
+| **responseFields** | **String**| limits which fields are returned in the response body | [optional] |
 
 ### Return type
 
@@ -213,7 +205,7 @@ public class Example {
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth), [clientOauth2](../README.md#clientOauth2)
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
@@ -223,15 +215,15 @@ public class Example {
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Success |  -  |
+| **200** | OK |  -  |
 
 <a name="getPriceLists"></a>
 # **getPriceLists**
-> PriceListCollection getPriceLists(startIndex, pageSize, sortBy, filter)
+> PriceListCollection getPriceLists(startIndex, pageSize, sortBy, filter, responseFields)
 
-Get price lists
+Get Price Lists
 
-
+Retrieve a list of all price lists.
 
 ### Example
 ```java
@@ -252,17 +244,14 @@ public class Example {
     HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
     bearerAuth.setBearerToken("BEARER TOKEN");
 
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
-
     PriceListsApi apiInstance = new PriceListsApi(defaultClient);
     Integer startIndex = 0; // Integer | 
     Integer pageSize = 0; // Integer | 
     String sortBy = "sortBy_example"; // String | 
     String filter = "filter_example"; // String | 
+    String responseFields = "responseFields_example"; // String | limits which fields are returned in the response body
     try {
-      PriceListCollection result = apiInstance.getPriceLists(startIndex, pageSize, sortBy, filter);
+      PriceListCollection result = apiInstance.getPriceLists(startIndex, pageSize, sortBy, filter, responseFields);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling PriceListsApi#getPriceLists");
@@ -283,6 +272,7 @@ public class Example {
 | **pageSize** | **Integer**|  | [optional] [default to 0] |
 | **sortBy** | **String**|  | [optional] |
 | **filter** | **String**|  | [optional] |
+| **responseFields** | **String**| limits which fields are returned in the response body | [optional] |
 
 ### Return type
 
@@ -290,7 +280,7 @@ public class Example {
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth), [clientOauth2](../README.md#clientOauth2)
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
@@ -300,15 +290,15 @@ public class Example {
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Success |  -  |
+| **200** | OK |  -  |
 
 <a name="updatePriceList"></a>
 # **updatePriceList**
-> CatalogAdminsPriceList updatePriceList(priceListCode, catalogAdminsPriceList)
+> CatalogAdminsPriceList updatePriceList(priceListCode, responseFields, catalogAdminsPriceList)
 
-Update price list
+Update Price List
 
-
+Updates a price list by its code.
 
 ### Example
 ```java
@@ -329,15 +319,12 @@ public class Example {
     HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
     bearerAuth.setBearerToken("BEARER TOKEN");
 
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
-
     PriceListsApi apiInstance = new PriceListsApi(defaultClient);
     String priceListCode = "priceListCode_example"; // String | 
+    String responseFields = "responseFields_example"; // String | limits which fields are returned in the response body
     CatalogAdminsPriceList catalogAdminsPriceList = new CatalogAdminsPriceList(); // CatalogAdminsPriceList | 
     try {
-      CatalogAdminsPriceList result = apiInstance.updatePriceList(priceListCode, catalogAdminsPriceList);
+      CatalogAdminsPriceList result = apiInstance.updatePriceList(priceListCode, responseFields, catalogAdminsPriceList);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling PriceListsApi#updatePriceList");
@@ -355,6 +342,7 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **priceListCode** | **String**|  | |
+| **responseFields** | **String**| limits which fields are returned in the response body | [optional] |
 | **catalogAdminsPriceList** | [**CatalogAdminsPriceList**](CatalogAdminsPriceList.md)|  | [optional] |
 
 ### Return type
@@ -363,7 +351,7 @@ public class Example {
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth), [clientOauth2](../README.md#clientOauth2)
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
@@ -373,5 +361,5 @@ public class Example {
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Success |  -  |
+| **200** | OK |  -  |
 

@@ -5,7 +5,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.kibocommerce</groupId>
     <artifactId>sdk</artifactId>
-    <version>2.0.0</version>
+    <version>3.0.0</version>
     <packaging>pom</packaging>
     <name>Kibo Commerce Java SDK</name>
     <description>Kibo Commerce SDK for communicating with Kibo Commerce's REST API</description>
@@ -24,12 +24,12 @@
         </developer>
     </developers>
     <modules>
+        <module>common</module>
         <module>adminuser</module>
         <module>appdevelopment</module>
         <module>catalogadministration</module>
         <module>catalogstorefront</module>
         <module>commerce</module>
-        <module>common</module>
         <module>content</module>
         <module>customer</module>
         <module>entities</module>
@@ -48,6 +48,9 @@
         <module>shippingstorefront</module>
         <module>solrschemamanager</module>
         <module>subscription</module>
+        <module>auditlogs</module>
+        <module>dropship</module>
+        <module>gdpr</module>
     </modules>
     <build>
         <pluginManagement><!-- lock down plugins versions to avoid using Maven defaults (may be

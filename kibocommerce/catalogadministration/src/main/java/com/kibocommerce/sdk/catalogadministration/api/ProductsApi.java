@@ -1,8 +1,8 @@
 /*
  * Kibo Catalog Admin Services
- * OpenAPI Spec for Kibo Catalog Admin Services
+ * <div id=\"overview_CATALOG_ADMIN\">             <h2>CATALOG ADMINISTRATION</h2>             <p>The Catalog Administration APIs are a collection of resources for configuring the catalogs and products offered to your shoppers, including                 discounts and coupon sets, faceting, price lists, and different types or variations of products. See the                 <a href=\"/concept-guides/catalog\">Catalog user guides</a>                 for information about the related features in the Unified Commerce Admin.</p>             <p>Use the <strong>Attributes</strong> resource to manage localization and attribute configurations for your catalogs. This current version of the Attributes API includes localizedContent to                 support <a href=\"/pages/catalog-structure#multi-locale-catalogs\">multi-locale catalogs</a>, which was not present in the legacy API model. If                 you were a client prior to May 2024 and have upgraded your implementation to support this feature,                 you can still access attribute data that has not yet been rewritten to the new model by providing                 an x-api-version header set to \"1\". </p>             <p>Use the <strong>Categories</strong> resource to organize products and control where they appear on the storefront. Create                 and maintain a hierarchy of categories and subcategories where the site will store properties. This current version of the Categories API includes localizedContent to                 support <a href=\"/pages/catalog-structure#multi-locale-catalogs\">multi-locale catalogs</a>, which was not present in the legacy API model. If                 you were a client prior to May 2024 and have upgraded your implementation to support this feature,                 you can still access category data that has not yet been rewritten to the new model by providing                 an x-api-version header set to \"1\". </p>             <p>Use the <strong>Coupon Sets</strong> resource to view and create coupon sets. You can use coupon sets to group multiple                 coupon codes together and associate them with one or more discounts.</p>             <p>Use the <strong>Currency</strong> resource to manage the currency localization rules and exchange rates for any of the                 currencies that are supported for placing orders in.</p>             <p>Use the <strong>Discounts</strong> and <strong>Discount Settings</strong> resources to define and manage discounts to apply to products, product categories, or                 orders. This current version of the Discounts API includes localizedContent to                 support <a href=\"/pages/catalog-structure#multi-locale-catalogs\">multi-locale catalogs</a>, which was not present in the legacy Products API model. If                 you were a client prior to May 2024 and have upgraded your implementation to support this feature,                 you can still access discount data that has not yet been rewritten to the new model by providing                 an x-api-version header set to \"1\". </p>             <p>Use the <strong>Facets</strong> resource to manage the facets shoppers use to filter product display results on a                 storefront. Facets can include categories, product attributes, or prices, and use either a range of                 values or discrete values.</p>             <p>Use the <strong>Master Catalog</strong> resource to view details of the master catalogs associated with a tenant and to                 manage the product publishing mode for each master catalog.</p>             <p>Use the <strong>Price Lists</strong> resources to view and create price lists. You can use price lists to override the                 catalog pricing of products for specific customer segments and/or sites.</p>             <p>Use the <strong>Products</strong>, <strong>Product Types/Extras/Options/Properties</strong>, and <strong>Product Sort Definitions</strong> resources to create new product definitions in the master catalog and determine which                 catalogs will feature products. This current version of the Products API includes localizedContent to                 support <a href=\"/pages/catalog-structure#multi-locale-catalogs\">multi-locale catalogs</a>, which was not present in the legacy Products API model. If                 you were a client prior to May 2024 and have upgraded your implementation to support this feature,                 you can still access product data that has not yet been rewritten to the new model by providing                 an x-api-version header set to \"1\".</p>             <p>Use the <strong>Publishing</strong> resource to publish pending product updates together as part of a set.</p>             <p>Use the <strong>Search</strong> resource to manage all settings and options for providing product search on your site, as                 well as search tuning rules.</p>         </div>
  *
- * The version of the OpenAPI document: 1.0.0
+ * The version of the OpenAPI document: v1
  * 
  *
  * NOTE: This class is auto generated by OpenAPI Generator (https://openapi-generator.tech).
@@ -99,6 +99,8 @@ public class ProductsApi {
 
     /**
      * Build call for addProduct
+     * @param batchJobCode  (optional)
+     * @param responseFields limits which fields are returned in the response body (optional)
      * @param catalogAdminsProduct Properties of the new product. Required properties: ProductCode, Content.ProductName, and Price.ListPrice. Mozu.ProductAdmin.Contracts.Product (optional)
      * @param _callback Callback for upload/download progress
      * @return Call to execute
@@ -106,10 +108,10 @@ public class ProductsApi {
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call addProductCall(CatalogAdminsProduct catalogAdminsProduct, final ApiCallback _callback) throws ApiException {
+    public okhttp3.Call addProductCall(String batchJobCode, String responseFields, CatalogAdminsProduct catalogAdminsProduct, final ApiCallback _callback) throws ApiException {
         String basePath = null;
         // Operation Servers
         String[] localBasePaths = new String[] {  };
@@ -134,6 +136,14 @@ public class ProductsApi {
         Map<String, String> localVarCookieParams = new HashMap<String, String>();
         Map<String, Object> localVarFormParams = new HashMap<String, Object>();
 
+        if (batchJobCode != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("batchJobCode", batchJobCode));
+        }
+
+        if (responseFields != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("responseFields", responseFields));
+        }
+
         final String[] localVarAccepts = {
             "application/json", "text/json", "text/plain"
         };
@@ -150,57 +160,63 @@ public class ProductsApi {
             localVarHeaderParams.put("Content-Type", localVarContentType);
         }
 
-        String[] localVarAuthNames = new String[] { "bearerAuth", "clientOauth2" };
+        String[] localVarAuthNames = new String[] { "bearerAuth" };
         return localVarApiClient.buildCall(basePath, localVarPath, "POST", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call addProductValidateBeforeCall(CatalogAdminsProduct catalogAdminsProduct, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call addProductValidateBeforeCall(String batchJobCode, String responseFields, CatalogAdminsProduct catalogAdminsProduct, final ApiCallback _callback) throws ApiException {
         
 
-        okhttp3.Call localVarCall = addProductCall(catalogAdminsProduct, _callback);
+        okhttp3.Call localVarCall = addProductCall(batchJobCode, responseFields, catalogAdminsProduct, _callback);
         return localVarCall;
 
     }
 
     /**
-     * Add product
-     * Creates a new product. You supply a product name, product code, price and other product characteristics such as its attributes, categories where the product belongs, whether the product has configurable options, stand-alone options, and so on.
+     * Add Product
+     * Creates a new product. This current version of the Products API includes localizedContent to support &lt;a href&#x3D;\&quot;/pages/catalog-structure#multi-locale-catalogs\&quot;&gt;multi-locale catalogs&lt;/a&gt;, which was not present in the previous API model. If you were a client prior to May 2024 and have upgraded your implementation to support this feature, you can still access product data that has not yet been rewritten to the new model by providing an x-api-version header set to \&quot;1\&quot;. 
+     * @param batchJobCode  (optional)
+     * @param responseFields limits which fields are returned in the response body (optional)
      * @param catalogAdminsProduct Properties of the new product. Required properties: ProductCode, Content.ProductName, and Price.ListPrice. Mozu.ProductAdmin.Contracts.Product (optional)
      * @return CatalogAdminsProduct
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
      </table>
      */
-    public CatalogAdminsProduct addProduct(CatalogAdminsProduct catalogAdminsProduct) throws ApiException {
-        ApiResponse<CatalogAdminsProduct> localVarResp = addProductWithHttpInfo(catalogAdminsProduct);
+    public CatalogAdminsProduct addProduct(String batchJobCode, String responseFields, CatalogAdminsProduct catalogAdminsProduct) throws ApiException {
+        ApiResponse<CatalogAdminsProduct> localVarResp = addProductWithHttpInfo(batchJobCode, responseFields, catalogAdminsProduct);
         return localVarResp.getData();
     }
 
     /**
-     * Add product
-     * Creates a new product. You supply a product name, product code, price and other product characteristics such as its attributes, categories where the product belongs, whether the product has configurable options, stand-alone options, and so on.
+     * Add Product
+     * Creates a new product. This current version of the Products API includes localizedContent to support &lt;a href&#x3D;\&quot;/pages/catalog-structure#multi-locale-catalogs\&quot;&gt;multi-locale catalogs&lt;/a&gt;, which was not present in the previous API model. If you were a client prior to May 2024 and have upgraded your implementation to support this feature, you can still access product data that has not yet been rewritten to the new model by providing an x-api-version header set to \&quot;1\&quot;. 
+     * @param batchJobCode  (optional)
+     * @param responseFields limits which fields are returned in the response body (optional)
      * @param catalogAdminsProduct Properties of the new product. Required properties: ProductCode, Content.ProductName, and Price.ListPrice. Mozu.ProductAdmin.Contracts.Product (optional)
      * @return ApiResponse&lt;CatalogAdminsProduct&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<CatalogAdminsProduct> addProductWithHttpInfo(CatalogAdminsProduct catalogAdminsProduct) throws ApiException {
-        okhttp3.Call localVarCall = addProductValidateBeforeCall(catalogAdminsProduct, null);
+    public ApiResponse<CatalogAdminsProduct> addProductWithHttpInfo(String batchJobCode, String responseFields, CatalogAdminsProduct catalogAdminsProduct) throws ApiException {
+        okhttp3.Call localVarCall = addProductValidateBeforeCall(batchJobCode, responseFields, catalogAdminsProduct, null);
         Type localVarReturnType = new TypeToken<CatalogAdminsProduct>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
 
     /**
-     * Add product (asynchronously)
-     * Creates a new product. You supply a product name, product code, price and other product characteristics such as its attributes, categories where the product belongs, whether the product has configurable options, stand-alone options, and so on.
+     * Add Product (asynchronously)
+     * Creates a new product. This current version of the Products API includes localizedContent to support &lt;a href&#x3D;\&quot;/pages/catalog-structure#multi-locale-catalogs\&quot;&gt;multi-locale catalogs&lt;/a&gt;, which was not present in the previous API model. If you were a client prior to May 2024 and have upgraded your implementation to support this feature, you can still access product data that has not yet been rewritten to the new model by providing an x-api-version header set to \&quot;1\&quot;. 
+     * @param batchJobCode  (optional)
+     * @param responseFields limits which fields are returned in the response body (optional)
      * @param catalogAdminsProduct Properties of the new product. Required properties: ProductCode, Content.ProductName, and Price.ListPrice. Mozu.ProductAdmin.Contracts.Product (optional)
      * @param _callback The callback to be executed when the API call finishes
      * @return The request call
@@ -208,12 +224,12 @@ public class ProductsApi {
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call addProductAsync(CatalogAdminsProduct catalogAdminsProduct, final ApiCallback<CatalogAdminsProduct> _callback) throws ApiException {
+    public okhttp3.Call addProductAsync(String batchJobCode, String responseFields, CatalogAdminsProduct catalogAdminsProduct, final ApiCallback<CatalogAdminsProduct> _callback) throws ApiException {
 
-        okhttp3.Call localVarCall = addProductValidateBeforeCall(catalogAdminsProduct, _callback);
+        okhttp3.Call localVarCall = addProductValidateBeforeCall(batchJobCode, responseFields, catalogAdminsProduct, _callback);
         Type localVarReturnType = new TypeToken<CatalogAdminsProduct>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
@@ -221,6 +237,7 @@ public class ProductsApi {
     /**
      * Build call for addProductInCatalog
      * @param productCode  (required)
+     * @param responseFields limits which fields are returned in the response body (optional)
      * @param productInCatalogInfo  (optional)
      * @param _callback Callback for upload/download progress
      * @return Call to execute
@@ -228,10 +245,10 @@ public class ProductsApi {
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call addProductInCatalogCall(String productCode, ProductInCatalogInfo productInCatalogInfo, final ApiCallback _callback) throws ApiException {
+    public okhttp3.Call addProductInCatalogCall(String productCode, String responseFields, ProductInCatalogInfo productInCatalogInfo, final ApiCallback _callback) throws ApiException {
         String basePath = null;
         // Operation Servers
         String[] localBasePaths = new String[] {  };
@@ -257,6 +274,10 @@ public class ProductsApi {
         Map<String, String> localVarCookieParams = new HashMap<String, String>();
         Map<String, Object> localVarFormParams = new HashMap<String, Object>();
 
+        if (responseFields != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("responseFields", responseFields));
+        }
+
         final String[] localVarAccepts = {
             "application/json", "text/json", "text/plain"
         };
@@ -273,12 +294,12 @@ public class ProductsApi {
             localVarHeaderParams.put("Content-Type", localVarContentType);
         }
 
-        String[] localVarAuthNames = new String[] { "bearerAuth", "clientOauth2" };
+        String[] localVarAuthNames = new String[] { "bearerAuth" };
         return localVarApiClient.buildCall(basePath, localVarPath, "POST", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call addProductInCatalogValidateBeforeCall(String productCode, ProductInCatalogInfo productInCatalogInfo, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call addProductInCatalogValidateBeforeCall(String productCode, String responseFields, ProductInCatalogInfo productInCatalogInfo, final ApiCallback _callback) throws ApiException {
         
         // verify the required parameter 'productCode' is set
         if (productCode == null) {
@@ -286,52 +307,55 @@ public class ProductsApi {
         }
         
 
-        okhttp3.Call localVarCall = addProductInCatalogCall(productCode, productInCatalogInfo, _callback);
+        okhttp3.Call localVarCall = addProductInCatalogCall(productCode, responseFields, productInCatalogInfo, _callback);
         return localVarCall;
 
     }
 
     /**
-     * Add product in catalog
-     * 
+     * Add Product in Catalogs
+     * Add a product to catalogs. This current version of the Products API includes localizedContent to support &lt;a href&#x3D;\&quot;/pages/catalog-structure#multi-locale-catalogs\&quot;&gt;multi-locale catalogs&lt;/a&gt;, which was not present in the previous API model. If you were a client prior to May 2024 and have upgraded your implementation to support this feature, you can still access product data that has not yet been rewritten to the new model by providing an x-api-version header set to \&quot;1\&quot;.
      * @param productCode  (required)
+     * @param responseFields limits which fields are returned in the response body (optional)
      * @param productInCatalogInfo  (optional)
      * @return ProductInCatalogInfo
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
      </table>
      */
-    public ProductInCatalogInfo addProductInCatalog(String productCode, ProductInCatalogInfo productInCatalogInfo) throws ApiException {
-        ApiResponse<ProductInCatalogInfo> localVarResp = addProductInCatalogWithHttpInfo(productCode, productInCatalogInfo);
+    public ProductInCatalogInfo addProductInCatalog(String productCode, String responseFields, ProductInCatalogInfo productInCatalogInfo) throws ApiException {
+        ApiResponse<ProductInCatalogInfo> localVarResp = addProductInCatalogWithHttpInfo(productCode, responseFields, productInCatalogInfo);
         return localVarResp.getData();
     }
 
     /**
-     * Add product in catalog
-     * 
+     * Add Product in Catalogs
+     * Add a product to catalogs. This current version of the Products API includes localizedContent to support &lt;a href&#x3D;\&quot;/pages/catalog-structure#multi-locale-catalogs\&quot;&gt;multi-locale catalogs&lt;/a&gt;, which was not present in the previous API model. If you were a client prior to May 2024 and have upgraded your implementation to support this feature, you can still access product data that has not yet been rewritten to the new model by providing an x-api-version header set to \&quot;1\&quot;.
      * @param productCode  (required)
+     * @param responseFields limits which fields are returned in the response body (optional)
      * @param productInCatalogInfo  (optional)
      * @return ApiResponse&lt;ProductInCatalogInfo&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<ProductInCatalogInfo> addProductInCatalogWithHttpInfo(String productCode, ProductInCatalogInfo productInCatalogInfo) throws ApiException {
-        okhttp3.Call localVarCall = addProductInCatalogValidateBeforeCall(productCode, productInCatalogInfo, null);
+    public ApiResponse<ProductInCatalogInfo> addProductInCatalogWithHttpInfo(String productCode, String responseFields, ProductInCatalogInfo productInCatalogInfo) throws ApiException {
+        okhttp3.Call localVarCall = addProductInCatalogValidateBeforeCall(productCode, responseFields, productInCatalogInfo, null);
         Type localVarReturnType = new TypeToken<ProductInCatalogInfo>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
 
     /**
-     * Add product in catalog (asynchronously)
-     * 
+     * Add Product in Catalogs (asynchronously)
+     * Add a product to catalogs. This current version of the Products API includes localizedContent to support &lt;a href&#x3D;\&quot;/pages/catalog-structure#multi-locale-catalogs\&quot;&gt;multi-locale catalogs&lt;/a&gt;, which was not present in the previous API model. If you were a client prior to May 2024 and have upgraded your implementation to support this feature, you can still access product data that has not yet been rewritten to the new model by providing an x-api-version header set to \&quot;1\&quot;.
      * @param productCode  (required)
+     * @param responseFields limits which fields are returned in the response body (optional)
      * @param productInCatalogInfo  (optional)
      * @param _callback The callback to be executed when the API call finishes
      * @return The request call
@@ -339,12 +363,12 @@ public class ProductsApi {
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call addProductInCatalogAsync(String productCode, ProductInCatalogInfo productInCatalogInfo, final ApiCallback<ProductInCatalogInfo> _callback) throws ApiException {
+    public okhttp3.Call addProductInCatalogAsync(String productCode, String responseFields, ProductInCatalogInfo productInCatalogInfo, final ApiCallback<ProductInCatalogInfo> _callback) throws ApiException {
 
-        okhttp3.Call localVarCall = addProductInCatalogValidateBeforeCall(productCode, productInCatalogInfo, _callback);
+        okhttp3.Call localVarCall = addProductInCatalogValidateBeforeCall(productCode, responseFields, productInCatalogInfo, _callback);
         Type localVarReturnType = new TypeToken<ProductInCatalogInfo>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
@@ -352,6 +376,7 @@ public class ProductsApi {
     /**
      * Build call for changeProductType
      * @param productCode  (required)
+     * @param responseFields limits which fields are returned in the response body (optional)
      * @param productTypeChangeRequest  (optional)
      * @param _callback Callback for upload/download progress
      * @return Call to execute
@@ -359,10 +384,10 @@ public class ProductsApi {
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call changeProductTypeCall(String productCode, ProductTypeChangeRequest productTypeChangeRequest, final ApiCallback _callback) throws ApiException {
+    public okhttp3.Call changeProductTypeCall(String productCode, String responseFields, ProductTypeChangeRequest productTypeChangeRequest, final ApiCallback _callback) throws ApiException {
         String basePath = null;
         // Operation Servers
         String[] localBasePaths = new String[] {  };
@@ -388,6 +413,10 @@ public class ProductsApi {
         Map<String, String> localVarCookieParams = new HashMap<String, String>();
         Map<String, Object> localVarFormParams = new HashMap<String, Object>();
 
+        if (responseFields != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("responseFields", responseFields));
+        }
+
         final String[] localVarAccepts = {
             "application/json", "text/json", "text/plain"
         };
@@ -404,12 +433,12 @@ public class ProductsApi {
             localVarHeaderParams.put("Content-Type", localVarContentType);
         }
 
-        String[] localVarAuthNames = new String[] { "bearerAuth", "clientOauth2" };
+        String[] localVarAuthNames = new String[] { "bearerAuth" };
         return localVarApiClient.buildCall(basePath, localVarPath, "POST", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call changeProductTypeValidateBeforeCall(String productCode, ProductTypeChangeRequest productTypeChangeRequest, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call changeProductTypeValidateBeforeCall(String productCode, String responseFields, ProductTypeChangeRequest productTypeChangeRequest, final ApiCallback _callback) throws ApiException {
         
         // verify the required parameter 'productCode' is set
         if (productCode == null) {
@@ -417,52 +446,55 @@ public class ProductsApi {
         }
         
 
-        okhttp3.Call localVarCall = changeProductTypeCall(productCode, productTypeChangeRequest, _callback);
+        okhttp3.Call localVarCall = changeProductTypeCall(productCode, responseFields, productTypeChangeRequest, _callback);
         return localVarCall;
 
     }
 
     /**
      * Change product type.
-     * Change a product&#39;s product type.
+     * Change a product&#39;s product type. This current version of the Products API includes localizedContent to support &lt;a href&#x3D;\&quot;/pages/catalog-structure#multi-locale-catalogs\&quot;&gt;multi-locale catalogs&lt;/a&gt;, which was not present in the previous API model. If you were a client prior to May 2024 and have upgraded your implementation to support this feature, you can still access product data that has not yet been rewritten to the new model by providing an x-api-version header set to \&quot;1\&quot;.
      * @param productCode  (required)
+     * @param responseFields limits which fields are returned in the response body (optional)
      * @param productTypeChangeRequest  (optional)
      * @return ProductTypeChangeResponse
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
      </table>
      */
-    public ProductTypeChangeResponse changeProductType(String productCode, ProductTypeChangeRequest productTypeChangeRequest) throws ApiException {
-        ApiResponse<ProductTypeChangeResponse> localVarResp = changeProductTypeWithHttpInfo(productCode, productTypeChangeRequest);
+    public ProductTypeChangeResponse changeProductType(String productCode, String responseFields, ProductTypeChangeRequest productTypeChangeRequest) throws ApiException {
+        ApiResponse<ProductTypeChangeResponse> localVarResp = changeProductTypeWithHttpInfo(productCode, responseFields, productTypeChangeRequest);
         return localVarResp.getData();
     }
 
     /**
      * Change product type.
-     * Change a product&#39;s product type.
+     * Change a product&#39;s product type. This current version of the Products API includes localizedContent to support &lt;a href&#x3D;\&quot;/pages/catalog-structure#multi-locale-catalogs\&quot;&gt;multi-locale catalogs&lt;/a&gt;, which was not present in the previous API model. If you were a client prior to May 2024 and have upgraded your implementation to support this feature, you can still access product data that has not yet been rewritten to the new model by providing an x-api-version header set to \&quot;1\&quot;.
      * @param productCode  (required)
+     * @param responseFields limits which fields are returned in the response body (optional)
      * @param productTypeChangeRequest  (optional)
      * @return ApiResponse&lt;ProductTypeChangeResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<ProductTypeChangeResponse> changeProductTypeWithHttpInfo(String productCode, ProductTypeChangeRequest productTypeChangeRequest) throws ApiException {
-        okhttp3.Call localVarCall = changeProductTypeValidateBeforeCall(productCode, productTypeChangeRequest, null);
+    public ApiResponse<ProductTypeChangeResponse> changeProductTypeWithHttpInfo(String productCode, String responseFields, ProductTypeChangeRequest productTypeChangeRequest) throws ApiException {
+        okhttp3.Call localVarCall = changeProductTypeValidateBeforeCall(productCode, responseFields, productTypeChangeRequest, null);
         Type localVarReturnType = new TypeToken<ProductTypeChangeResponse>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
 
     /**
      * Change product type. (asynchronously)
-     * Change a product&#39;s product type.
+     * Change a product&#39;s product type. This current version of the Products API includes localizedContent to support &lt;a href&#x3D;\&quot;/pages/catalog-structure#multi-locale-catalogs\&quot;&gt;multi-locale catalogs&lt;/a&gt;, which was not present in the previous API model. If you were a client prior to May 2024 and have upgraded your implementation to support this feature, you can still access product data that has not yet been rewritten to the new model by providing an x-api-version header set to \&quot;1\&quot;.
      * @param productCode  (required)
+     * @param responseFields limits which fields are returned in the response body (optional)
      * @param productTypeChangeRequest  (optional)
      * @param _callback The callback to be executed when the API call finishes
      * @return The request call
@@ -470,12 +502,12 @@ public class ProductsApi {
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call changeProductTypeAsync(String productCode, ProductTypeChangeRequest productTypeChangeRequest, final ApiCallback<ProductTypeChangeResponse> _callback) throws ApiException {
+    public okhttp3.Call changeProductTypeAsync(String productCode, String responseFields, ProductTypeChangeRequest productTypeChangeRequest, final ApiCallback<ProductTypeChangeResponse> _callback) throws ApiException {
 
-        okhttp3.Call localVarCall = changeProductTypeValidateBeforeCall(productCode, productTypeChangeRequest, _callback);
+        okhttp3.Call localVarCall = changeProductTypeValidateBeforeCall(productCode, responseFields, productTypeChangeRequest, _callback);
         Type localVarReturnType = new TypeToken<ProductTypeChangeResponse>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
@@ -483,16 +515,17 @@ public class ProductsApi {
     /**
      * Build call for deleteProduct
      * @param productCode Merchant-created code associated with the product, for example, a SKU. Required. (required)
+     * @param batchJobCode  (optional)
      * @param _callback Callback for upload/download progress
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call deleteProductCall(String productCode, final ApiCallback _callback) throws ApiException {
+    public okhttp3.Call deleteProductCall(String productCode, String batchJobCode, final ApiCallback _callback) throws ApiException {
         String basePath = null;
         // Operation Servers
         String[] localBasePaths = new String[] {  };
@@ -518,6 +551,10 @@ public class ProductsApi {
         Map<String, String> localVarCookieParams = new HashMap<String, String>();
         Map<String, Object> localVarFormParams = new HashMap<String, Object>();
 
+        if (batchJobCode != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("batchJobCode", batchJobCode));
+        }
+
         final String[] localVarAccepts = {
             
         };
@@ -534,12 +571,12 @@ public class ProductsApi {
             localVarHeaderParams.put("Content-Type", localVarContentType);
         }
 
-        String[] localVarAuthNames = new String[] { "bearerAuth", "clientOauth2" };
+        String[] localVarAuthNames = new String[] { "bearerAuth" };
         return localVarApiClient.buildCall(basePath, localVarPath, "DELETE", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call deleteProductValidateBeforeCall(String productCode, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call deleteProductValidateBeforeCall(String productCode, String batchJobCode, final ApiCallback _callback) throws ApiException {
         
         // verify the required parameter 'productCode' is set
         if (productCode == null) {
@@ -547,59 +584,62 @@ public class ProductsApi {
         }
         
 
-        okhttp3.Call localVarCall = deleteProductCall(productCode, _callback);
+        okhttp3.Call localVarCall = deleteProductCall(productCode, batchJobCode, _callback);
         return localVarCall;
 
     }
 
     /**
-     * Delete product
+     * Delete Product
      * Deletes the product specified by its product code.
      * @param productCode Merchant-created code associated with the product, for example, a SKU. Required. (required)
+     * @param batchJobCode  (optional)
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
      </table>
      */
-    public void deleteProduct(String productCode) throws ApiException {
-        deleteProductWithHttpInfo(productCode);
+    public void deleteProduct(String productCode, String batchJobCode) throws ApiException {
+        deleteProductWithHttpInfo(productCode, batchJobCode);
     }
 
     /**
-     * Delete product
+     * Delete Product
      * Deletes the product specified by its product code.
      * @param productCode Merchant-created code associated with the product, for example, a SKU. Required. (required)
+     * @param batchJobCode  (optional)
      * @return ApiResponse&lt;Void&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<Void> deleteProductWithHttpInfo(String productCode) throws ApiException {
-        okhttp3.Call localVarCall = deleteProductValidateBeforeCall(productCode, null);
+    public ApiResponse<Void> deleteProductWithHttpInfo(String productCode, String batchJobCode) throws ApiException {
+        okhttp3.Call localVarCall = deleteProductValidateBeforeCall(productCode, batchJobCode, null);
         return localVarApiClient.execute(localVarCall);
     }
 
     /**
-     * Delete product (asynchronously)
+     * Delete Product (asynchronously)
      * Deletes the product specified by its product code.
      * @param productCode Merchant-created code associated with the product, for example, a SKU. Required. (required)
+     * @param batchJobCode  (optional)
      * @param _callback The callback to be executed when the API call finishes
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call deleteProductAsync(String productCode, final ApiCallback<Void> _callback) throws ApiException {
+    public okhttp3.Call deleteProductAsync(String productCode, String batchJobCode, final ApiCallback<Void> _callback) throws ApiException {
 
-        okhttp3.Call localVarCall = deleteProductValidateBeforeCall(productCode, _callback);
+        okhttp3.Call localVarCall = deleteProductValidateBeforeCall(productCode, batchJobCode, _callback);
         localVarApiClient.executeAsync(localVarCall, _callback);
         return localVarCall;
     }
@@ -613,7 +653,7 @@ public class ProductsApi {
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
      </table>
      */
     public okhttp3.Call deleteProductInCatalogCall(String productCode, Integer catalogId, final ApiCallback _callback) throws ApiException {
@@ -659,7 +699,7 @@ public class ProductsApi {
             localVarHeaderParams.put("Content-Type", localVarContentType);
         }
 
-        String[] localVarAuthNames = new String[] { "bearerAuth", "clientOauth2" };
+        String[] localVarAuthNames = new String[] { "bearerAuth" };
         return localVarApiClient.buildCall(basePath, localVarPath, "DELETE", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
     }
 
@@ -683,15 +723,15 @@ public class ProductsApi {
     }
 
     /**
-     * Delete product in catalog
-     * 
+     * Delete Product in Catalog
+     * Delete a product in a particular catalog.
      * @param productCode  (required)
      * @param catalogId  (required)
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
      </table>
      */
     public void deleteProductInCatalog(String productCode, Integer catalogId) throws ApiException {
@@ -699,8 +739,8 @@ public class ProductsApi {
     }
 
     /**
-     * Delete product in catalog
-     * 
+     * Delete Product in Catalog
+     * Delete a product in a particular catalog.
      * @param productCode  (required)
      * @param catalogId  (required)
      * @return ApiResponse&lt;Void&gt;
@@ -708,7 +748,7 @@ public class ProductsApi {
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
      </table>
      */
     public ApiResponse<Void> deleteProductInCatalogWithHttpInfo(String productCode, Integer catalogId) throws ApiException {
@@ -717,8 +757,8 @@ public class ProductsApi {
     }
 
     /**
-     * Delete product in catalog (asynchronously)
-     * 
+     * Delete Product in Catalog (asynchronously)
+     * Delete a product in a particular catalog.
      * @param productCode  (required)
      * @param catalogId  (required)
      * @param _callback The callback to be executed when the API call finishes
@@ -727,7 +767,7 @@ public class ProductsApi {
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
      </table>
      */
     public okhttp3.Call deleteProductInCatalogAsync(String productCode, Integer catalogId, final ApiCallback<Void> _callback) throws ApiException {
@@ -740,16 +780,17 @@ public class ProductsApi {
      * Build call for getProduct
      * @param productCode Merchant-created code associated with the product, for example, a SKU. Required. (required)
      * @param responseGroups Used to get more specific information from the request. For example to get discounts applied to a product use the AppliedProducts response group. Available response groups: ApplicableDiscounts, VariationOptions, and BaseProductCode. (optional)
+     * @param responseFields limits which fields are returned in the response body (optional)
      * @param _callback Callback for upload/download progress
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call getProductCall(String productCode, String responseGroups, final ApiCallback _callback) throws ApiException {
+    public okhttp3.Call getProductCall(String productCode, String responseGroups, String responseFields, final ApiCallback _callback) throws ApiException {
         String basePath = null;
         // Operation Servers
         String[] localBasePaths = new String[] {  };
@@ -779,6 +820,10 @@ public class ProductsApi {
             localVarQueryParams.addAll(localVarApiClient.parameterToPair("responseGroups", responseGroups));
         }
 
+        if (responseFields != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("responseFields", responseFields));
+        }
+
         final String[] localVarAccepts = {
             "application/json", "text/json", "text/plain"
         };
@@ -795,12 +840,12 @@ public class ProductsApi {
             localVarHeaderParams.put("Content-Type", localVarContentType);
         }
 
-        String[] localVarAuthNames = new String[] { "bearerAuth", "clientOauth2" };
+        String[] localVarAuthNames = new String[] { "bearerAuth" };
         return localVarApiClient.buildCall(basePath, localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call getProductValidateBeforeCall(String productCode, String responseGroups, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call getProductValidateBeforeCall(String productCode, String responseGroups, String responseFields, final ApiCallback _callback) throws ApiException {
         
         // verify the required parameter 'productCode' is set
         if (productCode == null) {
@@ -808,65 +853,68 @@ public class ProductsApi {
         }
         
 
-        okhttp3.Call localVarCall = getProductCall(productCode, responseGroups, _callback);
+        okhttp3.Call localVarCall = getProductCall(productCode, responseGroups, responseFields, _callback);
         return localVarCall;
 
     }
 
     /**
-     * Get product
-     * Retrieves details about a product based on the specified response group. For example, to get the BaseProductCode of a product.
+     * Get Product
+     * Retrieves details about a product based on the specified response group. This current version of the Products API includes localizedContent to support &lt;a href&#x3D;\&quot;/pages/catalog-structure#multi-locale-catalogs\&quot;&gt;multi-locale catalogs&lt;/a&gt;, which was not present in the previous API model. If you were a client prior to May 2024 and have upgraded your implementation to support this feature, you can still access product data that has not yet been rewritten to the new model by providing an x-api-version header set to \&quot;1\&quot;. 
      * @param productCode Merchant-created code associated with the product, for example, a SKU. Required. (required)
      * @param responseGroups Used to get more specific information from the request. For example to get discounts applied to a product use the AppliedProducts response group. Available response groups: ApplicableDiscounts, VariationOptions, and BaseProductCode. (optional)
+     * @param responseFields limits which fields are returned in the response body (optional)
      * @return CatalogAdminsProduct
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
      </table>
      */
-    public CatalogAdminsProduct getProduct(String productCode, String responseGroups) throws ApiException {
-        ApiResponse<CatalogAdminsProduct> localVarResp = getProductWithHttpInfo(productCode, responseGroups);
+    public CatalogAdminsProduct getProduct(String productCode, String responseGroups, String responseFields) throws ApiException {
+        ApiResponse<CatalogAdminsProduct> localVarResp = getProductWithHttpInfo(productCode, responseGroups, responseFields);
         return localVarResp.getData();
     }
 
     /**
-     * Get product
-     * Retrieves details about a product based on the specified response group. For example, to get the BaseProductCode of a product.
+     * Get Product
+     * Retrieves details about a product based on the specified response group. This current version of the Products API includes localizedContent to support &lt;a href&#x3D;\&quot;/pages/catalog-structure#multi-locale-catalogs\&quot;&gt;multi-locale catalogs&lt;/a&gt;, which was not present in the previous API model. If you were a client prior to May 2024 and have upgraded your implementation to support this feature, you can still access product data that has not yet been rewritten to the new model by providing an x-api-version header set to \&quot;1\&quot;. 
      * @param productCode Merchant-created code associated with the product, for example, a SKU. Required. (required)
      * @param responseGroups Used to get more specific information from the request. For example to get discounts applied to a product use the AppliedProducts response group. Available response groups: ApplicableDiscounts, VariationOptions, and BaseProductCode. (optional)
+     * @param responseFields limits which fields are returned in the response body (optional)
      * @return ApiResponse&lt;CatalogAdminsProduct&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<CatalogAdminsProduct> getProductWithHttpInfo(String productCode, String responseGroups) throws ApiException {
-        okhttp3.Call localVarCall = getProductValidateBeforeCall(productCode, responseGroups, null);
+    public ApiResponse<CatalogAdminsProduct> getProductWithHttpInfo(String productCode, String responseGroups, String responseFields) throws ApiException {
+        okhttp3.Call localVarCall = getProductValidateBeforeCall(productCode, responseGroups, responseFields, null);
         Type localVarReturnType = new TypeToken<CatalogAdminsProduct>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
 
     /**
-     * Get product (asynchronously)
-     * Retrieves details about a product based on the specified response group. For example, to get the BaseProductCode of a product.
+     * Get Product (asynchronously)
+     * Retrieves details about a product based on the specified response group. This current version of the Products API includes localizedContent to support &lt;a href&#x3D;\&quot;/pages/catalog-structure#multi-locale-catalogs\&quot;&gt;multi-locale catalogs&lt;/a&gt;, which was not present in the previous API model. If you were a client prior to May 2024 and have upgraded your implementation to support this feature, you can still access product data that has not yet been rewritten to the new model by providing an x-api-version header set to \&quot;1\&quot;. 
      * @param productCode Merchant-created code associated with the product, for example, a SKU. Required. (required)
      * @param responseGroups Used to get more specific information from the request. For example to get discounts applied to a product use the AppliedProducts response group. Available response groups: ApplicableDiscounts, VariationOptions, and BaseProductCode. (optional)
+     * @param responseFields limits which fields are returned in the response body (optional)
      * @param _callback The callback to be executed when the API call finishes
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call getProductAsync(String productCode, String responseGroups, final ApiCallback<CatalogAdminsProduct> _callback) throws ApiException {
+    public okhttp3.Call getProductAsync(String productCode, String responseGroups, String responseFields, final ApiCallback<CatalogAdminsProduct> _callback) throws ApiException {
 
-        okhttp3.Call localVarCall = getProductValidateBeforeCall(productCode, responseGroups, _callback);
+        okhttp3.Call localVarCall = getProductValidateBeforeCall(productCode, responseGroups, responseFields, _callback);
         Type localVarReturnType = new TypeToken<CatalogAdminsProduct>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
@@ -875,16 +923,17 @@ public class ProductsApi {
      * Build call for getProductInCatalog
      * @param productCode  (required)
      * @param catalogId  (required)
+     * @param responseFields limits which fields are returned in the response body (optional)
      * @param _callback Callback for upload/download progress
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call getProductInCatalogCall(String productCode, Integer catalogId, final ApiCallback _callback) throws ApiException {
+    public okhttp3.Call getProductInCatalogCall(String productCode, Integer catalogId, String responseFields, final ApiCallback _callback) throws ApiException {
         String basePath = null;
         // Operation Servers
         String[] localBasePaths = new String[] {  };
@@ -911,6 +960,10 @@ public class ProductsApi {
         Map<String, String> localVarCookieParams = new HashMap<String, String>();
         Map<String, Object> localVarFormParams = new HashMap<String, Object>();
 
+        if (responseFields != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("responseFields", responseFields));
+        }
+
         final String[] localVarAccepts = {
             "application/json", "text/json", "text/plain"
         };
@@ -927,12 +980,12 @@ public class ProductsApi {
             localVarHeaderParams.put("Content-Type", localVarContentType);
         }
 
-        String[] localVarAuthNames = new String[] { "bearerAuth", "clientOauth2" };
+        String[] localVarAuthNames = new String[] { "bearerAuth" };
         return localVarApiClient.buildCall(basePath, localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call getProductInCatalogValidateBeforeCall(String productCode, Integer catalogId, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call getProductInCatalogValidateBeforeCall(String productCode, Integer catalogId, String responseFields, final ApiCallback _callback) throws ApiException {
         
         // verify the required parameter 'productCode' is set
         if (productCode == null) {
@@ -945,65 +998,68 @@ public class ProductsApi {
         }
         
 
-        okhttp3.Call localVarCall = getProductInCatalogCall(productCode, catalogId, _callback);
+        okhttp3.Call localVarCall = getProductInCatalogCall(productCode, catalogId, responseFields, _callback);
         return localVarCall;
 
     }
 
     /**
-     * Get product in catalog
-     * 
+     * Get Product in Catalog
+     * Retrieves a product in a particular catalog. This current version of the Products API includes localizedContent to support &lt;a href&#x3D;\&quot;/pages/catalog-structure#multi-locale-catalogs\&quot;&gt;multi-locale catalogs&lt;/a&gt;, which was not present in the previous API model. If you were a client prior to May 2024 and have upgraded your implementation to support this feature, you can still access product data that has not yet been rewritten to the new model by providing an x-api-version header set to \&quot;1\&quot;.
      * @param productCode  (required)
      * @param catalogId  (required)
+     * @param responseFields limits which fields are returned in the response body (optional)
      * @return ProductInCatalogInfo
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
      </table>
      */
-    public ProductInCatalogInfo getProductInCatalog(String productCode, Integer catalogId) throws ApiException {
-        ApiResponse<ProductInCatalogInfo> localVarResp = getProductInCatalogWithHttpInfo(productCode, catalogId);
+    public ProductInCatalogInfo getProductInCatalog(String productCode, Integer catalogId, String responseFields) throws ApiException {
+        ApiResponse<ProductInCatalogInfo> localVarResp = getProductInCatalogWithHttpInfo(productCode, catalogId, responseFields);
         return localVarResp.getData();
     }
 
     /**
-     * Get product in catalog
-     * 
+     * Get Product in Catalog
+     * Retrieves a product in a particular catalog. This current version of the Products API includes localizedContent to support &lt;a href&#x3D;\&quot;/pages/catalog-structure#multi-locale-catalogs\&quot;&gt;multi-locale catalogs&lt;/a&gt;, which was not present in the previous API model. If you were a client prior to May 2024 and have upgraded your implementation to support this feature, you can still access product data that has not yet been rewritten to the new model by providing an x-api-version header set to \&quot;1\&quot;.
      * @param productCode  (required)
      * @param catalogId  (required)
+     * @param responseFields limits which fields are returned in the response body (optional)
      * @return ApiResponse&lt;ProductInCatalogInfo&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<ProductInCatalogInfo> getProductInCatalogWithHttpInfo(String productCode, Integer catalogId) throws ApiException {
-        okhttp3.Call localVarCall = getProductInCatalogValidateBeforeCall(productCode, catalogId, null);
+    public ApiResponse<ProductInCatalogInfo> getProductInCatalogWithHttpInfo(String productCode, Integer catalogId, String responseFields) throws ApiException {
+        okhttp3.Call localVarCall = getProductInCatalogValidateBeforeCall(productCode, catalogId, responseFields, null);
         Type localVarReturnType = new TypeToken<ProductInCatalogInfo>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
 
     /**
-     * Get product in catalog (asynchronously)
-     * 
+     * Get Product in Catalog (asynchronously)
+     * Retrieves a product in a particular catalog. This current version of the Products API includes localizedContent to support &lt;a href&#x3D;\&quot;/pages/catalog-structure#multi-locale-catalogs\&quot;&gt;multi-locale catalogs&lt;/a&gt;, which was not present in the previous API model. If you were a client prior to May 2024 and have upgraded your implementation to support this feature, you can still access product data that has not yet been rewritten to the new model by providing an x-api-version header set to \&quot;1\&quot;.
      * @param productCode  (required)
      * @param catalogId  (required)
+     * @param responseFields limits which fields are returned in the response body (optional)
      * @param _callback The callback to be executed when the API call finishes
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call getProductInCatalogAsync(String productCode, Integer catalogId, final ApiCallback<ProductInCatalogInfo> _callback) throws ApiException {
+    public okhttp3.Call getProductInCatalogAsync(String productCode, Integer catalogId, String responseFields, final ApiCallback<ProductInCatalogInfo> _callback) throws ApiException {
 
-        okhttp3.Call localVarCall = getProductInCatalogValidateBeforeCall(productCode, catalogId, _callback);
+        okhttp3.Call localVarCall = getProductInCatalogValidateBeforeCall(productCode, catalogId, responseFields, _callback);
         Type localVarReturnType = new TypeToken<ProductInCatalogInfo>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
@@ -1011,16 +1067,17 @@ public class ProductsApi {
     /**
      * Build call for getProductInCatalogs
      * @param productCode  (required)
+     * @param responseFields limits which fields are returned in the response body (optional)
      * @param _callback Callback for upload/download progress
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call getProductInCatalogsCall(String productCode, final ApiCallback _callback) throws ApiException {
+    public okhttp3.Call getProductInCatalogsCall(String productCode, String responseFields, final ApiCallback _callback) throws ApiException {
         String basePath = null;
         // Operation Servers
         String[] localBasePaths = new String[] {  };
@@ -1046,6 +1103,10 @@ public class ProductsApi {
         Map<String, String> localVarCookieParams = new HashMap<String, String>();
         Map<String, Object> localVarFormParams = new HashMap<String, Object>();
 
+        if (responseFields != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("responseFields", responseFields));
+        }
+
         final String[] localVarAccepts = {
             "application/json", "text/json", "text/plain"
         };
@@ -1062,12 +1123,12 @@ public class ProductsApi {
             localVarHeaderParams.put("Content-Type", localVarContentType);
         }
 
-        String[] localVarAuthNames = new String[] { "bearerAuth", "clientOauth2" };
+        String[] localVarAuthNames = new String[] { "bearerAuth" };
         return localVarApiClient.buildCall(basePath, localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call getProductInCatalogsValidateBeforeCall(String productCode, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call getProductInCatalogsValidateBeforeCall(String productCode, String responseFields, final ApiCallback _callback) throws ApiException {
         
         // verify the required parameter 'productCode' is set
         if (productCode == null) {
@@ -1075,62 +1136,65 @@ public class ProductsApi {
         }
         
 
-        okhttp3.Call localVarCall = getProductInCatalogsCall(productCode, _callback);
+        okhttp3.Call localVarCall = getProductInCatalogsCall(productCode, responseFields, _callback);
         return localVarCall;
 
     }
 
     /**
-     * Update products in catalog
-     * 
+     * Get Products in Catalogs
+     * Retrieve products in catalogs. This current version of the Products API includes localizedContent to support &lt;a href&#x3D;\&quot;/pages/catalog-structure#multi-locale-catalogs\&quot;&gt;multi-locale catalogs&lt;/a&gt;, which was not present in the previous API model. If you were a client prior to May 2024 and have upgraded your implementation to support this feature, you can still access product data that has not yet been rewritten to the new model by providing an x-api-version header set to \&quot;1\&quot;.
      * @param productCode  (required)
+     * @param responseFields limits which fields are returned in the response body (optional)
      * @return List&lt;ProductInCatalogInfo&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
      </table>
      */
-    public List<ProductInCatalogInfo> getProductInCatalogs(String productCode) throws ApiException {
-        ApiResponse<List<ProductInCatalogInfo>> localVarResp = getProductInCatalogsWithHttpInfo(productCode);
+    public List<ProductInCatalogInfo> getProductInCatalogs(String productCode, String responseFields) throws ApiException {
+        ApiResponse<List<ProductInCatalogInfo>> localVarResp = getProductInCatalogsWithHttpInfo(productCode, responseFields);
         return localVarResp.getData();
     }
 
     /**
-     * Update products in catalog
-     * 
+     * Get Products in Catalogs
+     * Retrieve products in catalogs. This current version of the Products API includes localizedContent to support &lt;a href&#x3D;\&quot;/pages/catalog-structure#multi-locale-catalogs\&quot;&gt;multi-locale catalogs&lt;/a&gt;, which was not present in the previous API model. If you were a client prior to May 2024 and have upgraded your implementation to support this feature, you can still access product data that has not yet been rewritten to the new model by providing an x-api-version header set to \&quot;1\&quot;.
      * @param productCode  (required)
+     * @param responseFields limits which fields are returned in the response body (optional)
      * @return ApiResponse&lt;List&lt;ProductInCatalogInfo&gt;&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<List<ProductInCatalogInfo>> getProductInCatalogsWithHttpInfo(String productCode) throws ApiException {
-        okhttp3.Call localVarCall = getProductInCatalogsValidateBeforeCall(productCode, null);
+    public ApiResponse<List<ProductInCatalogInfo>> getProductInCatalogsWithHttpInfo(String productCode, String responseFields) throws ApiException {
+        okhttp3.Call localVarCall = getProductInCatalogsValidateBeforeCall(productCode, responseFields, null);
         Type localVarReturnType = new TypeToken<List<ProductInCatalogInfo>>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
 
     /**
-     * Update products in catalog (asynchronously)
-     * 
+     * Get Products in Catalogs (asynchronously)
+     * Retrieve products in catalogs. This current version of the Products API includes localizedContent to support &lt;a href&#x3D;\&quot;/pages/catalog-structure#multi-locale-catalogs\&quot;&gt;multi-locale catalogs&lt;/a&gt;, which was not present in the previous API model. If you were a client prior to May 2024 and have upgraded your implementation to support this feature, you can still access product data that has not yet been rewritten to the new model by providing an x-api-version header set to \&quot;1\&quot;.
      * @param productCode  (required)
+     * @param responseFields limits which fields are returned in the response body (optional)
      * @param _callback The callback to be executed when the API call finishes
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call getProductInCatalogsAsync(String productCode, final ApiCallback<List<ProductInCatalogInfo>> _callback) throws ApiException {
+    public okhttp3.Call getProductInCatalogsAsync(String productCode, String responseFields, final ApiCallback<List<ProductInCatalogInfo>> _callback) throws ApiException {
 
-        okhttp3.Call localVarCall = getProductInCatalogsValidateBeforeCall(productCode, _callback);
+        okhttp3.Call localVarCall = getProductInCatalogsValidateBeforeCall(productCode, responseFields, _callback);
         Type localVarReturnType = new TypeToken<List<ProductInCatalogInfo>>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
@@ -1145,16 +1209,17 @@ public class ProductsApi {
      * @param q  (optional)
      * @param qLimit  (optional)
      * @param noCount  (optional)
+     * @param responseFields limits which fields are returned in the response body (optional)
      * @param _callback Callback for upload/download progress
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call getProductsCall(Integer startIndex, Integer pageSize, String sortBy, String responseGroups, String filter, String q, Integer qLimit, Boolean noCount, final ApiCallback _callback) throws ApiException {
+    public okhttp3.Call getProductsCall(Integer startIndex, Integer pageSize, String sortBy, String responseGroups, String filter, String q, Integer qLimit, Boolean noCount, String responseFields, final ApiCallback _callback) throws ApiException {
         String basePath = null;
         // Operation Servers
         String[] localBasePaths = new String[] {  };
@@ -1211,6 +1276,10 @@ public class ProductsApi {
             localVarQueryParams.addAll(localVarApiClient.parameterToPair("noCount", noCount));
         }
 
+        if (responseFields != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("responseFields", responseFields));
+        }
+
         final String[] localVarAccepts = {
             "application/json", "text/json", "text/plain"
         };
@@ -1227,22 +1296,22 @@ public class ProductsApi {
             localVarHeaderParams.put("Content-Type", localVarContentType);
         }
 
-        String[] localVarAuthNames = new String[] { "bearerAuth", "clientOauth2" };
+        String[] localVarAuthNames = new String[] { "bearerAuth" };
         return localVarApiClient.buildCall(basePath, localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call getProductsValidateBeforeCall(Integer startIndex, Integer pageSize, String sortBy, String responseGroups, String filter, String q, Integer qLimit, Boolean noCount, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call getProductsValidateBeforeCall(Integer startIndex, Integer pageSize, String sortBy, String responseGroups, String filter, String q, Integer qLimit, Boolean noCount, String responseFields, final ApiCallback _callback) throws ApiException {
         
 
-        okhttp3.Call localVarCall = getProductsCall(startIndex, pageSize, sortBy, responseGroups, filter, q, qLimit, noCount, _callback);
+        okhttp3.Call localVarCall = getProductsCall(startIndex, pageSize, sortBy, responseGroups, filter, q, qLimit, noCount, responseFields, _callback);
         return localVarCall;
 
     }
 
     /**
-     * Get products
-     * Retrieves a list of products according to any specified filter criteria and sort options.
+     * Get Products
+     * Retrieves a list of products according to any specified filter criteria and sort options. This current version of the Products API includes localizedContent to support &lt;a href&#x3D;\&quot;/pages/catalog-structure#multi-locale-catalogs\&quot;&gt;multi-locale catalogs&lt;/a&gt;, which was not present in the previous API model. If you were a client prior to May 2024 and have upgraded your implementation to support this feature, you can still access product data that has not yet been rewritten to the new model by providing an x-api-version header set to \&quot;1\&quot;. 
      * @param startIndex Used to page results from a query. Indicates the zero-based offset in the complete result set where the returned entities begin. For example, with a PageSize of 25, to get the 51st through the 75th items, startIndex&#x3D;3. The default value is 0. (optional, default to 0)
      * @param pageSize Used to page results from a query. Indicates the maximum number of entities to return from a single query. The default value is 20 and the maximum value is 200. (optional, default to 0)
      * @param sortBy The element to sort the results by and the order in which the results appear. Either ascending or descending order. For example, to sort the results by “ID” ascending then by “CreateDate” descending, use: id asc,createdate desc. (optional)
@@ -1251,22 +1320,23 @@ public class ProductsApi {
      * @param q  (optional)
      * @param qLimit  (optional)
      * @param noCount  (optional)
+     * @param responseFields limits which fields are returned in the response body (optional)
      * @return CatalogAdminsProductCollection
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
      </table>
      */
-    public CatalogAdminsProductCollection getProducts(Integer startIndex, Integer pageSize, String sortBy, String responseGroups, String filter, String q, Integer qLimit, Boolean noCount) throws ApiException {
-        ApiResponse<CatalogAdminsProductCollection> localVarResp = getProductsWithHttpInfo(startIndex, pageSize, sortBy, responseGroups, filter, q, qLimit, noCount);
+    public CatalogAdminsProductCollection getProducts(Integer startIndex, Integer pageSize, String sortBy, String responseGroups, String filter, String q, Integer qLimit, Boolean noCount, String responseFields) throws ApiException {
+        ApiResponse<CatalogAdminsProductCollection> localVarResp = getProductsWithHttpInfo(startIndex, pageSize, sortBy, responseGroups, filter, q, qLimit, noCount, responseFields);
         return localVarResp.getData();
     }
 
     /**
-     * Get products
-     * Retrieves a list of products according to any specified filter criteria and sort options.
+     * Get Products
+     * Retrieves a list of products according to any specified filter criteria and sort options. This current version of the Products API includes localizedContent to support &lt;a href&#x3D;\&quot;/pages/catalog-structure#multi-locale-catalogs\&quot;&gt;multi-locale catalogs&lt;/a&gt;, which was not present in the previous API model. If you were a client prior to May 2024 and have upgraded your implementation to support this feature, you can still access product data that has not yet been rewritten to the new model by providing an x-api-version header set to \&quot;1\&quot;. 
      * @param startIndex Used to page results from a query. Indicates the zero-based offset in the complete result set where the returned entities begin. For example, with a PageSize of 25, to get the 51st through the 75th items, startIndex&#x3D;3. The default value is 0. (optional, default to 0)
      * @param pageSize Used to page results from a query. Indicates the maximum number of entities to return from a single query. The default value is 20 and the maximum value is 200. (optional, default to 0)
      * @param sortBy The element to sort the results by and the order in which the results appear. Either ascending or descending order. For example, to sort the results by “ID” ascending then by “CreateDate” descending, use: id asc,createdate desc. (optional)
@@ -1275,23 +1345,24 @@ public class ProductsApi {
      * @param q  (optional)
      * @param qLimit  (optional)
      * @param noCount  (optional)
+     * @param responseFields limits which fields are returned in the response body (optional)
      * @return ApiResponse&lt;CatalogAdminsProductCollection&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<CatalogAdminsProductCollection> getProductsWithHttpInfo(Integer startIndex, Integer pageSize, String sortBy, String responseGroups, String filter, String q, Integer qLimit, Boolean noCount) throws ApiException {
-        okhttp3.Call localVarCall = getProductsValidateBeforeCall(startIndex, pageSize, sortBy, responseGroups, filter, q, qLimit, noCount, null);
+    public ApiResponse<CatalogAdminsProductCollection> getProductsWithHttpInfo(Integer startIndex, Integer pageSize, String sortBy, String responseGroups, String filter, String q, Integer qLimit, Boolean noCount, String responseFields) throws ApiException {
+        okhttp3.Call localVarCall = getProductsValidateBeforeCall(startIndex, pageSize, sortBy, responseGroups, filter, q, qLimit, noCount, responseFields, null);
         Type localVarReturnType = new TypeToken<CatalogAdminsProductCollection>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
 
     /**
-     * Get products (asynchronously)
-     * Retrieves a list of products according to any specified filter criteria and sort options.
+     * Get Products (asynchronously)
+     * Retrieves a list of products according to any specified filter criteria and sort options. This current version of the Products API includes localizedContent to support &lt;a href&#x3D;\&quot;/pages/catalog-structure#multi-locale-catalogs\&quot;&gt;multi-locale catalogs&lt;/a&gt;, which was not present in the previous API model. If you were a client prior to May 2024 and have upgraded your implementation to support this feature, you can still access product data that has not yet been rewritten to the new model by providing an x-api-version header set to \&quot;1\&quot;. 
      * @param startIndex Used to page results from a query. Indicates the zero-based offset in the complete result set where the returned entities begin. For example, with a PageSize of 25, to get the 51st through the 75th items, startIndex&#x3D;3. The default value is 0. (optional, default to 0)
      * @param pageSize Used to page results from a query. Indicates the maximum number of entities to return from a single query. The default value is 20 and the maximum value is 200. (optional, default to 0)
      * @param sortBy The element to sort the results by and the order in which the results appear. Either ascending or descending order. For example, to sort the results by “ID” ascending then by “CreateDate” descending, use: id asc,createdate desc. (optional)
@@ -1300,24 +1371,26 @@ public class ProductsApi {
      * @param q  (optional)
      * @param qLimit  (optional)
      * @param noCount  (optional)
+     * @param responseFields limits which fields are returned in the response body (optional)
      * @param _callback The callback to be executed when the API call finishes
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call getProductsAsync(Integer startIndex, Integer pageSize, String sortBy, String responseGroups, String filter, String q, Integer qLimit, Boolean noCount, final ApiCallback<CatalogAdminsProductCollection> _callback) throws ApiException {
+    public okhttp3.Call getProductsAsync(Integer startIndex, Integer pageSize, String sortBy, String responseGroups, String filter, String q, Integer qLimit, Boolean noCount, String responseFields, final ApiCallback<CatalogAdminsProductCollection> _callback) throws ApiException {
 
-        okhttp3.Call localVarCall = getProductsValidateBeforeCall(startIndex, pageSize, sortBy, responseGroups, filter, q, qLimit, noCount, _callback);
+        okhttp3.Call localVarCall = getProductsValidateBeforeCall(startIndex, pageSize, sortBy, responseGroups, filter, q, qLimit, noCount, responseFields, _callback);
         Type localVarReturnType = new TypeToken<CatalogAdminsProductCollection>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
     }
     /**
      * Build call for renameProductCodes
+     * @param responseFields limits which fields are returned in the response body (optional)
      * @param productCodeRename An array specifying the existing productCode and the new productCode it should be renamed to (optional)
      * @param _callback Callback for upload/download progress
      * @return Call to execute
@@ -1325,10 +1398,10 @@ public class ProductsApi {
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call renameProductCodesCall(List<ProductCodeRename> productCodeRename, final ApiCallback _callback) throws ApiException {
+    public okhttp3.Call renameProductCodesCall(String responseFields, List<ProductCodeRename> productCodeRename, final ApiCallback _callback) throws ApiException {
         String basePath = null;
         // Operation Servers
         String[] localBasePaths = new String[] {  };
@@ -1353,6 +1426,10 @@ public class ProductsApi {
         Map<String, String> localVarCookieParams = new HashMap<String, String>();
         Map<String, Object> localVarFormParams = new HashMap<String, Object>();
 
+        if (responseFields != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("responseFields", responseFields));
+        }
+
         final String[] localVarAccepts = {
             
         };
@@ -1369,54 +1446,57 @@ public class ProductsApi {
             localVarHeaderParams.put("Content-Type", localVarContentType);
         }
 
-        String[] localVarAuthNames = new String[] { "bearerAuth", "clientOauth2" };
+        String[] localVarAuthNames = new String[] { "bearerAuth" };
         return localVarApiClient.buildCall(basePath, localVarPath, "POST", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call renameProductCodesValidateBeforeCall(List<ProductCodeRename> productCodeRename, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call renameProductCodesValidateBeforeCall(String responseFields, List<ProductCodeRename> productCodeRename, final ApiCallback _callback) throws ApiException {
         
 
-        okhttp3.Call localVarCall = renameProductCodesCall(productCodeRename, _callback);
+        okhttp3.Call localVarCall = renameProductCodesCall(responseFields, productCodeRename, _callback);
         return localVarCall;
 
     }
 
     /**
-     * Rename product codes
-     * Action that allows productCodes to be Renamed. Changing the resource identifier of a product could cause problems for established products.
+     * Rename Product Codes
+     * Action that allows productCodes to be renamed.
+     * @param responseFields limits which fields are returned in the response body (optional)
      * @param productCodeRename An array specifying the existing productCode and the new productCode it should be renamed to (optional)
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
      </table>
      */
-    public void renameProductCodes(List<ProductCodeRename> productCodeRename) throws ApiException {
-        renameProductCodesWithHttpInfo(productCodeRename);
+    public void renameProductCodes(String responseFields, List<ProductCodeRename> productCodeRename) throws ApiException {
+        renameProductCodesWithHttpInfo(responseFields, productCodeRename);
     }
 
     /**
-     * Rename product codes
-     * Action that allows productCodes to be Renamed. Changing the resource identifier of a product could cause problems for established products.
+     * Rename Product Codes
+     * Action that allows productCodes to be renamed.
+     * @param responseFields limits which fields are returned in the response body (optional)
      * @param productCodeRename An array specifying the existing productCode and the new productCode it should be renamed to (optional)
      * @return ApiResponse&lt;Void&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<Void> renameProductCodesWithHttpInfo(List<ProductCodeRename> productCodeRename) throws ApiException {
-        okhttp3.Call localVarCall = renameProductCodesValidateBeforeCall(productCodeRename, null);
+    public ApiResponse<Void> renameProductCodesWithHttpInfo(String responseFields, List<ProductCodeRename> productCodeRename) throws ApiException {
+        okhttp3.Call localVarCall = renameProductCodesValidateBeforeCall(responseFields, productCodeRename, null);
         return localVarApiClient.execute(localVarCall);
     }
 
     /**
-     * Rename product codes (asynchronously)
-     * Action that allows productCodes to be Renamed. Changing the resource identifier of a product could cause problems for established products.
+     * Rename Product Codes (asynchronously)
+     * Action that allows productCodes to be renamed.
+     * @param responseFields limits which fields are returned in the response body (optional)
      * @param productCodeRename An array specifying the existing productCode and the new productCode it should be renamed to (optional)
      * @param _callback The callback to be executed when the API call finishes
      * @return The request call
@@ -1424,18 +1504,20 @@ public class ProductsApi {
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call renameProductCodesAsync(List<ProductCodeRename> productCodeRename, final ApiCallback<Void> _callback) throws ApiException {
+    public okhttp3.Call renameProductCodesAsync(String responseFields, List<ProductCodeRename> productCodeRename, final ApiCallback<Void> _callback) throws ApiException {
 
-        okhttp3.Call localVarCall = renameProductCodesValidateBeforeCall(productCodeRename, _callback);
+        okhttp3.Call localVarCall = renameProductCodesValidateBeforeCall(responseFields, productCodeRename, _callback);
         localVarApiClient.executeAsync(localVarCall, _callback);
         return localVarCall;
     }
     /**
      * Build call for updateProduct
      * @param productCode Merchant-created code associated with the product, for example, a SKU. Required. (required)
+     * @param batchJobCode  (optional)
+     * @param responseFields limits which fields are returned in the response body (optional)
      * @param catalogAdminsProduct Properties of the product that you want to update. Required properties: ProductCode, Content.ProductName, and Price.ListPrice. (optional)
      * @param _callback Callback for upload/download progress
      * @return Call to execute
@@ -1443,10 +1525,10 @@ public class ProductsApi {
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call updateProductCall(String productCode, CatalogAdminsProduct catalogAdminsProduct, final ApiCallback _callback) throws ApiException {
+    public okhttp3.Call updateProductCall(String productCode, String batchJobCode, String responseFields, CatalogAdminsProduct catalogAdminsProduct, final ApiCallback _callback) throws ApiException {
         String basePath = null;
         // Operation Servers
         String[] localBasePaths = new String[] {  };
@@ -1472,6 +1554,14 @@ public class ProductsApi {
         Map<String, String> localVarCookieParams = new HashMap<String, String>();
         Map<String, Object> localVarFormParams = new HashMap<String, Object>();
 
+        if (batchJobCode != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("batchJobCode", batchJobCode));
+        }
+
+        if (responseFields != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("responseFields", responseFields));
+        }
+
         final String[] localVarAccepts = {
             "application/json", "text/json", "text/plain"
         };
@@ -1488,12 +1578,12 @@ public class ProductsApi {
             localVarHeaderParams.put("Content-Type", localVarContentType);
         }
 
-        String[] localVarAuthNames = new String[] { "bearerAuth", "clientOauth2" };
+        String[] localVarAuthNames = new String[] { "bearerAuth" };
         return localVarApiClient.buildCall(basePath, localVarPath, "PUT", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call updateProductValidateBeforeCall(String productCode, CatalogAdminsProduct catalogAdminsProduct, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call updateProductValidateBeforeCall(String productCode, String batchJobCode, String responseFields, CatalogAdminsProduct catalogAdminsProduct, final ApiCallback _callback) throws ApiException {
         
         // verify the required parameter 'productCode' is set
         if (productCode == null) {
@@ -1501,52 +1591,58 @@ public class ProductsApi {
         }
         
 
-        okhttp3.Call localVarCall = updateProductCall(productCode, catalogAdminsProduct, _callback);
+        okhttp3.Call localVarCall = updateProductCall(productCode, batchJobCode, responseFields, catalogAdminsProduct, _callback);
         return localVarCall;
 
     }
 
     /**
-     * Update product
-     * Modifies an existing product.
+     * Update Product
+     * Modifies an existing product. This current version of the Products API includes localizedContent to support &lt;a href&#x3D;\&quot;/pages/catalog-structure#multi-locale-catalogs\&quot;&gt;multi-locale catalogs&lt;/a&gt;, which was not present in the previous API model. If you were a client prior to May 2024 and have upgraded your implementation to support this feature, you can still access product data that has not yet been rewritten to the new model by providing an x-api-version header set to \&quot;1\&quot;.
      * @param productCode Merchant-created code associated with the product, for example, a SKU. Required. (required)
+     * @param batchJobCode  (optional)
+     * @param responseFields limits which fields are returned in the response body (optional)
      * @param catalogAdminsProduct Properties of the product that you want to update. Required properties: ProductCode, Content.ProductName, and Price.ListPrice. (optional)
      * @return CatalogAdminsProduct
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
      </table>
      */
-    public CatalogAdminsProduct updateProduct(String productCode, CatalogAdminsProduct catalogAdminsProduct) throws ApiException {
-        ApiResponse<CatalogAdminsProduct> localVarResp = updateProductWithHttpInfo(productCode, catalogAdminsProduct);
+    public CatalogAdminsProduct updateProduct(String productCode, String batchJobCode, String responseFields, CatalogAdminsProduct catalogAdminsProduct) throws ApiException {
+        ApiResponse<CatalogAdminsProduct> localVarResp = updateProductWithHttpInfo(productCode, batchJobCode, responseFields, catalogAdminsProduct);
         return localVarResp.getData();
     }
 
     /**
-     * Update product
-     * Modifies an existing product.
+     * Update Product
+     * Modifies an existing product. This current version of the Products API includes localizedContent to support &lt;a href&#x3D;\&quot;/pages/catalog-structure#multi-locale-catalogs\&quot;&gt;multi-locale catalogs&lt;/a&gt;, which was not present in the previous API model. If you were a client prior to May 2024 and have upgraded your implementation to support this feature, you can still access product data that has not yet been rewritten to the new model by providing an x-api-version header set to \&quot;1\&quot;.
      * @param productCode Merchant-created code associated with the product, for example, a SKU. Required. (required)
+     * @param batchJobCode  (optional)
+     * @param responseFields limits which fields are returned in the response body (optional)
      * @param catalogAdminsProduct Properties of the product that you want to update. Required properties: ProductCode, Content.ProductName, and Price.ListPrice. (optional)
      * @return ApiResponse&lt;CatalogAdminsProduct&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<CatalogAdminsProduct> updateProductWithHttpInfo(String productCode, CatalogAdminsProduct catalogAdminsProduct) throws ApiException {
-        okhttp3.Call localVarCall = updateProductValidateBeforeCall(productCode, catalogAdminsProduct, null);
+    public ApiResponse<CatalogAdminsProduct> updateProductWithHttpInfo(String productCode, String batchJobCode, String responseFields, CatalogAdminsProduct catalogAdminsProduct) throws ApiException {
+        okhttp3.Call localVarCall = updateProductValidateBeforeCall(productCode, batchJobCode, responseFields, catalogAdminsProduct, null);
         Type localVarReturnType = new TypeToken<CatalogAdminsProduct>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
 
     /**
-     * Update product (asynchronously)
-     * Modifies an existing product.
+     * Update Product (asynchronously)
+     * Modifies an existing product. This current version of the Products API includes localizedContent to support &lt;a href&#x3D;\&quot;/pages/catalog-structure#multi-locale-catalogs\&quot;&gt;multi-locale catalogs&lt;/a&gt;, which was not present in the previous API model. If you were a client prior to May 2024 and have upgraded your implementation to support this feature, you can still access product data that has not yet been rewritten to the new model by providing an x-api-version header set to \&quot;1\&quot;.
      * @param productCode Merchant-created code associated with the product, for example, a SKU. Required. (required)
+     * @param batchJobCode  (optional)
+     * @param responseFields limits which fields are returned in the response body (optional)
      * @param catalogAdminsProduct Properties of the product that you want to update. Required properties: ProductCode, Content.ProductName, and Price.ListPrice. (optional)
      * @param _callback The callback to be executed when the API call finishes
      * @return The request call
@@ -1554,12 +1650,12 @@ public class ProductsApi {
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call updateProductAsync(String productCode, CatalogAdminsProduct catalogAdminsProduct, final ApiCallback<CatalogAdminsProduct> _callback) throws ApiException {
+    public okhttp3.Call updateProductAsync(String productCode, String batchJobCode, String responseFields, CatalogAdminsProduct catalogAdminsProduct, final ApiCallback<CatalogAdminsProduct> _callback) throws ApiException {
 
-        okhttp3.Call localVarCall = updateProductValidateBeforeCall(productCode, catalogAdminsProduct, _callback);
+        okhttp3.Call localVarCall = updateProductValidateBeforeCall(productCode, batchJobCode, responseFields, catalogAdminsProduct, _callback);
         Type localVarReturnType = new TypeToken<CatalogAdminsProduct>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
@@ -1568,6 +1664,7 @@ public class ProductsApi {
      * Build call for updateProductInCatalog
      * @param productCode  (required)
      * @param catalogId  (required)
+     * @param responseFields limits which fields are returned in the response body (optional)
      * @param productInCatalogInfo  (optional)
      * @param _callback Callback for upload/download progress
      * @return Call to execute
@@ -1575,10 +1672,10 @@ public class ProductsApi {
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call updateProductInCatalogCall(String productCode, Integer catalogId, ProductInCatalogInfo productInCatalogInfo, final ApiCallback _callback) throws ApiException {
+    public okhttp3.Call updateProductInCatalogCall(String productCode, Integer catalogId, String responseFields, ProductInCatalogInfo productInCatalogInfo, final ApiCallback _callback) throws ApiException {
         String basePath = null;
         // Operation Servers
         String[] localBasePaths = new String[] {  };
@@ -1605,6 +1702,10 @@ public class ProductsApi {
         Map<String, String> localVarCookieParams = new HashMap<String, String>();
         Map<String, Object> localVarFormParams = new HashMap<String, Object>();
 
+        if (responseFields != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("responseFields", responseFields));
+        }
+
         final String[] localVarAccepts = {
             "application/json", "text/json", "text/plain"
         };
@@ -1621,12 +1722,12 @@ public class ProductsApi {
             localVarHeaderParams.put("Content-Type", localVarContentType);
         }
 
-        String[] localVarAuthNames = new String[] { "bearerAuth", "clientOauth2" };
+        String[] localVarAuthNames = new String[] { "bearerAuth" };
         return localVarApiClient.buildCall(basePath, localVarPath, "PUT", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call updateProductInCatalogValidateBeforeCall(String productCode, Integer catalogId, ProductInCatalogInfo productInCatalogInfo, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call updateProductInCatalogValidateBeforeCall(String productCode, Integer catalogId, String responseFields, ProductInCatalogInfo productInCatalogInfo, final ApiCallback _callback) throws ApiException {
         
         // verify the required parameter 'productCode' is set
         if (productCode == null) {
@@ -1639,55 +1740,58 @@ public class ProductsApi {
         }
         
 
-        okhttp3.Call localVarCall = updateProductInCatalogCall(productCode, catalogId, productInCatalogInfo, _callback);
+        okhttp3.Call localVarCall = updateProductInCatalogCall(productCode, catalogId, responseFields, productInCatalogInfo, _callback);
         return localVarCall;
 
     }
 
     /**
-     * Update product in catalog
-     * 
+     * Update Product in Catalog
+     * Update a product in a particular catalog. This current version of the Products API includes localizedContent to support &lt;a href&#x3D;\&quot;/pages/catalog-structure#multi-locale-catalogs\&quot;&gt;multi-locale catalogs&lt;/a&gt;, which was not present in the previous API model. If you were a client prior to May 2024 and have upgraded your implementation to support this feature, you can still access product data that has not yet been rewritten to the new model by providing an x-api-version header set to \&quot;1\&quot;.
      * @param productCode  (required)
      * @param catalogId  (required)
+     * @param responseFields limits which fields are returned in the response body (optional)
      * @param productInCatalogInfo  (optional)
      * @return ProductInCatalogInfo
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
      </table>
      */
-    public ProductInCatalogInfo updateProductInCatalog(String productCode, Integer catalogId, ProductInCatalogInfo productInCatalogInfo) throws ApiException {
-        ApiResponse<ProductInCatalogInfo> localVarResp = updateProductInCatalogWithHttpInfo(productCode, catalogId, productInCatalogInfo);
+    public ProductInCatalogInfo updateProductInCatalog(String productCode, Integer catalogId, String responseFields, ProductInCatalogInfo productInCatalogInfo) throws ApiException {
+        ApiResponse<ProductInCatalogInfo> localVarResp = updateProductInCatalogWithHttpInfo(productCode, catalogId, responseFields, productInCatalogInfo);
         return localVarResp.getData();
     }
 
     /**
-     * Update product in catalog
-     * 
+     * Update Product in Catalog
+     * Update a product in a particular catalog. This current version of the Products API includes localizedContent to support &lt;a href&#x3D;\&quot;/pages/catalog-structure#multi-locale-catalogs\&quot;&gt;multi-locale catalogs&lt;/a&gt;, which was not present in the previous API model. If you were a client prior to May 2024 and have upgraded your implementation to support this feature, you can still access product data that has not yet been rewritten to the new model by providing an x-api-version header set to \&quot;1\&quot;.
      * @param productCode  (required)
      * @param catalogId  (required)
+     * @param responseFields limits which fields are returned in the response body (optional)
      * @param productInCatalogInfo  (optional)
      * @return ApiResponse&lt;ProductInCatalogInfo&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<ProductInCatalogInfo> updateProductInCatalogWithHttpInfo(String productCode, Integer catalogId, ProductInCatalogInfo productInCatalogInfo) throws ApiException {
-        okhttp3.Call localVarCall = updateProductInCatalogValidateBeforeCall(productCode, catalogId, productInCatalogInfo, null);
+    public ApiResponse<ProductInCatalogInfo> updateProductInCatalogWithHttpInfo(String productCode, Integer catalogId, String responseFields, ProductInCatalogInfo productInCatalogInfo) throws ApiException {
+        okhttp3.Call localVarCall = updateProductInCatalogValidateBeforeCall(productCode, catalogId, responseFields, productInCatalogInfo, null);
         Type localVarReturnType = new TypeToken<ProductInCatalogInfo>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
 
     /**
-     * Update product in catalog (asynchronously)
-     * 
+     * Update Product in Catalog (asynchronously)
+     * Update a product in a particular catalog. This current version of the Products API includes localizedContent to support &lt;a href&#x3D;\&quot;/pages/catalog-structure#multi-locale-catalogs\&quot;&gt;multi-locale catalogs&lt;/a&gt;, which was not present in the previous API model. If you were a client prior to May 2024 and have upgraded your implementation to support this feature, you can still access product data that has not yet been rewritten to the new model by providing an x-api-version header set to \&quot;1\&quot;.
      * @param productCode  (required)
      * @param catalogId  (required)
+     * @param responseFields limits which fields are returned in the response body (optional)
      * @param productInCatalogInfo  (optional)
      * @param _callback The callback to be executed when the API call finishes
      * @return The request call
@@ -1695,12 +1799,12 @@ public class ProductsApi {
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call updateProductInCatalogAsync(String productCode, Integer catalogId, ProductInCatalogInfo productInCatalogInfo, final ApiCallback<ProductInCatalogInfo> _callback) throws ApiException {
+    public okhttp3.Call updateProductInCatalogAsync(String productCode, Integer catalogId, String responseFields, ProductInCatalogInfo productInCatalogInfo, final ApiCallback<ProductInCatalogInfo> _callback) throws ApiException {
 
-        okhttp3.Call localVarCall = updateProductInCatalogValidateBeforeCall(productCode, catalogId, productInCatalogInfo, _callback);
+        okhttp3.Call localVarCall = updateProductInCatalogValidateBeforeCall(productCode, catalogId, responseFields, productInCatalogInfo, _callback);
         Type localVarReturnType = new TypeToken<ProductInCatalogInfo>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
@@ -1708,6 +1812,7 @@ public class ProductsApi {
     /**
      * Build call for updateProductInCatalogs
      * @param productCode  (required)
+     * @param responseFields limits which fields are returned in the response body (optional)
      * @param productInCatalogInfo  (optional)
      * @param _callback Callback for upload/download progress
      * @return Call to execute
@@ -1715,10 +1820,10 @@ public class ProductsApi {
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call updateProductInCatalogsCall(String productCode, List<ProductInCatalogInfo> productInCatalogInfo, final ApiCallback _callback) throws ApiException {
+    public okhttp3.Call updateProductInCatalogsCall(String productCode, String responseFields, List<ProductInCatalogInfo> productInCatalogInfo, final ApiCallback _callback) throws ApiException {
         String basePath = null;
         // Operation Servers
         String[] localBasePaths = new String[] {  };
@@ -1744,6 +1849,10 @@ public class ProductsApi {
         Map<String, String> localVarCookieParams = new HashMap<String, String>();
         Map<String, Object> localVarFormParams = new HashMap<String, Object>();
 
+        if (responseFields != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("responseFields", responseFields));
+        }
+
         final String[] localVarAccepts = {
             "application/json", "text/json", "text/plain"
         };
@@ -1760,12 +1869,12 @@ public class ProductsApi {
             localVarHeaderParams.put("Content-Type", localVarContentType);
         }
 
-        String[] localVarAuthNames = new String[] { "bearerAuth", "clientOauth2" };
+        String[] localVarAuthNames = new String[] { "bearerAuth" };
         return localVarApiClient.buildCall(basePath, localVarPath, "PUT", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call updateProductInCatalogsValidateBeforeCall(String productCode, List<ProductInCatalogInfo> productInCatalogInfo, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call updateProductInCatalogsValidateBeforeCall(String productCode, String responseFields, List<ProductInCatalogInfo> productInCatalogInfo, final ApiCallback _callback) throws ApiException {
         
         // verify the required parameter 'productCode' is set
         if (productCode == null) {
@@ -1773,52 +1882,55 @@ public class ProductsApi {
         }
         
 
-        okhttp3.Call localVarCall = updateProductInCatalogsCall(productCode, productInCatalogInfo, _callback);
+        okhttp3.Call localVarCall = updateProductInCatalogsCall(productCode, responseFields, productInCatalogInfo, _callback);
         return localVarCall;
 
     }
 
     /**
-     * Update products in catalog
-     * Use the Products resource to create and manage products for your store. You can create products with options that a shopper configures (such as a T-shirt color and size). The system can manage inventory for all combinations of your product options, and can calculate tax and shipping costs.
+     * Update Product in Catalogs
+     * Updates existing products across your catalogs. This current version of the Products API includes localizedContent to support &lt;a href&#x3D;\&quot;/pages/catalog-structure#multi-locale-catalogs\&quot;&gt;multi-locale catalogs&lt;/a&gt;, which was not present in the previous API model. If you were a client prior to May 2024 and have upgraded your implementation to support this feature, you can still access product data that has not yet been rewritten to the new model by providing an x-api-version header set to \&quot;1\&quot;. 
      * @param productCode  (required)
+     * @param responseFields limits which fields are returned in the response body (optional)
      * @param productInCatalogInfo  (optional)
      * @return List&lt;ProductInCatalogInfo&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
      </table>
      */
-    public List<ProductInCatalogInfo> updateProductInCatalogs(String productCode, List<ProductInCatalogInfo> productInCatalogInfo) throws ApiException {
-        ApiResponse<List<ProductInCatalogInfo>> localVarResp = updateProductInCatalogsWithHttpInfo(productCode, productInCatalogInfo);
+    public List<ProductInCatalogInfo> updateProductInCatalogs(String productCode, String responseFields, List<ProductInCatalogInfo> productInCatalogInfo) throws ApiException {
+        ApiResponse<List<ProductInCatalogInfo>> localVarResp = updateProductInCatalogsWithHttpInfo(productCode, responseFields, productInCatalogInfo);
         return localVarResp.getData();
     }
 
     /**
-     * Update products in catalog
-     * Use the Products resource to create and manage products for your store. You can create products with options that a shopper configures (such as a T-shirt color and size). The system can manage inventory for all combinations of your product options, and can calculate tax and shipping costs.
+     * Update Product in Catalogs
+     * Updates existing products across your catalogs. This current version of the Products API includes localizedContent to support &lt;a href&#x3D;\&quot;/pages/catalog-structure#multi-locale-catalogs\&quot;&gt;multi-locale catalogs&lt;/a&gt;, which was not present in the previous API model. If you were a client prior to May 2024 and have upgraded your implementation to support this feature, you can still access product data that has not yet been rewritten to the new model by providing an x-api-version header set to \&quot;1\&quot;. 
      * @param productCode  (required)
+     * @param responseFields limits which fields are returned in the response body (optional)
      * @param productInCatalogInfo  (optional)
      * @return ApiResponse&lt;List&lt;ProductInCatalogInfo&gt;&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<List<ProductInCatalogInfo>> updateProductInCatalogsWithHttpInfo(String productCode, List<ProductInCatalogInfo> productInCatalogInfo) throws ApiException {
-        okhttp3.Call localVarCall = updateProductInCatalogsValidateBeforeCall(productCode, productInCatalogInfo, null);
+    public ApiResponse<List<ProductInCatalogInfo>> updateProductInCatalogsWithHttpInfo(String productCode, String responseFields, List<ProductInCatalogInfo> productInCatalogInfo) throws ApiException {
+        okhttp3.Call localVarCall = updateProductInCatalogsValidateBeforeCall(productCode, responseFields, productInCatalogInfo, null);
         Type localVarReturnType = new TypeToken<List<ProductInCatalogInfo>>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
 
     /**
-     * Update products in catalog (asynchronously)
-     * Use the Products resource to create and manage products for your store. You can create products with options that a shopper configures (such as a T-shirt color and size). The system can manage inventory for all combinations of your product options, and can calculate tax and shipping costs.
+     * Update Product in Catalogs (asynchronously)
+     * Updates existing products across your catalogs. This current version of the Products API includes localizedContent to support &lt;a href&#x3D;\&quot;/pages/catalog-structure#multi-locale-catalogs\&quot;&gt;multi-locale catalogs&lt;/a&gt;, which was not present in the previous API model. If you were a client prior to May 2024 and have upgraded your implementation to support this feature, you can still access product data that has not yet been rewritten to the new model by providing an x-api-version header set to \&quot;1\&quot;. 
      * @param productCode  (required)
+     * @param responseFields limits which fields are returned in the response body (optional)
      * @param productInCatalogInfo  (optional)
      * @param _callback The callback to be executed when the API call finishes
      * @return The request call
@@ -1826,12 +1938,12 @@ public class ProductsApi {
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call updateProductInCatalogsAsync(String productCode, List<ProductInCatalogInfo> productInCatalogInfo, final ApiCallback<List<ProductInCatalogInfo>> _callback) throws ApiException {
+    public okhttp3.Call updateProductInCatalogsAsync(String productCode, String responseFields, List<ProductInCatalogInfo> productInCatalogInfo, final ApiCallback<List<ProductInCatalogInfo>> _callback) throws ApiException {
 
-        okhttp3.Call localVarCall = updateProductInCatalogsValidateBeforeCall(productCode, productInCatalogInfo, _callback);
+        okhttp3.Call localVarCall = updateProductInCatalogsValidateBeforeCall(productCode, responseFields, productInCatalogInfo, _callback);
         Type localVarReturnType = new TypeToken<List<ProductInCatalogInfo>>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;

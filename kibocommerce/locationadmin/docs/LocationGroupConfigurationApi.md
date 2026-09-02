@@ -5,13 +5,13 @@ All URIs are relative to *http://https:/api*
 | Method | HTTP request | Description |
 |------------- | ------------- | -------------|
 | [**getLocationGroupConfiguration**](LocationGroupConfigurationApi.md#getLocationGroupConfiguration) | **GET** /commerce/admin/locationGroupConfiguration/{locationGroupCode} | Get Location Group Configuration |
-| [**getLocationGroupConfigurationByLocationCode**](LocationGroupConfigurationApi.md#getLocationGroupConfigurationByLocationCode) | **GET** /commerce/admin/locationGroupConfiguration/location/{locationCode} | Get Location Group Configuration By Location Code |
+| [**getLocationGroupConfigurationByLocationCode**](LocationGroupConfigurationApi.md#getLocationGroupConfigurationByLocationCode) | **GET** /commerce/admin/locationGroupConfiguration/location/{locationCode} | Get Location Group Configuration by Location |
 | [**setLocationGroupConfiguration**](LocationGroupConfigurationApi.md#setLocationGroupConfiguration) | **PUT** /commerce/admin/locationGroupConfiguration/{locationGroupCode} | Set Location Group Configuration |
 
 
 <a name="getLocationGroupConfiguration"></a>
 # **getLocationGroupConfiguration**
-> LocationGroupConfiguration getLocationGroupConfiguration(locationGroupCode)
+> LocationGroupConfiguration getLocationGroupConfiguration(locationGroupCode, responseFields)
 
 Get Location Group Configuration
 
@@ -36,14 +36,11 @@ public class Example {
     HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
     bearerAuth.setBearerToken("BEARER TOKEN");
 
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
-
     LocationGroupConfigurationApi apiInstance = new LocationGroupConfigurationApi(defaultClient);
     String locationGroupCode = "locationGroupCode_example"; // String | 
+    String responseFields = "responseFields_example"; // String | limits which fields are returned in the response body
     try {
-      LocationGroupConfiguration result = apiInstance.getLocationGroupConfiguration(locationGroupCode);
+      LocationGroupConfiguration result = apiInstance.getLocationGroupConfiguration(locationGroupCode, responseFields);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling LocationGroupConfigurationApi#getLocationGroupConfiguration");
@@ -61,6 +58,7 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **locationGroupCode** | **String**|  | |
+| **responseFields** | **String**| limits which fields are returned in the response body | [optional] |
 
 ### Return type
 
@@ -68,7 +66,7 @@ public class Example {
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth), [clientOauth2](../README.md#clientOauth2)
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
@@ -82,11 +80,11 @@ public class Example {
 
 <a name="getLocationGroupConfigurationByLocationCode"></a>
 # **getLocationGroupConfigurationByLocationCode**
-> LocationGroupConfiguration getLocationGroupConfigurationByLocationCode(locationCode)
+> LocationGroupConfiguration getLocationGroupConfigurationByLocationCode(locationCode, responseFields)
 
-Get Location Group Configuration By Location Code
+Get Location Group Configuration by Location
 
-Get this tenants Location Group Configuration Values.
+Get this tenants Location Group Configuration Values by Location Code.
 
 ### Example
 ```java
@@ -107,14 +105,11 @@ public class Example {
     HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
     bearerAuth.setBearerToken("BEARER TOKEN");
 
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
-
     LocationGroupConfigurationApi apiInstance = new LocationGroupConfigurationApi(defaultClient);
     String locationCode = "locationCode_example"; // String | 
+    String responseFields = "responseFields_example"; // String | limits which fields are returned in the response body
     try {
-      LocationGroupConfiguration result = apiInstance.getLocationGroupConfigurationByLocationCode(locationCode);
+      LocationGroupConfiguration result = apiInstance.getLocationGroupConfigurationByLocationCode(locationCode, responseFields);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling LocationGroupConfigurationApi#getLocationGroupConfigurationByLocationCode");
@@ -132,6 +127,7 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **locationCode** | **String**|  | |
+| **responseFields** | **String**| limits which fields are returned in the response body | [optional] |
 
 ### Return type
 
@@ -139,7 +135,7 @@ public class Example {
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth), [clientOauth2](../README.md#clientOauth2)
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
@@ -153,7 +149,7 @@ public class Example {
 
 <a name="setLocationGroupConfiguration"></a>
 # **setLocationGroupConfiguration**
-> LocationGroupConfiguration setLocationGroupConfiguration(locationGroupCode, locationGroupConfiguration)
+> LocationGroupConfiguration setLocationGroupConfiguration(locationGroupCode, responseFields, locationGroupConfiguration)
 
 Set Location Group Configuration
 
@@ -178,15 +174,12 @@ public class Example {
     HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
     bearerAuth.setBearerToken("BEARER TOKEN");
 
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
-
     LocationGroupConfigurationApi apiInstance = new LocationGroupConfigurationApi(defaultClient);
     String locationGroupCode = "locationGroupCode_example"; // String | 
+    String responseFields = "responseFields_example"; // String | limits which fields are returned in the response body
     LocationGroupConfiguration locationGroupConfiguration = new LocationGroupConfiguration(); // LocationGroupConfiguration | 
     try {
-      LocationGroupConfiguration result = apiInstance.setLocationGroupConfiguration(locationGroupCode, locationGroupConfiguration);
+      LocationGroupConfiguration result = apiInstance.setLocationGroupConfiguration(locationGroupCode, responseFields, locationGroupConfiguration);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling LocationGroupConfigurationApi#setLocationGroupConfiguration");
@@ -204,6 +197,7 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **locationGroupCode** | **String**|  | |
+| **responseFields** | **String**| limits which fields are returned in the response body | [optional] |
 | **locationGroupConfiguration** | [**LocationGroupConfiguration**](LocationGroupConfiguration.md)|  | [optional] |
 
 ### Return type
@@ -212,7 +206,7 @@ public class Example {
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth), [clientOauth2](../README.md#clientOauth2)
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 

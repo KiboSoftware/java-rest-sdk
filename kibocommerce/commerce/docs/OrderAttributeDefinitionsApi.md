@@ -13,11 +13,11 @@ All URIs are relative to *http://https:/api*
 
 <a name="createAttribute"></a>
 # **createAttribute**
-> CommerceRuntimeAttribute createAttribute(commerceRuntimeAttribute)
+> CommerceRuntimeAttribute createAttribute(responseFields, commerceRuntimeAttribute)
 
 Create Attribute
 
-Create Attribute
+Create a new attribute.
 
 ### Example
 ```java
@@ -38,14 +38,11 @@ public class Example {
     HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
     bearerAuth.setBearerToken("BEARER TOKEN");
 
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
-
     OrderAttributeDefinitionsApi apiInstance = new OrderAttributeDefinitionsApi(defaultClient);
+    String responseFields = "responseFields_example"; // String | limits which fields are returned in the response body
     CommerceRuntimeAttribute commerceRuntimeAttribute = new CommerceRuntimeAttribute(); // CommerceRuntimeAttribute | 
     try {
-      CommerceRuntimeAttribute result = apiInstance.createAttribute(commerceRuntimeAttribute);
+      CommerceRuntimeAttribute result = apiInstance.createAttribute(responseFields, commerceRuntimeAttribute);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling OrderAttributeDefinitionsApi#createAttribute");
@@ -62,6 +59,7 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
+| **responseFields** | **String**| limits which fields are returned in the response body | [optional] |
 | **commerceRuntimeAttribute** | [**CommerceRuntimeAttribute**](CommerceRuntimeAttribute.md)|  | [optional] |
 
 ### Return type
@@ -70,7 +68,7 @@ public class Example {
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth), [clientOauth2](../README.md#clientOauth2)
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
@@ -80,15 +78,15 @@ public class Example {
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Success |  -  |
+| **200** | OK |  -  |
 
 <a name="getAttribute"></a>
 # **getAttribute**
-> CommerceRuntimeAttribute getAttribute(attributeFQN, responseGroups)
+> CommerceRuntimeAttribute getAttribute(attributeFQN, responseGroups, responseFields)
 
 Get Attribute
 
-Get Attribute
+Get an order attribute by its attributeFQN.
 
 ### Example
 ```java
@@ -109,15 +107,12 @@ public class Example {
     HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
     bearerAuth.setBearerToken("BEARER TOKEN");
 
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
-
     OrderAttributeDefinitionsApi apiInstance = new OrderAttributeDefinitionsApi(defaultClient);
     String attributeFQN = "attributeFQN_example"; // String | 
     String responseGroups = "responseGroups_example"; // String | 
+    String responseFields = "responseFields_example"; // String | limits which fields are returned in the response body
     try {
-      CommerceRuntimeAttribute result = apiInstance.getAttribute(attributeFQN, responseGroups);
+      CommerceRuntimeAttribute result = apiInstance.getAttribute(attributeFQN, responseGroups, responseFields);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling OrderAttributeDefinitionsApi#getAttribute");
@@ -136,6 +131,7 @@ public class Example {
 |------------- | ------------- | ------------- | -------------|
 | **attributeFQN** | **String**|  | |
 | **responseGroups** | **String**|  | [optional] |
+| **responseFields** | **String**| limits which fields are returned in the response body | [optional] |
 
 ### Return type
 
@@ -143,7 +139,7 @@ public class Example {
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth), [clientOauth2](../README.md#clientOauth2)
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
@@ -153,15 +149,15 @@ public class Example {
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Success |  -  |
+| **200** | OK |  -  |
 
 <a name="getAttributeVocabularyValues"></a>
 # **getAttributeVocabularyValues**
-> List&lt;CommerceRuntimeAttributeVocabularyValue&gt; getAttributeVocabularyValues(attributeFQN, responseGroups)
+> List&lt;CommerceRuntimeAttributeVocabularyValue&gt; getAttributeVocabularyValues(attributeFQN, responseGroups, responseFields)
 
 Get Attribute Vocabulary Values
 
-Get Attribute Vocabulary Values
+Retrieves the details of attribute vocabulary values.
 
 ### Example
 ```java
@@ -182,15 +178,12 @@ public class Example {
     HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
     bearerAuth.setBearerToken("BEARER TOKEN");
 
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
-
     OrderAttributeDefinitionsApi apiInstance = new OrderAttributeDefinitionsApi(defaultClient);
     String attributeFQN = "attributeFQN_example"; // String | 
     String responseGroups = "responseGroups_example"; // String | 
+    String responseFields = "responseFields_example"; // String | limits which fields are returned in the response body
     try {
-      List<CommerceRuntimeAttributeVocabularyValue> result = apiInstance.getAttributeVocabularyValues(attributeFQN, responseGroups);
+      List<CommerceRuntimeAttributeVocabularyValue> result = apiInstance.getAttributeVocabularyValues(attributeFQN, responseGroups, responseFields);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling OrderAttributeDefinitionsApi#getAttributeVocabularyValues");
@@ -209,6 +202,7 @@ public class Example {
 |------------- | ------------- | ------------- | -------------|
 | **attributeFQN** | **String**|  | |
 | **responseGroups** | **String**|  | [optional] |
+| **responseFields** | **String**| limits which fields are returned in the response body | [optional] |
 
 ### Return type
 
@@ -216,7 +210,7 @@ public class Example {
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth), [clientOauth2](../README.md#clientOauth2)
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
@@ -226,15 +220,15 @@ public class Example {
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Success |  -  |
+| **200** | OK |  -  |
 
 <a name="getAttributes"></a>
 # **getAttributes**
-> CommerceRuntimeAttributeCollection getAttributes(startIndex, pageSize, sortBy, responseGroups, filter)
+> CommerceRuntimeAttributeCollection getAttributes(startIndex, pageSize, sortBy, responseGroups, filter, responseFields)
 
 Get Attributes
 
-Get Attributes
+Retrieves the details of attributes.
 
 ### Example
 ```java
@@ -255,18 +249,15 @@ public class Example {
     HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
     bearerAuth.setBearerToken("BEARER TOKEN");
 
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
-
     OrderAttributeDefinitionsApi apiInstance = new OrderAttributeDefinitionsApi(defaultClient);
     Integer startIndex = 0; // Integer | 
     Integer pageSize = 0; // Integer | 
     String sortBy = "sortBy_example"; // String | 
     String responseGroups = "responseGroups_example"; // String | 
     String filter = "filter_example"; // String | 
+    String responseFields = "responseFields_example"; // String | limits which fields are returned in the response body
     try {
-      CommerceRuntimeAttributeCollection result = apiInstance.getAttributes(startIndex, pageSize, sortBy, responseGroups, filter);
+      CommerceRuntimeAttributeCollection result = apiInstance.getAttributes(startIndex, pageSize, sortBy, responseGroups, filter, responseFields);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling OrderAttributeDefinitionsApi#getAttributes");
@@ -288,6 +279,7 @@ public class Example {
 | **sortBy** | **String**|  | [optional] |
 | **responseGroups** | **String**|  | [optional] |
 | **filter** | **String**|  | [optional] |
+| **responseFields** | **String**| limits which fields are returned in the response body | [optional] |
 
 ### Return type
 
@@ -295,7 +287,7 @@ public class Example {
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth), [clientOauth2](../README.md#clientOauth2)
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
@@ -305,15 +297,15 @@ public class Example {
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Success |  -  |
+| **200** | OK |  -  |
 
 <a name="updateAttribute"></a>
 # **updateAttribute**
-> CommerceRuntimeAttribute updateAttribute(attributeFQN, commerceRuntimeAttribute)
+> CommerceRuntimeAttribute updateAttribute(attributeFQN, responseFields, commerceRuntimeAttribute)
 
 Update Attribute
 
-Update Attribute
+Update an order attribute.
 
 ### Example
 ```java
@@ -334,15 +326,12 @@ public class Example {
     HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
     bearerAuth.setBearerToken("BEARER TOKEN");
 
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
-
     OrderAttributeDefinitionsApi apiInstance = new OrderAttributeDefinitionsApi(defaultClient);
     String attributeFQN = "attributeFQN_example"; // String | 
+    String responseFields = "responseFields_example"; // String | limits which fields are returned in the response body
     CommerceRuntimeAttribute commerceRuntimeAttribute = new CommerceRuntimeAttribute(); // CommerceRuntimeAttribute | 
     try {
-      CommerceRuntimeAttribute result = apiInstance.updateAttribute(attributeFQN, commerceRuntimeAttribute);
+      CommerceRuntimeAttribute result = apiInstance.updateAttribute(attributeFQN, responseFields, commerceRuntimeAttribute);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling OrderAttributeDefinitionsApi#updateAttribute");
@@ -360,6 +349,7 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **attributeFQN** | **String**|  | |
+| **responseFields** | **String**| limits which fields are returned in the response body | [optional] |
 | **commerceRuntimeAttribute** | [**CommerceRuntimeAttribute**](CommerceRuntimeAttribute.md)|  | [optional] |
 
 ### Return type
@@ -368,7 +358,7 @@ public class Example {
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth), [clientOauth2](../README.md#clientOauth2)
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
@@ -378,5 +368,5 @@ public class Example {
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Success |  -  |
+| **200** | OK |  -  |
 

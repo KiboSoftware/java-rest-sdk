@@ -9,7 +9,7 @@ All URIs are relative to *http://https:/api*
 
 <a name="getRoles"></a>
 # **getRoles**
-> RoleCollection getRoles(startIndex, pageSize, filter)
+> RoleCollection getRoles(startIndex, pageSize, filter, responseFields)
 
 Get Roles
 
@@ -34,16 +34,13 @@ public class Example {
     HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
     bearerAuth.setBearerToken("BEARER TOKEN");
 
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
-
     RoleApi apiInstance = new RoleApi(defaultClient);
     Integer startIndex = 0; // Integer | 
     Integer pageSize = 25; // Integer | 
     String filter = "filter_example"; // String | Optional filter param to filter the roles
+    String responseFields = "responseFields_example"; // String | limits which fields are returned in the response body
     try {
-      RoleCollection result = apiInstance.getRoles(startIndex, pageSize, filter);
+      RoleCollection result = apiInstance.getRoles(startIndex, pageSize, filter, responseFields);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling RoleApi#getRoles");
@@ -63,6 +60,7 @@ public class Example {
 | **startIndex** | **Integer**|  | [optional] [default to 0] |
 | **pageSize** | **Integer**|  | [optional] [default to 25] |
 | **filter** | **String**| Optional filter param to filter the roles | [optional] |
+| **responseFields** | **String**| limits which fields are returned in the response body | [optional] |
 
 ### Return type
 
@@ -70,7 +68,7 @@ public class Example {
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth), [clientOauth2](../README.md#clientOauth2)
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
@@ -80,5 +78,5 @@ public class Example {
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Success |  -  |
+| **200** | OK |  -  |
 

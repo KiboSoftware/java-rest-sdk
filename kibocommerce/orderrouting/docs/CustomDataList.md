@@ -10,22 +10,22 @@
 |**created** | **OffsetDateTime** |  |  [optional] |
 |**creatorUsername** | **String** |  |  [optional] |
 |**customDataListID** | **Integer** |  |  [optional] |
-|**dataType** | [**DataTypeEnum**](#DataTypeEnum) |  |  [optional] |
+|**dataType** | [**DataTypeEnum**](#DataTypeEnum) |  |  |
 |**entries** | [**List&lt;CustomDataListEntry&gt;**](CustomDataListEntry.md) |  |  [optional] |
-|**environmentID** | **Integer** |  |  [optional] |
+|**environmentID** | **Integer** |  |  |
 |**fileName** | **String** |  |  [optional] |
-|**name** | **String** |  |  [optional] |
+|**name** | **String** |  |  |
 |**notes** | **String** |  |  [optional] |
 |**pathString** | **String** |  |  [optional] |
 |**persisted** | **Boolean** |  |  [optional] |
-|**siteID** | **Integer** |  |  [optional] |
+|**siteID** | **Integer** |  |  |
 |**state** | [**StateEnum**](#StateEnum) |  |  [optional] |
-|**stringValues** | **List&lt;String&gt;** |  |  [optional] |
-|**tenantID** | **Integer** |  |  [optional] |
+|**stringValues** | **Set&lt;String&gt;** |  |  [optional] |
+|**tenantID** | **Integer** |  |  |
 |**updated** | **OffsetDateTime** |  |  [optional] |
 |**updaterUsername** | **String** |  |  [optional] |
 |**userContext** | [**UserContextInformation**](UserContextInformation.md) |  |  [optional] |
-|**values** | **List&lt;Object&gt;** |  |  [optional] |
+|**values** | **Set&lt;Object&gt;** |  |  [optional] |
 
 
 

@@ -11,12 +11,12 @@
 |**address2** | **String** |  |  [optional] |
 |**address3** | **String** |  |  [optional] |
 |**address4** | **String** |  |  [optional] |
-|**cityOrTown** | **String** |  |  [optional] |
-|**stateOrProvince** | **String** |  |  [optional] |
-|**postalOrZipCode** | **String** |  |  [optional] |
-|**countryCode** | **String** |  |  [optional] |
 |**addressType** | **String** |  |  [optional] |
+|**cityOrTown** | **String** |  |  [optional] |
+|**countryCode** | **String** |  |  [optional] |
 |**isValidated** | **Boolean** |  |  [optional] |
+|**postalOrZipCode** | **String** |  |  [optional] |
+|**stateOrProvince** | **String** |  |  [optional] |
 
 
 ## Implemented Interfaces

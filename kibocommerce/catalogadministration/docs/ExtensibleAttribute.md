@@ -7,27 +7,28 @@
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
-|**id** | **Integer** |  |  [optional] |
 |**adminName** | **String** |  |  [optional] |
-|**namespace** | **String** |  |  [optional] |
 |**attributeCode** | **String** |  |  |
-|**inputType** | **String** |  |  [optional] |
-|**valueType** | **String** |  |  |
-|**dataType** | **String** |  |  [optional] |
-|**attributeMetadata** | [**List&lt;ExtensibleAttributeMetadataItem&gt;**](ExtensibleAttributeMetadataItem.md) |  |  [optional] |
 |**attributeFQN** | **String** |  |  [optional] |
-|**content** | [**ExtensibleAttributeLocalizedContent**](ExtensibleAttributeLocalizedContent.md) |  |  [optional] |
-|**validation** | [**ExtensibleAttributeValidation**](ExtensibleAttributeValidation.md) |  |  [optional] |
-|**vocabularyValues** | [**List&lt;ExtensibleAttributeVocabularyValue&gt;**](ExtensibleAttributeVocabularyValue.md) |  |  [optional] |
+|**attributeMetadata** | [**List&lt;ExtensibleAttributeMetadataItem&gt;**](ExtensibleAttributeMetadataItem.md) |  |  [optional] |
 |**auditInfo** | [**AdminUserAuditInfo**](AdminUserAuditInfo.md) |  |  [optional] |
-|**isActive** | **Boolean** |  |  [optional] |
-|**isRequired** | **Boolean** |  |  [optional] |
-|**isReadOnly** | **Boolean** |  |  [optional] |
-|**isMultiValued** | **Boolean** |  |  [optional] |
-|**isVisible** | **Boolean** |  |  [optional] |
-|**order** | **Integer** |  |  [optional] |
-|**displayGroup** | **String** |  |  |
+|**availableForDiscounts** | **Boolean** |  |  [optional] |
 |**availableForOrderRouting** | **Boolean** |  |  [optional] |
+|**content** | [**ExtensibleAttributeLocalizedContent**](ExtensibleAttributeLocalizedContent.md) |  |  [optional] |
+|**dataType** | **String** |  |  [optional] |
+|**displayGroup** | **String** |  |  |
+|**id** | **Integer** |  |  [optional] |
+|**inputType** | **String** |  |  [optional] |
+|**isActive** | **Boolean** |  |  [optional] |
+|**isMultiValued** | **Boolean** |  |  [optional] |
+|**isReadOnly** | **Boolean** |  |  [optional] |
+|**isRequired** | **Boolean** |  |  [optional] |
+|**isVisible** | **Boolean** |  |  [optional] |
+|**namespace** | **String** |  |  [optional] |
+|**order** | **Integer** |  |  [optional] |
+|**validation** | [**ExtensibleAttributeValidation**](ExtensibleAttributeValidation.md) |  |  [optional] |
+|**valueType** | **String** |  |  |
+|**vocabularyValues** | [**List&lt;ExtensibleAttributeVocabularyValue&gt;**](ExtensibleAttributeVocabularyValue.md) |  |  [optional] |
 
 
 ## Implemented Interfaces

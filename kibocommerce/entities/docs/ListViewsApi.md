@@ -13,7 +13,7 @@ All URIs are relative to *http://https:/api*
 
 <a name="createEntityListView"></a>
 # **createEntityListView**
-> ListView createEntityListView(entityListFullName, listView)
+> ListView createEntityListView(entityListFullName, responseFields, listView)
 
 Add ListView
 
@@ -38,15 +38,12 @@ public class Example {
     HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
     bearerAuth.setBearerToken("BEARER TOKEN");
 
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
-
     ListViewsApi apiInstance = new ListViewsApi(defaultClient);
     String entityListFullName = "entityListFullName_example"; // String | The full name of the EntityList including namespace in name@nameSpace format
+    String responseFields = "responseFields_example"; // String | limits which fields are returned in the response body
     ListView listView = new ListView(); // ListView | The new ListView definition
     try {
-      ListView result = apiInstance.createEntityListView(entityListFullName, listView);
+      ListView result = apiInstance.createEntityListView(entityListFullName, responseFields, listView);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling ListViewsApi#createEntityListView");
@@ -64,6 +61,7 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **entityListFullName** | **String**| The full name of the EntityList including namespace in name@nameSpace format | |
+| **responseFields** | **String**| limits which fields are returned in the response body | [optional] |
 | **listView** | [**ListView**](ListView.md)| The new ListView definition | [optional] |
 
 ### Return type
@@ -72,7 +70,7 @@ public class Example {
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth), [clientOauth2](../README.md#clientOauth2)
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
@@ -82,7 +80,7 @@ public class Example {
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Success |  -  |
+| **200** | OK |  -  |
 
 <a name="deleteEntityListView"></a>
 # **deleteEntityListView**
@@ -110,10 +108,6 @@ public class Example {
     // Configure HTTP bearer authorization: bearerAuth
     HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
     bearerAuth.setBearerToken("BEARER TOKEN");
-
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
 
     ListViewsApi apiInstance = new ListViewsApi(defaultClient);
     String entityListFullName = "entityListFullName_example"; // String | The full name of the EntityList including namespace in name@nameSpace format
@@ -144,7 +138,7 @@ null (empty response body)
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth), [clientOauth2](../README.md#clientOauth2)
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
@@ -154,11 +148,11 @@ null (empty response body)
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Success |  -  |
+| **200** | OK |  -  |
 
 <a name="getEntityListView"></a>
 # **getEntityListView**
-> ListView getEntityListView(entityListFullName, viewName)
+> ListView getEntityListView(entityListFullName, viewName, responseFields)
 
 Get ListView
 
@@ -183,15 +177,12 @@ public class Example {
     HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
     bearerAuth.setBearerToken("BEARER TOKEN");
 
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
-
     ListViewsApi apiInstance = new ListViewsApi(defaultClient);
     String entityListFullName = "entityListFullName_example"; // String | The full name of the EntityList including namespace in name@nameSpace format
     String viewName = "viewName_example"; // String | The name of the ListView
+    String responseFields = "responseFields_example"; // String | limits which fields are returned in the response body
     try {
-      ListView result = apiInstance.getEntityListView(entityListFullName, viewName);
+      ListView result = apiInstance.getEntityListView(entityListFullName, viewName, responseFields);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling ListViewsApi#getEntityListView");
@@ -210,6 +201,7 @@ public class Example {
 |------------- | ------------- | ------------- | -------------|
 | **entityListFullName** | **String**| The full name of the EntityList including namespace in name@nameSpace format | |
 | **viewName** | **String**| The name of the ListView | |
+| **responseFields** | **String**| limits which fields are returned in the response body | [optional] |
 
 ### Return type
 
@@ -217,7 +209,7 @@ public class Example {
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth), [clientOauth2](../README.md#clientOauth2)
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
@@ -227,11 +219,11 @@ public class Example {
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Success |  -  |
+| **200** | OK |  -  |
 
 <a name="getEntityListViews"></a>
 # **getEntityListViews**
-> ListViewCollection getEntityListViews(entityListFullName)
+> ListViewCollection getEntityListViews(entityListFullName, responseFields)
 
 Get  ListViews
 
@@ -256,14 +248,11 @@ public class Example {
     HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
     bearerAuth.setBearerToken("BEARER TOKEN");
 
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
-
     ListViewsApi apiInstance = new ListViewsApi(defaultClient);
     String entityListFullName = "entityListFullName_example"; // String | The full name of the EntityList including namespace in name@nameSpace format
+    String responseFields = "responseFields_example"; // String | limits which fields are returned in the response body
     try {
-      ListViewCollection result = apiInstance.getEntityListViews(entityListFullName);
+      ListViewCollection result = apiInstance.getEntityListViews(entityListFullName, responseFields);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling ListViewsApi#getEntityListViews");
@@ -281,6 +270,7 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **entityListFullName** | **String**| The full name of the EntityList including namespace in name@nameSpace format | |
+| **responseFields** | **String**| limits which fields are returned in the response body | [optional] |
 
 ### Return type
 
@@ -288,7 +278,7 @@ public class Example {
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth), [clientOauth2](../README.md#clientOauth2)
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
@@ -298,11 +288,11 @@ public class Example {
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Success |  -  |
+| **200** | OK |  -  |
 
 <a name="updateEntityListView"></a>
 # **updateEntityListView**
-> ListView updateEntityListView(entityListFullName, viewName, listView)
+> ListView updateEntityListView(entityListFullName, viewName, responseFields, listView)
 
 Update ListView
 
@@ -327,16 +317,13 @@ public class Example {
     HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
     bearerAuth.setBearerToken("BEARER TOKEN");
 
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
-
     ListViewsApi apiInstance = new ListViewsApi(defaultClient);
     String entityListFullName = "entityListFullName_example"; // String | The full name of the EntityList including namespace in name@nameSpace format
     String viewName = "viewName_example"; // String | The name of the ListView
+    String responseFields = "responseFields_example"; // String | limits which fields are returned in the response body
     ListView listView = new ListView(); // ListView | The udpated ListView definition
     try {
-      ListView result = apiInstance.updateEntityListView(entityListFullName, viewName, listView);
+      ListView result = apiInstance.updateEntityListView(entityListFullName, viewName, responseFields, listView);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling ListViewsApi#updateEntityListView");
@@ -355,6 +342,7 @@ public class Example {
 |------------- | ------------- | ------------- | -------------|
 | **entityListFullName** | **String**| The full name of the EntityList including namespace in name@nameSpace format | |
 | **viewName** | **String**| The name of the ListView | |
+| **responseFields** | **String**| limits which fields are returned in the response body | [optional] |
 | **listView** | [**ListView**](ListView.md)| The udpated ListView definition | [optional] |
 
 ### Return type
@@ -363,7 +351,7 @@ public class Example {
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth), [clientOauth2](../README.md#clientOauth2)
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
@@ -373,5 +361,5 @@ public class Example {
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Success |  -  |
+| **200** | OK |  -  |
 

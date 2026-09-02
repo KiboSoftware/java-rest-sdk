@@ -7,10 +7,10 @@
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
-|**masterCatalog** | **Integer** |  |  [optional] |
-|**locale** | **String** |  |  [optional] |
-|**currency** | **String** |  |  [optional] |
 |**catalog** | **Integer** |  |  [optional] |
+|**currency** | **String** |  |  [optional] |
+|**locale** | **String** |  |  [optional] |
+|**masterCatalog** | **Integer** |  |  [optional] |
 |**site** | **Integer** |  |  [optional] |
 
 

@@ -11,7 +11,7 @@ All URIs are relative to *http://https:/api*
 
 <a name="deleteDocumentDrafts"></a>
 # **deleteDocumentDrafts**
-> deleteDocumentDrafts(documentLists, requestBody)
+> deleteDocumentDrafts(documentLists, responseFields, requestBody)
 
 Delete Document Drafts
 
@@ -36,15 +36,12 @@ public class Example {
     HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
     bearerAuth.setBearerToken("BEARER TOKEN");
 
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
-
     DocumentPublishingApi apiInstance = new DocumentPublishingApi(defaultClient);
     String documentLists = "documentLists_example"; // String | 
+    String responseFields = "responseFields_example"; // String | limits which fields are returned in the response body
     List<String> requestBody = Arrays.asList(); // List<String> | 
     try {
-      apiInstance.deleteDocumentDrafts(documentLists, requestBody);
+      apiInstance.deleteDocumentDrafts(documentLists, responseFields, requestBody);
     } catch (ApiException e) {
       System.err.println("Exception when calling DocumentPublishingApi#deleteDocumentDrafts");
       System.err.println("Status code: " + e.getCode());
@@ -61,6 +58,7 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **documentLists** | **String**|  | [optional] |
+| **responseFields** | **String**| limits which fields are returned in the response body | [optional] |
 | **requestBody** | [**List&lt;String&gt;**](String.md)|  | [optional] |
 
 ### Return type
@@ -69,21 +67,21 @@ null (empty response body)
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth), [clientOauth2](../README.md#clientOauth2)
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
- - **Content-Type**: text/plain, application/octet-stream, application/json
+ - **Content-Type**: application/json, application/octet-stream, text/plain
  - **Accept**: Not defined
 
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Success |  -  |
+| **200** | OK |  -  |
 
 <a name="listDocumentDraftSummaries"></a>
 # **listDocumentDraftSummaries**
-> DocumentDraftSummaryPagedCollection listDocumentDraftSummaries(pageSize, startIndex, documentLists)
+> DocumentDraftSummaryPagedCollection listDocumentDraftSummaries(pageSize, startIndex, documentLists, responseFields)
 
 Get Document Draft Summaries
 
@@ -108,16 +106,13 @@ public class Example {
     HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
     bearerAuth.setBearerToken("BEARER TOKEN");
 
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
-
     DocumentPublishingApi apiInstance = new DocumentPublishingApi(defaultClient);
     Integer pageSize = 56; // Integer | maximum number of items to return
     Integer startIndex = 56; // Integer | 
     String documentLists = "documentLists_example"; // String | 
+    String responseFields = "responseFields_example"; // String | limits which fields are returned in the response body
     try {
-      DocumentDraftSummaryPagedCollection result = apiInstance.listDocumentDraftSummaries(pageSize, startIndex, documentLists);
+      DocumentDraftSummaryPagedCollection result = apiInstance.listDocumentDraftSummaries(pageSize, startIndex, documentLists, responseFields);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling DocumentPublishingApi#listDocumentDraftSummaries");
@@ -137,6 +132,7 @@ public class Example {
 | **pageSize** | **Integer**| maximum number of items to return | [optional] |
 | **startIndex** | **Integer**|  | [optional] |
 | **documentLists** | **String**|  | [optional] |
+| **responseFields** | **String**| limits which fields are returned in the response body | [optional] |
 
 ### Return type
 
@@ -144,7 +140,7 @@ public class Example {
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth), [clientOauth2](../README.md#clientOauth2)
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
@@ -154,11 +150,11 @@ public class Example {
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Success |  -  |
+| **200** | OK |  -  |
 
 <a name="publishDocuments"></a>
 # **publishDocuments**
-> publishDocuments(documentLists, requestBody)
+> publishDocuments(documentLists, responseFields, requestBody)
 
 Publish Documents
 
@@ -183,15 +179,12 @@ public class Example {
     HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
     bearerAuth.setBearerToken("BEARER TOKEN");
 
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
-
     DocumentPublishingApi apiInstance = new DocumentPublishingApi(defaultClient);
     String documentLists = "documentLists_example"; // String | 
+    String responseFields = "responseFields_example"; // String | limits which fields are returned in the response body
     List<String> requestBody = Arrays.asList(); // List<String> | 
     try {
-      apiInstance.publishDocuments(documentLists, requestBody);
+      apiInstance.publishDocuments(documentLists, responseFields, requestBody);
     } catch (ApiException e) {
       System.err.println("Exception when calling DocumentPublishingApi#publishDocuments");
       System.err.println("Status code: " + e.getCode());
@@ -208,6 +201,7 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **documentLists** | **String**|  | [optional] |
+| **responseFields** | **String**| limits which fields are returned in the response body | [optional] |
 | **requestBody** | [**List&lt;String&gt;**](String.md)|  | [optional] |
 
 ### Return type
@@ -216,15 +210,15 @@ null (empty response body)
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth), [clientOauth2](../README.md#clientOauth2)
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
- - **Content-Type**: text/plain, application/octet-stream, application/json
+ - **Content-Type**: application/json, application/octet-stream, text/plain
  - **Accept**: Not defined
 
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Success |  -  |
+| **200** | OK |  -  |
 

@@ -8,9 +8,9 @@ Container for language-specific content to display on the storefront. You'll hav
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
+|**description** | **String** | Description of the attribute in the language specified by LocaleCode. |  [optional] |
 |**localeCode** | **String** | Language used for the attribute name and description. Currently, only en_US is supported. |  [optional] |
 |**name** | **String** | Name of the attribute in the language specified by LocaleCode. |  [optional] |
-|**description** | **String** | Description of the attribute in the language specified by LocaleCode. |  [optional] |
 
 
 ## Implemented Interfaces

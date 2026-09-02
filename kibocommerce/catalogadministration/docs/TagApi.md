@@ -4,19 +4,19 @@ All URIs are relative to *http://https:/api*
 
 | Method | HTTP request | Description |
 |------------- | ------------- | -------------|
-| [**createTag**](TagApi.md#createTag) | **POST** /commerce/catalog/admin/tags | Create tag |
-| [**deleteTag**](TagApi.md#deleteTag) | **DELETE** /commerce/catalog/admin/tags/{tagCode} | Delete tag |
-| [**getNodeTree**](TagApi.md#getNodeTree) | **GET** /commerce/catalog/admin/tags/node/tree | Get tag collection as tag tree |
-| [**getTag**](TagApi.md#getTag) | **GET** /commerce/catalog/admin/tags/{tagCode} | Get tag |
-| [**getTags**](TagApi.md#getTags) | **GET** /commerce/catalog/admin/tags | Get tags |
-| [**updateTag**](TagApi.md#updateTag) | **PUT** /commerce/catalog/admin/tags/{tagCode} | Update tag |
+| [**createTag**](TagApi.md#createTag) | **POST** /commerce/catalog/admin/tags | Create Tag |
+| [**deleteTag**](TagApi.md#deleteTag) | **DELETE** /commerce/catalog/admin/tags/{tagCode} | Delete Tag |
+| [**getNodeTree**](TagApi.md#getNodeTree) | **GET** /commerce/catalog/admin/tags/node/tree | Get Tag Collection as Tag Tree |
+| [**getTag**](TagApi.md#getTag) | **GET** /commerce/catalog/admin/tags/{tagCode} | Get Tag |
+| [**getTags**](TagApi.md#getTags) | **GET** /commerce/catalog/admin/tags | Get Tags |
+| [**updateTag**](TagApi.md#updateTag) | **PUT** /commerce/catalog/admin/tags/{tagCode} | Update Tag |
 
 
 <a name="createTag"></a>
 # **createTag**
-> CatalogAdminsTag createTag(catalogAdminsTag)
+> CatalogAdminsTag createTag(responseFields, catalogAdminsTag)
 
-Create tag
+Create Tag
 
 Creates a tag.
 
@@ -39,14 +39,11 @@ public class Example {
     HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
     bearerAuth.setBearerToken("BEARER TOKEN");
 
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
-
     TagApi apiInstance = new TagApi(defaultClient);
+    String responseFields = "responseFields_example"; // String | limits which fields are returned in the response body
     CatalogAdminsTag catalogAdminsTag = new CatalogAdminsTag(); // CatalogAdminsTag | 
     try {
-      CatalogAdminsTag result = apiInstance.createTag(catalogAdminsTag);
+      CatalogAdminsTag result = apiInstance.createTag(responseFields, catalogAdminsTag);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling TagApi#createTag");
@@ -63,6 +60,7 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
+| **responseFields** | **String**| limits which fields are returned in the response body | [optional] |
 | **catalogAdminsTag** | [**CatalogAdminsTag**](CatalogAdminsTag.md)|  | [optional] |
 
 ### Return type
@@ -71,7 +69,7 @@ public class Example {
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth), [clientOauth2](../README.md#clientOauth2)
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
@@ -81,13 +79,13 @@ public class Example {
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Success |  -  |
+| **200** | OK |  -  |
 
 <a name="deleteTag"></a>
 # **deleteTag**
 > deleteTag(tagCode)
 
-Delete tag
+Delete Tag
 
 Deletes a Tag specified by its tagCode.
 
@@ -109,10 +107,6 @@ public class Example {
     // Configure HTTP bearer authorization: bearerAuth
     HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
     bearerAuth.setBearerToken("BEARER TOKEN");
-
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
 
     TagApi apiInstance = new TagApi(defaultClient);
     String tagCode = "tagCode_example"; // String | 
@@ -141,7 +135,7 @@ null (empty response body)
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth), [clientOauth2](../README.md#clientOauth2)
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
@@ -151,13 +145,13 @@ null (empty response body)
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Success |  -  |
+| **200** | OK |  -  |
 
 <a name="getNodeTree"></a>
 # **getNodeTree**
-> TagNodeTree getNodeTree(tagCode)
+> TagNodeTree getNodeTree(tagCode, responseFields)
 
-Get tag collection as tag tree
+Get Tag Collection as Tag Tree
 
 Retrieves the tag collection as tag tree for specified tagCode.
 
@@ -180,14 +174,11 @@ public class Example {
     HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
     bearerAuth.setBearerToken("BEARER TOKEN");
 
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
-
     TagApi apiInstance = new TagApi(defaultClient);
     String tagCode = "tagCode_example"; // String | 
+    String responseFields = "responseFields_example"; // String | limits which fields are returned in the response body
     try {
-      TagNodeTree result = apiInstance.getNodeTree(tagCode);
+      TagNodeTree result = apiInstance.getNodeTree(tagCode, responseFields);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling TagApi#getNodeTree");
@@ -205,6 +196,7 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **tagCode** | **String**|  | [optional] |
+| **responseFields** | **String**| limits which fields are returned in the response body | [optional] |
 
 ### Return type
 
@@ -212,7 +204,7 @@ public class Example {
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth), [clientOauth2](../README.md#clientOauth2)
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
@@ -222,13 +214,13 @@ public class Example {
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Success |  -  |
+| **200** | OK |  -  |
 
 <a name="getTag"></a>
 # **getTag**
-> CatalogAdminsTag getTag(tagCode)
+> CatalogAdminsTag getTag(tagCode, responseFields)
 
-Get tag
+Get Tag
 
 Retrieves the details of a single tag.
 
@@ -251,14 +243,11 @@ public class Example {
     HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
     bearerAuth.setBearerToken("BEARER TOKEN");
 
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
-
     TagApi apiInstance = new TagApi(defaultClient);
     String tagCode = "tagCode_example"; // String | 
+    String responseFields = "responseFields_example"; // String | limits which fields are returned in the response body
     try {
-      CatalogAdminsTag result = apiInstance.getTag(tagCode);
+      CatalogAdminsTag result = apiInstance.getTag(tagCode, responseFields);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling TagApi#getTag");
@@ -276,6 +265,7 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **tagCode** | **String**|  | |
+| **responseFields** | **String**| limits which fields are returned in the response body | [optional] |
 
 ### Return type
 
@@ -283,7 +273,7 @@ public class Example {
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth), [clientOauth2](../README.md#clientOauth2)
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
@@ -293,13 +283,13 @@ public class Example {
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Success |  -  |
+| **200** | OK |  -  |
 
 <a name="getTags"></a>
 # **getTags**
-> TagCollection getTags(path, startIndex, pageSize, sortBy, filter, responseGroups)
+> TagCollection getTags(path, startIndex, pageSize, sortBy, filter, responseGroups, responseFields)
 
-Get tags
+Get Tags
 
 Retrieves a list of tags.
 
@@ -322,10 +312,6 @@ public class Example {
     HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
     bearerAuth.setBearerToken("BEARER TOKEN");
 
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
-
     TagApi apiInstance = new TagApi(defaultClient);
     String path = "path_example"; // String | 
     Integer startIndex = 0; // Integer | 
@@ -333,8 +319,9 @@ public class Example {
     String sortBy = "sortBy_example"; // String | 
     String filter = "filter_example"; // String | 
     String responseGroups = "responseGroups_example"; // String | 
+    String responseFields = "responseFields_example"; // String | limits which fields are returned in the response body
     try {
-      TagCollection result = apiInstance.getTags(path, startIndex, pageSize, sortBy, filter, responseGroups);
+      TagCollection result = apiInstance.getTags(path, startIndex, pageSize, sortBy, filter, responseGroups, responseFields);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling TagApi#getTags");
@@ -357,6 +344,7 @@ public class Example {
 | **sortBy** | **String**|  | [optional] |
 | **filter** | **String**|  | [optional] |
 | **responseGroups** | **String**|  | [optional] |
+| **responseFields** | **String**| limits which fields are returned in the response body | [optional] |
 
 ### Return type
 
@@ -364,7 +352,7 @@ public class Example {
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth), [clientOauth2](../README.md#clientOauth2)
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
@@ -374,13 +362,13 @@ public class Example {
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Success |  -  |
+| **200** | OK |  -  |
 
 <a name="updateTag"></a>
 # **updateTag**
-> CatalogAdminsTag updateTag(tagCode, catalogAdminsTag)
+> CatalogAdminsTag updateTag(tagCode, responseFields, catalogAdminsTag)
 
-Update tag
+Update Tag
 
 Modifies a tag.
 
@@ -403,15 +391,12 @@ public class Example {
     HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
     bearerAuth.setBearerToken("BEARER TOKEN");
 
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
-
     TagApi apiInstance = new TagApi(defaultClient);
     String tagCode = "tagCode_example"; // String | 
+    String responseFields = "responseFields_example"; // String | limits which fields are returned in the response body
     CatalogAdminsTag catalogAdminsTag = new CatalogAdminsTag(); // CatalogAdminsTag | 
     try {
-      CatalogAdminsTag result = apiInstance.updateTag(tagCode, catalogAdminsTag);
+      CatalogAdminsTag result = apiInstance.updateTag(tagCode, responseFields, catalogAdminsTag);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling TagApi#updateTag");
@@ -429,6 +414,7 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **tagCode** | **String**|  | |
+| **responseFields** | **String**| limits which fields are returned in the response body | [optional] |
 | **catalogAdminsTag** | [**CatalogAdminsTag**](CatalogAdminsTag.md)|  | [optional] |
 
 ### Return type
@@ -437,7 +423,7 @@ public class Example {
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth), [clientOauth2](../README.md#clientOauth2)
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
@@ -447,5 +433,5 @@ public class Example {
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Success |  -  |
+| **200** | OK |  -  |
 

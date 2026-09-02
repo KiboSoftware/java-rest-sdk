@@ -7,8 +7,8 @@
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
-|**fullyQualifiedName** | **String** |  |  [optional] |
 |**attributeDefinitionId** | **Integer** |  |  [optional] |
+|**fullyQualifiedName** | **String** |  |  [optional] |
 |**values** | **List&lt;Object&gt;** |  |  [optional] |
 
 

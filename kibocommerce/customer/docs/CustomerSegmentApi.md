@@ -15,11 +15,11 @@ All URIs are relative to *http://https:/api*
 
 <a name="addSegment"></a>
 # **addSegment**
-> CustomerCustomerSegment addSegment(customerCustomerSegment)
+> CustomerCustomerSegment addSegment(responseFields, customerCustomerSegment)
 
 Adds Segment
 
-Creates a new segment. Merchants create segments of customers, for example,   to offer discounts to particular groups or assign VIP status to a set of customers.
+Creates a new segment. Merchants create segments of customers, for example,  to offer discounts to particular groups or assign VIP status to a set of customers.
 
 ### Example
 ```java
@@ -40,14 +40,11 @@ public class Example {
     HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
     bearerAuth.setBearerToken("BEARER TOKEN");
 
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
-
     CustomerSegmentApi apiInstance = new CustomerSegmentApi(defaultClient);
+    String responseFields = "responseFields_example"; // String | limits which fields are returned in the response body
     CustomerCustomerSegment customerCustomerSegment = new CustomerCustomerSegment(); // CustomerCustomerSegment | Name of the customer segment to create.
     try {
-      CustomerCustomerSegment result = apiInstance.addSegment(customerCustomerSegment);
+      CustomerCustomerSegment result = apiInstance.addSegment(responseFields, customerCustomerSegment);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling CustomerSegmentApi#addSegment");
@@ -64,6 +61,7 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
+| **responseFields** | **String**| limits which fields are returned in the response body | [optional] |
 | **customerCustomerSegment** | [**CustomerCustomerSegment**](CustomerCustomerSegment.md)| Name of the customer segment to create. | [optional] |
 
 ### Return type
@@ -72,7 +70,7 @@ public class Example {
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth), [clientOauth2](../README.md#clientOauth2)
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
@@ -82,11 +80,11 @@ public class Example {
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Success |  -  |
+| **200** | OK |  -  |
 
 <a name="addSegmentAccounts"></a>
 # **addSegmentAccounts**
-> addSegmentAccounts(id, requestBody)
+> addSegmentAccounts(id, responseFields, requestBody)
 
 Add Segments Accounts
 
@@ -111,15 +109,12 @@ public class Example {
     HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
     bearerAuth.setBearerToken("BEARER TOKEN");
 
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
-
     CustomerSegmentApi apiInstance = new CustomerSegmentApi(defaultClient);
     Integer id = 56; // Integer | Unique identifer of the segment.
+    String responseFields = "responseFields_example"; // String | limits which fields are returned in the response body
     List<Integer> requestBody = Arrays.asList(); // List<Integer> | Unique identifiers of the accounts.
     try {
-      apiInstance.addSegmentAccounts(id, requestBody);
+      apiInstance.addSegmentAccounts(id, responseFields, requestBody);
     } catch (ApiException e) {
       System.err.println("Exception when calling CustomerSegmentApi#addSegmentAccounts");
       System.err.println("Status code: " + e.getCode());
@@ -136,6 +131,7 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **id** | **Integer**| Unique identifer of the segment. | |
+| **responseFields** | **String**| limits which fields are returned in the response body | [optional] |
 | **requestBody** | [**List&lt;Integer&gt;**](Integer.md)| Unique identifiers of the accounts. | [optional] |
 
 ### Return type
@@ -144,7 +140,7 @@ null (empty response body)
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth), [clientOauth2](../README.md#clientOauth2)
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
@@ -154,7 +150,7 @@ null (empty response body)
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Success |  -  |
+| **200** | OK |  -  |
 
 <a name="deleteSegment"></a>
 # **deleteSegment**
@@ -183,10 +179,6 @@ public class Example {
     HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
     bearerAuth.setBearerToken("BEARER TOKEN");
 
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
-
     CustomerSegmentApi apiInstance = new CustomerSegmentApi(defaultClient);
     Integer id = 56; // Integer | 
     try {
@@ -214,7 +206,7 @@ null (empty response body)
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth), [clientOauth2](../README.md#clientOauth2)
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
@@ -224,11 +216,11 @@ null (empty response body)
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Success |  -  |
+| **200** | OK |  -  |
 
 <a name="getSegment"></a>
 # **getSegment**
-> CustomerCustomerSegment getSegment(id)
+> CustomerCustomerSegment getSegment(id, responseFields)
 
 Get Segment
 
@@ -253,14 +245,11 @@ public class Example {
     HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
     bearerAuth.setBearerToken("BEARER TOKEN");
 
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
-
     CustomerSegmentApi apiInstance = new CustomerSegmentApi(defaultClient);
     Integer id = 56; // Integer | 
+    String responseFields = "responseFields_example"; // String | limits which fields are returned in the response body
     try {
-      CustomerCustomerSegment result = apiInstance.getSegment(id);
+      CustomerCustomerSegment result = apiInstance.getSegment(id, responseFields);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling CustomerSegmentApi#getSegment");
@@ -278,6 +267,7 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **id** | **Integer**|  | |
+| **responseFields** | **String**| limits which fields are returned in the response body | [optional] |
 
 ### Return type
 
@@ -285,7 +275,7 @@ public class Example {
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth), [clientOauth2](../README.md#clientOauth2)
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
@@ -295,11 +285,11 @@ public class Example {
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Success |  -  |
+| **200** | OK |  -  |
 
 <a name="getSegments"></a>
 # **getSegments**
-> CustomerSegmentCollection getSegments(startIndex, pageSize, sortBy, filter)
+> CustomerSegmentCollection getSegments(startIndex, pageSize, sortBy, filter, responseFields)
 
 Get Segments
 
@@ -324,17 +314,14 @@ public class Example {
     HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
     bearerAuth.setBearerToken("BEARER TOKEN");
 
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
-
     CustomerSegmentApi apiInstance = new CustomerSegmentApi(defaultClient);
-    Integer startIndex = 0; // Integer | Used to page results from a query. Indicates the zero-based offset in the complete result set where the returned entities begin.               For example, with a PageSize of 25, to get the 51st through the 75th items, startIndex=3. The default value is 0. Optional.
-    Integer pageSize = 20; // Integer | Used to page results from a query.               Indicates the maximum number of entities to return from a query. The default value is 20 and the maximum value is 200. Optional.
+    Integer startIndex = 0; // Integer | Used to page results from a query. Indicates the zero-based offset in the complete result set where the returned entities begin.              For example, with a PageSize of 25, to get the 51st through the 75th items, startIndex=3. The default value is 0. Optional.
+    Integer pageSize = 20; // Integer | Used to page results from a query.              Indicates the maximum number of entities to return from a query. The default value is 20 and the maximum value is 200. Optional.
     String sortBy = ""; // String | The element to sort the results by and the order in which the results appear. Either ascending (a-z) or descending (z-a) order. Optional.
     String filter = ""; // String | A set of filter expressions representing the search parameters for a query: eq=equals, ne=not equals, gt=greater than, lt = less than or equals, gt = greater than or equals, lt = less than or equals, sw = starts with, or cont = contains. Optional.
+    String responseFields = "responseFields_example"; // String | limits which fields are returned in the response body
     try {
-      CustomerSegmentCollection result = apiInstance.getSegments(startIndex, pageSize, sortBy, filter);
+      CustomerSegmentCollection result = apiInstance.getSegments(startIndex, pageSize, sortBy, filter, responseFields);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling CustomerSegmentApi#getSegments");
@@ -351,10 +338,11 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **startIndex** | **Integer**| Used to page results from a query. Indicates the zero-based offset in the complete result set where the returned entities begin.               For example, with a PageSize of 25, to get the 51st through the 75th items, startIndex&#x3D;3. The default value is 0. Optional. | [optional] [default to 0] |
-| **pageSize** | **Integer**| Used to page results from a query.               Indicates the maximum number of entities to return from a query. The default value is 20 and the maximum value is 200. Optional. | [optional] [default to 20] |
+| **startIndex** | **Integer**| Used to page results from a query. Indicates the zero-based offset in the complete result set where the returned entities begin.              For example, with a PageSize of 25, to get the 51st through the 75th items, startIndex&#x3D;3. The default value is 0. Optional. | [optional] [default to 0] |
+| **pageSize** | **Integer**| Used to page results from a query.              Indicates the maximum number of entities to return from a query. The default value is 20 and the maximum value is 200. Optional. | [optional] [default to 20] |
 | **sortBy** | **String**| The element to sort the results by and the order in which the results appear. Either ascending (a-z) or descending (z-a) order. Optional. | [optional] [default to ] |
 | **filter** | **String**| A set of filter expressions representing the search parameters for a query: eq&#x3D;equals, ne&#x3D;not equals, gt&#x3D;greater than, lt &#x3D; less than or equals, gt &#x3D; greater than or equals, lt &#x3D; less than or equals, sw &#x3D; starts with, or cont &#x3D; contains. Optional. | [optional] [default to ] |
+| **responseFields** | **String**| limits which fields are returned in the response body | [optional] |
 
 ### Return type
 
@@ -362,7 +350,7 @@ public class Example {
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth), [clientOauth2](../README.md#clientOauth2)
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
@@ -372,7 +360,7 @@ public class Example {
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Success |  -  |
+| **200** | OK |  -  |
 
 <a name="removeSegmentAccount"></a>
 # **removeSegmentAccount**
@@ -400,10 +388,6 @@ public class Example {
     // Configure HTTP bearer authorization: bearerAuth
     HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
     bearerAuth.setBearerToken("BEARER TOKEN");
-
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
 
     CustomerSegmentApi apiInstance = new CustomerSegmentApi(defaultClient);
     Integer id = 56; // Integer | Unique identifer of the segment.
@@ -434,7 +418,7 @@ null (empty response body)
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth), [clientOauth2](../README.md#clientOauth2)
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
@@ -444,11 +428,11 @@ null (empty response body)
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Success |  -  |
+| **200** | OK |  -  |
 
 <a name="updateSegment"></a>
 # **updateSegment**
-> CustomerCustomerSegment updateSegment(id, customerCustomerSegment)
+> CustomerCustomerSegment updateSegment(id, responseFields, customerCustomerSegment)
 
 Update Segment
 
@@ -473,15 +457,12 @@ public class Example {
     HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
     bearerAuth.setBearerToken("BEARER TOKEN");
 
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
-
     CustomerSegmentApi apiInstance = new CustomerSegmentApi(defaultClient);
     Integer id = 56; // Integer | 
+    String responseFields = "responseFields_example"; // String | limits which fields are returned in the response body
     CustomerCustomerSegment customerCustomerSegment = new CustomerCustomerSegment(); // CustomerCustomerSegment | 
     try {
-      CustomerCustomerSegment result = apiInstance.updateSegment(id, customerCustomerSegment);
+      CustomerCustomerSegment result = apiInstance.updateSegment(id, responseFields, customerCustomerSegment);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling CustomerSegmentApi#updateSegment");
@@ -499,6 +480,7 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **id** | **Integer**|  | |
+| **responseFields** | **String**| limits which fields are returned in the response body | [optional] |
 | **customerCustomerSegment** | [**CustomerCustomerSegment**](CustomerCustomerSegment.md)|  | [optional] |
 
 ### Return type
@@ -507,7 +489,7 @@ public class Example {
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth), [clientOauth2](../README.md#clientOauth2)
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
@@ -517,5 +499,5 @@ public class Example {
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Success |  -  |
+| **200** | OK |  -  |
 

@@ -9,10 +9,10 @@
 |------------ | ------------- | ------------- | -------------|
 |**discountId** | **Integer** |  |  [optional] |
 |**message** | **String** |  |  [optional] |
-|**thresholdValue** | **Double** |  |  [optional] |
-|**showOnCheckout** | **Boolean** |  |  [optional] |
-|**showInCart** | **Boolean** |  |  [optional] |
 |**requiresCouponCode** | **Boolean** |  |  [optional] |
+|**showInCart** | **Boolean** |  |  [optional] |
+|**showOnCheckout** | **Boolean** |  |  [optional] |
+|**thresholdValue** | **Double** |  |  [optional] |
 
 
 ## Implemented Interfaces

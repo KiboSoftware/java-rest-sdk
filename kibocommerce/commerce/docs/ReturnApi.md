@@ -4,48 +4,56 @@ All URIs are relative to *http://https:/api*
 
 | Method | HTTP request | Description |
 |------------- | ------------- | -------------|
-| [**autoRefund**](ReturnApi.md#autoRefund) | **POST** /commerce/returns/{returnId}/autorefund | Attempt to automatically refund the return |
-| [**createPackage**](ReturnApi.md#createPackage) | **POST** /commerce/returns/{returnId}/packages | Apply a package to the return |
-| [**createPackageShipments**](ReturnApi.md#createPackageShipments) | **POST** /commerce/returns/{returnId}/shipments | Creates a shipment by grouping together multiple packages into logical shipments |
+| [**autoRefund**](ReturnApi.md#autoRefund) | **POST** /commerce/returns/{returnId}/autorefund | Auto Refund Return |
+| [**createPackage**](ReturnApi.md#createPackage) | **POST** /commerce/returns/{returnId}/packages | Add Package to Return |
+| [**createPackageShipments**](ReturnApi.md#createPackageShipments) | **POST** /commerce/returns/{returnId}/shipments | Create Return Shipment |
 | [**createPaymentActionForReturn**](ReturnApi.md#createPaymentActionForReturn) | **POST** /commerce/returns/{returnId}/payments/actions | Create Payment Action For Return |
 | [**createReturn**](ReturnApi.md#createReturn) | **POST** /commerce/returns | Create Returns |
+| [**createReturnAttributes**](ReturnApi.md#createReturnAttributes) | **POST** /commerce/returns/{returnId}/attributes | Create Return Attributes |
 | [**createReturnItem**](ReturnApi.md#createReturnItem) | **POST** /commerce/returns/{returnId}/items | Create Return Item |
+| [**createReturnItemAttributes**](ReturnApi.md#createReturnItemAttributes) | **POST** /commerce/returns/{returnId}/items/{returnItemId}/attributes | Create Return Item Attributes |
 | [**createReturnNote**](ReturnApi.md#createReturnNote) | **POST** /commerce/returns/{returnId}/notes | Create Return Note |
 | [**createReturnShippingOrder**](ReturnApi.md#createReturnShippingOrder) | **POST** /commerce/returns/{returnId}/ship | Create Return Shipping Order |
 | [**deleteOrderItem**](ReturnApi.md#deleteOrderItem) | **DELETE** /commerce/returns/{orderId}/items/{orderItemId} | Delete Order Item |
-| [**deletePackage**](ReturnApi.md#deletePackage) | **DELETE** /commerce/returns/{returnId}/packages/{packageId} | Delete an order package |
+| [**deletePackage**](ReturnApi.md#deletePackage) | **DELETE** /commerce/returns/{returnId}/packages/{packageId} | Delete Return Package |
 | [**deleteReturn**](ReturnApi.md#deleteReturn) | **DELETE** /commerce/returns/{returnId} | Delete Return |
 | [**deleteReturnNote**](ReturnApi.md#deleteReturnNote) | **DELETE** /commerce/returns/{returnId}/notes/{noteId} | Delete Return Note |
-| [**deleteShipment**](ReturnApi.md#deleteShipment) | **DELETE** /commerce/returns/{returnId}/shipments/{shipmentId} | Deletes an existing return shipment |
+| [**deleteShipment**](ReturnApi.md#deleteShipment) | **DELETE** /commerce/returns/{returnId}/shipments/{shipmentId} | Delete Return Shipment |
+| [**disposeReturnItems**](ReturnApi.md#disposeReturnItems) | **POST** /commerce/returns/{returnId}/disposition | Dispose Return Items |
 | [**getAvailableReturnActions**](ReturnApi.md#getAvailableReturnActions) | **GET** /commerce/returns/{returnId}/actions | Get Available Return Actions |
-| [**getPackage**](ReturnApi.md#getPackage) | **GET** /commerce/returns/{returnId}/packages/{packageId} | Get an order package |
-| [**getPackageLabel**](ReturnApi.md#getPackageLabel) | **GET** /commerce/returns/{returnId}/packages/{packageId}/label | Get an order package |
+| [**getPackage**](ReturnApi.md#getPackage) | **GET** /commerce/returns/{returnId}/packages/{packageId} | Get Return Package |
+| [**getPackageLabel**](ReturnApi.md#getPackageLabel) | **GET** /commerce/returns/{returnId}/packages/{packageId}/label | Get Return Package Label |
 | [**getPayment**](ReturnApi.md#getPayment) | **GET** /commerce/returns/{returnId}/payments/{paymentId} | Get Payment |
 | [**getPaymentDistribution**](ReturnApi.md#getPaymentDistribution) | **GET** /commerce/returns/{returnId}/paymentDistribution | Get Payment Distribution |
 | [**getPayments**](ReturnApi.md#getPayments) | **GET** /commerce/returns/{returnId}/payments | Get Payments |
 | [**getReasons**](ReturnApi.md#getReasons) | **GET** /commerce/returns/reasons | Get Reasons |
 | [**getReturn**](ReturnApi.md#getReturn) | **GET** /commerce/returns/{returnId} | Get Return |
+| [**getReturnAttributes**](ReturnApi.md#getReturnAttributes) | **GET** /commerce/returns/{returnId}/attributes | Get Return Attributes |
 | [**getReturnItem**](ReturnApi.md#getReturnItem) | **GET** /commerce/returns/{returnId}/items/{returnItemId} | Get Return Item |
+| [**getReturnItemAttributes**](ReturnApi.md#getReturnItemAttributes) | **GET** /commerce/returns/{returnId}/items/{returnItemId}/attributes | Get Return Item Attributes |
 | [**getReturnItems**](ReturnApi.md#getReturnItems) | **GET** /commerce/returns/{returnId}/items | Get Return Items |
 | [**getReturnLabel**](ReturnApi.md#getReturnLabel) | **GET** /commerce/returns/{returnId}/shipping/label | Get Return Label |
 | [**getReturnNote**](ReturnApi.md#getReturnNote) | **GET** /commerce/returns/{returnId}/notes/{noteId} | Get Return Note |
 | [**getReturnNotes**](ReturnApi.md#getReturnNotes) | **GET** /commerce/returns/{returnId}/notes | Get Return Notes |
+| [**getReturnedItemConditions**](ReturnApi.md#getReturnedItemConditions) | **GET** /commerce/returns/restock/conditions | Get Item Conditions |
 | [**getReturns**](ReturnApi.md#getReturns) | **GET** /commerce/returns | Get Returns |
-| [**getShipment**](ReturnApi.md#getShipment) | **GET** /commerce/returns/{returnId}/shipments/{shipmentId} | Allows a shipment to be retrieved for the order |
+| [**getShipment**](ReturnApi.md#getShipment) | **GET** /commerce/returns/{returnId}/shipments/{shipmentId} | Get Return Shipment |
 | [**performPaymentActionForReturn**](ReturnApi.md#performPaymentActionForReturn) | **POST** /commerce/returns/{returnId}/payments/{paymentId}/actions | Perform Payment Action For Return |
-| [**performReturnActions**](ReturnApi.md#performReturnActions) | **POST** /commerce/returns/actions | Delete Return |
+| [**performReturnActions**](ReturnApi.md#performReturnActions) | **POST** /commerce/returns/actions | Perform Return Action |
 | [**resendReturnEmail**](ReturnApi.md#resendReturnEmail) | **PUT** /commerce/returns/email/resend | Resend Return Email |
 | [**restockReturnItems**](ReturnApi.md#restockReturnItems) | **POST** /commerce/returns/{returnId}/restock | Restock Return Items |
-| [**updatePackage**](ReturnApi.md#updatePackage) | **PUT** /commerce/returns/{returnId}/packages/{packageId} | Delete an order package |
-| [**updateReturn**](ReturnApi.md#updateReturn) | **PUT** /commerce/returns/{returnId} | Get Reasons |
+| [**updatePackage**](ReturnApi.md#updatePackage) | **PUT** /commerce/returns/{returnId}/packages/{packageId} | Update Return Package |
+| [**updateReturn**](ReturnApi.md#updateReturn) | **PUT** /commerce/returns/{returnId} | Update Return |
+| [**updateReturnAttributes**](ReturnApi.md#updateReturnAttributes) | **PUT** /commerce/returns/{returnId}/attributes | Update Return Attributes |
+| [**updateReturnItemAttributes**](ReturnApi.md#updateReturnItemAttributes) | **PUT** /commerce/returns/{returnId}/items/{returnItemId}/attributes | Update Return Item Attributes |
 | [**updateReturnNote**](ReturnApi.md#updateReturnNote) | **PUT** /commerce/returns/{returnId}/notes/{noteId} | Update Return Note |
 
 
 <a name="autoRefund"></a>
 # **autoRefund**
-> ModelReturn autoRefund(returnId, autoRefundRequest)
+> ModelReturn autoRefund(returnId, responseFields, autoRefundRequest)
 
-Attempt to automatically refund the return
+Auto Refund Return
 
 Attempt to automatically refund the return
 
@@ -68,15 +76,12 @@ public class Example {
     HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
     bearerAuth.setBearerToken("BEARER TOKEN");
 
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
-
     ReturnApi apiInstance = new ReturnApi(defaultClient);
     String returnId = "returnId_example"; // String | Return Id
+    String responseFields = "responseFields_example"; // String | limits which fields are returned in the response body
     List<AutoRefundRequest> autoRefundRequest = Arrays.asList(); // List<AutoRefundRequest> | List of return item id with proccessing fee
     try {
-      ModelReturn result = apiInstance.autoRefund(returnId, autoRefundRequest);
+      ModelReturn result = apiInstance.autoRefund(returnId, responseFields, autoRefundRequest);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling ReturnApi#autoRefund");
@@ -94,6 +99,7 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **returnId** | **String**| Return Id | |
+| **responseFields** | **String**| limits which fields are returned in the response body | [optional] |
 | **autoRefundRequest** | [**List&lt;AutoRefundRequest&gt;**](AutoRefundRequest.md)| List of return item id with proccessing fee | [optional] |
 
 ### Return type
@@ -102,7 +108,7 @@ public class Example {
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth), [clientOauth2](../README.md#clientOauth2)
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
@@ -112,13 +118,13 @@ public class Example {
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Success |  -  |
+| **200** | OK |  -  |
 
 <a name="createPackage"></a>
 # **createPackage**
-> CommerceRuntimePackage createPackage(returnId, commerceRuntimePackage)
+> CommerceRuntimePackage createPackage(returnId, responseFields, commerceRuntimePackage)
 
-Apply a package to the return
+Add Package to Return
 
  package?
 
@@ -141,15 +147,12 @@ public class Example {
     HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
     bearerAuth.setBearerToken("BEARER TOKEN");
 
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
-
     ReturnApi apiInstance = new ReturnApi(defaultClient);
     String returnId = "returnId_example"; // String | Unique identifier of the return with which to associate the package.
+    String responseFields = "responseFields_example"; // String | limits which fields are returned in the response body
     CommerceRuntimePackage commerceRuntimePackage = new CommerceRuntimePackage(); // CommerceRuntimePackage | Package to create and add to the return
     try {
-      CommerceRuntimePackage result = apiInstance.createPackage(returnId, commerceRuntimePackage);
+      CommerceRuntimePackage result = apiInstance.createPackage(returnId, responseFields, commerceRuntimePackage);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling ReturnApi#createPackage");
@@ -167,6 +170,7 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **returnId** | **String**| Unique identifier of the return with which to associate the package. | |
+| **responseFields** | **String**| limits which fields are returned in the response body | [optional] |
 | **commerceRuntimePackage** | [**CommerceRuntimePackage**](CommerceRuntimePackage.md)| Package to create and add to the return | [optional] |
 
 ### Return type
@@ -175,7 +179,7 @@ public class Example {
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth), [clientOauth2](../README.md#clientOauth2)
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
@@ -185,15 +189,15 @@ public class Example {
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Success |  -  |
+| **200** | OK |  -  |
 
 <a name="createPackageShipments"></a>
 # **createPackageShipments**
-> List&lt;CommerceRuntimePackage&gt; createPackageShipments(returnId, requestBody)
+> List&lt;CommerceRuntimePackage&gt; createPackageShipments(returnId, responseFields, requestBody)
 
-Creates a shipment by grouping together multiple packages into logical shipments
+Create Return Shipment
 
-
+Creates a shipment by grouping together multiple packages into logical shipments.
 
 ### Example
 ```java
@@ -214,15 +218,12 @@ public class Example {
     HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
     bearerAuth.setBearerToken("BEARER TOKEN");
 
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
-
     ReturnApi apiInstance = new ReturnApi(defaultClient);
     String returnId = "returnId_example"; // String | Unique identifier of the order which is ready to be shipped.
+    String responseFields = "responseFields_example"; // String | limits which fields are returned in the response body
     List<String> requestBody = Arrays.asList(); // List<String> | Package ids to use in creating shipments.
     try {
-      List<CommerceRuntimePackage> result = apiInstance.createPackageShipments(returnId, requestBody);
+      List<CommerceRuntimePackage> result = apiInstance.createPackageShipments(returnId, responseFields, requestBody);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling ReturnApi#createPackageShipments");
@@ -240,6 +241,7 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **returnId** | **String**| Unique identifier of the order which is ready to be shipped. | |
+| **responseFields** | **String**| limits which fields are returned in the response body | [optional] |
 | **requestBody** | [**List&lt;String&gt;**](String.md)| Package ids to use in creating shipments. | [optional] |
 
 ### Return type
@@ -248,7 +250,7 @@ public class Example {
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth), [clientOauth2](../README.md#clientOauth2)
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
@@ -258,11 +260,11 @@ public class Example {
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Success |  -  |
+| **200** | OK |  -  |
 
 <a name="createPaymentActionForReturn"></a>
 # **createPaymentActionForReturn**
-> ModelReturn createPaymentActionForReturn(returnId, paymentAction)
+> ModelReturn createPaymentActionForReturn(returnId, responseFields, paymentAction)
 
 Create Payment Action For Return
 
@@ -287,15 +289,12 @@ public class Example {
     HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
     bearerAuth.setBearerToken("BEARER TOKEN");
 
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
-
     ReturnApi apiInstance = new ReturnApi(defaultClient);
     String returnId = "returnId_example"; // String | 
+    String responseFields = "responseFields_example"; // String | limits which fields are returned in the response body
     PaymentAction paymentAction = new PaymentAction(); // PaymentAction | Action to specify. Possible actions can be \"Create,\" \"Capture,\" \"Void,\" \"AuthCapture,\" or \"ReceiveCheck.\"
     try {
-      ModelReturn result = apiInstance.createPaymentActionForReturn(returnId, paymentAction);
+      ModelReturn result = apiInstance.createPaymentActionForReturn(returnId, responseFields, paymentAction);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling ReturnApi#createPaymentActionForReturn");
@@ -313,6 +312,7 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **returnId** | **String**|  | |
+| **responseFields** | **String**| limits which fields are returned in the response body | [optional] |
 | **paymentAction** | [**PaymentAction**](PaymentAction.md)| Action to specify. Possible actions can be \&quot;Create,\&quot; \&quot;Capture,\&quot; \&quot;Void,\&quot; \&quot;AuthCapture,\&quot; or \&quot;ReceiveCheck.\&quot; | [optional] |
 
 ### Return type
@@ -321,7 +321,7 @@ public class Example {
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth), [clientOauth2](../README.md#clientOauth2)
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
@@ -331,11 +331,11 @@ public class Example {
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Success |  -  |
+| **200** | OK |  -  |
 
 <a name="createReturn"></a>
 # **createReturn**
-> ModelReturn createReturn(modelReturn)
+> ModelReturn createReturn(responseFields, modelReturn)
 
 Create Returns
 
@@ -360,14 +360,11 @@ public class Example {
     HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
     bearerAuth.setBearerToken("BEARER TOKEN");
 
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
-
     ReturnApi apiInstance = new ReturnApi(defaultClient);
+    String responseFields = "responseFields_example"; // String | limits which fields are returned in the response body
     ModelReturn modelReturn = new ModelReturn(); // ModelReturn | 
     try {
-      ModelReturn result = apiInstance.createReturn(modelReturn);
+      ModelReturn result = apiInstance.createReturn(responseFields, modelReturn);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling ReturnApi#createReturn");
@@ -384,6 +381,7 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
+| **responseFields** | **String**| limits which fields are returned in the response body | [optional] |
 | **modelReturn** | [**ModelReturn**](ModelReturn.md)|  | [optional] |
 
 ### Return type
@@ -392,7 +390,7 @@ public class Example {
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth), [clientOauth2](../README.md#clientOauth2)
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
@@ -402,11 +400,82 @@ public class Example {
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Success |  -  |
+| **200** | OK |  -  |
+
+<a name="createReturnAttributes"></a>
+# **createReturnAttributes**
+> List&lt;ReturnAttribute&gt; createReturnAttributes(returnId, responseFields, returnAttribute)
+
+Create Return Attributes
+
+Adds an attributeSet to the return. This is an internal attributeSet that the merchant might want to add to a return.
+
+### Example
+```java
+// Import classes:
+import com.kibocommerce.sdk.commerce.ApiClient;
+import com.kibocommerce.sdk.commerce.ApiException;
+import com.kibocommerce.sdk.commerce.Configuration;
+import com.kibocommerce.sdk.commerce.auth.*;
+import com.kibocommerce.sdk.commerce.models.*;
+import com.kibocommerce.sdk.commerce.api.ReturnApi;
+
+public class Example {
+  public static void main(String[] args) {
+    ApiClient defaultClient = Configuration.getDefaultApiClient();
+    defaultClient.setBasePath("http://https:/api");
+    
+    // Configure HTTP bearer authorization: bearerAuth
+    HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+    bearerAuth.setBearerToken("BEARER TOKEN");
+
+    ReturnApi apiInstance = new ReturnApi(defaultClient);
+    String returnId = "returnId_example"; // String | Unique identifier of the return to which you want to add an attributeSet.
+    String responseFields = "responseFields_example"; // String | limits which fields are returned in the response body
+    List<ReturnAttribute> returnAttribute = Arrays.asList(); // List<ReturnAttribute> | Attributes to upsert.
+    try {
+      List<ReturnAttribute> result = apiInstance.createReturnAttributes(returnId, responseFields, returnAttribute);
+      System.out.println(result);
+    } catch (ApiException e) {
+      System.err.println("Exception when calling ReturnApi#createReturnAttributes");
+      System.err.println("Status code: " + e.getCode());
+      System.err.println("Reason: " + e.getResponseBody());
+      System.err.println("Response headers: " + e.getResponseHeaders());
+      e.printStackTrace();
+    }
+  }
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **returnId** | **String**| Unique identifier of the return to which you want to add an attributeSet. | |
+| **responseFields** | **String**| limits which fields are returned in the response body | [optional] |
+| **returnAttribute** | [**List&lt;ReturnAttribute&gt;**](ReturnAttribute.md)| Attributes to upsert. | [optional] |
+
+### Return type
+
+[**List&lt;ReturnAttribute&gt;**](ReturnAttribute.md)
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json, text/json, text/plain
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | OK |  -  |
 
 <a name="createReturnItem"></a>
 # **createReturnItem**
-> ModelReturn createReturnItem(returnId, returnItem)
+> ModelReturn createReturnItem(returnId, responseFields, returnItem)
 
 Create Return Item
 
@@ -431,15 +500,12 @@ public class Example {
     HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
     bearerAuth.setBearerToken("BEARER TOKEN");
 
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
-
     ReturnApi apiInstance = new ReturnApi(defaultClient);
     String returnId = "returnId_example"; // String | ID of the order to add an item to.
+    String responseFields = "responseFields_example"; // String | limits which fields are returned in the response body
     ReturnItem returnItem = new ReturnItem(); // ReturnItem | All properties of the new return item.
     try {
-      ModelReturn result = apiInstance.createReturnItem(returnId, returnItem);
+      ModelReturn result = apiInstance.createReturnItem(returnId, responseFields, returnItem);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling ReturnApi#createReturnItem");
@@ -457,6 +523,7 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **returnId** | **String**| ID of the order to add an item to. | |
+| **responseFields** | **String**| limits which fields are returned in the response body | [optional] |
 | **returnItem** | [**ReturnItem**](ReturnItem.md)| All properties of the new return item. | [optional] |
 
 ### Return type
@@ -465,7 +532,7 @@ public class Example {
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth), [clientOauth2](../README.md#clientOauth2)
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
@@ -475,11 +542,84 @@ public class Example {
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Success |  -  |
+| **200** | OK |  -  |
+
+<a name="createReturnItemAttributes"></a>
+# **createReturnItemAttributes**
+> List&lt;ReturnAttribute&gt; createReturnItemAttributes(returnId, returnItemId, responseFields, returnAttribute)
+
+Create Return Item Attributes
+
+Adds attributes to the return item. This is an internal attribute that the merchant might want to add to a return item.
+
+### Example
+```java
+// Import classes:
+import com.kibocommerce.sdk.commerce.ApiClient;
+import com.kibocommerce.sdk.commerce.ApiException;
+import com.kibocommerce.sdk.commerce.Configuration;
+import com.kibocommerce.sdk.commerce.auth.*;
+import com.kibocommerce.sdk.commerce.models.*;
+import com.kibocommerce.sdk.commerce.api.ReturnApi;
+
+public class Example {
+  public static void main(String[] args) {
+    ApiClient defaultClient = Configuration.getDefaultApiClient();
+    defaultClient.setBasePath("http://https:/api");
+    
+    // Configure HTTP bearer authorization: bearerAuth
+    HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+    bearerAuth.setBearerToken("BEARER TOKEN");
+
+    ReturnApi apiInstance = new ReturnApi(defaultClient);
+    String returnId = "returnId_example"; // String | Unique identifier of the return.
+    String returnItemId = "returnItemId_example"; // String | Unique identifier of the return item to which you want to add attributes.
+    String responseFields = "responseFields_example"; // String | limits which fields are returned in the response body
+    List<ReturnAttribute> returnAttribute = Arrays.asList(); // List<ReturnAttribute> | Attributes to upsert.
+    try {
+      List<ReturnAttribute> result = apiInstance.createReturnItemAttributes(returnId, returnItemId, responseFields, returnAttribute);
+      System.out.println(result);
+    } catch (ApiException e) {
+      System.err.println("Exception when calling ReturnApi#createReturnItemAttributes");
+      System.err.println("Status code: " + e.getCode());
+      System.err.println("Reason: " + e.getResponseBody());
+      System.err.println("Response headers: " + e.getResponseHeaders());
+      e.printStackTrace();
+    }
+  }
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **returnId** | **String**| Unique identifier of the return. | |
+| **returnItemId** | **String**| Unique identifier of the return item to which you want to add attributes. | |
+| **responseFields** | **String**| limits which fields are returned in the response body | [optional] |
+| **returnAttribute** | [**List&lt;ReturnAttribute&gt;**](ReturnAttribute.md)| Attributes to upsert. | [optional] |
+
+### Return type
+
+[**List&lt;ReturnAttribute&gt;**](ReturnAttribute.md)
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json, text/json, text/plain
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | OK |  -  |
 
 <a name="createReturnNote"></a>
 # **createReturnNote**
-> OrderNote createReturnNote(returnId, orderNote)
+> OrderNote createReturnNote(returnId, responseFields, orderNote)
 
 Create Return Note
 
@@ -504,15 +644,12 @@ public class Example {
     HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
     bearerAuth.setBearerToken("BEARER TOKEN");
 
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
-
     ReturnApi apiInstance = new ReturnApi(defaultClient);
     String returnId = "returnId_example"; // String | Unique identifier of the return to which you want to add a note.
+    String responseFields = "responseFields_example"; // String | limits which fields are returned in the response body
     OrderNote orderNote = new OrderNote(); // OrderNote | Text of the note. Maximum 256 characters.
     try {
-      OrderNote result = apiInstance.createReturnNote(returnId, orderNote);
+      OrderNote result = apiInstance.createReturnNote(returnId, responseFields, orderNote);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling ReturnApi#createReturnNote");
@@ -530,6 +667,7 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **returnId** | **String**| Unique identifier of the return to which you want to add a note. | |
+| **responseFields** | **String**| limits which fields are returned in the response body | [optional] |
 | **orderNote** | [**OrderNote**](OrderNote.md)| Text of the note. Maximum 256 characters. | [optional] |
 
 ### Return type
@@ -538,7 +676,7 @@ public class Example {
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth), [clientOauth2](../README.md#clientOauth2)
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
@@ -548,15 +686,15 @@ public class Example {
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Success |  -  |
+| **200** | OK |  -  |
 
 <a name="createReturnShippingOrder"></a>
 # **createReturnShippingOrder**
-> Order createReturnShippingOrder(returnId, returnItemSpecifier)
+> Order createReturnShippingOrder(returnId, responseFields, returnItemSpecifier)
 
 Create Return Shipping Order
 
-Creates a child order for the return for processing replacments. The request body (a collection of ReturnItemSpecifier) is optional. If the body is empty, the operation replaces all remaining items marked for replace. If you want to replace only a specific item(s) marked for return, you must specify the item(s) in the request body.
+Creates a child order for the return for processing replacements. The request body (a collection of ReturnItemSpecifier) is optional. If the body is empty, the operation replaces all remaining items marked for replace. If you want to replace only a specific item(s) marked for return, you must specify the item(s) in the request body.
 
 ### Example
 ```java
@@ -577,15 +715,12 @@ public class Example {
     HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
     bearerAuth.setBearerToken("BEARER TOKEN");
 
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
-
     ReturnApi apiInstance = new ReturnApi(defaultClient);
     String returnId = "returnId_example"; // String | The ID of the parent return
+    String responseFields = "responseFields_example"; // String | limits which fields are returned in the response body
     List<ReturnItemSpecifier> returnItemSpecifier = Arrays.asList(); // List<ReturnItemSpecifier> | Optionally specify which items to include and in what quantities
     try {
-      Order result = apiInstance.createReturnShippingOrder(returnId, returnItemSpecifier);
+      Order result = apiInstance.createReturnShippingOrder(returnId, responseFields, returnItemSpecifier);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling ReturnApi#createReturnShippingOrder");
@@ -603,6 +738,7 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **returnId** | **String**| The ID of the parent return | |
+| **responseFields** | **String**| limits which fields are returned in the response body | [optional] |
 | **returnItemSpecifier** | [**List&lt;ReturnItemSpecifier&gt;**](ReturnItemSpecifier.md)| Optionally specify which items to include and in what quantities | [optional] |
 
 ### Return type
@@ -611,7 +747,7 @@ public class Example {
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth), [clientOauth2](../README.md#clientOauth2)
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
@@ -621,7 +757,7 @@ public class Example {
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Success |  -  |
+| **200** | OK |  -  |
 
 <a name="deleteOrderItem"></a>
 # **deleteOrderItem**
@@ -649,10 +785,6 @@ public class Example {
     // Configure HTTP bearer authorization: bearerAuth
     HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
     bearerAuth.setBearerToken("BEARER TOKEN");
-
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
 
     ReturnApi apiInstance = new ReturnApi(defaultClient);
     String orderId = "orderId_example"; // String | 
@@ -688,7 +820,7 @@ public class Example {
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth), [clientOauth2](../README.md#clientOauth2)
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
@@ -698,15 +830,15 @@ public class Example {
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Success |  -  |
+| **200** | OK |  -  |
 
 <a name="deletePackage"></a>
 # **deletePackage**
 > deletePackage(returnId, packageId)
 
-Delete an order package
+Delete Return Package
 
-
+Delete a package from the return.
 
 ### Example
 ```java
@@ -726,10 +858,6 @@ public class Example {
     // Configure HTTP bearer authorization: bearerAuth
     HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
     bearerAuth.setBearerToken("BEARER TOKEN");
-
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
 
     ReturnApi apiInstance = new ReturnApi(defaultClient);
     String returnId = "returnId_example"; // String | Unique identifier of the return with which to associate the package.
@@ -760,7 +888,7 @@ null (empty response body)
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth), [clientOauth2](../README.md#clientOauth2)
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
@@ -770,7 +898,7 @@ null (empty response body)
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Success |  -  |
+| **200** | OK |  -  |
 
 <a name="deleteReturn"></a>
 # **deleteReturn**
@@ -799,10 +927,6 @@ public class Example {
     HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
     bearerAuth.setBearerToken("BEARER TOKEN");
 
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
-
     ReturnApi apiInstance = new ReturnApi(defaultClient);
     String returnId = "returnId_example"; // String | 
     try {
@@ -830,7 +954,7 @@ null (empty response body)
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth), [clientOauth2](../README.md#clientOauth2)
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
@@ -840,7 +964,7 @@ null (empty response body)
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Success |  -  |
+| **200** | OK |  -  |
 
 <a name="deleteReturnNote"></a>
 # **deleteReturnNote**
@@ -868,10 +992,6 @@ public class Example {
     // Configure HTTP bearer authorization: bearerAuth
     HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
     bearerAuth.setBearerToken("BEARER TOKEN");
-
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
 
     ReturnApi apiInstance = new ReturnApi(defaultClient);
     String returnId = "returnId_example"; // String | Unique identifier of the return whose note you want to delete.
@@ -902,7 +1022,7 @@ null (empty response body)
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth), [clientOauth2](../README.md#clientOauth2)
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
@@ -912,13 +1032,13 @@ null (empty response body)
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Success |  -  |
+| **200** | OK |  -  |
 
 <a name="deleteShipment"></a>
 # **deleteShipment**
 > deleteShipment(returnId, shipmentId)
 
-Deletes an existing return shipment
+Delete Return Shipment
 
 Deletes an existing return shipment
 
@@ -940,10 +1060,6 @@ public class Example {
     // Configure HTTP bearer authorization: bearerAuth
     HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
     bearerAuth.setBearerToken("BEARER TOKEN");
-
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
 
     ReturnApi apiInstance = new ReturnApi(defaultClient);
     String returnId = "returnId_example"; // String | ID of the return
@@ -974,7 +1090,7 @@ null (empty response body)
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth), [clientOauth2](../README.md#clientOauth2)
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
@@ -984,11 +1100,82 @@ null (empty response body)
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Success |  -  |
+| **200** | OK |  -  |
+
+<a name="disposeReturnItems"></a>
+# **disposeReturnItems**
+> ModelReturn disposeReturnItems(returnId, responseFields, disposeReturnItem)
+
+Dispose Return Items
+
+Restock &lt;a href&#x3D;\&quot;/pages/receive-a-return#with-reverse-logistics\&quot;&gt;return items at a disposition location&lt;/a&gt;.
+
+### Example
+```java
+// Import classes:
+import com.kibocommerce.sdk.commerce.ApiClient;
+import com.kibocommerce.sdk.commerce.ApiException;
+import com.kibocommerce.sdk.commerce.Configuration;
+import com.kibocommerce.sdk.commerce.auth.*;
+import com.kibocommerce.sdk.commerce.models.*;
+import com.kibocommerce.sdk.commerce.api.ReturnApi;
+
+public class Example {
+  public static void main(String[] args) {
+    ApiClient defaultClient = Configuration.getDefaultApiClient();
+    defaultClient.setBasePath("http://https:/api");
+    
+    // Configure HTTP bearer authorization: bearerAuth
+    HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+    bearerAuth.setBearerToken("BEARER TOKEN");
+
+    ReturnApi apiInstance = new ReturnApi(defaultClient);
+    String returnId = "returnId_example"; // String | Return ID
+    String responseFields = "responseFields_example"; // String | limits which fields are returned in the response body
+    List<DisposeReturnItem> disposeReturnItem = Arrays.asList(); // List<DisposeReturnItem> | List of return items with quantity to be disposed
+    try {
+      ModelReturn result = apiInstance.disposeReturnItems(returnId, responseFields, disposeReturnItem);
+      System.out.println(result);
+    } catch (ApiException e) {
+      System.err.println("Exception when calling ReturnApi#disposeReturnItems");
+      System.err.println("Status code: " + e.getCode());
+      System.err.println("Reason: " + e.getResponseBody());
+      System.err.println("Response headers: " + e.getResponseHeaders());
+      e.printStackTrace();
+    }
+  }
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **returnId** | **String**| Return ID | |
+| **responseFields** | **String**| limits which fields are returned in the response body | [optional] |
+| **disposeReturnItem** | [**List&lt;DisposeReturnItem&gt;**](DisposeReturnItem.md)| List of return items with quantity to be disposed | [optional] |
+
+### Return type
+
+[**ModelReturn**](ModelReturn.md)
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json, text/json, text/plain
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | OK |  -  |
 
 <a name="getAvailableReturnActions"></a>
 # **getAvailableReturnActions**
-> List&lt;String&gt; getAvailableReturnActions(returnId)
+> List&lt;String&gt; getAvailableReturnActions(returnId, responseFields)
 
 Get Available Return Actions
 
@@ -1013,14 +1200,11 @@ public class Example {
     HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
     bearerAuth.setBearerToken("BEARER TOKEN");
 
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
-
     ReturnApi apiInstance = new ReturnApi(defaultClient);
     String returnId = "returnId_example"; // String | 
+    String responseFields = "responseFields_example"; // String | limits which fields are returned in the response body
     try {
-      List<String> result = apiInstance.getAvailableReturnActions(returnId);
+      List<String> result = apiInstance.getAvailableReturnActions(returnId, responseFields);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling ReturnApi#getAvailableReturnActions");
@@ -1038,6 +1222,7 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **returnId** | **String**|  | |
+| **responseFields** | **String**| limits which fields are returned in the response body | [optional] |
 
 ### Return type
 
@@ -1045,7 +1230,7 @@ public class Example {
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth), [clientOauth2](../README.md#clientOauth2)
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
@@ -1055,15 +1240,15 @@ public class Example {
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Success |  -  |
+| **200** | OK |  -  |
 
 <a name="getPackage"></a>
 # **getPackage**
-> CommerceRuntimePackage getPackage(returnId, packageId)
+> CommerceRuntimePackage getPackage(returnId, packageId, responseFields)
 
-Get an order package
+Get Return Package
 
-Get an order package
+Get an return package.
 
 ### Example
 ```java
@@ -1084,15 +1269,12 @@ public class Example {
     HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
     bearerAuth.setBearerToken("BEARER TOKEN");
 
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
-
     ReturnApi apiInstance = new ReturnApi(defaultClient);
     String returnId = "returnId_example"; // String | Unique identifier of the return with which to associate the package.
     String packageId = "packageId_example"; // String | Package to remove from the return
+    String responseFields = "responseFields_example"; // String | limits which fields are returned in the response body
     try {
-      CommerceRuntimePackage result = apiInstance.getPackage(returnId, packageId);
+      CommerceRuntimePackage result = apiInstance.getPackage(returnId, packageId, responseFields);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling ReturnApi#getPackage");
@@ -1111,6 +1293,7 @@ public class Example {
 |------------- | ------------- | ------------- | -------------|
 | **returnId** | **String**| Unique identifier of the return with which to associate the package. | |
 | **packageId** | **String**| Package to remove from the return | |
+| **responseFields** | **String**| limits which fields are returned in the response body | [optional] |
 
 ### Return type
 
@@ -1118,7 +1301,7 @@ public class Example {
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth), [clientOauth2](../README.md#clientOauth2)
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
@@ -1128,15 +1311,15 @@ public class Example {
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Success |  -  |
+| **200** | OK |  -  |
 
 <a name="getPackageLabel"></a>
 # **getPackageLabel**
-> getPackageLabel(returnId, packageId, returnAsBase64Png)
+> getPackageLabel(returnId, packageId, returnAsBase64Png, responseFields)
 
-Get an order package
+Get Return Package Label
 
-Get an order package
+Get a return package label
 
 ### Example
 ```java
@@ -1157,16 +1340,13 @@ public class Example {
     HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
     bearerAuth.setBearerToken("BEARER TOKEN");
 
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
-
     ReturnApi apiInstance = new ReturnApi(defaultClient);
     String returnId = "returnId_example"; // String | Unique identifier of the return with which to associate the package.
     String packageId = "packageId_example"; // String | Package to remove from the return
     Boolean returnAsBase64Png = true; // Boolean | Return as base64 png
+    String responseFields = "responseFields_example"; // String | limits which fields are returned in the response body
     try {
-      apiInstance.getPackageLabel(returnId, packageId, returnAsBase64Png);
+      apiInstance.getPackageLabel(returnId, packageId, returnAsBase64Png, responseFields);
     } catch (ApiException e) {
       System.err.println("Exception when calling ReturnApi#getPackageLabel");
       System.err.println("Status code: " + e.getCode());
@@ -1185,6 +1365,7 @@ public class Example {
 | **returnId** | **String**| Unique identifier of the return with which to associate the package. | |
 | **packageId** | **String**| Package to remove from the return | |
 | **returnAsBase64Png** | **Boolean**| Return as base64 png | [optional] |
+| **responseFields** | **String**| limits which fields are returned in the response body | [optional] |
 
 ### Return type
 
@@ -1192,7 +1373,7 @@ null (empty response body)
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth), [clientOauth2](../README.md#clientOauth2)
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
@@ -1202,11 +1383,11 @@ null (empty response body)
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Success |  -  |
+| **200** | OK |  -  |
 
 <a name="getPayment"></a>
 # **getPayment**
-> Payment getPayment(returnId, paymentId)
+> Payment getPayment(returnId, paymentId, responseFields)
 
 Get Payment
 
@@ -1231,15 +1412,12 @@ public class Example {
     HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
     bearerAuth.setBearerToken("BEARER TOKEN");
 
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
-
     ReturnApi apiInstance = new ReturnApi(defaultClient);
     String returnId = "returnId_example"; // String | 
     String paymentId = "paymentId_example"; // String | 
+    String responseFields = "responseFields_example"; // String | limits which fields are returned in the response body
     try {
-      Payment result = apiInstance.getPayment(returnId, paymentId);
+      Payment result = apiInstance.getPayment(returnId, paymentId, responseFields);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling ReturnApi#getPayment");
@@ -1258,6 +1436,7 @@ public class Example {
 |------------- | ------------- | ------------- | -------------|
 | **returnId** | **String**|  | |
 | **paymentId** | **String**|  | |
+| **responseFields** | **String**| limits which fields are returned in the response body | [optional] |
 
 ### Return type
 
@@ -1265,7 +1444,7 @@ public class Example {
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth), [clientOauth2](../README.md#clientOauth2)
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
@@ -1275,11 +1454,11 @@ public class Example {
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Success |  -  |
+| **200** | OK |  -  |
 
 <a name="getPaymentDistribution"></a>
 # **getPaymentDistribution**
-> ReturnRefundDetails getPaymentDistribution(returnId)
+> ReturnRefundDetails getPaymentDistribution(returnId, responseFields)
 
 Get Payment Distribution
 
@@ -1304,14 +1483,11 @@ public class Example {
     HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
     bearerAuth.setBearerToken("BEARER TOKEN");
 
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
-
     ReturnApi apiInstance = new ReturnApi(defaultClient);
     String returnId = "returnId_example"; // String | Return Id
+    String responseFields = "responseFields_example"; // String | limits which fields are returned in the response body
     try {
-      ReturnRefundDetails result = apiInstance.getPaymentDistribution(returnId);
+      ReturnRefundDetails result = apiInstance.getPaymentDistribution(returnId, responseFields);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling ReturnApi#getPaymentDistribution");
@@ -1329,6 +1505,7 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **returnId** | **String**| Return Id | |
+| **responseFields** | **String**| limits which fields are returned in the response body | [optional] |
 
 ### Return type
 
@@ -1336,7 +1513,7 @@ public class Example {
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth), [clientOauth2](../README.md#clientOauth2)
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
@@ -1346,11 +1523,11 @@ public class Example {
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Success |  -  |
+| **200** | OK |  -  |
 
 <a name="getPayments"></a>
 # **getPayments**
-> PaymentCollection getPayments(returnId)
+> PaymentCollection getPayments(returnId, responseFields)
 
 Get Payments
 
@@ -1375,14 +1552,11 @@ public class Example {
     HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
     bearerAuth.setBearerToken("BEARER TOKEN");
 
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
-
     ReturnApi apiInstance = new ReturnApi(defaultClient);
     String returnId = "returnId_example"; // String | 
+    String responseFields = "responseFields_example"; // String | limits which fields are returned in the response body
     try {
-      PaymentCollection result = apiInstance.getPayments(returnId);
+      PaymentCollection result = apiInstance.getPayments(returnId, responseFields);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling ReturnApi#getPayments");
@@ -1400,6 +1574,7 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **returnId** | **String**|  | |
+| **responseFields** | **String**| limits which fields are returned in the response body | [optional] |
 
 ### Return type
 
@@ -1407,7 +1582,7 @@ public class Example {
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth), [clientOauth2](../README.md#clientOauth2)
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
@@ -1417,11 +1592,11 @@ public class Example {
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Success |  -  |
+| **200** | OK |  -  |
 
 <a name="getReasons"></a>
 # **getReasons**
-> ReasonCollection getReasons()
+> ReasonCollection getReasons(responseFields)
 
 Get Reasons
 
@@ -1446,13 +1621,10 @@ public class Example {
     HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
     bearerAuth.setBearerToken("BEARER TOKEN");
 
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
-
     ReturnApi apiInstance = new ReturnApi(defaultClient);
+    String responseFields = "responseFields_example"; // String | limits which fields are returned in the response body
     try {
-      ReasonCollection result = apiInstance.getReasons();
+      ReasonCollection result = apiInstance.getReasons(responseFields);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling ReturnApi#getReasons");
@@ -1466,7 +1638,10 @@ public class Example {
 ```
 
 ### Parameters
-This endpoint does not need any parameter.
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **responseFields** | **String**| limits which fields are returned in the response body | [optional] |
 
 ### Return type
 
@@ -1474,7 +1649,7 @@ This endpoint does not need any parameter.
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth), [clientOauth2](../README.md#clientOauth2)
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
@@ -1484,11 +1659,11 @@ This endpoint does not need any parameter.
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Success |  -  |
+| **200** | OK |  -  |
 
 <a name="getReturn"></a>
 # **getReturn**
-> ModelReturn getReturn(returnId)
+> ModelReturn getReturn(returnId, responseFields)
 
 Get Return
 
@@ -1513,14 +1688,11 @@ public class Example {
     HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
     bearerAuth.setBearerToken("BEARER TOKEN");
 
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
-
     ReturnApi apiInstance = new ReturnApi(defaultClient);
     String returnId = "returnId_example"; // String | 
+    String responseFields = "responseFields_example"; // String | limits which fields are returned in the response body
     try {
-      ModelReturn result = apiInstance.getReturn(returnId);
+      ModelReturn result = apiInstance.getReturn(returnId, responseFields);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling ReturnApi#getReturn");
@@ -1538,6 +1710,7 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **returnId** | **String**|  | |
+| **responseFields** | **String**| limits which fields are returned in the response body | [optional] |
 
 ### Return type
 
@@ -1545,7 +1718,7 @@ public class Example {
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth), [clientOauth2](../README.md#clientOauth2)
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
@@ -1555,11 +1728,80 @@ public class Example {
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Success |  -  |
+| **200** | OK |  -  |
+
+<a name="getReturnAttributes"></a>
+# **getReturnAttributes**
+> List&lt;ReturnAttribute&gt; getReturnAttributes(returnId, responseFields)
+
+Get Return Attributes
+
+Retrieves a list of all attribute sets for a return.
+
+### Example
+```java
+// Import classes:
+import com.kibocommerce.sdk.commerce.ApiClient;
+import com.kibocommerce.sdk.commerce.ApiException;
+import com.kibocommerce.sdk.commerce.Configuration;
+import com.kibocommerce.sdk.commerce.auth.*;
+import com.kibocommerce.sdk.commerce.models.*;
+import com.kibocommerce.sdk.commerce.api.ReturnApi;
+
+public class Example {
+  public static void main(String[] args) {
+    ApiClient defaultClient = Configuration.getDefaultApiClient();
+    defaultClient.setBasePath("http://https:/api");
+    
+    // Configure HTTP bearer authorization: bearerAuth
+    HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+    bearerAuth.setBearerToken("BEARER TOKEN");
+
+    ReturnApi apiInstance = new ReturnApi(defaultClient);
+    String returnId = "returnId_example"; // String | Unique identifier of the return whose attributeSets you want to get.
+    String responseFields = "responseFields_example"; // String | limits which fields are returned in the response body
+    try {
+      List<ReturnAttribute> result = apiInstance.getReturnAttributes(returnId, responseFields);
+      System.out.println(result);
+    } catch (ApiException e) {
+      System.err.println("Exception when calling ReturnApi#getReturnAttributes");
+      System.err.println("Status code: " + e.getCode());
+      System.err.println("Reason: " + e.getResponseBody());
+      System.err.println("Response headers: " + e.getResponseHeaders());
+      e.printStackTrace();
+    }
+  }
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **returnId** | **String**| Unique identifier of the return whose attributeSets you want to get. | |
+| **responseFields** | **String**| limits which fields are returned in the response body | [optional] |
+
+### Return type
+
+[**List&lt;ReturnAttribute&gt;**](ReturnAttribute.md)
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json, text/json, text/plain
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | OK |  -  |
 
 <a name="getReturnItem"></a>
 # **getReturnItem**
-> ReturnItem getReturnItem(returnId, returnItemId)
+> ReturnItem getReturnItem(returnId, returnItemId, responseFields)
 
 Get Return Item
 
@@ -1584,15 +1826,12 @@ public class Example {
     HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
     bearerAuth.setBearerToken("BEARER TOKEN");
 
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
-
     ReturnApi apiInstance = new ReturnApi(defaultClient);
     String returnId = "returnId_example"; // String | Unique identifier of the return whose item you want to get.
     String returnItemId = "returnItemId_example"; // String | Unique identifier of the return item whose details you want to get.
+    String responseFields = "responseFields_example"; // String | limits which fields are returned in the response body
     try {
-      ReturnItem result = apiInstance.getReturnItem(returnId, returnItemId);
+      ReturnItem result = apiInstance.getReturnItem(returnId, returnItemId, responseFields);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling ReturnApi#getReturnItem");
@@ -1611,6 +1850,7 @@ public class Example {
 |------------- | ------------- | ------------- | -------------|
 | **returnId** | **String**| Unique identifier of the return whose item you want to get. | |
 | **returnItemId** | **String**| Unique identifier of the return item whose details you want to get. | |
+| **responseFields** | **String**| limits which fields are returned in the response body | [optional] |
 
 ### Return type
 
@@ -1618,7 +1858,7 @@ public class Example {
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth), [clientOauth2](../README.md#clientOauth2)
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
@@ -1628,11 +1868,82 @@ public class Example {
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Success |  -  |
+| **200** | OK |  -  |
+
+<a name="getReturnItemAttributes"></a>
+# **getReturnItemAttributes**
+> List&lt;ReturnAttribute&gt; getReturnItemAttributes(returnId, returnItemId, responseFields)
+
+Get Return Item Attributes
+
+Retrieves a list of all attributes for a return item.
+
+### Example
+```java
+// Import classes:
+import com.kibocommerce.sdk.commerce.ApiClient;
+import com.kibocommerce.sdk.commerce.ApiException;
+import com.kibocommerce.sdk.commerce.Configuration;
+import com.kibocommerce.sdk.commerce.auth.*;
+import com.kibocommerce.sdk.commerce.models.*;
+import com.kibocommerce.sdk.commerce.api.ReturnApi;
+
+public class Example {
+  public static void main(String[] args) {
+    ApiClient defaultClient = Configuration.getDefaultApiClient();
+    defaultClient.setBasePath("http://https:/api");
+    
+    // Configure HTTP bearer authorization: bearerAuth
+    HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+    bearerAuth.setBearerToken("BEARER TOKEN");
+
+    ReturnApi apiInstance = new ReturnApi(defaultClient);
+    String returnId = "returnId_example"; // String | Unique identifier of the return.
+    String returnItemId = "returnItemId_example"; // String | Unique identifier of the return item whose attributes you want to get.
+    String responseFields = "responseFields_example"; // String | limits which fields are returned in the response body
+    try {
+      List<ReturnAttribute> result = apiInstance.getReturnItemAttributes(returnId, returnItemId, responseFields);
+      System.out.println(result);
+    } catch (ApiException e) {
+      System.err.println("Exception when calling ReturnApi#getReturnItemAttributes");
+      System.err.println("Status code: " + e.getCode());
+      System.err.println("Reason: " + e.getResponseBody());
+      System.err.println("Response headers: " + e.getResponseHeaders());
+      e.printStackTrace();
+    }
+  }
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **returnId** | **String**| Unique identifier of the return. | |
+| **returnItemId** | **String**| Unique identifier of the return item whose attributes you want to get. | |
+| **responseFields** | **String**| limits which fields are returned in the response body | [optional] |
+
+### Return type
+
+[**List&lt;ReturnAttribute&gt;**](ReturnAttribute.md)
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json, text/json, text/plain
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | OK |  -  |
 
 <a name="getReturnItems"></a>
 # **getReturnItems**
-> ReturnItemCollection getReturnItems(returnId)
+> ReturnItemCollection getReturnItems(returnId, responseFields)
 
 Get Return Items
 
@@ -1657,14 +1968,11 @@ public class Example {
     HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
     bearerAuth.setBearerToken("BEARER TOKEN");
 
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
-
     ReturnApi apiInstance = new ReturnApi(defaultClient);
     String returnId = "returnId_example"; // String | Unique identifier of the return whose items you want to get.
+    String responseFields = "responseFields_example"; // String | limits which fields are returned in the response body
     try {
-      ReturnItemCollection result = apiInstance.getReturnItems(returnId);
+      ReturnItemCollection result = apiInstance.getReturnItems(returnId, responseFields);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling ReturnApi#getReturnItems");
@@ -1682,6 +1990,7 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **returnId** | **String**| Unique identifier of the return whose items you want to get. | |
+| **responseFields** | **String**| limits which fields are returned in the response body | [optional] |
 
 ### Return type
 
@@ -1689,7 +1998,7 @@ public class Example {
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth), [clientOauth2](../README.md#clientOauth2)
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
@@ -1699,11 +2008,11 @@ public class Example {
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Success |  -  |
+| **200** | OK |  -  |
 
 <a name="getReturnLabel"></a>
 # **getReturnLabel**
-> CarrierServiceGenerateLabelResponse getReturnLabel(returnId)
+> CommerceRuntimeShipmentResponse getReturnLabel(returnId, responseFields)
 
 Get Return Label
 
@@ -1728,14 +2037,11 @@ public class Example {
     HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
     bearerAuth.setBearerToken("BEARER TOKEN");
 
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
-
     ReturnApi apiInstance = new ReturnApi(defaultClient);
     String returnId = "returnId_example"; // String | 
+    String responseFields = "responseFields_example"; // String | limits which fields are returned in the response body
     try {
-      CarrierServiceGenerateLabelResponse result = apiInstance.getReturnLabel(returnId);
+      CommerceRuntimeShipmentResponse result = apiInstance.getReturnLabel(returnId, responseFields);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling ReturnApi#getReturnLabel");
@@ -1753,14 +2059,15 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **returnId** | **String**|  | |
+| **responseFields** | **String**| limits which fields are returned in the response body | [optional] |
 
 ### Return type
 
-[**CarrierServiceGenerateLabelResponse**](CarrierServiceGenerateLabelResponse.md)
+[**CommerceRuntimeShipmentResponse**](CommerceRuntimeShipmentResponse.md)
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth), [clientOauth2](../README.md#clientOauth2)
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
@@ -1770,11 +2077,11 @@ public class Example {
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Success |  -  |
+| **200** | OK |  -  |
 
 <a name="getReturnNote"></a>
 # **getReturnNote**
-> OrderNote getReturnNote(returnId, noteId)
+> OrderNote getReturnNote(returnId, noteId, responseFields)
 
 Get Return Note
 
@@ -1799,15 +2106,12 @@ public class Example {
     HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
     bearerAuth.setBearerToken("BEARER TOKEN");
 
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
-
     ReturnApi apiInstance = new ReturnApi(defaultClient);
     String returnId = "returnId_example"; // String | Unique identifier of the return whose note you want to get.
     String noteId = "noteId_example"; // String | Unique identifier of the note whose text you want to get.
+    String responseFields = "responseFields_example"; // String | limits which fields are returned in the response body
     try {
-      OrderNote result = apiInstance.getReturnNote(returnId, noteId);
+      OrderNote result = apiInstance.getReturnNote(returnId, noteId, responseFields);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling ReturnApi#getReturnNote");
@@ -1826,6 +2130,7 @@ public class Example {
 |------------- | ------------- | ------------- | -------------|
 | **returnId** | **String**| Unique identifier of the return whose note you want to get. | |
 | **noteId** | **String**| Unique identifier of the note whose text you want to get. | |
+| **responseFields** | **String**| limits which fields are returned in the response body | [optional] |
 
 ### Return type
 
@@ -1833,7 +2138,7 @@ public class Example {
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth), [clientOauth2](../README.md#clientOauth2)
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
@@ -1843,11 +2148,11 @@ public class Example {
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Success |  -  |
+| **200** | OK |  -  |
 
 <a name="getReturnNotes"></a>
 # **getReturnNotes**
-> List&lt;OrderNote&gt; getReturnNotes(returnId)
+> List&lt;OrderNote&gt; getReturnNotes(returnId, responseFields)
 
 Get Return Notes
 
@@ -1872,14 +2177,11 @@ public class Example {
     HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
     bearerAuth.setBearerToken("BEARER TOKEN");
 
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
-
     ReturnApi apiInstance = new ReturnApi(defaultClient);
     String returnId = "returnId_example"; // String | Unique identifier of the return whose notes you want to get.
+    String responseFields = "responseFields_example"; // String | limits which fields are returned in the response body
     try {
-      List<OrderNote> result = apiInstance.getReturnNotes(returnId);
+      List<OrderNote> result = apiInstance.getReturnNotes(returnId, responseFields);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling ReturnApi#getReturnNotes");
@@ -1897,6 +2199,7 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **returnId** | **String**| Unique identifier of the return whose notes you want to get. | |
+| **responseFields** | **String**| limits which fields are returned in the response body | [optional] |
 
 ### Return type
 
@@ -1904,7 +2207,7 @@ public class Example {
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth), [clientOauth2](../README.md#clientOauth2)
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
@@ -1914,11 +2217,78 @@ public class Example {
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Success |  -  |
+| **200** | OK |  -  |
+
+<a name="getReturnedItemConditions"></a>
+# **getReturnedItemConditions**
+> ReasonCollection getReturnedItemConditions(responseFields)
+
+Get Item Conditions
+
+Gets the item conditions for the returns
+
+### Example
+```java
+// Import classes:
+import com.kibocommerce.sdk.commerce.ApiClient;
+import com.kibocommerce.sdk.commerce.ApiException;
+import com.kibocommerce.sdk.commerce.Configuration;
+import com.kibocommerce.sdk.commerce.auth.*;
+import com.kibocommerce.sdk.commerce.models.*;
+import com.kibocommerce.sdk.commerce.api.ReturnApi;
+
+public class Example {
+  public static void main(String[] args) {
+    ApiClient defaultClient = Configuration.getDefaultApiClient();
+    defaultClient.setBasePath("http://https:/api");
+    
+    // Configure HTTP bearer authorization: bearerAuth
+    HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+    bearerAuth.setBearerToken("BEARER TOKEN");
+
+    ReturnApi apiInstance = new ReturnApi(defaultClient);
+    String responseFields = "responseFields_example"; // String | limits which fields are returned in the response body
+    try {
+      ReasonCollection result = apiInstance.getReturnedItemConditions(responseFields);
+      System.out.println(result);
+    } catch (ApiException e) {
+      System.err.println("Exception when calling ReturnApi#getReturnedItemConditions");
+      System.err.println("Status code: " + e.getCode());
+      System.err.println("Reason: " + e.getResponseBody());
+      System.err.println("Response headers: " + e.getResponseHeaders());
+      e.printStackTrace();
+    }
+  }
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **responseFields** | **String**| limits which fields are returned in the response body | [optional] |
+
+### Return type
+
+[**ReasonCollection**](ReasonCollection.md)
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json, text/json, text/plain
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | OK |  -  |
 
 <a name="getReturns"></a>
 # **getReturns**
-> ReturnCollection getReturns(startIndex, pageSize, sortBy, filter, q)
+> ReturnCollection getReturns(startIndex, pageSize, sortBy, filter, q, responseFields)
 
 Get Returns
 
@@ -1943,18 +2313,15 @@ public class Example {
     HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
     bearerAuth.setBearerToken("BEARER TOKEN");
 
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
-
     ReturnApi apiInstance = new ReturnApi(defaultClient);
     Integer startIndex = 0; // Integer | 
     Integer pageSize = 20; // Integer | 
     String sortBy = "sortBy_example"; // String | 
     String filter = "filter_example"; // String | 
     String q = "q_example"; // String | 
+    String responseFields = "responseFields_example"; // String | limits which fields are returned in the response body
     try {
-      ReturnCollection result = apiInstance.getReturns(startIndex, pageSize, sortBy, filter, q);
+      ReturnCollection result = apiInstance.getReturns(startIndex, pageSize, sortBy, filter, q, responseFields);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling ReturnApi#getReturns");
@@ -1976,6 +2343,7 @@ public class Example {
 | **sortBy** | **String**|  | [optional] |
 | **filter** | **String**|  | [optional] |
 | **q** | **String**|  | [optional] |
+| **responseFields** | **String**| limits which fields are returned in the response body | [optional] |
 
 ### Return type
 
@@ -1983,7 +2351,7 @@ public class Example {
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth), [clientOauth2](../README.md#clientOauth2)
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
@@ -1993,15 +2361,15 @@ public class Example {
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Success |  -  |
+| **200** | OK |  -  |
 
 <a name="getShipment"></a>
 # **getShipment**
-> CommerceRuntimeShipment getShipment(returnId, shipmentId)
+> Shipment getShipment(returnId, shipmentId, responseFields)
 
-Allows a shipment to be retrieved for the order
+Get Return Shipment
 
-
+Retrieves a return shipment
 
 ### Example
 ```java
@@ -2022,15 +2390,12 @@ public class Example {
     HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
     bearerAuth.setBearerToken("BEARER TOKEN");
 
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
-
     ReturnApi apiInstance = new ReturnApi(defaultClient);
     String returnId = "returnId_example"; // String | ID of the return
     String shipmentId = "shipmentId_example"; // String | Shipment ID of the return.
+    String responseFields = "responseFields_example"; // String | limits which fields are returned in the response body
     try {
-      CommerceRuntimeShipment result = apiInstance.getShipment(returnId, shipmentId);
+      Shipment result = apiInstance.getShipment(returnId, shipmentId, responseFields);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling ReturnApi#getShipment");
@@ -2049,14 +2414,15 @@ public class Example {
 |------------- | ------------- | ------------- | -------------|
 | **returnId** | **String**| ID of the return | |
 | **shipmentId** | **String**| Shipment ID of the return. | |
+| **responseFields** | **String**| limits which fields are returned in the response body | [optional] |
 
 ### Return type
 
-[**CommerceRuntimeShipment**](CommerceRuntimeShipment.md)
+[**Shipment**](Shipment.md)
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth), [clientOauth2](../README.md#clientOauth2)
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
@@ -2066,11 +2432,11 @@ public class Example {
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Success |  -  |
+| **200** | OK |  -  |
 
 <a name="performPaymentActionForReturn"></a>
 # **performPaymentActionForReturn**
-> ModelReturn performPaymentActionForReturn(returnId, paymentId, paymentAction)
+> ModelReturn performPaymentActionForReturn(returnId, paymentId, responseFields, paymentAction)
 
 Perform Payment Action For Return
 
@@ -2095,16 +2461,13 @@ public class Example {
     HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
     bearerAuth.setBearerToken("BEARER TOKEN");
 
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
-
     ReturnApi apiInstance = new ReturnApi(defaultClient);
     String returnId = "returnId_example"; // String | 
     String paymentId = "paymentId_example"; // String | 
+    String responseFields = "responseFields_example"; // String | limits which fields are returned in the response body
     PaymentAction paymentAction = new PaymentAction(); // PaymentAction | Action to specify. Possible actions can be \"Create,\" \"Capture,\" \"Void,\" \"AuthCapture,\" or \"ReceiveCheck.\"
     try {
-      ModelReturn result = apiInstance.performPaymentActionForReturn(returnId, paymentId, paymentAction);
+      ModelReturn result = apiInstance.performPaymentActionForReturn(returnId, paymentId, responseFields, paymentAction);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling ReturnApi#performPaymentActionForReturn");
@@ -2123,6 +2486,7 @@ public class Example {
 |------------- | ------------- | ------------- | -------------|
 | **returnId** | **String**|  | |
 | **paymentId** | **String**|  | |
+| **responseFields** | **String**| limits which fields are returned in the response body | [optional] |
 | **paymentAction** | [**PaymentAction**](PaymentAction.md)| Action to specify. Possible actions can be \&quot;Create,\&quot; \&quot;Capture,\&quot; \&quot;Void,\&quot; \&quot;AuthCapture,\&quot; or \&quot;ReceiveCheck.\&quot; | [optional] |
 
 ### Return type
@@ -2131,7 +2495,7 @@ public class Example {
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth), [clientOauth2](../README.md#clientOauth2)
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
@@ -2141,15 +2505,15 @@ public class Example {
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Success |  -  |
+| **200** | OK |  -  |
 
 <a name="performReturnActions"></a>
 # **performReturnActions**
-> ReturnCollection performReturnActions(returnAction)
+> ReturnCollection performReturnActions(responseFields, returnAction)
 
-Delete Return
+Perform Return Action
 
-Perform Return Action.
+Performs a specified action on one or more returns.
 
 ### Example
 ```java
@@ -2170,14 +2534,11 @@ public class Example {
     HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
     bearerAuth.setBearerToken("BEARER TOKEN");
 
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
-
     ReturnApi apiInstance = new ReturnApi(defaultClient);
+    String responseFields = "responseFields_example"; // String | limits which fields are returned in the response body
     ReturnAction returnAction = new ReturnAction(); // ReturnAction | A ReturnAction instance that takes the name of the action to be performed and a list of Return Ids upon which to perform the action.
     try {
-      ReturnCollection result = apiInstance.performReturnActions(returnAction);
+      ReturnCollection result = apiInstance.performReturnActions(responseFields, returnAction);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling ReturnApi#performReturnActions");
@@ -2194,6 +2555,7 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
+| **responseFields** | **String**| limits which fields are returned in the response body | [optional] |
 | **returnAction** | [**ReturnAction**](ReturnAction.md)| A ReturnAction instance that takes the name of the action to be performed and a list of Return Ids upon which to perform the action. | [optional] |
 
 ### Return type
@@ -2202,7 +2564,7 @@ public class Example {
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth), [clientOauth2](../README.md#clientOauth2)
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
@@ -2212,11 +2574,11 @@ public class Example {
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Success |  -  |
+| **200** | OK |  -  |
 
 <a name="resendReturnEmail"></a>
 # **resendReturnEmail**
-> resendReturnEmail(returnAction)
+> resendReturnEmail(responseFields, returnAction)
 
 Resend Return Email
 
@@ -2241,14 +2603,11 @@ public class Example {
     HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
     bearerAuth.setBearerToken("BEARER TOKEN");
 
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
-
     ReturnApi apiInstance = new ReturnApi(defaultClient);
+    String responseFields = "responseFields_example"; // String | limits which fields are returned in the response body
     ReturnAction returnAction = new ReturnAction(); // ReturnAction | 
     try {
-      apiInstance.resendReturnEmail(returnAction);
+      apiInstance.resendReturnEmail(responseFields, returnAction);
     } catch (ApiException e) {
       System.err.println("Exception when calling ReturnApi#resendReturnEmail");
       System.err.println("Status code: " + e.getCode());
@@ -2264,6 +2623,7 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
+| **responseFields** | **String**| limits which fields are returned in the response body | [optional] |
 | **returnAction** | [**ReturnAction**](ReturnAction.md)|  | [optional] |
 
 ### Return type
@@ -2272,7 +2632,7 @@ null (empty response body)
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth), [clientOauth2](../README.md#clientOauth2)
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
@@ -2282,11 +2642,11 @@ null (empty response body)
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Success |  -  |
+| **200** | OK |  -  |
 
 <a name="restockReturnItems"></a>
 # **restockReturnItems**
-> ModelReturn restockReturnItems(returnId, restockableReturnItem)
+> ModelReturn restockReturnItems(returnId, responseFields, restockableReturnItem)
 
 Restock Return Items
 
@@ -2311,15 +2671,12 @@ public class Example {
     HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
     bearerAuth.setBearerToken("BEARER TOKEN");
 
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
-
     ReturnApi apiInstance = new ReturnApi(defaultClient);
     String returnId = "returnId_example"; // String | Return ID
+    String responseFields = "responseFields_example"; // String | limits which fields are returned in the response body
     List<RestockableReturnItem> restockableReturnItem = Arrays.asList(); // List<RestockableReturnItem> | List of return items with quantity to be restocked
     try {
-      ModelReturn result = apiInstance.restockReturnItems(returnId, restockableReturnItem);
+      ModelReturn result = apiInstance.restockReturnItems(returnId, responseFields, restockableReturnItem);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling ReturnApi#restockReturnItems");
@@ -2337,6 +2694,7 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **returnId** | **String**| Return ID | |
+| **responseFields** | **String**| limits which fields are returned in the response body | [optional] |
 | **restockableReturnItem** | [**List&lt;RestockableReturnItem&gt;**](RestockableReturnItem.md)| List of return items with quantity to be restocked | [optional] |
 
 ### Return type
@@ -2345,7 +2703,7 @@ public class Example {
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth), [clientOauth2](../README.md#clientOauth2)
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
@@ -2355,15 +2713,15 @@ public class Example {
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Success |  -  |
+| **200** | OK |  -  |
 
 <a name="updatePackage"></a>
 # **updatePackage**
-> CommerceRuntimePackage updatePackage(returnId, packageId, commerceRuntimePackage)
+> CommerceRuntimePackage updatePackage(returnId, packageId, responseFields, commerceRuntimePackage)
 
-Delete an order package
+Update Return Package
 
-
+Updates a return&#39;s package.
 
 ### Example
 ```java
@@ -2384,16 +2742,13 @@ public class Example {
     HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
     bearerAuth.setBearerToken("BEARER TOKEN");
 
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
-
     ReturnApi apiInstance = new ReturnApi(defaultClient);
     String returnId = "returnId_example"; // String | Unique identifier of the return with which to associate the package.
     String packageId = "packageId_example"; // String | Package to update on the return
+    String responseFields = "responseFields_example"; // String | limits which fields are returned in the response body
     CommerceRuntimePackage commerceRuntimePackage = new CommerceRuntimePackage(); // CommerceRuntimePackage | Package content to update on the return
     try {
-      CommerceRuntimePackage result = apiInstance.updatePackage(returnId, packageId, commerceRuntimePackage);
+      CommerceRuntimePackage result = apiInstance.updatePackage(returnId, packageId, responseFields, commerceRuntimePackage);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling ReturnApi#updatePackage");
@@ -2412,6 +2767,7 @@ public class Example {
 |------------- | ------------- | ------------- | -------------|
 | **returnId** | **String**| Unique identifier of the return with which to associate the package. | |
 | **packageId** | **String**| Package to update on the return | |
+| **responseFields** | **String**| limits which fields are returned in the response body | [optional] |
 | **commerceRuntimePackage** | [**CommerceRuntimePackage**](CommerceRuntimePackage.md)| Package content to update on the return | [optional] |
 
 ### Return type
@@ -2420,7 +2776,7 @@ public class Example {
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth), [clientOauth2](../README.md#clientOauth2)
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
@@ -2430,15 +2786,15 @@ public class Example {
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Success |  -  |
+| **200** | OK |  -  |
 
 <a name="updateReturn"></a>
 # **updateReturn**
-> ModelReturn updateReturn(returnId, modelReturn)
+> ModelReturn updateReturn(returnId, responseFields, modelReturn)
 
-Get Reasons
+Update Return
 
-Gets all the return reasons.
+Updates an existing return.
 
 ### Example
 ```java
@@ -2459,15 +2815,12 @@ public class Example {
     HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
     bearerAuth.setBearerToken("BEARER TOKEN");
 
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
-
     ReturnApi apiInstance = new ReturnApi(defaultClient);
     String returnId = "returnId_example"; // String | 
+    String responseFields = "responseFields_example"; // String | limits which fields are returned in the response body
     ModelReturn modelReturn = new ModelReturn(); // ModelReturn | 
     try {
-      ModelReturn result = apiInstance.updateReturn(returnId, modelReturn);
+      ModelReturn result = apiInstance.updateReturn(returnId, responseFields, modelReturn);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling ReturnApi#updateReturn");
@@ -2485,6 +2838,7 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **returnId** | **String**|  | |
+| **responseFields** | **String**| limits which fields are returned in the response body | [optional] |
 | **modelReturn** | [**ModelReturn**](ModelReturn.md)|  | [optional] |
 
 ### Return type
@@ -2493,7 +2847,7 @@ public class Example {
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth), [clientOauth2](../README.md#clientOauth2)
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
@@ -2503,11 +2857,159 @@ public class Example {
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Success |  -  |
+| **200** | OK |  -  |
+
+<a name="updateReturnAttributes"></a>
+# **updateReturnAttributes**
+> List&lt;ReturnAttribute&gt; updateReturnAttributes(returnId, removeMissing, responseFields, returnAttribute)
+
+Update Return Attributes
+
+Updates a specific return attribute set of a return.
+
+### Example
+```java
+// Import classes:
+import com.kibocommerce.sdk.commerce.ApiClient;
+import com.kibocommerce.sdk.commerce.ApiException;
+import com.kibocommerce.sdk.commerce.Configuration;
+import com.kibocommerce.sdk.commerce.auth.*;
+import com.kibocommerce.sdk.commerce.models.*;
+import com.kibocommerce.sdk.commerce.api.ReturnApi;
+
+public class Example {
+  public static void main(String[] args) {
+    ApiClient defaultClient = Configuration.getDefaultApiClient();
+    defaultClient.setBasePath("http://https:/api");
+    
+    // Configure HTTP bearer authorization: bearerAuth
+    HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+    bearerAuth.setBearerToken("BEARER TOKEN");
+
+    ReturnApi apiInstance = new ReturnApi(defaultClient);
+    String returnId = "returnId_example"; // String | Unique identifier of the return whose attributeSet you want to update.
+    Boolean removeMissing = false; // Boolean | Indicates that items missing from the collection should be removed.
+    String responseFields = "responseFields_example"; // String | limits which fields are returned in the response body
+    List<ReturnAttribute> returnAttribute = Arrays.asList(); // List<ReturnAttribute> | Attributes to upsert.
+    try {
+      List<ReturnAttribute> result = apiInstance.updateReturnAttributes(returnId, removeMissing, responseFields, returnAttribute);
+      System.out.println(result);
+    } catch (ApiException e) {
+      System.err.println("Exception when calling ReturnApi#updateReturnAttributes");
+      System.err.println("Status code: " + e.getCode());
+      System.err.println("Reason: " + e.getResponseBody());
+      System.err.println("Response headers: " + e.getResponseHeaders());
+      e.printStackTrace();
+    }
+  }
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **returnId** | **String**| Unique identifier of the return whose attributeSet you want to update. | |
+| **removeMissing** | **Boolean**| Indicates that items missing from the collection should be removed. | [optional] [default to false] |
+| **responseFields** | **String**| limits which fields are returned in the response body | [optional] |
+| **returnAttribute** | [**List&lt;ReturnAttribute&gt;**](ReturnAttribute.md)| Attributes to upsert. | [optional] |
+
+### Return type
+
+[**List&lt;ReturnAttribute&gt;**](ReturnAttribute.md)
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json, text/json, text/plain
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | OK |  -  |
+
+<a name="updateReturnItemAttributes"></a>
+# **updateReturnItemAttributes**
+> List&lt;ReturnAttribute&gt; updateReturnItemAttributes(returnId, returnItemId, removeMissing, responseFields, returnAttribute)
+
+Update Return Item Attributes
+
+Updates a specific return item attribute set of a return item.
+
+### Example
+```java
+// Import classes:
+import com.kibocommerce.sdk.commerce.ApiClient;
+import com.kibocommerce.sdk.commerce.ApiException;
+import com.kibocommerce.sdk.commerce.Configuration;
+import com.kibocommerce.sdk.commerce.auth.*;
+import com.kibocommerce.sdk.commerce.models.*;
+import com.kibocommerce.sdk.commerce.api.ReturnApi;
+
+public class Example {
+  public static void main(String[] args) {
+    ApiClient defaultClient = Configuration.getDefaultApiClient();
+    defaultClient.setBasePath("http://https:/api");
+    
+    // Configure HTTP bearer authorization: bearerAuth
+    HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+    bearerAuth.setBearerToken("BEARER TOKEN");
+
+    ReturnApi apiInstance = new ReturnApi(defaultClient);
+    String returnId = "returnId_example"; // String | Unique identifier of the return.
+    String returnItemId = "returnItemId_example"; // String | Unique identifier of the return item whose attributes you want to update.
+    Boolean removeMissing = false; // Boolean | Indicates that items missing from the collection should be removed.
+    String responseFields = "responseFields_example"; // String | limits which fields are returned in the response body
+    List<ReturnAttribute> returnAttribute = Arrays.asList(); // List<ReturnAttribute> | Attributes to upsert.
+    try {
+      List<ReturnAttribute> result = apiInstance.updateReturnItemAttributes(returnId, returnItemId, removeMissing, responseFields, returnAttribute);
+      System.out.println(result);
+    } catch (ApiException e) {
+      System.err.println("Exception when calling ReturnApi#updateReturnItemAttributes");
+      System.err.println("Status code: " + e.getCode());
+      System.err.println("Reason: " + e.getResponseBody());
+      System.err.println("Response headers: " + e.getResponseHeaders());
+      e.printStackTrace();
+    }
+  }
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **returnId** | **String**| Unique identifier of the return. | |
+| **returnItemId** | **String**| Unique identifier of the return item whose attributes you want to update. | |
+| **removeMissing** | **Boolean**| Indicates that items missing from the collection should be removed. | [optional] [default to false] |
+| **responseFields** | **String**| limits which fields are returned in the response body | [optional] |
+| **returnAttribute** | [**List&lt;ReturnAttribute&gt;**](ReturnAttribute.md)| Attributes to upsert. | [optional] |
+
+### Return type
+
+[**List&lt;ReturnAttribute&gt;**](ReturnAttribute.md)
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json, text/json, text/plain
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | OK |  -  |
 
 <a name="updateReturnNote"></a>
 # **updateReturnNote**
-> OrderNote updateReturnNote(returnId, noteId, orderNote)
+> OrderNote updateReturnNote(returnId, noteId, responseFields, orderNote)
 
 Update Return Note
 
@@ -2532,16 +3034,13 @@ public class Example {
     HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
     bearerAuth.setBearerToken("BEARER TOKEN");
 
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
-
     ReturnApi apiInstance = new ReturnApi(defaultClient);
     String returnId = "returnId_example"; // String | Unique identifier of the return whose note you want to update.
     String noteId = "noteId_example"; // String | Unique identifier of the note whose text you want to update.
+    String responseFields = "responseFields_example"; // String | limits which fields are returned in the response body
     OrderNote orderNote = new OrderNote(); // OrderNote | Text of the note.
     try {
-      OrderNote result = apiInstance.updateReturnNote(returnId, noteId, orderNote);
+      OrderNote result = apiInstance.updateReturnNote(returnId, noteId, responseFields, orderNote);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling ReturnApi#updateReturnNote");
@@ -2560,6 +3059,7 @@ public class Example {
 |------------- | ------------- | ------------- | -------------|
 | **returnId** | **String**| Unique identifier of the return whose note you want to update. | |
 | **noteId** | **String**| Unique identifier of the note whose text you want to update. | |
+| **responseFields** | **String**| limits which fields are returned in the response body | [optional] |
 | **orderNote** | [**OrderNote**](OrderNote.md)| Text of the note. | [optional] |
 
 ### Return type
@@ -2568,7 +3068,7 @@ public class Example {
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth), [clientOauth2](../README.md#clientOauth2)
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
@@ -2578,5 +3078,5 @@ public class Example {
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Success |  -  |
+| **200** | OK |  -  |
 

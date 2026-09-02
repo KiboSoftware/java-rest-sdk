@@ -8,9 +8,9 @@ Note added to the customer account. Merchants can add internal notes, for exampl
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
-|**id** | **Integer** | Unique identifier of the note. |  [optional] |
-|**content** | **String** | Content of the note that the merchant added. |  [optional] |
 |**auditInfo** | [**AdminUserAuditInfo**](AdminUserAuditInfo.md) |  |  [optional] |
+|**content** | **String** | Content of the note that the merchant added. |  [optional] |
+|**id** | **Integer** | Unique identifier of the note. |  [optional] |
 
 
 ## Implemented Interfaces

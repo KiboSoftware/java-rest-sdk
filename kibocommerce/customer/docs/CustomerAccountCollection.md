@@ -8,11 +8,11 @@ Collection of all the merchant's customers returned as a whole. A collection is 
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
-|**startIndex** | **Integer** |  |  [optional] |
-|**pageSize** | **Integer** |  |  [optional] |
-|**pageCount** | **Integer** |  |  [optional] |
-|**totalCount** | **Integer** |  |  [optional] |
 |**items** | [**List&lt;CustomerAccount&gt;**](CustomerAccount.md) |  |  [optional] |
+|**pageCount** | **Integer** |  |  [optional] |
+|**pageSize** | **Integer** |  |  [optional] |
+|**startIndex** | **Integer** |  |  [optional] |
+|**totalCount** | **Integer** |  |  [optional] |
 
 
 ## Implemented Interfaces

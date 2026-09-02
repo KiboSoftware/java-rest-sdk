@@ -7,8 +7,8 @@
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
-|**value** | **Object** |  |  [optional] |
 |**stringValue** | **String** |  |  [optional] |
+|**value** | **Object** |  |  [optional] |
 
 
 ## Implemented Interfaces

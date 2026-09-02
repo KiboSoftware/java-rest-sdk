@@ -8,8 +8,8 @@
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
 |**accountId** | **Integer** |  |  [optional] |
-|**succeeded** | **Boolean** |  |  [optional] |
 |**errorMessage** | **String** |  |  [optional] |
+|**succeeded** | **Boolean** |  |  [optional] |
 
 
 ## Implemented Interfaces

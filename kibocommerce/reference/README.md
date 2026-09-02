@@ -1,7 +1,7 @@
 # reference
 
 Kibo Reference Service
-- API version: 1.0.0
+- API version: v1
 
 OpenAPI Spec for Kibo Reference Service
 
@@ -39,7 +39,7 @@ Add this dependency to your project's POM:
 <dependency>
   <groupId>com.kibocommerce</groupId>
   <artifactId>reference</artifactId>
-  <version>1.0.0</version>
+  <version>3.0.0</version>
   <scope>compile</scope>
 </dependency>
 ```
@@ -55,7 +55,7 @@ Add this dependency to your project's build file:
   }
 
   dependencies {
-     implementation "com.kibocommerce:reference:1.0.0"
+     implementation "com.kibocommerce:reference:3.0.0"
   }
 ```
 
@@ -69,7 +69,7 @@ mvn clean package
 
 Then manually install the following JARs:
 
-* `target/reference-1.0.0.jar`
+* `target/reference-3.0.0.jar`
 * `target/lib/*.jar`
 
 ## Getting Started
@@ -95,14 +95,11 @@ public class Example {
     HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
     bearerAuth.setBearerToken("BEARER TOKEN");
 
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
-
     ReferenceDataApi apiInstance = new ReferenceDataApi(defaultClient);
     String countryCode = "US"; // String | 
+    String responseFields = "responseFields_example"; // String | limits which fields are returned in the response body
     try {
-      AddressSchema result = apiInstance.getAddressSchema(countryCode);
+      AddressSchema result = apiInstance.getAddressSchema(countryCode, responseFields);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling ReferenceDataApi#getAddressSchema");
@@ -132,6 +129,7 @@ Class | Method | HTTP request | Description
 *ReferenceDataApi* | [**getCountries**](docs/ReferenceDataApi.md#getCountries) | **GET** /platform/reference/countries | Get the full list of Countries supported by the system
 *ReferenceDataApi* | [**getCountriesWithStates**](docs/ReferenceDataApi.md#getCountriesWithStates) | **GET** /platform/reference/countrieswithstates | Get the full list of Countries supported by the system
 *ReferenceDataApi* | [**getCurrencies**](docs/ReferenceDataApi.md#getCurrencies) | **GET** /platform/reference/currencies | Get the full list of Currencies supported by the system
+*ReferenceDataApi* | [**getStatesByCountry**](docs/ReferenceDataApi.md#getStatesByCountry) | **GET** /platform/reference/countries/{countryCode}/states | Get states/provinces for a country by ISO 3166-1 alpha-2 country code via ArcGIS Living Atlas
 *ReferenceDataApi* | [**getTimeZones**](docs/ReferenceDataApi.md#getTimeZones) | **GET** /platform/reference/timezones | Get the full list of TimeZones supported by the system
 *ReferenceDataApi* | [**getTopLevelDomains**](docs/ReferenceDataApi.md#getTopLevelDomains) | **GET** /platform/reference/topleveldomains | Get a full list of the supported top level domains
 *ReferenceDataApi* | [**getUnitsOfMeasure**](docs/ReferenceDataApi.md#getUnitsOfMeasure) | **GET** /platform/reference/unitsofmeasure | Get a full list of the units of measure
@@ -153,12 +151,13 @@ Class | Method | HTTP request | Description
  - [CountryCollection](docs/CountryCollection.md)
  - [CountryWithStates](docs/CountryWithStates.md)
  - [CountryWithStatesCollection](docs/CountryWithStatesCollection.md)
- - [Currency](docs/Currency.md)
  - [CurrencyCollection](docs/CurrencyCollection.md)
  - [Field](docs/Field.md)
  - [FieldData](docs/FieldData.md)
+ - [ReferenceCurrency](docs/ReferenceCurrency.md)
  - [ReferenceState](docs/ReferenceState.md)
- - [TimeZone](docs/TimeZone.md)
+ - [ReferenceTimeZone](docs/ReferenceTimeZone.md)
+ - [StateCollection](docs/StateCollection.md)
  - [TimeZoneCollection](docs/TimeZoneCollection.md)
  - [TopLevelDomainCollection](docs/TopLevelDomainCollection.md)
  - [UnitOfMeasure](docs/UnitOfMeasure.md)
@@ -171,13 +170,6 @@ Authentication schemes defined for the API:
 ### bearerAuth
 
 - **Type**: HTTP basic authentication
-
-### clientOauth2
-
-- **Type**: OAuth
-- **Flow**: application
-- **Authorization URL**: 
-- **Scopes**: N/A
 
 
 ## Recommendation

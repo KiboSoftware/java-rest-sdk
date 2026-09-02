@@ -1,8 +1,8 @@
 /*
  * Kibo Catalog Admin Services
- * OpenAPI Spec for Kibo Catalog Admin Services
+ * <div id=\"overview_CATALOG_ADMIN\">             <h2>CATALOG ADMINISTRATION</h2>             <p>The Catalog Administration APIs are a collection of resources for configuring the catalogs and products offered to your shoppers, including                 discounts and coupon sets, faceting, price lists, and different types or variations of products. See the                 <a href=\"/concept-guides/catalog\">Catalog user guides</a>                 for information about the related features in the Unified Commerce Admin.</p>             <p>Use the <strong>Attributes</strong> resource to manage localization and attribute configurations for your catalogs. This current version of the Attributes API includes localizedContent to                 support <a href=\"/pages/catalog-structure#multi-locale-catalogs\">multi-locale catalogs</a>, which was not present in the legacy API model. If                 you were a client prior to May 2024 and have upgraded your implementation to support this feature,                 you can still access attribute data that has not yet been rewritten to the new model by providing                 an x-api-version header set to \"1\". </p>             <p>Use the <strong>Categories</strong> resource to organize products and control where they appear on the storefront. Create                 and maintain a hierarchy of categories and subcategories where the site will store properties. This current version of the Categories API includes localizedContent to                 support <a href=\"/pages/catalog-structure#multi-locale-catalogs\">multi-locale catalogs</a>, which was not present in the legacy API model. If                 you were a client prior to May 2024 and have upgraded your implementation to support this feature,                 you can still access category data that has not yet been rewritten to the new model by providing                 an x-api-version header set to \"1\". </p>             <p>Use the <strong>Coupon Sets</strong> resource to view and create coupon sets. You can use coupon sets to group multiple                 coupon codes together and associate them with one or more discounts.</p>             <p>Use the <strong>Currency</strong> resource to manage the currency localization rules and exchange rates for any of the                 currencies that are supported for placing orders in.</p>             <p>Use the <strong>Discounts</strong> and <strong>Discount Settings</strong> resources to define and manage discounts to apply to products, product categories, or                 orders. This current version of the Discounts API includes localizedContent to                 support <a href=\"/pages/catalog-structure#multi-locale-catalogs\">multi-locale catalogs</a>, which was not present in the legacy Products API model. If                 you were a client prior to May 2024 and have upgraded your implementation to support this feature,                 you can still access discount data that has not yet been rewritten to the new model by providing                 an x-api-version header set to \"1\". </p>             <p>Use the <strong>Facets</strong> resource to manage the facets shoppers use to filter product display results on a                 storefront. Facets can include categories, product attributes, or prices, and use either a range of                 values or discrete values.</p>             <p>Use the <strong>Master Catalog</strong> resource to view details of the master catalogs associated with a tenant and to                 manage the product publishing mode for each master catalog.</p>             <p>Use the <strong>Price Lists</strong> resources to view and create price lists. You can use price lists to override the                 catalog pricing of products for specific customer segments and/or sites.</p>             <p>Use the <strong>Products</strong>, <strong>Product Types/Extras/Options/Properties</strong>, and <strong>Product Sort Definitions</strong> resources to create new product definitions in the master catalog and determine which                 catalogs will feature products. This current version of the Products API includes localizedContent to                 support <a href=\"/pages/catalog-structure#multi-locale-catalogs\">multi-locale catalogs</a>, which was not present in the legacy Products API model. If                 you were a client prior to May 2024 and have upgraded your implementation to support this feature,                 you can still access product data that has not yet been rewritten to the new model by providing                 an x-api-version header set to \"1\".</p>             <p>Use the <strong>Publishing</strong> resource to publish pending product updates together as part of a set.</p>             <p>Use the <strong>Search</strong> resource to manage all settings and options for providing product search on your site, as                 well as search tuning rules.</p>         </div>
  *
- * The version of the OpenAPI document: 1.0.0
+ * The version of the OpenAPI document: v1
  * 
  *
  * NOTE: This class is auto generated by OpenAPI Generator (https://openapi-generator.tech).
@@ -55,36 +55,12 @@ import java.util.Set;
 import com.kibocommerce.sdk.common.JSON;
 
 /**
- * Allows you to define and manage discounts to apply to your products, product categories, or orders. The discounts can be a specified monetary amount off the price, percentage off the price, or for free shipping.  You can create a coupon code that applies to the discount.
+ * Allows you to define and manage discounts to apply to your products, product categories, or orders. The discounts can be a specified monetary amount off the price, percentage off the price, or for free shipping. You can create a coupon code that applies to the discount.
  */
-@ApiModel(description = "Allows you to define and manage discounts to apply to your products, product categories, or orders. The discounts can be a specified monetary amount off the price, percentage off the price, or for free shipping.  You can create a coupon code that applies to the discount.")
+@ApiModel(description = "Allows you to define and manage discounts to apply to your products, product categories, or orders. The discounts can be a specified monetary amount off the price, percentage off the price, or for free shipping. You can create a coupon code that applies to the discount.")
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
 public class CatalogAdminsDiscount implements Serializable {
   private static final long serialVersionUID = 1L;
-
-  public static final String SERIALIZED_NAME_ID = "id";
-  @SerializedName(SERIALIZED_NAME_ID)
-  private Integer id;
-
-  public static final String SERIALIZED_NAME_CONTENT = "content";
-  @SerializedName(SERIALIZED_NAME_CONTENT)
-  private DiscountLocalizedContent content;
-
-  public static final String SERIALIZED_NAME_SCOPE = "scope";
-  @SerializedName(SERIALIZED_NAME_SCOPE)
-  private String scope;
-
-  public static final String SERIALIZED_NAME_CONDITIONS = "conditions";
-  @SerializedName(SERIALIZED_NAME_CONDITIONS)
-  private CatalogAdminsDiscountCondition conditions;
-
-  public static final String SERIALIZED_NAME_TARGET = "target";
-  @SerializedName(SERIALIZED_NAME_TARGET)
-  private CatalogAdminsDiscountTarget target;
-
-  public static final String SERIALIZED_NAME_CURRENT_REDEMPTION_COUNT = "currentRedemptionCount";
-  @SerializedName(SERIALIZED_NAME_CURRENT_REDEMPTION_COUNT)
-  private Integer currentRedemptionCount;
 
   public static final String SERIALIZED_NAME_AMOUNT = "amount";
   @SerializedName(SERIALIZED_NAME_AMOUNT)
@@ -94,29 +70,81 @@ public class CatalogAdminsDiscount implements Serializable {
   @SerializedName(SERIALIZED_NAME_AMOUNT_TYPE)
   private String amountType;
 
-  public static final String SERIALIZED_NAME_STATUS = "status";
-  @SerializedName(SERIALIZED_NAME_STATUS)
-  private String status;
+  public static final String SERIALIZED_NAME_AUDIT_INFO = "auditInfo";
+  @SerializedName(SERIALIZED_NAME_AUDIT_INFO)
+  private AdminUserAuditInfo auditInfo;
 
   public static final String SERIALIZED_NAME_CAN_BE_DELETED = "canBeDeleted";
   @SerializedName(SERIALIZED_NAME_CAN_BE_DELETED)
   private Boolean canBeDeleted;
 
-  public static final String SERIALIZED_NAME_DOES_NOT_APPLY_TO_SALE_PRICE = "doesNotApplyToSalePrice";
-  @SerializedName(SERIALIZED_NAME_DOES_NOT_APPLY_TO_SALE_PRICE)
-  private Boolean doesNotApplyToSalePrice;
+  public static final String SERIALIZED_NAME_CAN_BE_STACKED_UPON = "canBeStackedUpon";
+  @SerializedName(SERIALIZED_NAME_CAN_BE_STACKED_UPON)
+  private Boolean canBeStackedUpon;
+
+  public static final String SERIALIZED_NAME_CODE = "code";
+  @SerializedName(SERIALIZED_NAME_CODE)
+  private String code;
+
+  public static final String SERIALIZED_NAME_CONDITIONS = "conditions";
+  @SerializedName(SERIALIZED_NAME_CONDITIONS)
+  private CatalogAdminsDiscountCondition conditions;
+
+  public static final String SERIALIZED_NAME_CONTENT = "content";
+  @SerializedName(SERIALIZED_NAME_CONTENT)
+  private DiscountLocalizedContent content;
+
+  public static final String SERIALIZED_NAME_CURRENT_REDEMPTION_COUNT = "currentRedemptionCount";
+  @SerializedName(SERIALIZED_NAME_CURRENT_REDEMPTION_COUNT)
+  private Integer currentRedemptionCount;
+
+  public static final String SERIALIZED_NAME_DOES_NOT_APPLY_TO_MULTI_SHIP_TO_ORDERS = "doesNotApplyToMultiShipToOrders";
+  @SerializedName(SERIALIZED_NAME_DOES_NOT_APPLY_TO_MULTI_SHIP_TO_ORDERS)
+  private Boolean doesNotApplyToMultiShipToOrders;
 
   public static final String SERIALIZED_NAME_DOES_NOT_APPLY_TO_PRODUCTS_WITH_SALE_PRICE = "doesNotApplyToProductsWithSalePrice";
   @SerializedName(SERIALIZED_NAME_DOES_NOT_APPLY_TO_PRODUCTS_WITH_SALE_PRICE)
   private Boolean doesNotApplyToProductsWithSalePrice;
 
+  public static final String SERIALIZED_NAME_DOES_NOT_APPLY_TO_SALE_PRICE = "doesNotApplyToSalePrice";
+  @SerializedName(SERIALIZED_NAME_DOES_NOT_APPLY_TO_SALE_PRICE)
+  private Boolean doesNotApplyToSalePrice;
+
+  public static final String SERIALIZED_NAME_HAS_PURCHASE_CONDITIONS = "hasPurchaseConditions";
+  @SerializedName(SERIALIZED_NAME_HAS_PURCHASE_CONDITIONS)
+  private Boolean hasPurchaseConditions;
+
+  public static final String SERIALIZED_NAME_ID = "id";
+  @SerializedName(SERIALIZED_NAME_ID)
+  private Integer id;
+
+  public static final String SERIALIZED_NAME_INCLUDED_PRICE_LISTS = "includedPriceLists";
+  @SerializedName(SERIALIZED_NAME_INCLUDED_PRICE_LISTS)
+  private List<String> includedPriceLists = null;
+
+  public static final String SERIALIZED_NAME_IS_BX_GX = "isBxGx";
+  @SerializedName(SERIALIZED_NAME_IS_BX_GX)
+  private Boolean isBxGx;
+
   public static final String SERIALIZED_NAME_IS_DISABLED = "isDisabled";
   @SerializedName(SERIALIZED_NAME_IS_DISABLED)
   private Boolean isDisabled;
 
-  public static final String SERIALIZED_NAME_MAXIMUM_USES_PER_USER = "maximumUsesPerUser";
-  @SerializedName(SERIALIZED_NAME_MAXIMUM_USES_PER_USER)
-  private Integer maximumUsesPerUser;
+  public static final String SERIALIZED_NAME_IS_PUBLIC = "isPublic";
+  @SerializedName(SERIALIZED_NAME_IS_PUBLIC)
+  private Boolean isPublic;
+
+  public static final String SERIALIZED_NAME_IS_SUBSCRIPTION_DISCOUNT = "isSubscriptionDiscount";
+  @SerializedName(SERIALIZED_NAME_IS_SUBSCRIPTION_DISCOUNT)
+  private Boolean isSubscriptionDiscount;
+
+  public static final String SERIALIZED_NAME_LABELS = "labels";
+  @SerializedName(SERIALIZED_NAME_LABELS)
+  private List<String> labels = null;
+
+  public static final String SERIALIZED_NAME_LOCALIZED_CONTENT = "localizedContent";
+  @SerializedName(SERIALIZED_NAME_LOCALIZED_CONTENT)
+  private List<DiscountLocalizedContent> localizedContent = null;
 
   public static final String SERIALIZED_NAME_MAXIMUM_DISCOUNT_IMPACT_PER_ORDER = "maximumDiscountImpactPerOrder";
   @SerializedName(SERIALIZED_NAME_MAXIMUM_DISCOUNT_IMPACT_PER_ORDER)
@@ -130,29 +158,9 @@ public class CatalogAdminsDiscount implements Serializable {
   @SerializedName(SERIALIZED_NAME_MAXIMUM_REDEMPTIONS_PER_ORDER)
   private Integer maximumRedemptionsPerOrder;
 
-  public static final String SERIALIZED_NAME_INCLUDED_PRICE_LISTS = "includedPriceLists";
-  @SerializedName(SERIALIZED_NAME_INCLUDED_PRICE_LISTS)
-  private List<String> includedPriceLists = null;
-
-  public static final String SERIALIZED_NAME_DOES_NOT_APPLY_TO_MULTI_SHIP_TO_ORDERS = "doesNotApplyToMultiShipToOrders";
-  @SerializedName(SERIALIZED_NAME_DOES_NOT_APPLY_TO_MULTI_SHIP_TO_ORDERS)
-  private Boolean doesNotApplyToMultiShipToOrders;
-
-  public static final String SERIALIZED_NAME_IS_BX_GX = "isBxGx";
-  @SerializedName(SERIALIZED_NAME_IS_BX_GX)
-  private Boolean isBxGx;
-
-  public static final String SERIALIZED_NAME_CAN_BE_STACKED_UPON = "canBeStackedUpon";
-  @SerializedName(SERIALIZED_NAME_CAN_BE_STACKED_UPON)
-  private Boolean canBeStackedUpon;
-
-  public static final String SERIALIZED_NAME_STACKING_LAYER = "stackingLayer";
-  @SerializedName(SERIALIZED_NAME_STACKING_LAYER)
-  private Integer stackingLayer;
-
-  public static final String SERIALIZED_NAME_THRESHOLD_MESSAGE = "thresholdMessage";
-  @SerializedName(SERIALIZED_NAME_THRESHOLD_MESSAGE)
-  private CatalogAdminsThresholdMessage thresholdMessage;
+  public static final String SERIALIZED_NAME_MAXIMUM_USES_PER_USER = "maximumUsesPerUser";
+  @SerializedName(SERIALIZED_NAME_MAXIMUM_USES_PER_USER)
+  private Integer maximumUsesPerUser;
 
   public static final String SERIALIZED_NAME_PREVENT_LINE_ITEM_SHIPPING_DISCOUNTS = "preventLineItemShippingDiscounts";
   @SerializedName(SERIALIZED_NAME_PREVENT_LINE_ITEM_SHIPPING_DISCOUNTS)
@@ -166,166 +174,40 @@ public class CatalogAdminsDiscount implements Serializable {
   @SerializedName(SERIALIZED_NAME_PREVENT_ORDER_SHIPPING_DISCOUNTS)
   private Boolean preventOrderShippingDiscounts;
 
-  public static final String SERIALIZED_NAME_HAS_PURCHASE_CONDITIONS = "hasPurchaseConditions";
-  @SerializedName(SERIALIZED_NAME_HAS_PURCHASE_CONDITIONS)
-  private Boolean hasPurchaseConditions;
-
   public static final String SERIALIZED_NAME_PURCHASE_REQUIREMENT_TYPE = "purchaseRequirementType";
   @SerializedName(SERIALIZED_NAME_PURCHASE_REQUIREMENT_TYPE)
   private String purchaseRequirementType;
 
-  public static final String SERIALIZED_NAME_AUDIT_INFO = "auditInfo";
-  @SerializedName(SERIALIZED_NAME_AUDIT_INFO)
-  private AdminUserAuditInfo auditInfo;
+  public static final String SERIALIZED_NAME_REEVAL_FREE_ITEM_MIN_ORDER_POST_DISCOUNTS = "reevalFreeItemMinOrderPostDiscounts";
+  @SerializedName(SERIALIZED_NAME_REEVAL_FREE_ITEM_MIN_ORDER_POST_DISCOUNTS)
+  private Boolean reevalFreeItemMinOrderPostDiscounts;
+
+  public static final String SERIALIZED_NAME_SCOPE = "scope";
+  @SerializedName(SERIALIZED_NAME_SCOPE)
+  private String scope;
+
+  public static final String SERIALIZED_NAME_STACKING_LAYER = "stackingLayer";
+  @SerializedName(SERIALIZED_NAME_STACKING_LAYER)
+  private Integer stackingLayer;
+
+  public static final String SERIALIZED_NAME_STATUS = "status";
+  @SerializedName(SERIALIZED_NAME_STATUS)
+  private String status;
 
   public static final String SERIALIZED_NAME_TAG_CODES = "tagCodes";
   @SerializedName(SERIALIZED_NAME_TAG_CODES)
   private List<String> tagCodes = null;
 
-  public static final String SERIALIZED_NAME_IS_SUBSCRIPTION_DISCOUNT = "isSubscriptionDiscount";
-  @SerializedName(SERIALIZED_NAME_IS_SUBSCRIPTION_DISCOUNT)
-  private Boolean isSubscriptionDiscount;
+  public static final String SERIALIZED_NAME_TARGET = "target";
+  @SerializedName(SERIALIZED_NAME_TARGET)
+  private CatalogAdminsDiscountTarget target;
+
+  public static final String SERIALIZED_NAME_THRESHOLD_MESSAGE = "thresholdMessage";
+  @SerializedName(SERIALIZED_NAME_THRESHOLD_MESSAGE)
+  private CatalogAdminsThresholdMessage thresholdMessage;
 
   public CatalogAdminsDiscount() {
   }
-
-  public CatalogAdminsDiscount id(Integer id) {
-    
-    this.id = id;
-    return this;
-  }
-
-   /**
-   * Unique identifier of the discount. System-supplied and read-only.
-   * @return id
-  **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(value = "Unique identifier of the discount. System-supplied and read-only.")
-
-  public Integer getId() {
-    return id;
-  }
-
-
-  public void setId(Integer id) {
-    this.id = id;
-  }
-
-
-  public CatalogAdminsDiscount content(DiscountLocalizedContent content) {
-    
-    this.content = content;
-    return this;
-  }
-
-   /**
-   * Get content
-   * @return content
-  **/
-  @javax.annotation.Nonnull
-  @ApiModelProperty(required = true, value = "")
-
-  public DiscountLocalizedContent getContent() {
-    return content;
-  }
-
-
-  public void setContent(DiscountLocalizedContent content) {
-    this.content = content;
-  }
-
-
-  public CatalogAdminsDiscount scope(String scope) {
-    
-    this.scope = scope;
-    return this;
-  }
-
-   /**
-   * Scope to which the discount applies, valid values are: Order, LineItem
-   * @return scope
-  **/
-  @javax.annotation.Nonnull
-  @ApiModelProperty(required = true, value = "Scope to which the discount applies, valid values are: Order, LineItem")
-
-  public String getScope() {
-    return scope;
-  }
-
-
-  public void setScope(String scope) {
-    this.scope = scope;
-  }
-
-
-  public CatalogAdminsDiscount conditions(CatalogAdminsDiscountCondition conditions) {
-    
-    this.conditions = conditions;
-    return this;
-  }
-
-   /**
-   * Get conditions
-   * @return conditions
-  **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
-
-  public CatalogAdminsDiscountCondition getConditions() {
-    return conditions;
-  }
-
-
-  public void setConditions(CatalogAdminsDiscountCondition conditions) {
-    this.conditions = conditions;
-  }
-
-
-  public CatalogAdminsDiscount target(CatalogAdminsDiscountTarget target) {
-    
-    this.target = target;
-    return this;
-  }
-
-   /**
-   * Get target
-   * @return target
-  **/
-  @javax.annotation.Nonnull
-  @ApiModelProperty(required = true, value = "")
-
-  public CatalogAdminsDiscountTarget getTarget() {
-    return target;
-  }
-
-
-  public void setTarget(CatalogAdminsDiscountTarget target) {
-    this.target = target;
-  }
-
-
-  public CatalogAdminsDiscount currentRedemptionCount(Integer currentRedemptionCount) {
-    
-    this.currentRedemptionCount = currentRedemptionCount;
-    return this;
-  }
-
-   /**
-   * How many times this discount has been redeemed. System-supplied and read-only.
-   * @return currentRedemptionCount
-  **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(value = "How many times this discount has been redeemed. System-supplied and read-only.")
-
-  public Integer getCurrentRedemptionCount() {
-    return currentRedemptionCount;
-  }
-
-
-  public void setCurrentRedemptionCount(Integer currentRedemptionCount) {
-    this.currentRedemptionCount = currentRedemptionCount;
-  }
-
 
   public CatalogAdminsDiscount amount(Double amount) {
     
@@ -334,11 +216,12 @@ public class CatalogAdminsDiscount implements Serializable {
   }
 
    /**
-   *     Amount of the discount, as a percentage or monetary amount, for example 15% or $15.  Must be either null or greater than zero.
+   *     Amount of the discount, as a percentage or monetary amount, for example 15% or $15. Must be either null or greater than zero.
+   * minimum: 0
    * @return amount
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "    Amount of the discount, as a percentage or monetary amount, for example 15% or $15.  Must be either null or greater than zero.")
+  @ApiModelProperty(value = "    Amount of the discount, as a percentage or monetary amount, for example 15% or $15. Must be either null or greater than zero.")
 
   public Double getAmount() {
     return amount;
@@ -357,11 +240,11 @@ public class CatalogAdminsDiscount implements Serializable {
   }
 
    /**
-   * Type of discount, which can be either a percentage off the price,   a specific monetary amount, or free.   Possible values:    Percentage    Amount    Free   FixedPrice
+   * Type of discount, which can be either a percentage off the price,  a specific monetary amount, or free.  Possible values:   Percentage   Amount   Free  FixedPrice
    * @return amountType
   **/
   @javax.annotation.Nonnull
-  @ApiModelProperty(required = true, value = "Type of discount, which can be either a percentage off the price,   a specific monetary amount, or free.   Possible values:    Percentage    Amount    Free   FixedPrice")
+  @ApiModelProperty(required = true, value = "Type of discount, which can be either a percentage off the price,  a specific monetary amount, or free.  Possible values:   Percentage   Amount   Free  FixedPrice")
 
   public String getAmountType() {
     return amountType;
@@ -373,26 +256,26 @@ public class CatalogAdminsDiscount implements Serializable {
   }
 
 
-  public CatalogAdminsDiscount status(String status) {
+  public CatalogAdminsDiscount auditInfo(AdminUserAuditInfo auditInfo) {
     
-    this.status = status;
+    this.auditInfo = auditInfo;
     return this;
   }
 
    /**
-   * Discount status which can be \&quot;Active,\&quot; \&quot;Scheduled,\&quot; or \&quot;Expired.\&quot; System-supplied and read-only.
-   * @return status
+   * Get auditInfo
+   * @return auditInfo
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "Discount status which can be \"Active,\" \"Scheduled,\" or \"Expired.\" System-supplied and read-only.")
+  @ApiModelProperty(value = "")
 
-  public String getStatus() {
-    return status;
+  public AdminUserAuditInfo getAuditInfo() {
+    return auditInfo;
   }
 
 
-  public void setStatus(String status) {
-    this.status = status;
+  public void setAuditInfo(AdminUserAuditInfo auditInfo) {
+    this.auditInfo = auditInfo;
   }
 
 
@@ -419,6 +302,167 @@ public class CatalogAdminsDiscount implements Serializable {
   }
 
 
+  public CatalogAdminsDiscount canBeStackedUpon(Boolean canBeStackedUpon) {
+    
+    this.canBeStackedUpon = canBeStackedUpon;
+    return this;
+  }
+
+   /**
+   * Indicates whether or not stacking is enabled for this discount
+   * @return canBeStackedUpon
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "Indicates whether or not stacking is enabled for this discount")
+
+  public Boolean getCanBeStackedUpon() {
+    return canBeStackedUpon;
+  }
+
+
+  public void setCanBeStackedUpon(Boolean canBeStackedUpon) {
+    this.canBeStackedUpon = canBeStackedUpon;
+  }
+
+
+  public CatalogAdminsDiscount code(String code) {
+    
+    this.code = code;
+    return this;
+  }
+
+   /**
+   * Indicates unique code for the discount, if not present Discount Id is used as a code.
+   * @return code
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "Indicates unique code for the discount, if not present Discount Id is used as a code.")
+
+  public String getCode() {
+    return code;
+  }
+
+
+  public void setCode(String code) {
+    this.code = code;
+  }
+
+
+  public CatalogAdminsDiscount conditions(CatalogAdminsDiscountCondition conditions) {
+    
+    this.conditions = conditions;
+    return this;
+  }
+
+   /**
+   * Get conditions
+   * @return conditions
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
+
+  public CatalogAdminsDiscountCondition getConditions() {
+    return conditions;
+  }
+
+
+  public void setConditions(CatalogAdminsDiscountCondition conditions) {
+    this.conditions = conditions;
+  }
+
+
+  public CatalogAdminsDiscount content(DiscountLocalizedContent content) {
+    
+    this.content = content;
+    return this;
+  }
+
+   /**
+   * Get content
+   * @return content
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
+
+  public DiscountLocalizedContent getContent() {
+    return content;
+  }
+
+
+  public void setContent(DiscountLocalizedContent content) {
+    this.content = content;
+  }
+
+
+  public CatalogAdminsDiscount currentRedemptionCount(Integer currentRedemptionCount) {
+    
+    this.currentRedemptionCount = currentRedemptionCount;
+    return this;
+  }
+
+   /**
+   * How many times this discount has been redeemed. System-supplied and read-only.
+   * @return currentRedemptionCount
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "How many times this discount has been redeemed. System-supplied and read-only.")
+
+  public Integer getCurrentRedemptionCount() {
+    return currentRedemptionCount;
+  }
+
+
+  public void setCurrentRedemptionCount(Integer currentRedemptionCount) {
+    this.currentRedemptionCount = currentRedemptionCount;
+  }
+
+
+  public CatalogAdminsDiscount doesNotApplyToMultiShipToOrders(Boolean doesNotApplyToMultiShipToOrders) {
+    
+    this.doesNotApplyToMultiShipToOrders = doesNotApplyToMultiShipToOrders;
+    return this;
+  }
+
+   /**
+   * Flag to allow or prevent application to multi-ship-to orders, Only applicable to shipping discounts.
+   * @return doesNotApplyToMultiShipToOrders
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "Flag to allow or prevent application to multi-ship-to orders, Only applicable to shipping discounts.")
+
+  public Boolean getDoesNotApplyToMultiShipToOrders() {
+    return doesNotApplyToMultiShipToOrders;
+  }
+
+
+  public void setDoesNotApplyToMultiShipToOrders(Boolean doesNotApplyToMultiShipToOrders) {
+    this.doesNotApplyToMultiShipToOrders = doesNotApplyToMultiShipToOrders;
+  }
+
+
+  public CatalogAdminsDiscount doesNotApplyToProductsWithSalePrice(Boolean doesNotApplyToProductsWithSalePrice) {
+    
+    this.doesNotApplyToProductsWithSalePrice = doesNotApplyToProductsWithSalePrice;
+    return this;
+  }
+
+   /**
+   * Determines whether or not a discount applies to a items with a sale price.  Applicable  on order and line item discounts.  For line items, when this is true, the discount will  be disqualified.  For order level discounts, when true, the discount will not be applied  to those items have a sale price.
+   * @return doesNotApplyToProductsWithSalePrice
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "Determines whether or not a discount applies to a items with a sale price.  Applicable  on order and line item discounts.  For line items, when this is true, the discount will  be disqualified.  For order level discounts, when true, the discount will not be applied  to those items have a sale price.")
+
+  public Boolean getDoesNotApplyToProductsWithSalePrice() {
+    return doesNotApplyToProductsWithSalePrice;
+  }
+
+
+  public void setDoesNotApplyToProductsWithSalePrice(Boolean doesNotApplyToProductsWithSalePrice) {
+    this.doesNotApplyToProductsWithSalePrice = doesNotApplyToProductsWithSalePrice;
+  }
+
+
   public CatalogAdminsDiscount doesNotApplyToSalePrice(Boolean doesNotApplyToSalePrice) {
     
     this.doesNotApplyToSalePrice = doesNotApplyToSalePrice;
@@ -426,11 +470,11 @@ public class CatalogAdminsDiscount implements Serializable {
   }
 
    /**
-   * Determines if the discount should apply to sale price or regular price only.  Discounts will apply to sale prices by default.  Only applies to LineItem product discounts.
+   * Determines if the discount should apply to sale price or regular price only. Discounts will apply to sale prices by default. Only applies to LineItem product discounts.
    * @return doesNotApplyToSalePrice
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "Determines if the discount should apply to sale price or regular price only.  Discounts will apply to sale prices by default.  Only applies to LineItem product discounts.")
+  @ApiModelProperty(value = "Determines if the discount should apply to sale price or regular price only. Discounts will apply to sale prices by default. Only applies to LineItem product discounts.")
 
   public Boolean getDoesNotApplyToSalePrice() {
     return doesNotApplyToSalePrice;
@@ -442,26 +486,103 @@ public class CatalogAdminsDiscount implements Serializable {
   }
 
 
-  public CatalogAdminsDiscount doesNotApplyToProductsWithSalePrice(Boolean doesNotApplyToProductsWithSalePrice) {
+  public CatalogAdminsDiscount hasPurchaseConditions(Boolean hasPurchaseConditions) {
     
-    this.doesNotApplyToProductsWithSalePrice = doesNotApplyToProductsWithSalePrice;
+    this.hasPurchaseConditions = hasPurchaseConditions;
     return this;
   }
 
    /**
-   * Determines whether or not a discount applies to a items with a sale price.  Applicable   on order and line item discounts.  For line items, when this is true, the discount will   be disqualified.  For order level discounts, when true, the discount will not be applied   to those items have a sale price.
-   * @return doesNotApplyToProductsWithSalePrice
+   * Indicates if this discount has purchase conditions that must be met before  the discount is applied
+   * @return hasPurchaseConditions
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "Determines whether or not a discount applies to a items with a sale price.  Applicable   on order and line item discounts.  For line items, when this is true, the discount will   be disqualified.  For order level discounts, when true, the discount will not be applied   to those items have a sale price.")
+  @ApiModelProperty(value = "Indicates if this discount has purchase conditions that must be met before  the discount is applied")
 
-  public Boolean getDoesNotApplyToProductsWithSalePrice() {
-    return doesNotApplyToProductsWithSalePrice;
+  public Boolean getHasPurchaseConditions() {
+    return hasPurchaseConditions;
   }
 
 
-  public void setDoesNotApplyToProductsWithSalePrice(Boolean doesNotApplyToProductsWithSalePrice) {
-    this.doesNotApplyToProductsWithSalePrice = doesNotApplyToProductsWithSalePrice;
+  public void setHasPurchaseConditions(Boolean hasPurchaseConditions) {
+    this.hasPurchaseConditions = hasPurchaseConditions;
+  }
+
+
+  public CatalogAdminsDiscount id(Integer id) {
+    
+    this.id = id;
+    return this;
+  }
+
+   /**
+   * Unique identifier of the discount. System-supplied and read-only.
+   * @return id
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "Unique identifier of the discount. System-supplied and read-only.")
+
+  public Integer getId() {
+    return id;
+  }
+
+
+  public void setId(Integer id) {
+    this.id = id;
+  }
+
+
+  public CatalogAdminsDiscount includedPriceLists(List<String> includedPriceLists) {
+    
+    this.includedPriceLists = includedPriceLists;
+    return this;
+  }
+
+  public CatalogAdminsDiscount addIncludedPriceListsItem(String includedPriceListsItem) {
+    if (this.includedPriceLists == null) {
+      this.includedPriceLists = new ArrayList<>();
+    }
+    this.includedPriceLists.add(includedPriceListsItem);
+    return this;
+  }
+
+   /**
+   * Products receiving a price from a price list specified here or a child of a specified  price list can be discounted.
+   * @return includedPriceLists
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "Products receiving a price from a price list specified here or a child of a specified  price list can be discounted.")
+
+  public List<String> getIncludedPriceLists() {
+    return includedPriceLists;
+  }
+
+
+  public void setIncludedPriceLists(List<String> includedPriceLists) {
+    this.includedPriceLists = includedPriceLists;
+  }
+
+
+  public CatalogAdminsDiscount isBxGx(Boolean isBxGx) {
+    
+    this.isBxGx = isBxGx;
+    return this;
+  }
+
+   /**
+   * Readonly property indicating that the condition required purchase is the  same as the target items.  Used in BxGx and BoGo type discounts.
+   * @return isBxGx
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "Readonly property indicating that the condition required purchase is the  same as the target items.  Used in BxGx and BoGo type discounts.")
+
+  public Boolean getIsBxGx() {
+    return isBxGx;
+  }
+
+
+  public void setIsBxGx(Boolean isBxGx) {
+    this.isBxGx = isBxGx;
   }
 
 
@@ -488,26 +609,111 @@ public class CatalogAdminsDiscount implements Serializable {
   }
 
 
-  public CatalogAdminsDiscount maximumUsesPerUser(Integer maximumUsesPerUser) {
+  public CatalogAdminsDiscount isPublic(Boolean isPublic) {
     
-    this.maximumUsesPerUser = maximumUsesPerUser;
+    this.isPublic = isPublic;
     return this;
   }
 
    /**
-   * Maximum number of times a user can redeem this discount.   Must be either null or greater than zero.
-   * @return maximumUsesPerUser
+   * Determines whether the discount is available for every shopper.
+   * @return isPublic
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "Maximum number of times a user can redeem this discount.   Must be either null or greater than zero.")
+  @ApiModelProperty(value = "Determines whether the discount is available for every shopper.")
 
-  public Integer getMaximumUsesPerUser() {
-    return maximumUsesPerUser;
+  public Boolean getIsPublic() {
+    return isPublic;
   }
 
 
-  public void setMaximumUsesPerUser(Integer maximumUsesPerUser) {
-    this.maximumUsesPerUser = maximumUsesPerUser;
+  public void setIsPublic(Boolean isPublic) {
+    this.isPublic = isPublic;
+  }
+
+
+  public CatalogAdminsDiscount isSubscriptionDiscount(Boolean isSubscriptionDiscount) {
+    
+    this.isSubscriptionDiscount = isSubscriptionDiscount;
+    return this;
+  }
+
+   /**
+   * Determines how discounts will be evaluated for subscription items and during continuity orders.
+   * @return isSubscriptionDiscount
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "Determines how discounts will be evaluated for subscription items and during continuity orders.")
+
+  public Boolean getIsSubscriptionDiscount() {
+    return isSubscriptionDiscount;
+  }
+
+
+  public void setIsSubscriptionDiscount(Boolean isSubscriptionDiscount) {
+    this.isSubscriptionDiscount = isSubscriptionDiscount;
+  }
+
+
+  public CatalogAdminsDiscount labels(List<String> labels) {
+    
+    this.labels = labels;
+    return this;
+  }
+
+  public CatalogAdminsDiscount addLabelsItem(String labelsItem) {
+    if (this.labels == null) {
+      this.labels = new ArrayList<>();
+    }
+    this.labels.add(labelsItem);
+    return this;
+  }
+
+   /**
+   * Indicates unique discount labels.
+   * @return labels
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "Indicates unique discount labels.")
+
+  public List<String> getLabels() {
+    return labels;
+  }
+
+
+  public void setLabels(List<String> labels) {
+    this.labels = labels;
+  }
+
+
+  public CatalogAdminsDiscount localizedContent(List<DiscountLocalizedContent> localizedContent) {
+    
+    this.localizedContent = localizedContent;
+    return this;
+  }
+
+  public CatalogAdminsDiscount addLocalizedContentItem(DiscountLocalizedContent localizedContentItem) {
+    if (this.localizedContent == null) {
+      this.localizedContent = new ArrayList<>();
+    }
+    this.localizedContent.add(localizedContentItem);
+    return this;
+  }
+
+   /**
+   * Container for the language-specific name of the discount. You will have a container for each supported language (LocaleCode). This enables you to display the discount name in multiple languages yet manage it as a single discount internally.
+   * @return localizedContent
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "Container for the language-specific name of the discount. You will have a container for each supported language (LocaleCode). This enables you to display the discount name in multiple languages yet manage it as a single discount internally.")
+
+  public List<DiscountLocalizedContent> getLocalizedContent() {
+    return localizedContent;
+  }
+
+
+  public void setLocalizedContent(List<DiscountLocalizedContent> localizedContent) {
+    this.localizedContent = localizedContent;
   }
 
 
@@ -518,11 +724,12 @@ public class CatalogAdminsDiscount implements Serializable {
   }
 
    /**
-   * Maximum impact this discount can apply on a single order.   Must be either null or greater than zero.
+   * Maximum impact this discount can apply on a single order.  Must be either null or greater than zero.
+   * minimum: 0
    * @return maximumDiscountImpactPerOrder
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "Maximum impact this discount can apply on a single order.   Must be either null or greater than zero.")
+  @ApiModelProperty(value = "Maximum impact this discount can apply on a single order.  Must be either null or greater than zero.")
 
   public Double getMaximumDiscountImpactPerOrder() {
     return maximumDiscountImpactPerOrder;
@@ -541,11 +748,12 @@ public class CatalogAdminsDiscount implements Serializable {
   }
 
    /**
-   * Maximum impact this discount can apply on a single line item.   Must be either null or greater than zero.
+   * Maximum impact this discount can apply on a single line item.  Must be either null or greater than zero.
+   * minimum: 0
    * @return maximumDiscountImpactPerRedemption
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "Maximum impact this discount can apply on a single line item.   Must be either null or greater than zero.")
+  @ApiModelProperty(value = "Maximum impact this discount can apply on a single line item.  Must be either null or greater than zero.")
 
   public Double getMaximumDiscountImpactPerRedemption() {
     return maximumDiscountImpactPerRedemption;
@@ -564,11 +772,12 @@ public class CatalogAdminsDiscount implements Serializable {
   }
 
    /**
-   * Maximum number of redemptions allowed per order.  If null, defaults to unlimited.
+   * Maximum number of redemptions allowed per order. If null, defaults to unlimited.
+   * minimum: 0
    * @return maximumRedemptionsPerOrder
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "Maximum number of redemptions allowed per order.  If null, defaults to unlimited.")
+  @ApiModelProperty(value = "Maximum number of redemptions allowed per order. If null, defaults to unlimited.")
 
   public Integer getMaximumRedemptionsPerOrder() {
     return maximumRedemptionsPerOrder;
@@ -580,103 +789,165 @@ public class CatalogAdminsDiscount implements Serializable {
   }
 
 
-  public CatalogAdminsDiscount includedPriceLists(List<String> includedPriceLists) {
+  public CatalogAdminsDiscount maximumUsesPerUser(Integer maximumUsesPerUser) {
     
-    this.includedPriceLists = includedPriceLists;
-    return this;
-  }
-
-  public CatalogAdminsDiscount addIncludedPriceListsItem(String includedPriceListsItem) {
-    if (this.includedPriceLists == null) {
-      this.includedPriceLists = new ArrayList<>();
-    }
-    this.includedPriceLists.add(includedPriceListsItem);
+    this.maximumUsesPerUser = maximumUsesPerUser;
     return this;
   }
 
    /**
-   * Products receiving a price from a price list specified here or a child of a specified   price list can be discounted.
-   * @return includedPriceLists
+   * Maximum number of times a user can redeem this discount.  Must be either null or greater than zero.
+   * minimum: 0
+   * @return maximumUsesPerUser
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "Products receiving a price from a price list specified here or a child of a specified   price list can be discounted.")
+  @ApiModelProperty(value = "Maximum number of times a user can redeem this discount.  Must be either null or greater than zero.")
 
-  public List<String> getIncludedPriceLists() {
-    return includedPriceLists;
+  public Integer getMaximumUsesPerUser() {
+    return maximumUsesPerUser;
   }
 
 
-  public void setIncludedPriceLists(List<String> includedPriceLists) {
-    this.includedPriceLists = includedPriceLists;
+  public void setMaximumUsesPerUser(Integer maximumUsesPerUser) {
+    this.maximumUsesPerUser = maximumUsesPerUser;
   }
 
 
-  public CatalogAdminsDiscount doesNotApplyToMultiShipToOrders(Boolean doesNotApplyToMultiShipToOrders) {
+  public CatalogAdminsDiscount preventLineItemShippingDiscounts(Boolean preventLineItemShippingDiscounts) {
     
-    this.doesNotApplyToMultiShipToOrders = doesNotApplyToMultiShipToOrders;
+    this.preventLineItemShippingDiscounts = preventLineItemShippingDiscounts;
     return this;
   }
 
    /**
-   * Flag to allow or prevent application to multi-ship-to orders,  Only applicable to shipping discounts.
-   * @return doesNotApplyToMultiShipToOrders
+   * Prevents Line Item Shipping discounts from being applied when a Line Item Product   discount has been applied
+   * @return preventLineItemShippingDiscounts
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "Flag to allow or prevent application to multi-ship-to orders,  Only applicable to shipping discounts.")
+  @ApiModelProperty(value = "Prevents Line Item Shipping discounts from being applied when a Line Item Product   discount has been applied")
 
-  public Boolean getDoesNotApplyToMultiShipToOrders() {
-    return doesNotApplyToMultiShipToOrders;
+  public Boolean getPreventLineItemShippingDiscounts() {
+    return preventLineItemShippingDiscounts;
   }
 
 
-  public void setDoesNotApplyToMultiShipToOrders(Boolean doesNotApplyToMultiShipToOrders) {
-    this.doesNotApplyToMultiShipToOrders = doesNotApplyToMultiShipToOrders;
+  public void setPreventLineItemShippingDiscounts(Boolean preventLineItemShippingDiscounts) {
+    this.preventLineItemShippingDiscounts = preventLineItemShippingDiscounts;
   }
 
 
-  public CatalogAdminsDiscount isBxGx(Boolean isBxGx) {
+  public CatalogAdminsDiscount preventOrderProductDiscounts(Boolean preventOrderProductDiscounts) {
     
-    this.isBxGx = isBxGx;
+    this.preventOrderProductDiscounts = preventOrderProductDiscounts;
     return this;
   }
 
    /**
-   * Readonly property indicating that the condition required purchase is the   same as the target items.  Used in BxGx and BoGo type discounts.
-   * @return isBxGx
+   * Prevents Order Product discounts from being applied when a Line Item Product   or Shipping discount has been applied
+   * @return preventOrderProductDiscounts
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "Readonly property indicating that the condition required purchase is the   same as the target items.  Used in BxGx and BoGo type discounts.")
+  @ApiModelProperty(value = "Prevents Order Product discounts from being applied when a Line Item Product   or Shipping discount has been applied")
 
-  public Boolean getIsBxGx() {
-    return isBxGx;
+  public Boolean getPreventOrderProductDiscounts() {
+    return preventOrderProductDiscounts;
   }
 
 
-  public void setIsBxGx(Boolean isBxGx) {
-    this.isBxGx = isBxGx;
+  public void setPreventOrderProductDiscounts(Boolean preventOrderProductDiscounts) {
+    this.preventOrderProductDiscounts = preventOrderProductDiscounts;
   }
 
 
-  public CatalogAdminsDiscount canBeStackedUpon(Boolean canBeStackedUpon) {
+  public CatalogAdminsDiscount preventOrderShippingDiscounts(Boolean preventOrderShippingDiscounts) {
     
-    this.canBeStackedUpon = canBeStackedUpon;
+    this.preventOrderShippingDiscounts = preventOrderShippingDiscounts;
     return this;
   }
 
    /**
-   * Indicates whether or not stacking is enabled for this discount
-   * @return canBeStackedUpon
+   * Prevents Order Shipping discounts from being applied when a Line Item Product/Shipping   or Order Product discount has been applied
+   * @return preventOrderShippingDiscounts
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "Indicates whether or not stacking is enabled for this discount")
+  @ApiModelProperty(value = "Prevents Order Shipping discounts from being applied when a Line Item Product/Shipping   or Order Product discount has been applied")
 
-  public Boolean getCanBeStackedUpon() {
-    return canBeStackedUpon;
+  public Boolean getPreventOrderShippingDiscounts() {
+    return preventOrderShippingDiscounts;
   }
 
 
-  public void setCanBeStackedUpon(Boolean canBeStackedUpon) {
-    this.canBeStackedUpon = canBeStackedUpon;
+  public void setPreventOrderShippingDiscounts(Boolean preventOrderShippingDiscounts) {
+    this.preventOrderShippingDiscounts = preventOrderShippingDiscounts;
+  }
+
+
+  public CatalogAdminsDiscount purchaseRequirementType(String purchaseRequirementType) {
+    
+    this.purchaseRequirementType = purchaseRequirementType;
+    return this;
+  }
+
+   /**
+   * The type of purchase requirement for this discount, either purchase conditions and targets which    Supports BoGo, and BxGx scenarios. Or Target only that only have a target and no purchase conditions
+   * @return purchaseRequirementType
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "The type of purchase requirement for this discount, either purchase conditions and targets which    Supports BoGo, and BxGx scenarios. Or Target only that only have a target and no purchase conditions")
+
+  public String getPurchaseRequirementType() {
+    return purchaseRequirementType;
+  }
+
+
+  public void setPurchaseRequirementType(String purchaseRequirementType) {
+    this.purchaseRequirementType = purchaseRequirementType;
+  }
+
+
+  public CatalogAdminsDiscount reevalFreeItemMinOrderPostDiscounts(Boolean reevalFreeItemMinOrderPostDiscounts) {
+    
+    this.reevalFreeItemMinOrderPostDiscounts = reevalFreeItemMinOrderPostDiscounts;
+    return this;
+  }
+
+   /**
+   * Enables post-order-discount minimum re-evaluation for eligible free-item discounts. Values null and false are treated as disabled.
+   * @return reevalFreeItemMinOrderPostDiscounts
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "Enables post-order-discount minimum re-evaluation for eligible free-item discounts. Values null and false are treated as disabled.")
+
+  public Boolean getReevalFreeItemMinOrderPostDiscounts() {
+    return reevalFreeItemMinOrderPostDiscounts;
+  }
+
+
+  public void setReevalFreeItemMinOrderPostDiscounts(Boolean reevalFreeItemMinOrderPostDiscounts) {
+    this.reevalFreeItemMinOrderPostDiscounts = reevalFreeItemMinOrderPostDiscounts;
+  }
+
+
+  public CatalogAdminsDiscount scope(String scope) {
+    
+    this.scope = scope;
+    return this;
+  }
+
+   /**
+   * Scope to which the discount applies, valid values are: Order, LineItem
+   * @return scope
+  **/
+  @javax.annotation.Nonnull
+  @ApiModelProperty(required = true, value = "Scope to which the discount applies, valid values are: Order, LineItem")
+
+  public String getScope() {
+    return scope;
+  }
+
+
+  public void setScope(String scope) {
+    this.scope = scope;
   }
 
 
@@ -703,164 +974,26 @@ public class CatalogAdminsDiscount implements Serializable {
   }
 
 
-  public CatalogAdminsDiscount thresholdMessage(CatalogAdminsThresholdMessage thresholdMessage) {
+  public CatalogAdminsDiscount status(String status) {
     
-    this.thresholdMessage = thresholdMessage;
+    this.status = status;
     return this;
   }
 
    /**
-   * Get thresholdMessage
-   * @return thresholdMessage
+   * Discount status which can be \&quot;Active,\&quot; \&quot;Scheduled,\&quot; or \&quot;Expired.\&quot; System-supplied and read-only.
+   * @return status
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
+  @ApiModelProperty(value = "Discount status which can be \"Active,\" \"Scheduled,\" or \"Expired.\" System-supplied and read-only.")
 
-  public CatalogAdminsThresholdMessage getThresholdMessage() {
-    return thresholdMessage;
+  public String getStatus() {
+    return status;
   }
 
 
-  public void setThresholdMessage(CatalogAdminsThresholdMessage thresholdMessage) {
-    this.thresholdMessage = thresholdMessage;
-  }
-
-
-  public CatalogAdminsDiscount preventLineItemShippingDiscounts(Boolean preventLineItemShippingDiscounts) {
-    
-    this.preventLineItemShippingDiscounts = preventLineItemShippingDiscounts;
-    return this;
-  }
-
-   /**
-   * Prevents Line Item Shipping discounts from being applied when a Line Item Product    discount has been applied
-   * @return preventLineItemShippingDiscounts
-  **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(value = "Prevents Line Item Shipping discounts from being applied when a Line Item Product    discount has been applied")
-
-  public Boolean getPreventLineItemShippingDiscounts() {
-    return preventLineItemShippingDiscounts;
-  }
-
-
-  public void setPreventLineItemShippingDiscounts(Boolean preventLineItemShippingDiscounts) {
-    this.preventLineItemShippingDiscounts = preventLineItemShippingDiscounts;
-  }
-
-
-  public CatalogAdminsDiscount preventOrderProductDiscounts(Boolean preventOrderProductDiscounts) {
-    
-    this.preventOrderProductDiscounts = preventOrderProductDiscounts;
-    return this;
-  }
-
-   /**
-   * Prevents Order Product discounts from being applied when a Line Item Product    or Shipping discount has been applied
-   * @return preventOrderProductDiscounts
-  **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(value = "Prevents Order Product discounts from being applied when a Line Item Product    or Shipping discount has been applied")
-
-  public Boolean getPreventOrderProductDiscounts() {
-    return preventOrderProductDiscounts;
-  }
-
-
-  public void setPreventOrderProductDiscounts(Boolean preventOrderProductDiscounts) {
-    this.preventOrderProductDiscounts = preventOrderProductDiscounts;
-  }
-
-
-  public CatalogAdminsDiscount preventOrderShippingDiscounts(Boolean preventOrderShippingDiscounts) {
-    
-    this.preventOrderShippingDiscounts = preventOrderShippingDiscounts;
-    return this;
-  }
-
-   /**
-   * Prevents Order Shipping discounts from being applied when a Line Item Product/Shipping    or Order Product discount has been applied
-   * @return preventOrderShippingDiscounts
-  **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(value = "Prevents Order Shipping discounts from being applied when a Line Item Product/Shipping    or Order Product discount has been applied")
-
-  public Boolean getPreventOrderShippingDiscounts() {
-    return preventOrderShippingDiscounts;
-  }
-
-
-  public void setPreventOrderShippingDiscounts(Boolean preventOrderShippingDiscounts) {
-    this.preventOrderShippingDiscounts = preventOrderShippingDiscounts;
-  }
-
-
-  public CatalogAdminsDiscount hasPurchaseConditions(Boolean hasPurchaseConditions) {
-    
-    this.hasPurchaseConditions = hasPurchaseConditions;
-    return this;
-  }
-
-   /**
-   * Indicates if this discount has purchase conditions that must be met before   the discount is applied
-   * @return hasPurchaseConditions
-  **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(value = "Indicates if this discount has purchase conditions that must be met before   the discount is applied")
-
-  public Boolean getHasPurchaseConditions() {
-    return hasPurchaseConditions;
-  }
-
-
-  public void setHasPurchaseConditions(Boolean hasPurchaseConditions) {
-    this.hasPurchaseConditions = hasPurchaseConditions;
-  }
-
-
-  public CatalogAdminsDiscount purchaseRequirementType(String purchaseRequirementType) {
-    
-    this.purchaseRequirementType = purchaseRequirementType;
-    return this;
-  }
-
-   /**
-   * The type of purchase requirement for this discount, either purchase conditions and targets which     Supports BoGo, and BxGx scenarios. Or Target only that only have a target and no purchase conditions
-   * @return purchaseRequirementType
-  **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(value = "The type of purchase requirement for this discount, either purchase conditions and targets which     Supports BoGo, and BxGx scenarios. Or Target only that only have a target and no purchase conditions")
-
-  public String getPurchaseRequirementType() {
-    return purchaseRequirementType;
-  }
-
-
-  public void setPurchaseRequirementType(String purchaseRequirementType) {
-    this.purchaseRequirementType = purchaseRequirementType;
-  }
-
-
-  public CatalogAdminsDiscount auditInfo(AdminUserAuditInfo auditInfo) {
-    
-    this.auditInfo = auditInfo;
-    return this;
-  }
-
-   /**
-   * Get auditInfo
-   * @return auditInfo
-  **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
-
-  public AdminUserAuditInfo getAuditInfo() {
-    return auditInfo;
-  }
-
-
-  public void setAuditInfo(AdminUserAuditInfo auditInfo) {
-    this.auditInfo = auditInfo;
+  public void setStatus(String status) {
+    this.status = status;
   }
 
 
@@ -895,26 +1028,49 @@ public class CatalogAdminsDiscount implements Serializable {
   }
 
 
-  public CatalogAdminsDiscount isSubscriptionDiscount(Boolean isSubscriptionDiscount) {
+  public CatalogAdminsDiscount target(CatalogAdminsDiscountTarget target) {
     
-    this.isSubscriptionDiscount = isSubscriptionDiscount;
+    this.target = target;
     return this;
   }
 
    /**
-   * Determines how discounts will be evaluated for subscription items and during continuity orders.
-   * @return isSubscriptionDiscount
+   * Get target
+   * @return target
   **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(value = "Determines how discounts will be evaluated for subscription items and during continuity orders.")
+  @javax.annotation.Nonnull
+  @ApiModelProperty(required = true, value = "")
 
-  public Boolean getIsSubscriptionDiscount() {
-    return isSubscriptionDiscount;
+  public CatalogAdminsDiscountTarget getTarget() {
+    return target;
   }
 
 
-  public void setIsSubscriptionDiscount(Boolean isSubscriptionDiscount) {
-    this.isSubscriptionDiscount = isSubscriptionDiscount;
+  public void setTarget(CatalogAdminsDiscountTarget target) {
+    this.target = target;
+  }
+
+
+  public CatalogAdminsDiscount thresholdMessage(CatalogAdminsThresholdMessage thresholdMessage) {
+    
+    this.thresholdMessage = thresholdMessage;
+    return this;
+  }
+
+   /**
+   * Get thresholdMessage
+   * @return thresholdMessage
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
+
+  public CatalogAdminsThresholdMessage getThresholdMessage() {
+    return thresholdMessage;
+  }
+
+
+  public void setThresholdMessage(CatalogAdminsThresholdMessage thresholdMessage) {
+    this.thresholdMessage = thresholdMessage;
   }
 
 
@@ -928,37 +1084,42 @@ public class CatalogAdminsDiscount implements Serializable {
       return false;
     }
     CatalogAdminsDiscount catalogAdminsDiscount = (CatalogAdminsDiscount) o;
-    return Objects.equals(this.id, catalogAdminsDiscount.id) &&
-        Objects.equals(this.content, catalogAdminsDiscount.content) &&
-        Objects.equals(this.scope, catalogAdminsDiscount.scope) &&
-        Objects.equals(this.conditions, catalogAdminsDiscount.conditions) &&
-        Objects.equals(this.target, catalogAdminsDiscount.target) &&
-        Objects.equals(this.currentRedemptionCount, catalogAdminsDiscount.currentRedemptionCount) &&
-        Objects.equals(this.amount, catalogAdminsDiscount.amount) &&
+    return Objects.equals(this.amount, catalogAdminsDiscount.amount) &&
         Objects.equals(this.amountType, catalogAdminsDiscount.amountType) &&
-        Objects.equals(this.status, catalogAdminsDiscount.status) &&
+        Objects.equals(this.auditInfo, catalogAdminsDiscount.auditInfo) &&
         Objects.equals(this.canBeDeleted, catalogAdminsDiscount.canBeDeleted) &&
-        Objects.equals(this.doesNotApplyToSalePrice, catalogAdminsDiscount.doesNotApplyToSalePrice) &&
+        Objects.equals(this.canBeStackedUpon, catalogAdminsDiscount.canBeStackedUpon) &&
+        Objects.equals(this.code, catalogAdminsDiscount.code) &&
+        Objects.equals(this.conditions, catalogAdminsDiscount.conditions) &&
+        Objects.equals(this.content, catalogAdminsDiscount.content) &&
+        Objects.equals(this.currentRedemptionCount, catalogAdminsDiscount.currentRedemptionCount) &&
+        Objects.equals(this.doesNotApplyToMultiShipToOrders, catalogAdminsDiscount.doesNotApplyToMultiShipToOrders) &&
         Objects.equals(this.doesNotApplyToProductsWithSalePrice, catalogAdminsDiscount.doesNotApplyToProductsWithSalePrice) &&
+        Objects.equals(this.doesNotApplyToSalePrice, catalogAdminsDiscount.doesNotApplyToSalePrice) &&
+        Objects.equals(this.hasPurchaseConditions, catalogAdminsDiscount.hasPurchaseConditions) &&
+        Objects.equals(this.id, catalogAdminsDiscount.id) &&
+        Objects.equals(this.includedPriceLists, catalogAdminsDiscount.includedPriceLists) &&
+        Objects.equals(this.isBxGx, catalogAdminsDiscount.isBxGx) &&
         Objects.equals(this.isDisabled, catalogAdminsDiscount.isDisabled) &&
-        Objects.equals(this.maximumUsesPerUser, catalogAdminsDiscount.maximumUsesPerUser) &&
+        Objects.equals(this.isPublic, catalogAdminsDiscount.isPublic) &&
+        Objects.equals(this.isSubscriptionDiscount, catalogAdminsDiscount.isSubscriptionDiscount) &&
+        Objects.equals(this.labels, catalogAdminsDiscount.labels) &&
+        Objects.equals(this.localizedContent, catalogAdminsDiscount.localizedContent) &&
         Objects.equals(this.maximumDiscountImpactPerOrder, catalogAdminsDiscount.maximumDiscountImpactPerOrder) &&
         Objects.equals(this.maximumDiscountImpactPerRedemption, catalogAdminsDiscount.maximumDiscountImpactPerRedemption) &&
         Objects.equals(this.maximumRedemptionsPerOrder, catalogAdminsDiscount.maximumRedemptionsPerOrder) &&
-        Objects.equals(this.includedPriceLists, catalogAdminsDiscount.includedPriceLists) &&
-        Objects.equals(this.doesNotApplyToMultiShipToOrders, catalogAdminsDiscount.doesNotApplyToMultiShipToOrders) &&
-        Objects.equals(this.isBxGx, catalogAdminsDiscount.isBxGx) &&
-        Objects.equals(this.canBeStackedUpon, catalogAdminsDiscount.canBeStackedUpon) &&
-        Objects.equals(this.stackingLayer, catalogAdminsDiscount.stackingLayer) &&
-        Objects.equals(this.thresholdMessage, catalogAdminsDiscount.thresholdMessage) &&
+        Objects.equals(this.maximumUsesPerUser, catalogAdminsDiscount.maximumUsesPerUser) &&
         Objects.equals(this.preventLineItemShippingDiscounts, catalogAdminsDiscount.preventLineItemShippingDiscounts) &&
         Objects.equals(this.preventOrderProductDiscounts, catalogAdminsDiscount.preventOrderProductDiscounts) &&
         Objects.equals(this.preventOrderShippingDiscounts, catalogAdminsDiscount.preventOrderShippingDiscounts) &&
-        Objects.equals(this.hasPurchaseConditions, catalogAdminsDiscount.hasPurchaseConditions) &&
         Objects.equals(this.purchaseRequirementType, catalogAdminsDiscount.purchaseRequirementType) &&
-        Objects.equals(this.auditInfo, catalogAdminsDiscount.auditInfo) &&
+        Objects.equals(this.reevalFreeItemMinOrderPostDiscounts, catalogAdminsDiscount.reevalFreeItemMinOrderPostDiscounts) &&
+        Objects.equals(this.scope, catalogAdminsDiscount.scope) &&
+        Objects.equals(this.stackingLayer, catalogAdminsDiscount.stackingLayer) &&
+        Objects.equals(this.status, catalogAdminsDiscount.status) &&
         Objects.equals(this.tagCodes, catalogAdminsDiscount.tagCodes) &&
-        Objects.equals(this.isSubscriptionDiscount, catalogAdminsDiscount.isSubscriptionDiscount);
+        Objects.equals(this.target, catalogAdminsDiscount.target) &&
+        Objects.equals(this.thresholdMessage, catalogAdminsDiscount.thresholdMessage);
   }
 
   private static <T> boolean equalsNullable(JsonNullable<T> a, JsonNullable<T> b) {
@@ -967,7 +1128,7 @@ public class CatalogAdminsDiscount implements Serializable {
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, content, scope, conditions, target, currentRedemptionCount, amount, amountType, status, canBeDeleted, doesNotApplyToSalePrice, doesNotApplyToProductsWithSalePrice, isDisabled, maximumUsesPerUser, maximumDiscountImpactPerOrder, maximumDiscountImpactPerRedemption, maximumRedemptionsPerOrder, includedPriceLists, doesNotApplyToMultiShipToOrders, isBxGx, canBeStackedUpon, stackingLayer, thresholdMessage, preventLineItemShippingDiscounts, preventOrderProductDiscounts, preventOrderShippingDiscounts, hasPurchaseConditions, purchaseRequirementType, auditInfo, tagCodes, isSubscriptionDiscount);
+    return Objects.hash(amount, amountType, auditInfo, canBeDeleted, canBeStackedUpon, code, conditions, content, currentRedemptionCount, doesNotApplyToMultiShipToOrders, doesNotApplyToProductsWithSalePrice, doesNotApplyToSalePrice, hasPurchaseConditions, id, includedPriceLists, isBxGx, isDisabled, isPublic, isSubscriptionDiscount, labels, localizedContent, maximumDiscountImpactPerOrder, maximumDiscountImpactPerRedemption, maximumRedemptionsPerOrder, maximumUsesPerUser, preventLineItemShippingDiscounts, preventOrderProductDiscounts, preventOrderShippingDiscounts, purchaseRequirementType, reevalFreeItemMinOrderPostDiscounts, scope, stackingLayer, status, tagCodes, target, thresholdMessage);
   }
 
   private static <T> int hashCodeNullable(JsonNullable<T> a) {
@@ -981,37 +1142,42 @@ public class CatalogAdminsDiscount implements Serializable {
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class CatalogAdminsDiscount {\n");
-    sb.append("    id: ").append(toIndentedString(id)).append("\n");
-    sb.append("    content: ").append(toIndentedString(content)).append("\n");
-    sb.append("    scope: ").append(toIndentedString(scope)).append("\n");
-    sb.append("    conditions: ").append(toIndentedString(conditions)).append("\n");
-    sb.append("    target: ").append(toIndentedString(target)).append("\n");
-    sb.append("    currentRedemptionCount: ").append(toIndentedString(currentRedemptionCount)).append("\n");
     sb.append("    amount: ").append(toIndentedString(amount)).append("\n");
     sb.append("    amountType: ").append(toIndentedString(amountType)).append("\n");
-    sb.append("    status: ").append(toIndentedString(status)).append("\n");
+    sb.append("    auditInfo: ").append(toIndentedString(auditInfo)).append("\n");
     sb.append("    canBeDeleted: ").append(toIndentedString(canBeDeleted)).append("\n");
-    sb.append("    doesNotApplyToSalePrice: ").append(toIndentedString(doesNotApplyToSalePrice)).append("\n");
+    sb.append("    canBeStackedUpon: ").append(toIndentedString(canBeStackedUpon)).append("\n");
+    sb.append("    code: ").append(toIndentedString(code)).append("\n");
+    sb.append("    conditions: ").append(toIndentedString(conditions)).append("\n");
+    sb.append("    content: ").append(toIndentedString(content)).append("\n");
+    sb.append("    currentRedemptionCount: ").append(toIndentedString(currentRedemptionCount)).append("\n");
+    sb.append("    doesNotApplyToMultiShipToOrders: ").append(toIndentedString(doesNotApplyToMultiShipToOrders)).append("\n");
     sb.append("    doesNotApplyToProductsWithSalePrice: ").append(toIndentedString(doesNotApplyToProductsWithSalePrice)).append("\n");
+    sb.append("    doesNotApplyToSalePrice: ").append(toIndentedString(doesNotApplyToSalePrice)).append("\n");
+    sb.append("    hasPurchaseConditions: ").append(toIndentedString(hasPurchaseConditions)).append("\n");
+    sb.append("    id: ").append(toIndentedString(id)).append("\n");
+    sb.append("    includedPriceLists: ").append(toIndentedString(includedPriceLists)).append("\n");
+    sb.append("    isBxGx: ").append(toIndentedString(isBxGx)).append("\n");
     sb.append("    isDisabled: ").append(toIndentedString(isDisabled)).append("\n");
-    sb.append("    maximumUsesPerUser: ").append(toIndentedString(maximumUsesPerUser)).append("\n");
+    sb.append("    isPublic: ").append(toIndentedString(isPublic)).append("\n");
+    sb.append("    isSubscriptionDiscount: ").append(toIndentedString(isSubscriptionDiscount)).append("\n");
+    sb.append("    labels: ").append(toIndentedString(labels)).append("\n");
+    sb.append("    localizedContent: ").append(toIndentedString(localizedContent)).append("\n");
     sb.append("    maximumDiscountImpactPerOrder: ").append(toIndentedString(maximumDiscountImpactPerOrder)).append("\n");
     sb.append("    maximumDiscountImpactPerRedemption: ").append(toIndentedString(maximumDiscountImpactPerRedemption)).append("\n");
     sb.append("    maximumRedemptionsPerOrder: ").append(toIndentedString(maximumRedemptionsPerOrder)).append("\n");
-    sb.append("    includedPriceLists: ").append(toIndentedString(includedPriceLists)).append("\n");
-    sb.append("    doesNotApplyToMultiShipToOrders: ").append(toIndentedString(doesNotApplyToMultiShipToOrders)).append("\n");
-    sb.append("    isBxGx: ").append(toIndentedString(isBxGx)).append("\n");
-    sb.append("    canBeStackedUpon: ").append(toIndentedString(canBeStackedUpon)).append("\n");
-    sb.append("    stackingLayer: ").append(toIndentedString(stackingLayer)).append("\n");
-    sb.append("    thresholdMessage: ").append(toIndentedString(thresholdMessage)).append("\n");
+    sb.append("    maximumUsesPerUser: ").append(toIndentedString(maximumUsesPerUser)).append("\n");
     sb.append("    preventLineItemShippingDiscounts: ").append(toIndentedString(preventLineItemShippingDiscounts)).append("\n");
     sb.append("    preventOrderProductDiscounts: ").append(toIndentedString(preventOrderProductDiscounts)).append("\n");
     sb.append("    preventOrderShippingDiscounts: ").append(toIndentedString(preventOrderShippingDiscounts)).append("\n");
-    sb.append("    hasPurchaseConditions: ").append(toIndentedString(hasPurchaseConditions)).append("\n");
     sb.append("    purchaseRequirementType: ").append(toIndentedString(purchaseRequirementType)).append("\n");
-    sb.append("    auditInfo: ").append(toIndentedString(auditInfo)).append("\n");
+    sb.append("    reevalFreeItemMinOrderPostDiscounts: ").append(toIndentedString(reevalFreeItemMinOrderPostDiscounts)).append("\n");
+    sb.append("    scope: ").append(toIndentedString(scope)).append("\n");
+    sb.append("    stackingLayer: ").append(toIndentedString(stackingLayer)).append("\n");
+    sb.append("    status: ").append(toIndentedString(status)).append("\n");
     sb.append("    tagCodes: ").append(toIndentedString(tagCodes)).append("\n");
-    sb.append("    isSubscriptionDiscount: ").append(toIndentedString(isSubscriptionDiscount)).append("\n");
+    sb.append("    target: ").append(toIndentedString(target)).append("\n");
+    sb.append("    thresholdMessage: ").append(toIndentedString(thresholdMessage)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -1034,44 +1200,48 @@ public class CatalogAdminsDiscount implements Serializable {
   static {
     // a set of all properties/fields (JSON key names)
     openapiFields = new HashSet<String>();
-    openapiFields.add("id");
-    openapiFields.add("content");
-    openapiFields.add("scope");
-    openapiFields.add("conditions");
-    openapiFields.add("target");
-    openapiFields.add("currentRedemptionCount");
     openapiFields.add("amount");
     openapiFields.add("amountType");
-    openapiFields.add("status");
+    openapiFields.add("auditInfo");
     openapiFields.add("canBeDeleted");
-    openapiFields.add("doesNotApplyToSalePrice");
+    openapiFields.add("canBeStackedUpon");
+    openapiFields.add("code");
+    openapiFields.add("conditions");
+    openapiFields.add("content");
+    openapiFields.add("currentRedemptionCount");
+    openapiFields.add("doesNotApplyToMultiShipToOrders");
     openapiFields.add("doesNotApplyToProductsWithSalePrice");
+    openapiFields.add("doesNotApplyToSalePrice");
+    openapiFields.add("hasPurchaseConditions");
+    openapiFields.add("id");
+    openapiFields.add("includedPriceLists");
+    openapiFields.add("isBxGx");
     openapiFields.add("isDisabled");
-    openapiFields.add("maximumUsesPerUser");
+    openapiFields.add("isPublic");
+    openapiFields.add("isSubscriptionDiscount");
+    openapiFields.add("labels");
+    openapiFields.add("localizedContent");
     openapiFields.add("maximumDiscountImpactPerOrder");
     openapiFields.add("maximumDiscountImpactPerRedemption");
     openapiFields.add("maximumRedemptionsPerOrder");
-    openapiFields.add("includedPriceLists");
-    openapiFields.add("doesNotApplyToMultiShipToOrders");
-    openapiFields.add("isBxGx");
-    openapiFields.add("canBeStackedUpon");
-    openapiFields.add("stackingLayer");
-    openapiFields.add("thresholdMessage");
+    openapiFields.add("maximumUsesPerUser");
     openapiFields.add("preventLineItemShippingDiscounts");
     openapiFields.add("preventOrderProductDiscounts");
     openapiFields.add("preventOrderShippingDiscounts");
-    openapiFields.add("hasPurchaseConditions");
     openapiFields.add("purchaseRequirementType");
-    openapiFields.add("auditInfo");
+    openapiFields.add("reevalFreeItemMinOrderPostDiscounts");
+    openapiFields.add("scope");
+    openapiFields.add("stackingLayer");
+    openapiFields.add("status");
     openapiFields.add("tagCodes");
-    openapiFields.add("isSubscriptionDiscount");
+    openapiFields.add("target");
+    openapiFields.add("thresholdMessage");
 
     // a set of required properties/fields (JSON key names)
     openapiRequiredFields = new HashSet<String>();
-    openapiRequiredFields.add("content");
+    openapiRequiredFields.add("amountType");
     openapiRequiredFields.add("scope");
     openapiRequiredFields.add("target");
-    openapiRequiredFields.add("amountType");
   }
 
  /**
@@ -1102,41 +1272,64 @@ public class CatalogAdminsDiscount implements Serializable {
           throw new IllegalArgumentException(String.format("The required field `%s` is not found in the JSON string: %s", requiredField, jsonObj.toString()));
         }
       }
-      // validate the required field `content`
-      DiscountLocalizedContent.validateJsonObject(jsonObj.getAsJsonObject("content"));
-      if (!jsonObj.get("scope").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `scope` to be a primitive type in the JSON string but got `%s`", jsonObj.get("scope").toString()));
-      }
-      // validate the optional field `conditions`
-      if (jsonObj.get("conditions") != null && !jsonObj.get("conditions").isJsonNull()) {
-        CatalogAdminsDiscountCondition.validateJsonObject(jsonObj.getAsJsonObject("conditions"));
-      }
-      // validate the required field `target`
-      CatalogAdminsDiscountTarget.validateJsonObject(jsonObj.getAsJsonObject("target"));
       if (!jsonObj.get("amountType").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format("Expected the field `amountType` to be a primitive type in the JSON string but got `%s`", jsonObj.get("amountType").toString()));
-      }
-      if ((jsonObj.get("status") != null && !jsonObj.get("status").isJsonNull()) && !jsonObj.get("status").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `status` to be a primitive type in the JSON string but got `%s`", jsonObj.get("status").toString()));
-      }
-      // ensure the json data is an array
-      if (!jsonObj.get("includedPriceLists").isJsonArray()) {
-        throw new IllegalArgumentException(String.format("Expected the field `includedPriceLists` to be an array in the JSON string but got `%s`", jsonObj.get("includedPriceLists").toString()));
-      }
-      // validate the optional field `thresholdMessage`
-      if (jsonObj.get("thresholdMessage") != null && !jsonObj.get("thresholdMessage").isJsonNull()) {
-        CatalogAdminsThresholdMessage.validateJsonObject(jsonObj.getAsJsonObject("thresholdMessage"));
-      }
-      if ((jsonObj.get("purchaseRequirementType") != null && !jsonObj.get("purchaseRequirementType").isJsonNull()) && !jsonObj.get("purchaseRequirementType").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `purchaseRequirementType` to be a primitive type in the JSON string but got `%s`", jsonObj.get("purchaseRequirementType").toString()));
       }
       // validate the optional field `auditInfo`
       if (jsonObj.get("auditInfo") != null && !jsonObj.get("auditInfo").isJsonNull()) {
         AdminUserAuditInfo.validateJsonObject(jsonObj.getAsJsonObject("auditInfo"));
       }
+      if ((jsonObj.get("code") != null && !jsonObj.get("code").isJsonNull()) && !jsonObj.get("code").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `code` to be a primitive type in the JSON string but got `%s`", jsonObj.get("code").toString()));
+      }
+      // validate the optional field `conditions`
+      if (jsonObj.get("conditions") != null && !jsonObj.get("conditions").isJsonNull()) {
+        CatalogAdminsDiscountCondition.validateJsonObject(jsonObj.getAsJsonObject("conditions"));
+      }
+      // validate the optional field `content`
+      if (jsonObj.get("content") != null && !jsonObj.get("content").isJsonNull()) {
+        DiscountLocalizedContent.validateJsonObject(jsonObj.getAsJsonObject("content"));
+      }
+      // ensure the json data is an array
+      if (!jsonObj.get("includedPriceLists").isJsonArray()) {
+        throw new IllegalArgumentException(String.format("Expected the field `includedPriceLists` to be an array in the JSON string but got `%s`", jsonObj.get("includedPriceLists").toString()));
+      }
+      // ensure the json data is an array
+      if (!jsonObj.get("labels").isJsonArray()) {
+        throw new IllegalArgumentException(String.format("Expected the field `labels` to be an array in the JSON string but got `%s`", jsonObj.get("labels").toString()));
+      }
+      if (jsonObj.get("localizedContent") != null && !jsonObj.get("localizedContent").isJsonNull()) {
+        JsonArray jsonArraylocalizedContent = jsonObj.getAsJsonArray("localizedContent");
+        if (jsonArraylocalizedContent != null) {
+          // ensure the json data is an array
+          if (!jsonObj.get("localizedContent").isJsonArray()) {
+            throw new IllegalArgumentException(String.format("Expected the field `localizedContent` to be an array in the JSON string but got `%s`", jsonObj.get("localizedContent").toString()));
+          }
+
+          // validate the optional field `localizedContent` (array)
+          for (int i = 0; i < jsonArraylocalizedContent.size(); i++) {
+            DiscountLocalizedContent.validateJsonObject(jsonArraylocalizedContent.get(i).getAsJsonObject());
+          };
+        }
+      }
+      if ((jsonObj.get("purchaseRequirementType") != null && !jsonObj.get("purchaseRequirementType").isJsonNull()) && !jsonObj.get("purchaseRequirementType").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `purchaseRequirementType` to be a primitive type in the JSON string but got `%s`", jsonObj.get("purchaseRequirementType").toString()));
+      }
+      if (!jsonObj.get("scope").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `scope` to be a primitive type in the JSON string but got `%s`", jsonObj.get("scope").toString()));
+      }
+      if ((jsonObj.get("status") != null && !jsonObj.get("status").isJsonNull()) && !jsonObj.get("status").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `status` to be a primitive type in the JSON string but got `%s`", jsonObj.get("status").toString()));
+      }
       // ensure the json data is an array
       if (!jsonObj.get("tagCodes").isJsonArray()) {
         throw new IllegalArgumentException(String.format("Expected the field `tagCodes` to be an array in the JSON string but got `%s`", jsonObj.get("tagCodes").toString()));
+      }
+      // validate the required field `target`
+      CatalogAdminsDiscountTarget.validateJsonObject(jsonObj.getAsJsonObject("target"));
+      // validate the optional field `thresholdMessage`
+      if (jsonObj.get("thresholdMessage") != null && !jsonObj.get("thresholdMessage").isJsonNull()) {
+        CatalogAdminsThresholdMessage.validateJsonObject(jsonObj.getAsJsonObject("thresholdMessage"));
       }
   }
 

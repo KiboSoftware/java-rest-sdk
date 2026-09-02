@@ -5,16 +5,16 @@ All URIs are relative to *http://https:/api*
 | Method | HTTP request | Description |
 |------------- | ------------- | -------------|
 | [**aggregate**](InventoryApi.md#aggregate) | **POST** /commerce/inventory/v5/inventory/aggregate | Aggregate |
-| [**postQueryInventory**](InventoryApi.md#postQueryInventory) | **POST** /commerce/inventory/v5/inventory | Post Query Inventory |
+| [**postQueryInventory**](InventoryApi.md#postQueryInventory) | **POST** /commerce/inventory/v5/inventory | Get Inventory (POST) |
 
 
 <a name="aggregate"></a>
 # **aggregate**
-> List&lt;AggregateResponse&gt; aggregate(xVolTenant, aggregateRequest, xVolSite)
+> List&lt;AggregateResponse&gt; aggregate(aggregateRequest, xVolSite)
 
 Aggregate
 
-Aggregates Inventory
+Aggregates inventory.
 
 ### Example
 ```java
@@ -22,7 +22,6 @@ Aggregates Inventory
 import com.kibocommerce.sdk.inventory.ApiClient;
 import com.kibocommerce.sdk.inventory.ApiException;
 import com.kibocommerce.sdk.inventory.Configuration;
-import com.kibocommerce.sdk.inventory.auth.*;
 import com.kibocommerce.sdk.inventory.models.*;
 import com.kibocommerce.sdk.inventory.api.InventoryApi;
 
@@ -30,21 +29,12 @@ public class Example {
   public static void main(String[] args) {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
     defaultClient.setBasePath("http://https:/api");
-    
-    // Configure HTTP bearer authorization: bearerAuth
-    HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
-    bearerAuth.setBearerToken("BEARER TOKEN");
-
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
 
     InventoryApi apiInstance = new InventoryApi(defaultClient);
-    Integer xVolTenant = 56; // Integer | Tenant ID
     AggregateRequest aggregateRequest = new AggregateRequest(); // AggregateRequest | Request to aggregate inventory
     Integer xVolSite = 56; // Integer | Site ID
     try {
-      List<AggregateResponse> result = apiInstance.aggregate(xVolTenant, aggregateRequest, xVolSite);
+      List<AggregateResponse> result = apiInstance.aggregate(aggregateRequest, xVolSite);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling InventoryApi#aggregate");
@@ -61,7 +51,6 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **xVolTenant** | **Integer**| Tenant ID | |
 | **aggregateRequest** | [**AggregateRequest**](AggregateRequest.md)| Request to aggregate inventory | |
 | **xVolSite** | **Integer**| Site ID | [optional] |
 
@@ -71,7 +60,7 @@ public class Example {
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth), [clientOauth2](../README.md#clientOauth2)
+No authorization required
 
 ### HTTP request headers
 
@@ -86,11 +75,11 @@ public class Example {
 
 <a name="postQueryInventory"></a>
 # **postQueryInventory**
-> List&lt;InventoryInventoryResponse&gt; postQueryInventory(xVolTenant, inventoryRequest, xVolSite)
+> List&lt;InventoryResponse&gt; postQueryInventory(inventoryRequest, xVolSite)
 
-Post Query Inventory
+Get Inventory (POST)
 
-Queries for specified inventory at given location
+Queries for specified inventory at given location. To call the version of this API with RIS (&lt;a href&#x3D;\&quot;/pages/real-time-inventory-service\&quot;&gt;real-time inventory service&lt;/a&gt;) data, use the /commerce/realtime-inventory/v5/inventory endpoint instead.
 
 ### Example
 ```java
@@ -98,7 +87,6 @@ Queries for specified inventory at given location
 import com.kibocommerce.sdk.inventory.ApiClient;
 import com.kibocommerce.sdk.inventory.ApiException;
 import com.kibocommerce.sdk.inventory.Configuration;
-import com.kibocommerce.sdk.inventory.auth.*;
 import com.kibocommerce.sdk.inventory.models.*;
 import com.kibocommerce.sdk.inventory.api.InventoryApi;
 
@@ -106,21 +94,12 @@ public class Example {
   public static void main(String[] args) {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
     defaultClient.setBasePath("http://https:/api");
-    
-    // Configure HTTP bearer authorization: bearerAuth
-    HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
-    bearerAuth.setBearerToken("BEARER TOKEN");
-
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
 
     InventoryApi apiInstance = new InventoryApi(defaultClient);
-    Integer xVolTenant = 56; // Integer | Tenant ID
     InventoryRequest inventoryRequest = new InventoryRequest(); // InventoryRequest | Request to get inventory
     Integer xVolSite = 56; // Integer | Site ID
     try {
-      List<InventoryInventoryResponse> result = apiInstance.postQueryInventory(xVolTenant, inventoryRequest, xVolSite);
+      List<InventoryResponse> result = apiInstance.postQueryInventory(inventoryRequest, xVolSite);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling InventoryApi#postQueryInventory");
@@ -137,17 +116,16 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **xVolTenant** | **Integer**| Tenant ID | |
 | **inventoryRequest** | [**InventoryRequest**](InventoryRequest.md)| Request to get inventory | |
 | **xVolSite** | **Integer**| Site ID | [optional] |
 
 ### Return type
 
-[**List&lt;InventoryInventoryResponse&gt;**](InventoryInventoryResponse.md)
+[**List&lt;InventoryResponse&gt;**](InventoryResponse.md)
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth), [clientOauth2](../README.md#clientOauth2)
+No authorization required
 
 ### HTTP request headers
 

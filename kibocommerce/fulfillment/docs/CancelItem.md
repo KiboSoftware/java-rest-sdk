@@ -7,9 +7,9 @@
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
-|**canceledReason** | [**FulfillmentCanceledReason**](FulfillmentCanceledReason.md) |  |  [optional] |
-|**lineId** | **Integer** |  |  |
-|**quantity** | **Integer** |  |  |
+|**canceledReason** | [**FulfillmentAPICanceledReason**](FulfillmentAPICanceledReason.md) |  |  [optional] |
+|**lineId** | **Integer** |  |  [optional] |
+|**quantity** | **Integer** |  |  [optional] |
 
 
 ## Implemented Interfaces

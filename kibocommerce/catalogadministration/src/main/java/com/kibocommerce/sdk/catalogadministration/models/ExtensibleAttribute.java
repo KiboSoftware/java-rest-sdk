@@ -1,8 +1,8 @@
 /*
  * Kibo Catalog Admin Services
- * OpenAPI Spec for Kibo Catalog Admin Services
+ * <div id=\"overview_CATALOG_ADMIN\">             <h2>CATALOG ADMINISTRATION</h2>             <p>The Catalog Administration APIs are a collection of resources for configuring the catalogs and products offered to your shoppers, including                 discounts and coupon sets, faceting, price lists, and different types or variations of products. See the                 <a href=\"/concept-guides/catalog\">Catalog user guides</a>                 for information about the related features in the Unified Commerce Admin.</p>             <p>Use the <strong>Attributes</strong> resource to manage localization and attribute configurations for your catalogs. This current version of the Attributes API includes localizedContent to                 support <a href=\"/pages/catalog-structure#multi-locale-catalogs\">multi-locale catalogs</a>, which was not present in the legacy API model. If                 you were a client prior to May 2024 and have upgraded your implementation to support this feature,                 you can still access attribute data that has not yet been rewritten to the new model by providing                 an x-api-version header set to \"1\". </p>             <p>Use the <strong>Categories</strong> resource to organize products and control where they appear on the storefront. Create                 and maintain a hierarchy of categories and subcategories where the site will store properties. This current version of the Categories API includes localizedContent to                 support <a href=\"/pages/catalog-structure#multi-locale-catalogs\">multi-locale catalogs</a>, which was not present in the legacy API model. If                 you were a client prior to May 2024 and have upgraded your implementation to support this feature,                 you can still access category data that has not yet been rewritten to the new model by providing                 an x-api-version header set to \"1\". </p>             <p>Use the <strong>Coupon Sets</strong> resource to view and create coupon sets. You can use coupon sets to group multiple                 coupon codes together and associate them with one or more discounts.</p>             <p>Use the <strong>Currency</strong> resource to manage the currency localization rules and exchange rates for any of the                 currencies that are supported for placing orders in.</p>             <p>Use the <strong>Discounts</strong> and <strong>Discount Settings</strong> resources to define and manage discounts to apply to products, product categories, or                 orders. This current version of the Discounts API includes localizedContent to                 support <a href=\"/pages/catalog-structure#multi-locale-catalogs\">multi-locale catalogs</a>, which was not present in the legacy Products API model. If                 you were a client prior to May 2024 and have upgraded your implementation to support this feature,                 you can still access discount data that has not yet been rewritten to the new model by providing                 an x-api-version header set to \"1\". </p>             <p>Use the <strong>Facets</strong> resource to manage the facets shoppers use to filter product display results on a                 storefront. Facets can include categories, product attributes, or prices, and use either a range of                 values or discrete values.</p>             <p>Use the <strong>Master Catalog</strong> resource to view details of the master catalogs associated with a tenant and to                 manage the product publishing mode for each master catalog.</p>             <p>Use the <strong>Price Lists</strong> resources to view and create price lists. You can use price lists to override the                 catalog pricing of products for specific customer segments and/or sites.</p>             <p>Use the <strong>Products</strong>, <strong>Product Types/Extras/Options/Properties</strong>, and <strong>Product Sort Definitions</strong> resources to create new product definitions in the master catalog and determine which                 catalogs will feature products. This current version of the Products API includes localizedContent to                 support <a href=\"/pages/catalog-structure#multi-locale-catalogs\">multi-locale catalogs</a>, which was not present in the legacy Products API model. If                 you were a client prior to May 2024 and have upgraded your implementation to support this feature,                 you can still access product data that has not yet been rewritten to the new model by providing                 an x-api-version header set to \"1\".</p>             <p>Use the <strong>Publishing</strong> resource to publish pending product updates together as part of a set.</p>             <p>Use the <strong>Search</strong> resource to manage all settings and options for providing product search on your site, as                 well as search tuning rules.</p>         </div>
  *
- * The version of the OpenAPI document: 1.0.0
+ * The version of the OpenAPI document: v1
  * 
  *
  * NOTE: This class is auto generated by OpenAPI Generator (https://openapi-generator.tech).
@@ -61,115 +61,96 @@ import com.kibocommerce.sdk.common.JSON;
 public class ExtensibleAttribute implements Serializable {
   private static final long serialVersionUID = 1L;
 
-  public static final String SERIALIZED_NAME_ID = "id";
-  @SerializedName(SERIALIZED_NAME_ID)
-  private Integer id;
-
   public static final String SERIALIZED_NAME_ADMIN_NAME = "adminName";
   @SerializedName(SERIALIZED_NAME_ADMIN_NAME)
   private String adminName;
-
-  public static final String SERIALIZED_NAME_NAMESPACE = "namespace";
-  @SerializedName(SERIALIZED_NAME_NAMESPACE)
-  private String namespace;
 
   public static final String SERIALIZED_NAME_ATTRIBUTE_CODE = "attributeCode";
   @SerializedName(SERIALIZED_NAME_ATTRIBUTE_CODE)
   private String attributeCode;
 
-  public static final String SERIALIZED_NAME_INPUT_TYPE = "inputType";
-  @SerializedName(SERIALIZED_NAME_INPUT_TYPE)
-  private String inputType;
-
-  public static final String SERIALIZED_NAME_VALUE_TYPE = "valueType";
-  @SerializedName(SERIALIZED_NAME_VALUE_TYPE)
-  private String valueType;
-
-  public static final String SERIALIZED_NAME_DATA_TYPE = "dataType";
-  @SerializedName(SERIALIZED_NAME_DATA_TYPE)
-  private String dataType;
+  public static final String SERIALIZED_NAME_ATTRIBUTE_F_Q_N = "attributeFQN";
+  @SerializedName(SERIALIZED_NAME_ATTRIBUTE_F_Q_N)
+  private String attributeFQN;
 
   public static final String SERIALIZED_NAME_ATTRIBUTE_METADATA = "attributeMetadata";
   @SerializedName(SERIALIZED_NAME_ATTRIBUTE_METADATA)
   private List<ExtensibleAttributeMetadataItem> attributeMetadata = null;
 
-  public static final String SERIALIZED_NAME_ATTRIBUTE_F_Q_N = "attributeFQN";
-  @SerializedName(SERIALIZED_NAME_ATTRIBUTE_F_Q_N)
-  private String attributeFQN;
-
-  public static final String SERIALIZED_NAME_CONTENT = "content";
-  @SerializedName(SERIALIZED_NAME_CONTENT)
-  private ExtensibleAttributeLocalizedContent content;
-
-  public static final String SERIALIZED_NAME_VALIDATION = "validation";
-  @SerializedName(SERIALIZED_NAME_VALIDATION)
-  private ExtensibleAttributeValidation validation;
-
-  public static final String SERIALIZED_NAME_VOCABULARY_VALUES = "vocabularyValues";
-  @SerializedName(SERIALIZED_NAME_VOCABULARY_VALUES)
-  private List<ExtensibleAttributeVocabularyValue> vocabularyValues = null;
-
   public static final String SERIALIZED_NAME_AUDIT_INFO = "auditInfo";
   @SerializedName(SERIALIZED_NAME_AUDIT_INFO)
   private AdminUserAuditInfo auditInfo;
 
-  public static final String SERIALIZED_NAME_IS_ACTIVE = "isActive";
-  @SerializedName(SERIALIZED_NAME_IS_ACTIVE)
-  private Boolean isActive;
-
-  public static final String SERIALIZED_NAME_IS_REQUIRED = "isRequired";
-  @SerializedName(SERIALIZED_NAME_IS_REQUIRED)
-  private Boolean isRequired;
-
-  public static final String SERIALIZED_NAME_IS_READ_ONLY = "isReadOnly";
-  @SerializedName(SERIALIZED_NAME_IS_READ_ONLY)
-  private Boolean isReadOnly;
-
-  public static final String SERIALIZED_NAME_IS_MULTI_VALUED = "isMultiValued";
-  @SerializedName(SERIALIZED_NAME_IS_MULTI_VALUED)
-  private Boolean isMultiValued;
-
-  public static final String SERIALIZED_NAME_IS_VISIBLE = "isVisible";
-  @SerializedName(SERIALIZED_NAME_IS_VISIBLE)
-  private Boolean isVisible;
-
-  public static final String SERIALIZED_NAME_ORDER = "order";
-  @SerializedName(SERIALIZED_NAME_ORDER)
-  private Integer order;
-
-  public static final String SERIALIZED_NAME_DISPLAY_GROUP = "displayGroup";
-  @SerializedName(SERIALIZED_NAME_DISPLAY_GROUP)
-  private String displayGroup;
+  public static final String SERIALIZED_NAME_AVAILABLE_FOR_DISCOUNTS = "availableForDiscounts";
+  @SerializedName(SERIALIZED_NAME_AVAILABLE_FOR_DISCOUNTS)
+  private Boolean availableForDiscounts;
 
   public static final String SERIALIZED_NAME_AVAILABLE_FOR_ORDER_ROUTING = "availableForOrderRouting";
   @SerializedName(SERIALIZED_NAME_AVAILABLE_FOR_ORDER_ROUTING)
   private Boolean availableForOrderRouting;
 
+  public static final String SERIALIZED_NAME_CONTENT = "content";
+  @SerializedName(SERIALIZED_NAME_CONTENT)
+  private ExtensibleAttributeLocalizedContent content;
+
+  public static final String SERIALIZED_NAME_DATA_TYPE = "dataType";
+  @SerializedName(SERIALIZED_NAME_DATA_TYPE)
+  private String dataType;
+
+  public static final String SERIALIZED_NAME_DISPLAY_GROUP = "displayGroup";
+  @SerializedName(SERIALIZED_NAME_DISPLAY_GROUP)
+  private String displayGroup;
+
+  public static final String SERIALIZED_NAME_ID = "id";
+  @SerializedName(SERIALIZED_NAME_ID)
+  private Integer id;
+
+  public static final String SERIALIZED_NAME_INPUT_TYPE = "inputType";
+  @SerializedName(SERIALIZED_NAME_INPUT_TYPE)
+  private String inputType;
+
+  public static final String SERIALIZED_NAME_IS_ACTIVE = "isActive";
+  @SerializedName(SERIALIZED_NAME_IS_ACTIVE)
+  private Boolean isActive;
+
+  public static final String SERIALIZED_NAME_IS_MULTI_VALUED = "isMultiValued";
+  @SerializedName(SERIALIZED_NAME_IS_MULTI_VALUED)
+  private Boolean isMultiValued;
+
+  public static final String SERIALIZED_NAME_IS_READ_ONLY = "isReadOnly";
+  @SerializedName(SERIALIZED_NAME_IS_READ_ONLY)
+  private Boolean isReadOnly;
+
+  public static final String SERIALIZED_NAME_IS_REQUIRED = "isRequired";
+  @SerializedName(SERIALIZED_NAME_IS_REQUIRED)
+  private Boolean isRequired;
+
+  public static final String SERIALIZED_NAME_IS_VISIBLE = "isVisible";
+  @SerializedName(SERIALIZED_NAME_IS_VISIBLE)
+  private Boolean isVisible;
+
+  public static final String SERIALIZED_NAME_NAMESPACE = "namespace";
+  @SerializedName(SERIALIZED_NAME_NAMESPACE)
+  private String namespace;
+
+  public static final String SERIALIZED_NAME_ORDER = "order";
+  @SerializedName(SERIALIZED_NAME_ORDER)
+  private Integer order;
+
+  public static final String SERIALIZED_NAME_VALIDATION = "validation";
+  @SerializedName(SERIALIZED_NAME_VALIDATION)
+  private ExtensibleAttributeValidation validation;
+
+  public static final String SERIALIZED_NAME_VALUE_TYPE = "valueType";
+  @SerializedName(SERIALIZED_NAME_VALUE_TYPE)
+  private String valueType;
+
+  public static final String SERIALIZED_NAME_VOCABULARY_VALUES = "vocabularyValues";
+  @SerializedName(SERIALIZED_NAME_VOCABULARY_VALUES)
+  private List<ExtensibleAttributeVocabularyValue> vocabularyValues = null;
+
   public ExtensibleAttribute() {
   }
-
-  public ExtensibleAttribute id(Integer id) {
-    
-    this.id = id;
-    return this;
-  }
-
-   /**
-   * Get id
-   * @return id
-  **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
-
-  public Integer getId() {
-    return id;
-  }
-
-
-  public void setId(Integer id) {
-    this.id = id;
-  }
-
 
   public ExtensibleAttribute adminName(String adminName) {
     
@@ -191,29 +172,6 @@ public class ExtensibleAttribute implements Serializable {
 
   public void setAdminName(String adminName) {
     this.adminName = adminName;
-  }
-
-
-  public ExtensibleAttribute namespace(String namespace) {
-    
-    this.namespace = namespace;
-    return this;
-  }
-
-   /**
-   * Get namespace
-   * @return namespace
-  **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
-
-  public String getNamespace() {
-    return namespace;
-  }
-
-
-  public void setNamespace(String namespace) {
-    this.namespace = namespace;
   }
 
 
@@ -240,72 +198,26 @@ public class ExtensibleAttribute implements Serializable {
   }
 
 
-  public ExtensibleAttribute inputType(String inputType) {
+  public ExtensibleAttribute attributeFQN(String attributeFQN) {
     
-    this.inputType = inputType;
+    this.attributeFQN = attributeFQN;
     return this;
   }
 
    /**
-   * Get inputType
-   * @return inputType
+   * Get attributeFQN
+   * @return attributeFQN
   **/
   @javax.annotation.Nullable
   @ApiModelProperty(value = "")
 
-  public String getInputType() {
-    return inputType;
+  public String getAttributeFQN() {
+    return attributeFQN;
   }
 
 
-  public void setInputType(String inputType) {
-    this.inputType = inputType;
-  }
-
-
-  public ExtensibleAttribute valueType(String valueType) {
-    
-    this.valueType = valueType;
-    return this;
-  }
-
-   /**
-   * Get valueType
-   * @return valueType
-  **/
-  @javax.annotation.Nonnull
-  @ApiModelProperty(required = true, value = "")
-
-  public String getValueType() {
-    return valueType;
-  }
-
-
-  public void setValueType(String valueType) {
-    this.valueType = valueType;
-  }
-
-
-  public ExtensibleAttribute dataType(String dataType) {
-    
-    this.dataType = dataType;
-    return this;
-  }
-
-   /**
-   * Get dataType
-   * @return dataType
-  **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
-
-  public String getDataType() {
-    return dataType;
-  }
-
-
-  public void setDataType(String dataType) {
-    this.dataType = dataType;
+  public void setAttributeFQN(String attributeFQN) {
+    this.attributeFQN = attributeFQN;
   }
 
 
@@ -340,26 +252,72 @@ public class ExtensibleAttribute implements Serializable {
   }
 
 
-  public ExtensibleAttribute attributeFQN(String attributeFQN) {
+  public ExtensibleAttribute auditInfo(AdminUserAuditInfo auditInfo) {
     
-    this.attributeFQN = attributeFQN;
+    this.auditInfo = auditInfo;
     return this;
   }
 
    /**
-   * Get attributeFQN
-   * @return attributeFQN
+   * Get auditInfo
+   * @return auditInfo
   **/
   @javax.annotation.Nullable
   @ApiModelProperty(value = "")
 
-  public String getAttributeFQN() {
-    return attributeFQN;
+  public AdminUserAuditInfo getAuditInfo() {
+    return auditInfo;
   }
 
 
-  public void setAttributeFQN(String attributeFQN) {
-    this.attributeFQN = attributeFQN;
+  public void setAuditInfo(AdminUserAuditInfo auditInfo) {
+    this.auditInfo = auditInfo;
+  }
+
+
+  public ExtensibleAttribute availableForDiscounts(Boolean availableForDiscounts) {
+    
+    this.availableForDiscounts = availableForDiscounts;
+    return this;
+  }
+
+   /**
+   * Get availableForDiscounts
+   * @return availableForDiscounts
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
+
+  public Boolean getAvailableForDiscounts() {
+    return availableForDiscounts;
+  }
+
+
+  public void setAvailableForDiscounts(Boolean availableForDiscounts) {
+    this.availableForDiscounts = availableForDiscounts;
+  }
+
+
+  public ExtensibleAttribute availableForOrderRouting(Boolean availableForOrderRouting) {
+    
+    this.availableForOrderRouting = availableForOrderRouting;
+    return this;
+  }
+
+   /**
+   * Get availableForOrderRouting
+   * @return availableForOrderRouting
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
+
+  public Boolean getAvailableForOrderRouting() {
+    return availableForOrderRouting;
+  }
+
+
+  public void setAvailableForOrderRouting(Boolean availableForOrderRouting) {
+    this.availableForOrderRouting = availableForOrderRouting;
   }
 
 
@@ -386,6 +344,259 @@ public class ExtensibleAttribute implements Serializable {
   }
 
 
+  public ExtensibleAttribute dataType(String dataType) {
+    
+    this.dataType = dataType;
+    return this;
+  }
+
+   /**
+   * Get dataType
+   * @return dataType
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
+
+  public String getDataType() {
+    return dataType;
+  }
+
+
+  public void setDataType(String dataType) {
+    this.dataType = dataType;
+  }
+
+
+  public ExtensibleAttribute displayGroup(String displayGroup) {
+    
+    this.displayGroup = displayGroup;
+    return this;
+  }
+
+   /**
+   * Get displayGroup
+   * @return displayGroup
+  **/
+  @javax.annotation.Nonnull
+  @ApiModelProperty(required = true, value = "")
+
+  public String getDisplayGroup() {
+    return displayGroup;
+  }
+
+
+  public void setDisplayGroup(String displayGroup) {
+    this.displayGroup = displayGroup;
+  }
+
+
+  public ExtensibleAttribute id(Integer id) {
+    
+    this.id = id;
+    return this;
+  }
+
+   /**
+   * Get id
+   * @return id
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
+
+  public Integer getId() {
+    return id;
+  }
+
+
+  public void setId(Integer id) {
+    this.id = id;
+  }
+
+
+  public ExtensibleAttribute inputType(String inputType) {
+    
+    this.inputType = inputType;
+    return this;
+  }
+
+   /**
+   * Get inputType
+   * @return inputType
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
+
+  public String getInputType() {
+    return inputType;
+  }
+
+
+  public void setInputType(String inputType) {
+    this.inputType = inputType;
+  }
+
+
+  public ExtensibleAttribute isActive(Boolean isActive) {
+    
+    this.isActive = isActive;
+    return this;
+  }
+
+   /**
+   * Get isActive
+   * @return isActive
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
+
+  public Boolean getIsActive() {
+    return isActive;
+  }
+
+
+  public void setIsActive(Boolean isActive) {
+    this.isActive = isActive;
+  }
+
+
+  public ExtensibleAttribute isMultiValued(Boolean isMultiValued) {
+    
+    this.isMultiValued = isMultiValued;
+    return this;
+  }
+
+   /**
+   * Get isMultiValued
+   * @return isMultiValued
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
+
+  public Boolean getIsMultiValued() {
+    return isMultiValued;
+  }
+
+
+  public void setIsMultiValued(Boolean isMultiValued) {
+    this.isMultiValued = isMultiValued;
+  }
+
+
+  public ExtensibleAttribute isReadOnly(Boolean isReadOnly) {
+    
+    this.isReadOnly = isReadOnly;
+    return this;
+  }
+
+   /**
+   * Get isReadOnly
+   * @return isReadOnly
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
+
+  public Boolean getIsReadOnly() {
+    return isReadOnly;
+  }
+
+
+  public void setIsReadOnly(Boolean isReadOnly) {
+    this.isReadOnly = isReadOnly;
+  }
+
+
+  public ExtensibleAttribute isRequired(Boolean isRequired) {
+    
+    this.isRequired = isRequired;
+    return this;
+  }
+
+   /**
+   * Get isRequired
+   * @return isRequired
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
+
+  public Boolean getIsRequired() {
+    return isRequired;
+  }
+
+
+  public void setIsRequired(Boolean isRequired) {
+    this.isRequired = isRequired;
+  }
+
+
+  public ExtensibleAttribute isVisible(Boolean isVisible) {
+    
+    this.isVisible = isVisible;
+    return this;
+  }
+
+   /**
+   * Get isVisible
+   * @return isVisible
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
+
+  public Boolean getIsVisible() {
+    return isVisible;
+  }
+
+
+  public void setIsVisible(Boolean isVisible) {
+    this.isVisible = isVisible;
+  }
+
+
+  public ExtensibleAttribute namespace(String namespace) {
+    
+    this.namespace = namespace;
+    return this;
+  }
+
+   /**
+   * Get namespace
+   * @return namespace
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
+
+  public String getNamespace() {
+    return namespace;
+  }
+
+
+  public void setNamespace(String namespace) {
+    this.namespace = namespace;
+  }
+
+
+  public ExtensibleAttribute order(Integer order) {
+    
+    this.order = order;
+    return this;
+  }
+
+   /**
+   * Get order
+   * @return order
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
+
+  public Integer getOrder() {
+    return order;
+  }
+
+
+  public void setOrder(Integer order) {
+    this.order = order;
+  }
+
+
   public ExtensibleAttribute validation(ExtensibleAttributeValidation validation) {
     
     this.validation = validation;
@@ -406,6 +617,29 @@ public class ExtensibleAttribute implements Serializable {
 
   public void setValidation(ExtensibleAttributeValidation validation) {
     this.validation = validation;
+  }
+
+
+  public ExtensibleAttribute valueType(String valueType) {
+    
+    this.valueType = valueType;
+    return this;
+  }
+
+   /**
+   * Get valueType
+   * @return valueType
+  **/
+  @javax.annotation.Nonnull
+  @ApiModelProperty(required = true, value = "")
+
+  public String getValueType() {
+    return valueType;
+  }
+
+
+  public void setValueType(String valueType) {
+    this.valueType = valueType;
   }
 
 
@@ -440,213 +674,6 @@ public class ExtensibleAttribute implements Serializable {
   }
 
 
-  public ExtensibleAttribute auditInfo(AdminUserAuditInfo auditInfo) {
-    
-    this.auditInfo = auditInfo;
-    return this;
-  }
-
-   /**
-   * Get auditInfo
-   * @return auditInfo
-  **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
-
-  public AdminUserAuditInfo getAuditInfo() {
-    return auditInfo;
-  }
-
-
-  public void setAuditInfo(AdminUserAuditInfo auditInfo) {
-    this.auditInfo = auditInfo;
-  }
-
-
-  public ExtensibleAttribute isActive(Boolean isActive) {
-    
-    this.isActive = isActive;
-    return this;
-  }
-
-   /**
-   * Get isActive
-   * @return isActive
-  **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
-
-  public Boolean getIsActive() {
-    return isActive;
-  }
-
-
-  public void setIsActive(Boolean isActive) {
-    this.isActive = isActive;
-  }
-
-
-  public ExtensibleAttribute isRequired(Boolean isRequired) {
-    
-    this.isRequired = isRequired;
-    return this;
-  }
-
-   /**
-   * Get isRequired
-   * @return isRequired
-  **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
-
-  public Boolean getIsRequired() {
-    return isRequired;
-  }
-
-
-  public void setIsRequired(Boolean isRequired) {
-    this.isRequired = isRequired;
-  }
-
-
-  public ExtensibleAttribute isReadOnly(Boolean isReadOnly) {
-    
-    this.isReadOnly = isReadOnly;
-    return this;
-  }
-
-   /**
-   * Get isReadOnly
-   * @return isReadOnly
-  **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
-
-  public Boolean getIsReadOnly() {
-    return isReadOnly;
-  }
-
-
-  public void setIsReadOnly(Boolean isReadOnly) {
-    this.isReadOnly = isReadOnly;
-  }
-
-
-  public ExtensibleAttribute isMultiValued(Boolean isMultiValued) {
-    
-    this.isMultiValued = isMultiValued;
-    return this;
-  }
-
-   /**
-   * Get isMultiValued
-   * @return isMultiValued
-  **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
-
-  public Boolean getIsMultiValued() {
-    return isMultiValued;
-  }
-
-
-  public void setIsMultiValued(Boolean isMultiValued) {
-    this.isMultiValued = isMultiValued;
-  }
-
-
-  public ExtensibleAttribute isVisible(Boolean isVisible) {
-    
-    this.isVisible = isVisible;
-    return this;
-  }
-
-   /**
-   * Get isVisible
-   * @return isVisible
-  **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
-
-  public Boolean getIsVisible() {
-    return isVisible;
-  }
-
-
-  public void setIsVisible(Boolean isVisible) {
-    this.isVisible = isVisible;
-  }
-
-
-  public ExtensibleAttribute order(Integer order) {
-    
-    this.order = order;
-    return this;
-  }
-
-   /**
-   * Get order
-   * @return order
-  **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
-
-  public Integer getOrder() {
-    return order;
-  }
-
-
-  public void setOrder(Integer order) {
-    this.order = order;
-  }
-
-
-  public ExtensibleAttribute displayGroup(String displayGroup) {
-    
-    this.displayGroup = displayGroup;
-    return this;
-  }
-
-   /**
-   * Get displayGroup
-   * @return displayGroup
-  **/
-  @javax.annotation.Nonnull
-  @ApiModelProperty(required = true, value = "")
-
-  public String getDisplayGroup() {
-    return displayGroup;
-  }
-
-
-  public void setDisplayGroup(String displayGroup) {
-    this.displayGroup = displayGroup;
-  }
-
-
-  public ExtensibleAttribute availableForOrderRouting(Boolean availableForOrderRouting) {
-    
-    this.availableForOrderRouting = availableForOrderRouting;
-    return this;
-  }
-
-   /**
-   * Get availableForOrderRouting
-   * @return availableForOrderRouting
-  **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
-
-  public Boolean getAvailableForOrderRouting() {
-    return availableForOrderRouting;
-  }
-
-
-  public void setAvailableForOrderRouting(Boolean availableForOrderRouting) {
-    this.availableForOrderRouting = availableForOrderRouting;
-  }
-
-
 
   @Override
   public boolean equals(Object o) {
@@ -657,27 +684,28 @@ public class ExtensibleAttribute implements Serializable {
       return false;
     }
     ExtensibleAttribute extensibleAttribute = (ExtensibleAttribute) o;
-    return Objects.equals(this.id, extensibleAttribute.id) &&
-        Objects.equals(this.adminName, extensibleAttribute.adminName) &&
-        Objects.equals(this.namespace, extensibleAttribute.namespace) &&
+    return Objects.equals(this.adminName, extensibleAttribute.adminName) &&
         Objects.equals(this.attributeCode, extensibleAttribute.attributeCode) &&
-        Objects.equals(this.inputType, extensibleAttribute.inputType) &&
-        Objects.equals(this.valueType, extensibleAttribute.valueType) &&
-        Objects.equals(this.dataType, extensibleAttribute.dataType) &&
-        Objects.equals(this.attributeMetadata, extensibleAttribute.attributeMetadata) &&
         Objects.equals(this.attributeFQN, extensibleAttribute.attributeFQN) &&
-        Objects.equals(this.content, extensibleAttribute.content) &&
-        Objects.equals(this.validation, extensibleAttribute.validation) &&
-        Objects.equals(this.vocabularyValues, extensibleAttribute.vocabularyValues) &&
+        Objects.equals(this.attributeMetadata, extensibleAttribute.attributeMetadata) &&
         Objects.equals(this.auditInfo, extensibleAttribute.auditInfo) &&
-        Objects.equals(this.isActive, extensibleAttribute.isActive) &&
-        Objects.equals(this.isRequired, extensibleAttribute.isRequired) &&
-        Objects.equals(this.isReadOnly, extensibleAttribute.isReadOnly) &&
-        Objects.equals(this.isMultiValued, extensibleAttribute.isMultiValued) &&
-        Objects.equals(this.isVisible, extensibleAttribute.isVisible) &&
-        Objects.equals(this.order, extensibleAttribute.order) &&
+        Objects.equals(this.availableForDiscounts, extensibleAttribute.availableForDiscounts) &&
+        Objects.equals(this.availableForOrderRouting, extensibleAttribute.availableForOrderRouting) &&
+        Objects.equals(this.content, extensibleAttribute.content) &&
+        Objects.equals(this.dataType, extensibleAttribute.dataType) &&
         Objects.equals(this.displayGroup, extensibleAttribute.displayGroup) &&
-        Objects.equals(this.availableForOrderRouting, extensibleAttribute.availableForOrderRouting);
+        Objects.equals(this.id, extensibleAttribute.id) &&
+        Objects.equals(this.inputType, extensibleAttribute.inputType) &&
+        Objects.equals(this.isActive, extensibleAttribute.isActive) &&
+        Objects.equals(this.isMultiValued, extensibleAttribute.isMultiValued) &&
+        Objects.equals(this.isReadOnly, extensibleAttribute.isReadOnly) &&
+        Objects.equals(this.isRequired, extensibleAttribute.isRequired) &&
+        Objects.equals(this.isVisible, extensibleAttribute.isVisible) &&
+        Objects.equals(this.namespace, extensibleAttribute.namespace) &&
+        Objects.equals(this.order, extensibleAttribute.order) &&
+        Objects.equals(this.validation, extensibleAttribute.validation) &&
+        Objects.equals(this.valueType, extensibleAttribute.valueType) &&
+        Objects.equals(this.vocabularyValues, extensibleAttribute.vocabularyValues);
   }
 
   private static <T> boolean equalsNullable(JsonNullable<T> a, JsonNullable<T> b) {
@@ -686,7 +714,7 @@ public class ExtensibleAttribute implements Serializable {
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, adminName, namespace, attributeCode, inputType, valueType, dataType, attributeMetadata, attributeFQN, content, validation, vocabularyValues, auditInfo, isActive, isRequired, isReadOnly, isMultiValued, isVisible, order, displayGroup, availableForOrderRouting);
+    return Objects.hash(adminName, attributeCode, attributeFQN, attributeMetadata, auditInfo, availableForDiscounts, availableForOrderRouting, content, dataType, displayGroup, id, inputType, isActive, isMultiValued, isReadOnly, isRequired, isVisible, namespace, order, validation, valueType, vocabularyValues);
   }
 
   private static <T> int hashCodeNullable(JsonNullable<T> a) {
@@ -700,27 +728,28 @@ public class ExtensibleAttribute implements Serializable {
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class ExtensibleAttribute {\n");
-    sb.append("    id: ").append(toIndentedString(id)).append("\n");
     sb.append("    adminName: ").append(toIndentedString(adminName)).append("\n");
-    sb.append("    namespace: ").append(toIndentedString(namespace)).append("\n");
     sb.append("    attributeCode: ").append(toIndentedString(attributeCode)).append("\n");
-    sb.append("    inputType: ").append(toIndentedString(inputType)).append("\n");
-    sb.append("    valueType: ").append(toIndentedString(valueType)).append("\n");
-    sb.append("    dataType: ").append(toIndentedString(dataType)).append("\n");
-    sb.append("    attributeMetadata: ").append(toIndentedString(attributeMetadata)).append("\n");
     sb.append("    attributeFQN: ").append(toIndentedString(attributeFQN)).append("\n");
-    sb.append("    content: ").append(toIndentedString(content)).append("\n");
-    sb.append("    validation: ").append(toIndentedString(validation)).append("\n");
-    sb.append("    vocabularyValues: ").append(toIndentedString(vocabularyValues)).append("\n");
+    sb.append("    attributeMetadata: ").append(toIndentedString(attributeMetadata)).append("\n");
     sb.append("    auditInfo: ").append(toIndentedString(auditInfo)).append("\n");
-    sb.append("    isActive: ").append(toIndentedString(isActive)).append("\n");
-    sb.append("    isRequired: ").append(toIndentedString(isRequired)).append("\n");
-    sb.append("    isReadOnly: ").append(toIndentedString(isReadOnly)).append("\n");
-    sb.append("    isMultiValued: ").append(toIndentedString(isMultiValued)).append("\n");
-    sb.append("    isVisible: ").append(toIndentedString(isVisible)).append("\n");
-    sb.append("    order: ").append(toIndentedString(order)).append("\n");
-    sb.append("    displayGroup: ").append(toIndentedString(displayGroup)).append("\n");
+    sb.append("    availableForDiscounts: ").append(toIndentedString(availableForDiscounts)).append("\n");
     sb.append("    availableForOrderRouting: ").append(toIndentedString(availableForOrderRouting)).append("\n");
+    sb.append("    content: ").append(toIndentedString(content)).append("\n");
+    sb.append("    dataType: ").append(toIndentedString(dataType)).append("\n");
+    sb.append("    displayGroup: ").append(toIndentedString(displayGroup)).append("\n");
+    sb.append("    id: ").append(toIndentedString(id)).append("\n");
+    sb.append("    inputType: ").append(toIndentedString(inputType)).append("\n");
+    sb.append("    isActive: ").append(toIndentedString(isActive)).append("\n");
+    sb.append("    isMultiValued: ").append(toIndentedString(isMultiValued)).append("\n");
+    sb.append("    isReadOnly: ").append(toIndentedString(isReadOnly)).append("\n");
+    sb.append("    isRequired: ").append(toIndentedString(isRequired)).append("\n");
+    sb.append("    isVisible: ").append(toIndentedString(isVisible)).append("\n");
+    sb.append("    namespace: ").append(toIndentedString(namespace)).append("\n");
+    sb.append("    order: ").append(toIndentedString(order)).append("\n");
+    sb.append("    validation: ").append(toIndentedString(validation)).append("\n");
+    sb.append("    valueType: ").append(toIndentedString(valueType)).append("\n");
+    sb.append("    vocabularyValues: ").append(toIndentedString(vocabularyValues)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -743,33 +772,34 @@ public class ExtensibleAttribute implements Serializable {
   static {
     // a set of all properties/fields (JSON key names)
     openapiFields = new HashSet<String>();
-    openapiFields.add("id");
     openapiFields.add("adminName");
-    openapiFields.add("namespace");
     openapiFields.add("attributeCode");
-    openapiFields.add("inputType");
-    openapiFields.add("valueType");
-    openapiFields.add("dataType");
-    openapiFields.add("attributeMetadata");
     openapiFields.add("attributeFQN");
-    openapiFields.add("content");
-    openapiFields.add("validation");
-    openapiFields.add("vocabularyValues");
+    openapiFields.add("attributeMetadata");
     openapiFields.add("auditInfo");
-    openapiFields.add("isActive");
-    openapiFields.add("isRequired");
-    openapiFields.add("isReadOnly");
-    openapiFields.add("isMultiValued");
-    openapiFields.add("isVisible");
-    openapiFields.add("order");
-    openapiFields.add("displayGroup");
+    openapiFields.add("availableForDiscounts");
     openapiFields.add("availableForOrderRouting");
+    openapiFields.add("content");
+    openapiFields.add("dataType");
+    openapiFields.add("displayGroup");
+    openapiFields.add("id");
+    openapiFields.add("inputType");
+    openapiFields.add("isActive");
+    openapiFields.add("isMultiValued");
+    openapiFields.add("isReadOnly");
+    openapiFields.add("isRequired");
+    openapiFields.add("isVisible");
+    openapiFields.add("namespace");
+    openapiFields.add("order");
+    openapiFields.add("validation");
+    openapiFields.add("valueType");
+    openapiFields.add("vocabularyValues");
 
     // a set of required properties/fields (JSON key names)
     openapiRequiredFields = new HashSet<String>();
     openapiRequiredFields.add("attributeCode");
-    openapiRequiredFields.add("valueType");
     openapiRequiredFields.add("displayGroup");
+    openapiRequiredFields.add("valueType");
   }
 
  /**
@@ -803,20 +833,11 @@ public class ExtensibleAttribute implements Serializable {
       if ((jsonObj.get("adminName") != null && !jsonObj.get("adminName").isJsonNull()) && !jsonObj.get("adminName").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format("Expected the field `adminName` to be a primitive type in the JSON string but got `%s`", jsonObj.get("adminName").toString()));
       }
-      if ((jsonObj.get("namespace") != null && !jsonObj.get("namespace").isJsonNull()) && !jsonObj.get("namespace").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `namespace` to be a primitive type in the JSON string but got `%s`", jsonObj.get("namespace").toString()));
-      }
       if (!jsonObj.get("attributeCode").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format("Expected the field `attributeCode` to be a primitive type in the JSON string but got `%s`", jsonObj.get("attributeCode").toString()));
       }
-      if ((jsonObj.get("inputType") != null && !jsonObj.get("inputType").isJsonNull()) && !jsonObj.get("inputType").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `inputType` to be a primitive type in the JSON string but got `%s`", jsonObj.get("inputType").toString()));
-      }
-      if (!jsonObj.get("valueType").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `valueType` to be a primitive type in the JSON string but got `%s`", jsonObj.get("valueType").toString()));
-      }
-      if ((jsonObj.get("dataType") != null && !jsonObj.get("dataType").isJsonNull()) && !jsonObj.get("dataType").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `dataType` to be a primitive type in the JSON string but got `%s`", jsonObj.get("dataType").toString()));
+      if ((jsonObj.get("attributeFQN") != null && !jsonObj.get("attributeFQN").isJsonNull()) && !jsonObj.get("attributeFQN").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `attributeFQN` to be a primitive type in the JSON string but got `%s`", jsonObj.get("attributeFQN").toString()));
       }
       if (jsonObj.get("attributeMetadata") != null && !jsonObj.get("attributeMetadata").isJsonNull()) {
         JsonArray jsonArrayattributeMetadata = jsonObj.getAsJsonArray("attributeMetadata");
@@ -832,16 +853,32 @@ public class ExtensibleAttribute implements Serializable {
           };
         }
       }
-      if ((jsonObj.get("attributeFQN") != null && !jsonObj.get("attributeFQN").isJsonNull()) && !jsonObj.get("attributeFQN").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `attributeFQN` to be a primitive type in the JSON string but got `%s`", jsonObj.get("attributeFQN").toString()));
+      // validate the optional field `auditInfo`
+      if (jsonObj.get("auditInfo") != null && !jsonObj.get("auditInfo").isJsonNull()) {
+        AdminUserAuditInfo.validateJsonObject(jsonObj.getAsJsonObject("auditInfo"));
       }
       // validate the optional field `content`
       if (jsonObj.get("content") != null && !jsonObj.get("content").isJsonNull()) {
         ExtensibleAttributeLocalizedContent.validateJsonObject(jsonObj.getAsJsonObject("content"));
       }
+      if ((jsonObj.get("dataType") != null && !jsonObj.get("dataType").isJsonNull()) && !jsonObj.get("dataType").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `dataType` to be a primitive type in the JSON string but got `%s`", jsonObj.get("dataType").toString()));
+      }
+      if (!jsonObj.get("displayGroup").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `displayGroup` to be a primitive type in the JSON string but got `%s`", jsonObj.get("displayGroup").toString()));
+      }
+      if ((jsonObj.get("inputType") != null && !jsonObj.get("inputType").isJsonNull()) && !jsonObj.get("inputType").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `inputType` to be a primitive type in the JSON string but got `%s`", jsonObj.get("inputType").toString()));
+      }
+      if ((jsonObj.get("namespace") != null && !jsonObj.get("namespace").isJsonNull()) && !jsonObj.get("namespace").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `namespace` to be a primitive type in the JSON string but got `%s`", jsonObj.get("namespace").toString()));
+      }
       // validate the optional field `validation`
       if (jsonObj.get("validation") != null && !jsonObj.get("validation").isJsonNull()) {
         ExtensibleAttributeValidation.validateJsonObject(jsonObj.getAsJsonObject("validation"));
+      }
+      if (!jsonObj.get("valueType").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `valueType` to be a primitive type in the JSON string but got `%s`", jsonObj.get("valueType").toString()));
       }
       if (jsonObj.get("vocabularyValues") != null && !jsonObj.get("vocabularyValues").isJsonNull()) {
         JsonArray jsonArrayvocabularyValues = jsonObj.getAsJsonArray("vocabularyValues");
@@ -856,13 +893,6 @@ public class ExtensibleAttribute implements Serializable {
             ExtensibleAttributeVocabularyValue.validateJsonObject(jsonArrayvocabularyValues.get(i).getAsJsonObject());
           };
         }
-      }
-      // validate the optional field `auditInfo`
-      if (jsonObj.get("auditInfo") != null && !jsonObj.get("auditInfo").isJsonNull()) {
-        AdminUserAuditInfo.validateJsonObject(jsonObj.getAsJsonObject("auditInfo"));
-      }
-      if (!jsonObj.get("displayGroup").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `displayGroup` to be a primitive type in the JSON string but got `%s`", jsonObj.get("displayGroup").toString()));
       }
   }
 

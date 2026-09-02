@@ -14,11 +14,11 @@ All URIs are relative to *http://https:/api*
 
 <a name="createUserAuthTicket"></a>
 # **createUserAuthTicket**
-> TenantAdminUserAuthTicket createUserAuthTicket(tenantId, userAuthInfo)
+> TenantAdminUserAuthTicket createUserAuthTicket(tenantId, responseFields, userAuthInfo)
 
 Create User Auth Ticket
 
-Authenticates a user for a particular tenant given a set of user credentials adn a tenantId.
+Authenticates a user for a particular tenant given a set of user credentials and a tenantId.
 
 ### Example
 ```java
@@ -39,15 +39,12 @@ public class Example {
     HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
     bearerAuth.setBearerToken("BEARER TOKEN");
 
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
-
     AdminAuthTicketApi apiInstance = new AdminAuthTicketApi(defaultClient);
     Integer tenantId = 56; // Integer | Optional tenant Id parameter
+    String responseFields = "responseFields_example"; // String | limits which fields are returned in the response body
     UserAuthInfo userAuthInfo = new UserAuthInfo(); // UserAuthInfo | User's email address and password.
     try {
-      TenantAdminUserAuthTicket result = apiInstance.createUserAuthTicket(tenantId, userAuthInfo);
+      TenantAdminUserAuthTicket result = apiInstance.createUserAuthTicket(tenantId, responseFields, userAuthInfo);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling AdminAuthTicketApi#createUserAuthTicket");
@@ -65,6 +62,7 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **tenantId** | **Integer**| Optional tenant Id parameter | [optional] |
+| **responseFields** | **String**| limits which fields are returned in the response body | [optional] |
 | **userAuthInfo** | [**UserAuthInfo**](UserAuthInfo.md)| User&#39;s email address and password. | [optional] |
 
 ### Return type
@@ -73,7 +71,7 @@ public class Example {
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth), [clientOauth2](../README.md#clientOauth2)
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
@@ -83,11 +81,11 @@ public class Example {
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Success |  -  |
+| **200** | OK |  -  |
 
 <a name="createUserAuthTicketWithWsFed"></a>
 # **createUserAuthTicketWithWsFed**
-> TenantAdminUserAuthTicket createUserAuthTicketWithWsFed(id, scopeid, scopeType)
+> TenantAdminUserAuthTicket createUserAuthTicketWithWsFed(id, scopeid, scopeType, responseFields)
 
 Create User Auth Ticket With Ws Fed
 
@@ -112,16 +110,13 @@ public class Example {
     HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
     bearerAuth.setBearerToken("BEARER TOKEN");
 
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
-
     AdminAuthTicketApi apiInstance = new AdminAuthTicketApi(defaultClient);
     String id = "id_example"; // String | 
     Integer scopeid = 56; // Integer | 
     String scopeType = "scopeType_example"; // String | 
+    String responseFields = "responseFields_example"; // String | limits which fields are returned in the response body
     try {
-      TenantAdminUserAuthTicket result = apiInstance.createUserAuthTicketWithWsFed(id, scopeid, scopeType);
+      TenantAdminUserAuthTicket result = apiInstance.createUserAuthTicketWithWsFed(id, scopeid, scopeType, responseFields);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling AdminAuthTicketApi#createUserAuthTicketWithWsFed");
@@ -141,6 +136,7 @@ public class Example {
 | **id** | **String**|  | |
 | **scopeid** | **Integer**|  | [optional] |
 | **scopeType** | **String**|  | [optional] |
+| **responseFields** | **String**| limits which fields are returned in the response body | [optional] |
 
 ### Return type
 
@@ -148,7 +144,7 @@ public class Example {
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth), [clientOauth2](../README.md#clientOauth2)
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
@@ -158,7 +154,7 @@ public class Example {
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Success |  -  |
+| **200** | OK |  -  |
 
 <a name="deleteUserAuthTicket"></a>
 # **deleteUserAuthTicket**
@@ -187,10 +183,6 @@ public class Example {
     HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
     bearerAuth.setBearerToken("BEARER TOKEN");
 
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
-
     AdminAuthTicketApi apiInstance = new AdminAuthTicketApi(defaultClient);
     String refreshToken = "refreshToken_example"; // String | The refresh token to delete.
     try {
@@ -218,7 +210,7 @@ null (empty response body)
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth), [clientOauth2](../README.md#clientOauth2)
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
@@ -228,11 +220,11 @@ null (empty response body)
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Success |  -  |
+| **200** | OK |  -  |
 
 <a name="getWsFedChallengeUrl"></a>
 # **getWsFedChallengeUrl**
-> String getWsFedChallengeUrl(id, scopeid, scopeType, redirect)
+> String getWsFedChallengeUrl(id, scopeid, scopeType, redirect, invitationId, responseFields)
 
 Get Ws Fed Challenge Url
 
@@ -257,17 +249,15 @@ public class Example {
     HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
     bearerAuth.setBearerToken("BEARER TOKEN");
 
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
-
     AdminAuthTicketApi apiInstance = new AdminAuthTicketApi(defaultClient);
     String id = "id_example"; // String | 
     Integer scopeid = 56; // Integer | 
     String scopeType = "scopeType_example"; // String | 
     String redirect = "redirect_example"; // String | 
+    String invitationId = "invitationId_example"; // String | 
+    String responseFields = "responseFields_example"; // String | limits which fields are returned in the response body
     try {
-      String result = apiInstance.getWsFedChallengeUrl(id, scopeid, scopeType, redirect);
+      String result = apiInstance.getWsFedChallengeUrl(id, scopeid, scopeType, redirect, invitationId, responseFields);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling AdminAuthTicketApi#getWsFedChallengeUrl");
@@ -288,6 +278,8 @@ public class Example {
 | **scopeid** | **Integer**|  | [optional] |
 | **scopeType** | **String**|  | [optional] |
 | **redirect** | **String**|  | [optional] |
+| **invitationId** | **String**|  | [optional] |
+| **responseFields** | **String**| limits which fields are returned in the response body | [optional] |
 
 ### Return type
 
@@ -295,7 +287,7 @@ public class Example {
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth), [clientOauth2](../README.md#clientOauth2)
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
@@ -305,11 +297,11 @@ public class Example {
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Success |  -  |
+| **200** | OK |  -  |
 
 <a name="getWsFedSignOutUrl"></a>
 # **getWsFedSignOutUrl**
-> String getWsFedSignOutUrl(id, redirect)
+> String getWsFedSignOutUrl(id, redirect, ssoNameId, session, responseFields)
 
 Get Ws Fed Sign Out Url
 
@@ -334,15 +326,14 @@ public class Example {
     HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
     bearerAuth.setBearerToken("BEARER TOKEN");
 
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
-
     AdminAuthTicketApi apiInstance = new AdminAuthTicketApi(defaultClient);
     String id = "id_example"; // String | 
     String redirect = "redirect_example"; // String | 
+    String ssoNameId = "ssoNameId_example"; // String | 
+    String session = "session_example"; // String | 
+    String responseFields = "responseFields_example"; // String | limits which fields are returned in the response body
     try {
-      String result = apiInstance.getWsFedSignOutUrl(id, redirect);
+      String result = apiInstance.getWsFedSignOutUrl(id, redirect, ssoNameId, session, responseFields);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling AdminAuthTicketApi#getWsFedSignOutUrl");
@@ -361,6 +352,9 @@ public class Example {
 |------------- | ------------- | ------------- | -------------|
 | **id** | **String**|  | |
 | **redirect** | **String**|  | [optional] |
+| **ssoNameId** | **String**|  | [optional] |
+| **session** | **String**|  | [optional] |
+| **responseFields** | **String**| limits which fields are returned in the response body | [optional] |
 
 ### Return type
 
@@ -368,7 +362,7 @@ public class Example {
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth), [clientOauth2](../README.md#clientOauth2)
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
@@ -378,11 +372,11 @@ public class Example {
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Success |  -  |
+| **200** | OK |  -  |
 
 <a name="refreshAuthTicket"></a>
 # **refreshAuthTicket**
-> TenantAdminUserAuthTicket refreshAuthTicket(tenantId, tenantAdminUserAuthTicket)
+> TenantAdminUserAuthTicket refreshAuthTicket(tenantId, responseFields, tenantAdminUserAuthTicket)
 
 Refresh Auth Ticket
 
@@ -407,15 +401,12 @@ public class Example {
     HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
     bearerAuth.setBearerToken("BEARER TOKEN");
 
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
-
     AdminAuthTicketApi apiInstance = new AdminAuthTicketApi(defaultClient);
     Integer tenantId = 56; // Integer | The tenant to authenticate the user in
+    String responseFields = "responseFields_example"; // String | limits which fields are returned in the response body
     TenantAdminUserAuthTicket tenantAdminUserAuthTicket = new TenantAdminUserAuthTicket(); // TenantAdminUserAuthTicket | An existing valid auth ticket containing the refresh token.
     try {
-      TenantAdminUserAuthTicket result = apiInstance.refreshAuthTicket(tenantId, tenantAdminUserAuthTicket);
+      TenantAdminUserAuthTicket result = apiInstance.refreshAuthTicket(tenantId, responseFields, tenantAdminUserAuthTicket);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling AdminAuthTicketApi#refreshAuthTicket");
@@ -433,6 +424,7 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **tenantId** | **Integer**| The tenant to authenticate the user in | [optional] |
+| **responseFields** | **String**| limits which fields are returned in the response body | [optional] |
 | **tenantAdminUserAuthTicket** | [**TenantAdminUserAuthTicket**](TenantAdminUserAuthTicket.md)| An existing valid auth ticket containing the refresh token. | [optional] |
 
 ### Return type
@@ -441,7 +433,7 @@ public class Example {
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth), [clientOauth2](../README.md#clientOauth2)
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
@@ -451,5 +443,5 @@ public class Example {
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Success |  -  |
+| **200** | OK |  -  |
 

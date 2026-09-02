@@ -8,19 +8,19 @@ Campaign result from db
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
-|**tenantId** | **Integer** |  |  [optional] |
-|**siteId** | **Integer** |  |  [optional] |
-|**campaignName** | **String** |  |  [optional] |
-|**campaignId** | **String** |  |  [optional] |
-|**json** | **String** |  |  [optional] |
-|**campaignDescription** | **String** |  |  [optional] |
-|**campaignStartDate** | **OffsetDateTime** |  |  [optional] |
-|**campaignEndDate** | **OffsetDateTime** |  |  [optional] |
-|**statusId** | **Integer** |  |  [optional] |
-|**siteSearchSettings** | [**CampaignSiteSearchSettings**](CampaignSiteSearchSettings.md) |  |  [optional] |
-|**productSuggestSettings** | [**CampaignProductSuggestSettings**](CampaignProductSuggestSettings.md) |  |  [optional] |
-|**listingSettings** | [**CampaignListingSettings**](CampaignListingSettings.md) |  |  [optional] |
 |**auditInfo** | [**AdminUserAuditInfo**](AdminUserAuditInfo.md) |  |  [optional] |
+|**campaignDescription** | **String** |  |  [optional] |
+|**campaignEndDate** | **OffsetDateTime** |  |  [optional] |
+|**campaignId** | **String** |  |  [optional] |
+|**campaignName** | **String** |  |  [optional] |
+|**campaignStartDate** | **OffsetDateTime** |  |  [optional] |
+|**json** | **String** |  |  [optional] |
+|**listingSettings** | [**CampaignListingSettings**](CampaignListingSettings.md) |  |  [optional] |
+|**productSuggestSettings** | [**CampaignProductSuggestSettings**](CampaignProductSuggestSettings.md) |  |  [optional] |
+|**siteId** | **Integer** |  |  [optional] |
+|**siteSearchSettings** | [**CampaignSiteSearchSettings**](CampaignSiteSearchSettings.md) |  |  [optional] |
+|**statusId** | **Integer** |  |  [optional] |
+|**tenantId** | **Integer** |  |  [optional] |
 
 
 ## Implemented Interfaces

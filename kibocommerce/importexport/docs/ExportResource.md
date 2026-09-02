@@ -7,15 +7,15 @@
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
-|**resource** | **String** |  |  [optional] |
-|**filter** | **String** |  |  [optional] |
-|**fields** | **List&lt;String&gt;** |  |  [optional] |
-|**format** | **String** |  |  [optional] |
-|**status** | **String** |  |  [optional] |
-|**isComplete** | **Boolean** |  |  [optional] |
-|**statusMessage** | **String** |  |  [optional] |
-|**stateDetails** | **String** |  |  [optional] |
 |**_configuration** | **Object** |  |  [optional] |
+|**fields** | **List&lt;String&gt;** |  |  [optional] |
+|**filter** | **String** |  |  [optional] |
+|**format** | **String** |  |  [optional] |
+|**isComplete** | **Boolean** |  |  [optional] |
+|**resource** | **String** |  |  [optional] |
+|**stateDetails** | **String** |  |  [optional] |
+|**status** | **String** |  |  [optional] |
+|**statusMessage** | **String** |  |  [optional] |
 
 
 ## Implemented Interfaces

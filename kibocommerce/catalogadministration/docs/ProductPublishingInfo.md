@@ -8,10 +8,10 @@ Price of the product and currency used.
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
-|**publishedState** | **String** |  |  [optional] |
 |**lastPublishedBy** | **String** |  |  [optional] |
 |**lastPublishedDate** | **OffsetDateTime** |  |  [optional] |
 |**publishSetCode** | **String** |  |  [optional] |
+|**publishedState** | **String** |  |  [optional] |
 
 
 ## Implemented Interfaces

@@ -9,7 +9,7 @@ All URIs are relative to *http://https:/api*
 
 <a name="blockAssignment"></a>
 # **blockAssignment**
-> BaseResponse blockAssignment(xVolTenant, blockAssignmentRequest)
+> BaseResponse blockAssignment(blockAssignmentRequest)
 
 Block Assignment
 
@@ -21,7 +21,6 @@ Setting the blockAssignment flag to true for the product based on the given requ
 import com.kibocommerce.sdk.inventory.ApiClient;
 import com.kibocommerce.sdk.inventory.ApiException;
 import com.kibocommerce.sdk.inventory.Configuration;
-import com.kibocommerce.sdk.inventory.auth.*;
 import com.kibocommerce.sdk.inventory.models.*;
 import com.kibocommerce.sdk.inventory.api.InventoryBlockAssignmentApi;
 
@@ -29,20 +28,11 @@ public class Example {
   public static void main(String[] args) {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
     defaultClient.setBasePath("http://https:/api");
-    
-    // Configure HTTP bearer authorization: bearerAuth
-    HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
-    bearerAuth.setBearerToken("BEARER TOKEN");
-
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
 
     InventoryBlockAssignmentApi apiInstance = new InventoryBlockAssignmentApi(defaultClient);
-    Integer xVolTenant = 56; // Integer | Tenant ID
     BlockAssignmentRequest blockAssignmentRequest = new BlockAssignmentRequest(); // BlockAssignmentRequest | Request to block assignment on the product
     try {
-      BaseResponse result = apiInstance.blockAssignment(xVolTenant, blockAssignmentRequest);
+      BaseResponse result = apiInstance.blockAssignment(blockAssignmentRequest);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling InventoryBlockAssignmentApi#blockAssignment");
@@ -59,7 +49,6 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **xVolTenant** | **Integer**| Tenant ID | |
 | **blockAssignmentRequest** | [**BlockAssignmentRequest**](BlockAssignmentRequest.md)| Request to block assignment on the product | |
 
 ### Return type
@@ -68,7 +57,7 @@ public class Example {
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth), [clientOauth2](../README.md#clientOauth2)
+No authorization required
 
 ### HTTP request headers
 

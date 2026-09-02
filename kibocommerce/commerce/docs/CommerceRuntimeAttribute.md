@@ -7,27 +7,31 @@
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
-|**id** | **Integer** |  |  [optional] |
 |**adminName** | **String** |  |  [optional] |
-|**namespace** | **String** |  |  [optional] |
 |**attributeCode** | **String** |  |  |
-|**inputType** | **String** |  |  [optional] |
-|**valueType** | **String** |  |  |
-|**dataType** | **String** |  |  [optional] |
-|**attributeMetadata** | [**List&lt;CommerceRuntimeAttributeMetadataItem&gt;**](CommerceRuntimeAttributeMetadataItem.md) |  |  [optional] |
 |**attributeFQN** | **String** |  |  [optional] |
-|**content** | [**CommerceRuntimeAttributeLocalizedContent**](CommerceRuntimeAttributeLocalizedContent.md) |  |  [optional] |
-|**validation** | [**CommerceRuntimeAttributeValidation**](CommerceRuntimeAttributeValidation.md) |  |  [optional] |
-|**vocabularyValues** | [**List&lt;CommerceRuntimeAttributeVocabularyValue&gt;**](CommerceRuntimeAttributeVocabularyValue.md) |  |  [optional] |
-|**auditInfo** | [**AdminUserAuditInfo**](AdminUserAuditInfo.md) |  |  [optional] |
-|**isActive** | **Boolean** |  |  [optional] |
-|**isRequired** | **Boolean** |  |  [optional] |
-|**isReadOnly** | **Boolean** |  |  [optional] |
-|**isMultiValued** | **Boolean** |  |  [optional] |
-|**isVisible** | **Boolean** |  |  [optional] |
-|**order** | **Integer** |  |  [optional] |
-|**displayGroup** | **String** |  |  |
+|**attributeMetadata** | [**List&lt;CommerceRuntimeAttributeMetadataItem&gt;**](CommerceRuntimeAttributeMetadataItem.md) |  |  [optional] |
+|**auditInfo** | [**CoreApiContractsAuditInfo**](CoreApiContractsAuditInfo.md) |  |  [optional] |
+|**availableForDiscounts** | **Boolean** |  |  [optional] |
 |**availableForOrderRouting** | **Boolean** |  |  [optional] |
+|**availableInRules** | **Boolean** |  |  [optional] |
+|**content** | [**CommerceRuntimeAttributeLocalizedContent**](CommerceRuntimeAttributeLocalizedContent.md) |  |  [optional] |
+|**dataType** | **String** |  |  [optional] |
+|**displayGroup** | **String** |  |  |
+|**entityConfigs** | [**List&lt;AttributeEntityConfig&gt;**](AttributeEntityConfig.md) |  |  [optional] |
+|**id** | **Integer** |  |  [optional] |
+|**inheritanceRules** | [**List&lt;AttributeInheritanceRule&gt;**](AttributeInheritanceRule.md) |  |  [optional] |
+|**inputType** | **String** |  |  [optional] |
+|**isActive** | **Boolean** |  |  [optional] |
+|**isMultiValued** | **Boolean** |  |  [optional] |
+|**isReadOnly** | **Boolean** |  |  [optional] |
+|**isRequired** | **Boolean** |  |  [optional] |
+|**isVisible** | **Boolean** |  |  [optional] |
+|**namespace** | **String** |  |  [optional] |
+|**order** | **Integer** |  |  [optional] |
+|**validation** | [**CommerceRuntimeAttributeValidation**](CommerceRuntimeAttributeValidation.md) |  |  [optional] |
+|**valueType** | **String** |  |  |
+|**vocabularyValues** | [**List&lt;CommerceRuntimeAttributeVocabularyValue&gt;**](CommerceRuntimeAttributeVocabularyValue.md) |  |  [optional] |
 
 
 ## Implemented Interfaces

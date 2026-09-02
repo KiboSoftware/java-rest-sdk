@@ -12,7 +12,7 @@ All URIs are relative to *http://https:/api*
 
 <a name="addVisit"></a>
 # **addVisit**
-> Visit addVisit(visit)
+> Visit addVisit(responseFields, visit)
 
 Add Visit
 
@@ -37,14 +37,11 @@ public class Example {
     HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
     bearerAuth.setBearerToken("BEARER TOKEN");
 
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
-
     CustomerVisitApi apiInstance = new CustomerVisitApi(defaultClient);
+    String responseFields = "responseFields_example"; // String | limits which fields are returned in the response body
     Visit visit = new Visit(); // Visit | 
     try {
-      Visit result = apiInstance.addVisit(visit);
+      Visit result = apiInstance.addVisit(responseFields, visit);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling CustomerVisitApi#addVisit");
@@ -61,6 +58,7 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
+| **responseFields** | **String**| limits which fields are returned in the response body | [optional] |
 | **visit** | [**Visit**](Visit.md)|  | [optional] |
 
 ### Return type
@@ -69,7 +67,7 @@ public class Example {
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth), [clientOauth2](../README.md#clientOauth2)
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
@@ -79,11 +77,11 @@ public class Example {
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Success |  -  |
+| **200** | OK |  -  |
 
 <a name="getVisit"></a>
 # **getVisit**
-> Visit getVisit(visitId)
+> Visit getVisit(visitId, responseFields)
 
 Get Visit
 
@@ -108,14 +106,11 @@ public class Example {
     HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
     bearerAuth.setBearerToken("BEARER TOKEN");
 
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
-
     CustomerVisitApi apiInstance = new CustomerVisitApi(defaultClient);
     String visitId = "visitId_example"; // String | 
+    String responseFields = "responseFields_example"; // String | limits which fields are returned in the response body
     try {
-      Visit result = apiInstance.getVisit(visitId);
+      Visit result = apiInstance.getVisit(visitId, responseFields);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling CustomerVisitApi#getVisit");
@@ -133,6 +128,7 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **visitId** | **String**|  | |
+| **responseFields** | **String**| limits which fields are returned in the response body | [optional] |
 
 ### Return type
 
@@ -140,7 +136,7 @@ public class Example {
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth), [clientOauth2](../README.md#clientOauth2)
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
@@ -150,11 +146,11 @@ public class Example {
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Success |  -  |
+| **200** | OK |  -  |
 
 <a name="getVisits"></a>
 # **getVisits**
-> VisitCollection getVisits(startIndex, pageSize, sortBy, filter)
+> VisitCollection getVisits(startIndex, pageSize, sortBy, filter, responseFields)
 
 Get Visits
 
@@ -179,17 +175,14 @@ public class Example {
     HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
     bearerAuth.setBearerToken("BEARER TOKEN");
 
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
-
     CustomerVisitApi apiInstance = new CustomerVisitApi(defaultClient);
     Integer startIndex = 0; // Integer | 
     Integer pageSize = 0; // Integer | 
     String sortBy = "sortBy_example"; // String | 
     String filter = "filter_example"; // String | 
+    String responseFields = "responseFields_example"; // String | limits which fields are returned in the response body
     try {
-      VisitCollection result = apiInstance.getVisits(startIndex, pageSize, sortBy, filter);
+      VisitCollection result = apiInstance.getVisits(startIndex, pageSize, sortBy, filter, responseFields);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling CustomerVisitApi#getVisits");
@@ -210,6 +203,7 @@ public class Example {
 | **pageSize** | **Integer**|  | [optional] [default to 0] |
 | **sortBy** | **String**|  | [optional] |
 | **filter** | **String**|  | [optional] |
+| **responseFields** | **String**| limits which fields are returned in the response body | [optional] |
 
 ### Return type
 
@@ -217,7 +211,7 @@ public class Example {
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth), [clientOauth2](../README.md#clientOauth2)
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
@@ -227,11 +221,11 @@ public class Example {
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Success |  -  |
+| **200** | OK |  -  |
 
 <a name="updateVisit"></a>
 # **updateVisit**
-> Visit updateVisit(visitId, visit)
+> Visit updateVisit(visitId, responseFields, visit)
 
 Updates Visit
 
@@ -256,15 +250,12 @@ public class Example {
     HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
     bearerAuth.setBearerToken("BEARER TOKEN");
 
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
-
     CustomerVisitApi apiInstance = new CustomerVisitApi(defaultClient);
     String visitId = "visitId_example"; // String | 
+    String responseFields = "responseFields_example"; // String | limits which fields are returned in the response body
     Visit visit = new Visit(); // Visit | 
     try {
-      Visit result = apiInstance.updateVisit(visitId, visit);
+      Visit result = apiInstance.updateVisit(visitId, responseFields, visit);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling CustomerVisitApi#updateVisit");
@@ -282,6 +273,7 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **visitId** | **String**|  | |
+| **responseFields** | **String**| limits which fields are returned in the response body | [optional] |
 | **visit** | [**Visit**](Visit.md)|  | [optional] |
 
 ### Return type
@@ -290,7 +282,7 @@ public class Example {
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth), [clientOauth2](../README.md#clientOauth2)
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
@@ -300,5 +292,5 @@ public class Example {
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Success |  -  |
+| **200** | OK |  -  |
 

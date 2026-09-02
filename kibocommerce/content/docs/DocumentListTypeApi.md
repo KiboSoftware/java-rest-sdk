@@ -12,11 +12,11 @@ All URIs are relative to *http://https:/api*
 
 <a name="createDocumentListType"></a>
 # **createDocumentListType**
-> DocumentListType createDocumentListType(documentListType)
+> DocumentListType createDocumentListType(responseFields, documentListType)
 
 Create Document List Type
 
-Create Document List Type
+Create Document List Type. Creating a new documentListType will tell the Content service to immediately create a document list of the new type within the set scopeType. For instance, a scopeType of \&quot;site\&quot; will create a list in each site for the tenant. Any defaultDocuments defined for the type will be created within each list, which will be addressable via the type&#39;s fully qualified name (FQN) and will use the type&#39;s defined views, usages, and metadata by default.
 
 ### Example
 ```java
@@ -37,14 +37,11 @@ public class Example {
     HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
     bearerAuth.setBearerToken("BEARER TOKEN");
 
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
-
     DocumentListTypeApi apiInstance = new DocumentListTypeApi(defaultClient);
+    String responseFields = "responseFields_example"; // String | limits which fields are returned in the response body
     DocumentListType documentListType = new DocumentListType(); // DocumentListType | 
     try {
-      DocumentListType result = apiInstance.createDocumentListType(documentListType);
+      DocumentListType result = apiInstance.createDocumentListType(responseFields, documentListType);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling DocumentListTypeApi#createDocumentListType");
@@ -61,6 +58,7 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
+| **responseFields** | **String**| limits which fields are returned in the response body | [optional] |
 | **documentListType** | [**DocumentListType**](DocumentListType.md)|  | [optional] |
 
 ### Return type
@@ -69,21 +67,21 @@ public class Example {
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth), [clientOauth2](../README.md#clientOauth2)
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
- - **Content-Type**: text/plain, application/octet-stream, application/json
+ - **Content-Type**: application/json, application/octet-stream, text/plain
  - **Accept**: application/json, text/json, text/plain
 
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Success |  -  |
+| **200** | OK |  -  |
 
 <a name="getDocumentListType"></a>
 # **getDocumentListType**
-> DocumentListType getDocumentListType(documentListTypeFQN)
+> DocumentListType getDocumentListType(documentListTypeFQN, responseFields)
 
 Get Document List Type
 
@@ -108,14 +106,11 @@ public class Example {
     HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
     bearerAuth.setBearerToken("BEARER TOKEN");
 
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
-
     DocumentListTypeApi apiInstance = new DocumentListTypeApi(defaultClient);
     String documentListTypeFQN = "documentListTypeFQN_example"; // String | 
+    String responseFields = "responseFields_example"; // String | limits which fields are returned in the response body
     try {
-      DocumentListType result = apiInstance.getDocumentListType(documentListTypeFQN);
+      DocumentListType result = apiInstance.getDocumentListType(documentListTypeFQN, responseFields);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling DocumentListTypeApi#getDocumentListType");
@@ -133,6 +128,7 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **documentListTypeFQN** | **String**|  | |
+| **responseFields** | **String**| limits which fields are returned in the response body | [optional] |
 
 ### Return type
 
@@ -140,7 +136,7 @@ public class Example {
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth), [clientOauth2](../README.md#clientOauth2)
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
@@ -150,15 +146,15 @@ public class Example {
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Success |  -  |
+| **200** | OK |  -  |
 
 <a name="getDocumentListTypes"></a>
 # **getDocumentListTypes**
-> DocumentListTypeCollection getDocumentListTypes(pageSize, startIndex)
+> DocumentListTypeCollection getDocumentListTypes(pageSize, startIndex, responseFields)
 
 Get Document List Types
 
-Get Document List Types
+Get Document List Types. The list type denotes a content type for that list of folders, sub-folders, and documents. The immutable document list types that are defined out-of-the-box are pages, siteSnippets, files, siteSettings, catalogContent, pageTemplateContent, emailTemplateContent, and entityEditors.
 
 ### Example
 ```java
@@ -179,15 +175,12 @@ public class Example {
     HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
     bearerAuth.setBearerToken("BEARER TOKEN");
 
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
-
     DocumentListTypeApi apiInstance = new DocumentListTypeApi(defaultClient);
     Integer pageSize = 56; // Integer | 
     Integer startIndex = 56; // Integer | 
+    String responseFields = "responseFields_example"; // String | limits which fields are returned in the response body
     try {
-      DocumentListTypeCollection result = apiInstance.getDocumentListTypes(pageSize, startIndex);
+      DocumentListTypeCollection result = apiInstance.getDocumentListTypes(pageSize, startIndex, responseFields);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling DocumentListTypeApi#getDocumentListTypes");
@@ -206,6 +199,7 @@ public class Example {
 |------------- | ------------- | ------------- | -------------|
 | **pageSize** | **Integer**|  | [optional] |
 | **startIndex** | **Integer**|  | [optional] |
+| **responseFields** | **String**| limits which fields are returned in the response body | [optional] |
 
 ### Return type
 
@@ -213,7 +207,7 @@ public class Example {
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth), [clientOauth2](../README.md#clientOauth2)
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
@@ -223,11 +217,11 @@ public class Example {
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Success |  -  |
+| **200** | OK |  -  |
 
 <a name="updateDocumentListType"></a>
 # **updateDocumentListType**
-> DocumentListType updateDocumentListType(documentListTypeFQN, documentListType)
+> DocumentListType updateDocumentListType(documentListTypeFQN, responseFields, documentListType)
 
 Update Document List Type
 
@@ -252,15 +246,12 @@ public class Example {
     HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
     bearerAuth.setBearerToken("BEARER TOKEN");
 
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
-
     DocumentListTypeApi apiInstance = new DocumentListTypeApi(defaultClient);
     String documentListTypeFQN = "documentListTypeFQN_example"; // String | The name of the document documentListName to update
+    String responseFields = "responseFields_example"; // String | limits which fields are returned in the response body
     DocumentListType documentListType = new DocumentListType(); // DocumentListType | Content Collection values to apply
     try {
-      DocumentListType result = apiInstance.updateDocumentListType(documentListTypeFQN, documentListType);
+      DocumentListType result = apiInstance.updateDocumentListType(documentListTypeFQN, responseFields, documentListType);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling DocumentListTypeApi#updateDocumentListType");
@@ -278,6 +269,7 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **documentListTypeFQN** | **String**| The name of the document documentListName to update | |
+| **responseFields** | **String**| limits which fields are returned in the response body | [optional] |
 | **documentListType** | [**DocumentListType**](DocumentListType.md)| Content Collection values to apply | [optional] |
 
 ### Return type
@@ -286,15 +278,15 @@ public class Example {
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth), [clientOauth2](../README.md#clientOauth2)
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
- - **Content-Type**: text/plain, application/octet-stream, application/json
+ - **Content-Type**: application/json, application/octet-stream, text/plain
  - **Accept**: application/json, text/json, text/plain
 
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Success |  -  |
+| **200** | OK |  -  |
 

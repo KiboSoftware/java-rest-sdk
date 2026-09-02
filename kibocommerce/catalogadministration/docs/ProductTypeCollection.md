@@ -8,11 +8,11 @@ Collection of attributes.
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
-|**startIndex** | **Integer** |  |  [optional] |
-|**pageSize** | **Integer** |  |  [optional] |
-|**pageCount** | **Integer** |  |  [optional] |
-|**totalCount** | **Integer** |  |  [optional] |
 |**items** | [**List&lt;ProductType&gt;**](ProductType.md) |  |  [optional] |
+|**pageCount** | **Integer** |  |  [optional] |
+|**pageSize** | **Integer** |  |  [optional] |
+|**startIndex** | **Integer** |  |  [optional] |
+|**totalCount** | **Integer** |  |  [optional] |
 
 
 ## Implemented Interfaces

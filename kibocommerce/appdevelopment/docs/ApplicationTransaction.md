@@ -8,18 +8,18 @@
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
-|**applicationTransactionId** | **Integer** |  |  [optional] |
-|**applicationId** | **Integer** |  |  [optional] |
 |**applicationEntitlementId** | **Integer** |  |  [optional] |
-|**tenantId** | **Integer** |  |  [optional] |
-|**siteId** | **Integer** |  |  [optional] |
-|**localeCode** | **Integer** |  |  [optional] |
+|**applicationId** | **Integer** |  |  [optional] |
+|**applicationTransactionId** | **Integer** |  |  [optional] |
 |**isoCurrencyCode** | **String** |  |  [optional] |
+|**localeCode** | **Integer** |  |  [optional] |
+|**orderNumber** | **String** |  |  [optional] |
+|**siteId** | **Integer** |  |  [optional] |
+|**tenantId** | **Integer** |  |  [optional] |
 |**transactionDate** | **OffsetDateTime** |  |  [optional] |
 |**transactionPrice** | **Double** |  |  [optional] |
 |**transactionTax** | **Double** |  |  [optional] |
 |**transactionTotal** | **Double** |  |  [optional] |
-|**orderNumber** | **String** |  |  [optional] |
 
 
 ## Implemented Interfaces

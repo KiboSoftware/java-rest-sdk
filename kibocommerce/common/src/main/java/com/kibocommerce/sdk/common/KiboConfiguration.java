@@ -7,8 +7,10 @@ import com.kibocommerce.sdk.common.KiboHeaders;
 import com.kibocommerce.sdk.common.constants.EnvironmentVars;
 import com.kibocommerce.sdk.common.constants.Templates;
 import java.util.Map;
-import java.util.Properties;
 import java.util.HashMap;
+// Builder.fromSystemProperties() uses Properties; the upstream template omits
+// this import, so the generated file had to be hand-fixed every time.
+import java.util.Properties;
 import java.net.URI;
 
 public class KiboConfiguration {

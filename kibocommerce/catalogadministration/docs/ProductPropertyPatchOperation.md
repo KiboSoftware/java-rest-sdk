@@ -7,10 +7,10 @@
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
-|**value** | **Object** |  |  [optional] |
-|**path** | **String** |  |  [optional] |
-|**op** | **String** |  |  [optional] |
 |**from** | **String** |  |  [optional] |
+|**op** | **String** |  |  [optional] |
+|**path** | **String** |  |  [optional] |
+|**value** | **Object** |  |  [optional] |
 
 
 ## Implemented Interfaces

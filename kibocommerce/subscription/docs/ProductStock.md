@@ -7,13 +7,15 @@
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
-|**manageStock** | **Boolean** |  |  [optional] |
-|**isOnBackOrder** | **Boolean** |  |  [optional] |
-|**availableDate** | **OffsetDateTime** |  |  [optional] |
-|**stockAvailable** | **Integer** |  |  [optional] |
 |**aggregateInventory** | **Integer** |  |  [optional] |
+|**availableDate** | **OffsetDateTime** |  |  [optional] |
+|**availableFutureInventories** | **Integer** |  |  [optional] [readonly] |
 |**futureInventories** | [**List&lt;CommerceRuntimeFutureInventory&gt;**](CommerceRuntimeFutureInventory.md) |  |  [optional] |
+|**isOnBackOrder** | **Boolean** |  |  [optional] |
 |**isSubstitutable** | **Boolean** |  |  [optional] |
+|**manageStock** | **Boolean** |  |  [optional] |
+|**stockAvailable** | **Integer** |  |  [optional] |
+|**totalAvailableStock** | **Integer** |  |  [optional] [readonly] |
 
 
 ## Implemented Interfaces

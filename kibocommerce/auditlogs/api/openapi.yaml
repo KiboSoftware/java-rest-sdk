@@ -1,0 +1,346 @@
+openapi: 3.0.1
+info:
+  description: OpenAPI Spec for Kibo Audit Logs Web API
+  title: Kibo Audit Logs Web API
+  version: v1
+servers:
+- url: "https://{tenantPodHost}/api"
+security:
+- bearerAuth: []
+paths:
+  /history:
+    get:
+      description: "Retrieves a collection of history records with optional paging\
+        \ parameters. Paging parameters include startIndex, pageSize, sortBy, filter,\
+        \ q, and qLimit."
+      operationId: getHistoryAsync
+      parameters:
+      - explode: true
+        in: query
+        name: StartIndex
+        required: false
+        schema:
+          format: int32
+          type: integer
+        style: form
+      - explode: true
+        in: query
+        name: PageSize
+        required: false
+        schema:
+          format: int32
+          type: integer
+        style: form
+      - explode: true
+        in: query
+        name: SortBy
+        required: false
+        schema:
+          type: string
+        style: form
+      - explode: true
+        in: query
+        name: Filter
+        required: false
+        schema:
+          type: string
+        style: form
+      - explode: true
+        in: query
+        name: Q
+        required: false
+        schema:
+          type: string
+        style: form
+      - explode: true
+        in: query
+        name: QLimit
+        required: false
+        schema:
+          format: int32
+          type: integer
+        style: form
+      - description: limits which fields are returned in the response body
+        explode: true
+        in: query
+        name: responseFields
+        required: false
+        schema:
+          type: string
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HistoryCollection'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/HistoryCollection'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/HistoryCollection'
+          description: OK
+      summary: Get History
+      tags:
+      - History
+      x-accepts: application/json
+  /history/{historyId}:
+    get:
+      description: Retrieves a history record by its ID.
+      operationId: getHistoryByIdAsync
+      parameters:
+      - description: The ID of the history record.
+        explode: false
+        in: path
+        name: historyId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: limits which fields are returned in the response body
+        explode: true
+        in: query
+        name: responseFields
+        required: false
+        schema:
+          type: string
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/History'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/History'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/History'
+          description: OK
+      summary: Get History by ID
+      tags:
+      - History
+      x-accepts: application/json
+  /history/{historyId}/diff:
+    get:
+      description: Retrieves diff for history by ID or entity type. Retrieves the
+        modified file(s) of given history compared to the previous. version of entity
+      operationId: getDiff
+      parameters:
+      - description: History Id
+        explode: false
+        in: path
+        name: historyId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: limits which fields are returned in the response body
+        explode: true
+        in: query
+        name: responseFields
+        required: false
+        schema:
+          type: string
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema: {}
+            text/json:
+              schema: {}
+            text/plain:
+              schema: {}
+          description: OK
+      summary: Get History Diff
+      tags:
+      - History
+      x-accepts: application/json
+  /history/{historyId}/download:
+    get:
+      description: Downloads the entity as a JSON file by its history ID.
+      operationId: downloadEntityAsync
+      parameters:
+      - description: The ID of the history record.
+        explode: false
+        in: path
+        name: historyId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: limits which fields are returned in the response body
+        explode: true
+        in: query
+        name: responseFields
+        required: false
+        schema:
+          type: string
+        style: form
+      responses:
+        "200":
+          description: OK
+      summary: Download History
+      tags:
+      - History
+      x-accepts: application/json
+  /history/{rightHistoryId}/{leftHistoryId}/download:
+    get:
+      description: Downloads the entities as a ZIP file by their history IDs.
+      operationId: downloadEntitiesAsync
+      parameters:
+      - description: The ID of the right history record.
+        explode: false
+        in: path
+        name: rightHistoryId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: The ID of the left history record.
+        explode: false
+        in: path
+        name: leftHistoryId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: limits which fields are returned in the response body
+        explode: true
+        in: query
+        name: responseFields
+        required: false
+        schema:
+          type: string
+        style: form
+      responses:
+        "200":
+          description: OK
+      summary: Download Histories
+      tags:
+      - History
+      x-accepts: application/json
+components:
+  schemas:
+    History:
+      example:
+        entityType: entityType
+        ipAddress: ipAddress
+        entityId: entityId
+        userId: userId
+        tenantId: 6
+        action: action
+        initiatingAppId: initiatingAppId
+        objectName: objectName
+        siteId: 0
+        appKey: appKey
+        correlationId: correlationId
+        id: id
+        timestamp: 2000-01-23T04:56:07.000+00:00
+      properties:
+        action:
+          nullable: true
+          type: string
+        appKey:
+          nullable: true
+          type: string
+        correlationId:
+          nullable: true
+          type: string
+        entityId:
+          nullable: true
+          type: string
+        entityType:
+          nullable: true
+          type: string
+        id:
+          nullable: true
+          type: string
+        initiatingAppId:
+          nullable: true
+          type: string
+        ipAddress:
+          nullable: true
+          type: string
+        objectName:
+          nullable: true
+          type: string
+        siteId:
+          format: int32
+          nullable: true
+          type: integer
+        tenantId:
+          format: int32
+          nullable: true
+          type: integer
+        timestamp:
+          format: date-time
+          type: string
+        userId:
+          nullable: true
+          type: string
+      type: object
+    HistoryCollection:
+      example:
+        pageCount: 1
+        startIndex: 5
+        pageSize: 5
+        totalCount: 2
+        items:
+        - entityType: entityType
+          ipAddress: ipAddress
+          entityId: entityId
+          userId: userId
+          tenantId: 6
+          action: action
+          initiatingAppId: initiatingAppId
+          objectName: objectName
+          siteId: 0
+          appKey: appKey
+          correlationId: correlationId
+          id: id
+          timestamp: 2000-01-23T04:56:07.000+00:00
+        - entityType: entityType
+          ipAddress: ipAddress
+          entityId: entityId
+          userId: userId
+          tenantId: 6
+          action: action
+          initiatingAppId: initiatingAppId
+          objectName: objectName
+          siteId: 0
+          appKey: appKey
+          correlationId: correlationId
+          id: id
+          timestamp: 2000-01-23T04:56:07.000+00:00
+      properties:
+        items:
+          items:
+            $ref: '#/components/schemas/History'
+          nullable: true
+          type: array
+        pageCount:
+          format: int32
+          type: integer
+        pageSize:
+          format: int32
+          type: integer
+        startIndex:
+          format: int32
+          type: integer
+        totalCount:
+          format: int32
+          type: integer
+      type: object
+  securitySchemes:
+    bearerAuth:
+      bearerFormat: JWT
+      description: "JWT Authorization header using the Bearer scheme. \r\n\r\n Enter\
+        \ 'Bearer' [space] and then your token in the text input below.\r\n\r\nExample:\
+        \ \"Bearer 12345abcdef\""
+      scheme: bearer
+      type: http
+

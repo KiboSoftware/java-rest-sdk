@@ -7,10 +7,10 @@
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
+|**actions** | **List&lt;String&gt;** |  |  [optional] |
+|**secret** | **String** |  |  [optional] |
 |**siteKey** | **String** |  |  [optional] |
 |**validScore** | **Double** |  |  [optional] |
-|**secret** | **String** |  |  [optional] |
-|**actions** | **List&lt;String&gt;** |  |  [optional] |
 
 
 ## Implemented Interfaces

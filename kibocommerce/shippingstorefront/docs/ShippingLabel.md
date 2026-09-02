@@ -7,8 +7,8 @@
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
-|**imageFormat** | **String** |  |  [optional] |
 |**imageData** | **byte[]** |  |  [optional] |
+|**imageFormat** | **String** |  |  [optional] |
 |**labelUrl** | **String** |  |  [optional] |
 
 

@@ -7,10 +7,10 @@
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
-|**name** | **String** |  |  [optional] |
 |**height** | **Double** |  |  [optional] |
-|**width** | **Double** |  |  [optional] |
 |**length** | **Double** |  |  [optional] |
+|**name** | **String** |  |  [optional] |
+|**width** | **Double** |  |  [optional] |
 
 
 ## Implemented Interfaces

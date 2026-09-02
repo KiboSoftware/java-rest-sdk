@@ -10,14 +10,15 @@
 |**created** | **OffsetDateTime** |  |  [optional] |
 |**creatorUsername** | **String** |  |  [optional] |
 |**descending** | **Boolean** |  |  [optional] |
-|**environmentID** | **Integer** |  |  [optional] |
+|**environmentID** | **Integer** |  |  |
 |**locationSortID** | **Integer** |  |  [optional] |
 |**name** | **String** |  |  [optional] |
 |**pathString** | **String** |  |  [optional] |
 |**persisted** | **Boolean** |  |  [optional] |
-|**siteID** | **Integer** |  |  [optional] |
-|**sortingType** | [**SortingTypeEnum**](#SortingTypeEnum) |  |  [optional] |
-|**tenantID** | **Integer** |  |  [optional] |
+|**siteID** | **Integer** |  |  |
+|**sortingType** | [**SortingTypeEnum**](#SortingTypeEnum) |  |  |
+|**suggestionEventListeners** | **Set&lt;Object&gt;** |  |  [optional] |
+|**tenantID** | **Integer** |  |  |
 |**updated** | **OffsetDateTime** |  |  [optional] |
 |**updaterUsername** | **String** |  |  [optional] |
 |**userContext** | [**UserContextInformation**](UserContextInformation.md) |  |  [optional] |
@@ -34,6 +35,7 @@
 | COST | &quot;COST&quot; |
 | RANDOM | &quot;RANDOM&quot; |
 | DATA_SET | &quot;DATA_SET&quot; |
+| LOWEST_AVAILABLE | &quot;LOWEST_AVAILABLE&quot; |
 
 
 ## Implemented Interfaces

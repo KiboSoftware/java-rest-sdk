@@ -8,11 +8,11 @@ Collection of notes added to a customer account returned as a whole. A collectio
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
-|**startIndex** | **Integer** |  |  [optional] |
-|**pageSize** | **Integer** |  |  [optional] |
-|**pageCount** | **Integer** |  |  [optional] |
-|**totalCount** | **Integer** |  |  [optional] |
 |**items** | [**List&lt;CustomerNote&gt;**](CustomerNote.md) |  |  [optional] |
+|**pageCount** | **Integer** |  |  [optional] |
+|**pageSize** | **Integer** |  |  [optional] |
+|**startIndex** | **Integer** |  |  [optional] |
+|**totalCount** | **Integer** |  |  [optional] |
 
 
 ## Implemented Interfaces

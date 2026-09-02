@@ -2,7 +2,7 @@ lazy val root = (project in file(".")).
   settings(
     organization := "com.kibocommerce",
     name := "appdevelopment",
-    version := "1.0.0",
+    version := "3.0.0",
     scalaVersion := "2.11.4",
     scalacOptions ++= Seq("-feature"),
     javacOptions in compile ++= Seq("-Xlint:deprecation"),
@@ -17,7 +17,6 @@ lazy val root = (project in file(".")).
       "javax.ws.rs" % "jsr311-api" % "1.1.1",
       "javax.ws.rs" % "javax.ws.rs-api" % "2.1.1",
       "org.openapitools" % "jackson-databind-nullable" % "0.2.3",
-      "org.apache.oltu.oauth2" % "org.apache.oltu.oauth2.client" % "1.0.1",
       "io.gsonfire" % "gson-fire" % "1.8.5" % "compile",
       "jakarta.annotation" % "jakarta.annotation-api" % "1.3.5" % "compile",
       "com.google.code.findbugs" % "jsr305" % "3.0.2" % "compile",

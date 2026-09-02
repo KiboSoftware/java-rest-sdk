@@ -9,8 +9,9 @@
 |------------ | ------------- | ------------- | -------------|
 |**backorderReleaseDate** | **OffsetDateTime** |  |  [optional] |
 |**blockAssignment** | **Boolean** |  |  [optional] |
-|**lineId** | **Integer** |  |  |
-|**quantity** | **Integer** |  |  |
+|**holdBlockAssignment** | **Boolean** |  |  [optional] |
+|**lineId** | **Integer** |  |  [optional] |
+|**quantity** | **Integer** |  |  [optional] |
 
 
 ## Implemented Interfaces

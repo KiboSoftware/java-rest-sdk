@@ -11,11 +11,11 @@ All URIs are relative to *http://https:/api*
 
 <a name="createReturnSettings"></a>
 # **createReturnSettings**
-> ReturnSettings createReturnSettings(returnSettings)
+> ReturnSettings createReturnSettings(responseFields, returnSettings)
 
 Create Return Settings
 
-Creates return settings which includes return processing fee, return shipping location   and return label creation on fulfillment
+Creates return settings which includes return processing fee, return shipping location  and return label creation on fulfillment
 
 ### Example
 ```java
@@ -36,14 +36,11 @@ public class Example {
     HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
     bearerAuth.setBearerToken("BEARER TOKEN");
 
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
-
     ReturnSettingsApi apiInstance = new ReturnSettingsApi(defaultClient);
+    String responseFields = "responseFields_example"; // String | limits which fields are returned in the response body
     ReturnSettings returnSettings = new ReturnSettings(); // ReturnSettings | 
     try {
-      ReturnSettings result = apiInstance.createReturnSettings(returnSettings);
+      ReturnSettings result = apiInstance.createReturnSettings(responseFields, returnSettings);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling ReturnSettingsApi#createReturnSettings");
@@ -60,6 +57,7 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
+| **responseFields** | **String**| limits which fields are returned in the response body | [optional] |
 | **returnSettings** | [**ReturnSettings**](ReturnSettings.md)|  | [optional] |
 
 ### Return type
@@ -68,7 +66,7 @@ public class Example {
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth), [clientOauth2](../README.md#clientOauth2)
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
@@ -78,15 +76,15 @@ public class Example {
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Success |  -  |
+| **200** | OK |  -  |
 
 <a name="getReturnSettings"></a>
 # **getReturnSettings**
-> ReturnSettings getReturnSettings()
+> ReturnSettings getReturnSettings(responseFields)
 
 Get Return Settings
 
-Retrieves return settings which includes return processing fee, return shipping location   and return label creation on fulfillment
+Retrieves return settings which includes return processing fee, return shipping location  and return label creation on fulfillment
 
 ### Example
 ```java
@@ -107,13 +105,10 @@ public class Example {
     HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
     bearerAuth.setBearerToken("BEARER TOKEN");
 
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
-
     ReturnSettingsApi apiInstance = new ReturnSettingsApi(defaultClient);
+    String responseFields = "responseFields_example"; // String | limits which fields are returned in the response body
     try {
-      ReturnSettings result = apiInstance.getReturnSettings();
+      ReturnSettings result = apiInstance.getReturnSettings(responseFields);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling ReturnSettingsApi#getReturnSettings");
@@ -127,7 +122,10 @@ public class Example {
 ```
 
 ### Parameters
-This endpoint does not need any parameter.
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **responseFields** | **String**| limits which fields are returned in the response body | [optional] |
 
 ### Return type
 
@@ -135,7 +133,7 @@ This endpoint does not need any parameter.
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth), [clientOauth2](../README.md#clientOauth2)
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
@@ -145,15 +143,15 @@ This endpoint does not need any parameter.
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Success |  -  |
+| **200** | OK |  -  |
 
 <a name="updateReturnSettings"></a>
 # **updateReturnSettings**
-> ReturnSettings updateReturnSettings(returnSettings)
+> ReturnSettings updateReturnSettings(responseFields, returnSettings)
 
 Update Return Settings
 
-Modifies existing fulfillment settings which includes return processing fee, return shipping location   and return label creation on fulfillment
+Modifies existing fulfillment settings which includes return processing fee, return shipping location  and return label creation on fulfillment
 
 ### Example
 ```java
@@ -174,14 +172,11 @@ public class Example {
     HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
     bearerAuth.setBearerToken("BEARER TOKEN");
 
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
-
     ReturnSettingsApi apiInstance = new ReturnSettingsApi(defaultClient);
+    String responseFields = "responseFields_example"; // String | limits which fields are returned in the response body
     ReturnSettings returnSettings = new ReturnSettings(); // ReturnSettings | 
     try {
-      ReturnSettings result = apiInstance.updateReturnSettings(returnSettings);
+      ReturnSettings result = apiInstance.updateReturnSettings(responseFields, returnSettings);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling ReturnSettingsApi#updateReturnSettings");
@@ -198,6 +193,7 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
+| **responseFields** | **String**| limits which fields are returned in the response body | [optional] |
 | **returnSettings** | [**ReturnSettings**](ReturnSettings.md)|  | [optional] |
 
 ### Return type
@@ -206,7 +202,7 @@ public class Example {
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth), [clientOauth2](../README.md#clientOauth2)
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
@@ -216,5 +212,5 @@ public class Example {
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Success |  -  |
+| **200** | OK |  -  |
 

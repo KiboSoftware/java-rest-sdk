@@ -1,5 +1,6 @@
 .github/workflows/maven.yml
 .gitignore
+.openapi-generator-ignore
 .travis.yml
 README.md
 api/openapi.yaml
@@ -14,12 +15,14 @@ docs/EventDeliverySummaryCollection.md
 docs/EventEvent.md
 docs/EventExtendedProperty.md
 docs/EventSubscription.md
+docs/EventSubscriptionApi.md
 docs/EventSubscriptionCollection.md
 docs/EventSummary.md
 docs/HttpStatus.md
+docs/PingEvent.md
+docs/PingEventAllOf.md
 docs/SubscribingSite.md
 docs/SubscribingTenant.md
-docs/SubscriptionApi.md
 git_push.sh
 gradle.properties
 gradle/wrapper/gradle-wrapper.jar
@@ -31,7 +34,7 @@ settings.gradle
 src/main/AndroidManifest.xml
 src/main/java/com/kibocommerce/sdk/event/ServerConfiguration.java
 src/main/java/com/kibocommerce/sdk/event/api/EventApi.java
-src/main/java/com/kibocommerce/sdk/event/api/SubscriptionApi.java
+src/main/java/com/kibocommerce/sdk/event/api/EventSubscriptionApi.java
 src/main/java/com/kibocommerce/sdk/event/models/AbstractOpenApiSchema.java
 src/main/java/com/kibocommerce/sdk/event/models/AdminUserAuditInfo.java
 src/main/java/com/kibocommerce/sdk/event/models/EventCollection.java
@@ -44,5 +47,7 @@ src/main/java/com/kibocommerce/sdk/event/models/EventSubscription.java
 src/main/java/com/kibocommerce/sdk/event/models/EventSubscriptionCollection.java
 src/main/java/com/kibocommerce/sdk/event/models/EventSummary.java
 src/main/java/com/kibocommerce/sdk/event/models/HttpStatus.java
+src/main/java/com/kibocommerce/sdk/event/models/PingEvent.java
+src/main/java/com/kibocommerce/sdk/event/models/PingEventAllOf.java
 src/main/java/com/kibocommerce/sdk/event/models/SubscribingSite.java
 src/main/java/com/kibocommerce/sdk/event/models/SubscribingTenant.java

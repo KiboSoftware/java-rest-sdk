@@ -1,7 +1,7 @@
 # adminuser
 
 Kibo Admin User Service
-- API version: 1.0.0
+- API version: v1
 
 OpenAPI Spec for Kibo Admin User Service
 
@@ -39,7 +39,7 @@ Add this dependency to your project's POM:
 <dependency>
   <groupId>com.kibocommerce</groupId>
   <artifactId>adminuser</artifactId>
-  <version>1.0.0</version>
+  <version>3.0.0</version>
   <scope>compile</scope>
 </dependency>
 ```
@@ -55,7 +55,7 @@ Add this dependency to your project's build file:
   }
 
   dependencies {
-     implementation "com.kibocommerce:adminuser:1.0.0"
+     implementation "com.kibocommerce:adminuser:3.0.0"
   }
 ```
 
@@ -69,7 +69,7 @@ mvn clean package
 
 Then manually install the following JARs:
 
-* `target/adminuser-1.0.0.jar`
+* `target/adminuser-3.0.0.jar`
 * `target/lib/*.jar`
 
 ## Getting Started
@@ -95,15 +95,12 @@ public class Example {
     HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
     bearerAuth.setBearerToken("BEARER TOKEN");
 
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
-
     AdminAuthTicketApi apiInstance = new AdminAuthTicketApi(defaultClient);
     Integer tenantId = 56; // Integer | Optional tenant Id parameter
+    String responseFields = "responseFields_example"; // String | limits which fields are returned in the response body
     UserAuthInfo userAuthInfo = new UserAuthInfo(); // UserAuthInfo | User's email address and password.
     try {
-      TenantAdminUserAuthTicket result = apiInstance.createUserAuthTicket(tenantId, userAuthInfo);
+      TenantAdminUserAuthTicket result = apiInstance.createUserAuthTicket(tenantId, responseFields, userAuthInfo);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling AdminAuthTicketApi#createUserAuthTicket");
@@ -129,26 +126,26 @@ Class | Method | HTTP request | Description
 *AdminAuthTicketApi* | [**getWsFedChallengeUrl**](docs/AdminAuthTicketApi.md#getWsFedChallengeUrl) | **GET** /platform/adminuser/authtickets/wsfed/challenge/{id} | Get Ws Fed Challenge Url
 *AdminAuthTicketApi* | [**getWsFedSignOutUrl**](docs/AdminAuthTicketApi.md#getWsFedSignOutUrl) | **GET** /platform/adminuser/authtickets/wsfed/SignOut/{id} | Get Ws Fed Sign Out Url
 *AdminAuthTicketApi* | [**refreshAuthTicket**](docs/AdminAuthTicketApi.md#refreshAuthTicket) | **PUT** /platform/adminuser/authtickets/tenants | Refresh Auth Ticket
-*AdminGroupApi* | [**addAdminGroup**](docs/AdminGroupApi.md#addAdminGroup) | **POST** /platform/adminuser/groups | Add a admin group
-*AdminGroupApi* | [**addUsers**](docs/AdminGroupApi.md#addUsers) | **POST** /platform/adminuser/groups/{groupCode}/addusers | Add users to admin group
-*AdminGroupApi* | [**deleteAdminGroup**](docs/AdminGroupApi.md#deleteAdminGroup) | **DELETE** /platform/adminuser/groups/{groupCode} | Deletes a Admin Group
+*AdminGroupApi* | [**addAdminGroup**](docs/AdminGroupApi.md#addAdminGroup) | **POST** /platform/adminuser/groups | Add Admin Group
+*AdminGroupApi* | [**addUsers**](docs/AdminGroupApi.md#addUsers) | **POST** /platform/adminuser/groups/{groupCode}/addusers | Add Users to Admin Group
+*AdminGroupApi* | [**deleteAdminGroup**](docs/AdminGroupApi.md#deleteAdminGroup) | **DELETE** /platform/adminuser/groups/{groupCode} | Delete Admin Group
 *AdminGroupApi* | [**getAdminGroup**](docs/AdminGroupApi.md#getAdminGroup) | **GET** /platform/adminuser/groups/{groupCode} | Get Admin Group
 *AdminGroupApi* | [**getAdminGroups**](docs/AdminGroupApi.md#getAdminGroups) | **GET** /platform/adminuser/groups | Get Admin Groups
-*AdminGroupApi* | [**removeUsers**](docs/AdminGroupApi.md#removeUsers) | **POST** /platform/adminuser/groups/{groupCode}/removeusers | Remove users from admin group
-*AdminGroupApi* | [**updateAdminGroup**](docs/AdminGroupApi.md#updateAdminGroup) | **PUT** /platform/adminuser/groups/{groupCode} | Update an existing adminGroup
+*AdminGroupApi* | [**removeUsers**](docs/AdminGroupApi.md#removeUsers) | **POST** /platform/adminuser/groups/{groupCode}/removeusers | Remove Users from Admin Group
+*AdminGroupApi* | [**updateAdminGroup**](docs/AdminGroupApi.md#updateAdminGroup) | **PUT** /platform/adminuser/groups/{groupCode} | Update Admin Group
 *AdminUserApi* | [**addUserRole**](docs/AdminUserApi.md#addUserRole) | **POST** /platform/adminuser/accounts/{userId}/roles/{roleId} | Add User Role
-*AdminUserApi* | [**changePassword**](docs/AdminUserApi.md#changePassword) | **POST** /platform/adminuser/accounts/{userId}/Change-Password | Changes a user&#39;s password
+*AdminUserApi* | [**changePassword**](docs/AdminUserApi.md#changePassword) | **POST** /platform/adminuser/accounts/{userId}/Change-Password | Change Password
 *AdminUserApi* | [**changeUserPassword**](docs/AdminUserApi.md#changeUserPassword) | **POST** /platform/adminuser/accounts/{userId}/Change-User-Password | Change User Password
-*AdminUserApi* | [**createUser**](docs/AdminUserApi.md#createUser) | **POST** /platform/adminuser/accounts | Creates a new user
+*AdminUserApi* | [**createUser**](docs/AdminUserApi.md#createUser) | **POST** /platform/adminuser/accounts | Create User
 *AdminUserApi* | [**deleteUser**](docs/AdminUserApi.md#deleteUser) | **DELETE** /platform/adminuser/accounts/{userId} | Delete User
-*AdminUserApi* | [**getTenantScopesForUser**](docs/AdminUserApi.md#getTenantScopesForUser) | **GET** /platform/adminuser/accounts/{userId}/tenants | Get tenant scope for users
+*AdminUserApi* | [**getTenantScopesForUser**](docs/AdminUserApi.md#getTenantScopesForUser) | **GET** /platform/adminuser/accounts/{userId}/tenants | Get Tenant Scope
 *AdminUserApi* | [**getUser**](docs/AdminUserApi.md#getUser) | **GET** /platform/adminuser/accounts/{userId} | Get User
 *AdminUserApi* | [**getUserById**](docs/AdminUserApi.md#getUserById) | **GET** /platform/adminuser/accounts/{userId}/userbyid | Get User By Id
 *AdminUserApi* | [**getUserRoles**](docs/AdminUserApi.md#getUserRoles) | **GET** /platform/adminuser/accounts/{userId}/roles | Get User Roles
 *AdminUserApi* | [**getUsers**](docs/AdminUserApi.md#getUsers) | **GET** /platform/adminuser/accounts | Get Users
 *AdminUserApi* | [**removeUserRole**](docs/AdminUserApi.md#removeUserRole) | **DELETE** /platform/adminuser/accounts/{userId}/roles/{roleId} | Remove User Role
 *AdminUserApi* | [**resetPassword**](docs/AdminUserApi.md#resetPassword) | **POST** /platform/adminuser/accounts/Reset-Password | Reset Password
-*AdminUserApi* | [**unlockUser**](docs/AdminUserApi.md#unlockUser) | **POST** /platform/adminuser/accounts/{userId}/unlock | Enables the user
+*AdminUserApi* | [**unlockUser**](docs/AdminUserApi.md#unlockUser) | **POST** /platform/adminuser/accounts/{userId}/unlock | Unlock User
 *AdminUserApi* | [**updateUser**](docs/AdminUserApi.md#updateUser) | **PUT** /platform/adminuser/accounts/{userId} | Update User
 *DeveloperAdminAuthTicketApi* | [**createDeveloperUserAuthTicket**](docs/DeveloperAdminAuthTicketApi.md#createDeveloperUserAuthTicket) | **POST** /platform/developer/authtickets | Create Developer User Auth Ticket
 *DeveloperAdminAuthTicketApi* | [**deleteUserAuthTicket**](docs/DeveloperAdminAuthTicketApi.md#deleteUserAuthTicket) | **DELETE** /platform/developer/authtickets | Delete User Auth Ticket
@@ -162,25 +159,39 @@ Class | Method | HTTP request | Description
  - [AdminGroupCollection](docs/AdminGroupCollection.md)
  - [AdminUserAuditInfo](docs/AdminUserAuditInfo.md)
  - [AdminUserMasterCatalog](docs/AdminUserMasterCatalog.md)
+ - [AdminUserMasterCatalogAllOf](docs/AdminUserMasterCatalogAllOf.md)
  - [AdminUserPasswordInfo](docs/AdminUserPasswordInfo.md)
  - [AdminUserResetPasswordInfo](docs/AdminUserResetPasswordInfo.md)
- - [AdminUserTenant](docs/AdminUserTenant.md)
  - [AdminUserUserRoleCollection](docs/AdminUserUserRoleCollection.md)
  - [BaseTenantEntity](docs/BaseTenantEntity.md)
+ - [BaseTenantEntityInternal](docs/BaseTenantEntityInternal.md)
+ - [BaseTenantEntityInternalAllOf](docs/BaseTenantEntityInternalAllOf.md)
  - [Behavior](docs/Behavior.md)
  - [Catalog](docs/Catalog.md)
+ - [CatalogAllOf](docs/CatalogAllOf.md)
+ - [CatalogExtended](docs/CatalogExtended.md)
  - [ChangeUserPasswordInfo](docs/ChangeUserPasswordInfo.md)
  - [CollectionOfRole](docs/CollectionOfRole.md)
  - [DeveloperAccount](docs/DeveloperAccount.md)
  - [DeveloperAdminUserAuthTicket](docs/DeveloperAdminUserAuthTicket.md)
+ - [Domain](docs/Domain.md)
+ - [MasterCatalogExtended](docs/MasterCatalogExtended.md)
+ - [MasterCatalogExtendedAllOf](docs/MasterCatalogExtendedAllOf.md)
  - [Owner](docs/Owner.md)
  - [Resource](docs/Resource.md)
  - [Role](docs/Role.md)
  - [RoleCollection](docs/RoleCollection.md)
  - [Site](docs/Site.md)
+ - [SiteAllOf](docs/SiteAllOf.md)
+ - [SiteExtended](docs/SiteExtended.md)
+ - [SiteExtendedAllOf](docs/SiteExtendedAllOf.md)
+ - [Tenant](docs/Tenant.md)
  - [TenantAdminUserAuthTicket](docs/TenantAdminUserAuthTicket.md)
+ - [TenantAllOf](docs/TenantAllOf.md)
  - [TenantAttribute](docs/TenantAttribute.md)
  - [TenantCollection](docs/TenantCollection.md)
+ - [TenantExtended](docs/TenantExtended.md)
+ - [TenantExtendedAllOf](docs/TenantExtendedAllOf.md)
  - [User](docs/User.md)
  - [UserAuthInfo](docs/UserAuthInfo.md)
  - [UserProfile](docs/UserProfile.md)
@@ -195,13 +206,6 @@ Authentication schemes defined for the API:
 ### bearerAuth
 
 - **Type**: HTTP basic authentication
-
-### clientOauth2
-
-- **Type**: OAuth
-- **Flow**: application
-- **Authorization URL**: 
-- **Scopes**: N/A
 
 
 ## Recommendation

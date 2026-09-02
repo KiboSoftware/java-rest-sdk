@@ -1,8 +1,8 @@
 /*
  * Kibo Catalog Admin Services
- * OpenAPI Spec for Kibo Catalog Admin Services
+ * <div id=\"overview_CATALOG_ADMIN\">             <h2>CATALOG ADMINISTRATION</h2>             <p>The Catalog Administration APIs are a collection of resources for configuring the catalogs and products offered to your shoppers, including                 discounts and coupon sets, faceting, price lists, and different types or variations of products. See the                 <a href=\"/concept-guides/catalog\">Catalog user guides</a>                 for information about the related features in the Unified Commerce Admin.</p>             <p>Use the <strong>Attributes</strong> resource to manage localization and attribute configurations for your catalogs. This current version of the Attributes API includes localizedContent to                 support <a href=\"/pages/catalog-structure#multi-locale-catalogs\">multi-locale catalogs</a>, which was not present in the legacy API model. If                 you were a client prior to May 2024 and have upgraded your implementation to support this feature,                 you can still access attribute data that has not yet been rewritten to the new model by providing                 an x-api-version header set to \"1\". </p>             <p>Use the <strong>Categories</strong> resource to organize products and control where they appear on the storefront. Create                 and maintain a hierarchy of categories and subcategories where the site will store properties. This current version of the Categories API includes localizedContent to                 support <a href=\"/pages/catalog-structure#multi-locale-catalogs\">multi-locale catalogs</a>, which was not present in the legacy API model. If                 you were a client prior to May 2024 and have upgraded your implementation to support this feature,                 you can still access category data that has not yet been rewritten to the new model by providing                 an x-api-version header set to \"1\". </p>             <p>Use the <strong>Coupon Sets</strong> resource to view and create coupon sets. You can use coupon sets to group multiple                 coupon codes together and associate them with one or more discounts.</p>             <p>Use the <strong>Currency</strong> resource to manage the currency localization rules and exchange rates for any of the                 currencies that are supported for placing orders in.</p>             <p>Use the <strong>Discounts</strong> and <strong>Discount Settings</strong> resources to define and manage discounts to apply to products, product categories, or                 orders. This current version of the Discounts API includes localizedContent to                 support <a href=\"/pages/catalog-structure#multi-locale-catalogs\">multi-locale catalogs</a>, which was not present in the legacy Products API model. If                 you were a client prior to May 2024 and have upgraded your implementation to support this feature,                 you can still access discount data that has not yet been rewritten to the new model by providing                 an x-api-version header set to \"1\". </p>             <p>Use the <strong>Facets</strong> resource to manage the facets shoppers use to filter product display results on a                 storefront. Facets can include categories, product attributes, or prices, and use either a range of                 values or discrete values.</p>             <p>Use the <strong>Master Catalog</strong> resource to view details of the master catalogs associated with a tenant and to                 manage the product publishing mode for each master catalog.</p>             <p>Use the <strong>Price Lists</strong> resources to view and create price lists. You can use price lists to override the                 catalog pricing of products for specific customer segments and/or sites.</p>             <p>Use the <strong>Products</strong>, <strong>Product Types/Extras/Options/Properties</strong>, and <strong>Product Sort Definitions</strong> resources to create new product definitions in the master catalog and determine which                 catalogs will feature products. This current version of the Products API includes localizedContent to                 support <a href=\"/pages/catalog-structure#multi-locale-catalogs\">multi-locale catalogs</a>, which was not present in the legacy Products API model. If                 you were a client prior to May 2024 and have upgraded your implementation to support this feature,                 you can still access product data that has not yet been rewritten to the new model by providing                 an x-api-version header set to \"1\".</p>             <p>Use the <strong>Publishing</strong> resource to publish pending product updates together as part of a set.</p>             <p>Use the <strong>Search</strong> resource to manage all settings and options for providing product search on your site, as                 well as search tuning rules.</p>         </div>
  *
- * The version of the OpenAPI document: 1.0.0
+ * The version of the OpenAPI document: v1
  * 
  *
  * NOTE: This class is auto generated by OpenAPI Generator (https://openapi-generator.tech).
@@ -62,21 +62,21 @@ public class ProductLocalizedContent implements Serializable {
   @SerializedName(SERIALIZED_NAME_LOCALE_CODE)
   private String localeCode;
 
-  public static final String SERIALIZED_NAME_PRODUCT_NAME = "productName";
-  @SerializedName(SERIALIZED_NAME_PRODUCT_NAME)
-  private String productName;
-
   public static final String SERIALIZED_NAME_PRODUCT_FULL_DESCRIPTION = "productFullDescription";
   @SerializedName(SERIALIZED_NAME_PRODUCT_FULL_DESCRIPTION)
   private String productFullDescription;
 
-  public static final String SERIALIZED_NAME_PRODUCT_SHORT_DESCRIPTION = "productShortDescription";
-  @SerializedName(SERIALIZED_NAME_PRODUCT_SHORT_DESCRIPTION)
-  private String productShortDescription;
-
   public static final String SERIALIZED_NAME_PRODUCT_IMAGES = "productImages";
   @SerializedName(SERIALIZED_NAME_PRODUCT_IMAGES)
   private List<ProductLocalizedImage> productImages = null;
+
+  public static final String SERIALIZED_NAME_PRODUCT_NAME = "productName";
+  @SerializedName(SERIALIZED_NAME_PRODUCT_NAME)
+  private String productName;
+
+  public static final String SERIALIZED_NAME_PRODUCT_SHORT_DESCRIPTION = "productShortDescription";
+  @SerializedName(SERIALIZED_NAME_PRODUCT_SHORT_DESCRIPTION)
+  private String productShortDescription;
 
   public ProductLocalizedContent() {
   }
@@ -104,29 +104,6 @@ public class ProductLocalizedContent implements Serializable {
   }
 
 
-  public ProductLocalizedContent productName(String productName) {
-    
-    this.productName = productName;
-    return this;
-  }
-
-   /**
-   * Name of the product.
-   * @return productName
-  **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(value = "Name of the product.")
-
-  public String getProductName() {
-    return productName;
-  }
-
-
-  public void setProductName(String productName) {
-    this.productName = productName;
-  }
-
-
   public ProductLocalizedContent productFullDescription(String productFullDescription) {
     
     this.productFullDescription = productFullDescription;
@@ -147,29 +124,6 @@ public class ProductLocalizedContent implements Serializable {
 
   public void setProductFullDescription(String productFullDescription) {
     this.productFullDescription = productFullDescription;
-  }
-
-
-  public ProductLocalizedContent productShortDescription(String productShortDescription) {
-    
-    this.productShortDescription = productShortDescription;
-    return this;
-  }
-
-   /**
-   * Brief description of the product typically used when the product is displayed in a list or search results.
-   * @return productShortDescription
-  **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(value = "Brief description of the product typically used when the product is displayed in a list or search results.")
-
-  public String getProductShortDescription() {
-    return productShortDescription;
-  }
-
-
-  public void setProductShortDescription(String productShortDescription) {
-    this.productShortDescription = productShortDescription;
   }
 
 
@@ -204,6 +158,52 @@ public class ProductLocalizedContent implements Serializable {
   }
 
 
+  public ProductLocalizedContent productName(String productName) {
+    
+    this.productName = productName;
+    return this;
+  }
+
+   /**
+   * Name of the product.
+   * @return productName
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "Name of the product.")
+
+  public String getProductName() {
+    return productName;
+  }
+
+
+  public void setProductName(String productName) {
+    this.productName = productName;
+  }
+
+
+  public ProductLocalizedContent productShortDescription(String productShortDescription) {
+    
+    this.productShortDescription = productShortDescription;
+    return this;
+  }
+
+   /**
+   * Brief description of the product typically used when the product is displayed in a list or search results.
+   * @return productShortDescription
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "Brief description of the product typically used when the product is displayed in a list or search results.")
+
+  public String getProductShortDescription() {
+    return productShortDescription;
+  }
+
+
+  public void setProductShortDescription(String productShortDescription) {
+    this.productShortDescription = productShortDescription;
+  }
+
+
 
   @Override
   public boolean equals(Object o) {
@@ -215,10 +215,10 @@ public class ProductLocalizedContent implements Serializable {
     }
     ProductLocalizedContent productLocalizedContent = (ProductLocalizedContent) o;
     return Objects.equals(this.localeCode, productLocalizedContent.localeCode) &&
-        Objects.equals(this.productName, productLocalizedContent.productName) &&
         Objects.equals(this.productFullDescription, productLocalizedContent.productFullDescription) &&
-        Objects.equals(this.productShortDescription, productLocalizedContent.productShortDescription) &&
-        Objects.equals(this.productImages, productLocalizedContent.productImages);
+        Objects.equals(this.productImages, productLocalizedContent.productImages) &&
+        Objects.equals(this.productName, productLocalizedContent.productName) &&
+        Objects.equals(this.productShortDescription, productLocalizedContent.productShortDescription);
   }
 
   private static <T> boolean equalsNullable(JsonNullable<T> a, JsonNullable<T> b) {
@@ -227,7 +227,7 @@ public class ProductLocalizedContent implements Serializable {
 
   @Override
   public int hashCode() {
-    return Objects.hash(localeCode, productName, productFullDescription, productShortDescription, productImages);
+    return Objects.hash(localeCode, productFullDescription, productImages, productName, productShortDescription);
   }
 
   private static <T> int hashCodeNullable(JsonNullable<T> a) {
@@ -242,10 +242,10 @@ public class ProductLocalizedContent implements Serializable {
     StringBuilder sb = new StringBuilder();
     sb.append("class ProductLocalizedContent {\n");
     sb.append("    localeCode: ").append(toIndentedString(localeCode)).append("\n");
-    sb.append("    productName: ").append(toIndentedString(productName)).append("\n");
     sb.append("    productFullDescription: ").append(toIndentedString(productFullDescription)).append("\n");
-    sb.append("    productShortDescription: ").append(toIndentedString(productShortDescription)).append("\n");
     sb.append("    productImages: ").append(toIndentedString(productImages)).append("\n");
+    sb.append("    productName: ").append(toIndentedString(productName)).append("\n");
+    sb.append("    productShortDescription: ").append(toIndentedString(productShortDescription)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -269,10 +269,10 @@ public class ProductLocalizedContent implements Serializable {
     // a set of all properties/fields (JSON key names)
     openapiFields = new HashSet<String>();
     openapiFields.add("localeCode");
-    openapiFields.add("productName");
     openapiFields.add("productFullDescription");
-    openapiFields.add("productShortDescription");
     openapiFields.add("productImages");
+    openapiFields.add("productName");
+    openapiFields.add("productShortDescription");
 
     // a set of required properties/fields (JSON key names)
     openapiRequiredFields = new HashSet<String>();
@@ -302,14 +302,8 @@ public class ProductLocalizedContent implements Serializable {
       if ((jsonObj.get("localeCode") != null && !jsonObj.get("localeCode").isJsonNull()) && !jsonObj.get("localeCode").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format("Expected the field `localeCode` to be a primitive type in the JSON string but got `%s`", jsonObj.get("localeCode").toString()));
       }
-      if ((jsonObj.get("productName") != null && !jsonObj.get("productName").isJsonNull()) && !jsonObj.get("productName").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `productName` to be a primitive type in the JSON string but got `%s`", jsonObj.get("productName").toString()));
-      }
       if ((jsonObj.get("productFullDescription") != null && !jsonObj.get("productFullDescription").isJsonNull()) && !jsonObj.get("productFullDescription").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format("Expected the field `productFullDescription` to be a primitive type in the JSON string but got `%s`", jsonObj.get("productFullDescription").toString()));
-      }
-      if ((jsonObj.get("productShortDescription") != null && !jsonObj.get("productShortDescription").isJsonNull()) && !jsonObj.get("productShortDescription").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `productShortDescription` to be a primitive type in the JSON string but got `%s`", jsonObj.get("productShortDescription").toString()));
       }
       if (jsonObj.get("productImages") != null && !jsonObj.get("productImages").isJsonNull()) {
         JsonArray jsonArrayproductImages = jsonObj.getAsJsonArray("productImages");
@@ -324,6 +318,12 @@ public class ProductLocalizedContent implements Serializable {
             ProductLocalizedImage.validateJsonObject(jsonArrayproductImages.get(i).getAsJsonObject());
           };
         }
+      }
+      if ((jsonObj.get("productName") != null && !jsonObj.get("productName").isJsonNull()) && !jsonObj.get("productName").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `productName` to be a primitive type in the JSON string but got `%s`", jsonObj.get("productName").toString()));
+      }
+      if ((jsonObj.get("productShortDescription") != null && !jsonObj.get("productShortDescription").isJsonNull()) && !jsonObj.get("productShortDescription").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `productShortDescription` to be a primitive type in the JSON string but got `%s`", jsonObj.get("productShortDescription").toString()));
       }
   }
 

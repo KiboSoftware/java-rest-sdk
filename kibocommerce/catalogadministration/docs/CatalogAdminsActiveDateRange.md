@@ -8,8 +8,8 @@ Active Effectivity Dates
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
-|**startDate** | **OffsetDateTime** |  |  [optional] |
 |**endDate** | **OffsetDateTime** |  |  [optional] |
+|**startDate** | **OffsetDateTime** |  |  [optional] |
 
 
 ## Implemented Interfaces

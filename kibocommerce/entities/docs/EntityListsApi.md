@@ -13,7 +13,7 @@ All URIs are relative to *http://https:/api*
 
 <a name="createEntityList"></a>
 # **createEntityList**
-> EntityList createEntityList(entityList)
+> EntityList createEntityList(responseFields, entityList)
 
 Add EntityList
 
@@ -38,14 +38,11 @@ public class Example {
     HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
     bearerAuth.setBearerToken("BEARER TOKEN");
 
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
-
     EntityListsApi apiInstance = new EntityListsApi(defaultClient);
+    String responseFields = "responseFields_example"; // String | limits which fields are returned in the response body
     EntityList entityList = new EntityList(); // EntityList | The EntityList definition
     try {
-      EntityList result = apiInstance.createEntityList(entityList);
+      EntityList result = apiInstance.createEntityList(responseFields, entityList);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling EntityListsApi#createEntityList");
@@ -62,6 +59,7 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
+| **responseFields** | **String**| limits which fields are returned in the response body | [optional] |
 | **entityList** | [**EntityList**](EntityList.md)| The EntityList definition | [optional] |
 
 ### Return type
@@ -70,7 +68,7 @@ public class Example {
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth), [clientOauth2](../README.md#clientOauth2)
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
@@ -80,7 +78,7 @@ public class Example {
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Success |  -  |
+| **200** | OK |  -  |
 
 <a name="deleteEntityList"></a>
 # **deleteEntityList**
@@ -109,10 +107,6 @@ public class Example {
     HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
     bearerAuth.setBearerToken("BEARER TOKEN");
 
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
-
     EntityListsApi apiInstance = new EntityListsApi(defaultClient);
     String entityListFullName = "entityListFullName_example"; // String | The full name of the EntityList including namespace in name@nameSpace format
     try {
@@ -140,7 +134,7 @@ null (empty response body)
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth), [clientOauth2](../README.md#clientOauth2)
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
@@ -150,11 +144,11 @@ null (empty response body)
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Success |  -  |
+| **200** | OK |  -  |
 
 <a name="getEntityList"></a>
 # **getEntityList**
-> EntityList getEntityList(entityListFullName)
+> EntityList getEntityList(entityListFullName, responseFields)
 
 Get EntityList
 
@@ -179,14 +173,11 @@ public class Example {
     HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
     bearerAuth.setBearerToken("BEARER TOKEN");
 
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
-
     EntityListsApi apiInstance = new EntityListsApi(defaultClient);
     String entityListFullName = "entityListFullName_example"; // String | The full name of the EntityList including namespace in name@nameSpace format
+    String responseFields = "responseFields_example"; // String | limits which fields are returned in the response body
     try {
-      EntityList result = apiInstance.getEntityList(entityListFullName);
+      EntityList result = apiInstance.getEntityList(entityListFullName, responseFields);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling EntityListsApi#getEntityList");
@@ -204,6 +195,7 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **entityListFullName** | **String**| The full name of the EntityList including namespace in name@nameSpace format | |
+| **responseFields** | **String**| limits which fields are returned in the response body | [optional] |
 
 ### Return type
 
@@ -211,7 +203,7 @@ public class Example {
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth), [clientOauth2](../README.md#clientOauth2)
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
@@ -221,11 +213,11 @@ public class Example {
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Success |  -  |
+| **200** | OK |  -  |
 
 <a name="getEntityLists"></a>
 # **getEntityLists**
-> EntityListCollection getEntityLists(pageSize, startIndex, filter, sortBy)
+> EntityListCollection getEntityLists(pageSize, startIndex, filter, sortBy, responseFields)
 
 Get EntityLists
 
@@ -250,17 +242,14 @@ public class Example {
     HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
     bearerAuth.setBearerToken("BEARER TOKEN");
 
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
-
     EntityListsApi apiInstance = new EntityListsApi(defaultClient);
     Integer pageSize = 10; // Integer | 
     Integer startIndex = 0; // Integer | 
     String filter = "filter_example"; // String | 
     String sortBy = "sortBy_example"; // String | 
+    String responseFields = "responseFields_example"; // String | limits which fields are returned in the response body
     try {
-      EntityListCollection result = apiInstance.getEntityLists(pageSize, startIndex, filter, sortBy);
+      EntityListCollection result = apiInstance.getEntityLists(pageSize, startIndex, filter, sortBy, responseFields);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling EntityListsApi#getEntityLists");
@@ -281,6 +270,7 @@ public class Example {
 | **startIndex** | **Integer**|  | [optional] [default to 0] |
 | **filter** | **String**|  | [optional] |
 | **sortBy** | **String**|  | [optional] |
+| **responseFields** | **String**| limits which fields are returned in the response body | [optional] |
 
 ### Return type
 
@@ -288,7 +278,7 @@ public class Example {
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth), [clientOauth2](../README.md#clientOauth2)
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
@@ -298,11 +288,11 @@ public class Example {
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Success |  -  |
+| **200** | OK |  -  |
 
 <a name="updateEntityList"></a>
 # **updateEntityList**
-> EntityList updateEntityList(entityListFullName, entityList)
+> EntityList updateEntityList(entityListFullName, responseFields, entityList)
 
 Update Entitylist
 
@@ -327,15 +317,12 @@ public class Example {
     HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
     bearerAuth.setBearerToken("BEARER TOKEN");
 
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
-
     EntityListsApi apiInstance = new EntityListsApi(defaultClient);
     String entityListFullName = "entityListFullName_example"; // String | The full name of the EntityList including namespace in name@nameSpace format
+    String responseFields = "responseFields_example"; // String | limits which fields are returned in the response body
     EntityList entityList = new EntityList(); // EntityList | The EntityList definition
     try {
-      EntityList result = apiInstance.updateEntityList(entityListFullName, entityList);
+      EntityList result = apiInstance.updateEntityList(entityListFullName, responseFields, entityList);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling EntityListsApi#updateEntityList");
@@ -353,6 +340,7 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **entityListFullName** | **String**| The full name of the EntityList including namespace in name@nameSpace format | |
+| **responseFields** | **String**| limits which fields are returned in the response body | [optional] |
 | **entityList** | [**EntityList**](EntityList.md)| The EntityList definition | [optional] |
 
 ### Return type
@@ -361,7 +349,7 @@ public class Example {
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth), [clientOauth2](../README.md#clientOauth2)
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
@@ -371,5 +359,5 @@ public class Example {
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Success |  -  |
+| **200** | OK |  -  |
 

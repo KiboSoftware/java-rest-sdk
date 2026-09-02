@@ -7,10 +7,10 @@
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
-|**productCode** | **String** |  |  [optional] |
 |**initialProductTypeId** | **Integer** |  |  [optional] |
-|**targetProductTypeId** | **Integer** |  |  [optional] |
+|**productCode** | **String** |  |  [optional] |
 |**status** | **String** |  |  [optional] |
+|**targetProductTypeId** | **Integer** |  |  [optional] |
 |**validationResults** | [**List&lt;ProductTypeChangeValidationResult&gt;**](ProductTypeChangeValidationResult.md) |  |  [optional] |
 
 

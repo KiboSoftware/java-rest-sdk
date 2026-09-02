@@ -7,11 +7,11 @@
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
+|**bccEmailAddressOverride** | **String** |  |  [optional] |
 |**id** | **String** |  |  [optional] |
+|**replyToEmailAddressOverride** | **String** |  |  [optional] |
 |**senderEmailAddressOverride** | **String** |  |  [optional] |
 |**senderEmailAliasOverride** | **String** |  |  [optional] |
-|**replyToEmailAddressOverride** | **String** |  |  [optional] |
-|**bccEmailAddressOverride** | **String** |  |  [optional] |
 
 
 ## Implemented Interfaces

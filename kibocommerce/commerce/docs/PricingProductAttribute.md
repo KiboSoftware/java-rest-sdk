@@ -7,11 +7,11 @@
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
-|**inputType** | **String** |  |  [optional] |
-|**valueType** | **String** |  |  [optional] |
 |**dataType** | **String** |  |  [optional] |
-|**name** | **String** |  |  [optional] |
 |**description** | **String** |  |  [optional] |
+|**inputType** | **String** |  |  [optional] |
+|**name** | **String** |  |  [optional] |
+|**valueType** | **String** |  |  [optional] |
 
 
 ## Implemented Interfaces

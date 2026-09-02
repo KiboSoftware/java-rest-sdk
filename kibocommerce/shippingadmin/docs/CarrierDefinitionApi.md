@@ -4,17 +4,17 @@ All URIs are relative to *http://https:/api*
 
 | Method | HTTP request | Description |
 |------------- | ------------- | -------------|
-| [**getCarrierDefinition**](CarrierDefinitionApi.md#getCarrierDefinition) | **GET** /commerce/shipping/admin/carriers/definitions/{carrierId} | Returns a Mozu |
-| [**getCarrierDefinitions**](CarrierDefinitionApi.md#getCarrierDefinitions) | **GET** /commerce/shipping/admin/carriers/definitions | Returns a list of Mozu |
+| [**getCarrierDefinition**](CarrierDefinitionApi.md#getCarrierDefinition) | **GET** /commerce/shipping/admin/carriers/definitions/{carrierId} | Get Carrier Definition |
+| [**getCarrierDefinitions**](CarrierDefinitionApi.md#getCarrierDefinitions) | **GET** /commerce/shipping/admin/carriers/definitions | Get Carrier Definitions |
 
 
 <a name="getCarrierDefinition"></a>
 # **getCarrierDefinition**
-> CarrierDefinition getCarrierDefinition(carrierId)
+> CarrierDefinition getCarrierDefinition(carrierId, responseFields)
 
-Returns a Mozu
+Get Carrier Definition
 
-hippingAdmin.Contracts.Carriers.CarrierDefinition for the specified carrier.
+Retrieves the carrier definition for the specified carrier
 
 ### Example
 ```java
@@ -35,14 +35,11 @@ public class Example {
     HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
     bearerAuth.setBearerToken("BEARER TOKEN");
 
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
-
     CarrierDefinitionApi apiInstance = new CarrierDefinitionApi(defaultClient);
     String carrierId = "carrierId_example"; // String | The carrier ID.
+    String responseFields = "responseFields_example"; // String | limits which fields are returned in the response body
     try {
-      CarrierDefinition result = apiInstance.getCarrierDefinition(carrierId);
+      CarrierDefinition result = apiInstance.getCarrierDefinition(carrierId, responseFields);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling CarrierDefinitionApi#getCarrierDefinition");
@@ -60,6 +57,7 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **carrierId** | **String**| The carrier ID. | |
+| **responseFields** | **String**| limits which fields are returned in the response body | [optional] |
 
 ### Return type
 
@@ -67,7 +65,7 @@ public class Example {
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth), [clientOauth2](../README.md#clientOauth2)
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
@@ -81,11 +79,11 @@ public class Example {
 
 <a name="getCarrierDefinitions"></a>
 # **getCarrierDefinitions**
-> List&lt;CarrierDefinition&gt; getCarrierDefinitions()
+> List&lt;CarrierDefinition&gt; getCarrierDefinitions(responseFields)
 
-Returns a list of Mozu
+Get Carrier Definitions
 
-hippingAdmin.Contracts.Carriers.CarrierDefinitions for the specified tenant.
+Retrieves all shipping carrier definitions for the specified tenant
 
 ### Example
 ```java
@@ -106,13 +104,10 @@ public class Example {
     HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
     bearerAuth.setBearerToken("BEARER TOKEN");
 
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
-
     CarrierDefinitionApi apiInstance = new CarrierDefinitionApi(defaultClient);
+    String responseFields = "responseFields_example"; // String | limits which fields are returned in the response body
     try {
-      List<CarrierDefinition> result = apiInstance.getCarrierDefinitions();
+      List<CarrierDefinition> result = apiInstance.getCarrierDefinitions(responseFields);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling CarrierDefinitionApi#getCarrierDefinitions");
@@ -126,7 +121,10 @@ public class Example {
 ```
 
 ### Parameters
-This endpoint does not need any parameter.
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **responseFields** | **String**| limits which fields are returned in the response body | [optional] |
 
 ### Return type
 
@@ -134,7 +132,7 @@ This endpoint does not need any parameter.
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth), [clientOauth2](../README.md#clientOauth2)
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 

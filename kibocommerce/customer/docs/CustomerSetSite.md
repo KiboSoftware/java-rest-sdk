@@ -7,9 +7,9 @@
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
-|**siteId** | **Integer** |  |  [optional] |
 |**customerSetCode** | **String** |  |  [optional] |
 |**name** | **String** |  |  [optional] |
+|**siteId** | **Integer** |  |  [optional] |
 
 
 ## Implemented Interfaces

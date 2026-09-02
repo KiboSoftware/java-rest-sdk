@@ -8,13 +8,13 @@ All URIs are relative to *http://https:/api*
 | [**deleteLocationType**](LocationTypeApi.md#deleteLocationType) | **DELETE** /commerce/admin/locationtypes/{locationTypeCode} | Delete Location Type |
 | [**getLocationType**](LocationTypeApi.md#getLocationType) | **GET** /commerce/admin/locationtypes/{locationTypeCode} | Get Location Type |
 | [**getLocationTypes**](LocationTypeApi.md#getLocationTypes) | **GET** /commerce/admin/locationtypes | Get Location Types |
-| [**getLocationTypesWithPagination**](LocationTypeApi.md#getLocationTypesWithPagination) | **GET** /commerce/admin/locationtypes/withpagination | Get Location Types  &lt;param name&#x3D;\&quot;pageSize\&quot;&gt;&lt;/param&gt;&lt;param name&#x3D;\&quot;sortBy\&quot;&gt;&lt;/param&gt; |
+| [**getLocationTypesWithPagination**](LocationTypeApi.md#getLocationTypesWithPagination) | **GET** /commerce/admin/locationtypes/withpagination | Get Location Types Paginated |
 | [**updateLocationType**](LocationTypeApi.md#updateLocationType) | **PUT** /commerce/admin/locationtypes/{locationTypeCode} | Update Location Type |
 
 
 <a name="addLocationTypeAsync"></a>
 # **addLocationTypeAsync**
-> LocationType addLocationTypeAsync(locationType)
+> LocationType addLocationTypeAsync(responseFields, locationType)
 
 Add Location Type Async
 
@@ -39,14 +39,11 @@ public class Example {
     HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
     bearerAuth.setBearerToken("BEARER TOKEN");
 
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
-
     LocationTypeApi apiInstance = new LocationTypeApi(defaultClient);
+    String responseFields = "responseFields_example"; // String | limits which fields are returned in the response body
     LocationType locationType = new LocationType(); // LocationType | 
     try {
-      LocationType result = apiInstance.addLocationTypeAsync(locationType);
+      LocationType result = apiInstance.addLocationTypeAsync(responseFields, locationType);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling LocationTypeApi#addLocationTypeAsync");
@@ -63,6 +60,7 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
+| **responseFields** | **String**| limits which fields are returned in the response body | [optional] |
 | **locationType** | [**LocationType**](LocationType.md)|  | [optional] |
 
 ### Return type
@@ -71,7 +69,7 @@ public class Example {
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth), [clientOauth2](../README.md#clientOauth2)
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
@@ -110,10 +108,6 @@ public class Example {
     HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
     bearerAuth.setBearerToken("BEARER TOKEN");
 
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
-
     LocationTypeApi apiInstance = new LocationTypeApi(defaultClient);
     String locationTypeCode = "locationTypeCode_example"; // String | 
     try {
@@ -141,7 +135,7 @@ null (empty response body)
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth), [clientOauth2](../README.md#clientOauth2)
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
@@ -155,7 +149,7 @@ null (empty response body)
 
 <a name="getLocationType"></a>
 # **getLocationType**
-> LocationType getLocationType(locationTypeCode)
+> LocationType getLocationType(locationTypeCode, responseFields)
 
 Get Location Type
 
@@ -180,14 +174,11 @@ public class Example {
     HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
     bearerAuth.setBearerToken("BEARER TOKEN");
 
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
-
     LocationTypeApi apiInstance = new LocationTypeApi(defaultClient);
     String locationTypeCode = "locationTypeCode_example"; // String | 
+    String responseFields = "responseFields_example"; // String | limits which fields are returned in the response body
     try {
-      LocationType result = apiInstance.getLocationType(locationTypeCode);
+      LocationType result = apiInstance.getLocationType(locationTypeCode, responseFields);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling LocationTypeApi#getLocationType");
@@ -205,6 +196,7 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **locationTypeCode** | **String**|  | |
+| **responseFields** | **String**| limits which fields are returned in the response body | [optional] |
 
 ### Return type
 
@@ -212,7 +204,7 @@ public class Example {
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth), [clientOauth2](../README.md#clientOauth2)
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
@@ -226,7 +218,7 @@ public class Example {
 
 <a name="getLocationTypes"></a>
 # **getLocationTypes**
-> List&lt;LocationType&gt; getLocationTypes()
+> List&lt;LocationType&gt; getLocationTypes(responseFields)
 
 Get Location Types
 
@@ -251,13 +243,10 @@ public class Example {
     HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
     bearerAuth.setBearerToken("BEARER TOKEN");
 
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
-
     LocationTypeApi apiInstance = new LocationTypeApi(defaultClient);
+    String responseFields = "responseFields_example"; // String | limits which fields are returned in the response body
     try {
-      List<LocationType> result = apiInstance.getLocationTypes();
+      List<LocationType> result = apiInstance.getLocationTypes(responseFields);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling LocationTypeApi#getLocationTypes");
@@ -271,7 +260,10 @@ public class Example {
 ```
 
 ### Parameters
-This endpoint does not need any parameter.
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **responseFields** | **String**| limits which fields are returned in the response body | [optional] |
 
 ### Return type
 
@@ -279,7 +271,7 @@ This endpoint does not need any parameter.
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth), [clientOauth2](../README.md#clientOauth2)
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
@@ -293,11 +285,11 @@ This endpoint does not need any parameter.
 
 <a name="getLocationTypesWithPagination"></a>
 # **getLocationTypesWithPagination**
-> LocationTypeCollection getLocationTypesWithPagination(startIndex, pageSize)
+> LocationTypeCollection getLocationTypesWithPagination(startIndex, pageSize, responseFields)
 
-Get Location Types  &lt;param name&#x3D;\&quot;pageSize\&quot;&gt;&lt;/param&gt;&lt;param name&#x3D;\&quot;sortBy\&quot;&gt;&lt;/param&gt;
+Get Location Types Paginated
 
-Get a collection of LocationTypes.
+Get a collection of LocationTypes. &lt;param name&#x3D;\&quot;pageSize\&quot;&gt;&lt;/param&gt;&lt;param name&#x3D;\&quot;sortBy\&quot;&gt;&lt;/param&gt;
 
 ### Example
 ```java
@@ -318,15 +310,12 @@ public class Example {
     HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
     bearerAuth.setBearerToken("BEARER TOKEN");
 
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
-
     LocationTypeApi apiInstance = new LocationTypeApi(defaultClient);
     Integer startIndex = 0; // Integer | 
     Integer pageSize = 100; // Integer | 
+    String responseFields = "responseFields_example"; // String | limits which fields are returned in the response body
     try {
-      LocationTypeCollection result = apiInstance.getLocationTypesWithPagination(startIndex, pageSize);
+      LocationTypeCollection result = apiInstance.getLocationTypesWithPagination(startIndex, pageSize, responseFields);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling LocationTypeApi#getLocationTypesWithPagination");
@@ -345,6 +334,7 @@ public class Example {
 |------------- | ------------- | ------------- | -------------|
 | **startIndex** | **Integer**|  | [optional] [default to 0] |
 | **pageSize** | **Integer**|  | [optional] [default to 100] |
+| **responseFields** | **String**| limits which fields are returned in the response body | [optional] |
 
 ### Return type
 
@@ -352,7 +342,7 @@ public class Example {
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth), [clientOauth2](../README.md#clientOauth2)
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
@@ -366,7 +356,7 @@ public class Example {
 
 <a name="updateLocationType"></a>
 # **updateLocationType**
-> LocationType updateLocationType(locationTypeCode, locationType)
+> LocationType updateLocationType(locationTypeCode, responseFields, locationType)
 
 Update Location Type
 
@@ -391,15 +381,12 @@ public class Example {
     HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
     bearerAuth.setBearerToken("BEARER TOKEN");
 
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
-
     LocationTypeApi apiInstance = new LocationTypeApi(defaultClient);
     String locationTypeCode = "locationTypeCode_example"; // String | 
+    String responseFields = "responseFields_example"; // String | limits which fields are returned in the response body
     LocationType locationType = new LocationType(); // LocationType | 
     try {
-      LocationType result = apiInstance.updateLocationType(locationTypeCode, locationType);
+      LocationType result = apiInstance.updateLocationType(locationTypeCode, responseFields, locationType);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling LocationTypeApi#updateLocationType");
@@ -417,6 +404,7 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **locationTypeCode** | **String**|  | |
+| **responseFields** | **String**| limits which fields are returned in the response body | [optional] |
 | **locationType** | [**LocationType**](LocationType.md)|  | [optional] |
 
 ### Return type
@@ -425,7 +413,7 @@ public class Example {
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth), [clientOauth2](../README.md#clientOauth2)
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 

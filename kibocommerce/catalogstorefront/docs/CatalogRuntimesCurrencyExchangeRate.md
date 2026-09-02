@@ -8,13 +8,13 @@ The currency exchange rates from one currency to another.
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
-|**fromCurrencyCode** | **String** | The source currency code |  [optional] |
-|**toCurrencyCode** | **String** | The target currency code |  [optional] |
-|**rate** | **Double** | The exchange rate |  [optional] |
-|**multiplier** | **Double** | An additional multiplier to use in calculations |  [optional] |
 |**decimalPlaces** | **Integer** | Number of decimal places |  [optional] |
-|**roundingStrategy** | **Integer** | Rounding strategy |  [optional] |
+|**fromCurrencyCode** | **String** | The source currency code |  [optional] |
+|**multiplier** | **Double** | An additional multiplier to use in calculations |  [optional] |
+|**rate** | **Double** | The exchange rate |  [optional] |
 |**referenceData** | **String** | Reference data for miscellaneous metadata from updates |  [optional] |
+|**roundingStrategy** | **Integer** | Rounding strategy |  [optional] |
+|**toCurrencyCode** | **String** | The target currency code |  [optional] |
 
 
 ## Implemented Interfaces

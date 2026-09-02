@@ -1,8 +1,8 @@
 /*
  * Kibo Catalog Admin Services
- * OpenAPI Spec for Kibo Catalog Admin Services
+ * <div id=\"overview_CATALOG_ADMIN\">             <h2>CATALOG ADMINISTRATION</h2>             <p>The Catalog Administration APIs are a collection of resources for configuring the catalogs and products offered to your shoppers, including                 discounts and coupon sets, faceting, price lists, and different types or variations of products. See the                 <a href=\"/concept-guides/catalog\">Catalog user guides</a>                 for information about the related features in the Unified Commerce Admin.</p>             <p>Use the <strong>Attributes</strong> resource to manage localization and attribute configurations for your catalogs. This current version of the Attributes API includes localizedContent to                 support <a href=\"/pages/catalog-structure#multi-locale-catalogs\">multi-locale catalogs</a>, which was not present in the legacy API model. If                 you were a client prior to May 2024 and have upgraded your implementation to support this feature,                 you can still access attribute data that has not yet been rewritten to the new model by providing                 an x-api-version header set to \"1\". </p>             <p>Use the <strong>Categories</strong> resource to organize products and control where they appear on the storefront. Create                 and maintain a hierarchy of categories and subcategories where the site will store properties. This current version of the Categories API includes localizedContent to                 support <a href=\"/pages/catalog-structure#multi-locale-catalogs\">multi-locale catalogs</a>, which was not present in the legacy API model. If                 you were a client prior to May 2024 and have upgraded your implementation to support this feature,                 you can still access category data that has not yet been rewritten to the new model by providing                 an x-api-version header set to \"1\". </p>             <p>Use the <strong>Coupon Sets</strong> resource to view and create coupon sets. You can use coupon sets to group multiple                 coupon codes together and associate them with one or more discounts.</p>             <p>Use the <strong>Currency</strong> resource to manage the currency localization rules and exchange rates for any of the                 currencies that are supported for placing orders in.</p>             <p>Use the <strong>Discounts</strong> and <strong>Discount Settings</strong> resources to define and manage discounts to apply to products, product categories, or                 orders. This current version of the Discounts API includes localizedContent to                 support <a href=\"/pages/catalog-structure#multi-locale-catalogs\">multi-locale catalogs</a>, which was not present in the legacy Products API model. If                 you were a client prior to May 2024 and have upgraded your implementation to support this feature,                 you can still access discount data that has not yet been rewritten to the new model by providing                 an x-api-version header set to \"1\". </p>             <p>Use the <strong>Facets</strong> resource to manage the facets shoppers use to filter product display results on a                 storefront. Facets can include categories, product attributes, or prices, and use either a range of                 values or discrete values.</p>             <p>Use the <strong>Master Catalog</strong> resource to view details of the master catalogs associated with a tenant and to                 manage the product publishing mode for each master catalog.</p>             <p>Use the <strong>Price Lists</strong> resources to view and create price lists. You can use price lists to override the                 catalog pricing of products for specific customer segments and/or sites.</p>             <p>Use the <strong>Products</strong>, <strong>Product Types/Extras/Options/Properties</strong>, and <strong>Product Sort Definitions</strong> resources to create new product definitions in the master catalog and determine which                 catalogs will feature products. This current version of the Products API includes localizedContent to                 support <a href=\"/pages/catalog-structure#multi-locale-catalogs\">multi-locale catalogs</a>, which was not present in the legacy Products API model. If                 you were a client prior to May 2024 and have upgraded your implementation to support this feature,                 you can still access product data that has not yet been rewritten to the new model by providing                 an x-api-version header set to \"1\".</p>             <p>Use the <strong>Publishing</strong> resource to publish pending product updates together as part of a set.</p>             <p>Use the <strong>Search</strong> resource to manage all settings and options for providing product search on your site, as                 well as search tuning rules.</p>         </div>
  *
- * The version of the OpenAPI document: 1.0.0
+ * The version of the OpenAPI document: v1
  * 
  *
  * NOTE: This class is auto generated by OpenAPI Generator (https://openapi-generator.tech).
@@ -55,68 +55,45 @@ import com.kibocommerce.sdk.common.JSON;
 public class ExtensibleAttributeVocabularyValue implements Serializable {
   private static final long serialVersionUID = 1L;
 
-  public static final String SERIALIZED_NAME_VALUE = "value";
-  @SerializedName(SERIALIZED_NAME_VALUE)
-  private String value;
-
-  public static final String SERIALIZED_NAME_SEQUENCE = "sequence";
-  @SerializedName(SERIALIZED_NAME_SEQUENCE)
-  private Integer sequence;
+  public static final String SERIALIZED_NAME_CONTENT = "content";
+  @SerializedName(SERIALIZED_NAME_CONTENT)
+  private ExtensibleAttributeValueLocalizedContent content;
 
   public static final String SERIALIZED_NAME_IS_HIDDEN = "isHidden";
   @SerializedName(SERIALIZED_NAME_IS_HIDDEN)
   private Boolean isHidden;
 
-  public static final String SERIALIZED_NAME_CONTENT = "content";
-  @SerializedName(SERIALIZED_NAME_CONTENT)
-  private ExtensibleAttributeValueLocalizedContent content;
+  public static final String SERIALIZED_NAME_SEQUENCE = "sequence";
+  @SerializedName(SERIALIZED_NAME_SEQUENCE)
+  private Integer sequence;
+
+  public static final String SERIALIZED_NAME_VALUE = "value";
+  @SerializedName(SERIALIZED_NAME_VALUE)
+  private String value;
 
   public ExtensibleAttributeVocabularyValue() {
   }
 
-  public ExtensibleAttributeVocabularyValue value(String value) {
+  public ExtensibleAttributeVocabularyValue content(ExtensibleAttributeValueLocalizedContent content) {
     
-    this.value = value;
+    this.content = content;
     return this;
   }
 
    /**
-   * Get value
-   * @return value
-  **/
-  @javax.annotation.Nonnull
-  @ApiModelProperty(required = true, value = "")
-
-  public String getValue() {
-    return value;
-  }
-
-
-  public void setValue(String value) {
-    this.value = value;
-  }
-
-
-  public ExtensibleAttributeVocabularyValue sequence(Integer sequence) {
-    
-    this.sequence = sequence;
-    return this;
-  }
-
-   /**
-   * Get sequence
-   * @return sequence
+   * Get content
+   * @return content
   **/
   @javax.annotation.Nullable
   @ApiModelProperty(value = "")
 
-  public Integer getSequence() {
-    return sequence;
+  public ExtensibleAttributeValueLocalizedContent getContent() {
+    return content;
   }
 
 
-  public void setSequence(Integer sequence) {
-    this.sequence = sequence;
+  public void setContent(ExtensibleAttributeValueLocalizedContent content) {
+    this.content = content;
   }
 
 
@@ -143,26 +120,49 @@ public class ExtensibleAttributeVocabularyValue implements Serializable {
   }
 
 
-  public ExtensibleAttributeVocabularyValue content(ExtensibleAttributeValueLocalizedContent content) {
+  public ExtensibleAttributeVocabularyValue sequence(Integer sequence) {
     
-    this.content = content;
+    this.sequence = sequence;
     return this;
   }
 
    /**
-   * Get content
-   * @return content
+   * Get sequence
+   * @return sequence
   **/
   @javax.annotation.Nullable
   @ApiModelProperty(value = "")
 
-  public ExtensibleAttributeValueLocalizedContent getContent() {
-    return content;
+  public Integer getSequence() {
+    return sequence;
   }
 
 
-  public void setContent(ExtensibleAttributeValueLocalizedContent content) {
-    this.content = content;
+  public void setSequence(Integer sequence) {
+    this.sequence = sequence;
+  }
+
+
+  public ExtensibleAttributeVocabularyValue value(String value) {
+    
+    this.value = value;
+    return this;
+  }
+
+   /**
+   * Get value
+   * @return value
+  **/
+  @javax.annotation.Nonnull
+  @ApiModelProperty(required = true, value = "")
+
+  public String getValue() {
+    return value;
+  }
+
+
+  public void setValue(String value) {
+    this.value = value;
   }
 
 
@@ -176,10 +176,10 @@ public class ExtensibleAttributeVocabularyValue implements Serializable {
       return false;
     }
     ExtensibleAttributeVocabularyValue extensibleAttributeVocabularyValue = (ExtensibleAttributeVocabularyValue) o;
-    return Objects.equals(this.value, extensibleAttributeVocabularyValue.value) &&
-        Objects.equals(this.sequence, extensibleAttributeVocabularyValue.sequence) &&
+    return Objects.equals(this.content, extensibleAttributeVocabularyValue.content) &&
         Objects.equals(this.isHidden, extensibleAttributeVocabularyValue.isHidden) &&
-        Objects.equals(this.content, extensibleAttributeVocabularyValue.content);
+        Objects.equals(this.sequence, extensibleAttributeVocabularyValue.sequence) &&
+        Objects.equals(this.value, extensibleAttributeVocabularyValue.value);
   }
 
   private static <T> boolean equalsNullable(JsonNullable<T> a, JsonNullable<T> b) {
@@ -188,7 +188,7 @@ public class ExtensibleAttributeVocabularyValue implements Serializable {
 
   @Override
   public int hashCode() {
-    return Objects.hash(value, sequence, isHidden, content);
+    return Objects.hash(content, isHidden, sequence, value);
   }
 
   private static <T> int hashCodeNullable(JsonNullable<T> a) {
@@ -202,10 +202,10 @@ public class ExtensibleAttributeVocabularyValue implements Serializable {
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class ExtensibleAttributeVocabularyValue {\n");
-    sb.append("    value: ").append(toIndentedString(value)).append("\n");
-    sb.append("    sequence: ").append(toIndentedString(sequence)).append("\n");
-    sb.append("    isHidden: ").append(toIndentedString(isHidden)).append("\n");
     sb.append("    content: ").append(toIndentedString(content)).append("\n");
+    sb.append("    isHidden: ").append(toIndentedString(isHidden)).append("\n");
+    sb.append("    sequence: ").append(toIndentedString(sequence)).append("\n");
+    sb.append("    value: ").append(toIndentedString(value)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -228,10 +228,10 @@ public class ExtensibleAttributeVocabularyValue implements Serializable {
   static {
     // a set of all properties/fields (JSON key names)
     openapiFields = new HashSet<String>();
-    openapiFields.add("value");
-    openapiFields.add("sequence");
-    openapiFields.add("isHidden");
     openapiFields.add("content");
+    openapiFields.add("isHidden");
+    openapiFields.add("sequence");
+    openapiFields.add("value");
 
     // a set of required properties/fields (JSON key names)
     openapiRequiredFields = new HashSet<String>();
@@ -266,12 +266,12 @@ public class ExtensibleAttributeVocabularyValue implements Serializable {
           throw new IllegalArgumentException(String.format("The required field `%s` is not found in the JSON string: %s", requiredField, jsonObj.toString()));
         }
       }
-      if (!jsonObj.get("value").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `value` to be a primitive type in the JSON string but got `%s`", jsonObj.get("value").toString()));
-      }
       // validate the optional field `content`
       if (jsonObj.get("content") != null && !jsonObj.get("content").isJsonNull()) {
         ExtensibleAttributeValueLocalizedContent.validateJsonObject(jsonObj.getAsJsonObject("content"));
+      }
+      if (!jsonObj.get("value").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `value` to be a primitive type in the JSON string but got `%s`", jsonObj.get("value").toString()));
       }
   }
 

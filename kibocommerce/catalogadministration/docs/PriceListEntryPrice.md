@@ -7,15 +7,15 @@
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
-|**minQty** | **Integer** |  |  [optional] |
-|**listPriceMode** | **String** |  |  [optional] |
 |**listPrice** | **Double** |  |  [optional] |
-|**salePriceMode** | **String** |  |  [optional] |
+|**listPriceMode** | **String** |  |  [optional] |
+|**minQty** | **Integer** |  |  [optional] |
 |**salePrice** | **Double** |  |  [optional] |
-|**subscriptionPriceMode** | **String** |  |  [optional] |
+|**salePriceMode** | **String** |  |  [optional] |
 |**subscriptionPrice** | **Double** |  |  [optional] |
-|**subscriptionSalePriceMode** | **String** |  |  [optional] |
+|**subscriptionPriceMode** | **String** |  |  [optional] |
 |**subscriptionSalePrice** | **Double** |  |  [optional] |
+|**subscriptionSalePriceMode** | **String** |  |  [optional] |
 
 
 ## Implemented Interfaces

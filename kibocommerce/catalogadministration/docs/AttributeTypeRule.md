@@ -8,10 +8,10 @@ Attribute Value Localized Resource
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
-|**attributeInputType** | **String** | AttributeInputType identifier |  [optional] |
 |**attributeDataType** | **String** | AttributeDataType identifier |  [optional] |
-|**attributeValueType** | **String** | AttributeValueType identifier |  [optional] |
+|**attributeInputType** | **String** | AttributeInputType identifier |  [optional] |
 |**attributeUsageType** | **String** | AttributeUsageType identifier |  [optional] |
+|**attributeValueType** | **String** | AttributeValueType identifier |  [optional] |
 
 
 ## Implemented Interfaces

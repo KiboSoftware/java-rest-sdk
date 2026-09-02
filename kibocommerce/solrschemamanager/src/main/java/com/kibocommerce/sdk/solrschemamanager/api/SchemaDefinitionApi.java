@@ -1,8 +1,8 @@
 /*
  * Kibo ProductRuntime Service
- * OpenAPI Spec for Kibo ProductRuntime Service
+ * <div id=\"overview_CATALOG_ADMIN\">             <h2>CATALOG ADMINISTRATION</h2>             <p>The Catalog Administration APIs are a collection of resources for configuring the catalogs and products offered to your shoppers, including                 discounts and coupon sets, faceting, price lists, and different types or variations of products. See the                 <a href=\"/concept-guides/catalog\">Catalog user guides</a>                 for information about the related features in the Unified Commerce Admin.</p>             <p>Use the <strong>Attributes</strong> resource to manage localization and attribute configurations for your catalogs. This current version of the Attributes API includes localizedContent to                 support <a href=\"/pages/catalog-structure#multi-locale-catalogs\">multi-locale catalogs</a>, which was not present in the legacy API model. If                 you were a client prior to May 2024 and have upgraded your implementation to support this feature,                 you can still access attribute data that has not yet been rewritten to the new model by providing                 an x-api-version header set to \"1\". </p>             <p>Use the <strong>Categories</strong> resource to organize products and control where they appear on the storefront. Create                 and maintain a hierarchy of categories and subcategories where the site will store properties. This current version of the Categories API includes localizedContent to                 support <a href=\"/pages/catalog-structure#multi-locale-catalogs\">multi-locale catalogs</a>, which was not present in the legacy API model. If                 you were a client prior to May 2024 and have upgraded your implementation to support this feature,                 you can still access category data that has not yet been rewritten to the new model by providing                 an x-api-version header set to \"1\". </p>             <p>Use the <strong>Coupon Sets</strong> resource to view and create coupon sets. You can use coupon sets to group multiple                 coupon codes together and associate them with one or more discounts.</p>             <p>Use the <strong>Currency</strong> resource to manage the currency localization rules and exchange rates for any of the                 currencies that are supported for placing orders in.</p>             <p>Use the <strong>Discounts</strong> and <strong>Discount Settings</strong> resources to define and manage discounts to apply to products, product categories, or                 orders. This current version of the Discounts API includes localizedContent to                 support <a href=\"/pages/catalog-structure#multi-locale-catalogs\">multi-locale catalogs</a>, which was not present in the legacy Products API model. If                 you were a client prior to May 2024 and have upgraded your implementation to support this feature,                 you can still access discount data that has not yet been rewritten to the new model by providing                 an x-api-version header set to \"1\". </p>             <p>Use the <strong>Facets</strong> resource to manage the facets shoppers use to filter product display results on a                 storefront. Facets can include categories, product attributes, or prices, and use either a range of                 values or discrete values.</p>             <p>Use the <strong>Master Catalog</strong> resource to view details of the master catalogs associated with a tenant and to                 manage the product publishing mode for each master catalog.</p>             <p>Use the <strong>Price Lists</strong> resources to view and create price lists. You can use price lists to override the                 catalog pricing of products for specific customer segments and/or sites.</p>             <p>Use the <strong>Products</strong>, <strong>Product Types/Extras/Options/Properties</strong>, and <strong>Product Sort Definitions</strong> resources to create new product definitions in the master catalog and determine which                 catalogs will feature products. This current version of the Products API includes localizedContent to                 support <a href=\"/pages/catalog-structure#multi-locale-catalogs\">multi-locale catalogs</a>, which was not present in the legacy Products API model. If                 you were a client prior to May 2024 and have upgraded your implementation to support this feature,                 you can still access product data that has not yet been rewritten to the new model by providing                 an x-api-version header set to \"1\".</p>             <p>Use the <strong>Publishing</strong> resource to publish pending product updates together as part of a set.</p>             <p>Use the <strong>Search</strong> resource to manage all settings and options for providing product search on your site, as                 well as search tuning rules.</p>         </div>
  *
- * The version of the OpenAPI document: 1.0.0
+ * The version of the OpenAPI document: v1
  * 
  *
  * NOTE: This class is auto generated by OpenAPI Generator (https://openapi-generator.tech).
@@ -96,16 +96,17 @@ public class SchemaDefinitionApi {
      * Build call for getSchemaDefinition
      * @param language  (required)
      * @param published  (optional)
+     * @param responseFields limits which fields are returned in the response body (optional)
      * @param _callback Callback for upload/download progress
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call getSchemaDefinitionCall(String language, Boolean published, final ApiCallback _callback) throws ApiException {
+    public okhttp3.Call getSchemaDefinitionCall(String language, Boolean published, String responseFields, final ApiCallback _callback) throws ApiException {
         String basePath = null;
         // Operation Servers
         String[] localBasePaths = new String[] {  };
@@ -135,6 +136,10 @@ public class SchemaDefinitionApi {
             localVarQueryParams.addAll(localVarApiClient.parameterToPair("published", published));
         }
 
+        if (responseFields != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("responseFields", responseFields));
+        }
+
         final String[] localVarAccepts = {
             "application/json", "text/json", "text/plain"
         };
@@ -151,12 +156,12 @@ public class SchemaDefinitionApi {
             localVarHeaderParams.put("Content-Type", localVarContentType);
         }
 
-        String[] localVarAuthNames = new String[] { "bearerAuth", "clientOauth2" };
+        String[] localVarAuthNames = new String[] { "bearerAuth" };
         return localVarApiClient.buildCall(basePath, localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call getSchemaDefinitionValidateBeforeCall(String language, Boolean published, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call getSchemaDefinitionValidateBeforeCall(String language, Boolean published, String responseFields, final ApiCallback _callback) throws ApiException {
         
         // verify the required parameter 'language' is set
         if (language == null) {
@@ -164,7 +169,7 @@ public class SchemaDefinitionApi {
         }
         
 
-        okhttp3.Call localVarCall = getSchemaDefinitionCall(language, published, _callback);
+        okhttp3.Call localVarCall = getSchemaDefinitionCall(language, published, responseFields, _callback);
         return localVarCall;
 
     }
@@ -174,16 +179,17 @@ public class SchemaDefinitionApi {
      * Get Schema Definition
      * @param language  (required)
      * @param published  (optional)
+     * @param responseFields limits which fields are returned in the response body (optional)
      * @return SchemaDefinition
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
      </table>
      */
-    public SchemaDefinition getSchemaDefinition(String language, Boolean published) throws ApiException {
-        ApiResponse<SchemaDefinition> localVarResp = getSchemaDefinitionWithHttpInfo(language, published);
+    public SchemaDefinition getSchemaDefinition(String language, Boolean published, String responseFields) throws ApiException {
+        ApiResponse<SchemaDefinition> localVarResp = getSchemaDefinitionWithHttpInfo(language, published, responseFields);
         return localVarResp.getData();
     }
 
@@ -192,16 +198,17 @@ public class SchemaDefinitionApi {
      * Get Schema Definition
      * @param language  (required)
      * @param published  (optional)
+     * @param responseFields limits which fields are returned in the response body (optional)
      * @return ApiResponse&lt;SchemaDefinition&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<SchemaDefinition> getSchemaDefinitionWithHttpInfo(String language, Boolean published) throws ApiException {
-        okhttp3.Call localVarCall = getSchemaDefinitionValidateBeforeCall(language, published, null);
+    public ApiResponse<SchemaDefinition> getSchemaDefinitionWithHttpInfo(String language, Boolean published, String responseFields) throws ApiException {
+        okhttp3.Call localVarCall = getSchemaDefinitionValidateBeforeCall(language, published, responseFields, null);
         Type localVarReturnType = new TypeToken<SchemaDefinition>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
@@ -211,34 +218,36 @@ public class SchemaDefinitionApi {
      * Get Schema Definition
      * @param language  (required)
      * @param published  (optional)
+     * @param responseFields limits which fields are returned in the response body (optional)
      * @param _callback The callback to be executed when the API call finishes
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call getSchemaDefinitionAsync(String language, Boolean published, final ApiCallback<SchemaDefinition> _callback) throws ApiException {
+    public okhttp3.Call getSchemaDefinitionAsync(String language, Boolean published, String responseFields, final ApiCallback<SchemaDefinition> _callback) throws ApiException {
 
-        okhttp3.Call localVarCall = getSchemaDefinitionValidateBeforeCall(language, published, _callback);
+        okhttp3.Call localVarCall = getSchemaDefinitionValidateBeforeCall(language, published, responseFields, _callback);
         Type localVarReturnType = new TypeToken<SchemaDefinition>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
     }
     /**
      * Build call for listSchemaDefinitions
+     * @param responseFields limits which fields are returned in the response body (optional)
      * @param _callback Callback for upload/download progress
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call listSchemaDefinitionsCall(final ApiCallback _callback) throws ApiException {
+    public okhttp3.Call listSchemaDefinitionsCall(String responseFields, final ApiCallback _callback) throws ApiException {
         String basePath = null;
         // Operation Servers
         String[] localBasePaths = new String[] {  };
@@ -263,6 +272,10 @@ public class SchemaDefinitionApi {
         Map<String, String> localVarCookieParams = new HashMap<String, String>();
         Map<String, Object> localVarFormParams = new HashMap<String, Object>();
 
+        if (responseFields != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("responseFields", responseFields));
+        }
+
         final String[] localVarAccepts = {
             "application/json", "text/json", "text/plain"
         };
@@ -279,15 +292,15 @@ public class SchemaDefinitionApi {
             localVarHeaderParams.put("Content-Type", localVarContentType);
         }
 
-        String[] localVarAuthNames = new String[] { "bearerAuth", "clientOauth2" };
+        String[] localVarAuthNames = new String[] { "bearerAuth" };
         return localVarApiClient.buildCall(basePath, localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call listSchemaDefinitionsValidateBeforeCall(final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call listSchemaDefinitionsValidateBeforeCall(String responseFields, final ApiCallback _callback) throws ApiException {
         
 
-        okhttp3.Call localVarCall = listSchemaDefinitionsCall(_callback);
+        okhttp3.Call localVarCall = listSchemaDefinitionsCall(responseFields, _callback);
         return localVarCall;
 
     }
@@ -295,32 +308,34 @@ public class SchemaDefinitionApi {
     /**
      * List Schema Definitions
      * List Schema Definitions
+     * @param responseFields limits which fields are returned in the response body (optional)
      * @return List&lt;SchemaDefinition&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
      </table>
      */
-    public List<SchemaDefinition> listSchemaDefinitions() throws ApiException {
-        ApiResponse<List<SchemaDefinition>> localVarResp = listSchemaDefinitionsWithHttpInfo();
+    public List<SchemaDefinition> listSchemaDefinitions(String responseFields) throws ApiException {
+        ApiResponse<List<SchemaDefinition>> localVarResp = listSchemaDefinitionsWithHttpInfo(responseFields);
         return localVarResp.getData();
     }
 
     /**
      * List Schema Definitions
      * List Schema Definitions
+     * @param responseFields limits which fields are returned in the response body (optional)
      * @return ApiResponse&lt;List&lt;SchemaDefinition&gt;&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<List<SchemaDefinition>> listSchemaDefinitionsWithHttpInfo() throws ApiException {
-        okhttp3.Call localVarCall = listSchemaDefinitionsValidateBeforeCall(null);
+    public ApiResponse<List<SchemaDefinition>> listSchemaDefinitionsWithHttpInfo(String responseFields) throws ApiException {
+        okhttp3.Call localVarCall = listSchemaDefinitionsValidateBeforeCall(responseFields, null);
         Type localVarReturnType = new TypeToken<List<SchemaDefinition>>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
@@ -328,18 +343,19 @@ public class SchemaDefinitionApi {
     /**
      * List Schema Definitions (asynchronously)
      * List Schema Definitions
+     * @param responseFields limits which fields are returned in the response body (optional)
      * @param _callback The callback to be executed when the API call finishes
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call listSchemaDefinitionsAsync(final ApiCallback<List<SchemaDefinition>> _callback) throws ApiException {
+    public okhttp3.Call listSchemaDefinitionsAsync(String responseFields, final ApiCallback<List<SchemaDefinition>> _callback) throws ApiException {
 
-        okhttp3.Call localVarCall = listSchemaDefinitionsValidateBeforeCall(_callback);
+        okhttp3.Call localVarCall = listSchemaDefinitionsValidateBeforeCall(responseFields, _callback);
         Type localVarReturnType = new TypeToken<List<SchemaDefinition>>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
@@ -348,16 +364,17 @@ public class SchemaDefinitionApi {
      * Build call for publish
      * @param language  (required)
      * @param reindex  (optional, default to false)
+     * @param responseFields limits which fields are returned in the response body (optional)
      * @param _callback Callback for upload/download progress
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call publishCall(String language, Boolean reindex, final ApiCallback _callback) throws ApiException {
+    public okhttp3.Call publishCall(String language, Boolean reindex, String responseFields, final ApiCallback _callback) throws ApiException {
         String basePath = null;
         // Operation Servers
         String[] localBasePaths = new String[] {  };
@@ -387,6 +404,10 @@ public class SchemaDefinitionApi {
             localVarQueryParams.addAll(localVarApiClient.parameterToPair("reindex", reindex));
         }
 
+        if (responseFields != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("responseFields", responseFields));
+        }
+
         final String[] localVarAccepts = {
             "application/json", "text/json", "text/plain"
         };
@@ -403,12 +424,12 @@ public class SchemaDefinitionApi {
             localVarHeaderParams.put("Content-Type", localVarContentType);
         }
 
-        String[] localVarAuthNames = new String[] { "bearerAuth", "clientOauth2" };
+        String[] localVarAuthNames = new String[] { "bearerAuth" };
         return localVarApiClient.buildCall(basePath, localVarPath, "POST", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call publishValidateBeforeCall(String language, Boolean reindex, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call publishValidateBeforeCall(String language, Boolean reindex, String responseFields, final ApiCallback _callback) throws ApiException {
         
         // verify the required parameter 'language' is set
         if (language == null) {
@@ -416,7 +437,7 @@ public class SchemaDefinitionApi {
         }
         
 
-        okhttp3.Call localVarCall = publishCall(language, reindex, _callback);
+        okhttp3.Call localVarCall = publishCall(language, reindex, responseFields, _callback);
         return localVarCall;
 
     }
@@ -426,16 +447,17 @@ public class SchemaDefinitionApi {
      * Publish
      * @param language  (required)
      * @param reindex  (optional, default to false)
+     * @param responseFields limits which fields are returned in the response body (optional)
      * @return Boolean
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
      </table>
      */
-    public Boolean publish(String language, Boolean reindex) throws ApiException {
-        ApiResponse<Boolean> localVarResp = publishWithHttpInfo(language, reindex);
+    public Boolean publish(String language, Boolean reindex, String responseFields) throws ApiException {
+        ApiResponse<Boolean> localVarResp = publishWithHttpInfo(language, reindex, responseFields);
         return localVarResp.getData();
     }
 
@@ -444,16 +466,17 @@ public class SchemaDefinitionApi {
      * Publish
      * @param language  (required)
      * @param reindex  (optional, default to false)
+     * @param responseFields limits which fields are returned in the response body (optional)
      * @return ApiResponse&lt;Boolean&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<Boolean> publishWithHttpInfo(String language, Boolean reindex) throws ApiException {
-        okhttp3.Call localVarCall = publishValidateBeforeCall(language, reindex, null);
+    public ApiResponse<Boolean> publishWithHttpInfo(String language, Boolean reindex, String responseFields) throws ApiException {
+        okhttp3.Call localVarCall = publishValidateBeforeCall(language, reindex, responseFields, null);
         Type localVarReturnType = new TypeToken<Boolean>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
@@ -463,18 +486,19 @@ public class SchemaDefinitionApi {
      * Publish
      * @param language  (required)
      * @param reindex  (optional, default to false)
+     * @param responseFields limits which fields are returned in the response body (optional)
      * @param _callback The callback to be executed when the API call finishes
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call publishAsync(String language, Boolean reindex, final ApiCallback<Boolean> _callback) throws ApiException {
+    public okhttp3.Call publishAsync(String language, Boolean reindex, String responseFields, final ApiCallback<Boolean> _callback) throws ApiException {
 
-        okhttp3.Call localVarCall = publishValidateBeforeCall(language, reindex, _callback);
+        okhttp3.Call localVarCall = publishValidateBeforeCall(language, reindex, responseFields, _callback);
         Type localVarReturnType = new TypeToken<Boolean>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
@@ -482,16 +506,17 @@ public class SchemaDefinitionApi {
     /**
      * Build call for revert
      * @param language  (required)
+     * @param responseFields limits which fields are returned in the response body (optional)
      * @param _callback Callback for upload/download progress
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call revertCall(String language, final ApiCallback _callback) throws ApiException {
+    public okhttp3.Call revertCall(String language, String responseFields, final ApiCallback _callback) throws ApiException {
         String basePath = null;
         // Operation Servers
         String[] localBasePaths = new String[] {  };
@@ -517,6 +542,10 @@ public class SchemaDefinitionApi {
         Map<String, String> localVarCookieParams = new HashMap<String, String>();
         Map<String, Object> localVarFormParams = new HashMap<String, Object>();
 
+        if (responseFields != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("responseFields", responseFields));
+        }
+
         final String[] localVarAccepts = {
             "application/json", "text/json", "text/plain"
         };
@@ -533,12 +562,12 @@ public class SchemaDefinitionApi {
             localVarHeaderParams.put("Content-Type", localVarContentType);
         }
 
-        String[] localVarAuthNames = new String[] { "bearerAuth", "clientOauth2" };
+        String[] localVarAuthNames = new String[] { "bearerAuth" };
         return localVarApiClient.buildCall(basePath, localVarPath, "POST", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call revertValidateBeforeCall(String language, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call revertValidateBeforeCall(String language, String responseFields, final ApiCallback _callback) throws ApiException {
         
         // verify the required parameter 'language' is set
         if (language == null) {
@@ -546,7 +575,7 @@ public class SchemaDefinitionApi {
         }
         
 
-        okhttp3.Call localVarCall = revertCall(language, _callback);
+        okhttp3.Call localVarCall = revertCall(language, responseFields, _callback);
         return localVarCall;
 
     }
@@ -555,16 +584,17 @@ public class SchemaDefinitionApi {
      * Revert
      * Revert
      * @param language  (required)
+     * @param responseFields limits which fields are returned in the response body (optional)
      * @return Boolean
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
      </table>
      */
-    public Boolean revert(String language) throws ApiException {
-        ApiResponse<Boolean> localVarResp = revertWithHttpInfo(language);
+    public Boolean revert(String language, String responseFields) throws ApiException {
+        ApiResponse<Boolean> localVarResp = revertWithHttpInfo(language, responseFields);
         return localVarResp.getData();
     }
 
@@ -572,16 +602,17 @@ public class SchemaDefinitionApi {
      * Revert
      * Revert
      * @param language  (required)
+     * @param responseFields limits which fields are returned in the response body (optional)
      * @return ApiResponse&lt;Boolean&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<Boolean> revertWithHttpInfo(String language) throws ApiException {
-        okhttp3.Call localVarCall = revertValidateBeforeCall(language, null);
+    public ApiResponse<Boolean> revertWithHttpInfo(String language, String responseFields) throws ApiException {
+        okhttp3.Call localVarCall = revertValidateBeforeCall(language, responseFields, null);
         Type localVarReturnType = new TypeToken<Boolean>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
@@ -590,18 +621,19 @@ public class SchemaDefinitionApi {
      * Revert (asynchronously)
      * Revert
      * @param language  (required)
+     * @param responseFields limits which fields are returned in the response body (optional)
      * @param _callback The callback to be executed when the API call finishes
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call revertAsync(String language, final ApiCallback<Boolean> _callback) throws ApiException {
+    public okhttp3.Call revertAsync(String language, String responseFields, final ApiCallback<Boolean> _callback) throws ApiException {
 
-        okhttp3.Call localVarCall = revertValidateBeforeCall(language, _callback);
+        okhttp3.Call localVarCall = revertValidateBeforeCall(language, responseFields, _callback);
         Type localVarReturnType = new TypeToken<Boolean>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
@@ -609,6 +641,7 @@ public class SchemaDefinitionApi {
     /**
      * Build call for updateSchemaDefinition
      * @param language  (required)
+     * @param responseFields limits which fields are returned in the response body (optional)
      * @param schemaDefinition  (optional)
      * @param _callback Callback for upload/download progress
      * @return Call to execute
@@ -616,10 +649,10 @@ public class SchemaDefinitionApi {
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call updateSchemaDefinitionCall(String language, SchemaDefinition schemaDefinition, final ApiCallback _callback) throws ApiException {
+    public okhttp3.Call updateSchemaDefinitionCall(String language, String responseFields, SchemaDefinition schemaDefinition, final ApiCallback _callback) throws ApiException {
         String basePath = null;
         // Operation Servers
         String[] localBasePaths = new String[] {  };
@@ -645,6 +678,10 @@ public class SchemaDefinitionApi {
         Map<String, String> localVarCookieParams = new HashMap<String, String>();
         Map<String, Object> localVarFormParams = new HashMap<String, Object>();
 
+        if (responseFields != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("responseFields", responseFields));
+        }
+
         final String[] localVarAccepts = {
             "application/json", "text/json", "text/plain"
         };
@@ -654,19 +691,19 @@ public class SchemaDefinitionApi {
         }
 
         final String[] localVarContentTypes = {
-            "text/plain", "application/octet-stream", "application/zip", "application/json"
+            "application/json", "application/octet-stream", "application/zip", "text/plain"
         };
         final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
         if (localVarContentType != null) {
             localVarHeaderParams.put("Content-Type", localVarContentType);
         }
 
-        String[] localVarAuthNames = new String[] { "bearerAuth", "clientOauth2" };
+        String[] localVarAuthNames = new String[] { "bearerAuth" };
         return localVarApiClient.buildCall(basePath, localVarPath, "PUT", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call updateSchemaDefinitionValidateBeforeCall(String language, SchemaDefinition schemaDefinition, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call updateSchemaDefinitionValidateBeforeCall(String language, String responseFields, SchemaDefinition schemaDefinition, final ApiCallback _callback) throws ApiException {
         
         // verify the required parameter 'language' is set
         if (language == null) {
@@ -674,7 +711,7 @@ public class SchemaDefinitionApi {
         }
         
 
-        okhttp3.Call localVarCall = updateSchemaDefinitionCall(language, schemaDefinition, _callback);
+        okhttp3.Call localVarCall = updateSchemaDefinitionCall(language, responseFields, schemaDefinition, _callback);
         return localVarCall;
 
     }
@@ -683,17 +720,18 @@ public class SchemaDefinitionApi {
      * Update Schema Definition
      * Update Schema Definition
      * @param language  (required)
+     * @param responseFields limits which fields are returned in the response body (optional)
      * @param schemaDefinition  (optional)
      * @return SchemaDefinition
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
      </table>
      */
-    public SchemaDefinition updateSchemaDefinition(String language, SchemaDefinition schemaDefinition) throws ApiException {
-        ApiResponse<SchemaDefinition> localVarResp = updateSchemaDefinitionWithHttpInfo(language, schemaDefinition);
+    public SchemaDefinition updateSchemaDefinition(String language, String responseFields, SchemaDefinition schemaDefinition) throws ApiException {
+        ApiResponse<SchemaDefinition> localVarResp = updateSchemaDefinitionWithHttpInfo(language, responseFields, schemaDefinition);
         return localVarResp.getData();
     }
 
@@ -701,17 +739,18 @@ public class SchemaDefinitionApi {
      * Update Schema Definition
      * Update Schema Definition
      * @param language  (required)
+     * @param responseFields limits which fields are returned in the response body (optional)
      * @param schemaDefinition  (optional)
      * @return ApiResponse&lt;SchemaDefinition&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<SchemaDefinition> updateSchemaDefinitionWithHttpInfo(String language, SchemaDefinition schemaDefinition) throws ApiException {
-        okhttp3.Call localVarCall = updateSchemaDefinitionValidateBeforeCall(language, schemaDefinition, null);
+    public ApiResponse<SchemaDefinition> updateSchemaDefinitionWithHttpInfo(String language, String responseFields, SchemaDefinition schemaDefinition) throws ApiException {
+        okhttp3.Call localVarCall = updateSchemaDefinitionValidateBeforeCall(language, responseFields, schemaDefinition, null);
         Type localVarReturnType = new TypeToken<SchemaDefinition>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
@@ -720,6 +759,7 @@ public class SchemaDefinitionApi {
      * Update Schema Definition (asynchronously)
      * Update Schema Definition
      * @param language  (required)
+     * @param responseFields limits which fields are returned in the response body (optional)
      * @param schemaDefinition  (optional)
      * @param _callback The callback to be executed when the API call finishes
      * @return The request call
@@ -727,12 +767,12 @@ public class SchemaDefinitionApi {
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call updateSchemaDefinitionAsync(String language, SchemaDefinition schemaDefinition, final ApiCallback<SchemaDefinition> _callback) throws ApiException {
+    public okhttp3.Call updateSchemaDefinitionAsync(String language, String responseFields, SchemaDefinition schemaDefinition, final ApiCallback<SchemaDefinition> _callback) throws ApiException {
 
-        okhttp3.Call localVarCall = updateSchemaDefinitionValidateBeforeCall(language, schemaDefinition, _callback);
+        okhttp3.Call localVarCall = updateSchemaDefinitionValidateBeforeCall(language, responseFields, schemaDefinition, _callback);
         Type localVarReturnType = new TypeToken<SchemaDefinition>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;

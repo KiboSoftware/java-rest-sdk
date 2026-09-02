@@ -7,9 +7,9 @@
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
-|**source** | **String** |  |  [optional] |
-|**message** | **String** |  |  [optional] |
 |**code** | **String** |  |  [optional] |
+|**message** | **String** |  |  [optional] |
+|**source** | **String** |  |  [optional] |
 
 
 ## Implemented Interfaces

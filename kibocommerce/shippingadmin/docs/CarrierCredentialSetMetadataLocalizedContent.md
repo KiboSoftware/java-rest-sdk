@@ -8,9 +8,9 @@ The localized content for a Mozu.ShippingAdmin.Contracts.Carriers.CarrierCredent
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
-|**localeCode** | **String** |  |  [optional] |
-|**label** | **String** |  |  [optional] |
 |**description** | **String** |  |  [optional] |
+|**label** | **String** |  |  [optional] |
+|**localeCode** | **String** |  |  [optional] |
 
 
 ## Implemented Interfaces

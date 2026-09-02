@@ -7,14 +7,14 @@
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
-|**id** | **Integer** |  |  [optional] |
+|**address** | [**CommerceRuntimeAddress**](CommerceRuntimeAddress.md) |  |  [optional] |
+|**companyOrOrganization** | **String** |  |  [optional] |
 |**email** | **String** |  |  [optional] |
 |**firstName** | **String** |  |  [optional] |
-|**middleNameOrInitial** | **String** |  |  [optional] |
+|**id** | **Integer** |  |  [optional] |
 |**lastNameOrSurname** | **String** |  |  [optional] |
-|**companyOrOrganization** | **String** |  |  [optional] |
+|**middleNameOrInitial** | **String** |  |  [optional] |
 |**phoneNumbers** | [**CommerceRuntimePhone**](CommerceRuntimePhone.md) |  |  [optional] |
-|**address** | [**CommerceRuntimeAddress**](CommerceRuntimeAddress.md) |  |  [optional] |
 
 
 ## Implemented Interfaces

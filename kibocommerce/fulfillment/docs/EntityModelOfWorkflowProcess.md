@@ -12,6 +12,7 @@
 |**containerAlias** | **String** |  |  [optional] |
 |**containerId** | **String** |  |  [optional] |
 |**id** | **String** |  |  [optional] |
+|**name** | **String** |  |  [optional] |
 |**tasks** | [**List&lt;TaskDefinition&gt;**](TaskDefinition.md) |  |  [optional] |
 |**variables** | [**List&lt;WorkflowProcessVariable&gt;**](WorkflowProcessVariable.md) |  |  [optional] |
 |**version** | **String** |  |  [optional] |

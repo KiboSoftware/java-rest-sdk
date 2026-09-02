@@ -9,16 +9,16 @@
 |------------ | ------------- | ------------- | -------------|
 |**created** | **OffsetDateTime** |  |  [optional] |
 |**creatorUsername** | **String** |  |  [optional] |
-|**durationType** | [**DurationTypeEnum**](#DurationTypeEnum) |  |  [optional] |
-|**environmentID** | **Integer** |  |  [optional] |
-|**fulfillmentLimit** | **BigDecimal** |  |  [optional] |
+|**durationType** | [**DurationTypeEnum**](#DurationTypeEnum) |  |  |
+|**environmentID** | **Integer** |  |  |
+|**fulfillmentLimit** | **BigDecimal** |  |  |
 |**fulfillmentLimitID** | **Integer** |  |  [optional] |
-|**fulfillmentType** | [**FulfillmentTypeEnum**](#FulfillmentTypeEnum) |  |  [optional] |
+|**fulfillmentType** | [**FulfillmentTypeEnum**](#FulfillmentTypeEnum) |  |  |
 |**name** | **String** |  |  [optional] |
 |**pathString** | **String** |  |  [optional] |
 |**persisted** | **Boolean** |  |  [optional] |
-|**siteID** | **Integer** |  |  [optional] |
-|**tenantID** | **Integer** |  |  [optional] |
+|**siteID** | **Integer** |  |  |
+|**tenantID** | **Integer** |  |  |
 |**updated** | **OffsetDateTime** |  |  [optional] |
 |**updaterUsername** | **String** |  |  [optional] |
 |**userContext** | [**UserContextInformation**](UserContextInformation.md) |  |  [optional] |

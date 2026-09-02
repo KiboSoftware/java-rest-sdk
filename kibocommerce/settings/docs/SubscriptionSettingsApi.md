@@ -4,16 +4,16 @@ All URIs are relative to *http://https:/api*
 
 | Method | HTTP request | Description |
 |------------- | ------------- | -------------|
-| [**createSubscriptionSettings**](SubscriptionSettingsApi.md#createSubscriptionSettings) | **POST** /commerce/settings/subscription/subscriptionsettings | Create subscription settings |
-| [**getSubscriptionSettings**](SubscriptionSettingsApi.md#getSubscriptionSettings) | **GET** /commerce/settings/subscription/subscriptionsettings | Retrieves existing subscription settings |
+| [**createSubscriptionSettings**](SubscriptionSettingsApi.md#createSubscriptionSettings) | **POST** /commerce/settings/subscription/subscriptionsettings | Create Subscription Settings |
+| [**getSubscriptionSettings**](SubscriptionSettingsApi.md#getSubscriptionSettings) | **GET** /commerce/settings/subscription/subscriptionsettings | Get Subscription Settings |
 | [**updateSubscriptionSettings**](SubscriptionSettingsApi.md#updateSubscriptionSettings) | **PUT** /commerce/settings/subscription/subscriptionsettings | Update Subscription Settings |
 
 
 <a name="createSubscriptionSettings"></a>
 # **createSubscriptionSettings**
-> SubscriptionSettings createSubscriptionSettings(subscriptionSettings)
+> SubscriptionSettings createSubscriptionSettings(responseFields, subscriptionSettings)
 
-Create subscription settings
+Create Subscription Settings
 
 Creates new subscription settings for a site
 
@@ -36,14 +36,11 @@ public class Example {
     HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
     bearerAuth.setBearerToken("BEARER TOKEN");
 
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
-
     SubscriptionSettingsApi apiInstance = new SubscriptionSettingsApi(defaultClient);
+    String responseFields = "responseFields_example"; // String | limits which fields are returned in the response body
     SubscriptionSettings subscriptionSettings = new SubscriptionSettings(); // SubscriptionSettings | 
     try {
-      SubscriptionSettings result = apiInstance.createSubscriptionSettings(subscriptionSettings);
+      SubscriptionSettings result = apiInstance.createSubscriptionSettings(responseFields, subscriptionSettings);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling SubscriptionSettingsApi#createSubscriptionSettings");
@@ -60,6 +57,7 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
+| **responseFields** | **String**| limits which fields are returned in the response body | [optional] |
 | **subscriptionSettings** | [**SubscriptionSettings**](SubscriptionSettings.md)|  | [optional] |
 
 ### Return type
@@ -68,7 +66,7 @@ public class Example {
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth), [clientOauth2](../README.md#clientOauth2)
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
@@ -78,13 +76,13 @@ public class Example {
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Success |  -  |
+| **200** | OK |  -  |
 
 <a name="getSubscriptionSettings"></a>
 # **getSubscriptionSettings**
-> SubscriptionSettings getSubscriptionSettings()
+> SubscriptionSettings getSubscriptionSettings(responseFields)
 
-Retrieves existing subscription settings
+Get Subscription Settings
 
 Retrieves existing subscription settings for a site
 
@@ -107,13 +105,10 @@ public class Example {
     HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
     bearerAuth.setBearerToken("BEARER TOKEN");
 
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
-
     SubscriptionSettingsApi apiInstance = new SubscriptionSettingsApi(defaultClient);
+    String responseFields = "responseFields_example"; // String | limits which fields are returned in the response body
     try {
-      SubscriptionSettings result = apiInstance.getSubscriptionSettings();
+      SubscriptionSettings result = apiInstance.getSubscriptionSettings(responseFields);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling SubscriptionSettingsApi#getSubscriptionSettings");
@@ -127,7 +122,10 @@ public class Example {
 ```
 
 ### Parameters
-This endpoint does not need any parameter.
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **responseFields** | **String**| limits which fields are returned in the response body | [optional] |
 
 ### Return type
 
@@ -135,7 +133,7 @@ This endpoint does not need any parameter.
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth), [clientOauth2](../README.md#clientOauth2)
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
@@ -145,11 +143,11 @@ This endpoint does not need any parameter.
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Success |  -  |
+| **200** | OK |  -  |
 
 <a name="updateSubscriptionSettings"></a>
 # **updateSubscriptionSettings**
-> SubscriptionSettings updateSubscriptionSettings(subscriptionSettings)
+> SubscriptionSettings updateSubscriptionSettings(responseFields, subscriptionSettings)
 
 Update Subscription Settings
 
@@ -174,14 +172,11 @@ public class Example {
     HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
     bearerAuth.setBearerToken("BEARER TOKEN");
 
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
-
     SubscriptionSettingsApi apiInstance = new SubscriptionSettingsApi(defaultClient);
+    String responseFields = "responseFields_example"; // String | limits which fields are returned in the response body
     SubscriptionSettings subscriptionSettings = new SubscriptionSettings(); // SubscriptionSettings | 
     try {
-      SubscriptionSettings result = apiInstance.updateSubscriptionSettings(subscriptionSettings);
+      SubscriptionSettings result = apiInstance.updateSubscriptionSettings(responseFields, subscriptionSettings);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling SubscriptionSettingsApi#updateSubscriptionSettings");
@@ -198,6 +193,7 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
+| **responseFields** | **String**| limits which fields are returned in the response body | [optional] |
 | **subscriptionSettings** | [**SubscriptionSettings**](SubscriptionSettings.md)|  | [optional] |
 
 ### Return type
@@ -206,7 +202,7 @@ public class Example {
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth), [clientOauth2](../README.md#clientOauth2)
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
@@ -216,5 +212,5 @@ public class Example {
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Success |  -  |
+| **200** | OK |  -  |
 

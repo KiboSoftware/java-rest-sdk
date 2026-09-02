@@ -8,8 +8,8 @@ Collection of items listed on the order.
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
+|**items** | [**List&lt;OrderItem&gt;**](OrderItem.md) |  |  [optional] |
 |**totalCount** | **Integer** |  |  [optional] |
-|**items** | [**List&lt;CommerceRuntimeOrderItem&gt;**](CommerceRuntimeOrderItem.md) |  |  [optional] |
 
 
 ## Implemented Interfaces

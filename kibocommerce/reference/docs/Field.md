@@ -7,11 +7,11 @@
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
-|**type** | **String** |  |  [optional] |
-|**label** | **String** |  |  [optional] |
 |**data** | [**List&lt;FieldData&gt;**](FieldData.md) |  |  [optional] |
 |**id** | **Integer** |  |  [optional] |
+|**label** | **String** |  |  [optional] |
 |**order** | **Integer** |  |  [optional] |
+|**type** | **String** |  |  [optional] |
 
 
 ## Implemented Interfaces

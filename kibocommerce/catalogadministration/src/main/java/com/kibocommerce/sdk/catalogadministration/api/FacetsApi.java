@@ -1,8 +1,8 @@
 /*
  * Kibo Catalog Admin Services
- * OpenAPI Spec for Kibo Catalog Admin Services
+ * <div id=\"overview_CATALOG_ADMIN\">             <h2>CATALOG ADMINISTRATION</h2>             <p>The Catalog Administration APIs are a collection of resources for configuring the catalogs and products offered to your shoppers, including                 discounts and coupon sets, faceting, price lists, and different types or variations of products. See the                 <a href=\"/concept-guides/catalog\">Catalog user guides</a>                 for information about the related features in the Unified Commerce Admin.</p>             <p>Use the <strong>Attributes</strong> resource to manage localization and attribute configurations for your catalogs. This current version of the Attributes API includes localizedContent to                 support <a href=\"/pages/catalog-structure#multi-locale-catalogs\">multi-locale catalogs</a>, which was not present in the legacy API model. If                 you were a client prior to May 2024 and have upgraded your implementation to support this feature,                 you can still access attribute data that has not yet been rewritten to the new model by providing                 an x-api-version header set to \"1\". </p>             <p>Use the <strong>Categories</strong> resource to organize products and control where they appear on the storefront. Create                 and maintain a hierarchy of categories and subcategories where the site will store properties. This current version of the Categories API includes localizedContent to                 support <a href=\"/pages/catalog-structure#multi-locale-catalogs\">multi-locale catalogs</a>, which was not present in the legacy API model. If                 you were a client prior to May 2024 and have upgraded your implementation to support this feature,                 you can still access category data that has not yet been rewritten to the new model by providing                 an x-api-version header set to \"1\". </p>             <p>Use the <strong>Coupon Sets</strong> resource to view and create coupon sets. You can use coupon sets to group multiple                 coupon codes together and associate them with one or more discounts.</p>             <p>Use the <strong>Currency</strong> resource to manage the currency localization rules and exchange rates for any of the                 currencies that are supported for placing orders in.</p>             <p>Use the <strong>Discounts</strong> and <strong>Discount Settings</strong> resources to define and manage discounts to apply to products, product categories, or                 orders. This current version of the Discounts API includes localizedContent to                 support <a href=\"/pages/catalog-structure#multi-locale-catalogs\">multi-locale catalogs</a>, which was not present in the legacy Products API model. If                 you were a client prior to May 2024 and have upgraded your implementation to support this feature,                 you can still access discount data that has not yet been rewritten to the new model by providing                 an x-api-version header set to \"1\". </p>             <p>Use the <strong>Facets</strong> resource to manage the facets shoppers use to filter product display results on a                 storefront. Facets can include categories, product attributes, or prices, and use either a range of                 values or discrete values.</p>             <p>Use the <strong>Master Catalog</strong> resource to view details of the master catalogs associated with a tenant and to                 manage the product publishing mode for each master catalog.</p>             <p>Use the <strong>Price Lists</strong> resources to view and create price lists. You can use price lists to override the                 catalog pricing of products for specific customer segments and/or sites.</p>             <p>Use the <strong>Products</strong>, <strong>Product Types/Extras/Options/Properties</strong>, and <strong>Product Sort Definitions</strong> resources to create new product definitions in the master catalog and determine which                 catalogs will feature products. This current version of the Products API includes localizedContent to                 support <a href=\"/pages/catalog-structure#multi-locale-catalogs\">multi-locale catalogs</a>, which was not present in the legacy Products API model. If                 you were a client prior to May 2024 and have upgraded your implementation to support this feature,                 you can still access product data that has not yet been rewritten to the new model by providing                 an x-api-version header set to \"1\".</p>             <p>Use the <strong>Publishing</strong> resource to publish pending product updates together as part of a set.</p>             <p>Use the <strong>Search</strong> resource to manage all settings and options for providing product search on your site, as                 well as search tuning rules.</p>         </div>
  *
- * The version of the OpenAPI document: 1.0.0
+ * The version of the OpenAPI document: v1
  * 
  *
  * NOTE: This class is auto generated by OpenAPI Generator (https://openapi-generator.tech).
@@ -96,6 +96,7 @@ public class FacetsApi {
 
     /**
      * Build call for addFacet
+     * @param responseFields limits which fields are returned in the response body (optional)
      * @param catalogAdminsFacet  (optional)
      * @param _callback Callback for upload/download progress
      * @return Call to execute
@@ -103,10 +104,10 @@ public class FacetsApi {
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call addFacetCall(CatalogAdminsFacet catalogAdminsFacet, final ApiCallback _callback) throws ApiException {
+    public okhttp3.Call addFacetCall(String responseFields, CatalogAdminsFacet catalogAdminsFacet, final ApiCallback _callback) throws ApiException {
         String basePath = null;
         // Operation Servers
         String[] localBasePaths = new String[] {  };
@@ -131,6 +132,10 @@ public class FacetsApi {
         Map<String, String> localVarCookieParams = new HashMap<String, String>();
         Map<String, Object> localVarFormParams = new HashMap<String, Object>();
 
+        if (responseFields != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("responseFields", responseFields));
+        }
+
         final String[] localVarAccepts = {
             "application/json", "text/json", "text/plain"
         };
@@ -147,57 +152,60 @@ public class FacetsApi {
             localVarHeaderParams.put("Content-Type", localVarContentType);
         }
 
-        String[] localVarAuthNames = new String[] { "bearerAuth", "clientOauth2" };
+        String[] localVarAuthNames = new String[] { "bearerAuth" };
         return localVarApiClient.buildCall(basePath, localVarPath, "POST", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call addFacetValidateBeforeCall(CatalogAdminsFacet catalogAdminsFacet, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call addFacetValidateBeforeCall(String responseFields, CatalogAdminsFacet catalogAdminsFacet, final ApiCallback _callback) throws ApiException {
         
 
-        okhttp3.Call localVarCall = addFacetCall(catalogAdminsFacet, _callback);
+        okhttp3.Call localVarCall = addFacetCall(responseFields, catalogAdminsFacet, _callback);
         return localVarCall;
 
     }
 
     /**
-     * Add facet
+     * Add Facet
      * Adds a new Facet to a category in a catalog.
+     * @param responseFields limits which fields are returned in the response body (optional)
      * @param catalogAdminsFacet  (optional)
      * @return CatalogAdminsFacet
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
      </table>
      */
-    public CatalogAdminsFacet addFacet(CatalogAdminsFacet catalogAdminsFacet) throws ApiException {
-        ApiResponse<CatalogAdminsFacet> localVarResp = addFacetWithHttpInfo(catalogAdminsFacet);
+    public CatalogAdminsFacet addFacet(String responseFields, CatalogAdminsFacet catalogAdminsFacet) throws ApiException {
+        ApiResponse<CatalogAdminsFacet> localVarResp = addFacetWithHttpInfo(responseFields, catalogAdminsFacet);
         return localVarResp.getData();
     }
 
     /**
-     * Add facet
+     * Add Facet
      * Adds a new Facet to a category in a catalog.
+     * @param responseFields limits which fields are returned in the response body (optional)
      * @param catalogAdminsFacet  (optional)
      * @return ApiResponse&lt;CatalogAdminsFacet&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<CatalogAdminsFacet> addFacetWithHttpInfo(CatalogAdminsFacet catalogAdminsFacet) throws ApiException {
-        okhttp3.Call localVarCall = addFacetValidateBeforeCall(catalogAdminsFacet, null);
+    public ApiResponse<CatalogAdminsFacet> addFacetWithHttpInfo(String responseFields, CatalogAdminsFacet catalogAdminsFacet) throws ApiException {
+        okhttp3.Call localVarCall = addFacetValidateBeforeCall(responseFields, catalogAdminsFacet, null);
         Type localVarReturnType = new TypeToken<CatalogAdminsFacet>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
 
     /**
-     * Add facet (asynchronously)
+     * Add Facet (asynchronously)
      * Adds a new Facet to a category in a catalog.
+     * @param responseFields limits which fields are returned in the response body (optional)
      * @param catalogAdminsFacet  (optional)
      * @param _callback The callback to be executed when the API call finishes
      * @return The request call
@@ -205,12 +213,12 @@ public class FacetsApi {
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call addFacetAsync(CatalogAdminsFacet catalogAdminsFacet, final ApiCallback<CatalogAdminsFacet> _callback) throws ApiException {
+    public okhttp3.Call addFacetAsync(String responseFields, CatalogAdminsFacet catalogAdminsFacet, final ApiCallback<CatalogAdminsFacet> _callback) throws ApiException {
 
-        okhttp3.Call localVarCall = addFacetValidateBeforeCall(catalogAdminsFacet, _callback);
+        okhttp3.Call localVarCall = addFacetValidateBeforeCall(responseFields, catalogAdminsFacet, _callback);
         Type localVarReturnType = new TypeToken<CatalogAdminsFacet>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
@@ -224,7 +232,7 @@ public class FacetsApi {
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
      </table>
      */
     public okhttp3.Call deleteFacetByIdCall(Integer facetId, final ApiCallback _callback) throws ApiException {
@@ -269,7 +277,7 @@ public class FacetsApi {
             localVarHeaderParams.put("Content-Type", localVarContentType);
         }
 
-        String[] localVarAuthNames = new String[] { "bearerAuth", "clientOauth2" };
+        String[] localVarAuthNames = new String[] { "bearerAuth" };
         return localVarApiClient.buildCall(basePath, localVarPath, "DELETE", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
     }
 
@@ -288,14 +296,14 @@ public class FacetsApi {
     }
 
     /**
-     * Delete facet
+     * Delete Facet
      * Deletes the Facet definition from the store.
      * @param facetId  (required)
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
      </table>
      */
     public void deleteFacetById(Integer facetId) throws ApiException {
@@ -303,7 +311,7 @@ public class FacetsApi {
     }
 
     /**
-     * Delete facet
+     * Delete Facet
      * Deletes the Facet definition from the store.
      * @param facetId  (required)
      * @return ApiResponse&lt;Void&gt;
@@ -311,7 +319,7 @@ public class FacetsApi {
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
      </table>
      */
     public ApiResponse<Void> deleteFacetByIdWithHttpInfo(Integer facetId) throws ApiException {
@@ -320,7 +328,7 @@ public class FacetsApi {
     }
 
     /**
-     * Delete facet (asynchronously)
+     * Delete Facet (asynchronously)
      * Deletes the Facet definition from the store.
      * @param facetId  (required)
      * @param _callback The callback to be executed when the API call finishes
@@ -329,7 +337,7 @@ public class FacetsApi {
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
      </table>
      */
     public okhttp3.Call deleteFacetByIdAsync(Integer facetId, final ApiCallback<Void> _callback) throws ApiException {
@@ -342,16 +350,17 @@ public class FacetsApi {
      * Build call for getFacet
      * @param facetId  (required)
      * @param validate  (optional)
+     * @param responseFields limits which fields are returned in the response body (optional)
      * @param _callback Callback for upload/download progress
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call getFacetCall(Integer facetId, Boolean validate, final ApiCallback _callback) throws ApiException {
+    public okhttp3.Call getFacetCall(Integer facetId, Boolean validate, String responseFields, final ApiCallback _callback) throws ApiException {
         String basePath = null;
         // Operation Servers
         String[] localBasePaths = new String[] {  };
@@ -381,6 +390,10 @@ public class FacetsApi {
             localVarQueryParams.addAll(localVarApiClient.parameterToPair("validate", validate));
         }
 
+        if (responseFields != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("responseFields", responseFields));
+        }
+
         final String[] localVarAccepts = {
             "application/json", "text/json", "text/plain"
         };
@@ -397,12 +410,12 @@ public class FacetsApi {
             localVarHeaderParams.put("Content-Type", localVarContentType);
         }
 
-        String[] localVarAuthNames = new String[] { "bearerAuth", "clientOauth2" };
+        String[] localVarAuthNames = new String[] { "bearerAuth" };
         return localVarApiClient.buildCall(basePath, localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call getFacetValidateBeforeCall(Integer facetId, Boolean validate, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call getFacetValidateBeforeCall(Integer facetId, Boolean validate, String responseFields, final ApiCallback _callback) throws ApiException {
         
         // verify the required parameter 'facetId' is set
         if (facetId == null) {
@@ -410,65 +423,68 @@ public class FacetsApi {
         }
         
 
-        okhttp3.Call localVarCall = getFacetCall(facetId, validate, _callback);
+        okhttp3.Call localVarCall = getFacetCall(facetId, validate, responseFields, _callback);
         return localVarCall;
 
     }
 
     /**
-     * Get facet
-     * Retrieves the details of a Facet Definition
+     * Get Facet
+     * Retrieves the details of a Facet definition.
      * @param facetId  (required)
      * @param validate  (optional)
+     * @param responseFields limits which fields are returned in the response body (optional)
      * @return CatalogAdminsFacet
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
      </table>
      */
-    public CatalogAdminsFacet getFacet(Integer facetId, Boolean validate) throws ApiException {
-        ApiResponse<CatalogAdminsFacet> localVarResp = getFacetWithHttpInfo(facetId, validate);
+    public CatalogAdminsFacet getFacet(Integer facetId, Boolean validate, String responseFields) throws ApiException {
+        ApiResponse<CatalogAdminsFacet> localVarResp = getFacetWithHttpInfo(facetId, validate, responseFields);
         return localVarResp.getData();
     }
 
     /**
-     * Get facet
-     * Retrieves the details of a Facet Definition
+     * Get Facet
+     * Retrieves the details of a Facet definition.
      * @param facetId  (required)
      * @param validate  (optional)
+     * @param responseFields limits which fields are returned in the response body (optional)
      * @return ApiResponse&lt;CatalogAdminsFacet&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<CatalogAdminsFacet> getFacetWithHttpInfo(Integer facetId, Boolean validate) throws ApiException {
-        okhttp3.Call localVarCall = getFacetValidateBeforeCall(facetId, validate, null);
+    public ApiResponse<CatalogAdminsFacet> getFacetWithHttpInfo(Integer facetId, Boolean validate, String responseFields) throws ApiException {
+        okhttp3.Call localVarCall = getFacetValidateBeforeCall(facetId, validate, responseFields, null);
         Type localVarReturnType = new TypeToken<CatalogAdminsFacet>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
 
     /**
-     * Get facet (asynchronously)
-     * Retrieves the details of a Facet Definition
+     * Get Facet (asynchronously)
+     * Retrieves the details of a Facet definition.
      * @param facetId  (required)
      * @param validate  (optional)
+     * @param responseFields limits which fields are returned in the response body (optional)
      * @param _callback The callback to be executed when the API call finishes
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call getFacetAsync(Integer facetId, Boolean validate, final ApiCallback<CatalogAdminsFacet> _callback) throws ApiException {
+    public okhttp3.Call getFacetAsync(Integer facetId, Boolean validate, String responseFields, final ApiCallback<CatalogAdminsFacet> _callback) throws ApiException {
 
-        okhttp3.Call localVarCall = getFacetValidateBeforeCall(facetId, validate, _callback);
+        okhttp3.Call localVarCall = getFacetValidateBeforeCall(facetId, validate, responseFields, _callback);
         Type localVarReturnType = new TypeToken<CatalogAdminsFacet>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
@@ -479,16 +495,17 @@ public class FacetsApi {
      * @param categoryCode  (optional)
      * @param includeAvailable  (optional)
      * @param validate  (optional)
+     * @param responseFields limits which fields are returned in the response body (optional)
      * @param _callback Callback for upload/download progress
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call getFacetCategoryListCall(Integer categoryId, String categoryCode, Boolean includeAvailable, Boolean validate, final ApiCallback _callback) throws ApiException {
+    public okhttp3.Call getFacetCategoryListCall(Integer categoryId, String categoryCode, Boolean includeAvailable, Boolean validate, String responseFields, final ApiCallback _callback) throws ApiException {
         String basePath = null;
         // Operation Servers
         String[] localBasePaths = new String[] {  };
@@ -529,6 +546,10 @@ public class FacetsApi {
             localVarQueryParams.addAll(localVarApiClient.parameterToPair("validate", validate));
         }
 
+        if (responseFields != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("responseFields", responseFields));
+        }
+
         final String[] localVarAccepts = {
             "application/json", "text/json", "text/plain"
         };
@@ -545,79 +566,82 @@ public class FacetsApi {
             localVarHeaderParams.put("Content-Type", localVarContentType);
         }
 
-        String[] localVarAuthNames = new String[] { "bearerAuth", "clientOauth2" };
+        String[] localVarAuthNames = new String[] { "bearerAuth" };
         return localVarApiClient.buildCall(basePath, localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call getFacetCategoryListValidateBeforeCall(Integer categoryId, String categoryCode, Boolean includeAvailable, Boolean validate, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call getFacetCategoryListValidateBeforeCall(Integer categoryId, String categoryCode, Boolean includeAvailable, Boolean validate, String responseFields, final ApiCallback _callback) throws ApiException {
         
 
-        okhttp3.Call localVarCall = getFacetCategoryListCall(categoryId, categoryCode, includeAvailable, validate, _callback);
+        okhttp3.Call localVarCall = getFacetCategoryListCall(categoryId, categoryCode, includeAvailable, validate, responseFields, _callback);
         return localVarCall;
 
     }
 
     /**
-     * Get facet category list
-     * Retrieves a list of configured, and optionally available, Facet Configurations for the specified category.
+     * Get Facet Category List
+     * Retrieves a list of configured, and optionally available, Facet configurations for the specified category.
      * @param categoryId  (optional)
      * @param categoryCode  (optional)
      * @param includeAvailable  (optional)
      * @param validate  (optional)
+     * @param responseFields limits which fields are returned in the response body (optional)
      * @return FacetSet
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
      </table>
      */
-    public FacetSet getFacetCategoryList(Integer categoryId, String categoryCode, Boolean includeAvailable, Boolean validate) throws ApiException {
-        ApiResponse<FacetSet> localVarResp = getFacetCategoryListWithHttpInfo(categoryId, categoryCode, includeAvailable, validate);
+    public FacetSet getFacetCategoryList(Integer categoryId, String categoryCode, Boolean includeAvailable, Boolean validate, String responseFields) throws ApiException {
+        ApiResponse<FacetSet> localVarResp = getFacetCategoryListWithHttpInfo(categoryId, categoryCode, includeAvailable, validate, responseFields);
         return localVarResp.getData();
     }
 
     /**
-     * Get facet category list
-     * Retrieves a list of configured, and optionally available, Facet Configurations for the specified category.
+     * Get Facet Category List
+     * Retrieves a list of configured, and optionally available, Facet configurations for the specified category.
      * @param categoryId  (optional)
      * @param categoryCode  (optional)
      * @param includeAvailable  (optional)
      * @param validate  (optional)
+     * @param responseFields limits which fields are returned in the response body (optional)
      * @return ApiResponse&lt;FacetSet&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<FacetSet> getFacetCategoryListWithHttpInfo(Integer categoryId, String categoryCode, Boolean includeAvailable, Boolean validate) throws ApiException {
-        okhttp3.Call localVarCall = getFacetCategoryListValidateBeforeCall(categoryId, categoryCode, includeAvailable, validate, null);
+    public ApiResponse<FacetSet> getFacetCategoryListWithHttpInfo(Integer categoryId, String categoryCode, Boolean includeAvailable, Boolean validate, String responseFields) throws ApiException {
+        okhttp3.Call localVarCall = getFacetCategoryListValidateBeforeCall(categoryId, categoryCode, includeAvailable, validate, responseFields, null);
         Type localVarReturnType = new TypeToken<FacetSet>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
 
     /**
-     * Get facet category list (asynchronously)
-     * Retrieves a list of configured, and optionally available, Facet Configurations for the specified category.
+     * Get Facet Category List (asynchronously)
+     * Retrieves a list of configured, and optionally available, Facet configurations for the specified category.
      * @param categoryId  (optional)
      * @param categoryCode  (optional)
      * @param includeAvailable  (optional)
      * @param validate  (optional)
+     * @param responseFields limits which fields are returned in the response body (optional)
      * @param _callback The callback to be executed when the API call finishes
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call getFacetCategoryListAsync(Integer categoryId, String categoryCode, Boolean includeAvailable, Boolean validate, final ApiCallback<FacetSet> _callback) throws ApiException {
+    public okhttp3.Call getFacetCategoryListAsync(Integer categoryId, String categoryCode, Boolean includeAvailable, Boolean validate, String responseFields, final ApiCallback<FacetSet> _callback) throws ApiException {
 
-        okhttp3.Call localVarCall = getFacetCategoryListValidateBeforeCall(categoryId, categoryCode, includeAvailable, validate, _callback);
+        okhttp3.Call localVarCall = getFacetCategoryListValidateBeforeCall(categoryId, categoryCode, includeAvailable, validate, responseFields, _callback);
         Type localVarReturnType = new TypeToken<FacetSet>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
@@ -627,16 +651,17 @@ public class FacetsApi {
      * @param categoryId  (required)
      * @param includeAvailable  (optional)
      * @param validate  (optional)
+     * @param responseFields limits which fields are returned in the response body (optional)
      * @param _callback Callback for upload/download progress
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call getFacetCategoryListLegacyCall(Integer categoryId, Boolean includeAvailable, Boolean validate, final ApiCallback _callback) throws ApiException {
+    public okhttp3.Call getFacetCategoryListLegacyCall(Integer categoryId, Boolean includeAvailable, Boolean validate, String responseFields, final ApiCallback _callback) throws ApiException {
         String basePath = null;
         // Operation Servers
         String[] localBasePaths = new String[] {  };
@@ -670,6 +695,10 @@ public class FacetsApi {
             localVarQueryParams.addAll(localVarApiClient.parameterToPair("validate", validate));
         }
 
+        if (responseFields != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("responseFields", responseFields));
+        }
+
         final String[] localVarAccepts = {
             "application/json", "text/json", "text/plain"
         };
@@ -686,12 +715,12 @@ public class FacetsApi {
             localVarHeaderParams.put("Content-Type", localVarContentType);
         }
 
-        String[] localVarAuthNames = new String[] { "bearerAuth", "clientOauth2" };
+        String[] localVarAuthNames = new String[] { "bearerAuth" };
         return localVarApiClient.buildCall(basePath, localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call getFacetCategoryListLegacyValidateBeforeCall(Integer categoryId, Boolean includeAvailable, Boolean validate, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call getFacetCategoryListLegacyValidateBeforeCall(Integer categoryId, Boolean includeAvailable, Boolean validate, String responseFields, final ApiCallback _callback) throws ApiException {
         
         // verify the required parameter 'categoryId' is set
         if (categoryId == null) {
@@ -699,84 +728,88 @@ public class FacetsApi {
         }
         
 
-        okhttp3.Call localVarCall = getFacetCategoryListLegacyCall(categoryId, includeAvailable, validate, _callback);
+        okhttp3.Call localVarCall = getFacetCategoryListLegacyCall(categoryId, includeAvailable, validate, responseFields, _callback);
         return localVarCall;
 
     }
 
     /**
-     * Get facet category list (legacy)
-     * Retrieves a list of configured, and optionally available, Facet Configurations for the specified category.
+     * Get Facet Category List (Legacy)
+     * Retrieves a list of configured, and optionally available, Facet configurations for the specified category. 
      * @param categoryId  (required)
      * @param includeAvailable  (optional)
      * @param validate  (optional)
+     * @param responseFields limits which fields are returned in the response body (optional)
      * @return FacetSet
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
      </table>
      */
-    public FacetSet getFacetCategoryListLegacy(Integer categoryId, Boolean includeAvailable, Boolean validate) throws ApiException {
-        ApiResponse<FacetSet> localVarResp = getFacetCategoryListLegacyWithHttpInfo(categoryId, includeAvailable, validate);
+    public FacetSet getFacetCategoryListLegacy(Integer categoryId, Boolean includeAvailable, Boolean validate, String responseFields) throws ApiException {
+        ApiResponse<FacetSet> localVarResp = getFacetCategoryListLegacyWithHttpInfo(categoryId, includeAvailable, validate, responseFields);
         return localVarResp.getData();
     }
 
     /**
-     * Get facet category list (legacy)
-     * Retrieves a list of configured, and optionally available, Facet Configurations for the specified category.
+     * Get Facet Category List (Legacy)
+     * Retrieves a list of configured, and optionally available, Facet configurations for the specified category. 
      * @param categoryId  (required)
      * @param includeAvailable  (optional)
      * @param validate  (optional)
+     * @param responseFields limits which fields are returned in the response body (optional)
      * @return ApiResponse&lt;FacetSet&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<FacetSet> getFacetCategoryListLegacyWithHttpInfo(Integer categoryId, Boolean includeAvailable, Boolean validate) throws ApiException {
-        okhttp3.Call localVarCall = getFacetCategoryListLegacyValidateBeforeCall(categoryId, includeAvailable, validate, null);
+    public ApiResponse<FacetSet> getFacetCategoryListLegacyWithHttpInfo(Integer categoryId, Boolean includeAvailable, Boolean validate, String responseFields) throws ApiException {
+        okhttp3.Call localVarCall = getFacetCategoryListLegacyValidateBeforeCall(categoryId, includeAvailable, validate, responseFields, null);
         Type localVarReturnType = new TypeToken<FacetSet>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
 
     /**
-     * Get facet category list (legacy) (asynchronously)
-     * Retrieves a list of configured, and optionally available, Facet Configurations for the specified category.
+     * Get Facet Category List (Legacy) (asynchronously)
+     * Retrieves a list of configured, and optionally available, Facet configurations for the specified category. 
      * @param categoryId  (required)
      * @param includeAvailable  (optional)
      * @param validate  (optional)
+     * @param responseFields limits which fields are returned in the response body (optional)
      * @param _callback The callback to be executed when the API call finishes
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call getFacetCategoryListLegacyAsync(Integer categoryId, Boolean includeAvailable, Boolean validate, final ApiCallback<FacetSet> _callback) throws ApiException {
+    public okhttp3.Call getFacetCategoryListLegacyAsync(Integer categoryId, Boolean includeAvailable, Boolean validate, String responseFields, final ApiCallback<FacetSet> _callback) throws ApiException {
 
-        okhttp3.Call localVarCall = getFacetCategoryListLegacyValidateBeforeCall(categoryId, includeAvailable, validate, _callback);
+        okhttp3.Call localVarCall = getFacetCategoryListLegacyValidateBeforeCall(categoryId, includeAvailable, validate, responseFields, _callback);
         Type localVarReturnType = new TypeToken<FacetSet>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
     }
     /**
      * Build call for getFacets
+     * @param responseFields limits which fields are returned in the response body (optional)
      * @param _callback Callback for upload/download progress
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call getFacetsCall(final ApiCallback _callback) throws ApiException {
+    public okhttp3.Call getFacetsCall(String responseFields, final ApiCallback _callback) throws ApiException {
         String basePath = null;
         // Operation Servers
         String[] localBasePaths = new String[] {  };
@@ -801,6 +834,10 @@ public class FacetsApi {
         Map<String, String> localVarCookieParams = new HashMap<String, String>();
         Map<String, Object> localVarFormParams = new HashMap<String, Object>();
 
+        if (responseFields != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("responseFields", responseFields));
+        }
+
         final String[] localVarAccepts = {
             "application/json", "text/json", "text/plain"
         };
@@ -817,15 +854,15 @@ public class FacetsApi {
             localVarHeaderParams.put("Content-Type", localVarContentType);
         }
 
-        String[] localVarAuthNames = new String[] { "bearerAuth", "clientOauth2" };
+        String[] localVarAuthNames = new String[] { "bearerAuth" };
         return localVarApiClient.buildCall(basePath, localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call getFacetsValidateBeforeCall(final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call getFacetsValidateBeforeCall(String responseFields, final ApiCallback _callback) throws ApiException {
         
 
-        okhttp3.Call localVarCall = getFacetsCall(_callback);
+        okhttp3.Call localVarCall = getFacetsCall(responseFields, _callback);
         return localVarCall;
 
     }
@@ -833,32 +870,34 @@ public class FacetsApi {
     /**
      * Get facets
      * Retrieves the list of Facet Definition
+     * @param responseFields limits which fields are returned in the response body (optional)
      * @return FacetCollection
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
      </table>
      */
-    public FacetCollection getFacets() throws ApiException {
-        ApiResponse<FacetCollection> localVarResp = getFacetsWithHttpInfo();
+    public FacetCollection getFacets(String responseFields) throws ApiException {
+        ApiResponse<FacetCollection> localVarResp = getFacetsWithHttpInfo(responseFields);
         return localVarResp.getData();
     }
 
     /**
      * Get facets
      * Retrieves the list of Facet Definition
+     * @param responseFields limits which fields are returned in the response body (optional)
      * @return ApiResponse&lt;FacetCollection&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<FacetCollection> getFacetsWithHttpInfo() throws ApiException {
-        okhttp3.Call localVarCall = getFacetsValidateBeforeCall(null);
+    public ApiResponse<FacetCollection> getFacetsWithHttpInfo(String responseFields) throws ApiException {
+        okhttp3.Call localVarCall = getFacetsValidateBeforeCall(responseFields, null);
         Type localVarReturnType = new TypeToken<FacetCollection>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
@@ -866,18 +905,19 @@ public class FacetsApi {
     /**
      * Get facets (asynchronously)
      * Retrieves the list of Facet Definition
+     * @param responseFields limits which fields are returned in the response body (optional)
      * @param _callback The callback to be executed when the API call finishes
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call getFacetsAsync(final ApiCallback<FacetCollection> _callback) throws ApiException {
+    public okhttp3.Call getFacetsAsync(String responseFields, final ApiCallback<FacetCollection> _callback) throws ApiException {
 
-        okhttp3.Call localVarCall = getFacetsValidateBeforeCall(_callback);
+        okhttp3.Call localVarCall = getFacetsValidateBeforeCall(responseFields, _callback);
         Type localVarReturnType = new TypeToken<FacetCollection>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
@@ -885,6 +925,7 @@ public class FacetsApi {
     /**
      * Build call for updateFacet
      * @param facetId  (required)
+     * @param responseFields limits which fields are returned in the response body (optional)
      * @param catalogAdminsFacet  (optional)
      * @param _callback Callback for upload/download progress
      * @return Call to execute
@@ -892,10 +933,10 @@ public class FacetsApi {
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call updateFacetCall(Integer facetId, CatalogAdminsFacet catalogAdminsFacet, final ApiCallback _callback) throws ApiException {
+    public okhttp3.Call updateFacetCall(Integer facetId, String responseFields, CatalogAdminsFacet catalogAdminsFacet, final ApiCallback _callback) throws ApiException {
         String basePath = null;
         // Operation Servers
         String[] localBasePaths = new String[] {  };
@@ -921,6 +962,10 @@ public class FacetsApi {
         Map<String, String> localVarCookieParams = new HashMap<String, String>();
         Map<String, Object> localVarFormParams = new HashMap<String, Object>();
 
+        if (responseFields != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("responseFields", responseFields));
+        }
+
         final String[] localVarAccepts = {
             "application/json", "text/json", "text/plain"
         };
@@ -937,12 +982,12 @@ public class FacetsApi {
             localVarHeaderParams.put("Content-Type", localVarContentType);
         }
 
-        String[] localVarAuthNames = new String[] { "bearerAuth", "clientOauth2" };
+        String[] localVarAuthNames = new String[] { "bearerAuth" };
         return localVarApiClient.buildCall(basePath, localVarPath, "PUT", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call updateFacetValidateBeforeCall(Integer facetId, CatalogAdminsFacet catalogAdminsFacet, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call updateFacetValidateBeforeCall(Integer facetId, String responseFields, CatalogAdminsFacet catalogAdminsFacet, final ApiCallback _callback) throws ApiException {
         
         // verify the required parameter 'facetId' is set
         if (facetId == null) {
@@ -950,52 +995,55 @@ public class FacetsApi {
         }
         
 
-        okhttp3.Call localVarCall = updateFacetCall(facetId, catalogAdminsFacet, _callback);
+        okhttp3.Call localVarCall = updateFacetCall(facetId, responseFields, catalogAdminsFacet, _callback);
         return localVarCall;
 
     }
 
     /**
-     * Update facet
+     * Update Facet
      * Modifies a Facet definition.
      * @param facetId  (required)
+     * @param responseFields limits which fields are returned in the response body (optional)
      * @param catalogAdminsFacet  (optional)
      * @return CatalogAdminsFacet
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
      </table>
      */
-    public CatalogAdminsFacet updateFacet(Integer facetId, CatalogAdminsFacet catalogAdminsFacet) throws ApiException {
-        ApiResponse<CatalogAdminsFacet> localVarResp = updateFacetWithHttpInfo(facetId, catalogAdminsFacet);
+    public CatalogAdminsFacet updateFacet(Integer facetId, String responseFields, CatalogAdminsFacet catalogAdminsFacet) throws ApiException {
+        ApiResponse<CatalogAdminsFacet> localVarResp = updateFacetWithHttpInfo(facetId, responseFields, catalogAdminsFacet);
         return localVarResp.getData();
     }
 
     /**
-     * Update facet
+     * Update Facet
      * Modifies a Facet definition.
      * @param facetId  (required)
+     * @param responseFields limits which fields are returned in the response body (optional)
      * @param catalogAdminsFacet  (optional)
      * @return ApiResponse&lt;CatalogAdminsFacet&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<CatalogAdminsFacet> updateFacetWithHttpInfo(Integer facetId, CatalogAdminsFacet catalogAdminsFacet) throws ApiException {
-        okhttp3.Call localVarCall = updateFacetValidateBeforeCall(facetId, catalogAdminsFacet, null);
+    public ApiResponse<CatalogAdminsFacet> updateFacetWithHttpInfo(Integer facetId, String responseFields, CatalogAdminsFacet catalogAdminsFacet) throws ApiException {
+        okhttp3.Call localVarCall = updateFacetValidateBeforeCall(facetId, responseFields, catalogAdminsFacet, null);
         Type localVarReturnType = new TypeToken<CatalogAdminsFacet>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
 
     /**
-     * Update facet (asynchronously)
+     * Update Facet (asynchronously)
      * Modifies a Facet definition.
      * @param facetId  (required)
+     * @param responseFields limits which fields are returned in the response body (optional)
      * @param catalogAdminsFacet  (optional)
      * @param _callback The callback to be executed when the API call finishes
      * @return The request call
@@ -1003,12 +1051,12 @@ public class FacetsApi {
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call updateFacetAsync(Integer facetId, CatalogAdminsFacet catalogAdminsFacet, final ApiCallback<CatalogAdminsFacet> _callback) throws ApiException {
+    public okhttp3.Call updateFacetAsync(Integer facetId, String responseFields, CatalogAdminsFacet catalogAdminsFacet, final ApiCallback<CatalogAdminsFacet> _callback) throws ApiException {
 
-        okhttp3.Call localVarCall = updateFacetValidateBeforeCall(facetId, catalogAdminsFacet, _callback);
+        okhttp3.Call localVarCall = updateFacetValidateBeforeCall(facetId, responseFields, catalogAdminsFacet, _callback);
         Type localVarReturnType = new TypeToken<CatalogAdminsFacet>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
@@ -1017,6 +1065,7 @@ public class FacetsApi {
      * Build call for updateFacetSet
      * @param categoryId  (optional)
      * @param categoryCode  (optional)
+     * @param responseFields limits which fields are returned in the response body (optional)
      * @param facetSet  (optional)
      * @param _callback Callback for upload/download progress
      * @return Call to execute
@@ -1024,10 +1073,10 @@ public class FacetsApi {
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call updateFacetSetCall(Integer categoryId, String categoryCode, FacetSet facetSet, final ApiCallback _callback) throws ApiException {
+    public okhttp3.Call updateFacetSetCall(Integer categoryId, String categoryCode, String responseFields, FacetSet facetSet, final ApiCallback _callback) throws ApiException {
         String basePath = null;
         // Operation Servers
         String[] localBasePaths = new String[] {  };
@@ -1060,6 +1109,10 @@ public class FacetsApi {
             localVarQueryParams.addAll(localVarApiClient.parameterToPair("categoryCode", categoryCode));
         }
 
+        if (responseFields != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("responseFields", responseFields));
+        }
+
         final String[] localVarAccepts = {
             "application/json", "text/json", "text/plain"
         };
@@ -1076,63 +1129,66 @@ public class FacetsApi {
             localVarHeaderParams.put("Content-Type", localVarContentType);
         }
 
-        String[] localVarAuthNames = new String[] { "bearerAuth", "clientOauth2" };
+        String[] localVarAuthNames = new String[] { "bearerAuth" };
         return localVarApiClient.buildCall(basePath, localVarPath, "POST", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call updateFacetSetValidateBeforeCall(Integer categoryId, String categoryCode, FacetSet facetSet, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call updateFacetSetValidateBeforeCall(Integer categoryId, String categoryCode, String responseFields, FacetSet facetSet, final ApiCallback _callback) throws ApiException {
         
 
-        okhttp3.Call localVarCall = updateFacetSetCall(categoryId, categoryCode, facetSet, _callback);
+        okhttp3.Call localVarCall = updateFacetSetCall(categoryId, categoryCode, responseFields, facetSet, _callback);
         return localVarCall;
 
     }
 
     /**
-     * Update facet
+     * Update Facet Set
      * Modifies a Facet definition.
      * @param categoryId  (optional)
      * @param categoryCode  (optional)
+     * @param responseFields limits which fields are returned in the response body (optional)
      * @param facetSet  (optional)
      * @return FacetSet
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
      </table>
      */
-    public FacetSet updateFacetSet(Integer categoryId, String categoryCode, FacetSet facetSet) throws ApiException {
-        ApiResponse<FacetSet> localVarResp = updateFacetSetWithHttpInfo(categoryId, categoryCode, facetSet);
+    public FacetSet updateFacetSet(Integer categoryId, String categoryCode, String responseFields, FacetSet facetSet) throws ApiException {
+        ApiResponse<FacetSet> localVarResp = updateFacetSetWithHttpInfo(categoryId, categoryCode, responseFields, facetSet);
         return localVarResp.getData();
     }
 
     /**
-     * Update facet
+     * Update Facet Set
      * Modifies a Facet definition.
      * @param categoryId  (optional)
      * @param categoryCode  (optional)
+     * @param responseFields limits which fields are returned in the response body (optional)
      * @param facetSet  (optional)
      * @return ApiResponse&lt;FacetSet&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<FacetSet> updateFacetSetWithHttpInfo(Integer categoryId, String categoryCode, FacetSet facetSet) throws ApiException {
-        okhttp3.Call localVarCall = updateFacetSetValidateBeforeCall(categoryId, categoryCode, facetSet, null);
+    public ApiResponse<FacetSet> updateFacetSetWithHttpInfo(Integer categoryId, String categoryCode, String responseFields, FacetSet facetSet) throws ApiException {
+        okhttp3.Call localVarCall = updateFacetSetValidateBeforeCall(categoryId, categoryCode, responseFields, facetSet, null);
         Type localVarReturnType = new TypeToken<FacetSet>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
 
     /**
-     * Update facet (asynchronously)
+     * Update Facet Set (asynchronously)
      * Modifies a Facet definition.
      * @param categoryId  (optional)
      * @param categoryCode  (optional)
+     * @param responseFields limits which fields are returned in the response body (optional)
      * @param facetSet  (optional)
      * @param _callback The callback to be executed when the API call finishes
      * @return The request call
@@ -1140,12 +1196,12 @@ public class FacetsApi {
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call updateFacetSetAsync(Integer categoryId, String categoryCode, FacetSet facetSet, final ApiCallback<FacetSet> _callback) throws ApiException {
+    public okhttp3.Call updateFacetSetAsync(Integer categoryId, String categoryCode, String responseFields, FacetSet facetSet, final ApiCallback<FacetSet> _callback) throws ApiException {
 
-        okhttp3.Call localVarCall = updateFacetSetValidateBeforeCall(categoryId, categoryCode, facetSet, _callback);
+        okhttp3.Call localVarCall = updateFacetSetValidateBeforeCall(categoryId, categoryCode, responseFields, facetSet, _callback);
         Type localVarReturnType = new TypeToken<FacetSet>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;

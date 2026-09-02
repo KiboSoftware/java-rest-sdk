@@ -11,7 +11,7 @@ All URIs are relative to *http://https:/api*
 
 <a name="createInventorySettings"></a>
 # **createInventorySettings**
-> InventorySettings createInventorySettings(inventorySettings)
+> InventorySettings createInventorySettings(responseFields, inventorySettings)
 
 Create Inventory Settings
 
@@ -36,14 +36,11 @@ public class Example {
     HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
     bearerAuth.setBearerToken("BEARER TOKEN");
 
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
-
     InventorySettingsApi apiInstance = new InventorySettingsApi(defaultClient);
+    String responseFields = "responseFields_example"; // String | limits which fields are returned in the response body
     InventorySettings inventorySettings = new InventorySettings(); // InventorySettings | 
     try {
-      InventorySettings result = apiInstance.createInventorySettings(inventorySettings);
+      InventorySettings result = apiInstance.createInventorySettings(responseFields, inventorySettings);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling InventorySettingsApi#createInventorySettings");
@@ -60,6 +57,7 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
+| **responseFields** | **String**| limits which fields are returned in the response body | [optional] |
 | **inventorySettings** | [**InventorySettings**](InventorySettings.md)|  | [optional] |
 
 ### Return type
@@ -68,7 +66,7 @@ public class Example {
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth), [clientOauth2](../README.md#clientOauth2)
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
@@ -78,11 +76,11 @@ public class Example {
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Success |  -  |
+| **200** | OK |  -  |
 
 <a name="getInventorySettings"></a>
 # **getInventorySettings**
-> InventorySettings getInventorySettings()
+> InventorySettings getInventorySettings(responseFields)
 
 Get Inventory Settings
 
@@ -107,13 +105,10 @@ public class Example {
     HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
     bearerAuth.setBearerToken("BEARER TOKEN");
 
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
-
     InventorySettingsApi apiInstance = new InventorySettingsApi(defaultClient);
+    String responseFields = "responseFields_example"; // String | limits which fields are returned in the response body
     try {
-      InventorySettings result = apiInstance.getInventorySettings();
+      InventorySettings result = apiInstance.getInventorySettings(responseFields);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling InventorySettingsApi#getInventorySettings");
@@ -127,7 +122,10 @@ public class Example {
 ```
 
 ### Parameters
-This endpoint does not need any parameter.
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **responseFields** | **String**| limits which fields are returned in the response body | [optional] |
 
 ### Return type
 
@@ -135,7 +133,7 @@ This endpoint does not need any parameter.
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth), [clientOauth2](../README.md#clientOauth2)
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
@@ -145,11 +143,11 @@ This endpoint does not need any parameter.
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Success |  -  |
+| **200** | OK |  -  |
 
 <a name="updateInventorySettings"></a>
 # **updateInventorySettings**
-> InventorySettings updateInventorySettings(inventorySettings)
+> InventorySettings updateInventorySettings(responseFields, inventorySettings)
 
 Update Inventory Settings
 
@@ -174,14 +172,11 @@ public class Example {
     HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
     bearerAuth.setBearerToken("BEARER TOKEN");
 
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
-
     InventorySettingsApi apiInstance = new InventorySettingsApi(defaultClient);
+    String responseFields = "responseFields_example"; // String | limits which fields are returned in the response body
     InventorySettings inventorySettings = new InventorySettings(); // InventorySettings | 
     try {
-      InventorySettings result = apiInstance.updateInventorySettings(inventorySettings);
+      InventorySettings result = apiInstance.updateInventorySettings(responseFields, inventorySettings);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling InventorySettingsApi#updateInventorySettings");
@@ -198,6 +193,7 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
+| **responseFields** | **String**| limits which fields are returned in the response body | [optional] |
 | **inventorySettings** | [**InventorySettings**](InventorySettings.md)|  | [optional] |
 
 ### Return type
@@ -206,7 +202,7 @@ public class Example {
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth), [clientOauth2](../README.md#clientOauth2)
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
@@ -216,5 +212,5 @@ public class Example {
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Success |  -  |
+| **200** | OK |  -  |
 

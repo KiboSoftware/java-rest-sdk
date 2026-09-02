@@ -7,9 +7,15 @@
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
-|**attributes** | [**List&lt;ApiDocumentationAttribute&gt;**](ApiDocumentationAttribute.md) |  |  [optional] |
+|**accountType** | **String** |  |  [optional] |
+|**attributes** | [**List&lt;OrderRoutingAttribute&gt;**](OrderRoutingAttribute.md) |  |  [optional] |
+|**companyOrOrganization** | **String** |  |  [optional] |
 |**customerId** | **String** |  |  [optional] |
+|**customerSinceDate** | **OffsetDateTime** |  |  [optional] |
+|**externalId** | **String** |  |  [optional] |
 |**segments** | **List&lt;String&gt;** |  |  [optional] |
+|**taxExempt** | **Boolean** |  |  [optional] |
+|**taxId** | **String** |  |  [optional] |
 
 
 ## Implemented Interfaces

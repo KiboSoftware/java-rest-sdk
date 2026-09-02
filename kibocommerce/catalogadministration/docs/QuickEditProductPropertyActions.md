@@ -2,7 +2,7 @@
 
 # QuickEditProductPropertyActions
 
-List of Mozu.ProductAdmin.Contracts.ProductPropertyPatchActions to be applied to a list of  Mozu.ProductAdmin.Contracts.ProductPropertys.
+List of Mozu.ProductAdmin.Contracts.ProductPropertyPatchActions to be applied to a list of Mozu.ProductAdmin.Contracts.ProductPropertys.
 
 ## Properties
 

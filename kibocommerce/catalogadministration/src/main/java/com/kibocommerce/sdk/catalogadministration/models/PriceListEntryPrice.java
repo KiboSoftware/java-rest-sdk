@@ -1,8 +1,8 @@
 /*
  * Kibo Catalog Admin Services
- * OpenAPI Spec for Kibo Catalog Admin Services
+ * <div id=\"overview_CATALOG_ADMIN\">             <h2>CATALOG ADMINISTRATION</h2>             <p>The Catalog Administration APIs are a collection of resources for configuring the catalogs and products offered to your shoppers, including                 discounts and coupon sets, faceting, price lists, and different types or variations of products. See the                 <a href=\"/concept-guides/catalog\">Catalog user guides</a>                 for information about the related features in the Unified Commerce Admin.</p>             <p>Use the <strong>Attributes</strong> resource to manage localization and attribute configurations for your catalogs. This current version of the Attributes API includes localizedContent to                 support <a href=\"/pages/catalog-structure#multi-locale-catalogs\">multi-locale catalogs</a>, which was not present in the legacy API model. If                 you were a client prior to May 2024 and have upgraded your implementation to support this feature,                 you can still access attribute data that has not yet been rewritten to the new model by providing                 an x-api-version header set to \"1\". </p>             <p>Use the <strong>Categories</strong> resource to organize products and control where they appear on the storefront. Create                 and maintain a hierarchy of categories and subcategories where the site will store properties. This current version of the Categories API includes localizedContent to                 support <a href=\"/pages/catalog-structure#multi-locale-catalogs\">multi-locale catalogs</a>, which was not present in the legacy API model. If                 you were a client prior to May 2024 and have upgraded your implementation to support this feature,                 you can still access category data that has not yet been rewritten to the new model by providing                 an x-api-version header set to \"1\". </p>             <p>Use the <strong>Coupon Sets</strong> resource to view and create coupon sets. You can use coupon sets to group multiple                 coupon codes together and associate them with one or more discounts.</p>             <p>Use the <strong>Currency</strong> resource to manage the currency localization rules and exchange rates for any of the                 currencies that are supported for placing orders in.</p>             <p>Use the <strong>Discounts</strong> and <strong>Discount Settings</strong> resources to define and manage discounts to apply to products, product categories, or                 orders. This current version of the Discounts API includes localizedContent to                 support <a href=\"/pages/catalog-structure#multi-locale-catalogs\">multi-locale catalogs</a>, which was not present in the legacy Products API model. If                 you were a client prior to May 2024 and have upgraded your implementation to support this feature,                 you can still access discount data that has not yet been rewritten to the new model by providing                 an x-api-version header set to \"1\". </p>             <p>Use the <strong>Facets</strong> resource to manage the facets shoppers use to filter product display results on a                 storefront. Facets can include categories, product attributes, or prices, and use either a range of                 values or discrete values.</p>             <p>Use the <strong>Master Catalog</strong> resource to view details of the master catalogs associated with a tenant and to                 manage the product publishing mode for each master catalog.</p>             <p>Use the <strong>Price Lists</strong> resources to view and create price lists. You can use price lists to override the                 catalog pricing of products for specific customer segments and/or sites.</p>             <p>Use the <strong>Products</strong>, <strong>Product Types/Extras/Options/Properties</strong>, and <strong>Product Sort Definitions</strong> resources to create new product definitions in the master catalog and determine which                 catalogs will feature products. This current version of the Products API includes localizedContent to                 support <a href=\"/pages/catalog-structure#multi-locale-catalogs\">multi-locale catalogs</a>, which was not present in the legacy Products API model. If                 you were a client prior to May 2024 and have upgraded your implementation to support this feature,                 you can still access product data that has not yet been rewritten to the new model by providing                 an x-api-version header set to \"1\".</p>             <p>Use the <strong>Publishing</strong> resource to publish pending product updates together as part of a set.</p>             <p>Use the <strong>Search</strong> resource to manage all settings and options for providing product search on your site, as                 well as search tuning rules.</p>         </div>
  *
- * The version of the OpenAPI document: 1.0.0
+ * The version of the OpenAPI document: v1
  * 
  *
  * NOTE: This class is auto generated by OpenAPI Generator (https://openapi-generator.tech).
@@ -54,65 +54,65 @@ import com.kibocommerce.sdk.common.JSON;
 public class PriceListEntryPrice implements Serializable {
   private static final long serialVersionUID = 1L;
 
-  public static final String SERIALIZED_NAME_MIN_QTY = "minQty";
-  @SerializedName(SERIALIZED_NAME_MIN_QTY)
-  private Integer minQty;
+  public static final String SERIALIZED_NAME_LIST_PRICE = "listPrice";
+  @SerializedName(SERIALIZED_NAME_LIST_PRICE)
+  private Double listPrice;
 
   public static final String SERIALIZED_NAME_LIST_PRICE_MODE = "listPriceMode";
   @SerializedName(SERIALIZED_NAME_LIST_PRICE_MODE)
   private String listPriceMode;
 
-  public static final String SERIALIZED_NAME_LIST_PRICE = "listPrice";
-  @SerializedName(SERIALIZED_NAME_LIST_PRICE)
-  private Double listPrice;
-
-  public static final String SERIALIZED_NAME_SALE_PRICE_MODE = "salePriceMode";
-  @SerializedName(SERIALIZED_NAME_SALE_PRICE_MODE)
-  private String salePriceMode;
+  public static final String SERIALIZED_NAME_MIN_QTY = "minQty";
+  @SerializedName(SERIALIZED_NAME_MIN_QTY)
+  private Integer minQty;
 
   public static final String SERIALIZED_NAME_SALE_PRICE = "salePrice";
   @SerializedName(SERIALIZED_NAME_SALE_PRICE)
   private Double salePrice;
 
-  public static final String SERIALIZED_NAME_SUBSCRIPTION_PRICE_MODE = "subscriptionPriceMode";
-  @SerializedName(SERIALIZED_NAME_SUBSCRIPTION_PRICE_MODE)
-  private String subscriptionPriceMode;
+  public static final String SERIALIZED_NAME_SALE_PRICE_MODE = "salePriceMode";
+  @SerializedName(SERIALIZED_NAME_SALE_PRICE_MODE)
+  private String salePriceMode;
 
   public static final String SERIALIZED_NAME_SUBSCRIPTION_PRICE = "subscriptionPrice";
   @SerializedName(SERIALIZED_NAME_SUBSCRIPTION_PRICE)
   private Double subscriptionPrice;
 
-  public static final String SERIALIZED_NAME_SUBSCRIPTION_SALE_PRICE_MODE = "subscriptionSalePriceMode";
-  @SerializedName(SERIALIZED_NAME_SUBSCRIPTION_SALE_PRICE_MODE)
-  private String subscriptionSalePriceMode;
+  public static final String SERIALIZED_NAME_SUBSCRIPTION_PRICE_MODE = "subscriptionPriceMode";
+  @SerializedName(SERIALIZED_NAME_SUBSCRIPTION_PRICE_MODE)
+  private String subscriptionPriceMode;
 
   public static final String SERIALIZED_NAME_SUBSCRIPTION_SALE_PRICE = "subscriptionSalePrice";
   @SerializedName(SERIALIZED_NAME_SUBSCRIPTION_SALE_PRICE)
   private Double subscriptionSalePrice;
 
+  public static final String SERIALIZED_NAME_SUBSCRIPTION_SALE_PRICE_MODE = "subscriptionSalePriceMode";
+  @SerializedName(SERIALIZED_NAME_SUBSCRIPTION_SALE_PRICE_MODE)
+  private String subscriptionSalePriceMode;
+
   public PriceListEntryPrice() {
   }
 
-  public PriceListEntryPrice minQty(Integer minQty) {
+  public PriceListEntryPrice listPrice(Double listPrice) {
     
-    this.minQty = minQty;
+    this.listPrice = listPrice;
     return this;
   }
 
    /**
-   * Get minQty
-   * @return minQty
+   * Get listPrice
+   * @return listPrice
   **/
   @javax.annotation.Nullable
   @ApiModelProperty(value = "")
 
-  public Integer getMinQty() {
-    return minQty;
+  public Double getListPrice() {
+    return listPrice;
   }
 
 
-  public void setMinQty(Integer minQty) {
-    this.minQty = minQty;
+  public void setListPrice(Double listPrice) {
+    this.listPrice = listPrice;
   }
 
 
@@ -139,49 +139,26 @@ public class PriceListEntryPrice implements Serializable {
   }
 
 
-  public PriceListEntryPrice listPrice(Double listPrice) {
+  public PriceListEntryPrice minQty(Integer minQty) {
     
-    this.listPrice = listPrice;
+    this.minQty = minQty;
     return this;
   }
 
    /**
-   * Get listPrice
-   * @return listPrice
+   * Get minQty
+   * @return minQty
   **/
   @javax.annotation.Nullable
   @ApiModelProperty(value = "")
 
-  public Double getListPrice() {
-    return listPrice;
+  public Integer getMinQty() {
+    return minQty;
   }
 
 
-  public void setListPrice(Double listPrice) {
-    this.listPrice = listPrice;
-  }
-
-
-  public PriceListEntryPrice salePriceMode(String salePriceMode) {
-    
-    this.salePriceMode = salePriceMode;
-    return this;
-  }
-
-   /**
-   * Get salePriceMode
-   * @return salePriceMode
-  **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
-
-  public String getSalePriceMode() {
-    return salePriceMode;
-  }
-
-
-  public void setSalePriceMode(String salePriceMode) {
-    this.salePriceMode = salePriceMode;
+  public void setMinQty(Integer minQty) {
+    this.minQty = minQty;
   }
 
 
@@ -208,26 +185,26 @@ public class PriceListEntryPrice implements Serializable {
   }
 
 
-  public PriceListEntryPrice subscriptionPriceMode(String subscriptionPriceMode) {
+  public PriceListEntryPrice salePriceMode(String salePriceMode) {
     
-    this.subscriptionPriceMode = subscriptionPriceMode;
+    this.salePriceMode = salePriceMode;
     return this;
   }
 
    /**
-   * Get subscriptionPriceMode
-   * @return subscriptionPriceMode
+   * Get salePriceMode
+   * @return salePriceMode
   **/
   @javax.annotation.Nullable
   @ApiModelProperty(value = "")
 
-  public String getSubscriptionPriceMode() {
-    return subscriptionPriceMode;
+  public String getSalePriceMode() {
+    return salePriceMode;
   }
 
 
-  public void setSubscriptionPriceMode(String subscriptionPriceMode) {
-    this.subscriptionPriceMode = subscriptionPriceMode;
+  public void setSalePriceMode(String salePriceMode) {
+    this.salePriceMode = salePriceMode;
   }
 
 
@@ -254,26 +231,26 @@ public class PriceListEntryPrice implements Serializable {
   }
 
 
-  public PriceListEntryPrice subscriptionSalePriceMode(String subscriptionSalePriceMode) {
+  public PriceListEntryPrice subscriptionPriceMode(String subscriptionPriceMode) {
     
-    this.subscriptionSalePriceMode = subscriptionSalePriceMode;
+    this.subscriptionPriceMode = subscriptionPriceMode;
     return this;
   }
 
    /**
-   * Get subscriptionSalePriceMode
-   * @return subscriptionSalePriceMode
+   * Get subscriptionPriceMode
+   * @return subscriptionPriceMode
   **/
   @javax.annotation.Nullable
   @ApiModelProperty(value = "")
 
-  public String getSubscriptionSalePriceMode() {
-    return subscriptionSalePriceMode;
+  public String getSubscriptionPriceMode() {
+    return subscriptionPriceMode;
   }
 
 
-  public void setSubscriptionSalePriceMode(String subscriptionSalePriceMode) {
-    this.subscriptionSalePriceMode = subscriptionSalePriceMode;
+  public void setSubscriptionPriceMode(String subscriptionPriceMode) {
+    this.subscriptionPriceMode = subscriptionPriceMode;
   }
 
 
@@ -300,6 +277,29 @@ public class PriceListEntryPrice implements Serializable {
   }
 
 
+  public PriceListEntryPrice subscriptionSalePriceMode(String subscriptionSalePriceMode) {
+    
+    this.subscriptionSalePriceMode = subscriptionSalePriceMode;
+    return this;
+  }
+
+   /**
+   * Get subscriptionSalePriceMode
+   * @return subscriptionSalePriceMode
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
+
+  public String getSubscriptionSalePriceMode() {
+    return subscriptionSalePriceMode;
+  }
+
+
+  public void setSubscriptionSalePriceMode(String subscriptionSalePriceMode) {
+    this.subscriptionSalePriceMode = subscriptionSalePriceMode;
+  }
+
+
 
   @Override
   public boolean equals(Object o) {
@@ -310,15 +310,15 @@ public class PriceListEntryPrice implements Serializable {
       return false;
     }
     PriceListEntryPrice priceListEntryPrice = (PriceListEntryPrice) o;
-    return Objects.equals(this.minQty, priceListEntryPrice.minQty) &&
+    return Objects.equals(this.listPrice, priceListEntryPrice.listPrice) &&
         Objects.equals(this.listPriceMode, priceListEntryPrice.listPriceMode) &&
-        Objects.equals(this.listPrice, priceListEntryPrice.listPrice) &&
-        Objects.equals(this.salePriceMode, priceListEntryPrice.salePriceMode) &&
+        Objects.equals(this.minQty, priceListEntryPrice.minQty) &&
         Objects.equals(this.salePrice, priceListEntryPrice.salePrice) &&
-        Objects.equals(this.subscriptionPriceMode, priceListEntryPrice.subscriptionPriceMode) &&
+        Objects.equals(this.salePriceMode, priceListEntryPrice.salePriceMode) &&
         Objects.equals(this.subscriptionPrice, priceListEntryPrice.subscriptionPrice) &&
-        Objects.equals(this.subscriptionSalePriceMode, priceListEntryPrice.subscriptionSalePriceMode) &&
-        Objects.equals(this.subscriptionSalePrice, priceListEntryPrice.subscriptionSalePrice);
+        Objects.equals(this.subscriptionPriceMode, priceListEntryPrice.subscriptionPriceMode) &&
+        Objects.equals(this.subscriptionSalePrice, priceListEntryPrice.subscriptionSalePrice) &&
+        Objects.equals(this.subscriptionSalePriceMode, priceListEntryPrice.subscriptionSalePriceMode);
   }
 
   private static <T> boolean equalsNullable(JsonNullable<T> a, JsonNullable<T> b) {
@@ -327,7 +327,7 @@ public class PriceListEntryPrice implements Serializable {
 
   @Override
   public int hashCode() {
-    return Objects.hash(minQty, listPriceMode, listPrice, salePriceMode, salePrice, subscriptionPriceMode, subscriptionPrice, subscriptionSalePriceMode, subscriptionSalePrice);
+    return Objects.hash(listPrice, listPriceMode, minQty, salePrice, salePriceMode, subscriptionPrice, subscriptionPriceMode, subscriptionSalePrice, subscriptionSalePriceMode);
   }
 
   private static <T> int hashCodeNullable(JsonNullable<T> a) {
@@ -341,15 +341,15 @@ public class PriceListEntryPrice implements Serializable {
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class PriceListEntryPrice {\n");
-    sb.append("    minQty: ").append(toIndentedString(minQty)).append("\n");
-    sb.append("    listPriceMode: ").append(toIndentedString(listPriceMode)).append("\n");
     sb.append("    listPrice: ").append(toIndentedString(listPrice)).append("\n");
-    sb.append("    salePriceMode: ").append(toIndentedString(salePriceMode)).append("\n");
+    sb.append("    listPriceMode: ").append(toIndentedString(listPriceMode)).append("\n");
+    sb.append("    minQty: ").append(toIndentedString(minQty)).append("\n");
     sb.append("    salePrice: ").append(toIndentedString(salePrice)).append("\n");
-    sb.append("    subscriptionPriceMode: ").append(toIndentedString(subscriptionPriceMode)).append("\n");
+    sb.append("    salePriceMode: ").append(toIndentedString(salePriceMode)).append("\n");
     sb.append("    subscriptionPrice: ").append(toIndentedString(subscriptionPrice)).append("\n");
-    sb.append("    subscriptionSalePriceMode: ").append(toIndentedString(subscriptionSalePriceMode)).append("\n");
+    sb.append("    subscriptionPriceMode: ").append(toIndentedString(subscriptionPriceMode)).append("\n");
     sb.append("    subscriptionSalePrice: ").append(toIndentedString(subscriptionSalePrice)).append("\n");
+    sb.append("    subscriptionSalePriceMode: ").append(toIndentedString(subscriptionSalePriceMode)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -372,15 +372,15 @@ public class PriceListEntryPrice implements Serializable {
   static {
     // a set of all properties/fields (JSON key names)
     openapiFields = new HashSet<String>();
-    openapiFields.add("minQty");
-    openapiFields.add("listPriceMode");
     openapiFields.add("listPrice");
-    openapiFields.add("salePriceMode");
+    openapiFields.add("listPriceMode");
+    openapiFields.add("minQty");
     openapiFields.add("salePrice");
-    openapiFields.add("subscriptionPriceMode");
+    openapiFields.add("salePriceMode");
     openapiFields.add("subscriptionPrice");
-    openapiFields.add("subscriptionSalePriceMode");
+    openapiFields.add("subscriptionPriceMode");
     openapiFields.add("subscriptionSalePrice");
+    openapiFields.add("subscriptionSalePriceMode");
 
     // a set of required properties/fields (JSON key names)
     openapiRequiredFields = new HashSet<String>();

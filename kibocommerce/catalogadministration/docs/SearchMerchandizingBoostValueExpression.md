@@ -7,9 +7,9 @@
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
-|**value** | **String** |  |  [optional] |
 |**boostNumber** | **Integer** |  |  [optional] |
 |**operator** | **String** |  |  [optional] |
+|**value** | **String** |  |  [optional] |
 
 
 ## Implemented Interfaces

@@ -4,17 +4,17 @@ All URIs are relative to *http://https:/api*
 
 | Method | HTTP request | Description |
 |------------- | ------------- | -------------|
-| [**renderOrderSummaryUsingGET**](RenditionApi.md#renderOrderSummaryUsingGET) | **GET** /commerce/fulfillment/orders/{orderId}/summary/html | Render Order Summary |
-| [**renderReturnReceiptUsingGET**](RenditionApi.md#renderReturnReceiptUsingGET) | **GET** /commerce/fulfillment/returns/{returnId}/receipt/html | Render Return Receipt |
+| [**renderOrderSummary1**](RenditionApi.md#renderOrderSummary1) | **GET** /commerce/fulfillment/orders/{orderId}/summary/html | renderOrderSummary |
+| [**renderReturnReceipt**](RenditionApi.md#renderReturnReceipt) | **GET** /commerce/fulfillment/returns/{returnId}/receipt/html | renderReturnReceipt |
 
 
-<a name="renderOrderSummaryUsingGET"></a>
-# **renderOrderSummaryUsingGET**
-> EntityModelOfstring renderOrderSummaryUsingGET(orderId)
+<a name="renderOrderSummary1"></a>
+# **renderOrderSummary1**
+> EntityModelOfRenderedContent renderOrderSummary1(orderId)
 
-Render Order Summary
+renderOrderSummary
 
-Render order summary in HTML format for printing
+Render an order summary in HTML.
 
 ### Example
 ```java
@@ -22,7 +22,6 @@ Render order summary in HTML format for printing
 import com.kibocommerce.sdk.fulfillment.ApiClient;
 import com.kibocommerce.sdk.fulfillment.ApiException;
 import com.kibocommerce.sdk.fulfillment.Configuration;
-import com.kibocommerce.sdk.fulfillment.auth.*;
 import com.kibocommerce.sdk.fulfillment.models.*;
 import com.kibocommerce.sdk.fulfillment.api.RenditionApi;
 
@@ -30,22 +29,14 @@ public class Example {
   public static void main(String[] args) {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
     defaultClient.setBasePath("http://https:/api");
-    
-    // Configure HTTP bearer authorization: bearerAuth
-    HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
-    bearerAuth.setBearerToken("BEARER TOKEN");
-
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
 
     RenditionApi apiInstance = new RenditionApi(defaultClient);
     String orderId = "orderId_example"; // String | orderId
     try {
-      EntityModelOfstring result = apiInstance.renderOrderSummaryUsingGET(orderId);
+      EntityModelOfRenderedContent result = apiInstance.renderOrderSummary1(orderId);
       System.out.println(result);
     } catch (ApiException e) {
-      System.err.println("Exception when calling RenditionApi#renderOrderSummaryUsingGET");
+      System.err.println("Exception when calling RenditionApi#renderOrderSummary1");
       System.err.println("Status code: " + e.getCode());
       System.err.println("Reason: " + e.getResponseBody());
       System.err.println("Response headers: " + e.getResponseHeaders());
@@ -63,11 +54,11 @@ public class Example {
 
 ### Return type
 
-[**EntityModelOfstring**](EntityModelOfstring.md)
+[**EntityModelOfRenderedContent**](EntityModelOfRenderedContent.md)
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth), [clientOauth2](../README.md#clientOauth2)
+No authorization required
 
 ### HTTP request headers
 
@@ -82,13 +73,13 @@ public class Example {
 | **403** | Forbidden |  -  |
 | **404** | Not Found |  -  |
 
-<a name="renderReturnReceiptUsingGET"></a>
-# **renderReturnReceiptUsingGET**
-> EntityModelOfstring renderReturnReceiptUsingGET(returnId)
+<a name="renderReturnReceipt"></a>
+# **renderReturnReceipt**
+> EntityModelOfRenderedContent renderReturnReceipt(returnId)
 
-Render Return Receipt
+renderReturnReceipt
 
-Render return receipt in HTML format for printing
+Render a return receipt in HTML.
 
 ### Example
 ```java
@@ -96,7 +87,6 @@ Render return receipt in HTML format for printing
 import com.kibocommerce.sdk.fulfillment.ApiClient;
 import com.kibocommerce.sdk.fulfillment.ApiException;
 import com.kibocommerce.sdk.fulfillment.Configuration;
-import com.kibocommerce.sdk.fulfillment.auth.*;
 import com.kibocommerce.sdk.fulfillment.models.*;
 import com.kibocommerce.sdk.fulfillment.api.RenditionApi;
 
@@ -104,22 +94,14 @@ public class Example {
   public static void main(String[] args) {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
     defaultClient.setBasePath("http://https:/api");
-    
-    // Configure HTTP bearer authorization: bearerAuth
-    HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
-    bearerAuth.setBearerToken("BEARER TOKEN");
-
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
 
     RenditionApi apiInstance = new RenditionApi(defaultClient);
     String returnId = "returnId_example"; // String | returnId
     try {
-      EntityModelOfstring result = apiInstance.renderReturnReceiptUsingGET(returnId);
+      EntityModelOfRenderedContent result = apiInstance.renderReturnReceipt(returnId);
       System.out.println(result);
     } catch (ApiException e) {
-      System.err.println("Exception when calling RenditionApi#renderReturnReceiptUsingGET");
+      System.err.println("Exception when calling RenditionApi#renderReturnReceipt");
       System.err.println("Status code: " + e.getCode());
       System.err.println("Reason: " + e.getResponseBody());
       System.err.println("Response headers: " + e.getResponseHeaders());
@@ -137,11 +119,11 @@ public class Example {
 
 ### Return type
 
-[**EntityModelOfstring**](EntityModelOfstring.md)
+[**EntityModelOfRenderedContent**](EntityModelOfRenderedContent.md)
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth), [clientOauth2](../README.md#clientOauth2)
+No authorization required
 
 ### HTTP request headers
 

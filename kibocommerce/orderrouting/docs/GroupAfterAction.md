@@ -10,14 +10,15 @@
 |**actionID** | **Integer** |  |  [optional] |
 |**created** | **OffsetDateTime** |  |  [optional] |
 |**creatorUsername** | **String** |  |  [optional] |
-|**environmentID** | **Integer** |  |  [optional] |
+|**environmentID** | **Integer** |  |  |
 |**failoverAction** | [**FailoverActionEnum**](#FailoverActionEnum) |  |  [optional] |
 |**name** | **String** |  |  [optional] |
 |**pathString** | **String** |  |  [optional] |
 |**persisted** | **Boolean** |  |  [optional] |
 |**restartAttempt** | [**RestartAttemptEnum**](#RestartAttemptEnum) |  |  [optional] |
-|**siteID** | **Integer** |  |  [optional] |
-|**tenantID** | **Integer** |  |  [optional] |
+|**siteID** | **Integer** |  |  |
+|**suggestionEventListeners** | **Set&lt;Object&gt;** |  |  [optional] |
+|**tenantID** | **Integer** |  |  |
 |**updated** | **OffsetDateTime** |  |  [optional] |
 |**updaterUsername** | **String** |  |  [optional] |
 |**userContext** | [**UserContextInformation**](UserContextInformation.md) |  |  [optional] |

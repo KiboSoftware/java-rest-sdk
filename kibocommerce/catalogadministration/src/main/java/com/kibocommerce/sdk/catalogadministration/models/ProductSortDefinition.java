@@ -1,8 +1,8 @@
 /*
  * Kibo Catalog Admin Services
- * OpenAPI Spec for Kibo Catalog Admin Services
+ * <div id=\"overview_CATALOG_ADMIN\">             <h2>CATALOG ADMINISTRATION</h2>             <p>The Catalog Administration APIs are a collection of resources for configuring the catalogs and products offered to your shoppers, including                 discounts and coupon sets, faceting, price lists, and different types or variations of products. See the                 <a href=\"/concept-guides/catalog\">Catalog user guides</a>                 for information about the related features in the Unified Commerce Admin.</p>             <p>Use the <strong>Attributes</strong> resource to manage localization and attribute configurations for your catalogs. This current version of the Attributes API includes localizedContent to                 support <a href=\"/pages/catalog-structure#multi-locale-catalogs\">multi-locale catalogs</a>, which was not present in the legacy API model. If                 you were a client prior to May 2024 and have upgraded your implementation to support this feature,                 you can still access attribute data that has not yet been rewritten to the new model by providing                 an x-api-version header set to \"1\". </p>             <p>Use the <strong>Categories</strong> resource to organize products and control where they appear on the storefront. Create                 and maintain a hierarchy of categories and subcategories where the site will store properties. This current version of the Categories API includes localizedContent to                 support <a href=\"/pages/catalog-structure#multi-locale-catalogs\">multi-locale catalogs</a>, which was not present in the legacy API model. If                 you were a client prior to May 2024 and have upgraded your implementation to support this feature,                 you can still access category data that has not yet been rewritten to the new model by providing                 an x-api-version header set to \"1\". </p>             <p>Use the <strong>Coupon Sets</strong> resource to view and create coupon sets. You can use coupon sets to group multiple                 coupon codes together and associate them with one or more discounts.</p>             <p>Use the <strong>Currency</strong> resource to manage the currency localization rules and exchange rates for any of the                 currencies that are supported for placing orders in.</p>             <p>Use the <strong>Discounts</strong> and <strong>Discount Settings</strong> resources to define and manage discounts to apply to products, product categories, or                 orders. This current version of the Discounts API includes localizedContent to                 support <a href=\"/pages/catalog-structure#multi-locale-catalogs\">multi-locale catalogs</a>, which was not present in the legacy Products API model. If                 you were a client prior to May 2024 and have upgraded your implementation to support this feature,                 you can still access discount data that has not yet been rewritten to the new model by providing                 an x-api-version header set to \"1\". </p>             <p>Use the <strong>Facets</strong> resource to manage the facets shoppers use to filter product display results on a                 storefront. Facets can include categories, product attributes, or prices, and use either a range of                 values or discrete values.</p>             <p>Use the <strong>Master Catalog</strong> resource to view details of the master catalogs associated with a tenant and to                 manage the product publishing mode for each master catalog.</p>             <p>Use the <strong>Price Lists</strong> resources to view and create price lists. You can use price lists to override the                 catalog pricing of products for specific customer segments and/or sites.</p>             <p>Use the <strong>Products</strong>, <strong>Product Types/Extras/Options/Properties</strong>, and <strong>Product Sort Definitions</strong> resources to create new product definitions in the master catalog and determine which                 catalogs will feature products. This current version of the Products API includes localizedContent to                 support <a href=\"/pages/catalog-structure#multi-locale-catalogs\">multi-locale catalogs</a>, which was not present in the legacy Products API model. If                 you were a client prior to May 2024 and have upgraded your implementation to support this feature,                 you can still access product data that has not yet been rewritten to the new model by providing                 an x-api-version header set to \"1\".</p>             <p>Use the <strong>Publishing</strong> resource to publish pending product updates together as part of a set.</p>             <p>Use the <strong>Search</strong> resource to manage all settings and options for providing product search on your site, as                 well as search tuning rules.</p>         </div>
  *
- * The version of the OpenAPI document: 1.0.0
+ * The version of the OpenAPI document: v1
  * 
  *
  * NOTE: This class is auto generated by OpenAPI Generator (https://openapi-generator.tech).
@@ -54,36 +54,16 @@ import java.util.Set;
 import com.kibocommerce.sdk.common.JSON;
 
 /**
- * Defines a default sort for a list of products and allows some products to be  boosted to the top or pinned ot a specific position, or buried at the bottom of the  list.  Only 10 items can be boosted or pinned and up to
+ * Defines a default sort for a list of products and allows some products to be boosted to the top or pinned ot a specific position, or buried at the bottom of the list.  Only 10 items can be boosted or pinned and up to
  */
-@ApiModel(description = "Defines a default sort for a list of products and allows some products to be  boosted to the top or pinned ot a specific position, or buried at the bottom of the  list.  Only 10 items can be boosted or pinned and up to")
+@ApiModel(description = "Defines a default sort for a list of products and allows some products to be boosted to the top or pinned ot a specific position, or buried at the bottom of the list.  Only 10 items can be boosted or pinned and up to")
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
 public class ProductSortDefinition implements Serializable {
   private static final long serialVersionUID = 1L;
 
-  public static final String SERIALIZED_NAME_PRODUCT_SORT_DEFINITION_ID = "productSortDefinitionId";
-  @SerializedName(SERIALIZED_NAME_PRODUCT_SORT_DEFINITION_ID)
-  private Integer productSortDefinitionId;
-
-  public static final String SERIALIZED_NAME_CATEGORY_ID = "categoryId";
-  @SerializedName(SERIALIZED_NAME_CATEGORY_ID)
-  private Integer categoryId;
-
-  public static final String SERIALIZED_NAME_NAME = "name";
-  @SerializedName(SERIALIZED_NAME_NAME)
-  private String name;
-
-  public static final String SERIALIZED_NAME_START_DATE = "startDate";
-  @SerializedName(SERIALIZED_NAME_START_DATE)
-  private OffsetDateTime startDate;
-
-  public static final String SERIALIZED_NAME_END_DATE = "endDate";
-  @SerializedName(SERIALIZED_NAME_END_DATE)
-  private OffsetDateTime endDate;
-
-  public static final String SERIALIZED_NAME_SORT_EXPRESSIONS = "sortExpressions";
-  @SerializedName(SERIALIZED_NAME_SORT_EXPRESSIONS)
-  private List<ProductSortExpression> sortExpressions = new ArrayList<>();
+  public static final String SERIALIZED_NAME_AUDIT_INFO = "auditInfo";
+  @SerializedName(SERIALIZED_NAME_AUDIT_INFO)
+  private AdminUserAuditInfo auditInfo;
 
   public static final String SERIALIZED_NAME_BOOSTED = "boosted";
   @SerializedName(SERIALIZED_NAME_BOOSTED)
@@ -93,153 +73,53 @@ public class ProductSortDefinition implements Serializable {
   @SerializedName(SERIALIZED_NAME_BURIED)
   private List<ProductSortOverride> buried = null;
 
-  public static final String SERIALIZED_NAME_AUDIT_INFO = "auditInfo";
-  @SerializedName(SERIALIZED_NAME_AUDIT_INFO)
-  private AdminUserAuditInfo auditInfo;
+  public static final String SERIALIZED_NAME_CATEGORY_ID = "categoryId";
+  @SerializedName(SERIALIZED_NAME_CATEGORY_ID)
+  private Integer categoryId;
+
+  public static final String SERIALIZED_NAME_END_DATE = "endDate";
+  @SerializedName(SERIALIZED_NAME_END_DATE)
+  private OffsetDateTime endDate;
+
+  public static final String SERIALIZED_NAME_NAME = "name";
+  @SerializedName(SERIALIZED_NAME_NAME)
+  private String name;
+
+  public static final String SERIALIZED_NAME_PRODUCT_SORT_DEFINITION_ID = "productSortDefinitionId";
+  @SerializedName(SERIALIZED_NAME_PRODUCT_SORT_DEFINITION_ID)
+  private Integer productSortDefinitionId;
+
+  public static final String SERIALIZED_NAME_SORT_EXPRESSIONS = "sortExpressions";
+  @SerializedName(SERIALIZED_NAME_SORT_EXPRESSIONS)
+  private List<ProductSortExpression> sortExpressions = new ArrayList<>();
+
+  public static final String SERIALIZED_NAME_START_DATE = "startDate";
+  @SerializedName(SERIALIZED_NAME_START_DATE)
+  private OffsetDateTime startDate;
 
   public ProductSortDefinition() {
   }
 
-  public ProductSortDefinition productSortDefinitionId(Integer productSortDefinitionId) {
+  public ProductSortDefinition auditInfo(AdminUserAuditInfo auditInfo) {
     
-    this.productSortDefinitionId = productSortDefinitionId;
+    this.auditInfo = auditInfo;
     return this;
   }
 
    /**
-   * System or user provided ID for the ProductSortDefinition
-   * @return productSortDefinitionId
-  **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(value = "System or user provided ID for the ProductSortDefinition")
-
-  public Integer getProductSortDefinitionId() {
-    return productSortDefinitionId;
-  }
-
-
-  public void setProductSortDefinitionId(Integer productSortDefinitionId) {
-    this.productSortDefinitionId = productSortDefinitionId;
-  }
-
-
-  public ProductSortDefinition categoryId(Integer categoryId) {
-    
-    this.categoryId = categoryId;
-    return this;
-  }
-
-   /**
-   * 
-   * @return categoryId
+   * Get auditInfo
+   * @return auditInfo
   **/
   @javax.annotation.Nullable
   @ApiModelProperty(value = "")
 
-  public Integer getCategoryId() {
-    return categoryId;
+  public AdminUserAuditInfo getAuditInfo() {
+    return auditInfo;
   }
 
 
-  public void setCategoryId(Integer categoryId) {
-    this.categoryId = categoryId;
-  }
-
-
-  public ProductSortDefinition name(String name) {
-    
-    this.name = name;
-    return this;
-  }
-
-   /**
-   * Short Name for the sort definition. Required.
-   * @return name
-  **/
-  @javax.annotation.Nonnull
-  @ApiModelProperty(required = true, value = "Short Name for the sort definition. Required.")
-
-  public String getName() {
-    return name;
-  }
-
-
-  public void setName(String name) {
-    this.name = name;
-  }
-
-
-  public ProductSortDefinition startDate(OffsetDateTime startDate) {
-    
-    this.startDate = startDate;
-    return this;
-  }
-
-   /**
-   * The Start Date when the sort definition becomes active
-   * @return startDate
-  **/
-  @javax.annotation.Nonnull
-  @ApiModelProperty(required = true, value = "The Start Date when the sort definition becomes active")
-
-  public OffsetDateTime getStartDate() {
-    return startDate;
-  }
-
-
-  public void setStartDate(OffsetDateTime startDate) {
-    this.startDate = startDate;
-  }
-
-
-  public ProductSortDefinition endDate(OffsetDateTime endDate) {
-    
-    this.endDate = endDate;
-    return this;
-  }
-
-   /**
-   * Optional end date for a product sort definition
-   * @return endDate
-  **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(value = "Optional end date for a product sort definition")
-
-  public OffsetDateTime getEndDate() {
-    return endDate;
-  }
-
-
-  public void setEndDate(OffsetDateTime endDate) {
-    this.endDate = endDate;
-  }
-
-
-  public ProductSortDefinition sortExpressions(List<ProductSortExpression> sortExpressions) {
-    
-    this.sortExpressions = sortExpressions;
-    return this;
-  }
-
-  public ProductSortDefinition addSortExpressionsItem(ProductSortExpression sortExpressionsItem) {
-    this.sortExpressions.add(sortExpressionsItem);
-    return this;
-  }
-
-   /**
-   * Sort expression to apply  Max two expressions
-   * @return sortExpressions
-  **/
-  @javax.annotation.Nonnull
-  @ApiModelProperty(required = true, value = "Sort expression to apply  Max two expressions")
-
-  public List<ProductSortExpression> getSortExpressions() {
-    return sortExpressions;
-  }
-
-
-  public void setSortExpressions(List<ProductSortExpression> sortExpressions) {
-    this.sortExpressions = sortExpressions;
+  public void setAuditInfo(AdminUserAuditInfo auditInfo) {
+    this.auditInfo = auditInfo;
   }
 
 
@@ -305,26 +185,146 @@ public class ProductSortDefinition implements Serializable {
   }
 
 
-  public ProductSortDefinition auditInfo(AdminUserAuditInfo auditInfo) {
+  public ProductSortDefinition categoryId(Integer categoryId) {
     
-    this.auditInfo = auditInfo;
+    this.categoryId = categoryId;
     return this;
   }
 
    /**
-   * Get auditInfo
-   * @return auditInfo
+   * 
+   * @return categoryId
   **/
   @javax.annotation.Nullable
   @ApiModelProperty(value = "")
 
-  public AdminUserAuditInfo getAuditInfo() {
-    return auditInfo;
+  public Integer getCategoryId() {
+    return categoryId;
   }
 
 
-  public void setAuditInfo(AdminUserAuditInfo auditInfo) {
-    this.auditInfo = auditInfo;
+  public void setCategoryId(Integer categoryId) {
+    this.categoryId = categoryId;
+  }
+
+
+  public ProductSortDefinition endDate(OffsetDateTime endDate) {
+    
+    this.endDate = endDate;
+    return this;
+  }
+
+   /**
+   * Optional end date for a product sort definition
+   * @return endDate
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "Optional end date for a product sort definition")
+
+  public OffsetDateTime getEndDate() {
+    return endDate;
+  }
+
+
+  public void setEndDate(OffsetDateTime endDate) {
+    this.endDate = endDate;
+  }
+
+
+  public ProductSortDefinition name(String name) {
+    
+    this.name = name;
+    return this;
+  }
+
+   /**
+   * Short Name for the sort definition. Required.
+   * @return name
+  **/
+  @javax.annotation.Nonnull
+  @ApiModelProperty(required = true, value = "Short Name for the sort definition. Required.")
+
+  public String getName() {
+    return name;
+  }
+
+
+  public void setName(String name) {
+    this.name = name;
+  }
+
+
+  public ProductSortDefinition productSortDefinitionId(Integer productSortDefinitionId) {
+    
+    this.productSortDefinitionId = productSortDefinitionId;
+    return this;
+  }
+
+   /**
+   * System or user provided ID for the ProductSortDefinition
+   * @return productSortDefinitionId
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "System or user provided ID for the ProductSortDefinition")
+
+  public Integer getProductSortDefinitionId() {
+    return productSortDefinitionId;
+  }
+
+
+  public void setProductSortDefinitionId(Integer productSortDefinitionId) {
+    this.productSortDefinitionId = productSortDefinitionId;
+  }
+
+
+  public ProductSortDefinition sortExpressions(List<ProductSortExpression> sortExpressions) {
+    
+    this.sortExpressions = sortExpressions;
+    return this;
+  }
+
+  public ProductSortDefinition addSortExpressionsItem(ProductSortExpression sortExpressionsItem) {
+    this.sortExpressions.add(sortExpressionsItem);
+    return this;
+  }
+
+   /**
+   * Sort expression to apply Max two expressions
+   * @return sortExpressions
+  **/
+  @javax.annotation.Nonnull
+  @ApiModelProperty(required = true, value = "Sort expression to apply Max two expressions")
+
+  public List<ProductSortExpression> getSortExpressions() {
+    return sortExpressions;
+  }
+
+
+  public void setSortExpressions(List<ProductSortExpression> sortExpressions) {
+    this.sortExpressions = sortExpressions;
+  }
+
+
+  public ProductSortDefinition startDate(OffsetDateTime startDate) {
+    
+    this.startDate = startDate;
+    return this;
+  }
+
+   /**
+   * The Start Date when the sort definition becomes active
+   * @return startDate
+  **/
+  @javax.annotation.Nonnull
+  @ApiModelProperty(required = true, value = "The Start Date when the sort definition becomes active")
+
+  public OffsetDateTime getStartDate() {
+    return startDate;
+  }
+
+
+  public void setStartDate(OffsetDateTime startDate) {
+    this.startDate = startDate;
   }
 
 
@@ -338,15 +338,15 @@ public class ProductSortDefinition implements Serializable {
       return false;
     }
     ProductSortDefinition productSortDefinition = (ProductSortDefinition) o;
-    return Objects.equals(this.productSortDefinitionId, productSortDefinition.productSortDefinitionId) &&
-        Objects.equals(this.categoryId, productSortDefinition.categoryId) &&
-        Objects.equals(this.name, productSortDefinition.name) &&
-        Objects.equals(this.startDate, productSortDefinition.startDate) &&
-        Objects.equals(this.endDate, productSortDefinition.endDate) &&
-        Objects.equals(this.sortExpressions, productSortDefinition.sortExpressions) &&
+    return Objects.equals(this.auditInfo, productSortDefinition.auditInfo) &&
         Objects.equals(this.boosted, productSortDefinition.boosted) &&
         Objects.equals(this.buried, productSortDefinition.buried) &&
-        Objects.equals(this.auditInfo, productSortDefinition.auditInfo);
+        Objects.equals(this.categoryId, productSortDefinition.categoryId) &&
+        Objects.equals(this.endDate, productSortDefinition.endDate) &&
+        Objects.equals(this.name, productSortDefinition.name) &&
+        Objects.equals(this.productSortDefinitionId, productSortDefinition.productSortDefinitionId) &&
+        Objects.equals(this.sortExpressions, productSortDefinition.sortExpressions) &&
+        Objects.equals(this.startDate, productSortDefinition.startDate);
   }
 
   private static <T> boolean equalsNullable(JsonNullable<T> a, JsonNullable<T> b) {
@@ -355,7 +355,7 @@ public class ProductSortDefinition implements Serializable {
 
   @Override
   public int hashCode() {
-    return Objects.hash(productSortDefinitionId, categoryId, name, startDate, endDate, sortExpressions, boosted, buried, auditInfo);
+    return Objects.hash(auditInfo, boosted, buried, categoryId, endDate, name, productSortDefinitionId, sortExpressions, startDate);
   }
 
   private static <T> int hashCodeNullable(JsonNullable<T> a) {
@@ -369,15 +369,15 @@ public class ProductSortDefinition implements Serializable {
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class ProductSortDefinition {\n");
-    sb.append("    productSortDefinitionId: ").append(toIndentedString(productSortDefinitionId)).append("\n");
-    sb.append("    categoryId: ").append(toIndentedString(categoryId)).append("\n");
-    sb.append("    name: ").append(toIndentedString(name)).append("\n");
-    sb.append("    startDate: ").append(toIndentedString(startDate)).append("\n");
-    sb.append("    endDate: ").append(toIndentedString(endDate)).append("\n");
-    sb.append("    sortExpressions: ").append(toIndentedString(sortExpressions)).append("\n");
+    sb.append("    auditInfo: ").append(toIndentedString(auditInfo)).append("\n");
     sb.append("    boosted: ").append(toIndentedString(boosted)).append("\n");
     sb.append("    buried: ").append(toIndentedString(buried)).append("\n");
-    sb.append("    auditInfo: ").append(toIndentedString(auditInfo)).append("\n");
+    sb.append("    categoryId: ").append(toIndentedString(categoryId)).append("\n");
+    sb.append("    endDate: ").append(toIndentedString(endDate)).append("\n");
+    sb.append("    name: ").append(toIndentedString(name)).append("\n");
+    sb.append("    productSortDefinitionId: ").append(toIndentedString(productSortDefinitionId)).append("\n");
+    sb.append("    sortExpressions: ").append(toIndentedString(sortExpressions)).append("\n");
+    sb.append("    startDate: ").append(toIndentedString(startDate)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -400,21 +400,21 @@ public class ProductSortDefinition implements Serializable {
   static {
     // a set of all properties/fields (JSON key names)
     openapiFields = new HashSet<String>();
-    openapiFields.add("productSortDefinitionId");
-    openapiFields.add("categoryId");
-    openapiFields.add("name");
-    openapiFields.add("startDate");
-    openapiFields.add("endDate");
-    openapiFields.add("sortExpressions");
+    openapiFields.add("auditInfo");
     openapiFields.add("boosted");
     openapiFields.add("buried");
-    openapiFields.add("auditInfo");
+    openapiFields.add("categoryId");
+    openapiFields.add("endDate");
+    openapiFields.add("name");
+    openapiFields.add("productSortDefinitionId");
+    openapiFields.add("sortExpressions");
+    openapiFields.add("startDate");
 
     // a set of required properties/fields (JSON key names)
     openapiRequiredFields = new HashSet<String>();
     openapiRequiredFields.add("name");
-    openapiRequiredFields.add("startDate");
     openapiRequiredFields.add("sortExpressions");
+    openapiRequiredFields.add("startDate");
   }
 
  /**
@@ -445,19 +445,10 @@ public class ProductSortDefinition implements Serializable {
           throw new IllegalArgumentException(String.format("The required field `%s` is not found in the JSON string: %s", requiredField, jsonObj.toString()));
         }
       }
-      if (!jsonObj.get("name").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `name` to be a primitive type in the JSON string but got `%s`", jsonObj.get("name").toString()));
+      // validate the optional field `auditInfo`
+      if (jsonObj.get("auditInfo") != null && !jsonObj.get("auditInfo").isJsonNull()) {
+        AdminUserAuditInfo.validateJsonObject(jsonObj.getAsJsonObject("auditInfo"));
       }
-      // ensure the json data is an array
-      if (!jsonObj.get("sortExpressions").isJsonArray()) {
-        throw new IllegalArgumentException(String.format("Expected the field `sortExpressions` to be an array in the JSON string but got `%s`", jsonObj.get("sortExpressions").toString()));
-      }
-
-      JsonArray jsonArraysortExpressions = jsonObj.getAsJsonArray("sortExpressions");
-      // validate the required field `sortExpressions` (array)
-      for (int i = 0; i < jsonArraysortExpressions.size(); i++) {
-        ProductSortExpression.validateJsonObject(jsonArraysortExpressions.get(i).getAsJsonObject());
-      };
       if (jsonObj.get("boosted") != null && !jsonObj.get("boosted").isJsonNull()) {
         JsonArray jsonArrayboosted = jsonObj.getAsJsonArray("boosted");
         if (jsonArrayboosted != null) {
@@ -486,10 +477,19 @@ public class ProductSortDefinition implements Serializable {
           };
         }
       }
-      // validate the optional field `auditInfo`
-      if (jsonObj.get("auditInfo") != null && !jsonObj.get("auditInfo").isJsonNull()) {
-        AdminUserAuditInfo.validateJsonObject(jsonObj.getAsJsonObject("auditInfo"));
+      if (!jsonObj.get("name").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `name` to be a primitive type in the JSON string but got `%s`", jsonObj.get("name").toString()));
       }
+      // ensure the json data is an array
+      if (!jsonObj.get("sortExpressions").isJsonArray()) {
+        throw new IllegalArgumentException(String.format("Expected the field `sortExpressions` to be an array in the JSON string but got `%s`", jsonObj.get("sortExpressions").toString()));
+      }
+
+      JsonArray jsonArraysortExpressions = jsonObj.getAsJsonArray("sortExpressions");
+      // validate the required field `sortExpressions` (array)
+      for (int i = 0; i < jsonArraysortExpressions.size(); i++) {
+        ProductSortExpression.validateJsonObject(jsonArraysortExpressions.get(i).getAsJsonObject());
+      };
   }
 
   public static class CustomTypeAdapterFactory implements TypeAdapterFactory {

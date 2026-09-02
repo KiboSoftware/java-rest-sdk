@@ -7,12 +7,12 @@
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
-|**firstName** | **String** |  |  [optional] |
-|**middleNameOrInitial** | **String** |  |  [optional] |
-|**lastNameOrSurname** | **String** |  |  [optional] |
 |**companyOrOrganization** | **String** |  |  [optional] |
-|**phoneNumber** | **String** |  |  [optional] |
 |**email** | **String** |  |  [optional] |
+|**firstName** | **String** |  |  [optional] |
+|**lastNameOrSurname** | **String** |  |  [optional] |
+|**middleNameOrInitial** | **String** |  |  [optional] |
+|**phoneNumber** | **String** |  |  [optional] |
 
 
 ## Implemented Interfaces

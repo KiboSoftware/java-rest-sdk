@@ -9,7 +9,7 @@ All URIs are relative to *http://https:/api*
 
 <a name="updateTenantSiloConfig"></a>
 # **updateTenantSiloConfig**
-> TenantSiloConfigModel updateTenantSiloConfig(xVolTenant, updateTenantSiloConfigRequest)
+> TenantSiloConfigModel updateTenantSiloConfig(updateTenantSiloConfigRequest)
 
 Update Tenant Silo Config
 
@@ -21,7 +21,6 @@ Updates tenant silo config
 import com.kibocommerce.sdk.inventory.ApiClient;
 import com.kibocommerce.sdk.inventory.ApiException;
 import com.kibocommerce.sdk.inventory.Configuration;
-import com.kibocommerce.sdk.inventory.auth.*;
 import com.kibocommerce.sdk.inventory.models.*;
 import com.kibocommerce.sdk.inventory.api.InventorySiloApi;
 
@@ -29,20 +28,11 @@ public class Example {
   public static void main(String[] args) {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
     defaultClient.setBasePath("http://https:/api");
-    
-    // Configure HTTP bearer authorization: bearerAuth
-    HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
-    bearerAuth.setBearerToken("BEARER TOKEN");
-
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
 
     InventorySiloApi apiInstance = new InventorySiloApi(defaultClient);
-    Integer xVolTenant = 56; // Integer | Tenant ID
     UpdateTenantSiloConfigRequest updateTenantSiloConfigRequest = new UpdateTenantSiloConfigRequest(); // UpdateTenantSiloConfigRequest | Request to create tenant silo config
     try {
-      TenantSiloConfigModel result = apiInstance.updateTenantSiloConfig(xVolTenant, updateTenantSiloConfigRequest);
+      TenantSiloConfigModel result = apiInstance.updateTenantSiloConfig(updateTenantSiloConfigRequest);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling InventorySiloApi#updateTenantSiloConfig");
@@ -59,7 +49,6 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **xVolTenant** | **Integer**| Tenant ID | |
 | **updateTenantSiloConfigRequest** | [**UpdateTenantSiloConfigRequest**](UpdateTenantSiloConfigRequest.md)| Request to create tenant silo config | |
 
 ### Return type
@@ -68,7 +57,7 @@ public class Example {
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth), [clientOauth2](../README.md#clientOauth2)
+No authorization required
 
 ### HTTP request headers
 

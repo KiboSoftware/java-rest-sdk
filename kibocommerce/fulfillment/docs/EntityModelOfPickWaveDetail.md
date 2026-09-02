@@ -8,7 +8,7 @@
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
 |**links** | [**Links**](Links.md) |  |  [optional] |
-|**auditInfo** | [**AuditInfo0**](AuditInfo0.md) |  |  [optional] |
+|**auditInfo** | [**FulfillmentAPIAuditInfo**](FulfillmentAPIAuditInfo.md) |  |  [optional] |
 |**contentGroups** | [**List&lt;ContentGroup&gt;**](ContentGroup.md) |  |  [optional] |
 |**fulfillmentLocationCode** | **String** |  |  [optional] |
 |**maxShipments** | **Integer** |  |  [optional] |
@@ -28,9 +28,9 @@
 
 | Name | Value |
 |---- | -----|
-| MULTIPLE | &quot;MULTIPLE&quot; |
 | NORMAL | &quot;NORMAL&quot; |
 | SINGLE | &quot;SINGLE&quot; |
+| MULTIPLE | &quot;MULTIPLE&quot; |
 
 
 
@@ -38,10 +38,10 @@
 
 | Name | Value |
 |---- | -----|
-| CLOSED | &quot;CLOSED&quot; |
 | ERROR | &quot;ERROR&quot; |
-| IN_PROGRESS | &quot;IN_PROGRESS&quot; |
 | PENDING | &quot;PENDING&quot; |
+| IN_PROGRESS | &quot;IN_PROGRESS&quot; |
+| CLOSED | &quot;CLOSED&quot; |
 | PENDING_RECOVERY | &quot;PENDING_RECOVERY&quot; |
 
 

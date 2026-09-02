@@ -1,7 +1,7 @@
 # common
 
 Kibo Tenant Service
-- API version: 1.0.0
+- API version: v1
 
 OpenAPI Spec for Kibo Tenant Service
 
@@ -39,7 +39,7 @@ Add this dependency to your project's POM:
 <dependency>
   <groupId>com.kibocommerce</groupId>
   <artifactId>common</artifactId>
-  <version>1.0.0</version>
+  <version>3.0.0</version>
   <scope>compile</scope>
 </dependency>
 ```
@@ -55,7 +55,7 @@ Add this dependency to your project's build file:
   }
 
   dependencies {
-     implementation "com.kibocommerce:common:1.0.0"
+     implementation "com.kibocommerce:common:3.0.0"
   }
 ```
 
@@ -69,7 +69,7 @@ mvn clean package
 
 Then manually install the following JARs:
 
-* `target/common-1.0.0.jar`
+* `target/common-3.0.0.jar`
 * `target/lib/*.jar`
 
 ## Getting Started
@@ -95,14 +95,11 @@ public class Example {
     HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
     bearerAuth.setBearerToken("BEARER TOKEN");
 
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
-
     TenantsApi apiInstance = new TenantsApi(defaultClient);
     Integer tenantId = 56; // Integer | 
+    String responseFields = "responseFields_example"; // String | limits which fields are returned in the response body
     try {
-      TenantTenant result = apiInstance.getTenant(tenantId);
+      Tenant result = apiInstance.getTenant(tenantId, responseFields);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling TenantsApi#getTenant");
@@ -128,11 +125,25 @@ Class | Method | HTTP request | Description
 ## Documentation for Models
 
  - [AdminUserMasterCatalog](docs/AdminUserMasterCatalog.md)
+ - [AdminUserMasterCatalogAllOf](docs/AdminUserMasterCatalogAllOf.md)
  - [BaseTenantEntity](docs/BaseTenantEntity.md)
+ - [BaseTenantEntityInternal](docs/BaseTenantEntityInternal.md)
+ - [BaseTenantEntityInternalAllOf](docs/BaseTenantEntityInternalAllOf.md)
  - [Catalog](docs/Catalog.md)
+ - [CatalogAllOf](docs/CatalogAllOf.md)
+ - [CatalogExtended](docs/CatalogExtended.md)
+ - [Domain](docs/Domain.md)
+ - [MasterCatalogExtended](docs/MasterCatalogExtended.md)
+ - [MasterCatalogExtendedAllOf](docs/MasterCatalogExtendedAllOf.md)
  - [Site](docs/Site.md)
+ - [SiteAllOf](docs/SiteAllOf.md)
+ - [SiteExtended](docs/SiteExtended.md)
+ - [SiteExtendedAllOf](docs/SiteExtendedAllOf.md)
+ - [Tenant](docs/Tenant.md)
+ - [TenantAllOf](docs/TenantAllOf.md)
  - [TenantAttribute](docs/TenantAttribute.md)
- - [TenantTenant](docs/TenantTenant.md)
+ - [TenantExtended](docs/TenantExtended.md)
+ - [TenantExtendedAllOf](docs/TenantExtendedAllOf.md)
 
 
 ## Documentation for Authorization

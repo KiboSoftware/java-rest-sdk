@@ -7,8 +7,7 @@
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
-|**productImageGroupId** | **String** |  |  |
-|**productImageGroupTags** | [**List&lt;CatalogAdminsProductImageGroupTag&gt;**](CatalogAdminsProductImageGroupTag.md) |  |  [optional] |
+|**productImageGroupId** | **Object** |  |  [optional] |
 
 
 ## Implemented Interfaces

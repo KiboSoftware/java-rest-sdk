@@ -1,0 +1,4314 @@
+openapi: 3.0.1
+info:
+  description: OpenAPI Spec for Kibo DropShip Service
+  title: Kibo DropShip Service
+  version: v1
+servers:
+- url: "https://{tenantPodHost}/api"
+security:
+- bearerAuth: []
+paths:
+  /commerce/dropship/invoice/{shipmentNumber}:
+    get:
+      description: Generates an EDI 810 Invoice for the specified shipment
+      operationId: getDropShipInvoice
+      parameters:
+      - description: The shipment number to generate EDI 810 for
+        explode: false
+        in: path
+        name: shipmentNumber
+        required: true
+        schema:
+          format: int32
+          type: integer
+        style: simple
+      - description: limits which fields are returned in the response body
+        explode: true
+        in: query
+        name: responseFields
+        required: false
+        schema:
+          type: string
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TransactionSet810'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/TransactionSet810'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/TransactionSet810'
+          description: OK
+      summary: Generates an EDI 810 Invoice for the specified shipment
+      tags:
+      - DropShip
+      x-accepts: application/json
+  /commerce/dropship/purchaseorder/{shipmentNumber}:
+    get:
+      description: "Generates an EDI 850 Purchase Order (returned as JSON) for the\
+        \ specified shipment, resolving the vendor, contracted pricing, and ship-to\
+        \ address from the shipment's fulfillment location. See the <a href=\"/developer-guides/dropship\"\
+        >Dropship Developer Guide</a> for the complete segment mapping, validation\
+        \ rules, and workflow."
+      operationId: getDropShipPurchaseOrder
+      parameters:
+      - description: The shipment number to generate EDI 850 for
+        explode: false
+        in: path
+        name: shipmentNumber
+        required: true
+        schema:
+          format: int32
+          type: integer
+        style: simple
+      - description: limits which fields are returned in the response body
+        explode: true
+        in: query
+        name: responseFields
+        required: false
+        schema:
+          type: string
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TransactionSet'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/TransactionSet'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/TransactionSet'
+          description: OK
+      summary: Retrieve EDI 850 Purchase Order
+      tags:
+      - DropShip
+      x-accepts: application/json
+  /commerce/dropship/translate/{shipmentNumber}:
+    get:
+      description: Translates a shipment into a lightweight response containing vendor
+        SKU mappings and contracted pricing per item. See the <a href="/developer-guides/dropship">Dropship
+        Developer Guide</a> for field details and behavior.
+      operationId: translateDropshipShipment
+      parameters:
+      - description: The shipment number to translate
+        explode: false
+        in: path
+        name: shipmentNumber
+        required: true
+        schema:
+          format: int32
+          type: integer
+        style: simple
+      - description: limits which fields are returned in the response body
+        explode: true
+        in: query
+        name: responseFields
+        required: false
+        schema:
+          type: string
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TranslatedShipment'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/TranslatedShipment'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/TranslatedShipment'
+          description: OK
+      summary: Translate Shipment
+      tags:
+      - DropShip
+      x-accepts: application/json
+components:
+  schemas:
+    AdditionalItemData:
+      description: Additional Item Data (IT3) - Shipped quantity information
+      example:
+        unitOrBasisForMeasurementCode: unitOrBasisForMeasurementCode
+        numberOfUnitsShipped: numberOfUnitsShipped
+      properties:
+        numberOfUnitsShipped:
+          nullable: true
+          type: string
+        unitOrBasisForMeasurementCode:
+          nullable: true
+          type: string
+      type: object
+    AdditionalNameInformation:
+      description: Additional Name Information (N2) - Additional name information
+      example:
+        name: name
+      properties:
+        name:
+          description: Name
+          nullable: true
+          type: string
+      type: object
+    AdministrativeCommunicationsContact:
+      description: Administrative Communications Contact (PER) - Contact information
+        (REUSABLE)
+      example:
+        communicationNumberQualifier: communicationNumberQualifier
+        communicationNumber1: communicationNumber1
+        communicationNumber2: communicationNumber2
+        name: name
+        communicationNumber: communicationNumber
+        communicationNumberQualifier1: communicationNumberQualifier1
+        contactFunctionCode: contactFunctionCode
+        communicationNumberQualifier2: communicationNumberQualifier2
+        contactInquiryReference: contactInquiryReference
+      properties:
+        communicationNumber:
+          description: Communication Number
+          nullable: true
+          type: string
+        communicationNumber1:
+          description: Communication Number 1
+          nullable: true
+          type: string
+        communicationNumber2:
+          description: Communication Number 2
+          nullable: true
+          type: string
+        communicationNumberQualifier:
+          description: Communication Number Qualifier
+          nullable: true
+          type: string
+        communicationNumberQualifier1:
+          description: Communication Number Qualifier 1
+          nullable: true
+          type: string
+        communicationNumberQualifier2:
+          description: Communication Number Qualifier 2
+          nullable: true
+          type: string
+        contactFunctionCode:
+          description: Contact Function Code
+          nullable: true
+          type: string
+        contactInquiryReference:
+          description: Contact Inquiry Reference
+          nullable: true
+          type: string
+        name:
+          description: Name
+          nullable: true
+          type: string
+      type: object
+    BaselineItemData:
+      description: Baseline Item Data (PO1) - Line item information for purchase order
+      example:
+        unitOrBasisForMeasurementCode: unitOrBasisForMeasurementCode
+        unitPrice: unitPrice
+        quantity: quantity
+        productServiceID: productServiceID
+        productServiceIDQualifier: productServiceIDQualifier
+        basisOfUnitPriceCode: basisOfUnitPriceCode
+        assignedIdentification: assignedIdentification
+        productServiceIDQualifier2: productServiceIDQualifier2
+        productServiceIDQualifier4: productServiceIDQualifier4
+        productServiceIDQualifier3: productServiceIDQualifier3
+        productServiceID2: productServiceID2
+        productServiceID4: productServiceID4
+        productServiceID3: productServiceID3
+      properties:
+        assignedIdentification:
+          description: Assigned Identification
+          nullable: true
+          type: string
+        basisOfUnitPriceCode:
+          description: Basis of Unit Price Code
+          nullable: true
+          type: string
+        productServiceID:
+          description: Product/Service ID
+          nullable: true
+          type: string
+        productServiceID2:
+          description: Product/Service ID 2
+          nullable: true
+          type: string
+        productServiceID3:
+          description: Product/Service ID 3
+          nullable: true
+          type: string
+        productServiceID4:
+          description: Product/Service ID 4
+          nullable: true
+          type: string
+        productServiceIDQualifier:
+          description: Product/Service ID Qualifier
+          nullable: true
+          type: string
+        productServiceIDQualifier2:
+          description: Product/Service ID Qualifier 2
+          nullable: true
+          type: string
+        productServiceIDQualifier3:
+          description: Product/Service ID Qualifier 3
+          nullable: true
+          type: string
+        productServiceIDQualifier4:
+          description: Product/Service ID Qualifier 4
+          nullable: true
+          type: string
+        quantity:
+          description: Quantity
+          nullable: true
+          type: string
+        unitOrBasisForMeasurementCode:
+          description: Unit or Basis for Measurement Code
+          nullable: true
+          type: string
+        unitPrice:
+          description: Unit Price
+          nullable: true
+          type: string
+      type: object
+    BaselineItemDataInvoice:
+      description: Baseline Item Data - Invoice (IT1) - Line item information for
+        invoice
+      example:
+        assignedIdentification: assignedIdentification
+        productServiceIDQualifier2: productServiceIDQualifier2
+        unitOrBasisForMeasurementCode: unitOrBasisForMeasurementCode
+        unitPrice: unitPrice
+        productServiceIDQualifier1: productServiceIDQualifier1
+        productServiceID2: productServiceID2
+        productServiceID1: productServiceID1
+        productServiceID: productServiceID
+        productServiceIDQualifier: productServiceIDQualifier
+        quantityInvoiced: quantityInvoiced
+        basisOfUnitPriceCode: basisOfUnitPriceCode
+      properties:
+        assignedIdentification:
+          nullable: true
+          type: string
+        basisOfUnitPriceCode:
+          nullable: true
+          type: string
+        productServiceID:
+          nullable: true
+          type: string
+        productServiceID1:
+          nullable: true
+          type: string
+        productServiceID2:
+          nullable: true
+          type: string
+        productServiceIDQualifier:
+          nullable: true
+          type: string
+        productServiceIDQualifier1:
+          nullable: true
+          type: string
+        productServiceIDQualifier2:
+          nullable: true
+          type: string
+        quantityInvoiced:
+          nullable: true
+          type: string
+        unitOrBasisForMeasurementCode:
+          nullable: true
+          type: string
+        unitPrice:
+          nullable: true
+          type: string
+      type: object
+    BeginningSegmentForInvoice:
+      description: Beginning Segment for Invoice (BIG) - Invoice header information
+      example:
+        date: date
+        purchaseOrderNumber: purchaseOrderNumber
+        invoiceNumber: invoiceNumber
+        transactionSetPurposeCode: transactionSetPurposeCode
+        date1: date1
+      properties:
+        date:
+          nullable: true
+          type: string
+        date1:
+          nullable: true
+          type: string
+        invoiceNumber:
+          nullable: true
+          type: string
+        purchaseOrderNumber:
+          nullable: true
+          type: string
+        transactionSetPurposeCode:
+          nullable: true
+          type: string
+      type: object
+    BeginningSegmentForPurchaseOrder:
+      description: Beginning Segment for Purchase Order (BEG) - Indicates the beginning
+        of a Purchase Order Transaction Set
+      example:
+        date: date
+        purchaseOrderNumber: purchaseOrderNumber
+        transactionSetPurposeCode: transactionSetPurposeCode
+        purchaseOrderTypeCode: purchaseOrderTypeCode
+      properties:
+        date:
+          description: Date (CCYYMMDD format)
+          nullable: true
+          type: string
+        purchaseOrderNumber:
+          description: Purchase Order Number
+          nullable: true
+          type: string
+        purchaseOrderTypeCode:
+          description: Purchase Order Type Code
+          nullable: true
+          type: string
+        transactionSetPurposeCode:
+          description: Transaction Set Purpose Code
+          nullable: true
+          type: string
+      type: object
+    CTP_Loop:
+      description: |-
+        CTP Loop - Pricing Information Loop
+        Contains pricing information and related segments
+      example:
+        pricingInformation:
+        - unitPrice: unitPrice
+          priceIdentifierCode: priceIdentifierCode
+          priceMultiplierQualifier: priceMultiplierQualifier
+          multiplier5: multiplier5
+          classOfTradeCode: classOfTradeCode
+        - unitPrice: unitPrice
+          priceIdentifierCode: priceIdentifierCode
+          priceMultiplierQualifier: priceMultiplierQualifier
+          multiplier5: multiplier5
+          classOfTradeCode: classOfTradeCode
+      properties:
+        pricingInformation:
+          description: |-
+            CTP - Pricing Information
+            To specify pricing information
+          items:
+            $ref: '#/components/schemas/PricingInformation'
+          nullable: true
+          type: array
+      type: object
+    CTT_Loop:
+      description: |-
+        CTT Loop - Transaction Totals Loop
+        Contains transaction totals and related monetary information
+      example:
+        transactionTotals:
+        - numberOfLineItems: numberOfLineItems
+          unitOrBasisForMeasurementCode: unitOrBasisForMeasurementCode
+          volume: volume
+          hashTotal: hashTotal
+          weight: weight
+          unitOrBasisForMeasurementCode1: unitOrBasisForMeasurementCode1
+        - numberOfLineItems: numberOfLineItems
+          unitOrBasisForMeasurementCode: unitOrBasisForMeasurementCode
+          volume: volume
+          hashTotal: hashTotal
+          weight: weight
+          unitOrBasisForMeasurementCode1: unitOrBasisForMeasurementCode1
+        monetaryAmountInformation:
+        - amountQualifierCode: amountQualifierCode
+          monetaryAmount: 0.8008281904610115
+        - amountQualifierCode: amountQualifierCode
+          monetaryAmount: 0.8008281904610115
+      properties:
+        monetaryAmountInformation:
+          description: |-
+            AMT - Monetary Amount Information
+            To indicate the total monetary amount
+          items:
+            $ref: '#/components/schemas/MonetaryAmountInformation'
+          nullable: true
+          type: array
+        transactionTotals:
+          description: |-
+            CTT - Transaction Totals
+            To transmit a hash total for a specific element in the transaction set
+          items:
+            $ref: '#/components/schemas/TransactionTotals'
+          nullable: true
+          type: array
+      type: object
+    CarrierDetailsRoutingSequenceTransitTime:
+      description: Carrier Details (Routing Sequence/Transit Time) (TD5) - Carrier
+        and routing information (REUSABLE)
+      example:
+        identificationCode: identificationCode
+        identificationCodeQualifier: identificationCodeQualifier
+        locationQualifier: locationQualifier
+        locationIdentifier: locationIdentifier
+      properties:
+        identificationCode:
+          description: Identification Code
+          nullable: true
+          type: string
+        identificationCodeQualifier:
+          description: Identification Code Qualifier
+          nullable: true
+          type: string
+        locationIdentifier:
+          description: Location Identifier
+          nullable: true
+          type: string
+        locationQualifier:
+          description: Location Qualifier
+          nullable: true
+          type: string
+      type: object
+    Currency:
+      description: Currency (CUR) - Identifies the monetary unit
+      example:
+        entityIdentifierCode: entityIdentifierCode
+        currencyCode: currencyCode
+      properties:
+        currencyCode:
+          description: "Currency Code (e.g., USD, EUR, CAD)"
+          nullable: true
+          type: string
+        entityIdentifierCode:
+          description: Entity Identifier Code
+          nullable: true
+          type: string
+      type: object
+    DateTimeReference:
+      description: Date/Time Reference (DTM) - Date and time information (REUSABLE)
+      example:
+        date: date
+        time: time
+        timeCode: timeCode
+        dateTimeQualifier: dateTimeQualifier
+      properties:
+        date:
+          description: Date (CCYYMMDD format)
+          nullable: true
+          type: string
+        dateTimeQualifier:
+          description: Date/Time Qualifier
+          nullable: true
+          type: string
+        time:
+          description: Time (HHMM or HHMMSS format)
+          nullable: true
+          type: string
+        timeCode:
+          description: Time Code
+          nullable: true
+          type: string
+      type: object
+    ExtendedReferenceInformation:
+      description: Extended Reference Information (N9) - Extended reference information
+        (REUSABLE)
+      example:
+        freeFormDescription: freeFormDescription
+        referenceIdentification: referenceIdentification
+        referenceIdentificationQualifier: referenceIdentificationQualifier
+      properties:
+        freeFormDescription:
+          description: Free-form Description
+          nullable: true
+          type: string
+        referenceIdentification:
+          description: Reference Identification
+          nullable: true
+          type: string
+        referenceIdentificationQualifier:
+          description: Reference Identification Qualifier
+          nullable: true
+          type: string
+      type: object
+    FOBRelatedInstructions:
+      description: FOB Related Instructions (FOB) - Free on board instructions
+      example:
+        transportationTermsQualifierCode: transportationTermsQualifierCode
+        locationQualifier: locationQualifier
+        locationQualifier1: locationQualifier1
+        transportationTermsCode: transportationTermsCode
+        description: description
+        shipmentMethodOfPaymentCode: shipmentMethodOfPaymentCode
+        description1: description1
+      properties:
+        description:
+          nullable: true
+          type: string
+        description1:
+          nullable: true
+          type: string
+        locationQualifier:
+          nullable: true
+          type: string
+        locationQualifier1:
+          nullable: true
+          type: string
+        shipmentMethodOfPaymentCode:
+          nullable: true
+          type: string
+        transportationTermsCode:
+          nullable: true
+          type: string
+        transportationTermsQualifierCode:
+          nullable: true
+          type: string
+      type: object
+    GeographicLocation:
+      description: "Geographic Location (N4) - City, state, postal code, and country\
+        \ information"
+      example:
+        cityName: cityName
+        locationQualifier: locationQualifier
+        countryCode: countryCode
+        postalCode: postalCode
+        stateOrProvinceCode: stateOrProvinceCode
+        locationIdentifier: locationIdentifier
+      properties:
+        cityName:
+          description: City Name
+          nullable: true
+          type: string
+        countryCode:
+          description: Country Code
+          nullable: true
+          type: string
+        locationIdentifier:
+          description: Location Identifier
+          nullable: true
+          type: string
+        locationQualifier:
+          description: Location Qualifier
+          nullable: true
+          type: string
+        postalCode:
+          description: Postal Code
+          nullable: true
+          type: string
+        stateOrProvinceCode:
+          description: State or Province Code
+          nullable: true
+          type: string
+      type: object
+    IT1_Loop:
+      description: IT1 Loop - Invoice Line Item Loop
+      example:
+        piD_loop:
+        - productItemDescription:
+          - itemDescriptionTypeCode: itemDescriptionTypeCode
+            description: description
+            productProcessCharacteristicCode: productProcessCharacteristicCode
+          - itemDescriptionTypeCode: itemDescriptionTypeCode
+            description: description
+            productProcessCharacteristicCode: productProcessCharacteristicCode
+        - productItemDescription:
+          - itemDescriptionTypeCode: itemDescriptionTypeCode
+            description: description
+            productProcessCharacteristicCode: productProcessCharacteristicCode
+          - itemDescriptionTypeCode: itemDescriptionTypeCode
+            description: description
+            productProcessCharacteristicCode: productProcessCharacteristicCode
+        pricingInformation:
+        - unitPrice: unitPrice
+          priceIdentifierCode: priceIdentifierCode
+          priceMultiplierQualifier: priceMultiplierQualifier
+          multiplier5: multiplier5
+          classOfTradeCode: classOfTradeCode
+        - unitPrice: unitPrice
+          priceIdentifierCode: priceIdentifierCode
+          priceMultiplierQualifier: priceMultiplierQualifier
+          multiplier5: multiplier5
+          classOfTradeCode: classOfTradeCode
+        taxInformation:
+        - taxExemptCode: taxExemptCode
+          percentageAsDecimal: percentageAsDecimal
+          taxTypeCode: taxTypeCode
+          dollarBasisForPercent: dollarBasisForPercent
+          taxIdentificationNumber: taxIdentificationNumber
+          monetaryAmount: monetaryAmount
+        - taxExemptCode: taxExemptCode
+          percentageAsDecimal: percentageAsDecimal
+          taxTypeCode: taxTypeCode
+          dollarBasisForPercent: dollarBasisForPercent
+          taxIdentificationNumber: taxIdentificationNumber
+          monetaryAmount: monetaryAmount
+        additionalItemData:
+        - unitOrBasisForMeasurementCode: unitOrBasisForMeasurementCode
+          numberOfUnitsShipped: numberOfUnitsShipped
+        - unitOrBasisForMeasurementCode: unitOrBasisForMeasurementCode
+          numberOfUnitsShipped: numberOfUnitsShipped
+        itemPhysicalDetails:
+        - unitOrBasisForMeasurementCode: unitOrBasisForMeasurementCode
+          weightQualifier: weightQualifier
+          length: length
+          grossVolumePerPack: grossVolumePerPack
+          unitOrBasisForMeasurementCode1: unitOrBasisForMeasurementCode1
+          unitOrBasisForMeasurementCode2: unitOrBasisForMeasurementCode2
+          packagingCode: packagingCode
+          unitOrBasisForMeasurementCode3: unitOrBasisForMeasurementCode3
+          pack: pack
+          size: size
+          grossWeightPerPack: grossWeightPerPack
+          width: width
+          height: height
+        - unitOrBasisForMeasurementCode: unitOrBasisForMeasurementCode
+          weightQualifier: weightQualifier
+          length: length
+          grossVolumePerPack: grossVolumePerPack
+          unitOrBasisForMeasurementCode1: unitOrBasisForMeasurementCode1
+          unitOrBasisForMeasurementCode2: unitOrBasisForMeasurementCode2
+          packagingCode: packagingCode
+          unitOrBasisForMeasurementCode3: unitOrBasisForMeasurementCode3
+          pack: pack
+          size: size
+          grossWeightPerPack: grossWeightPerPack
+          width: width
+          height: height
+        baselineItemDataInvoice:
+        - assignedIdentification: assignedIdentification
+          productServiceIDQualifier2: productServiceIDQualifier2
+          unitOrBasisForMeasurementCode: unitOrBasisForMeasurementCode
+          unitPrice: unitPrice
+          productServiceIDQualifier1: productServiceIDQualifier1
+          productServiceID2: productServiceID2
+          productServiceID1: productServiceID1
+          productServiceID: productServiceID
+          productServiceIDQualifier: productServiceIDQualifier
+          quantityInvoiced: quantityInvoiced
+          basisOfUnitPriceCode: basisOfUnitPriceCode
+        - assignedIdentification: assignedIdentification
+          productServiceIDQualifier2: productServiceIDQualifier2
+          unitOrBasisForMeasurementCode: unitOrBasisForMeasurementCode
+          unitPrice: unitPrice
+          productServiceIDQualifier1: productServiceIDQualifier1
+          productServiceID2: productServiceID2
+          productServiceID1: productServiceID1
+          productServiceID: productServiceID
+          productServiceIDQualifier: productServiceIDQualifier
+          quantityInvoiced: quantityInvoiced
+          basisOfUnitPriceCode: basisOfUnitPriceCode
+        dateTimeReference:
+        - date: date
+          time: time
+          timeCode: timeCode
+          dateTimeQualifier: dateTimeQualifier
+        - date: date
+          time: time
+          timeCode: timeCode
+          dateTimeQualifier: dateTimeQualifier
+      properties:
+        additionalItemData:
+          items:
+            $ref: '#/components/schemas/AdditionalItemData'
+          nullable: true
+          type: array
+        baselineItemDataInvoice:
+          items:
+            $ref: '#/components/schemas/BaselineItemDataInvoice'
+          nullable: true
+          type: array
+        dateTimeReference:
+          items:
+            $ref: '#/components/schemas/DateTimeReference'
+          nullable: true
+          type: array
+        itemPhysicalDetails:
+          items:
+            $ref: '#/components/schemas/ItemPhysicalDetails'
+          nullable: true
+          type: array
+        piD_loop:
+          items:
+            $ref: '#/components/schemas/PID_Loop'
+          nullable: true
+          type: array
+        pricingInformation:
+          items:
+            $ref: '#/components/schemas/PricingInformation'
+          nullable: true
+          type: array
+        taxInformation:
+          items:
+            $ref: '#/components/schemas/TaxInformation'
+          nullable: true
+          type: array
+      type: object
+    ItemPhysicalDetails:
+      description: Item Physical Details (PO4) - Physical characteristics of items
+      example:
+        unitOrBasisForMeasurementCode: unitOrBasisForMeasurementCode
+        weightQualifier: weightQualifier
+        length: length
+        grossVolumePerPack: grossVolumePerPack
+        unitOrBasisForMeasurementCode1: unitOrBasisForMeasurementCode1
+        unitOrBasisForMeasurementCode2: unitOrBasisForMeasurementCode2
+        packagingCode: packagingCode
+        unitOrBasisForMeasurementCode3: unitOrBasisForMeasurementCode3
+        pack: pack
+        size: size
+        grossWeightPerPack: grossWeightPerPack
+        width: width
+        height: height
+      properties:
+        grossVolumePerPack:
+          description: Gross Volume per Pack
+          nullable: true
+          type: string
+        grossWeightPerPack:
+          description: Gross Weight per Pack
+          nullable: true
+          type: string
+        height:
+          description: Height
+          nullable: true
+          type: string
+        length:
+          description: Length
+          nullable: true
+          type: string
+        pack:
+          description: Pack
+          nullable: true
+          type: string
+        packagingCode:
+          description: Packaging Code
+          nullable: true
+          type: string
+        size:
+          description: Size
+          nullable: true
+          type: string
+        unitOrBasisForMeasurementCode:
+          description: Unit or Basis for Measurement Code
+          nullable: true
+          type: string
+        unitOrBasisForMeasurementCode1:
+          description: Unit or Basis for Measurement Code 1
+          nullable: true
+          type: string
+        unitOrBasisForMeasurementCode2:
+          description: Unit or Basis for Measurement Code 2
+          nullable: true
+          type: string
+        unitOrBasisForMeasurementCode3:
+          description: Unit or Basis for Measurement Code 3
+          nullable: true
+          type: string
+        weightQualifier:
+          description: Weight Qualifier
+          nullable: true
+          type: string
+        width:
+          description: Width
+          nullable: true
+          type: string
+      type: object
+    MonetaryAmountInformation:
+      description: Monetary Amount Information (AMT) - Monetary amount information
+        (REUSABLE)
+      example:
+        amountQualifierCode: amountQualifierCode
+        monetaryAmount: 0.8008281904610115
+      properties:
+        amountQualifierCode:
+          description: Amount Qualifier Code
+          nullable: true
+          type: string
+        monetaryAmount:
+          description: Monetary Amount
+          format: double
+          nullable: true
+          type: number
+      type: object
+    N1_Loop:
+      description: |-
+        N1 Loop - Party Identification Loop
+        Contains party information including identification, additional names, location, and geographic details
+      example:
+        referenceInformation:
+        - referenceIdentification: referenceIdentification
+          referenceIdentificationQualifier: referenceIdentificationQualifier
+        - referenceIdentification: referenceIdentification
+          referenceIdentificationQualifier: referenceIdentificationQualifier
+        geographicLocation:
+        - cityName: cityName
+          locationQualifier: locationQualifier
+          countryCode: countryCode
+          postalCode: postalCode
+          stateOrProvinceCode: stateOrProvinceCode
+          locationIdentifier: locationIdentifier
+        - cityName: cityName
+          locationQualifier: locationQualifier
+          countryCode: countryCode
+          postalCode: postalCode
+          stateOrProvinceCode: stateOrProvinceCode
+          locationIdentifier: locationIdentifier
+        additionalNameInformation:
+        - name: name
+        - name: name
+        administrativeCommunicationsContact:
+        - communicationNumberQualifier: communicationNumberQualifier
+          communicationNumber1: communicationNumber1
+          communicationNumber2: communicationNumber2
+          name: name
+          communicationNumber: communicationNumber
+          communicationNumberQualifier1: communicationNumberQualifier1
+          contactFunctionCode: contactFunctionCode
+          communicationNumberQualifier2: communicationNumberQualifier2
+          contactInquiryReference: contactInquiryReference
+        - communicationNumberQualifier: communicationNumberQualifier
+          communicationNumber1: communicationNumber1
+          communicationNumber2: communicationNumber2
+          name: name
+          communicationNumber: communicationNumber
+          communicationNumberQualifier1: communicationNumberQualifier1
+          contactFunctionCode: contactFunctionCode
+          communicationNumberQualifier2: communicationNumberQualifier2
+          contactInquiryReference: contactInquiryReference
+        partyLocation:
+        - addressInformation: addressInformation
+        - addressInformation: addressInformation
+        partyIdentification:
+        - identificationCode: identificationCode
+          entityIdentifierCode: entityIdentifierCode
+          identificationCodeQualifier: identificationCodeQualifier
+          name: name
+        - identificationCode: identificationCode
+          entityIdentifierCode: entityIdentifierCode
+          identificationCodeQualifier: identificationCodeQualifier
+          name: name
+      properties:
+        additionalNameInformation:
+          description: |-
+            N2 - Additional Name Information
+            To specify additional names or those longer than 35 characters in length
+          items:
+            $ref: '#/components/schemas/AdditionalNameInformation'
+          nullable: true
+          type: array
+        administrativeCommunicationsContact:
+          description: |-
+            PER - Administrative Communications Contact
+            To identify a person or office to whom administrative communications should be directed
+          items:
+            $ref: '#/components/schemas/AdministrativeCommunicationsContact'
+          nullable: true
+          type: array
+        geographicLocation:
+          description: |-
+            N4 - Geographic Location
+            To specify the geographic place of the named party
+          items:
+            $ref: '#/components/schemas/GeographicLocation'
+          nullable: true
+          type: array
+        partyIdentification:
+          description: |-
+            N1 - Party Identification
+            To identify a party by type of organization, name, and code
+          items:
+            $ref: '#/components/schemas/PartyIdentification'
+          nullable: true
+          type: array
+        partyLocation:
+          description: |-
+            N3 - Party Location
+            To specify the location of the named party
+          items:
+            $ref: '#/components/schemas/PartyLocation'
+          nullable: true
+          type: array
+        referenceInformation:
+          description: |-
+            REF - Reference Information
+            To specify identifying information
+          items:
+            $ref: '#/components/schemas/ReferenceInformation'
+          nullable: true
+          type: array
+      type: object
+    N9_Loop:
+      description: |-
+        N9 Loop - Extended Reference Information Loop
+        Contains Extended Reference Information and related Message Text segments
+      example:
+        messageText:
+        - textualData: textualData
+        - textualData: textualData
+        extendedReferenceInformation:
+        - freeFormDescription: freeFormDescription
+          referenceIdentification: referenceIdentification
+          referenceIdentificationQualifier: referenceIdentificationQualifier
+        - freeFormDescription: freeFormDescription
+          referenceIdentification: referenceIdentification
+          referenceIdentificationQualifier: referenceIdentificationQualifier
+      properties:
+        extendedReferenceInformation:
+          description: |-
+            N9 - Extended Reference Information
+            To transmit identifying information as specified by the Reference Identification Qualifier
+          items:
+            $ref: '#/components/schemas/ExtendedReferenceInformation'
+          nullable: true
+          type: array
+        messageText:
+          description: |-
+            MSG - Message Text
+            To provide a free-form format that allows the transmission of text information
+          items:
+            $ref: '#/components/schemas/Text'
+          nullable: true
+          type: array
+      type: object
+    PID_Loop:
+      description: |-
+        PID Loop - Product/Item Description Loop
+        Contains product/item descriptions and related information
+      example:
+        productItemDescription:
+        - itemDescriptionTypeCode: itemDescriptionTypeCode
+          description: description
+          productProcessCharacteristicCode: productProcessCharacteristicCode
+        - itemDescriptionTypeCode: itemDescriptionTypeCode
+          description: description
+          productProcessCharacteristicCode: productProcessCharacteristicCode
+      properties:
+        productItemDescription:
+          description: |-
+            PID - Product/Item Description
+            To describe a product or process in coded or free-form format
+          items:
+            $ref: '#/components/schemas/ProductItemDescription'
+          nullable: true
+          type: array
+      type: object
+    PO1_Loop:
+      description: |-
+        PO1 Loop - Baseline Item Data Loop
+        Contains complete line item information including baseline data, pricing, physical details, and related segments
+      example:
+        salesRequirements:
+        - amount: amount
+          salesRequirementCode: salesRequirementCode
+          actionCode: actionCode
+        - amount: amount
+          salesRequirementCode: salesRequirementCode
+          actionCode: actionCode
+        administrativeCommunicationsContact:
+        - communicationNumberQualifier: communicationNumberQualifier
+          communicationNumber1: communicationNumber1
+          communicationNumber2: communicationNumber2
+          name: name
+          communicationNumber: communicationNumber
+          communicationNumberQualifier1: communicationNumberQualifier1
+          contactFunctionCode: contactFunctionCode
+          communicationNumberQualifier2: communicationNumberQualifier2
+          contactInquiryReference: contactInquiryReference
+        - communicationNumberQualifier: communicationNumberQualifier
+          communicationNumber1: communicationNumber1
+          communicationNumber2: communicationNumber2
+          name: name
+          communicationNumber: communicationNumber
+          communicationNumberQualifier1: communicationNumberQualifier1
+          contactFunctionCode: contactFunctionCode
+          communicationNumberQualifier2: communicationNumberQualifier2
+          contactInquiryReference: contactInquiryReference
+        conditionsOfSale:
+        - amount: amount
+          salesRequirementCode: salesRequirementCode
+          actionCode: actionCode
+        - amount: amount
+          salesRequirementCode: salesRequirementCode
+          actionCode: actionCode
+        packagingLoop:
+        - textualData: textualData
+        - textualData: textualData
+        paperwork:
+        - textualData: textualData
+        - textualData: textualData
+        leadTime:
+        - date: date
+          time: time
+          timeCode: timeCode
+          dateTimeQualifier: dateTimeQualifier
+        - date: date
+          time: time
+          timeCode: timeCode
+          dateTimeQualifier: dateTimeQualifier
+        piD_loop:
+        - productItemDescription:
+          - itemDescriptionTypeCode: itemDescriptionTypeCode
+            description: description
+            productProcessCharacteristicCode: productProcessCharacteristicCode
+          - itemDescriptionTypeCode: itemDescriptionTypeCode
+            description: description
+            productProcessCharacteristicCode: productProcessCharacteristicCode
+        - productItemDescription:
+          - itemDescriptionTypeCode: itemDescriptionTypeCode
+            description: description
+            productProcessCharacteristicCode: productProcessCharacteristicCode
+          - itemDescriptionTypeCode: itemDescriptionTypeCode
+            description: description
+            productProcessCharacteristicCode: productProcessCharacteristicCode
+        pricingLoop:
+        - pricingInformation:
+          - unitPrice: unitPrice
+            priceIdentifierCode: priceIdentifierCode
+            priceMultiplierQualifier: priceMultiplierQualifier
+            multiplier5: multiplier5
+            classOfTradeCode: classOfTradeCode
+          - unitPrice: unitPrice
+            priceIdentifierCode: priceIdentifierCode
+            priceMultiplierQualifier: priceMultiplierQualifier
+            multiplier5: multiplier5
+            classOfTradeCode: classOfTradeCode
+        - pricingInformation:
+          - unitPrice: unitPrice
+            priceIdentifierCode: priceIdentifierCode
+            priceMultiplierQualifier: priceMultiplierQualifier
+            multiplier5: multiplier5
+            classOfTradeCode: classOfTradeCode
+          - unitPrice: unitPrice
+            priceIdentifierCode: priceIdentifierCode
+            priceMultiplierQualifier: priceMultiplierQualifier
+            multiplier5: multiplier5
+            classOfTradeCode: classOfTradeCode
+        termsOfSale:
+        - termsBasisDateCode: termsBasisDateCode
+          dayOfMonth: dayOfMonth
+          termsNetDays: termsNetDays
+          paymentMethodTypeCode: paymentMethodTypeCode
+          description: description
+          termsDiscountAmount: termsDiscountAmount
+          termsTypeCode: termsTypeCode
+        - termsBasisDateCode: termsBasisDateCode
+          dayOfMonth: dayOfMonth
+          termsNetDays: termsNetDays
+          paymentMethodTypeCode: paymentMethodTypeCode
+          description: description
+          termsDiscountAmount: termsDiscountAmount
+          termsTypeCode: termsTypeCode
+        discountDetail:
+        - amountQualifierCode: amountQualifierCode
+          monetaryAmount: 0.8008281904610115
+        - amountQualifierCode: amountQualifierCode
+          monetaryAmount: 0.8008281904610115
+        paperworkLoop:
+        - textualData: textualData
+        - textualData: textualData
+        n1_loop:
+        - referenceInformation:
+          - referenceIdentification: referenceIdentification
+            referenceIdentificationQualifier: referenceIdentificationQualifier
+          - referenceIdentification: referenceIdentification
+            referenceIdentificationQualifier: referenceIdentificationQualifier
+          geographicLocation:
+          - cityName: cityName
+            locationQualifier: locationQualifier
+            countryCode: countryCode
+            postalCode: postalCode
+            stateOrProvinceCode: stateOrProvinceCode
+            locationIdentifier: locationIdentifier
+          - cityName: cityName
+            locationQualifier: locationQualifier
+            countryCode: countryCode
+            postalCode: postalCode
+            stateOrProvinceCode: stateOrProvinceCode
+            locationIdentifier: locationIdentifier
+          additionalNameInformation:
+          - name: name
+          - name: name
+          administrativeCommunicationsContact:
+          - communicationNumberQualifier: communicationNumberQualifier
+            communicationNumber1: communicationNumber1
+            communicationNumber2: communicationNumber2
+            name: name
+            communicationNumber: communicationNumber
+            communicationNumberQualifier1: communicationNumberQualifier1
+            contactFunctionCode: contactFunctionCode
+            communicationNumberQualifier2: communicationNumberQualifier2
+            contactInquiryReference: contactInquiryReference
+          - communicationNumberQualifier: communicationNumberQualifier
+            communicationNumber1: communicationNumber1
+            communicationNumber2: communicationNumber2
+            name: name
+            communicationNumber: communicationNumber
+            communicationNumberQualifier1: communicationNumberQualifier1
+            contactFunctionCode: contactFunctionCode
+            communicationNumberQualifier2: communicationNumberQualifier2
+            contactInquiryReference: contactInquiryReference
+          partyLocation:
+          - addressInformation: addressInformation
+          - addressInformation: addressInformation
+          partyIdentification:
+          - identificationCode: identificationCode
+            entityIdentifierCode: entityIdentifierCode
+            identificationCodeQualifier: identificationCodeQualifier
+            name: name
+          - identificationCode: identificationCode
+            entityIdentifierCode: entityIdentifierCode
+            identificationCodeQualifier: identificationCodeQualifier
+            name: name
+        - referenceInformation:
+          - referenceIdentification: referenceIdentification
+            referenceIdentificationQualifier: referenceIdentificationQualifier
+          - referenceIdentification: referenceIdentification
+            referenceIdentificationQualifier: referenceIdentificationQualifier
+          geographicLocation:
+          - cityName: cityName
+            locationQualifier: locationQualifier
+            countryCode: countryCode
+            postalCode: postalCode
+            stateOrProvinceCode: stateOrProvinceCode
+            locationIdentifier: locationIdentifier
+          - cityName: cityName
+            locationQualifier: locationQualifier
+            countryCode: countryCode
+            postalCode: postalCode
+            stateOrProvinceCode: stateOrProvinceCode
+            locationIdentifier: locationIdentifier
+          additionalNameInformation:
+          - name: name
+          - name: name
+          administrativeCommunicationsContact:
+          - communicationNumberQualifier: communicationNumberQualifier
+            communicationNumber1: communicationNumber1
+            communicationNumber2: communicationNumber2
+            name: name
+            communicationNumber: communicationNumber
+            communicationNumberQualifier1: communicationNumberQualifier1
+            contactFunctionCode: contactFunctionCode
+            communicationNumberQualifier2: communicationNumberQualifier2
+            contactInquiryReference: contactInquiryReference
+          - communicationNumberQualifier: communicationNumberQualifier
+            communicationNumber1: communicationNumber1
+            communicationNumber2: communicationNumber2
+            name: name
+            communicationNumber: communicationNumber
+            communicationNumberQualifier1: communicationNumberQualifier1
+            contactFunctionCode: contactFunctionCode
+            communicationNumberQualifier2: communicationNumberQualifier2
+            contactInquiryReference: contactInquiryReference
+          partyLocation:
+          - addressInformation: addressInformation
+          - addressInformation: addressInformation
+          partyIdentification:
+          - identificationCode: identificationCode
+            entityIdentifierCode: entityIdentifierCode
+            identificationCodeQualifier: identificationCodeQualifier
+            name: name
+          - identificationCode: identificationCode
+            entityIdentifierCode: entityIdentifierCode
+            identificationCodeQualifier: identificationCodeQualifier
+            name: name
+        currency:
+        - entityIdentifierCode: entityIdentifierCode
+          currencyCode: currencyCode
+        - entityIdentifierCode: entityIdentifierCode
+          currencyCode: currencyCode
+        loopHeaderTrailer:
+        - textualData: textualData
+        - textualData: textualData
+        carrierDetailsRoutingSequenceTransitTime:
+        - identificationCode: identificationCode
+          identificationCodeQualifier: identificationCodeQualifier
+          locationQualifier: locationQualifier
+          locationIdentifier: locationIdentifier
+        - identificationCode: identificationCode
+          identificationCodeQualifier: identificationCodeQualifier
+          locationQualifier: locationQualifier
+          locationIdentifier: locationIdentifier
+        installmentInformation:
+        - amountQualifierCode: amountQualifierCode
+          monetaryAmount: 0.8008281904610115
+        - amountQualifierCode: amountQualifierCode
+          monetaryAmount: 0.8008281904610115
+        productItemDescriptionLoop:
+        - productItemDescription:
+          - itemDescriptionTypeCode: itemDescriptionTypeCode
+            description: description
+            productProcessCharacteristicCode: productProcessCharacteristicCode
+          - itemDescriptionTypeCode: itemDescriptionTypeCode
+            description: description
+            productProcessCharacteristicCode: productProcessCharacteristicCode
+        - productItemDescription:
+          - itemDescriptionTypeCode: itemDescriptionTypeCode
+            description: description
+            productProcessCharacteristicCode: productProcessCharacteristicCode
+          - itemDescriptionTypeCode: itemDescriptionTypeCode
+            description: description
+            productProcessCharacteristicCode: productProcessCharacteristicCode
+        baselineItemData:
+        - unitOrBasisForMeasurementCode: unitOrBasisForMeasurementCode
+          unitPrice: unitPrice
+          quantity: quantity
+          productServiceID: productServiceID
+          productServiceIDQualifier: productServiceIDQualifier
+          basisOfUnitPriceCode: basisOfUnitPriceCode
+          assignedIdentification: assignedIdentification
+          productServiceIDQualifier2: productServiceIDQualifier2
+          productServiceIDQualifier4: productServiceIDQualifier4
+          productServiceIDQualifier3: productServiceIDQualifier3
+          productServiceID2: productServiceID2
+          productServiceID4: productServiceID4
+          productServiceID3: productServiceID3
+        - unitOrBasisForMeasurementCode: unitOrBasisForMeasurementCode
+          unitPrice: unitPrice
+          quantity: quantity
+          productServiceID: productServiceID
+          productServiceIDQualifier: productServiceIDQualifier
+          basisOfUnitPriceCode: basisOfUnitPriceCode
+          assignedIdentification: assignedIdentification
+          productServiceIDQualifier2: productServiceIDQualifier2
+          productServiceIDQualifier4: productServiceIDQualifier4
+          productServiceIDQualifier3: productServiceIDQualifier3
+          productServiceID2: productServiceID2
+          productServiceID4: productServiceID4
+          productServiceID3: productServiceID3
+        serviceCharacteristic:
+        - itemDescriptionTypeCode: itemDescriptionTypeCode
+          description: description
+          productProcessCharacteristicCode: productProcessCharacteristicCode
+        - itemDescriptionTypeCode: itemDescriptionTypeCode
+          description: description
+          productProcessCharacteristicCode: productProcessCharacteristicCode
+        referenceInformation:
+        - referenceIdentification: referenceIdentification
+          referenceIdentificationQualifier: referenceIdentificationQualifier
+        - referenceIdentification: referenceIdentification
+          referenceIdentificationQualifier: referenceIdentificationQualifier
+        itemIdentification:
+        - unitOrBasisForMeasurementCode: unitOrBasisForMeasurementCode
+          unitPrice: unitPrice
+          quantity: quantity
+          productServiceID: productServiceID
+          productServiceIDQualifier: productServiceIDQualifier
+          basisOfUnitPriceCode: basisOfUnitPriceCode
+          assignedIdentification: assignedIdentification
+          productServiceIDQualifier2: productServiceIDQualifier2
+          productServiceIDQualifier4: productServiceIDQualifier4
+          productServiceIDQualifier3: productServiceIDQualifier3
+          productServiceID2: productServiceID2
+          productServiceID4: productServiceID4
+          productServiceID3: productServiceID3
+        - unitOrBasisForMeasurementCode: unitOrBasisForMeasurementCode
+          unitPrice: unitPrice
+          quantity: quantity
+          productServiceID: productServiceID
+          productServiceIDQualifier: productServiceIDQualifier
+          basisOfUnitPriceCode: basisOfUnitPriceCode
+          assignedIdentification: assignedIdentification
+          productServiceIDQualifier2: productServiceIDQualifier2
+          productServiceIDQualifier4: productServiceIDQualifier4
+          productServiceIDQualifier3: productServiceIDQualifier3
+          productServiceID2: productServiceID2
+          productServiceID4: productServiceID4
+          productServiceID3: productServiceID3
+        monetaryAmountInformation:
+        - amountQualifierCode: amountQualifierCode
+          monetaryAmount: 0.8008281904610115
+        - amountQualifierCode: amountQualifierCode
+          monetaryAmount: 0.8008281904610115
+        itemPhysicalDetails:
+        - unitOrBasisForMeasurementCode: unitOrBasisForMeasurementCode
+          weightQualifier: weightQualifier
+          length: length
+          grossVolumePerPack: grossVolumePerPack
+          unitOrBasisForMeasurementCode1: unitOrBasisForMeasurementCode1
+          unitOrBasisForMeasurementCode2: unitOrBasisForMeasurementCode2
+          packagingCode: packagingCode
+          unitOrBasisForMeasurementCode3: unitOrBasisForMeasurementCode3
+          pack: pack
+          size: size
+          grossWeightPerPack: grossWeightPerPack
+          width: width
+          height: height
+        - unitOrBasisForMeasurementCode: unitOrBasisForMeasurementCode
+          weightQualifier: weightQualifier
+          length: length
+          grossVolumePerPack: grossVolumePerPack
+          unitOrBasisForMeasurementCode1: unitOrBasisForMeasurementCode1
+          unitOrBasisForMeasurementCode2: unitOrBasisForMeasurementCode2
+          packagingCode: packagingCode
+          unitOrBasisForMeasurementCode3: unitOrBasisForMeasurementCode3
+          pack: pack
+          size: size
+          grossWeightPerPack: grossWeightPerPack
+          width: width
+          height: height
+        sublineItemDetail:
+        - unitOrBasisForMeasurementCode: unitOrBasisForMeasurementCode
+          unitPrice: unitPrice
+          quantity: quantity
+          productServiceID: productServiceID
+          productServiceIDQualifier: productServiceIDQualifier
+          basisOfUnitPriceCode: basisOfUnitPriceCode
+          assignedIdentification: assignedIdentification
+          productServiceIDQualifier2: productServiceIDQualifier2
+          productServiceIDQualifier4: productServiceIDQualifier4
+          productServiceIDQualifier3: productServiceIDQualifier3
+          productServiceID2: productServiceID2
+          productServiceID4: productServiceID4
+          productServiceID3: productServiceID3
+        - unitOrBasisForMeasurementCode: unitOrBasisForMeasurementCode
+          unitPrice: unitPrice
+          quantity: quantity
+          productServiceID: productServiceID
+          productServiceIDQualifier: productServiceIDQualifier
+          basisOfUnitPriceCode: basisOfUnitPriceCode
+          assignedIdentification: assignedIdentification
+          productServiceIDQualifier2: productServiceIDQualifier2
+          productServiceIDQualifier4: productServiceIDQualifier4
+          productServiceIDQualifier3: productServiceIDQualifier3
+          productServiceID2: productServiceID2
+          productServiceID4: productServiceID4
+          productServiceID3: productServiceID3
+        packagingInformation:
+        - textualData: textualData
+        - textualData: textualData
+        dateTimeReference:
+        - date: date
+          time: time
+          timeCode: timeCode
+          dateTimeQualifier: dateTimeQualifier
+        - date: date
+          time: time
+          timeCode: timeCode
+          dateTimeQualifier: dateTimeQualifier
+        servicePromotionAllowanceChargeLoop:
+        - servicePromotionAllowanceOrChargeInformation:
+          - agencyQualifierCode: agencyQualifierCode
+            agencyServicePromotionAllowanceOrChargeCode: agencyServicePromotionAllowanceOrChargeCode
+            unitOrBasisForMeasurementCode: unitOrBasisForMeasurementCode
+            amount: amount
+            percentDecimalFormat: percentDecimalFormat
+            referenceIdentification: referenceIdentification
+            optionNumber: optionNumber
+            allowanceOrChargeMethodOfHandlingCode: allowanceOrChargeMethodOfHandlingCode
+            servicePromotionAllowanceOrChargeCode: servicePromotionAllowanceOrChargeCode
+            allowanceOrChargeIndicatorCode: allowanceOrChargeIndicatorCode
+            description: description
+            allowanceChargePercentQualifier: allowanceChargePercentQualifier
+          - agencyQualifierCode: agencyQualifierCode
+            agencyServicePromotionAllowanceOrChargeCode: agencyServicePromotionAllowanceOrChargeCode
+            unitOrBasisForMeasurementCode: unitOrBasisForMeasurementCode
+            amount: amount
+            percentDecimalFormat: percentDecimalFormat
+            referenceIdentification: referenceIdentification
+            optionNumber: optionNumber
+            allowanceOrChargeMethodOfHandlingCode: allowanceOrChargeMethodOfHandlingCode
+            servicePromotionAllowanceOrChargeCode: servicePromotionAllowanceOrChargeCode
+            allowanceOrChargeIndicatorCode: allowanceOrChargeIndicatorCode
+            description: description
+            allowanceChargePercentQualifier: allowanceChargePercentQualifier
+        - servicePromotionAllowanceOrChargeInformation:
+          - agencyQualifierCode: agencyQualifierCode
+            agencyServicePromotionAllowanceOrChargeCode: agencyServicePromotionAllowanceOrChargeCode
+            unitOrBasisForMeasurementCode: unitOrBasisForMeasurementCode
+            amount: amount
+            percentDecimalFormat: percentDecimalFormat
+            referenceIdentification: referenceIdentification
+            optionNumber: optionNumber
+            allowanceOrChargeMethodOfHandlingCode: allowanceOrChargeMethodOfHandlingCode
+            servicePromotionAllowanceOrChargeCode: servicePromotionAllowanceOrChargeCode
+            allowanceOrChargeIndicatorCode: allowanceOrChargeIndicatorCode
+            description: description
+            allowanceChargePercentQualifier: allowanceChargePercentQualifier
+          - agencyQualifierCode: agencyQualifierCode
+            agencyServicePromotionAllowanceOrChargeCode: agencyServicePromotionAllowanceOrChargeCode
+            unitOrBasisForMeasurementCode: unitOrBasisForMeasurementCode
+            amount: amount
+            percentDecimalFormat: percentDecimalFormat
+            referenceIdentification: referenceIdentification
+            optionNumber: optionNumber
+            allowanceOrChargeMethodOfHandlingCode: allowanceOrChargeMethodOfHandlingCode
+            servicePromotionAllowanceOrChargeCode: servicePromotionAllowanceOrChargeCode
+            allowanceOrChargeIndicatorCode: allowanceOrChargeIndicatorCode
+            description: description
+            allowanceChargePercentQualifier: allowanceChargePercentQualifier
+      properties:
+        administrativeCommunicationsContact:
+          description: |-
+            PER - Administrative Communications Contact
+            To identify a person or office to whom administrative communications should be directed
+          items:
+            $ref: '#/components/schemas/AdministrativeCommunicationsContact'
+          nullable: true
+          type: array
+        baselineItemData:
+          description: |-
+            PO1 - Baseline Item Data
+            To specify basic and most frequently used line item data
+          items:
+            $ref: '#/components/schemas/BaselineItemData'
+          nullable: true
+          type: array
+        carrierDetailsRoutingSequenceTransitTime:
+          description: |-
+            TD5 - Carrier Details (Routing Sequence/Transit Time)
+            To specify the carrier and sequence of routing and provide transit time information
+          items:
+            $ref: '#/components/schemas/CarrierDetailsRoutingSequenceTransitTime'
+          nullable: true
+          type: array
+        conditionsOfSale:
+          description: |-
+            IT8 - Conditions of Sale
+            To specify the conditions under which the sale is made
+          items:
+            $ref: '#/components/schemas/SalesRequirements'
+          nullable: true
+          type: array
+        currency:
+          description: |-
+            CUR - Currency
+            To specify the currency (dollars, pounds, francs, etc.) used in a transaction
+          items:
+            $ref: '#/components/schemas/Currency'
+          nullable: true
+          type: array
+        dateTimeReference:
+          description: |-
+            DTM - Date/Time Reference
+            To specify pertinent dates and times
+          items:
+            $ref: '#/components/schemas/DateTimeReference'
+          nullable: true
+          type: array
+        discountDetail:
+          description: |-
+            DIS - Discount Detail
+            To specify the exact type and terms of various discount information
+          items:
+            $ref: '#/components/schemas/MonetaryAmountInformation'
+          nullable: true
+          type: array
+        installmentInformation:
+          description: |-
+            INC - Installment Information
+            To specify installment billing arrangement information
+          items:
+            $ref: '#/components/schemas/MonetaryAmountInformation'
+          nullable: true
+          type: array
+        itemIdentification:
+          description: |-
+            LIN - Item Identification
+            To specify basic item identification data
+          items:
+            $ref: '#/components/schemas/BaselineItemData'
+          nullable: true
+          type: array
+        itemPhysicalDetails:
+          description: |-
+            PO4 - Item Physical Details
+            To specify physical measurements or counts, including dimensions, tolerances, variances, and weights
+          items:
+            $ref: '#/components/schemas/ItemPhysicalDetails'
+          nullable: true
+          type: array
+        leadTime:
+          description: |-
+            LDT - Lead Time
+            To specify lead time for availability of products and services
+          items:
+            $ref: '#/components/schemas/DateTimeReference'
+          nullable: true
+          type: array
+        loopHeaderTrailer:
+          description: |-
+            LS/LE - Loop Header/Loop Trailer
+            To indicate that the next segment begins a loop
+          items:
+            $ref: '#/components/schemas/Text'
+          nullable: true
+          type: array
+        monetaryAmountInformation:
+          description: |-
+            AMT - Monetary Amount Information
+            To indicate the total monetary amount
+          items:
+            $ref: '#/components/schemas/MonetaryAmountInformation'
+          nullable: true
+          type: array
+        n1_loop:
+          description: |-
+            N1 Loop - Party Identification Loop
+            Contains party information for the line item
+          items:
+            $ref: '#/components/schemas/N1_Loop'
+          nullable: true
+          type: array
+        packagingInformation:
+          description: |-
+            PKG - Marking, Packaging, Loading
+            To describe marking, packaging, loading, and unloading requirements
+          items:
+            $ref: '#/components/schemas/Text'
+          nullable: true
+          type: array
+        packagingLoop:
+          description: |-
+            PKG - Marking, Packaging, Loading Loop
+            Contains packaging information and related details
+          items:
+            $ref: '#/components/schemas/Text'
+          nullable: true
+          type: array
+        paperwork:
+          description: |-
+            PWK - Paperwork
+            To identify the type or transmission or both of paperwork or supporting information
+          items:
+            $ref: '#/components/schemas/Text'
+          nullable: true
+          type: array
+        paperworkLoop:
+          description: |-
+            PWK - Paperwork Loop
+            Contains paperwork identification and related information
+          items:
+            $ref: '#/components/schemas/Text'
+          nullable: true
+          type: array
+        piD_loop:
+          description: |-
+            PID - Product/Item Description
+            To describe a product or process in coded or free-form format
+          items:
+            $ref: '#/components/schemas/PID_Loop'
+          nullable: true
+          type: array
+        pricingLoop:
+          description: |-
+            CTP - Pricing Information
+            To specify pricing information
+          items:
+            $ref: '#/components/schemas/CTP_Loop'
+          nullable: true
+          type: array
+        productItemDescriptionLoop:
+          description: |-
+            PID Loop - Product/Item Description Loop
+            Contains product/item descriptions and related information
+          items:
+            $ref: '#/components/schemas/PID_Loop'
+          nullable: true
+          type: array
+        referenceInformation:
+          description: |-
+            REF - Reference Information
+            To specify identifying information
+          items:
+            $ref: '#/components/schemas/ReferenceInformation'
+          nullable: true
+          type: array
+        salesRequirements:
+          description: |-
+            CSH - Sales Requirements
+            To specify sales conditions
+          items:
+            $ref: '#/components/schemas/SalesRequirements'
+          nullable: true
+          type: array
+        serviceCharacteristic:
+          description: |-
+            SI - Service Characteristic Identification
+            To specify service characteristic data
+          items:
+            $ref: '#/components/schemas/ProductItemDescription'
+          nullable: true
+          type: array
+        servicePromotionAllowanceChargeLoop:
+          description: |-
+            SAC - Service, Promotion, Allowance, or Charge Information
+            To request or identify a service, promotion, allowance, or charge; or to report a condition
+          items:
+            $ref: '#/components/schemas/SAC_Loop'
+          nullable: true
+          type: array
+        sublineItemDetail:
+          description: |-
+            SLN - Subline Item Detail
+            To specify product subline detail item data
+          items:
+            $ref: '#/components/schemas/BaselineItemData'
+          nullable: true
+          type: array
+        termsOfSale:
+          description: |-
+            ITD - Terms of Sale/Deferred Terms of Sale
+            To specify terms of sale
+          items:
+            $ref: '#/components/schemas/TermsOfSaleDeferredTermsOfSale'
+          nullable: true
+          type: array
+      type: object
+    PartyIdentification:
+      description: Party Identification (N1) - Name and identification information
+      example:
+        identificationCode: identificationCode
+        entityIdentifierCode: entityIdentifierCode
+        identificationCodeQualifier: identificationCodeQualifier
+        name: name
+      properties:
+        entityIdentifierCode:
+          description: Entity Identifier Code
+          nullable: true
+          type: string
+        identificationCode:
+          description: Identification Code
+          nullable: true
+          type: string
+        identificationCodeQualifier:
+          description: Identification Code Qualifier
+          nullable: true
+          type: string
+        name:
+          description: Name
+          nullable: true
+          type: string
+      type: object
+    PartyLocation:
+      description: Party Location (N3) - Address information
+      example:
+        addressInformation: addressInformation
+      properties:
+        addressInformation:
+          description: Address Information
+          nullable: true
+          type: string
+      type: object
+    PricingInformation:
+      description: Pricing Information (CTP) - Pricing information for items
+      example:
+        unitPrice: unitPrice
+        priceIdentifierCode: priceIdentifierCode
+        priceMultiplierQualifier: priceMultiplierQualifier
+        multiplier5: multiplier5
+        classOfTradeCode: classOfTradeCode
+      properties:
+        classOfTradeCode:
+          nullable: true
+          type: string
+        multiplier5:
+          nullable: true
+          type: string
+        priceIdentifierCode:
+          nullable: true
+          type: string
+        priceMultiplierQualifier:
+          nullable: true
+          type: string
+        unitPrice:
+          nullable: true
+          type: string
+      type: object
+    ProductItemDescription:
+      description: Product/Item Description (PID) - Product description information
+        (REUSABLE)
+      example:
+        itemDescriptionTypeCode: itemDescriptionTypeCode
+        description: description
+        productProcessCharacteristicCode: productProcessCharacteristicCode
+      properties:
+        description:
+          description: Description
+          nullable: true
+          type: string
+        itemDescriptionTypeCode:
+          description: Item Description Type Code
+          nullable: true
+          type: string
+        productProcessCharacteristicCode:
+          description: Product/Process Characteristic Code
+          nullable: true
+          type: string
+      type: object
+    ReferenceInformation:
+      description: Reference Information (REF) - Reference identification information
+        (REUSABLE)
+      example:
+        referenceIdentification: referenceIdentification
+        referenceIdentificationQualifier: referenceIdentificationQualifier
+      properties:
+        referenceIdentification:
+          description: Reference Identification
+          nullable: true
+          type: string
+        referenceIdentificationQualifier:
+          description: Reference Identification Qualifier
+          nullable: true
+          type: string
+      type: object
+    SAC_Loop:
+      description: |-
+        SAC Loop - Service, Promotion, Allowance, or Charge Information Loop
+        Contains Service/Promotion/Allowance/Charge Information segments
+      example:
+        servicePromotionAllowanceOrChargeInformation:
+        - agencyQualifierCode: agencyQualifierCode
+          agencyServicePromotionAllowanceOrChargeCode: agencyServicePromotionAllowanceOrChargeCode
+          unitOrBasisForMeasurementCode: unitOrBasisForMeasurementCode
+          amount: amount
+          percentDecimalFormat: percentDecimalFormat
+          referenceIdentification: referenceIdentification
+          optionNumber: optionNumber
+          allowanceOrChargeMethodOfHandlingCode: allowanceOrChargeMethodOfHandlingCode
+          servicePromotionAllowanceOrChargeCode: servicePromotionAllowanceOrChargeCode
+          allowanceOrChargeIndicatorCode: allowanceOrChargeIndicatorCode
+          description: description
+          allowanceChargePercentQualifier: allowanceChargePercentQualifier
+        - agencyQualifierCode: agencyQualifierCode
+          agencyServicePromotionAllowanceOrChargeCode: agencyServicePromotionAllowanceOrChargeCode
+          unitOrBasisForMeasurementCode: unitOrBasisForMeasurementCode
+          amount: amount
+          percentDecimalFormat: percentDecimalFormat
+          referenceIdentification: referenceIdentification
+          optionNumber: optionNumber
+          allowanceOrChargeMethodOfHandlingCode: allowanceOrChargeMethodOfHandlingCode
+          servicePromotionAllowanceOrChargeCode: servicePromotionAllowanceOrChargeCode
+          allowanceOrChargeIndicatorCode: allowanceOrChargeIndicatorCode
+          description: description
+          allowanceChargePercentQualifier: allowanceChargePercentQualifier
+      properties:
+        servicePromotionAllowanceOrChargeInformation:
+          description: |-
+            SAC01 - Allowance or Charge Indicator
+            Code which indicates an allowance or charge for the service specified
+          items:
+            $ref: '#/components/schemas/ServicePromotionAllowanceOrChargeInformation'
+          nullable: true
+          type: array
+      type: object
+    SalesRequirements:
+      description: Sales Requirements (SAL) - Sales information
+      example:
+        amount: amount
+        salesRequirementCode: salesRequirementCode
+        actionCode: actionCode
+      properties:
+        actionCode:
+          description: Action Code
+          nullable: true
+          type: string
+        amount:
+          description: Amount
+          nullable: true
+          type: string
+        salesRequirementCode:
+          description: Sales Requirement Code
+          nullable: true
+          type: string
+      type: object
+    ServicePromotionAllowanceOrChargeInformation:
+      description: "Service, Promotion, Allowance, or Charge Information (SAC) - Service,\
+        \ allowance, or charge information (REUSABLE)"
+      example:
+        agencyQualifierCode: agencyQualifierCode
+        agencyServicePromotionAllowanceOrChargeCode: agencyServicePromotionAllowanceOrChargeCode
+        unitOrBasisForMeasurementCode: unitOrBasisForMeasurementCode
+        amount: amount
+        percentDecimalFormat: percentDecimalFormat
+        referenceIdentification: referenceIdentification
+        optionNumber: optionNumber
+        allowanceOrChargeMethodOfHandlingCode: allowanceOrChargeMethodOfHandlingCode
+        servicePromotionAllowanceOrChargeCode: servicePromotionAllowanceOrChargeCode
+        allowanceOrChargeIndicatorCode: allowanceOrChargeIndicatorCode
+        description: description
+        allowanceChargePercentQualifier: allowanceChargePercentQualifier
+      properties:
+        agencyQualifierCode:
+          description: Agency Qualifier Code
+          nullable: true
+          type: string
+        agencyServicePromotionAllowanceOrChargeCode:
+          description: "Agency Service, Promotion, Allowance, or Charge Code"
+          nullable: true
+          type: string
+        allowanceChargePercentQualifier:
+          description: Allowance/Charge Percent Qualifier
+          nullable: true
+          type: string
+        allowanceOrChargeIndicatorCode:
+          description: Allowance or Charge Indicator Code
+          nullable: true
+          type: string
+        allowanceOrChargeMethodOfHandlingCode:
+          description: Allowance or Charge Method of Handling Code
+          nullable: true
+          type: string
+        amount:
+          description: Amount
+          nullable: true
+          type: string
+        description:
+          description: Description
+          nullable: true
+          type: string
+        optionNumber:
+          description: Option Number
+          nullable: true
+          type: string
+        percentDecimalFormat:
+          description: Percent (Decimal Format)
+          nullable: true
+          type: string
+        referenceIdentification:
+          description: Reference Identification
+          nullable: true
+          type: string
+        servicePromotionAllowanceOrChargeCode:
+          description: "Service, Promotion, Allowance, or Charge Code"
+          nullable: true
+          type: string
+        unitOrBasisForMeasurementCode:
+          description: Unit or Basis for Measurement Code
+          nullable: true
+          type: string
+      type: object
+    ShippingAddress:
+      example:
+        firstName: firstName
+        postalOrZipCode: postalOrZipCode
+        stateOrProvince: stateOrProvince
+        address2: address2
+        address1: address1
+        countryCode: countryCode
+        companyOrOrganization: companyOrOrganization
+        lastNameOrSurname: lastNameOrSurname
+        email: email
+        cityOrTown: cityOrTown
+      properties:
+        address1:
+          nullable: true
+          type: string
+        address2:
+          nullable: true
+          type: string
+        cityOrTown:
+          nullable: true
+          type: string
+        companyOrOrganization:
+          nullable: true
+          type: string
+        countryCode:
+          nullable: true
+          type: string
+        email:
+          nullable: true
+          type: string
+        firstName:
+          nullable: true
+          type: string
+        lastNameOrSurname:
+          nullable: true
+          type: string
+        postalOrZipCode:
+          nullable: true
+          type: string
+        stateOrProvince:
+          nullable: true
+          type: string
+      type: object
+    TaxInformation:
+      description: Tax Information (TXI) - Tax details
+      example:
+        taxExemptCode: taxExemptCode
+        percentageAsDecimal: percentageAsDecimal
+        taxTypeCode: taxTypeCode
+        dollarBasisForPercent: dollarBasisForPercent
+        taxIdentificationNumber: taxIdentificationNumber
+        monetaryAmount: monetaryAmount
+      properties:
+        dollarBasisForPercent:
+          nullable: true
+          type: string
+        monetaryAmount:
+          nullable: true
+          type: string
+        percentageAsDecimal:
+          nullable: true
+          type: string
+        taxExemptCode:
+          nullable: true
+          type: string
+        taxIdentificationNumber:
+          nullable: true
+          type: string
+        taxTypeCode:
+          nullable: true
+          type: string
+      type: object
+    TermsOfSaleDeferredTermsOfSale:
+      description: Terms of Sale/Deferred Terms of Sale (ITD) - Terms of sale information
+      example:
+        termsBasisDateCode: termsBasisDateCode
+        dayOfMonth: dayOfMonth
+        termsNetDays: termsNetDays
+        paymentMethodTypeCode: paymentMethodTypeCode
+        description: description
+        termsDiscountAmount: termsDiscountAmount
+        termsTypeCode: termsTypeCode
+      properties:
+        dayOfMonth:
+          description: Day of Month
+          nullable: true
+          type: string
+        description:
+          description: Description
+          nullable: true
+          type: string
+        paymentMethodTypeCode:
+          description: Payment Method Type Code
+          nullable: true
+          type: string
+        termsBasisDateCode:
+          description: Terms Basis Date Code
+          nullable: true
+          type: string
+        termsDiscountAmount:
+          description: Terms Discount Amount
+          nullable: true
+          type: string
+        termsNetDays:
+          description: Terms Net Days
+          nullable: true
+          type: string
+        termsTypeCode:
+          description: Terms Type Code
+          nullable: true
+          type: string
+      type: object
+    Text:
+      description: Text (MSG) - Text information
+      example:
+        textualData: textualData
+      properties:
+        textualData:
+          description: Textual Data
+          nullable: true
+          type: string
+      type: object
+    TotalMonetaryValueSummary:
+      description: Total Monetary Value Summary (TDS) - Invoice total amounts
+      example:
+        amount: amount
+        amount1: amount1
+      properties:
+        amount:
+          nullable: true
+          type: string
+        amount1:
+          nullable: true
+          type: string
+      type: object
+    TransactionSet:
+      description: |-
+        TransactionSet - Complete 850 Purchase Order Transaction Set
+        Contains all segments and loops for a complete EDI 850 Purchase Order transaction
+      example:
+        taxReference:
+        - referenceIdentification: referenceIdentification
+          referenceIdentificationQualifier: referenceIdentificationQualifier
+        - referenceIdentification: referenceIdentification
+          referenceIdentificationQualifier: referenceIdentificationQualifier
+        salesRequirements:
+        - amount: amount
+          salesRequirementCode: salesRequirementCode
+          actionCode: actionCode
+        - amount: amount
+          salesRequirementCode: salesRequirementCode
+          actionCode: actionCode
+        administrativeCommunicationsContact:
+        - communicationNumberQualifier: communicationNumberQualifier
+          communicationNumber1: communicationNumber1
+          communicationNumber2: communicationNumber2
+          name: name
+          communicationNumber: communicationNumber
+          communicationNumberQualifier1: communicationNumberQualifier1
+          contactFunctionCode: contactFunctionCode
+          communicationNumberQualifier2: communicationNumberQualifier2
+          contactInquiryReference: contactInquiryReference
+        - communicationNumberQualifier: communicationNumberQualifier
+          communicationNumber1: communicationNumber1
+          communicationNumber2: communicationNumber2
+          name: name
+          communicationNumber: communicationNumber
+          communicationNumberQualifier1: communicationNumberQualifier1
+          contactFunctionCode: contactFunctionCode
+          communicationNumberQualifier2: communicationNumberQualifier2
+          contactInquiryReference: contactInquiryReference
+        paperwork:
+        - textualData: textualData
+        - textualData: textualData
+        leadTime:
+        - date: date
+          time: time
+          timeCode: timeCode
+          dateTimeQualifier: dateTimeQualifier
+        - date: date
+          time: time
+          timeCode: timeCode
+          dateTimeQualifier: dateTimeQualifier
+        ctT_loop:
+        - transactionTotals:
+          - numberOfLineItems: numberOfLineItems
+            unitOrBasisForMeasurementCode: unitOrBasisForMeasurementCode
+            volume: volume
+            hashTotal: hashTotal
+            weight: weight
+            unitOrBasisForMeasurementCode1: unitOrBasisForMeasurementCode1
+          - numberOfLineItems: numberOfLineItems
+            unitOrBasisForMeasurementCode: unitOrBasisForMeasurementCode
+            volume: volume
+            hashTotal: hashTotal
+            weight: weight
+            unitOrBasisForMeasurementCode1: unitOrBasisForMeasurementCode1
+          monetaryAmountInformation:
+          - amountQualifierCode: amountQualifierCode
+            monetaryAmount: 0.8008281904610115
+          - amountQualifierCode: amountQualifierCode
+            monetaryAmount: 0.8008281904610115
+        - transactionTotals:
+          - numberOfLineItems: numberOfLineItems
+            unitOrBasisForMeasurementCode: unitOrBasisForMeasurementCode
+            volume: volume
+            hashTotal: hashTotal
+            weight: weight
+            unitOrBasisForMeasurementCode1: unitOrBasisForMeasurementCode1
+          - numberOfLineItems: numberOfLineItems
+            unitOrBasisForMeasurementCode: unitOrBasisForMeasurementCode
+            volume: volume
+            hashTotal: hashTotal
+            weight: weight
+            unitOrBasisForMeasurementCode1: unitOrBasisForMeasurementCode1
+          monetaryAmountInformation:
+          - amountQualifierCode: amountQualifierCode
+            monetaryAmount: 0.8008281904610115
+          - amountQualifierCode: amountQualifierCode
+            monetaryAmount: 0.8008281904610115
+        pO1_loop:
+        - salesRequirements:
+          - amount: amount
+            salesRequirementCode: salesRequirementCode
+            actionCode: actionCode
+          - amount: amount
+            salesRequirementCode: salesRequirementCode
+            actionCode: actionCode
+          administrativeCommunicationsContact:
+          - communicationNumberQualifier: communicationNumberQualifier
+            communicationNumber1: communicationNumber1
+            communicationNumber2: communicationNumber2
+            name: name
+            communicationNumber: communicationNumber
+            communicationNumberQualifier1: communicationNumberQualifier1
+            contactFunctionCode: contactFunctionCode
+            communicationNumberQualifier2: communicationNumberQualifier2
+            contactInquiryReference: contactInquiryReference
+          - communicationNumberQualifier: communicationNumberQualifier
+            communicationNumber1: communicationNumber1
+            communicationNumber2: communicationNumber2
+            name: name
+            communicationNumber: communicationNumber
+            communicationNumberQualifier1: communicationNumberQualifier1
+            contactFunctionCode: contactFunctionCode
+            communicationNumberQualifier2: communicationNumberQualifier2
+            contactInquiryReference: contactInquiryReference
+          conditionsOfSale:
+          - amount: amount
+            salesRequirementCode: salesRequirementCode
+            actionCode: actionCode
+          - amount: amount
+            salesRequirementCode: salesRequirementCode
+            actionCode: actionCode
+          packagingLoop:
+          - textualData: textualData
+          - textualData: textualData
+          paperwork:
+          - textualData: textualData
+          - textualData: textualData
+          leadTime:
+          - date: date
+            time: time
+            timeCode: timeCode
+            dateTimeQualifier: dateTimeQualifier
+          - date: date
+            time: time
+            timeCode: timeCode
+            dateTimeQualifier: dateTimeQualifier
+          piD_loop:
+          - productItemDescription:
+            - itemDescriptionTypeCode: itemDescriptionTypeCode
+              description: description
+              productProcessCharacteristicCode: productProcessCharacteristicCode
+            - itemDescriptionTypeCode: itemDescriptionTypeCode
+              description: description
+              productProcessCharacteristicCode: productProcessCharacteristicCode
+          - productItemDescription:
+            - itemDescriptionTypeCode: itemDescriptionTypeCode
+              description: description
+              productProcessCharacteristicCode: productProcessCharacteristicCode
+            - itemDescriptionTypeCode: itemDescriptionTypeCode
+              description: description
+              productProcessCharacteristicCode: productProcessCharacteristicCode
+          pricingLoop:
+          - pricingInformation:
+            - unitPrice: unitPrice
+              priceIdentifierCode: priceIdentifierCode
+              priceMultiplierQualifier: priceMultiplierQualifier
+              multiplier5: multiplier5
+              classOfTradeCode: classOfTradeCode
+            - unitPrice: unitPrice
+              priceIdentifierCode: priceIdentifierCode
+              priceMultiplierQualifier: priceMultiplierQualifier
+              multiplier5: multiplier5
+              classOfTradeCode: classOfTradeCode
+          - pricingInformation:
+            - unitPrice: unitPrice
+              priceIdentifierCode: priceIdentifierCode
+              priceMultiplierQualifier: priceMultiplierQualifier
+              multiplier5: multiplier5
+              classOfTradeCode: classOfTradeCode
+            - unitPrice: unitPrice
+              priceIdentifierCode: priceIdentifierCode
+              priceMultiplierQualifier: priceMultiplierQualifier
+              multiplier5: multiplier5
+              classOfTradeCode: classOfTradeCode
+          termsOfSale:
+          - termsBasisDateCode: termsBasisDateCode
+            dayOfMonth: dayOfMonth
+            termsNetDays: termsNetDays
+            paymentMethodTypeCode: paymentMethodTypeCode
+            description: description
+            termsDiscountAmount: termsDiscountAmount
+            termsTypeCode: termsTypeCode
+          - termsBasisDateCode: termsBasisDateCode
+            dayOfMonth: dayOfMonth
+            termsNetDays: termsNetDays
+            paymentMethodTypeCode: paymentMethodTypeCode
+            description: description
+            termsDiscountAmount: termsDiscountAmount
+            termsTypeCode: termsTypeCode
+          discountDetail:
+          - amountQualifierCode: amountQualifierCode
+            monetaryAmount: 0.8008281904610115
+          - amountQualifierCode: amountQualifierCode
+            monetaryAmount: 0.8008281904610115
+          paperworkLoop:
+          - textualData: textualData
+          - textualData: textualData
+          n1_loop:
+          - referenceInformation:
+            - referenceIdentification: referenceIdentification
+              referenceIdentificationQualifier: referenceIdentificationQualifier
+            - referenceIdentification: referenceIdentification
+              referenceIdentificationQualifier: referenceIdentificationQualifier
+            geographicLocation:
+            - cityName: cityName
+              locationQualifier: locationQualifier
+              countryCode: countryCode
+              postalCode: postalCode
+              stateOrProvinceCode: stateOrProvinceCode
+              locationIdentifier: locationIdentifier
+            - cityName: cityName
+              locationQualifier: locationQualifier
+              countryCode: countryCode
+              postalCode: postalCode
+              stateOrProvinceCode: stateOrProvinceCode
+              locationIdentifier: locationIdentifier
+            additionalNameInformation:
+            - name: name
+            - name: name
+            administrativeCommunicationsContact:
+            - communicationNumberQualifier: communicationNumberQualifier
+              communicationNumber1: communicationNumber1
+              communicationNumber2: communicationNumber2
+              name: name
+              communicationNumber: communicationNumber
+              communicationNumberQualifier1: communicationNumberQualifier1
+              contactFunctionCode: contactFunctionCode
+              communicationNumberQualifier2: communicationNumberQualifier2
+              contactInquiryReference: contactInquiryReference
+            - communicationNumberQualifier: communicationNumberQualifier
+              communicationNumber1: communicationNumber1
+              communicationNumber2: communicationNumber2
+              name: name
+              communicationNumber: communicationNumber
+              communicationNumberQualifier1: communicationNumberQualifier1
+              contactFunctionCode: contactFunctionCode
+              communicationNumberQualifier2: communicationNumberQualifier2
+              contactInquiryReference: contactInquiryReference
+            partyLocation:
+            - addressInformation: addressInformation
+            - addressInformation: addressInformation
+            partyIdentification:
+            - identificationCode: identificationCode
+              entityIdentifierCode: entityIdentifierCode
+              identificationCodeQualifier: identificationCodeQualifier
+              name: name
+            - identificationCode: identificationCode
+              entityIdentifierCode: entityIdentifierCode
+              identificationCodeQualifier: identificationCodeQualifier
+              name: name
+          - referenceInformation:
+            - referenceIdentification: referenceIdentification
+              referenceIdentificationQualifier: referenceIdentificationQualifier
+            - referenceIdentification: referenceIdentification
+              referenceIdentificationQualifier: referenceIdentificationQualifier
+            geographicLocation:
+            - cityName: cityName
+              locationQualifier: locationQualifier
+              countryCode: countryCode
+              postalCode: postalCode
+              stateOrProvinceCode: stateOrProvinceCode
+              locationIdentifier: locationIdentifier
+            - cityName: cityName
+              locationQualifier: locationQualifier
+              countryCode: countryCode
+              postalCode: postalCode
+              stateOrProvinceCode: stateOrProvinceCode
+              locationIdentifier: locationIdentifier
+            additionalNameInformation:
+            - name: name
+            - name: name
+            administrativeCommunicationsContact:
+            - communicationNumberQualifier: communicationNumberQualifier
+              communicationNumber1: communicationNumber1
+              communicationNumber2: communicationNumber2
+              name: name
+              communicationNumber: communicationNumber
+              communicationNumberQualifier1: communicationNumberQualifier1
+              contactFunctionCode: contactFunctionCode
+              communicationNumberQualifier2: communicationNumberQualifier2
+              contactInquiryReference: contactInquiryReference
+            - communicationNumberQualifier: communicationNumberQualifier
+              communicationNumber1: communicationNumber1
+              communicationNumber2: communicationNumber2
+              name: name
+              communicationNumber: communicationNumber
+              communicationNumberQualifier1: communicationNumberQualifier1
+              contactFunctionCode: contactFunctionCode
+              communicationNumberQualifier2: communicationNumberQualifier2
+              contactInquiryReference: contactInquiryReference
+            partyLocation:
+            - addressInformation: addressInformation
+            - addressInformation: addressInformation
+            partyIdentification:
+            - identificationCode: identificationCode
+              entityIdentifierCode: entityIdentifierCode
+              identificationCodeQualifier: identificationCodeQualifier
+              name: name
+            - identificationCode: identificationCode
+              entityIdentifierCode: entityIdentifierCode
+              identificationCodeQualifier: identificationCodeQualifier
+              name: name
+          currency:
+          - entityIdentifierCode: entityIdentifierCode
+            currencyCode: currencyCode
+          - entityIdentifierCode: entityIdentifierCode
+            currencyCode: currencyCode
+          loopHeaderTrailer:
+          - textualData: textualData
+          - textualData: textualData
+          carrierDetailsRoutingSequenceTransitTime:
+          - identificationCode: identificationCode
+            identificationCodeQualifier: identificationCodeQualifier
+            locationQualifier: locationQualifier
+            locationIdentifier: locationIdentifier
+          - identificationCode: identificationCode
+            identificationCodeQualifier: identificationCodeQualifier
+            locationQualifier: locationQualifier
+            locationIdentifier: locationIdentifier
+          installmentInformation:
+          - amountQualifierCode: amountQualifierCode
+            monetaryAmount: 0.8008281904610115
+          - amountQualifierCode: amountQualifierCode
+            monetaryAmount: 0.8008281904610115
+          productItemDescriptionLoop:
+          - productItemDescription:
+            - itemDescriptionTypeCode: itemDescriptionTypeCode
+              description: description
+              productProcessCharacteristicCode: productProcessCharacteristicCode
+            - itemDescriptionTypeCode: itemDescriptionTypeCode
+              description: description
+              productProcessCharacteristicCode: productProcessCharacteristicCode
+          - productItemDescription:
+            - itemDescriptionTypeCode: itemDescriptionTypeCode
+              description: description
+              productProcessCharacteristicCode: productProcessCharacteristicCode
+            - itemDescriptionTypeCode: itemDescriptionTypeCode
+              description: description
+              productProcessCharacteristicCode: productProcessCharacteristicCode
+          baselineItemData:
+          - unitOrBasisForMeasurementCode: unitOrBasisForMeasurementCode
+            unitPrice: unitPrice
+            quantity: quantity
+            productServiceID: productServiceID
+            productServiceIDQualifier: productServiceIDQualifier
+            basisOfUnitPriceCode: basisOfUnitPriceCode
+            assignedIdentification: assignedIdentification
+            productServiceIDQualifier2: productServiceIDQualifier2
+            productServiceIDQualifier4: productServiceIDQualifier4
+            productServiceIDQualifier3: productServiceIDQualifier3
+            productServiceID2: productServiceID2
+            productServiceID4: productServiceID4
+            productServiceID3: productServiceID3
+          - unitOrBasisForMeasurementCode: unitOrBasisForMeasurementCode
+            unitPrice: unitPrice
+            quantity: quantity
+            productServiceID: productServiceID
+            productServiceIDQualifier: productServiceIDQualifier
+            basisOfUnitPriceCode: basisOfUnitPriceCode
+            assignedIdentification: assignedIdentification
+            productServiceIDQualifier2: productServiceIDQualifier2
+            productServiceIDQualifier4: productServiceIDQualifier4
+            productServiceIDQualifier3: productServiceIDQualifier3
+            productServiceID2: productServiceID2
+            productServiceID4: productServiceID4
+            productServiceID3: productServiceID3
+          serviceCharacteristic:
+          - itemDescriptionTypeCode: itemDescriptionTypeCode
+            description: description
+            productProcessCharacteristicCode: productProcessCharacteristicCode
+          - itemDescriptionTypeCode: itemDescriptionTypeCode
+            description: description
+            productProcessCharacteristicCode: productProcessCharacteristicCode
+          referenceInformation:
+          - referenceIdentification: referenceIdentification
+            referenceIdentificationQualifier: referenceIdentificationQualifier
+          - referenceIdentification: referenceIdentification
+            referenceIdentificationQualifier: referenceIdentificationQualifier
+          itemIdentification:
+          - unitOrBasisForMeasurementCode: unitOrBasisForMeasurementCode
+            unitPrice: unitPrice
+            quantity: quantity
+            productServiceID: productServiceID
+            productServiceIDQualifier: productServiceIDQualifier
+            basisOfUnitPriceCode: basisOfUnitPriceCode
+            assignedIdentification: assignedIdentification
+            productServiceIDQualifier2: productServiceIDQualifier2
+            productServiceIDQualifier4: productServiceIDQualifier4
+            productServiceIDQualifier3: productServiceIDQualifier3
+            productServiceID2: productServiceID2
+            productServiceID4: productServiceID4
+            productServiceID3: productServiceID3
+          - unitOrBasisForMeasurementCode: unitOrBasisForMeasurementCode
+            unitPrice: unitPrice
+            quantity: quantity
+            productServiceID: productServiceID
+            productServiceIDQualifier: productServiceIDQualifier
+            basisOfUnitPriceCode: basisOfUnitPriceCode
+            assignedIdentification: assignedIdentification
+            productServiceIDQualifier2: productServiceIDQualifier2
+            productServiceIDQualifier4: productServiceIDQualifier4
+            productServiceIDQualifier3: productServiceIDQualifier3
+            productServiceID2: productServiceID2
+            productServiceID4: productServiceID4
+            productServiceID3: productServiceID3
+          monetaryAmountInformation:
+          - amountQualifierCode: amountQualifierCode
+            monetaryAmount: 0.8008281904610115
+          - amountQualifierCode: amountQualifierCode
+            monetaryAmount: 0.8008281904610115
+          itemPhysicalDetails:
+          - unitOrBasisForMeasurementCode: unitOrBasisForMeasurementCode
+            weightQualifier: weightQualifier
+            length: length
+            grossVolumePerPack: grossVolumePerPack
+            unitOrBasisForMeasurementCode1: unitOrBasisForMeasurementCode1
+            unitOrBasisForMeasurementCode2: unitOrBasisForMeasurementCode2
+            packagingCode: packagingCode
+            unitOrBasisForMeasurementCode3: unitOrBasisForMeasurementCode3
+            pack: pack
+            size: size
+            grossWeightPerPack: grossWeightPerPack
+            width: width
+            height: height
+          - unitOrBasisForMeasurementCode: unitOrBasisForMeasurementCode
+            weightQualifier: weightQualifier
+            length: length
+            grossVolumePerPack: grossVolumePerPack
+            unitOrBasisForMeasurementCode1: unitOrBasisForMeasurementCode1
+            unitOrBasisForMeasurementCode2: unitOrBasisForMeasurementCode2
+            packagingCode: packagingCode
+            unitOrBasisForMeasurementCode3: unitOrBasisForMeasurementCode3
+            pack: pack
+            size: size
+            grossWeightPerPack: grossWeightPerPack
+            width: width
+            height: height
+          sublineItemDetail:
+          - unitOrBasisForMeasurementCode: unitOrBasisForMeasurementCode
+            unitPrice: unitPrice
+            quantity: quantity
+            productServiceID: productServiceID
+            productServiceIDQualifier: productServiceIDQualifier
+            basisOfUnitPriceCode: basisOfUnitPriceCode
+            assignedIdentification: assignedIdentification
+            productServiceIDQualifier2: productServiceIDQualifier2
+            productServiceIDQualifier4: productServiceIDQualifier4
+            productServiceIDQualifier3: productServiceIDQualifier3
+            productServiceID2: productServiceID2
+            productServiceID4: productServiceID4
+            productServiceID3: productServiceID3
+          - unitOrBasisForMeasurementCode: unitOrBasisForMeasurementCode
+            unitPrice: unitPrice
+            quantity: quantity
+            productServiceID: productServiceID
+            productServiceIDQualifier: productServiceIDQualifier
+            basisOfUnitPriceCode: basisOfUnitPriceCode
+            assignedIdentification: assignedIdentification
+            productServiceIDQualifier2: productServiceIDQualifier2
+            productServiceIDQualifier4: productServiceIDQualifier4
+            productServiceIDQualifier3: productServiceIDQualifier3
+            productServiceID2: productServiceID2
+            productServiceID4: productServiceID4
+            productServiceID3: productServiceID3
+          packagingInformation:
+          - textualData: textualData
+          - textualData: textualData
+          dateTimeReference:
+          - date: date
+            time: time
+            timeCode: timeCode
+            dateTimeQualifier: dateTimeQualifier
+          - date: date
+            time: time
+            timeCode: timeCode
+            dateTimeQualifier: dateTimeQualifier
+          servicePromotionAllowanceChargeLoop:
+          - servicePromotionAllowanceOrChargeInformation:
+            - agencyQualifierCode: agencyQualifierCode
+              agencyServicePromotionAllowanceOrChargeCode: agencyServicePromotionAllowanceOrChargeCode
+              unitOrBasisForMeasurementCode: unitOrBasisForMeasurementCode
+              amount: amount
+              percentDecimalFormat: percentDecimalFormat
+              referenceIdentification: referenceIdentification
+              optionNumber: optionNumber
+              allowanceOrChargeMethodOfHandlingCode: allowanceOrChargeMethodOfHandlingCode
+              servicePromotionAllowanceOrChargeCode: servicePromotionAllowanceOrChargeCode
+              allowanceOrChargeIndicatorCode: allowanceOrChargeIndicatorCode
+              description: description
+              allowanceChargePercentQualifier: allowanceChargePercentQualifier
+            - agencyQualifierCode: agencyQualifierCode
+              agencyServicePromotionAllowanceOrChargeCode: agencyServicePromotionAllowanceOrChargeCode
+              unitOrBasisForMeasurementCode: unitOrBasisForMeasurementCode
+              amount: amount
+              percentDecimalFormat: percentDecimalFormat
+              referenceIdentification: referenceIdentification
+              optionNumber: optionNumber
+              allowanceOrChargeMethodOfHandlingCode: allowanceOrChargeMethodOfHandlingCode
+              servicePromotionAllowanceOrChargeCode: servicePromotionAllowanceOrChargeCode
+              allowanceOrChargeIndicatorCode: allowanceOrChargeIndicatorCode
+              description: description
+              allowanceChargePercentQualifier: allowanceChargePercentQualifier
+          - servicePromotionAllowanceOrChargeInformation:
+            - agencyQualifierCode: agencyQualifierCode
+              agencyServicePromotionAllowanceOrChargeCode: agencyServicePromotionAllowanceOrChargeCode
+              unitOrBasisForMeasurementCode: unitOrBasisForMeasurementCode
+              amount: amount
+              percentDecimalFormat: percentDecimalFormat
+              referenceIdentification: referenceIdentification
+              optionNumber: optionNumber
+              allowanceOrChargeMethodOfHandlingCode: allowanceOrChargeMethodOfHandlingCode
+              servicePromotionAllowanceOrChargeCode: servicePromotionAllowanceOrChargeCode
+              allowanceOrChargeIndicatorCode: allowanceOrChargeIndicatorCode
+              description: description
+              allowanceChargePercentQualifier: allowanceChargePercentQualifier
+            - agencyQualifierCode: agencyQualifierCode
+              agencyServicePromotionAllowanceOrChargeCode: agencyServicePromotionAllowanceOrChargeCode
+              unitOrBasisForMeasurementCode: unitOrBasisForMeasurementCode
+              amount: amount
+              percentDecimalFormat: percentDecimalFormat
+              referenceIdentification: referenceIdentification
+              optionNumber: optionNumber
+              allowanceOrChargeMethodOfHandlingCode: allowanceOrChargeMethodOfHandlingCode
+              servicePromotionAllowanceOrChargeCode: servicePromotionAllowanceOrChargeCode
+              allowanceOrChargeIndicatorCode: allowanceOrChargeIndicatorCode
+              description: description
+              allowanceChargePercentQualifier: allowanceChargePercentQualifier
+        - salesRequirements:
+          - amount: amount
+            salesRequirementCode: salesRequirementCode
+            actionCode: actionCode
+          - amount: amount
+            salesRequirementCode: salesRequirementCode
+            actionCode: actionCode
+          administrativeCommunicationsContact:
+          - communicationNumberQualifier: communicationNumberQualifier
+            communicationNumber1: communicationNumber1
+            communicationNumber2: communicationNumber2
+            name: name
+            communicationNumber: communicationNumber
+            communicationNumberQualifier1: communicationNumberQualifier1
+            contactFunctionCode: contactFunctionCode
+            communicationNumberQualifier2: communicationNumberQualifier2
+            contactInquiryReference: contactInquiryReference
+          - communicationNumberQualifier: communicationNumberQualifier
+            communicationNumber1: communicationNumber1
+            communicationNumber2: communicationNumber2
+            name: name
+            communicationNumber: communicationNumber
+            communicationNumberQualifier1: communicationNumberQualifier1
+            contactFunctionCode: contactFunctionCode
+            communicationNumberQualifier2: communicationNumberQualifier2
+            contactInquiryReference: contactInquiryReference
+          conditionsOfSale:
+          - amount: amount
+            salesRequirementCode: salesRequirementCode
+            actionCode: actionCode
+          - amount: amount
+            salesRequirementCode: salesRequirementCode
+            actionCode: actionCode
+          packagingLoop:
+          - textualData: textualData
+          - textualData: textualData
+          paperwork:
+          - textualData: textualData
+          - textualData: textualData
+          leadTime:
+          - date: date
+            time: time
+            timeCode: timeCode
+            dateTimeQualifier: dateTimeQualifier
+          - date: date
+            time: time
+            timeCode: timeCode
+            dateTimeQualifier: dateTimeQualifier
+          piD_loop:
+          - productItemDescription:
+            - itemDescriptionTypeCode: itemDescriptionTypeCode
+              description: description
+              productProcessCharacteristicCode: productProcessCharacteristicCode
+            - itemDescriptionTypeCode: itemDescriptionTypeCode
+              description: description
+              productProcessCharacteristicCode: productProcessCharacteristicCode
+          - productItemDescription:
+            - itemDescriptionTypeCode: itemDescriptionTypeCode
+              description: description
+              productProcessCharacteristicCode: productProcessCharacteristicCode
+            - itemDescriptionTypeCode: itemDescriptionTypeCode
+              description: description
+              productProcessCharacteristicCode: productProcessCharacteristicCode
+          pricingLoop:
+          - pricingInformation:
+            - unitPrice: unitPrice
+              priceIdentifierCode: priceIdentifierCode
+              priceMultiplierQualifier: priceMultiplierQualifier
+              multiplier5: multiplier5
+              classOfTradeCode: classOfTradeCode
+            - unitPrice: unitPrice
+              priceIdentifierCode: priceIdentifierCode
+              priceMultiplierQualifier: priceMultiplierQualifier
+              multiplier5: multiplier5
+              classOfTradeCode: classOfTradeCode
+          - pricingInformation:
+            - unitPrice: unitPrice
+              priceIdentifierCode: priceIdentifierCode
+              priceMultiplierQualifier: priceMultiplierQualifier
+              multiplier5: multiplier5
+              classOfTradeCode: classOfTradeCode
+            - unitPrice: unitPrice
+              priceIdentifierCode: priceIdentifierCode
+              priceMultiplierQualifier: priceMultiplierQualifier
+              multiplier5: multiplier5
+              classOfTradeCode: classOfTradeCode
+          termsOfSale:
+          - termsBasisDateCode: termsBasisDateCode
+            dayOfMonth: dayOfMonth
+            termsNetDays: termsNetDays
+            paymentMethodTypeCode: paymentMethodTypeCode
+            description: description
+            termsDiscountAmount: termsDiscountAmount
+            termsTypeCode: termsTypeCode
+          - termsBasisDateCode: termsBasisDateCode
+            dayOfMonth: dayOfMonth
+            termsNetDays: termsNetDays
+            paymentMethodTypeCode: paymentMethodTypeCode
+            description: description
+            termsDiscountAmount: termsDiscountAmount
+            termsTypeCode: termsTypeCode
+          discountDetail:
+          - amountQualifierCode: amountQualifierCode
+            monetaryAmount: 0.8008281904610115
+          - amountQualifierCode: amountQualifierCode
+            monetaryAmount: 0.8008281904610115
+          paperworkLoop:
+          - textualData: textualData
+          - textualData: textualData
+          n1_loop:
+          - referenceInformation:
+            - referenceIdentification: referenceIdentification
+              referenceIdentificationQualifier: referenceIdentificationQualifier
+            - referenceIdentification: referenceIdentification
+              referenceIdentificationQualifier: referenceIdentificationQualifier
+            geographicLocation:
+            - cityName: cityName
+              locationQualifier: locationQualifier
+              countryCode: countryCode
+              postalCode: postalCode
+              stateOrProvinceCode: stateOrProvinceCode
+              locationIdentifier: locationIdentifier
+            - cityName: cityName
+              locationQualifier: locationQualifier
+              countryCode: countryCode
+              postalCode: postalCode
+              stateOrProvinceCode: stateOrProvinceCode
+              locationIdentifier: locationIdentifier
+            additionalNameInformation:
+            - name: name
+            - name: name
+            administrativeCommunicationsContact:
+            - communicationNumberQualifier: communicationNumberQualifier
+              communicationNumber1: communicationNumber1
+              communicationNumber2: communicationNumber2
+              name: name
+              communicationNumber: communicationNumber
+              communicationNumberQualifier1: communicationNumberQualifier1
+              contactFunctionCode: contactFunctionCode
+              communicationNumberQualifier2: communicationNumberQualifier2
+              contactInquiryReference: contactInquiryReference
+            - communicationNumberQualifier: communicationNumberQualifier
+              communicationNumber1: communicationNumber1
+              communicationNumber2: communicationNumber2
+              name: name
+              communicationNumber: communicationNumber
+              communicationNumberQualifier1: communicationNumberQualifier1
+              contactFunctionCode: contactFunctionCode
+              communicationNumberQualifier2: communicationNumberQualifier2
+              contactInquiryReference: contactInquiryReference
+            partyLocation:
+            - addressInformation: addressInformation
+            - addressInformation: addressInformation
+            partyIdentification:
+            - identificationCode: identificationCode
+              entityIdentifierCode: entityIdentifierCode
+              identificationCodeQualifier: identificationCodeQualifier
+              name: name
+            - identificationCode: identificationCode
+              entityIdentifierCode: entityIdentifierCode
+              identificationCodeQualifier: identificationCodeQualifier
+              name: name
+          - referenceInformation:
+            - referenceIdentification: referenceIdentification
+              referenceIdentificationQualifier: referenceIdentificationQualifier
+            - referenceIdentification: referenceIdentification
+              referenceIdentificationQualifier: referenceIdentificationQualifier
+            geographicLocation:
+            - cityName: cityName
+              locationQualifier: locationQualifier
+              countryCode: countryCode
+              postalCode: postalCode
+              stateOrProvinceCode: stateOrProvinceCode
+              locationIdentifier: locationIdentifier
+            - cityName: cityName
+              locationQualifier: locationQualifier
+              countryCode: countryCode
+              postalCode: postalCode
+              stateOrProvinceCode: stateOrProvinceCode
+              locationIdentifier: locationIdentifier
+            additionalNameInformation:
+            - name: name
+            - name: name
+            administrativeCommunicationsContact:
+            - communicationNumberQualifier: communicationNumberQualifier
+              communicationNumber1: communicationNumber1
+              communicationNumber2: communicationNumber2
+              name: name
+              communicationNumber: communicationNumber
+              communicationNumberQualifier1: communicationNumberQualifier1
+              contactFunctionCode: contactFunctionCode
+              communicationNumberQualifier2: communicationNumberQualifier2
+              contactInquiryReference: contactInquiryReference
+            - communicationNumberQualifier: communicationNumberQualifier
+              communicationNumber1: communicationNumber1
+              communicationNumber2: communicationNumber2
+              name: name
+              communicationNumber: communicationNumber
+              communicationNumberQualifier1: communicationNumberQualifier1
+              contactFunctionCode: contactFunctionCode
+              communicationNumberQualifier2: communicationNumberQualifier2
+              contactInquiryReference: contactInquiryReference
+            partyLocation:
+            - addressInformation: addressInformation
+            - addressInformation: addressInformation
+            partyIdentification:
+            - identificationCode: identificationCode
+              entityIdentifierCode: entityIdentifierCode
+              identificationCodeQualifier: identificationCodeQualifier
+              name: name
+            - identificationCode: identificationCode
+              entityIdentifierCode: entityIdentifierCode
+              identificationCodeQualifier: identificationCodeQualifier
+              name: name
+          currency:
+          - entityIdentifierCode: entityIdentifierCode
+            currencyCode: currencyCode
+          - entityIdentifierCode: entityIdentifierCode
+            currencyCode: currencyCode
+          loopHeaderTrailer:
+          - textualData: textualData
+          - textualData: textualData
+          carrierDetailsRoutingSequenceTransitTime:
+          - identificationCode: identificationCode
+            identificationCodeQualifier: identificationCodeQualifier
+            locationQualifier: locationQualifier
+            locationIdentifier: locationIdentifier
+          - identificationCode: identificationCode
+            identificationCodeQualifier: identificationCodeQualifier
+            locationQualifier: locationQualifier
+            locationIdentifier: locationIdentifier
+          installmentInformation:
+          - amountQualifierCode: amountQualifierCode
+            monetaryAmount: 0.8008281904610115
+          - amountQualifierCode: amountQualifierCode
+            monetaryAmount: 0.8008281904610115
+          productItemDescriptionLoop:
+          - productItemDescription:
+            - itemDescriptionTypeCode: itemDescriptionTypeCode
+              description: description
+              productProcessCharacteristicCode: productProcessCharacteristicCode
+            - itemDescriptionTypeCode: itemDescriptionTypeCode
+              description: description
+              productProcessCharacteristicCode: productProcessCharacteristicCode
+          - productItemDescription:
+            - itemDescriptionTypeCode: itemDescriptionTypeCode
+              description: description
+              productProcessCharacteristicCode: productProcessCharacteristicCode
+            - itemDescriptionTypeCode: itemDescriptionTypeCode
+              description: description
+              productProcessCharacteristicCode: productProcessCharacteristicCode
+          baselineItemData:
+          - unitOrBasisForMeasurementCode: unitOrBasisForMeasurementCode
+            unitPrice: unitPrice
+            quantity: quantity
+            productServiceID: productServiceID
+            productServiceIDQualifier: productServiceIDQualifier
+            basisOfUnitPriceCode: basisOfUnitPriceCode
+            assignedIdentification: assignedIdentification
+            productServiceIDQualifier2: productServiceIDQualifier2
+            productServiceIDQualifier4: productServiceIDQualifier4
+            productServiceIDQualifier3: productServiceIDQualifier3
+            productServiceID2: productServiceID2
+            productServiceID4: productServiceID4
+            productServiceID3: productServiceID3
+          - unitOrBasisForMeasurementCode: unitOrBasisForMeasurementCode
+            unitPrice: unitPrice
+            quantity: quantity
+            productServiceID: productServiceID
+            productServiceIDQualifier: productServiceIDQualifier
+            basisOfUnitPriceCode: basisOfUnitPriceCode
+            assignedIdentification: assignedIdentification
+            productServiceIDQualifier2: productServiceIDQualifier2
+            productServiceIDQualifier4: productServiceIDQualifier4
+            productServiceIDQualifier3: productServiceIDQualifier3
+            productServiceID2: productServiceID2
+            productServiceID4: productServiceID4
+            productServiceID3: productServiceID3
+          serviceCharacteristic:
+          - itemDescriptionTypeCode: itemDescriptionTypeCode
+            description: description
+            productProcessCharacteristicCode: productProcessCharacteristicCode
+          - itemDescriptionTypeCode: itemDescriptionTypeCode
+            description: description
+            productProcessCharacteristicCode: productProcessCharacteristicCode
+          referenceInformation:
+          - referenceIdentification: referenceIdentification
+            referenceIdentificationQualifier: referenceIdentificationQualifier
+          - referenceIdentification: referenceIdentification
+            referenceIdentificationQualifier: referenceIdentificationQualifier
+          itemIdentification:
+          - unitOrBasisForMeasurementCode: unitOrBasisForMeasurementCode
+            unitPrice: unitPrice
+            quantity: quantity
+            productServiceID: productServiceID
+            productServiceIDQualifier: productServiceIDQualifier
+            basisOfUnitPriceCode: basisOfUnitPriceCode
+            assignedIdentification: assignedIdentification
+            productServiceIDQualifier2: productServiceIDQualifier2
+            productServiceIDQualifier4: productServiceIDQualifier4
+            productServiceIDQualifier3: productServiceIDQualifier3
+            productServiceID2: productServiceID2
+            productServiceID4: productServiceID4
+            productServiceID3: productServiceID3
+          - unitOrBasisForMeasurementCode: unitOrBasisForMeasurementCode
+            unitPrice: unitPrice
+            quantity: quantity
+            productServiceID: productServiceID
+            productServiceIDQualifier: productServiceIDQualifier
+            basisOfUnitPriceCode: basisOfUnitPriceCode
+            assignedIdentification: assignedIdentification
+            productServiceIDQualifier2: productServiceIDQualifier2
+            productServiceIDQualifier4: productServiceIDQualifier4
+            productServiceIDQualifier3: productServiceIDQualifier3
+            productServiceID2: productServiceID2
+            productServiceID4: productServiceID4
+            productServiceID3: productServiceID3
+          monetaryAmountInformation:
+          - amountQualifierCode: amountQualifierCode
+            monetaryAmount: 0.8008281904610115
+          - amountQualifierCode: amountQualifierCode
+            monetaryAmount: 0.8008281904610115
+          itemPhysicalDetails:
+          - unitOrBasisForMeasurementCode: unitOrBasisForMeasurementCode
+            weightQualifier: weightQualifier
+            length: length
+            grossVolumePerPack: grossVolumePerPack
+            unitOrBasisForMeasurementCode1: unitOrBasisForMeasurementCode1
+            unitOrBasisForMeasurementCode2: unitOrBasisForMeasurementCode2
+            packagingCode: packagingCode
+            unitOrBasisForMeasurementCode3: unitOrBasisForMeasurementCode3
+            pack: pack
+            size: size
+            grossWeightPerPack: grossWeightPerPack
+            width: width
+            height: height
+          - unitOrBasisForMeasurementCode: unitOrBasisForMeasurementCode
+            weightQualifier: weightQualifier
+            length: length
+            grossVolumePerPack: grossVolumePerPack
+            unitOrBasisForMeasurementCode1: unitOrBasisForMeasurementCode1
+            unitOrBasisForMeasurementCode2: unitOrBasisForMeasurementCode2
+            packagingCode: packagingCode
+            unitOrBasisForMeasurementCode3: unitOrBasisForMeasurementCode3
+            pack: pack
+            size: size
+            grossWeightPerPack: grossWeightPerPack
+            width: width
+            height: height
+          sublineItemDetail:
+          - unitOrBasisForMeasurementCode: unitOrBasisForMeasurementCode
+            unitPrice: unitPrice
+            quantity: quantity
+            productServiceID: productServiceID
+            productServiceIDQualifier: productServiceIDQualifier
+            basisOfUnitPriceCode: basisOfUnitPriceCode
+            assignedIdentification: assignedIdentification
+            productServiceIDQualifier2: productServiceIDQualifier2
+            productServiceIDQualifier4: productServiceIDQualifier4
+            productServiceIDQualifier3: productServiceIDQualifier3
+            productServiceID2: productServiceID2
+            productServiceID4: productServiceID4
+            productServiceID3: productServiceID3
+          - unitOrBasisForMeasurementCode: unitOrBasisForMeasurementCode
+            unitPrice: unitPrice
+            quantity: quantity
+            productServiceID: productServiceID
+            productServiceIDQualifier: productServiceIDQualifier
+            basisOfUnitPriceCode: basisOfUnitPriceCode
+            assignedIdentification: assignedIdentification
+            productServiceIDQualifier2: productServiceIDQualifier2
+            productServiceIDQualifier4: productServiceIDQualifier4
+            productServiceIDQualifier3: productServiceIDQualifier3
+            productServiceID2: productServiceID2
+            productServiceID4: productServiceID4
+            productServiceID3: productServiceID3
+          packagingInformation:
+          - textualData: textualData
+          - textualData: textualData
+          dateTimeReference:
+          - date: date
+            time: time
+            timeCode: timeCode
+            dateTimeQualifier: dateTimeQualifier
+          - date: date
+            time: time
+            timeCode: timeCode
+            dateTimeQualifier: dateTimeQualifier
+          servicePromotionAllowanceChargeLoop:
+          - servicePromotionAllowanceOrChargeInformation:
+            - agencyQualifierCode: agencyQualifierCode
+              agencyServicePromotionAllowanceOrChargeCode: agencyServicePromotionAllowanceOrChargeCode
+              unitOrBasisForMeasurementCode: unitOrBasisForMeasurementCode
+              amount: amount
+              percentDecimalFormat: percentDecimalFormat
+              referenceIdentification: referenceIdentification
+              optionNumber: optionNumber
+              allowanceOrChargeMethodOfHandlingCode: allowanceOrChargeMethodOfHandlingCode
+              servicePromotionAllowanceOrChargeCode: servicePromotionAllowanceOrChargeCode
+              allowanceOrChargeIndicatorCode: allowanceOrChargeIndicatorCode
+              description: description
+              allowanceChargePercentQualifier: allowanceChargePercentQualifier
+            - agencyQualifierCode: agencyQualifierCode
+              agencyServicePromotionAllowanceOrChargeCode: agencyServicePromotionAllowanceOrChargeCode
+              unitOrBasisForMeasurementCode: unitOrBasisForMeasurementCode
+              amount: amount
+              percentDecimalFormat: percentDecimalFormat
+              referenceIdentification: referenceIdentification
+              optionNumber: optionNumber
+              allowanceOrChargeMethodOfHandlingCode: allowanceOrChargeMethodOfHandlingCode
+              servicePromotionAllowanceOrChargeCode: servicePromotionAllowanceOrChargeCode
+              allowanceOrChargeIndicatorCode: allowanceOrChargeIndicatorCode
+              description: description
+              allowanceChargePercentQualifier: allowanceChargePercentQualifier
+          - servicePromotionAllowanceOrChargeInformation:
+            - agencyQualifierCode: agencyQualifierCode
+              agencyServicePromotionAllowanceOrChargeCode: agencyServicePromotionAllowanceOrChargeCode
+              unitOrBasisForMeasurementCode: unitOrBasisForMeasurementCode
+              amount: amount
+              percentDecimalFormat: percentDecimalFormat
+              referenceIdentification: referenceIdentification
+              optionNumber: optionNumber
+              allowanceOrChargeMethodOfHandlingCode: allowanceOrChargeMethodOfHandlingCode
+              servicePromotionAllowanceOrChargeCode: servicePromotionAllowanceOrChargeCode
+              allowanceOrChargeIndicatorCode: allowanceOrChargeIndicatorCode
+              description: description
+              allowanceChargePercentQualifier: allowanceChargePercentQualifier
+            - agencyQualifierCode: agencyQualifierCode
+              agencyServicePromotionAllowanceOrChargeCode: agencyServicePromotionAllowanceOrChargeCode
+              unitOrBasisForMeasurementCode: unitOrBasisForMeasurementCode
+              amount: amount
+              percentDecimalFormat: percentDecimalFormat
+              referenceIdentification: referenceIdentification
+              optionNumber: optionNumber
+              allowanceOrChargeMethodOfHandlingCode: allowanceOrChargeMethodOfHandlingCode
+              servicePromotionAllowanceOrChargeCode: servicePromotionAllowanceOrChargeCode
+              allowanceOrChargeIndicatorCode: allowanceOrChargeIndicatorCode
+              description: description
+              allowanceChargePercentQualifier: allowanceChargePercentQualifier
+        carrierSpecialHandling:
+        - identificationCode: identificationCode
+          identificationCodeQualifier: identificationCodeQualifier
+          locationQualifier: locationQualifier
+          locationIdentifier: locationIdentifier
+        - identificationCode: identificationCode
+          identificationCodeQualifier: identificationCodeQualifier
+          locationQualifier: locationQualifier
+          locationIdentifier: locationIdentifier
+        marksAndNumbers:
+        - textualData: textualData
+        - textualData: textualData
+        periodAmount:
+        - amountQualifierCode: amountQualifierCode
+          monetaryAmount: 0.8008281904610115
+        - amountQualifierCode: amountQualifierCode
+          monetaryAmount: 0.8008281904610115
+        discountDetail:
+        - amountQualifierCode: amountQualifierCode
+          monetaryAmount: 0.8008281904610115
+        - amountQualifierCode: amountQualifierCode
+          monetaryAmount: 0.8008281904610115
+        n1_loop:
+        - referenceInformation:
+          - referenceIdentification: referenceIdentification
+            referenceIdentificationQualifier: referenceIdentificationQualifier
+          - referenceIdentification: referenceIdentification
+            referenceIdentificationQualifier: referenceIdentificationQualifier
+          geographicLocation:
+          - cityName: cityName
+            locationQualifier: locationQualifier
+            countryCode: countryCode
+            postalCode: postalCode
+            stateOrProvinceCode: stateOrProvinceCode
+            locationIdentifier: locationIdentifier
+          - cityName: cityName
+            locationQualifier: locationQualifier
+            countryCode: countryCode
+            postalCode: postalCode
+            stateOrProvinceCode: stateOrProvinceCode
+            locationIdentifier: locationIdentifier
+          additionalNameInformation:
+          - name: name
+          - name: name
+          administrativeCommunicationsContact:
+          - communicationNumberQualifier: communicationNumberQualifier
+            communicationNumber1: communicationNumber1
+            communicationNumber2: communicationNumber2
+            name: name
+            communicationNumber: communicationNumber
+            communicationNumberQualifier1: communicationNumberQualifier1
+            contactFunctionCode: contactFunctionCode
+            communicationNumberQualifier2: communicationNumberQualifier2
+            contactInquiryReference: contactInquiryReference
+          - communicationNumberQualifier: communicationNumberQualifier
+            communicationNumber1: communicationNumber1
+            communicationNumber2: communicationNumber2
+            name: name
+            communicationNumber: communicationNumber
+            communicationNumberQualifier1: communicationNumberQualifier1
+            contactFunctionCode: contactFunctionCode
+            communicationNumberQualifier2: communicationNumberQualifier2
+            contactInquiryReference: contactInquiryReference
+          partyLocation:
+          - addressInformation: addressInformation
+          - addressInformation: addressInformation
+          partyIdentification:
+          - identificationCode: identificationCode
+            entityIdentifierCode: entityIdentifierCode
+            identificationCodeQualifier: identificationCodeQualifier
+            name: name
+          - identificationCode: identificationCode
+            entityIdentifierCode: entityIdentifierCode
+            identificationCodeQualifier: identificationCodeQualifier
+            name: name
+        - referenceInformation:
+          - referenceIdentification: referenceIdentification
+            referenceIdentificationQualifier: referenceIdentificationQualifier
+          - referenceIdentification: referenceIdentification
+            referenceIdentificationQualifier: referenceIdentificationQualifier
+          geographicLocation:
+          - cityName: cityName
+            locationQualifier: locationQualifier
+            countryCode: countryCode
+            postalCode: postalCode
+            stateOrProvinceCode: stateOrProvinceCode
+            locationIdentifier: locationIdentifier
+          - cityName: cityName
+            locationQualifier: locationQualifier
+            countryCode: countryCode
+            postalCode: postalCode
+            stateOrProvinceCode: stateOrProvinceCode
+            locationIdentifier: locationIdentifier
+          additionalNameInformation:
+          - name: name
+          - name: name
+          administrativeCommunicationsContact:
+          - communicationNumberQualifier: communicationNumberQualifier
+            communicationNumber1: communicationNumber1
+            communicationNumber2: communicationNumber2
+            name: name
+            communicationNumber: communicationNumber
+            communicationNumberQualifier1: communicationNumberQualifier1
+            contactFunctionCode: contactFunctionCode
+            communicationNumberQualifier2: communicationNumberQualifier2
+            contactInquiryReference: contactInquiryReference
+          - communicationNumberQualifier: communicationNumberQualifier
+            communicationNumber1: communicationNumber1
+            communicationNumber2: communicationNumber2
+            name: name
+            communicationNumber: communicationNumber
+            communicationNumberQualifier1: communicationNumberQualifier1
+            contactFunctionCode: contactFunctionCode
+            communicationNumberQualifier2: communicationNumberQualifier2
+            contactInquiryReference: contactInquiryReference
+          partyLocation:
+          - addressInformation: addressInformation
+          - addressInformation: addressInformation
+          partyIdentification:
+          - identificationCode: identificationCode
+            entityIdentifierCode: entityIdentifierCode
+            identificationCodeQualifier: identificationCodeQualifier
+            name: name
+          - identificationCode: identificationCode
+            entityIdentifierCode: entityIdentifierCode
+            identificationCodeQualifier: identificationCodeQualifier
+            name: name
+        specificationIdentifier:
+        - itemDescriptionTypeCode: itemDescriptionTypeCode
+          description: description
+          productProcessCharacteristicCode: productProcessCharacteristicCode
+        - itemDescriptionTypeCode: itemDescriptionTypeCode
+          description: description
+          productProcessCharacteristicCode: productProcessCharacteristicCode
+        currency:
+        - entityIdentifierCode: entityIdentifierCode
+          currencyCode: currencyCode
+        - entityIdentifierCode: entityIdentifierCode
+          currencyCode: currencyCode
+        carrierEquipmentDetails:
+        - identificationCode: identificationCode
+          identificationCodeQualifier: identificationCodeQualifier
+          locationQualifier: locationQualifier
+          locationIdentifier: locationIdentifier
+        - identificationCode: identificationCode
+          identificationCodeQualifier: identificationCodeQualifier
+          locationQualifier: locationQualifier
+          locationIdentifier: locationIdentifier
+        installmentInformation:
+        - amountQualifierCode: amountQualifierCode
+          monetaryAmount: 0.8008281904610115
+        - amountQualifierCode: amountQualifierCode
+          monetaryAmount: 0.8008281904610115
+        measurements:
+        - unitOrBasisForMeasurementCode: unitOrBasisForMeasurementCode
+          weightQualifier: weightQualifier
+          length: length
+          grossVolumePerPack: grossVolumePerPack
+          unitOrBasisForMeasurementCode1: unitOrBasisForMeasurementCode1
+          unitOrBasisForMeasurementCode2: unitOrBasisForMeasurementCode2
+          packagingCode: packagingCode
+          unitOrBasisForMeasurementCode3: unitOrBasisForMeasurementCode3
+          pack: pack
+          size: size
+          grossWeightPerPack: grossWeightPerPack
+          width: width
+          height: height
+        - unitOrBasisForMeasurementCode: unitOrBasisForMeasurementCode
+          weightQualifier: weightQualifier
+          length: length
+          grossVolumePerPack: grossVolumePerPack
+          unitOrBasisForMeasurementCode1: unitOrBasisForMeasurementCode1
+          unitOrBasisForMeasurementCode2: unitOrBasisForMeasurementCode2
+          packagingCode: packagingCode
+          unitOrBasisForMeasurementCode3: unitOrBasisForMeasurementCode3
+          pack: pack
+          size: size
+          grossWeightPerPack: grossWeightPerPack
+          width: width
+          height: height
+        serviceCharacteristic:
+        - itemDescriptionTypeCode: itemDescriptionTypeCode
+          description: description
+          productProcessCharacteristicCode: productProcessCharacteristicCode
+        - itemDescriptionTypeCode: itemDescriptionTypeCode
+          description: description
+          productProcessCharacteristicCode: productProcessCharacteristicCode
+        transactionSetHeader:
+        - transactionSetIdentifierCode: transactionSetIdentifierCode
+          transactionSetControlNumber: transactionSetControlNumber
+        - transactionSetIdentifierCode: transactionSetIdentifierCode
+          transactionSetControlNumber: transactionSetControlNumber
+        advertisingDemographicInformation:
+        - textualData: textualData
+        - textualData: textualData
+        pricingInformation:
+        - unitPrice: unitPrice
+          priceIdentifierCode: priceIdentifierCode
+          priceMultiplierQualifier: priceMultiplierQualifier
+          multiplier5: multiplier5
+          classOfTradeCode: classOfTradeCode
+        - unitPrice: unitPrice
+          priceIdentifierCode: priceIdentifierCode
+          priceMultiplierQualifier: priceMultiplierQualifier
+          multiplier5: multiplier5
+          classOfTradeCode: classOfTradeCode
+        referenceInformation:
+        - referenceIdentification: referenceIdentification
+          referenceIdentificationQualifier: referenceIdentificationQualifier
+        - referenceIdentification: referenceIdentification
+          referenceIdentificationQualifier: referenceIdentificationQualifier
+        transactionSetTrailer:
+        - transactionSetControlNumber: transactionSetControlNumber
+          numberOfIncludedSegments: numberOfIncludedSegments
+        - transactionSetControlNumber: transactionSetControlNumber
+          numberOfIncludedSegments: numberOfIncludedSegments
+        productItemDescription:
+        - itemDescriptionTypeCode: itemDescriptionTypeCode
+          description: description
+          productProcessCharacteristicCode: productProcessCharacteristicCode
+        - itemDescriptionTypeCode: itemDescriptionTypeCode
+          description: description
+          productProcessCharacteristicCode: productProcessCharacteristicCode
+        codeSourceInformation:
+        - textualData: textualData
+        - textualData: textualData
+        itemIdentification:
+        - unitOrBasisForMeasurementCode: unitOrBasisForMeasurementCode
+          unitPrice: unitPrice
+          quantity: quantity
+          productServiceID: productServiceID
+          productServiceIDQualifier: productServiceIDQualifier
+          basisOfUnitPriceCode: basisOfUnitPriceCode
+          assignedIdentification: assignedIdentification
+          productServiceIDQualifier2: productServiceIDQualifier2
+          productServiceIDQualifier4: productServiceIDQualifier4
+          productServiceIDQualifier3: productServiceIDQualifier3
+          productServiceID2: productServiceID2
+          productServiceID4: productServiceID4
+          productServiceID3: productServiceID3
+        - unitOrBasisForMeasurementCode: unitOrBasisForMeasurementCode
+          unitPrice: unitPrice
+          quantity: quantity
+          productServiceID: productServiceID
+          productServiceIDQualifier: productServiceIDQualifier
+          basisOfUnitPriceCode: basisOfUnitPriceCode
+          assignedIdentification: assignedIdentification
+          productServiceIDQualifier2: productServiceIDQualifier2
+          productServiceIDQualifier4: productServiceIDQualifier4
+          productServiceIDQualifier3: productServiceIDQualifier3
+          productServiceID2: productServiceID2
+          productServiceID4: productServiceID4
+          productServiceID3: productServiceID3
+        beginningSegmentForPurchaseOrder:
+        - date: date
+          purchaseOrderNumber: purchaseOrderNumber
+          transactionSetPurposeCode: transactionSetPurposeCode
+          purchaseOrderTypeCode: purchaseOrderTypeCode
+        - date: date
+          purchaseOrderNumber: purchaseOrderNumber
+          transactionSetPurposeCode: transactionSetPurposeCode
+          purchaseOrderTypeCode: purchaseOrderTypeCode
+        packagingInformation:
+        - textualData: textualData
+        - textualData: textualData
+        termsOfSaleDeferredTermsOfSale:
+        - termsBasisDateCode: termsBasisDateCode
+          dayOfMonth: dayOfMonth
+          termsNetDays: termsNetDays
+          paymentMethodTypeCode: paymentMethodTypeCode
+          description: description
+          termsDiscountAmount: termsDiscountAmount
+          termsTypeCode: termsTypeCode
+        - termsBasisDateCode: termsBasisDateCode
+          dayOfMonth: dayOfMonth
+          termsNetDays: termsNetDays
+          paymentMethodTypeCode: paymentMethodTypeCode
+          description: description
+          termsDiscountAmount: termsDiscountAmount
+          termsTypeCode: termsTypeCode
+        extendedReferenceLoop:
+        - messageText:
+          - textualData: textualData
+          - textualData: textualData
+          extendedReferenceInformation:
+          - freeFormDescription: freeFormDescription
+            referenceIdentification: referenceIdentification
+            referenceIdentificationQualifier: referenceIdentificationQualifier
+          - freeFormDescription: freeFormDescription
+            referenceIdentification: referenceIdentification
+            referenceIdentificationQualifier: referenceIdentificationQualifier
+        - messageText:
+          - textualData: textualData
+          - textualData: textualData
+          extendedReferenceInformation:
+          - freeFormDescription: freeFormDescription
+            referenceIdentification: referenceIdentification
+            referenceIdentificationQualifier: referenceIdentificationQualifier
+          - freeFormDescription: freeFormDescription
+            referenceIdentification: referenceIdentification
+            referenceIdentificationQualifier: referenceIdentificationQualifier
+        carrierDetails:
+        - identificationCode: identificationCode
+          identificationCodeQualifier: identificationCodeQualifier
+          locationQualifier: locationQualifier
+          locationIdentifier: locationIdentifier
+        - identificationCode: identificationCode
+          identificationCodeQualifier: identificationCodeQualifier
+          locationQualifier: locationQualifier
+          locationIdentifier: locationIdentifier
+        dateTimeReference:
+        - date: date
+          time: time
+          timeCode: timeCode
+          dateTimeQualifier: dateTimeQualifier
+        - date: date
+          time: time
+          timeCode: timeCode
+          dateTimeQualifier: dateTimeQualifier
+        servicePromotionAllowanceChargeLoop:
+        - servicePromotionAllowanceOrChargeInformation:
+          - agencyQualifierCode: agencyQualifierCode
+            agencyServicePromotionAllowanceOrChargeCode: agencyServicePromotionAllowanceOrChargeCode
+            unitOrBasisForMeasurementCode: unitOrBasisForMeasurementCode
+            amount: amount
+            percentDecimalFormat: percentDecimalFormat
+            referenceIdentification: referenceIdentification
+            optionNumber: optionNumber
+            allowanceOrChargeMethodOfHandlingCode: allowanceOrChargeMethodOfHandlingCode
+            servicePromotionAllowanceOrChargeCode: servicePromotionAllowanceOrChargeCode
+            allowanceOrChargeIndicatorCode: allowanceOrChargeIndicatorCode
+            description: description
+            allowanceChargePercentQualifier: allowanceChargePercentQualifier
+          - agencyQualifierCode: agencyQualifierCode
+            agencyServicePromotionAllowanceOrChargeCode: agencyServicePromotionAllowanceOrChargeCode
+            unitOrBasisForMeasurementCode: unitOrBasisForMeasurementCode
+            amount: amount
+            percentDecimalFormat: percentDecimalFormat
+            referenceIdentification: referenceIdentification
+            optionNumber: optionNumber
+            allowanceOrChargeMethodOfHandlingCode: allowanceOrChargeMethodOfHandlingCode
+            servicePromotionAllowanceOrChargeCode: servicePromotionAllowanceOrChargeCode
+            allowanceOrChargeIndicatorCode: allowanceOrChargeIndicatorCode
+            description: description
+            allowanceChargePercentQualifier: allowanceChargePercentQualifier
+        - servicePromotionAllowanceOrChargeInformation:
+          - agencyQualifierCode: agencyQualifierCode
+            agencyServicePromotionAllowanceOrChargeCode: agencyServicePromotionAllowanceOrChargeCode
+            unitOrBasisForMeasurementCode: unitOrBasisForMeasurementCode
+            amount: amount
+            percentDecimalFormat: percentDecimalFormat
+            referenceIdentification: referenceIdentification
+            optionNumber: optionNumber
+            allowanceOrChargeMethodOfHandlingCode: allowanceOrChargeMethodOfHandlingCode
+            servicePromotionAllowanceOrChargeCode: servicePromotionAllowanceOrChargeCode
+            allowanceOrChargeIndicatorCode: allowanceOrChargeIndicatorCode
+            description: description
+            allowanceChargePercentQualifier: allowanceChargePercentQualifier
+          - agencyQualifierCode: agencyQualifierCode
+            agencyServicePromotionAllowanceOrChargeCode: agencyServicePromotionAllowanceOrChargeCode
+            unitOrBasisForMeasurementCode: unitOrBasisForMeasurementCode
+            amount: amount
+            percentDecimalFormat: percentDecimalFormat
+            referenceIdentification: referenceIdentification
+            optionNumber: optionNumber
+            allowanceOrChargeMethodOfHandlingCode: allowanceOrChargeMethodOfHandlingCode
+            servicePromotionAllowanceOrChargeCode: servicePromotionAllowanceOrChargeCode
+            allowanceOrChargeIndicatorCode: allowanceOrChargeIndicatorCode
+            description: description
+            allowanceChargePercentQualifier: allowanceChargePercentQualifier
+      properties:
+        administrativeCommunicationsContact:
+          description: |-
+            PER - Administrative Communications Contact
+            To identify a person or office to whom administrative communications should be directed
+          items:
+            $ref: '#/components/schemas/AdministrativeCommunicationsContact'
+          nullable: true
+          type: array
+        advertisingDemographicInformation:
+          description: |-
+            ADV - Advertising Demographic Information
+            To specify advertising demographic information
+          items:
+            $ref: '#/components/schemas/Text'
+          nullable: true
+          type: array
+        beginningSegmentForPurchaseOrder:
+          description: |-
+            BEG - Beginning Segment for Purchase Order
+            To indicate the beginning of the Purchase Order Transaction Set and transmit identifying numbers and dates
+          items:
+            $ref: '#/components/schemas/BeginningSegmentForPurchaseOrder'
+          nullable: true
+          type: array
+        carrierDetails:
+          description: |-
+            TD1 - Carrier Details (Quantity and Weight)
+            To specify the transportation details relative to commodity, weight, and quantity
+          items:
+            $ref: '#/components/schemas/CarrierDetailsRoutingSequenceTransitTime'
+          nullable: true
+          type: array
+        carrierEquipmentDetails:
+          description: |-
+            TD3 - Carrier Details (Equipment)
+            To specify transportation details relating to the equipment used by the carrier
+          items:
+            $ref: '#/components/schemas/CarrierDetailsRoutingSequenceTransitTime'
+          nullable: true
+          type: array
+        carrierSpecialHandling:
+          description: |-
+            TD4 - Carrier Details (Special Handling, or Hazardous Materials, or Both)
+            To specify transportation special handling requirements, or hazardous materials, or both
+          items:
+            $ref: '#/components/schemas/CarrierDetailsRoutingSequenceTransitTime'
+          nullable: true
+          type: array
+        codeSourceInformation:
+          description: |-
+            LM - Code Source Information
+            To transmit standard code list identification information
+          items:
+            $ref: '#/components/schemas/Text'
+          nullable: true
+          type: array
+        ctT_loop:
+          description: |-
+            CTT Loop - Transaction Totals Loop
+            Contains transaction totals and related monetary information
+          items:
+            $ref: '#/components/schemas/CTT_Loop'
+          nullable: true
+          type: array
+        currency:
+          description: |-
+            CUR - Currency
+            To specify the currency (dollars, pounds, francs, etc.) used in a transaction
+          items:
+            $ref: '#/components/schemas/Currency'
+          nullable: true
+          type: array
+        dateTimeReference:
+          description: |-
+            DTM - Date/Time Reference
+            To specify pertinent dates and times
+          items:
+            $ref: '#/components/schemas/DateTimeReference'
+          nullable: true
+          type: array
+        discountDetail:
+          description: |-
+            DIS - Discount Detail
+            To specify the exact type and terms of various discount information
+          items:
+            $ref: '#/components/schemas/MonetaryAmountInformation'
+          nullable: true
+          type: array
+        extendedReferenceLoop:
+          description: |-
+            N9 Loop - Extended Reference Information Loop
+            Contains extended reference information and related text
+          items:
+            $ref: '#/components/schemas/N9_Loop'
+          nullable: true
+          type: array
+        installmentInformation:
+          description: |-
+            INC - Installment Information
+            To specify installment billing arrangement information
+          items:
+            $ref: '#/components/schemas/MonetaryAmountInformation'
+          nullable: true
+          type: array
+        itemIdentification:
+          description: |-
+            LIN - Item Identification
+            To specify basic item identification data
+          items:
+            $ref: '#/components/schemas/BaselineItemData'
+          nullable: true
+          type: array
+        leadTime:
+          description: |-
+            LDT - Lead Time
+            To specify lead time for availability of products and services
+          items:
+            $ref: '#/components/schemas/DateTimeReference'
+          nullable: true
+          type: array
+        marksAndNumbers:
+          description: |-
+            MAN - Marks and Numbers
+            To indicate identifying marks and numbers for shipping containers
+          items:
+            $ref: '#/components/schemas/Text'
+          nullable: true
+          type: array
+        measurements:
+          description: |-
+            MEA - Measurements
+            To specify physical measurements or counts, including dimensions, tolerances, variances, and weights
+          items:
+            $ref: '#/components/schemas/ItemPhysicalDetails'
+          nullable: true
+          type: array
+        n1_loop:
+          description: |-
+            N1 Loop - Party Identification Loop
+            Contains party information including identification, additional names, location, and geographic details
+          items:
+            $ref: '#/components/schemas/N1_Loop'
+          nullable: true
+          type: array
+        pO1_loop:
+          description: |-
+            PO1 Loop - Baseline Item Data Loop
+            Contains complete line item information including baseline data, pricing, physical details, and related segments
+          items:
+            $ref: '#/components/schemas/PO1_Loop'
+          nullable: true
+          type: array
+        packagingInformation:
+          description: |-
+            PKG - Marking, Packaging, Loading
+            To describe marking, packaging, loading, and unloading requirements
+          items:
+            $ref: '#/components/schemas/Text'
+          nullable: true
+          type: array
+        paperwork:
+          description: |-
+            PWK - Paperwork
+            To identify the type or transmission or both of paperwork or supporting information
+          items:
+            $ref: '#/components/schemas/Text'
+          nullable: true
+          type: array
+        periodAmount:
+          description: |-
+            PAM - Period Amount
+            To indicate a quantity, and/or amount for an identified period
+          items:
+            $ref: '#/components/schemas/MonetaryAmountInformation'
+          nullable: true
+          type: array
+        pricingInformation:
+          description: |-
+            CTP - Pricing Information
+            To specify pricing information
+          items:
+            $ref: '#/components/schemas/PricingInformation'
+          nullable: true
+          type: array
+        productItemDescription:
+          description: |-
+            PID - Product/Item Description
+            To describe a product or process in coded or free-form format
+          items:
+            $ref: '#/components/schemas/ProductItemDescription'
+          nullable: true
+          type: array
+        referenceInformation:
+          description: |-
+            REF - Reference Information
+            To specify identifying information
+          items:
+            $ref: '#/components/schemas/ReferenceInformation'
+          nullable: true
+          type: array
+        salesRequirements:
+          description: |-
+            CSH - Sales Requirements
+            To specify sales conditions
+          items:
+            $ref: '#/components/schemas/SalesRequirements'
+          nullable: true
+          type: array
+        serviceCharacteristic:
+          description: |-
+            SI - Service Characteristic Identification
+            To specify service characteristic data
+          items:
+            $ref: '#/components/schemas/ProductItemDescription'
+          nullable: true
+          type: array
+        servicePromotionAllowanceChargeLoop:
+          description: |-
+            SAC Loop - Service, Promotion, Allowance, or Charge Information Loop
+            To request or identify a service, promotion, allowance, or charge; or to report a condition
+          items:
+            $ref: '#/components/schemas/SAC_Loop'
+          nullable: true
+          type: array
+        specificationIdentifier:
+          description: |-
+            SPI - Specification Identifier
+            To provide a description of the included specification or technical data items
+          items:
+            $ref: '#/components/schemas/ProductItemDescription'
+          nullable: true
+          type: array
+        taxReference:
+          description: |-
+            TAX - Tax Reference
+            To specify tax information
+          items:
+            $ref: '#/components/schemas/ReferenceInformation'
+          nullable: true
+          type: array
+        termsOfSaleDeferredTermsOfSale:
+          description: |-
+            ITD - Terms of Sale/Deferred Terms of Sale
+            To specify terms of sale
+          items:
+            $ref: '#/components/schemas/TermsOfSaleDeferredTermsOfSale'
+          nullable: true
+          type: array
+        transactionSetHeader:
+          description: |-
+            ST - Transaction Set Header
+            To indicate the start of a transaction set and to assign a control number
+          items:
+            $ref: '#/components/schemas/TransactionSetHeader'
+          nullable: true
+          type: array
+        transactionSetTrailer:
+          description: |-
+            SE - Transaction Set Trailer
+            To indicate the end of the transaction set and provide the count of the transmitted segments (including the beginning (ST) and ending (SE) segments)
+          items:
+            $ref: '#/components/schemas/TransactionSetTrailer'
+          nullable: true
+          type: array
+      type: object
+    TransactionSet810:
+      description: TransactionSet810 - Complete 810 Invoice Transaction Set (Contract
+        DTO)
+      example:
+        transactionTotals:
+        - numberOfLineItems: numberOfLineItems
+          unitOrBasisForMeasurementCode: unitOrBasisForMeasurementCode
+          volume: volume
+          hashTotal: hashTotal
+          weight: weight
+          unitOrBasisForMeasurementCode1: unitOrBasisForMeasurementCode1
+        - numberOfLineItems: numberOfLineItems
+          unitOrBasisForMeasurementCode: unitOrBasisForMeasurementCode
+          volume: volume
+          hashTotal: hashTotal
+          weight: weight
+          unitOrBasisForMeasurementCode1: unitOrBasisForMeasurementCode1
+        transactionSetTrailer:
+        - transactionSetControlNumber: transactionSetControlNumber
+          numberOfIncludedSegments: numberOfIncludedSegments
+        - transactionSetControlNumber: transactionSetControlNumber
+          numberOfIncludedSegments: numberOfIncludedSegments
+        administrativeCommunicationsContact:
+        - communicationNumberQualifier: communicationNumberQualifier
+          communicationNumber1: communicationNumber1
+          communicationNumber2: communicationNumber2
+          name: name
+          communicationNumber: communicationNumber
+          communicationNumberQualifier1: communicationNumberQualifier1
+          contactFunctionCode: contactFunctionCode
+          communicationNumberQualifier2: communicationNumberQualifier2
+          contactInquiryReference: contactInquiryReference
+        - communicationNumberQualifier: communicationNumberQualifier
+          communicationNumber1: communicationNumber1
+          communicationNumber2: communicationNumber2
+          name: name
+          communicationNumber: communicationNumber
+          communicationNumberQualifier1: communicationNumberQualifier1
+          contactFunctionCode: contactFunctionCode
+          communicationNumberQualifier2: communicationNumberQualifier2
+          contactInquiryReference: contactInquiryReference
+        monetaryAmountInformation:
+        - amountQualifierCode: amountQualifierCode
+          monetaryAmount: 0.8008281904610115
+        - amountQualifierCode: amountQualifierCode
+          monetaryAmount: 0.8008281904610115
+        taxInformation:
+        - taxExemptCode: taxExemptCode
+          percentageAsDecimal: percentageAsDecimal
+          taxTypeCode: taxTypeCode
+          dollarBasisForPercent: dollarBasisForPercent
+          taxIdentificationNumber: taxIdentificationNumber
+          monetaryAmount: monetaryAmount
+        - taxExemptCode: taxExemptCode
+          percentageAsDecimal: percentageAsDecimal
+          taxTypeCode: taxTypeCode
+          dollarBasisForPercent: dollarBasisForPercent
+          taxIdentificationNumber: taxIdentificationNumber
+          monetaryAmount: monetaryAmount
+        iT1_loop:
+        - piD_loop:
+          - productItemDescription:
+            - itemDescriptionTypeCode: itemDescriptionTypeCode
+              description: description
+              productProcessCharacteristicCode: productProcessCharacteristicCode
+            - itemDescriptionTypeCode: itemDescriptionTypeCode
+              description: description
+              productProcessCharacteristicCode: productProcessCharacteristicCode
+          - productItemDescription:
+            - itemDescriptionTypeCode: itemDescriptionTypeCode
+              description: description
+              productProcessCharacteristicCode: productProcessCharacteristicCode
+            - itemDescriptionTypeCode: itemDescriptionTypeCode
+              description: description
+              productProcessCharacteristicCode: productProcessCharacteristicCode
+          pricingInformation:
+          - unitPrice: unitPrice
+            priceIdentifierCode: priceIdentifierCode
+            priceMultiplierQualifier: priceMultiplierQualifier
+            multiplier5: multiplier5
+            classOfTradeCode: classOfTradeCode
+          - unitPrice: unitPrice
+            priceIdentifierCode: priceIdentifierCode
+            priceMultiplierQualifier: priceMultiplierQualifier
+            multiplier5: multiplier5
+            classOfTradeCode: classOfTradeCode
+          taxInformation:
+          - taxExemptCode: taxExemptCode
+            percentageAsDecimal: percentageAsDecimal
+            taxTypeCode: taxTypeCode
+            dollarBasisForPercent: dollarBasisForPercent
+            taxIdentificationNumber: taxIdentificationNumber
+            monetaryAmount: monetaryAmount
+          - taxExemptCode: taxExemptCode
+            percentageAsDecimal: percentageAsDecimal
+            taxTypeCode: taxTypeCode
+            dollarBasisForPercent: dollarBasisForPercent
+            taxIdentificationNumber: taxIdentificationNumber
+            monetaryAmount: monetaryAmount
+          additionalItemData:
+          - unitOrBasisForMeasurementCode: unitOrBasisForMeasurementCode
+            numberOfUnitsShipped: numberOfUnitsShipped
+          - unitOrBasisForMeasurementCode: unitOrBasisForMeasurementCode
+            numberOfUnitsShipped: numberOfUnitsShipped
+          itemPhysicalDetails:
+          - unitOrBasisForMeasurementCode: unitOrBasisForMeasurementCode
+            weightQualifier: weightQualifier
+            length: length
+            grossVolumePerPack: grossVolumePerPack
+            unitOrBasisForMeasurementCode1: unitOrBasisForMeasurementCode1
+            unitOrBasisForMeasurementCode2: unitOrBasisForMeasurementCode2
+            packagingCode: packagingCode
+            unitOrBasisForMeasurementCode3: unitOrBasisForMeasurementCode3
+            pack: pack
+            size: size
+            grossWeightPerPack: grossWeightPerPack
+            width: width
+            height: height
+          - unitOrBasisForMeasurementCode: unitOrBasisForMeasurementCode
+            weightQualifier: weightQualifier
+            length: length
+            grossVolumePerPack: grossVolumePerPack
+            unitOrBasisForMeasurementCode1: unitOrBasisForMeasurementCode1
+            unitOrBasisForMeasurementCode2: unitOrBasisForMeasurementCode2
+            packagingCode: packagingCode
+            unitOrBasisForMeasurementCode3: unitOrBasisForMeasurementCode3
+            pack: pack
+            size: size
+            grossWeightPerPack: grossWeightPerPack
+            width: width
+            height: height
+          baselineItemDataInvoice:
+          - assignedIdentification: assignedIdentification
+            productServiceIDQualifier2: productServiceIDQualifier2
+            unitOrBasisForMeasurementCode: unitOrBasisForMeasurementCode
+            unitPrice: unitPrice
+            productServiceIDQualifier1: productServiceIDQualifier1
+            productServiceID2: productServiceID2
+            productServiceID1: productServiceID1
+            productServiceID: productServiceID
+            productServiceIDQualifier: productServiceIDQualifier
+            quantityInvoiced: quantityInvoiced
+            basisOfUnitPriceCode: basisOfUnitPriceCode
+          - assignedIdentification: assignedIdentification
+            productServiceIDQualifier2: productServiceIDQualifier2
+            unitOrBasisForMeasurementCode: unitOrBasisForMeasurementCode
+            unitPrice: unitPrice
+            productServiceIDQualifier1: productServiceIDQualifier1
+            productServiceID2: productServiceID2
+            productServiceID1: productServiceID1
+            productServiceID: productServiceID
+            productServiceIDQualifier: productServiceIDQualifier
+            quantityInvoiced: quantityInvoiced
+            basisOfUnitPriceCode: basisOfUnitPriceCode
+          dateTimeReference:
+          - date: date
+            time: time
+            timeCode: timeCode
+            dateTimeQualifier: dateTimeQualifier
+          - date: date
+            time: time
+            timeCode: timeCode
+            dateTimeQualifier: dateTimeQualifier
+        - piD_loop:
+          - productItemDescription:
+            - itemDescriptionTypeCode: itemDescriptionTypeCode
+              description: description
+              productProcessCharacteristicCode: productProcessCharacteristicCode
+            - itemDescriptionTypeCode: itemDescriptionTypeCode
+              description: description
+              productProcessCharacteristicCode: productProcessCharacteristicCode
+          - productItemDescription:
+            - itemDescriptionTypeCode: itemDescriptionTypeCode
+              description: description
+              productProcessCharacteristicCode: productProcessCharacteristicCode
+            - itemDescriptionTypeCode: itemDescriptionTypeCode
+              description: description
+              productProcessCharacteristicCode: productProcessCharacteristicCode
+          pricingInformation:
+          - unitPrice: unitPrice
+            priceIdentifierCode: priceIdentifierCode
+            priceMultiplierQualifier: priceMultiplierQualifier
+            multiplier5: multiplier5
+            classOfTradeCode: classOfTradeCode
+          - unitPrice: unitPrice
+            priceIdentifierCode: priceIdentifierCode
+            priceMultiplierQualifier: priceMultiplierQualifier
+            multiplier5: multiplier5
+            classOfTradeCode: classOfTradeCode
+          taxInformation:
+          - taxExemptCode: taxExemptCode
+            percentageAsDecimal: percentageAsDecimal
+            taxTypeCode: taxTypeCode
+            dollarBasisForPercent: dollarBasisForPercent
+            taxIdentificationNumber: taxIdentificationNumber
+            monetaryAmount: monetaryAmount
+          - taxExemptCode: taxExemptCode
+            percentageAsDecimal: percentageAsDecimal
+            taxTypeCode: taxTypeCode
+            dollarBasisForPercent: dollarBasisForPercent
+            taxIdentificationNumber: taxIdentificationNumber
+            monetaryAmount: monetaryAmount
+          additionalItemData:
+          - unitOrBasisForMeasurementCode: unitOrBasisForMeasurementCode
+            numberOfUnitsShipped: numberOfUnitsShipped
+          - unitOrBasisForMeasurementCode: unitOrBasisForMeasurementCode
+            numberOfUnitsShipped: numberOfUnitsShipped
+          itemPhysicalDetails:
+          - unitOrBasisForMeasurementCode: unitOrBasisForMeasurementCode
+            weightQualifier: weightQualifier
+            length: length
+            grossVolumePerPack: grossVolumePerPack
+            unitOrBasisForMeasurementCode1: unitOrBasisForMeasurementCode1
+            unitOrBasisForMeasurementCode2: unitOrBasisForMeasurementCode2
+            packagingCode: packagingCode
+            unitOrBasisForMeasurementCode3: unitOrBasisForMeasurementCode3
+            pack: pack
+            size: size
+            grossWeightPerPack: grossWeightPerPack
+            width: width
+            height: height
+          - unitOrBasisForMeasurementCode: unitOrBasisForMeasurementCode
+            weightQualifier: weightQualifier
+            length: length
+            grossVolumePerPack: grossVolumePerPack
+            unitOrBasisForMeasurementCode1: unitOrBasisForMeasurementCode1
+            unitOrBasisForMeasurementCode2: unitOrBasisForMeasurementCode2
+            packagingCode: packagingCode
+            unitOrBasisForMeasurementCode3: unitOrBasisForMeasurementCode3
+            pack: pack
+            size: size
+            grossWeightPerPack: grossWeightPerPack
+            width: width
+            height: height
+          baselineItemDataInvoice:
+          - assignedIdentification: assignedIdentification
+            productServiceIDQualifier2: productServiceIDQualifier2
+            unitOrBasisForMeasurementCode: unitOrBasisForMeasurementCode
+            unitPrice: unitPrice
+            productServiceIDQualifier1: productServiceIDQualifier1
+            productServiceID2: productServiceID2
+            productServiceID1: productServiceID1
+            productServiceID: productServiceID
+            productServiceIDQualifier: productServiceIDQualifier
+            quantityInvoiced: quantityInvoiced
+            basisOfUnitPriceCode: basisOfUnitPriceCode
+          - assignedIdentification: assignedIdentification
+            productServiceIDQualifier2: productServiceIDQualifier2
+            unitOrBasisForMeasurementCode: unitOrBasisForMeasurementCode
+            unitPrice: unitPrice
+            productServiceIDQualifier1: productServiceIDQualifier1
+            productServiceID2: productServiceID2
+            productServiceID1: productServiceID1
+            productServiceID: productServiceID
+            productServiceIDQualifier: productServiceIDQualifier
+            quantityInvoiced: quantityInvoiced
+            basisOfUnitPriceCode: basisOfUnitPriceCode
+          dateTimeReference:
+          - date: date
+            time: time
+            timeCode: timeCode
+            dateTimeQualifier: dateTimeQualifier
+          - date: date
+            time: time
+            timeCode: timeCode
+            dateTimeQualifier: dateTimeQualifier
+        n1_loop:
+        - referenceInformation:
+          - referenceIdentification: referenceIdentification
+            referenceIdentificationQualifier: referenceIdentificationQualifier
+          - referenceIdentification: referenceIdentification
+            referenceIdentificationQualifier: referenceIdentificationQualifier
+          geographicLocation:
+          - cityName: cityName
+            locationQualifier: locationQualifier
+            countryCode: countryCode
+            postalCode: postalCode
+            stateOrProvinceCode: stateOrProvinceCode
+            locationIdentifier: locationIdentifier
+          - cityName: cityName
+            locationQualifier: locationQualifier
+            countryCode: countryCode
+            postalCode: postalCode
+            stateOrProvinceCode: stateOrProvinceCode
+            locationIdentifier: locationIdentifier
+          additionalNameInformation:
+          - name: name
+          - name: name
+          administrativeCommunicationsContact:
+          - communicationNumberQualifier: communicationNumberQualifier
+            communicationNumber1: communicationNumber1
+            communicationNumber2: communicationNumber2
+            name: name
+            communicationNumber: communicationNumber
+            communicationNumberQualifier1: communicationNumberQualifier1
+            contactFunctionCode: contactFunctionCode
+            communicationNumberQualifier2: communicationNumberQualifier2
+            contactInquiryReference: contactInquiryReference
+          - communicationNumberQualifier: communicationNumberQualifier
+            communicationNumber1: communicationNumber1
+            communicationNumber2: communicationNumber2
+            name: name
+            communicationNumber: communicationNumber
+            communicationNumberQualifier1: communicationNumberQualifier1
+            contactFunctionCode: contactFunctionCode
+            communicationNumberQualifier2: communicationNumberQualifier2
+            contactInquiryReference: contactInquiryReference
+          partyLocation:
+          - addressInformation: addressInformation
+          - addressInformation: addressInformation
+          partyIdentification:
+          - identificationCode: identificationCode
+            entityIdentifierCode: entityIdentifierCode
+            identificationCodeQualifier: identificationCodeQualifier
+            name: name
+          - identificationCode: identificationCode
+            entityIdentifierCode: entityIdentifierCode
+            identificationCodeQualifier: identificationCodeQualifier
+            name: name
+        - referenceInformation:
+          - referenceIdentification: referenceIdentification
+            referenceIdentificationQualifier: referenceIdentificationQualifier
+          - referenceIdentification: referenceIdentification
+            referenceIdentificationQualifier: referenceIdentificationQualifier
+          geographicLocation:
+          - cityName: cityName
+            locationQualifier: locationQualifier
+            countryCode: countryCode
+            postalCode: postalCode
+            stateOrProvinceCode: stateOrProvinceCode
+            locationIdentifier: locationIdentifier
+          - cityName: cityName
+            locationQualifier: locationQualifier
+            countryCode: countryCode
+            postalCode: postalCode
+            stateOrProvinceCode: stateOrProvinceCode
+            locationIdentifier: locationIdentifier
+          additionalNameInformation:
+          - name: name
+          - name: name
+          administrativeCommunicationsContact:
+          - communicationNumberQualifier: communicationNumberQualifier
+            communicationNumber1: communicationNumber1
+            communicationNumber2: communicationNumber2
+            name: name
+            communicationNumber: communicationNumber
+            communicationNumberQualifier1: communicationNumberQualifier1
+            contactFunctionCode: contactFunctionCode
+            communicationNumberQualifier2: communicationNumberQualifier2
+            contactInquiryReference: contactInquiryReference
+          - communicationNumberQualifier: communicationNumberQualifier
+            communicationNumber1: communicationNumber1
+            communicationNumber2: communicationNumber2
+            name: name
+            communicationNumber: communicationNumber
+            communicationNumberQualifier1: communicationNumberQualifier1
+            contactFunctionCode: contactFunctionCode
+            communicationNumberQualifier2: communicationNumberQualifier2
+            contactInquiryReference: contactInquiryReference
+          partyLocation:
+          - addressInformation: addressInformation
+          - addressInformation: addressInformation
+          partyIdentification:
+          - identificationCode: identificationCode
+            entityIdentifierCode: entityIdentifierCode
+            identificationCodeQualifier: identificationCodeQualifier
+            name: name
+          - identificationCode: identificationCode
+            entityIdentifierCode: entityIdentifierCode
+            identificationCodeQualifier: identificationCodeQualifier
+            name: name
+        currency:
+        - entityIdentifierCode: entityIdentifierCode
+          currencyCode: currencyCode
+        - entityIdentifierCode: entityIdentifierCode
+          currencyCode: currencyCode
+        termsOfSaleDeferredTermsOfSale:
+        - termsBasisDateCode: termsBasisDateCode
+          dayOfMonth: dayOfMonth
+          termsNetDays: termsNetDays
+          paymentMethodTypeCode: paymentMethodTypeCode
+          description: description
+          termsDiscountAmount: termsDiscountAmount
+          termsTypeCode: termsTypeCode
+        - termsBasisDateCode: termsBasisDateCode
+          dayOfMonth: dayOfMonth
+          termsNetDays: termsNetDays
+          paymentMethodTypeCode: paymentMethodTypeCode
+          description: description
+          termsDiscountAmount: termsDiscountAmount
+          termsTypeCode: termsTypeCode
+        fobRelatedInstructions:
+        - transportationTermsQualifierCode: transportationTermsQualifierCode
+          locationQualifier: locationQualifier
+          locationQualifier1: locationQualifier1
+          transportationTermsCode: transportationTermsCode
+          description: description
+          shipmentMethodOfPaymentCode: shipmentMethodOfPaymentCode
+          description1: description1
+        - transportationTermsQualifierCode: transportationTermsQualifierCode
+          locationQualifier: locationQualifier
+          locationQualifier1: locationQualifier1
+          transportationTermsCode: transportationTermsCode
+          description: description
+          shipmentMethodOfPaymentCode: shipmentMethodOfPaymentCode
+          description1: description1
+        beginningSegmentForInvoice:
+        - date: date
+          purchaseOrderNumber: purchaseOrderNumber
+          invoiceNumber: invoiceNumber
+          transactionSetPurposeCode: transactionSetPurposeCode
+          date1: date1
+        - date: date
+          purchaseOrderNumber: purchaseOrderNumber
+          invoiceNumber: invoiceNumber
+          transactionSetPurposeCode: transactionSetPurposeCode
+          date1: date1
+        dateTimeReference:
+        - date: date
+          time: time
+          timeCode: timeCode
+          dateTimeQualifier: dateTimeQualifier
+        - date: date
+          time: time
+          timeCode: timeCode
+          dateTimeQualifier: dateTimeQualifier
+        totalMonetaryValueSummary:
+        - amount: amount
+          amount1: amount1
+        - amount: amount
+          amount1: amount1
+        transactionSetHeader:
+        - transactionSetIdentifierCode: transactionSetIdentifierCode
+          transactionSetControlNumber: transactionSetControlNumber
+        - transactionSetIdentifierCode: transactionSetIdentifierCode
+          transactionSetControlNumber: transactionSetControlNumber
+      properties:
+        administrativeCommunicationsContact:
+          items:
+            $ref: '#/components/schemas/AdministrativeCommunicationsContact'
+          nullable: true
+          type: array
+        beginningSegmentForInvoice:
+          items:
+            $ref: '#/components/schemas/BeginningSegmentForInvoice'
+          nullable: true
+          type: array
+        currency:
+          items:
+            $ref: '#/components/schemas/Currency'
+          nullable: true
+          type: array
+        dateTimeReference:
+          items:
+            $ref: '#/components/schemas/DateTimeReference'
+          nullable: true
+          type: array
+        fobRelatedInstructions:
+          items:
+            $ref: '#/components/schemas/FOBRelatedInstructions'
+          nullable: true
+          type: array
+        iT1_loop:
+          items:
+            $ref: '#/components/schemas/IT1_Loop'
+          nullable: true
+          type: array
+        monetaryAmountInformation:
+          items:
+            $ref: '#/components/schemas/MonetaryAmountInformation'
+          nullable: true
+          type: array
+        n1_loop:
+          items:
+            $ref: '#/components/schemas/N1_Loop'
+          nullable: true
+          type: array
+        taxInformation:
+          items:
+            $ref: '#/components/schemas/TaxInformation'
+          nullable: true
+          type: array
+        termsOfSaleDeferredTermsOfSale:
+          items:
+            $ref: '#/components/schemas/TermsOfSaleDeferredTermsOfSale'
+          nullable: true
+          type: array
+        totalMonetaryValueSummary:
+          items:
+            $ref: '#/components/schemas/TotalMonetaryValueSummary'
+          nullable: true
+          type: array
+        transactionSetHeader:
+          items:
+            $ref: '#/components/schemas/TransactionSetHeader'
+          nullable: true
+          type: array
+        transactionSetTrailer:
+          items:
+            $ref: '#/components/schemas/TransactionSetTrailer'
+          nullable: true
+          type: array
+        transactionTotals:
+          items:
+            $ref: '#/components/schemas/TransactionTotals'
+          nullable: true
+          type: array
+      type: object
+    TransactionSetHeader:
+      description: Transaction Set Header (ST) - Starts a transaction set and assigns
+        a control number
+      example:
+        transactionSetIdentifierCode: transactionSetIdentifierCode
+        transactionSetControlNumber: transactionSetControlNumber
+      properties:
+        transactionSetControlNumber:
+          description: Transaction Set Control Number
+          nullable: true
+          type: string
+        transactionSetIdentifierCode:
+          description: "Transaction Set Identifier Code (e.g., \"850\" for Purchase\
+            \ Order)"
+          nullable: true
+          type: string
+      type: object
+    TransactionSetTrailer:
+      description: Transaction Set Trailer (SE) - Ends a transaction set and provides
+        segment count
+      example:
+        transactionSetControlNumber: transactionSetControlNumber
+        numberOfIncludedSegments: numberOfIncludedSegments
+      properties:
+        numberOfIncludedSegments:
+          description: Number of Included Segments (including ST and SE segments)
+          nullable: true
+          type: string
+        transactionSetControlNumber:
+          description: Transaction Set Control Number (must match ST02)
+          nullable: true
+          type: string
+      type: object
+    TransactionTotals:
+      description: Transaction Totals (CTT) - Transaction set totals
+      example:
+        numberOfLineItems: numberOfLineItems
+        unitOrBasisForMeasurementCode: unitOrBasisForMeasurementCode
+        volume: volume
+        hashTotal: hashTotal
+        weight: weight
+        unitOrBasisForMeasurementCode1: unitOrBasisForMeasurementCode1
+      properties:
+        hashTotal:
+          description: Hash Total
+          nullable: true
+          type: string
+        numberOfLineItems:
+          description: Number of Line Items
+          nullable: true
+          type: string
+        unitOrBasisForMeasurementCode:
+          nullable: true
+          type: string
+        unitOrBasisForMeasurementCode1:
+          nullable: true
+          type: string
+        volume:
+          nullable: true
+          type: string
+        weight:
+          nullable: true
+          type: string
+      type: object
+    TranslatedShipment:
+      example:
+        orderId: orderId
+        subtotal: 7.061401241503109
+        shippingAddress:
+          firstName: firstName
+          postalOrZipCode: postalOrZipCode
+          stateOrProvince: stateOrProvince
+          address2: address2
+          address1: address1
+          countryCode: countryCode
+          companyOrOrganization: companyOrOrganization
+          lastNameOrSurname: lastNameOrSurname
+          email: email
+          cityOrTown: cityOrTown
+        items:
+        - unitPrice: 5.962133916683182
+          vendorSku: vendorSku
+          originalOrderItemId: originalOrderItemId
+          productCode: productCode
+          quantity: 6
+          subtotal: 1.4658129805029452
+          imageUrl: imageUrl
+          name: name
+          variationProductCode: variationProductCode
+          lineId: 0
+          sku: sku
+          vendorContractedPrice: 5.637376656633329
+        - unitPrice: 5.962133916683182
+          vendorSku: vendorSku
+          originalOrderItemId: originalOrderItemId
+          productCode: productCode
+          quantity: 6
+          subtotal: 1.4658129805029452
+          imageUrl: imageUrl
+          name: name
+          variationProductCode: variationProductCode
+          lineId: 0
+          sku: sku
+          vendorContractedPrice: 5.637376656633329
+        shipmentNumber: 2
+        vendorCode: vendorCode
+      properties:
+        items:
+          items:
+            $ref: '#/components/schemas/TranslatedShipmentItem'
+          nullable: true
+          type: array
+        orderId:
+          nullable: true
+          type: string
+        shipmentNumber:
+          format: int32
+          type: integer
+        shippingAddress:
+          $ref: '#/components/schemas/ShippingAddress'
+        subtotal:
+          format: double
+          type: number
+        vendorCode:
+          nullable: true
+          type: string
+      type: object
+    TranslatedShipmentItem:
+      example:
+        unitPrice: 5.962133916683182
+        vendorSku: vendorSku
+        originalOrderItemId: originalOrderItemId
+        productCode: productCode
+        quantity: 6
+        subtotal: 1.4658129805029452
+        imageUrl: imageUrl
+        name: name
+        variationProductCode: variationProductCode
+        lineId: 0
+        sku: sku
+        vendorContractedPrice: 5.637376656633329
+      properties:
+        imageUrl:
+          nullable: true
+          type: string
+        lineId:
+          format: int32
+          type: integer
+        name:
+          nullable: true
+          type: string
+        originalOrderItemId:
+          nullable: true
+          type: string
+        productCode:
+          nullable: true
+          type: string
+        quantity:
+          format: int32
+          type: integer
+        sku:
+          nullable: true
+          type: string
+        subtotal:
+          format: double
+          nullable: true
+          type: number
+        unitPrice:
+          format: double
+          type: number
+        variationProductCode:
+          nullable: true
+          type: string
+        vendorContractedPrice:
+          format: double
+          nullable: true
+          type: number
+        vendorSku:
+          nullable: true
+          type: string
+      type: object
+  securitySchemes:
+    bearerAuth:
+      bearerFormat: JWT
+      description: "JWT Authorization header using the Bearer scheme. \r\n\r\n Enter\
+        \ 'Bearer' [space] and then your token in the text input below.\r\n\r\nExample:\
+        \ \"Bearer 12345abcdef\""
+      scheme: bearer
+      type: http
+

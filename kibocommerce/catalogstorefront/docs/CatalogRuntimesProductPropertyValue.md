@@ -8,9 +8,9 @@ Value of product property
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
-|**value** | **Object** |  |  [optional] |
-|**stringValue** | **String** | Localized Value in the language of the locale code |  [optional] |
 |**displayInfo** | [**CatalogRuntimesAttributeVocabularyValueDisplayInfo**](CatalogRuntimesAttributeVocabularyValueDisplayInfo.md) |  |  [optional] |
+|**stringValue** | **String** | Localized Value in the language of the locale code |  [optional] |
+|**value** | **Object** |  |  [optional] |
 
 
 ## Implemented Interfaces

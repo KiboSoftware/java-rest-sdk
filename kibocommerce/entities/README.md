@@ -1,7 +1,7 @@
 # entities
 
 Kibo MZDB Service
-- API version: 1.0.0
+- API version: v1
 
 OpenAPI Spec for Kibo MZDB Service
 
@@ -39,7 +39,7 @@ Add this dependency to your project's POM:
 <dependency>
   <groupId>com.kibocommerce</groupId>
   <artifactId>entities</artifactId>
-  <version>1.0.0</version>
+  <version>3.0.0</version>
   <scope>compile</scope>
 </dependency>
 ```
@@ -55,7 +55,7 @@ Add this dependency to your project's build file:
   }
 
   dependencies {
-     implementation "com.kibocommerce:entities:1.0.0"
+     implementation "com.kibocommerce:entities:3.0.0"
   }
 ```
 
@@ -69,7 +69,7 @@ mvn clean package
 
 Then manually install the following JARs:
 
-* `target/entities-1.0.0.jar`
+* `target/entities-3.0.0.jar`
 * `target/lib/*.jar`
 
 ## Getting Started
@@ -94,10 +94,6 @@ public class Example {
     // Configure HTTP bearer authorization: bearerAuth
     HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
     bearerAuth.setBearerToken("BEARER TOKEN");
-
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
 
     EntitiesApi apiInstance = new EntitiesApi(defaultClient);
     String entityListFullName = "entityListFullName_example"; // String | The full name of the EntityList including namespace in name@nameSpace format
@@ -147,19 +143,15 @@ Class | Method | HTTP request | Description
 
 ## Documentation for Models
 
- - [AppDevHttpContent](docs/AppDevHttpContent.md)
- - [AppDevHttpRequestMessage](docs/AppDevHttpRequestMessage.md)
  - [EntityCollection](docs/EntityCollection.md)
  - [EntityContainer](docs/EntityContainer.md)
  - [EntityContainerCollection](docs/EntityContainerCollection.md)
  - [EntityList](docs/EntityList.md)
  - [EntityListCollection](docs/EntityListCollection.md)
- - [HttpMethod](docs/HttpMethod.md)
  - [IndexedProperty](docs/IndexedProperty.md)
  - [ListView](docs/ListView.md)
  - [ListViewCollection](docs/ListViewCollection.md)
  - [ListViewField](docs/ListViewField.md)
- - [StringStringIEnumerableKeyValuePair](docs/StringStringIEnumerableKeyValuePair.md)
 
 
 ## Documentation for Authorization
@@ -168,13 +160,6 @@ Authentication schemes defined for the API:
 ### bearerAuth
 
 - **Type**: HTTP basic authentication
-
-### clientOauth2
-
-- **Type**: OAuth
-- **Flow**: application
-- **Authorization URL**: 
-- **Scopes**: N/A
 
 
 ## Recommendation

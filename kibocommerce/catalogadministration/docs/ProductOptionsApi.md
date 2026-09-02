@@ -4,20 +4,20 @@ All URIs are relative to *http://https:/api*
 
 | Method | HTTP request | Description |
 |------------- | ------------- | -------------|
-| [**addOption**](ProductOptionsApi.md#addOption) | **POST** /commerce/catalog/admin/products/{productCode}/Options | Add option |
-| [**deleteOption**](ProductOptionsApi.md#deleteOption) | **DELETE** /commerce/catalog/admin/products/{productCode}/Options/{attributeFQN} | Delete option |
-| [**getOption**](ProductOptionsApi.md#getOption) | **GET** /commerce/catalog/admin/products/{productCode}/Options/{attributeFQN} | Get option |
-| [**getOptions**](ProductOptionsApi.md#getOptions) | **GET** /commerce/catalog/admin/products/{productCode}/Options | Get options |
-| [**updateOption**](ProductOptionsApi.md#updateOption) | **PUT** /commerce/catalog/admin/products/{productCode}/Options/{attributeFQN} | Update option |
+| [**addOption**](ProductOptionsApi.md#addOption) | **POST** /commerce/catalog/admin/products/{productCode}/Options | Add Product Option |
+| [**deleteOption**](ProductOptionsApi.md#deleteOption) | **DELETE** /commerce/catalog/admin/products/{productCode}/Options/{attributeFQN} | Delete Product Option |
+| [**getOption**](ProductOptionsApi.md#getOption) | **GET** /commerce/catalog/admin/products/{productCode}/Options/{attributeFQN} | Get Product Option |
+| [**getOptions**](ProductOptionsApi.md#getOptions) | **GET** /commerce/catalog/admin/products/{productCode}/Options | Get Product Options |
+| [**updateOption**](ProductOptionsApi.md#updateOption) | **PUT** /commerce/catalog/admin/products/{productCode}/Options/{attributeFQN} | Update Product Option |
 
 
 <a name="addOption"></a>
 # **addOption**
-> CatalogAdminsProductOption addOption(productCode, catalogAdminsProductOption)
+> CatalogAdminsProductOption addOption(productCode, responseFields, catalogAdminsProductOption)
 
-Add option
+Add Product Option
 
-Add option
+Add an option to a product. This current version of the Products API includes localizedContent to support &lt;a href&#x3D;\&quot;/pages/catalog-structure#multi-locale-catalogs\&quot;&gt;multi-locale catalogs&lt;/a&gt;, which was not present in the previous API model. If you were a client prior to May 2024 and have upgraded your implementation to support this feature, you can still access product data that has not yet been rewritten to the new model by providing an x-api-version header set to \&quot;1\&quot;.
 
 ### Example
 ```java
@@ -38,15 +38,12 @@ public class Example {
     HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
     bearerAuth.setBearerToken("BEARER TOKEN");
 
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
-
     ProductOptionsApi apiInstance = new ProductOptionsApi(defaultClient);
     String productCode = "productCode_example"; // String | 
+    String responseFields = "responseFields_example"; // String | limits which fields are returned in the response body
     CatalogAdminsProductOption catalogAdminsProductOption = new CatalogAdminsProductOption(); // CatalogAdminsProductOption | 
     try {
-      CatalogAdminsProductOption result = apiInstance.addOption(productCode, catalogAdminsProductOption);
+      CatalogAdminsProductOption result = apiInstance.addOption(productCode, responseFields, catalogAdminsProductOption);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling ProductOptionsApi#addOption");
@@ -64,6 +61,7 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **productCode** | **String**|  | |
+| **responseFields** | **String**| limits which fields are returned in the response body | [optional] |
 | **catalogAdminsProductOption** | [**CatalogAdminsProductOption**](CatalogAdminsProductOption.md)|  | [optional] |
 
 ### Return type
@@ -72,7 +70,7 @@ public class Example {
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth), [clientOauth2](../README.md#clientOauth2)
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
@@ -82,15 +80,15 @@ public class Example {
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Success |  -  |
+| **200** | OK |  -  |
 
 <a name="deleteOption"></a>
 # **deleteOption**
 > deleteOption(productCode, attributeFQN)
 
-Delete option
+Delete Product Option
 
-Delete individual option
+Delete a individual option for a product.
 
 ### Example
 ```java
@@ -110,10 +108,6 @@ public class Example {
     // Configure HTTP bearer authorization: bearerAuth
     HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
     bearerAuth.setBearerToken("BEARER TOKEN");
-
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
 
     ProductOptionsApi apiInstance = new ProductOptionsApi(defaultClient);
     String productCode = "productCode_example"; // String | 
@@ -144,7 +138,7 @@ null (empty response body)
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth), [clientOauth2](../README.md#clientOauth2)
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
@@ -154,15 +148,15 @@ null (empty response body)
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Success |  -  |
+| **200** | OK |  -  |
 
 <a name="getOption"></a>
 # **getOption**
-> CatalogAdminsProductOption getOption(productCode, attributeFQN)
+> CatalogAdminsProductOption getOption(productCode, attributeFQN, responseFields)
 
-Get option
+Get Product Option
 
-Get individual option
+Get an individual option for a product. This current version of the Products API includes localizedContent to support &lt;a href&#x3D;\&quot;/pages/catalog-structure#multi-locale-catalogs\&quot;&gt;multi-locale catalogs&lt;/a&gt;, which was not present in the previous API model. If you were a client prior to May 2024 and have upgraded your implementation to support this feature, you can still access product data that has not yet been rewritten to the new model by providing an x-api-version header set to \&quot;1\&quot;.
 
 ### Example
 ```java
@@ -183,15 +177,12 @@ public class Example {
     HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
     bearerAuth.setBearerToken("BEARER TOKEN");
 
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
-
     ProductOptionsApi apiInstance = new ProductOptionsApi(defaultClient);
     String productCode = "productCode_example"; // String | 
     String attributeFQN = "attributeFQN_example"; // String | 
+    String responseFields = "responseFields_example"; // String | limits which fields are returned in the response body
     try {
-      CatalogAdminsProductOption result = apiInstance.getOption(productCode, attributeFQN);
+      CatalogAdminsProductOption result = apiInstance.getOption(productCode, attributeFQN, responseFields);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling ProductOptionsApi#getOption");
@@ -210,6 +201,7 @@ public class Example {
 |------------- | ------------- | ------------- | -------------|
 | **productCode** | **String**|  | |
 | **attributeFQN** | **String**|  | |
+| **responseFields** | **String**| limits which fields are returned in the response body | [optional] |
 
 ### Return type
 
@@ -217,7 +209,7 @@ public class Example {
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth), [clientOauth2](../README.md#clientOauth2)
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
@@ -227,15 +219,15 @@ public class Example {
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Success |  -  |
+| **200** | OK |  -  |
 
 <a name="getOptions"></a>
 # **getOptions**
-> List&lt;CatalogAdminsProductOption&gt; getOptions(productCode)
+> List&lt;CatalogAdminsProductOption&gt; getOptions(productCode, responseFields)
 
-Get options
+Get Product Options
 
-Get options for the product
+Get options for a product. This current version of the Products API includes localizedContent to support &lt;a href&#x3D;\&quot;/pages/catalog-structure#multi-locale-catalogs\&quot;&gt;multi-locale catalogs&lt;/a&gt;, which was not present in the previous API model. If you were a client prior to May 2024 and have upgraded your implementation to support this feature, you can still access product data that has not yet been rewritten to the new model by providing an x-api-version header set to \&quot;1\&quot;.
 
 ### Example
 ```java
@@ -256,14 +248,11 @@ public class Example {
     HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
     bearerAuth.setBearerToken("BEARER TOKEN");
 
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
-
     ProductOptionsApi apiInstance = new ProductOptionsApi(defaultClient);
     String productCode = "productCode_example"; // String | 
+    String responseFields = "responseFields_example"; // String | limits which fields are returned in the response body
     try {
-      List<CatalogAdminsProductOption> result = apiInstance.getOptions(productCode);
+      List<CatalogAdminsProductOption> result = apiInstance.getOptions(productCode, responseFields);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling ProductOptionsApi#getOptions");
@@ -281,6 +270,7 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **productCode** | **String**|  | |
+| **responseFields** | **String**| limits which fields are returned in the response body | [optional] |
 
 ### Return type
 
@@ -288,7 +278,7 @@ public class Example {
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth), [clientOauth2](../README.md#clientOauth2)
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
@@ -298,15 +288,15 @@ public class Example {
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Success |  -  |
+| **200** | OK |  -  |
 
 <a name="updateOption"></a>
 # **updateOption**
-> CatalogAdminsProductOption updateOption(productCode, attributeFQN, catalogAdminsProductOption)
+> CatalogAdminsProductOption updateOption(productCode, attributeFQN, responseFields, catalogAdminsProductOption)
 
-Update option
+Update Product Option
 
-Update individual option
+Update an individual option for a product. This current version of the Products API includes localizedContent to support &lt;a href&#x3D;\&quot;/pages/catalog-structure#multi-locale-catalogs\&quot;&gt;multi-locale catalogs&lt;/a&gt;, which was not present in the previous API model. If you were a client prior to May 2024 and have upgraded your implementation to support this feature, you can still access product data that has not yet been rewritten to the new model by providing an x-api-version header set to \&quot;1\&quot;.
 
 ### Example
 ```java
@@ -327,16 +317,13 @@ public class Example {
     HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
     bearerAuth.setBearerToken("BEARER TOKEN");
 
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
-
     ProductOptionsApi apiInstance = new ProductOptionsApi(defaultClient);
     String productCode = "productCode_example"; // String | 
     String attributeFQN = "attributeFQN_example"; // String | 
+    String responseFields = "responseFields_example"; // String | limits which fields are returned in the response body
     CatalogAdminsProductOption catalogAdminsProductOption = new CatalogAdminsProductOption(); // CatalogAdminsProductOption | 
     try {
-      CatalogAdminsProductOption result = apiInstance.updateOption(productCode, attributeFQN, catalogAdminsProductOption);
+      CatalogAdminsProductOption result = apiInstance.updateOption(productCode, attributeFQN, responseFields, catalogAdminsProductOption);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling ProductOptionsApi#updateOption");
@@ -355,6 +342,7 @@ public class Example {
 |------------- | ------------- | ------------- | -------------|
 | **productCode** | **String**|  | |
 | **attributeFQN** | **String**|  | |
+| **responseFields** | **String**| limits which fields are returned in the response body | [optional] |
 | **catalogAdminsProductOption** | [**CatalogAdminsProductOption**](CatalogAdminsProductOption.md)|  | [optional] |
 
 ### Return type
@@ -363,7 +351,7 @@ public class Example {
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth), [clientOauth2](../README.md#clientOauth2)
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
@@ -373,5 +361,5 @@ public class Example {
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Success |  -  |
+| **200** | OK |  -  |
 

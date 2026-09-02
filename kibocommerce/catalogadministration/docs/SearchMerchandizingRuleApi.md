@@ -14,11 +14,11 @@ All URIs are relative to *http://https:/api*
 
 <a name="cloneSearchMerchandizingRule"></a>
 # **cloneSearchMerchandizingRule**
-> CatalogAdminsSearchMerchandizingRule cloneSearchMerchandizingRule(code)
+> CatalogAdminsSearchMerchandizingRule cloneSearchMerchandizingRule(code, responseFields)
 
 Clone Search Merchandizing Rule
 
-Clone Search Merchandizing Rule
+Clones a search merchandizing rule.
 
 ### Example
 ```java
@@ -39,14 +39,11 @@ public class Example {
     HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
     bearerAuth.setBearerToken("BEARER TOKEN");
 
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
-
     SearchMerchandizingRuleApi apiInstance = new SearchMerchandizingRuleApi(defaultClient);
     String code = "code_example"; // String | 
+    String responseFields = "responseFields_example"; // String | limits which fields are returned in the response body
     try {
-      CatalogAdminsSearchMerchandizingRule result = apiInstance.cloneSearchMerchandizingRule(code);
+      CatalogAdminsSearchMerchandizingRule result = apiInstance.cloneSearchMerchandizingRule(code, responseFields);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling SearchMerchandizingRuleApi#cloneSearchMerchandizingRule");
@@ -64,6 +61,7 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **code** | **String**|  | |
+| **responseFields** | **String**| limits which fields are returned in the response body | [optional] |
 
 ### Return type
 
@@ -71,7 +69,7 @@ public class Example {
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth), [clientOauth2](../README.md#clientOauth2)
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
@@ -81,15 +79,15 @@ public class Example {
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Success |  -  |
+| **200** | OK |  -  |
 
 <a name="createSearchMerchandizingRule"></a>
 # **createSearchMerchandizingRule**
-> CatalogAdminsSearchMerchandizingRule createSearchMerchandizingRule(catalogAdminsSearchMerchandizingRule)
+> CatalogAdminsSearchMerchandizingRule createSearchMerchandizingRule(responseFields, catalogAdminsSearchMerchandizingRule)
 
 Create Search Merchandizing Rule
 
-Create Search Merchandizing Rule
+Create a new search merchandizing rule.
 
 ### Example
 ```java
@@ -110,14 +108,11 @@ public class Example {
     HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
     bearerAuth.setBearerToken("BEARER TOKEN");
 
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
-
     SearchMerchandizingRuleApi apiInstance = new SearchMerchandizingRuleApi(defaultClient);
+    String responseFields = "responseFields_example"; // String | limits which fields are returned in the response body
     CatalogAdminsSearchMerchandizingRule catalogAdminsSearchMerchandizingRule = new CatalogAdminsSearchMerchandizingRule(); // CatalogAdminsSearchMerchandizingRule | 
     try {
-      CatalogAdminsSearchMerchandizingRule result = apiInstance.createSearchMerchandizingRule(catalogAdminsSearchMerchandizingRule);
+      CatalogAdminsSearchMerchandizingRule result = apiInstance.createSearchMerchandizingRule(responseFields, catalogAdminsSearchMerchandizingRule);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling SearchMerchandizingRuleApi#createSearchMerchandizingRule");
@@ -134,6 +129,7 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
+| **responseFields** | **String**| limits which fields are returned in the response body | [optional] |
 | **catalogAdminsSearchMerchandizingRule** | [**CatalogAdminsSearchMerchandizingRule**](CatalogAdminsSearchMerchandizingRule.md)|  | [optional] |
 
 ### Return type
@@ -142,7 +138,7 @@ public class Example {
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth), [clientOauth2](../README.md#clientOauth2)
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
@@ -152,7 +148,7 @@ public class Example {
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Success |  -  |
+| **200** | OK |  -  |
 
 <a name="deleteSearchMerchandizingRule"></a>
 # **deleteSearchMerchandizingRule**
@@ -160,7 +156,7 @@ public class Example {
 
 Delete Search Merchandizing Rule
 
-Delete Search Merchandizing Rule
+Deletes a search merchandizing rule.
 
 ### Example
 ```java
@@ -180,10 +176,6 @@ public class Example {
     // Configure HTTP bearer authorization: bearerAuth
     HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
     bearerAuth.setBearerToken("BEARER TOKEN");
-
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
 
     SearchMerchandizingRuleApi apiInstance = new SearchMerchandizingRuleApi(defaultClient);
     String code = "code_example"; // String | 
@@ -212,7 +204,7 @@ null (empty response body)
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth), [clientOauth2](../README.md#clientOauth2)
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
@@ -222,15 +214,15 @@ null (empty response body)
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Success |  -  |
+| **200** | OK |  -  |
 
 <a name="getSearchMerchandizingRule"></a>
 # **getSearchMerchandizingRule**
-> CatalogAdminsSearchMerchandizingRule getSearchMerchandizingRule(code)
+> CatalogAdminsSearchMerchandizingRule getSearchMerchandizingRule(code, responseFields)
 
 Get Search Merchandizing Rule
 
-Get Search Merchandizing Rule
+Retrieves a search merchandizing rule based on its code.
 
 ### Example
 ```java
@@ -251,14 +243,11 @@ public class Example {
     HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
     bearerAuth.setBearerToken("BEARER TOKEN");
 
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
-
     SearchMerchandizingRuleApi apiInstance = new SearchMerchandizingRuleApi(defaultClient);
     String code = "code_example"; // String | 
+    String responseFields = "responseFields_example"; // String | limits which fields are returned in the response body
     try {
-      CatalogAdminsSearchMerchandizingRule result = apiInstance.getSearchMerchandizingRule(code);
+      CatalogAdminsSearchMerchandizingRule result = apiInstance.getSearchMerchandizingRule(code, responseFields);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling SearchMerchandizingRuleApi#getSearchMerchandizingRule");
@@ -276,6 +265,7 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **code** | **String**|  | |
+| **responseFields** | **String**| limits which fields are returned in the response body | [optional] |
 
 ### Return type
 
@@ -283,7 +273,7 @@ public class Example {
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth), [clientOauth2](../README.md#clientOauth2)
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
@@ -293,15 +283,15 @@ public class Example {
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Success |  -  |
+| **200** | OK |  -  |
 
 <a name="getSearchMerchandizingRules"></a>
 # **getSearchMerchandizingRules**
-> SearchMerchandizingRuleCollection getSearchMerchandizingRules(startIndex, pageSize, sortBy, filter, responseGroups, q)
+> SearchMerchandizingRuleCollection getSearchMerchandizingRules(startIndex, pageSize, sortBy, filter, responseGroups, q, responseFields)
 
 Get Search Merchandizing Rules
 
-Get Search Merchandizing Rules
+Retrieve a list of all search merchandizing rules. You can filter this query by CategoryCode, which supports an EQ (equals) filter with the syntax /catalog/admin/searchmerchandizingrules/?filter&#x3D;categorycode eq AAA
 
 ### Example
 ```java
@@ -322,10 +312,6 @@ public class Example {
     HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
     bearerAuth.setBearerToken("BEARER TOKEN");
 
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
-
     SearchMerchandizingRuleApi apiInstance = new SearchMerchandizingRuleApi(defaultClient);
     Integer startIndex = 0; // Integer | 
     Integer pageSize = 0; // Integer | 
@@ -333,8 +319,9 @@ public class Example {
     String filter = "filter_example"; // String | 
     String responseGroups = "responseGroups_example"; // String | 
     String q = "q_example"; // String | 
+    String responseFields = "responseFields_example"; // String | limits which fields are returned in the response body
     try {
-      SearchMerchandizingRuleCollection result = apiInstance.getSearchMerchandizingRules(startIndex, pageSize, sortBy, filter, responseGroups, q);
+      SearchMerchandizingRuleCollection result = apiInstance.getSearchMerchandizingRules(startIndex, pageSize, sortBy, filter, responseGroups, q, responseFields);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling SearchMerchandizingRuleApi#getSearchMerchandizingRules");
@@ -357,6 +344,7 @@ public class Example {
 | **filter** | **String**|  | [optional] |
 | **responseGroups** | **String**|  | [optional] |
 | **q** | **String**|  | [optional] |
+| **responseFields** | **String**| limits which fields are returned in the response body | [optional] |
 
 ### Return type
 
@@ -364,7 +352,7 @@ public class Example {
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth), [clientOauth2](../README.md#clientOauth2)
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
@@ -374,15 +362,15 @@ public class Example {
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Success |  -  |
+| **200** | OK |  -  |
 
 <a name="updateSearchMerchandizingRule"></a>
 # **updateSearchMerchandizingRule**
-> CatalogAdminsSearchMerchandizingRule updateSearchMerchandizingRule(code, catalogAdminsSearchMerchandizingRule)
+> CatalogAdminsSearchMerchandizingRule updateSearchMerchandizingRule(code, responseFields, catalogAdminsSearchMerchandizingRule)
 
 Update Search Merchandizing Rule
 
-Update Search Merchandizing Rule
+Updates an existing search merchandizing rule.
 
 ### Example
 ```java
@@ -403,15 +391,12 @@ public class Example {
     HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
     bearerAuth.setBearerToken("BEARER TOKEN");
 
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
-
     SearchMerchandizingRuleApi apiInstance = new SearchMerchandizingRuleApi(defaultClient);
     String code = "code_example"; // String | 
+    String responseFields = "responseFields_example"; // String | limits which fields are returned in the response body
     CatalogAdminsSearchMerchandizingRule catalogAdminsSearchMerchandizingRule = new CatalogAdminsSearchMerchandizingRule(); // CatalogAdminsSearchMerchandizingRule | 
     try {
-      CatalogAdminsSearchMerchandizingRule result = apiInstance.updateSearchMerchandizingRule(code, catalogAdminsSearchMerchandizingRule);
+      CatalogAdminsSearchMerchandizingRule result = apiInstance.updateSearchMerchandizingRule(code, responseFields, catalogAdminsSearchMerchandizingRule);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling SearchMerchandizingRuleApi#updateSearchMerchandizingRule");
@@ -429,6 +414,7 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **code** | **String**|  | |
+| **responseFields** | **String**| limits which fields are returned in the response body | [optional] |
 | **catalogAdminsSearchMerchandizingRule** | [**CatalogAdminsSearchMerchandizingRule**](CatalogAdminsSearchMerchandizingRule.md)|  | [optional] |
 
 ### Return type
@@ -437,7 +423,7 @@ public class Example {
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth), [clientOauth2](../README.md#clientOauth2)
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
@@ -447,5 +433,5 @@ public class Example {
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Success |  -  |
+| **200** | OK |  -  |
 

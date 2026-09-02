@@ -8,8 +8,8 @@ Collection of MasterCatalogs
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
-|**totalCount** | **Integer** |  |  [optional] |
 |**items** | [**List&lt;CatalogAdminsMasterCatalog&gt;**](CatalogAdminsMasterCatalog.md) |  |  [optional] |
+|**totalCount** | **Integer** |  |  [optional] |
 
 
 ## Implemented Interfaces

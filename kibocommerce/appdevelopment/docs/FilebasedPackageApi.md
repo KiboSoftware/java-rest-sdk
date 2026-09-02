@@ -9,11 +9,11 @@ All URIs are relative to *http://https:/api*
 
 <a name="getFile"></a>
 # **getFile**
-> AppDevHttpResponseMessage getFile(applicationKey, fileName)
+> AppDevHttpResponseMessage getFile(applicationKey, fileName, responseFields)
 
 Get File
 
-Get File
+Retrieve an application package file.
 
 ### Example
 ```java
@@ -34,15 +34,12 @@ public class Example {
     HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
     bearerAuth.setBearerToken("BEARER TOKEN");
 
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
-
     FilebasedPackageApi apiInstance = new FilebasedPackageApi(defaultClient);
     String applicationKey = "applicationKey_example"; // String | 
     String fileName = "fileName_example"; // String | 
+    String responseFields = "responseFields_example"; // String | limits which fields are returned in the response body
     try {
-      AppDevHttpResponseMessage result = apiInstance.getFile(applicationKey, fileName);
+      AppDevHttpResponseMessage result = apiInstance.getFile(applicationKey, fileName, responseFields);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling FilebasedPackageApi#getFile");
@@ -61,6 +58,7 @@ public class Example {
 |------------- | ------------- | ------------- | -------------|
 | **applicationKey** | **String**|  | |
 | **fileName** | **String**|  | [optional] |
+| **responseFields** | **String**| limits which fields are returned in the response body | [optional] |
 
 ### Return type
 
@@ -68,15 +66,15 @@ public class Example {
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth), [clientOauth2](../README.md#clientOauth2)
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: text/plain, application/json, text/json
+ - **Accept**: application/json, text/json, text/plain
 
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Success |  -  |
+| **200** | OK |  -  |
 

@@ -7,11 +7,7 @@
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
-|**attributeFQN** | **String** |  |  [optional] |
-|**name** | **String** |  |  [optional] |
-|**dataType** | **String** |  |  [optional] |
-|**isMultiValue** | **Boolean** |  |  [optional] |
-|**values** | [**List&lt;CommerceRuntimeProductPropertyValue&gt;**](CommerceRuntimeProductPropertyValue.md) |  |  [optional] |
+|**isMultiValue** | **Object** |  |  [optional] |
 
 
 ## Implemented Interfaces

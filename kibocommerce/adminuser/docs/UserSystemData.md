@@ -7,15 +7,15 @@
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
-|**isPasswordChangeRequired** | **Boolean** |  |  [optional] |
-|**lastPasswordChangeOn** | **OffsetDateTime** |  |  [optional] |
-|**isLocked** | **Boolean** |  |  [optional] |
-|**lastLockedOn** | **OffsetDateTime** |  |  [optional] |
-|**failedLoginAttemptCount** | **Integer** |  |  [optional] |
-|**remainingLoginAttempts** | **Integer** |  |  [optional] |
-|**firstFailedLoginAttemptOn** | **OffsetDateTime** |  |  [optional] |
-|**lastLoginOn** | **OffsetDateTime** |  |  [optional] |
 |**createdOn** | **OffsetDateTime** |  |  [optional] |
+|**failedLoginAttemptCount** | **Integer** |  |  [optional] |
+|**firstFailedLoginAttemptOn** | **OffsetDateTime** |  |  [optional] |
+|**isLocked** | **Boolean** |  |  [optional] |
+|**isPasswordChangeRequired** | **Boolean** |  |  [optional] |
+|**lastLockedOn** | **OffsetDateTime** |  |  [optional] |
+|**lastLoginOn** | **OffsetDateTime** |  |  [optional] |
+|**lastPasswordChangeOn** | **OffsetDateTime** |  |  [optional] |
+|**remainingLoginAttempts** | **Integer** |  |  [optional] |
 |**updatedOn** | **OffsetDateTime** |  |  [optional] |
 
 

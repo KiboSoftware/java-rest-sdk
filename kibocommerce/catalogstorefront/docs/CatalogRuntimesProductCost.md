@@ -8,8 +8,8 @@ The inventory for a product at a specific Location
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
-|**productCode** | **String** |  |  [optional] |
 |**cost** | **Double** |  |  [optional] |
+|**productCode** | **String** |  |  [optional] |
 
 
 ## Implemented Interfaces

@@ -2,182 +2,217 @@ openapi: 3.0.1
 info:
   description: OpenAPI Spec for Kibo MZDB Service
   title: Kibo MZDB Service
+  version: v1
 servers:
-- description: TenantPod Host
-  url: "https://{tenantPodHost}/api"
-- description: Tenant Level Api
-  url: "https://t{tenantId}.{env}.mozu.com/api"
-  variables:
-    tenantId:
-      default: "0"
-      description: Id of the Tenant
-    env:
-      default: sandbox
-      enum:
-      - sandbox
-      - tp1
-      - tp2
-      - tp3
-      - tp4
-      - tp5
-      - stg1
-      - stg2
-- description: Site Level Api
-  url: "https://t{tenantId}-s{siteId}.{env}.mozu.com/api"
-  variables:
-    tenantId:
-      default: "0"
-      description: Id of the Tenant
-    siteId:
-      default: "0"
-      description: Id of the Site
-    env:
-      default: sandbox
-      enum:
-      - sandbox
-      - tp1
-      - tp2
-      - tp3
-      - tp4
-      - tp5
-      - stg1
-- description: HomePod Api
-  url: https://home.mozu.com/api
-- description: EURO Tenant Level Api
-  url: "https://t{tenantId}.{env}.euw1.kibocommerce.com/api"
-  variables:
-    tenantId:
-      default: "0"
-      description: Id of the Tenant
-    env:
-      default: sandbox
-      enum:
-      - sb
-      - tp1
-- description: EURO Site Level Api
-  url: "https://t{tenantId}-s{siteId}.{env}.euw1.kibocommerce.com/api"
-  variables:
-    tenantId:
-      default: "0"
-      description: Id of the Tenant
-    siteId:
-      default: "0"
-      description: Id of the Site
-    env:
-      default: sandbox
-      enum:
-      - sb
-      - tp1
-- description: EURO HomePod Api
-  url: https://home.euw1.kibocommerce.com/api
+- url: "https://{tenantPodHost}/api"
 security:
 - bearerAuth: []
-  clientOauth2: []
 paths:
-  /platform/entitylists/{entityListFullName}/entities/{id}:
-    delete:
-      description: Delete an existing Entity from an EntityList instance
-      operationId: deleteEntity
-      parameters:
-      - description: The full name of the EntityList including namespace in name@nameSpace
-          format
-        explode: false
-        in: path
-        name: entityListFullName
-        required: true
-        schema:
-          type: string
-        style: simple
-      - description: The unique id of the Entity
-        explode: false
-        in: path
-        name: id
-        required: true
-        schema:
-          type: string
-        style: simple
-      responses:
-        "200":
-          description: Success
-      summary: Delete Entity
-      tags:
-      - Entities
-      x-accepts: application/json
+  /platform/entitylists:
     get:
-      description: Get a specific Entity from an EntityList instance
-      operationId: getEntity
+      description: Get a filtered list of EntityLists for a specific tenant.
+      operationId: getEntityLists
       parameters:
-      - description: The full name of the EntityList including namespace in name@nameSpace
-          format
-        explode: false
-        in: path
-        name: entityListFullName
-        required: true
+      - description: ""
+        explode: true
+        in: query
+        name: pageSize
+        required: false
+        schema:
+          default: 10
+          format: int32
+          type: integer
+        style: form
+      - description: ""
+        explode: true
+        in: query
+        name: startIndex
+        required: false
+        schema:
+          default: 0
+          format: int32
+          type: integer
+        style: form
+      - description: ""
+        explode: true
+        in: query
+        name: filter
+        required: false
         schema:
           type: string
-        style: simple
-      - description: The unique id of the Entity
-        explode: false
-        in: path
-        name: id
-        required: true
+        style: form
+      - description: ""
+        explode: true
+        in: query
+        name: sortBy
+        required: false
         schema:
           type: string
-        style: simple
+        style: form
+      - description: limits which fields are returned in the response body
+        explode: true
+        in: query
+        name: responseFields
+        required: false
+        schema:
+          type: string
+        style: form
       responses:
         "200":
           content:
             application/json:
-              schema: {}
+              schema:
+                $ref: '#/components/schemas/EntityListCollection'
             text/json:
-              schema: {}
+              schema:
+                $ref: '#/components/schemas/EntityListCollection'
             text/plain:
-              schema: {}
-          description: Success
-      summary: Get Entity
+              schema:
+                $ref: '#/components/schemas/EntityListCollection'
+          description: OK
+      summary: Get EntityLists
       tags:
-      - Entities
+      - EntityLists
       x-accepts: application/json
-    put:
-      description: Update an existing Entity in an EntityList instance
-      operationId: updateEntity
+    post:
+      description: Create a new EntityList for a specific tenant.
+      operationId: createEntityList
       parameters:
-      - description: The full name of the EntityList including namespace in name@nameSpace
-          format
-        explode: false
-        in: path
-        name: entityListFullName
-        required: true
+      - description: limits which fields are returned in the response body
+        explode: true
+        in: query
+        name: responseFields
+        required: false
         schema:
           type: string
-        style: simple
-      - description: The unique id of the Entity
-        explode: false
-        in: path
-        name: id
-        required: true
-        schema:
-          type: string
-        style: simple
+        style: form
       requestBody:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/AppDevHttpRequestMessage'
-        description: The Entity in json format
+              $ref: '#/components/schemas/EntityList'
+        description: The EntityList definition
       responses:
         "200":
           content:
             application/json:
-              schema: {}
+              schema:
+                $ref: '#/components/schemas/EntityList'
             text/json:
-              schema: {}
+              schema:
+                $ref: '#/components/schemas/EntityList'
             text/plain:
-              schema: {}
-          description: Success
-      summary: Update Entity
+              schema:
+                $ref: '#/components/schemas/EntityList'
+          description: OK
+      summary: Add EntityList
       tags:
-      - Entities
+      - EntityLists
+      x-content-type: application/json
+      x-accepts: application/json
+  /platform/entitylists/{entityListFullName}:
+    delete:
+      description: Delete an existing EntityList for a specific tenant. This will
+        also delete all Entities in all instances of this EntityList for the tenant.
+      operationId: deleteEntityList
+      parameters:
+      - description: The full name of the EntityList including namespace in name@nameSpace
+          format
+        explode: false
+        in: path
+        name: entityListFullName
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          description: OK
+      summary: Delete EntityList
+      tags:
+      - EntityLists
+      x-accepts: application/json
+    get:
+      description: Get an existing EntityList definition for a specific tenant
+      operationId: getEntityList
+      parameters:
+      - description: The full name of the EntityList including namespace in name@nameSpace
+          format
+        explode: false
+        in: path
+        name: entityListFullName
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: limits which fields are returned in the response body
+        explode: true
+        in: query
+        name: responseFields
+        required: false
+        schema:
+          type: string
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EntityList'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/EntityList'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/EntityList'
+          description: OK
+      summary: Get EntityList
+      tags:
+      - EntityLists
+      x-accepts: application/json
+    put:
+      description: Update an existing Entitylist for a specific tenant.
+      operationId: updateEntityList
+      parameters:
+      - description: The full name of the EntityList including namespace in name@nameSpace
+          format
+        explode: false
+        in: path
+        name: entityListFullName
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: limits which fields are returned in the response body
+        explode: true
+        in: query
+        name: responseFields
+        required: false
+        schema:
+          type: string
+        style: form
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/EntityList'
+        description: The EntityList definition
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EntityList'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/EntityList'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/EntityList'
+          description: OK
+      summary: Update Entitylist
+      tags:
+      - EntityLists
       x-content-type: application/json
       x-accepts: application/json
   /platform/entitylists/{entityListFullName}/entities:
@@ -230,6 +265,14 @@ paths:
         schema:
           type: string
         style: form
+      - description: limits which fields are returned in the response body
+        explode: true
+        in: query
+        name: responseFields
+        required: false
+        schema:
+          type: string
+        style: form
       responses:
         "200":
           content:
@@ -242,7 +285,7 @@ paths:
             text/plain:
               schema:
                 $ref: '#/components/schemas/EntityCollection'
-          description: Success
+          description: OK
       summary: Get Entities
       tags:
       - Entities
@@ -260,31 +303,42 @@ paths:
         schema:
           type: string
         style: simple
+      - description: limits which fields are returned in the response body
+        explode: true
+        in: query
+        name: responseFields
+        required: false
+        schema:
+          type: string
+        style: form
       requestBody:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/AppDevHttpRequestMessage'
+              type: object
         description: The Entity in json format
       responses:
         "200":
           content:
             application/json:
-              schema: {}
+              schema:
+                type: object
             text/json:
-              schema: {}
+              schema:
+                type: object
             text/plain:
-              schema: {}
-          description: Success
+              schema:
+                type: object
+          description: OK
       summary: Add Entity
       tags:
       - Entities
       x-content-type: application/json
       x-accepts: application/json
-  /platform/entitylists/{entityListFullName}/entityContainers/{id}:
-    get:
-      description: Get a specific Entity Container from an  EntityList instance
-      operationId: getEntityContainer
+  /platform/entitylists/{entityListFullName}/entities/{id}:
+    delete:
+      description: Delete an existing Entity from an EntityList instance
+      operationId: deleteEntity
       parameters:
       - description: The full name of the EntityList including namespace in name@nameSpace
           format
@@ -305,20 +359,109 @@ paths:
         style: simple
       responses:
         "200":
+          description: OK
+      summary: Delete Entity
+      tags:
+      - Entities
+      x-accepts: application/json
+    get:
+      description: Get a specific Entity from an EntityList instance
+      operationId: getEntity
+      parameters:
+      - description: The full name of the EntityList including namespace in name@nameSpace
+          format
+        explode: false
+        in: path
+        name: entityListFullName
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: The unique id of the Entity
+        explode: false
+        in: path
+        name: id
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: limits which fields are returned in the response body
+        explode: true
+        in: query
+        name: responseFields
+        required: false
+        schema:
+          type: string
+        style: form
+      responses:
+        "200":
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/EntityContainer'
+                type: object
             text/json:
               schema:
-                $ref: '#/components/schemas/EntityContainer'
+                type: object
             text/plain:
               schema:
-                $ref: '#/components/schemas/EntityContainer'
-          description: Success
-      summary: Get Entity Container
+                type: object
+          description: OK
+      summary: Get Entity
       tags:
-      - EntityContainers
+      - Entities
+      x-accepts: application/json
+    put:
+      description: Update an existing Entity in an EntityList instance
+      operationId: updateEntity
+      parameters:
+      - description: The full name of the EntityList including namespace in name@nameSpace
+          format
+        explode: false
+        in: path
+        name: entityListFullName
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: The unique id of the Entity
+        explode: false
+        in: path
+        name: id
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: limits which fields are returned in the response body
+        explode: true
+        in: query
+        name: responseFields
+        required: false
+        schema:
+          type: string
+        style: form
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+        description: The Entity in json format
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                type: object
+            text/json:
+              schema:
+                type: object
+            text/plain:
+              schema:
+                type: object
+          description: OK
+      summary: Update Entity
+      tags:
+      - Entities
+      x-content-type: application/json
       x-accepts: application/json
   /platform/entitylists/{entityListFullName}/entityContainers:
     get:
@@ -371,6 +514,14 @@ paths:
         schema:
           type: string
         style: form
+      - description: limits which fields are returned in the response body
+        explode: true
+        in: query
+        name: responseFields
+        required: false
+        schema:
+          type: string
+        style: form
       responses:
         "200":
           content:
@@ -383,36 +534,15 @@ paths:
             text/plain:
               schema:
                 $ref: '#/components/schemas/EntityContainerCollection'
-          description: Success
+          description: OK
       summary: Get Entity Containers
       tags:
       - EntityContainers
       x-accepts: application/json
-  /platform/entitylists/{entityListFullName}:
-    delete:
-      description: Delete an existing EntityList for a specific tenant. This will
-        also delete all Entities in all instances of this EntityList for the tenant.
-      operationId: deleteEntityList
-      parameters:
-      - description: The full name of the EntityList including namespace in name@nameSpace
-          format
-        explode: false
-        in: path
-        name: entityListFullName
-        required: true
-        schema:
-          type: string
-        style: simple
-      responses:
-        "200":
-          description: Success
-      summary: Delete EntityList
-      tags:
-      - EntityLists
-      x-accepts: application/json
+  /platform/entitylists/{entityListFullName}/entityContainers/{id}:
     get:
-      description: Get an existing EntityList definition for a specific tenant
-      operationId: getEntityList
+      description: Get a specific Entity Container from an  EntityList instance
+      operationId: getEntityContainer
       parameters:
       - description: The full name of the EntityList including namespace in name@nameSpace
           format
@@ -423,97 +553,18 @@ paths:
         schema:
           type: string
         style: simple
-      responses:
-        "200":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/EntityList'
-            text/json:
-              schema:
-                $ref: '#/components/schemas/EntityList'
-            text/plain:
-              schema:
-                $ref: '#/components/schemas/EntityList'
-          description: Success
-      summary: Get EntityList
-      tags:
-      - EntityLists
-      x-accepts: application/json
-    put:
-      description: Update an existing Entitylist for a specific tenant.
-      operationId: updateEntityList
-      parameters:
-      - description: The full name of the EntityList including namespace in name@nameSpace
-          format
+      - description: The unique id of the Entity
         explode: false
         in: path
-        name: entityListFullName
+        name: id
         required: true
         schema:
           type: string
         style: simple
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/EntityList'
-        description: The EntityList definition
-      responses:
-        "200":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/EntityList'
-            text/json:
-              schema:
-                $ref: '#/components/schemas/EntityList'
-            text/plain:
-              schema:
-                $ref: '#/components/schemas/EntityList'
-          description: Success
-      summary: Update Entitylist
-      tags:
-      - EntityLists
-      x-content-type: application/json
-      x-accepts: application/json
-  /platform/entitylists:
-    get:
-      description: Get a filtered list of EntityLists for a specific tenant.
-      operationId: getEntityLists
-      parameters:
-      - description: ""
+      - description: limits which fields are returned in the response body
         explode: true
         in: query
-        name: pageSize
-        required: false
-        schema:
-          default: 10
-          format: int32
-          type: integer
-        style: form
-      - description: ""
-        explode: true
-        in: query
-        name: startIndex
-        required: false
-        schema:
-          default: 0
-          format: int32
-          type: integer
-        style: form
-      - description: ""
-        explode: true
-        in: query
-        name: filter
-        required: false
-        schema:
-          type: string
-        style: form
-      - description: ""
-        explode: true
-        in: query
-        name: sortBy
+        name: responseFields
         required: false
         schema:
           type: string
@@ -523,44 +574,17 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/EntityListCollection'
+                $ref: '#/components/schemas/EntityContainer'
             text/json:
               schema:
-                $ref: '#/components/schemas/EntityListCollection'
+                $ref: '#/components/schemas/EntityContainer'
             text/plain:
               schema:
-                $ref: '#/components/schemas/EntityListCollection'
-          description: Success
-      summary: Get EntityLists
+                $ref: '#/components/schemas/EntityContainer'
+          description: OK
+      summary: Get Entity Container
       tags:
-      - EntityLists
-      x-accepts: application/json
-    post:
-      description: Create a new EntityList for a specific tenant.
-      operationId: createEntityList
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/EntityList'
-        description: The EntityList definition
-      responses:
-        "200":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/EntityList'
-            text/json:
-              schema:
-                $ref: '#/components/schemas/EntityList'
-            text/plain:
-              schema:
-                $ref: '#/components/schemas/EntityList'
-          description: Success
-      summary: Add EntityList
-      tags:
-      - EntityLists
-      x-content-type: application/json
+      - EntityContainers
       x-accepts: application/json
   /platform/entitylists/{entityListFullName}/views:
     get:
@@ -577,6 +601,14 @@ paths:
         schema:
           type: string
         style: simple
+      - description: limits which fields are returned in the response body
+        explode: true
+        in: query
+        name: responseFields
+        required: false
+        schema:
+          type: string
+        style: form
       responses:
         "200":
           content:
@@ -589,7 +621,7 @@ paths:
             text/plain:
               schema:
                 $ref: '#/components/schemas/ListViewCollection'
-          description: Success
+          description: OK
       summary: Get  ListViews
       tags:
       - ListViews
@@ -608,6 +640,14 @@ paths:
         schema:
           type: string
         style: simple
+      - description: limits which fields are returned in the response body
+        explode: true
+        in: query
+        name: responseFields
+        required: false
+        schema:
+          type: string
+        style: form
       requestBody:
         content:
           application/json:
@@ -626,7 +666,7 @@ paths:
             text/plain:
               schema:
                 $ref: '#/components/schemas/ListView'
-          description: Success
+          description: OK
       summary: Add ListView
       tags:
       - ListViews
@@ -657,7 +697,7 @@ paths:
         style: simple
       responses:
         "200":
-          description: Success
+          description: OK
       summary: Delete ListView
       tags:
       - ListViews
@@ -684,6 +724,14 @@ paths:
         schema:
           type: string
         style: simple
+      - description: limits which fields are returned in the response body
+        explode: true
+        in: query
+        name: responseFields
+        required: false
+        schema:
+          type: string
+        style: form
       responses:
         "200":
           content:
@@ -696,7 +744,7 @@ paths:
             text/plain:
               schema:
                 $ref: '#/components/schemas/ListView'
-          description: Success
+          description: OK
       summary: Get ListView
       tags:
       - ListViews
@@ -723,6 +771,14 @@ paths:
         schema:
           type: string
         style: simple
+      - description: limits which fields are returned in the response body
+        explode: true
+        in: query
+        name: responseFields
+        required: false
+        schema:
+          type: string
+        style: form
       requestBody:
         content:
           application/json:
@@ -741,11 +797,141 @@ paths:
             text/plain:
               schema:
                 $ref: '#/components/schemas/ListView'
-          description: Success
+          description: OK
       summary: Update ListView
       tags:
       - ListViews
       x-content-type: application/json
+      x-accepts: application/json
+  /platform/entitylists/{entityListFullName}/views/{viewName}/entities:
+    get:
+      description: Get a filtered collection of Entities for a ListView on an EntityList
+      operationId: getViewEntities
+      parameters:
+      - description: The full name of the EntityList including namespace in name@nameSpace
+          format
+        explode: false
+        in: path
+        name: entityListFullName
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: The name of the ListView
+        explode: false
+        in: path
+        name: viewName
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: ""
+        explode: true
+        in: query
+        name: pageSize
+        required: false
+        schema:
+          default: 10
+          format: int32
+          type: integer
+        style: form
+      - description: ""
+        explode: true
+        in: query
+        name: startIndex
+        required: false
+        schema:
+          default: 0
+          format: int32
+          type: integer
+        style: form
+      - description: ""
+        explode: true
+        in: query
+        name: filter
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: limits which fields are returned in the response body
+        explode: true
+        in: query
+        name: responseFields
+        required: false
+        schema:
+          type: string
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EntityCollection'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/EntityCollection'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/EntityCollection'
+          description: OK
+      summary: Get View Entities
+      tags:
+      - Entities
+      x-accepts: application/json
+  /platform/entitylists/{entityListFullName}/views/{viewName}/entities/{entityId}:
+    get:
+      description: Get a specific Entity in a ListView on an EntityList
+      operationId: getViewEntity
+      parameters:
+      - description: The full name of the EntityList including namespace in name@nameSpace
+          format
+        explode: false
+        in: path
+        name: entityListFullName
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: The name of the ListView
+        explode: false
+        in: path
+        name: viewName
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: The unique Entity id
+        explode: false
+        in: path
+        name: entityId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: limits which fields are returned in the response body
+        explode: true
+        in: query
+        name: responseFields
+        required: false
+        schema:
+          type: string
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                type: object
+            text/json:
+              schema:
+                type: object
+            text/plain:
+              schema:
+                type: object
+          description: OK
+      summary: Get View Entity
+      tags:
+      - Entities
       x-accepts: application/json
   /platform/entitylists/{entityListFullName}/views/{viewName}/entityContainers:
     get:
@@ -798,6 +984,14 @@ paths:
         schema:
           type: string
         style: form
+      - description: limits which fields are returned in the response body
+        explode: true
+        in: query
+        name: responseFields
+        required: false
+        schema:
+          type: string
+        style: form
       responses:
         "200":
           content:
@@ -810,77 +1004,10 @@ paths:
             text/plain:
               schema:
                 $ref: '#/components/schemas/EntityContainerCollection'
-          description: Success
+          description: OK
       summary: Get Entity View Containers
       tags:
       - EntityContainers
-      x-accepts: application/json
-  /platform/entitylists/{entityListFullName}/views/{viewName}/entities:
-    get:
-      description: Get a filtered collection of Entities for a ListView on an EntityList
-      operationId: getViewEntities
-      parameters:
-      - description: The full name of the EntityList including namespace in name@nameSpace
-          format
-        explode: false
-        in: path
-        name: entityListFullName
-        required: true
-        schema:
-          type: string
-        style: simple
-      - description: The name of the ListView
-        explode: false
-        in: path
-        name: viewName
-        required: true
-        schema:
-          type: string
-        style: simple
-      - description: ""
-        explode: true
-        in: query
-        name: pageSize
-        required: false
-        schema:
-          default: 10
-          format: int32
-          type: integer
-        style: form
-      - description: ""
-        explode: true
-        in: query
-        name: startIndex
-        required: false
-        schema:
-          default: 0
-          format: int32
-          type: integer
-        style: form
-      - description: ""
-        explode: true
-        in: query
-        name: filter
-        required: false
-        schema:
-          type: string
-        style: form
-      responses:
-        "200":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/EntityCollection'
-            text/json:
-              schema:
-                $ref: '#/components/schemas/EntityCollection'
-            text/plain:
-              schema:
-                $ref: '#/components/schemas/EntityCollection'
-          description: Success
-      summary: Get View Entities
-      tags:
-      - Entities
       x-accepts: application/json
   /platform/entitylists/{entityListFullName}/views/{viewName}/entityContainers/{entityId}:
     get:
@@ -913,6 +1040,14 @@ paths:
         schema:
           type: string
         style: simple
+      - description: limits which fields are returned in the response body
+        explode: true
+        in: query
+        name: responseFields
+        required: false
+        schema:
+          type: string
+        style: form
       responses:
         "200":
           content:
@@ -925,160 +1060,69 @@ paths:
             text/plain:
               schema:
                 $ref: '#/components/schemas/EntityContainer'
-          description: Success
+          description: OK
       summary: Get  Entity View Container
       tags:
       - EntityContainers
       x-accepts: application/json
-  /platform/entitylists/{entityListFullName}/views/{viewName}/entities/{entityId}:
-    get:
-      description: Get a specific Entity in a ListView on an EntityList
-      operationId: getViewEntity
-      parameters:
-      - description: The full name of the EntityList including namespace in name@nameSpace
-          format
-        explode: false
-        in: path
-        name: entityListFullName
-        required: true
-        schema:
-          type: string
-        style: simple
-      - description: The name of the ListView
-        explode: false
-        in: path
-        name: viewName
-        required: true
-        schema:
-          type: string
-        style: simple
-      - description: The unique Entity id
-        explode: false
-        in: path
-        name: entityId
-        required: true
-        schema:
-          type: string
-        style: simple
-      responses:
-        "200":
-          content:
-            application/json:
-              schema: {}
-            text/json:
-              schema: {}
-            text/plain:
-              schema: {}
-          description: Success
-      summary: Get View Entity
-      tags:
-      - Entities
-      x-accepts: application/json
 components:
   schemas:
-    StringStringIEnumerableKeyValuePair:
-      additionalProperties: false
-      example:
-        value:
-        - value
-        - value
-        key: key
-      properties:
-        key:
-          nullable: true
-          type: string
-        value:
-          items:
-            type: string
-          nullable: true
-          type: array
-      type: object
-    HttpMethod:
-      additionalProperties: false
-      example:
-        method: method
-      properties:
-        method:
-          nullable: true
-          type: string
-      type: object
     EntityCollection:
-      additionalProperties: false
       example:
-        startIndex: 0
-        pageCount: 1
+        pageCount: 0
+        startIndex: 1
         pageSize: 6
         totalCount: 5
         items:
-        - ""
-        - ""
+        - "{}"
+        - "{}"
       properties:
-        startIndex:
+        items:
+          items:
+            type: object
+          nullable: true
+          type: array
+        pageCount:
           format: int32
           type: integer
         pageSize:
           format: int32
           type: integer
-        pageCount:
+        startIndex:
           format: int32
           type: integer
         totalCount:
           format: int32
           type: integer
-        items:
-          items: {}
-          nullable: true
-          type: array
       type: object
     EntityContainer:
-      additionalProperties: false
       description: The metadata and Entity contents for an entity persisted in an
         EntityList in MZDB. The Item property contains the json representation of
         the Entity
       example:
-        item: ""
+        item: "{}"
         updateDate: 2000-01-23T04:56:07.000+00:00
-        masterCatalogId: 1
+        masterCatalogId: 6
         userId: userId
         createBy: createBy
-        catalogId: 5
-        localeCode: localeCode
+        catalogId: 0
         listFullName: listFullName
+        localeCode: localeCode
         updateBy: updateBy
-        tenantId: 0
-        siteId: 6
+        tenantId: 5
+        siteId: 1
         id: id
         createDate: 2000-01-23T04:56:07.000+00:00
       properties:
-        tenantId:
-          format: int32
-          type: integer
-        siteId:
-          format: int32
-          nullable: true
-          type: integer
-        masterCatalogId:
-          format: int32
-          nullable: true
-          type: integer
         catalogId:
           format: int32
           nullable: true
           type: integer
-        localeCode:
-          description: The localeCode for the Entity. This will only be populated
-            for EntityLists that are created with IsLocaleSpecific set to true.
+        createBy:
           nullable: true
           type: string
-        listFullName:
-          description: The nameSpace and name for the EntityList in the format name@nameSpace.
-          nullable: true
-          type: string
-        userId:
-          description: The userId of the shopper account associated with this Entity.
-            This will only be populated for EntityLists that are creaetd with IsShopperSpecific
-            set to true.
-          nullable: true
+        createDate:
+          format: date-time
           type: string
         id:
           description: The unique identifier for the Entity.
@@ -1087,78 +1131,418 @@ components:
         item:
           description: The entity in json format.
           nullable: true
-        createBy:
+          type: object
+        listFullName:
+          description: The nameSpace and name for the EntityList in the format name@nameSpace.
           nullable: true
           type: string
-        createDate:
-          format: date-time
+        localeCode:
+          description: The localeCode for the Entity. This will only be populated
+            for EntityLists that are created with IsLocaleSpecific set to true.
+          nullable: true
           type: string
+        masterCatalogId:
+          format: int32
+          nullable: true
+          type: integer
+        siteId:
+          format: int32
+          nullable: true
+          type: integer
+        tenantId:
+          format: int32
+          type: integer
         updateBy:
           nullable: true
           type: string
         updateDate:
           format: date-time
           type: string
+        userId:
+          description: The userId of the shopper account associated with this Entity.
+            This will only be populated for EntityLists that are creaetd with IsShopperSpecific
+            set to true.
+          nullable: true
+          type: string
       type: object
     EntityContainerCollection:
-      additionalProperties: false
       example:
-        startIndex: 0
-        pageCount: 1
-        pageSize: 6
-        totalCount: 5
+        pageCount: 5
+        startIndex: 7
+        pageSize: 2
+        totalCount: 9
         items:
-        - item: ""
+        - item: "{}"
           updateDate: 2000-01-23T04:56:07.000+00:00
-          masterCatalogId: 1
+          masterCatalogId: 6
           userId: userId
           createBy: createBy
-          catalogId: 5
-          localeCode: localeCode
+          catalogId: 0
           listFullName: listFullName
+          localeCode: localeCode
           updateBy: updateBy
-          tenantId: 0
-          siteId: 6
+          tenantId: 5
+          siteId: 1
           id: id
           createDate: 2000-01-23T04:56:07.000+00:00
-        - item: ""
+        - item: "{}"
           updateDate: 2000-01-23T04:56:07.000+00:00
-          masterCatalogId: 1
+          masterCatalogId: 6
           userId: userId
           createBy: createBy
-          catalogId: 5
-          localeCode: localeCode
+          catalogId: 0
           listFullName: listFullName
+          localeCode: localeCode
           updateBy: updateBy
-          tenantId: 0
-          siteId: 6
+          tenantId: 5
+          siteId: 1
           id: id
           createDate: 2000-01-23T04:56:07.000+00:00
       properties:
-        startIndex:
-          format: int32
-          type: integer
-        pageSize:
-          format: int32
-          type: integer
-        pageCount:
-          format: int32
-          type: integer
-        totalCount:
-          format: int32
-          type: integer
         items:
           items:
             $ref: '#/components/schemas/EntityContainer'
           nullable: true
           type: array
+        pageCount:
+          format: int32
+          type: integer
+        pageSize:
+          format: int32
+          type: integer
+        startIndex:
+          format: int32
+          type: integer
+        totalCount:
+          format: int32
+          type: integer
+      type: object
+    EntityList:
+      description: "The definition of an MZDB EntityList which describes the characteristics\
+        \ of the EntityList on a per tenant basis. EntityLists are created at the\
+        \ tenant level, but instances of the EntityLists are implicitly created at\
+        \ the appropriate context level as entities are added or removed from the\
+        \ EntityList."
+      example:
+        metadata: "{}"
+        updateDate: 2000-01-23T04:56:07.000+00:00
+        useSystemAssignedId: true
+        isSandboxDataCloningSupported: true
+        indexA:
+          propertyName: propertyName
+          dataType: dataType
+        isLocaleSpecific: true
+        isVisibleInStorefront: true
+        idProperty:
+          propertyName: propertyName
+          dataType: dataType
+        contextLevel: contextLevel
+        indexC:
+          propertyName: propertyName
+          dataType: dataType
+        name: name
+        tenantId: 0
+        indexB:
+          propertyName: propertyName
+          dataType: dataType
+        indexD:
+          propertyName: propertyName
+          dataType: dataType
+        nameSpace: nameSpace
+        usages:
+        - usages
+        - usages
+        isShopperSpecific: true
+        views:
+        - filter: filter
+          metaData: "{}"
+          security: security
+          name: name
+          defaultSort: defaultSort
+          usages:
+          - usages
+          - usages
+          fields:
+          - name: name
+            type: type
+            target: target
+          - name: name
+            type: type
+            target: target
+        - filter: filter
+          metaData: "{}"
+          security: security
+          name: name
+          defaultSort: defaultSort
+          usages:
+          - usages
+          - usages
+          fields:
+          - name: name
+            type: type
+            target: target
+          - name: name
+            type: type
+            target: target
+        createDate: 2000-01-23T04:56:07.000+00:00
+      properties:
+        contextLevel:
+          description: "At which context level are entities stored in the list. Possible\
+            \ values are \"tenant\", \"site\", \"masterCatalog\" or \"catalog\". \
+            \ Each list instance will exist at this context level for the tenant."
+          nullable: true
+          type: string
+        createDate:
+          format: date-time
+          type: string
+        idProperty:
+          $ref: '#/components/schemas/IndexedProperty'
+        indexA:
+          $ref: '#/components/schemas/IndexedProperty'
+        indexB:
+          $ref: '#/components/schemas/IndexedProperty'
+        indexC:
+          $ref: '#/components/schemas/IndexedProperty'
+        indexD:
+          $ref: '#/components/schemas/IndexedProperty'
+        isLocaleSpecific:
+          description: "Indicates whether MZDB should store entities in the EntityList\
+            \ instance specific to the localeCode provided.  If true, all operations\
+            \ on the EntityList will be filtered by the provided localeCode on the\
+            \ request or using the defautLocaleCode for the context.  All entities\
+            \ created in the EntityList will be stored with the localeCode provided\
+            \ on the request or the defautLocaleCode for the context as an additional\
+            \ implicit key. The default value is false."
+          type: boolean
+        isSandboxDataCloningSupported:
+          description: Indicates whether MZDB should clone all of the Entities in
+            the EntityList when cloning an existing sandbox for which this list is
+            already defined.  The default value is false.
+          type: boolean
+        isShopperSpecific:
+          description: "Indicates whether MZDB should store entities in the EntityList\
+            \ instance specific to the current shopper on the request.  If true, all\
+            \ operations on the EntityList will be filtered by the id of the shopper\
+            \ from the shopper claims provided on the request.  All entities created\
+            \ in the EntityList will be stored with the id of the shopper from the\
+            \ shopper claims provided on the request as an additional implicit key.\
+            \ The default value is false."
+          type: boolean
+        isVisibleInStorefront:
+          description: Indicates whether Enitities in the EntityList are allowed to
+            be accessed from a Mozu storefront.
+          type: boolean
+        metadata:
+          description: An arbitrary json property to be used by external applications
+            for any purpose. MZDB will persist and retrieve the metadata without any
+            restrictions.
+          nullable: true
+          type: object
+        name:
+          description: The name for the EntityList which must be unique within the
+            namespace provided.  The name and namespace are formatted as name@nameSpace
+            when specified as fullName. An EntityLists fullName must be unique within
+            the tenant in which it is created.
+          nullable: true
+          type: string
+        nameSpace:
+          description: The nameSpace for the EntityList which must be within the nameSpace
+            scope of the developer Account for the creating application.  The name
+            and namespace are formatted as name@nameSpace when specified as fullName.
+            An EntityLists fullName must be unique within the tenant in which it is
+            created.
+          nullable: true
+          type: string
+        tenantId:
+          format: int32
+          type: integer
+        updateDate:
+          format: date-time
+          type: string
+        usages:
+          description: Usages are arbitratry sting values used to provide instructions
+            for other applications as to the intended areas where the list should
+            be used. Mozu uses the "admin" usage valued to indicate that an EntityList
+            should appear in the EntityManager in the Admin UI.  The values are open
+            ended and applications may provide any value for a usage. This field can
+            be used in queries to the EntityList.
+          items:
+            type: string
+          nullable: true
+          type: array
+        useSystemAssignedId:
+          description: "Indicates whether or not Mozu should assign a generated identifier\
+            \ for each entity in the list or whether a unique identifier will be provided\
+            \ for each identity. If set to false, then a value must be provided for\
+            \ the IdProperty for the list."
+          type: boolean
+        views:
+          description: The ListViews defined for this EntityList.  ListViews may be
+            used to automatically filter an EntityList or transform the Entities in
+            the list to a new Schema.
+          items:
+            $ref: '#/components/schemas/ListView'
+          nullable: true
+          type: array
+      type: object
+    EntityListCollection:
+      example:
+        pageCount: 6
+        startIndex: 5
+        pageSize: 1
+        totalCount: 5
+        items:
+        - metadata: "{}"
+          updateDate: 2000-01-23T04:56:07.000+00:00
+          useSystemAssignedId: true
+          isSandboxDataCloningSupported: true
+          indexA:
+            propertyName: propertyName
+            dataType: dataType
+          isLocaleSpecific: true
+          isVisibleInStorefront: true
+          idProperty:
+            propertyName: propertyName
+            dataType: dataType
+          contextLevel: contextLevel
+          indexC:
+            propertyName: propertyName
+            dataType: dataType
+          name: name
+          tenantId: 0
+          indexB:
+            propertyName: propertyName
+            dataType: dataType
+          indexD:
+            propertyName: propertyName
+            dataType: dataType
+          nameSpace: nameSpace
+          usages:
+          - usages
+          - usages
+          isShopperSpecific: true
+          views:
+          - filter: filter
+            metaData: "{}"
+            security: security
+            name: name
+            defaultSort: defaultSort
+            usages:
+            - usages
+            - usages
+            fields:
+            - name: name
+              type: type
+              target: target
+            - name: name
+              type: type
+              target: target
+          - filter: filter
+            metaData: "{}"
+            security: security
+            name: name
+            defaultSort: defaultSort
+            usages:
+            - usages
+            - usages
+            fields:
+            - name: name
+              type: type
+              target: target
+            - name: name
+              type: type
+              target: target
+          createDate: 2000-01-23T04:56:07.000+00:00
+        - metadata: "{}"
+          updateDate: 2000-01-23T04:56:07.000+00:00
+          useSystemAssignedId: true
+          isSandboxDataCloningSupported: true
+          indexA:
+            propertyName: propertyName
+            dataType: dataType
+          isLocaleSpecific: true
+          isVisibleInStorefront: true
+          idProperty:
+            propertyName: propertyName
+            dataType: dataType
+          contextLevel: contextLevel
+          indexC:
+            propertyName: propertyName
+            dataType: dataType
+          name: name
+          tenantId: 0
+          indexB:
+            propertyName: propertyName
+            dataType: dataType
+          indexD:
+            propertyName: propertyName
+            dataType: dataType
+          nameSpace: nameSpace
+          usages:
+          - usages
+          - usages
+          isShopperSpecific: true
+          views:
+          - filter: filter
+            metaData: "{}"
+            security: security
+            name: name
+            defaultSort: defaultSort
+            usages:
+            - usages
+            - usages
+            fields:
+            - name: name
+              type: type
+              target: target
+            - name: name
+              type: type
+              target: target
+          - filter: filter
+            metaData: "{}"
+            security: security
+            name: name
+            defaultSort: defaultSort
+            usages:
+            - usages
+            - usages
+            fields:
+            - name: name
+              type: type
+              target: target
+            - name: name
+              type: type
+              target: target
+          createDate: 2000-01-23T04:56:07.000+00:00
+      properties:
+        items:
+          items:
+            $ref: '#/components/schemas/EntityList'
+          nullable: true
+          type: array
+        pageCount:
+          format: int32
+          type: integer
+        pageSize:
+          format: int32
+          type: integer
+        startIndex:
+          format: int32
+          type: integer
+        totalCount:
+          format: int32
+          type: integer
       type: object
     IndexedProperty:
-      additionalProperties: false
       example:
         propertyName: propertyName
         dataType: dataType
       properties:
+        dataType:
+          description: "The datatype of the property. Valid values are \"string\"\
+            , \"integer\", \"decimal\", \"date\", \"bool\". See SharedConstants.DataTypeConst"
+          nullable: true
+          type: string
         propertyName:
           description: A JPath query indicating the property that should be indexed
             to enable querying and sorting.  Non-indexed properties may be used in
@@ -1166,45 +1550,17 @@ components:
             query.
           nullable: true
           type: string
-        dataType:
-          description: "The datatype of the property. Valid values are \"string\"\
-            , \"integer\", \"decimal\", \"date\", \"bool\". See SharedConstants.DataTypeConst"
-          nullable: true
-          type: string
-      type: object
-    ListViewField:
-      additionalProperties: false
-      description: shared by cms/mzdb.
-      example:
-        name: name
-        type: type
-        target: target
-      properties:
-        name:
-          description: The name of the field in the view.
-          nullable: true
-          type: string
-        type:
-          description: "The datatype of the field. Valid values are \"string\", \"\
-            integer\", \"decimal\", \"date\", \"bool\". See SharedConstants.DataTypeConst"
-          nullable: true
-          type: string
-        target:
-          description: A JPath query to the source property for this ViewField.
-          nullable: true
-          type: string
       type: object
     ListView:
-      additionalProperties: false
       example:
         filter: filter
-        metaData: ""
+        metaData: "{}"
         security: security
         name: name
+        defaultSort: defaultSort
         usages:
         - usages
         - usages
-        defaultSort: defaultSort
         fields:
         - name: name
           type: type
@@ -1213,37 +1569,6 @@ components:
           type: type
           target: target
       properties:
-        name:
-          description: The name of the ListView. This must be unique for the EntityList.
-          nullable: true
-          type: string
-        usages:
-          description: Usages are arbitratry sting values used to provide instructions
-            for other applications as to the intended areas where the view should
-            be used. Mozu uses the "admin" usage valued to indicate that a ListView
-            should appear in the EntityManager in the Admin UI.  The values are open
-            ended and applications may provide any value for a usage. This field can
-            be used in queries to the EntityList.
-          items:
-            type: string
-          nullable: true
-          type: array
-        metaData:
-          description: An arbitrary json property to be used by external applications
-            for any purpose. MZDB will persist and retrieve the metadata without any
-            restrictions.
-          nullable: true
-        security:
-          description: less restrictive than collection/list security. public | admin
-            | owner
-          nullable: true
-          type: string
-        filter:
-          description: Indicates a implicitly applied filter to the EntityList for
-            to which the ListView is associated. All queries to the ListView will
-            have this filter applied implicitly.
-          nullable: true
-          type: string
         defaultSort:
           description: Indicates a default sort to be applied to the ListView.
           nullable: true
@@ -1258,156 +1583,31 @@ components:
             $ref: '#/components/schemas/ListViewField'
           nullable: true
           type: array
-      type: object
-    EntityList:
-      additionalProperties: false
-      description: "The definition of an MZDB EntityList which describes the characteristics\
-        \ of the EntityList on a per tenant basis. EntityLists are created at the\
-        \ tenant level, but instances of the EntityLists are implicitly created at\
-        \ the appropriate context level as entities are added or removed from the\
-        \ EntityList."
-      example:
-        metadata: ""
-        updateDate: 2000-01-23T04:56:07.000+00:00
-        useSystemAssignedId: true
-        isSandboxDataCloningSupported: true
-        indexA:
-          propertyName: propertyName
-          dataType: dataType
-        isLocaleSpecific: true
-        isVisibleInStorefront: true
-        idProperty:
-          propertyName: propertyName
-          dataType: dataType
-        contextLevel: contextLevel
-        tenantId: 0
-        name: name
-        indexC:
-          propertyName: propertyName
-          dataType: dataType
-        indexB:
-          propertyName: propertyName
-          dataType: dataType
-        nameSpace: nameSpace
-        indexD:
-          propertyName: propertyName
-          dataType: dataType
-        usages:
-        - usages
-        - usages
-        isShopperSpecific: true
-        views:
-        - filter: filter
-          metaData: ""
-          security: security
-          name: name
-          usages:
-          - usages
-          - usages
-          defaultSort: defaultSort
-          fields:
-          - name: name
-            type: type
-            target: target
-          - name: name
-            type: type
-            target: target
-        - filter: filter
-          metaData: ""
-          security: security
-          name: name
-          usages:
-          - usages
-          - usages
-          defaultSort: defaultSort
-          fields:
-          - name: name
-            type: type
-            target: target
-          - name: name
-            type: type
-            target: target
-        createDate: 2000-01-23T04:56:07.000+00:00
-      properties:
-        tenantId:
-          format: int32
-          type: integer
-        nameSpace:
-          description: The nameSpace for the EntityList which must be within the nameSpace
-            scope of the developer Account for the creating application.  The name
-            and namespace are formatted as name@nameSpace when specified as fullName.
-            An EntityLists fullName must be unique within the tenant in which it is
-            created.
+        filter:
+          description: Indicates a implicitly applied filter to the EntityList for
+            to which the ListView is associated. All queries to the ListView will
+            have this filter applied implicitly.
           nullable: true
           type: string
+        metaData:
+          description: An arbitrary json property to be used by external applications
+            for any purpose. MZDB will persist and retrieve the metadata without any
+            restrictions.
+          nullable: true
+          type: object
         name:
-          description: The name for the EntityList which must be unique within the
-            namespace provided.  The name and namespace are formatted as name@nameSpace
-            when specified as fullName. An EntityLists fullName must be unique within
-            the tenant in which it is created.
+          description: The name of the ListView. This must be unique for the EntityList.
           nullable: true
           type: string
-        contextLevel:
-          description: "At which context level are entities stored in the list. Possible\
-            \ values are \"tenant\", \"site\", \"masterCatalog\" or \"catalog\". \
-            \ Each list instance will exist at this context level for the tenant."
+        security:
+          description: less restrictive than collection/list security. public | admin
+            | owner
           nullable: true
           type: string
-        useSystemAssignedId:
-          description: "Indicates whether or not Mozu should assign a generated identifier\
-            \ for each entity in the list or whether a unique identifier will be provided\
-            \ for each identity. If set to false, then a value must be provided for\
-            \ the IdProperty for the list."
-          type: boolean
-        idProperty:
-          $ref: '#/components/schemas/IndexedProperty'
-        indexA:
-          $ref: '#/components/schemas/IndexedProperty'
-        indexB:
-          $ref: '#/components/schemas/IndexedProperty'
-        indexC:
-          $ref: '#/components/schemas/IndexedProperty'
-        indexD:
-          $ref: '#/components/schemas/IndexedProperty'
-        isVisibleInStorefront:
-          description: Indicates whether Enitities in the EntityList are allowed to
-            be accessed from a Mozu storefront.
-          type: boolean
-        isLocaleSpecific:
-          description: "Indicates whether MZDB should store entities in the EntityList\
-            \ instance specific to the localeCode provided.  If true, all operations\
-            \ on the EntityList will be filtered by the provided localeCode on the\
-            \ request or using the defautLocaleCode for the context.  All entities\
-            \ created in the EntityList will be stored with the localeCode provided\
-            \ on the request or the defautLocaleCode for the context as an additional\
-            \ implicit key. The default value is false."
-          type: boolean
-        isShopperSpecific:
-          description: "Indicates whether MZDB should store entities in the EntityList\
-            \ instance specific to the current shopper on the request.  If true, all\
-            \ operations on the EntityList will be filtered by the id of the shopper\
-            \ from the shopper claims provided on the request.  All entities created\
-            \ in the EntityList will be stored with the id of the shopper from the\
-            \ shopper claims provided on the request as an additional implicit key.\
-            \ The default value is false."
-          type: boolean
-        isSandboxDataCloningSupported:
-          description: Indicates whether MZDB should clone all of the Entities in
-            the EntityList when cloning an existing sandbox for which this list is
-            already defined.  The default value is false.
-          type: boolean
-        views:
-          description: The ListViews defined for this EntityList.  ListViews may be
-            used to automatically filter an EntityList or transform the Entities in
-            the list to a new Schema.
-          items:
-            $ref: '#/components/schemas/ListView'
-          nullable: true
-          type: array
         usages:
           description: Usages are arbitratry sting values used to provide instructions
-            for other applications as to the intended areas where the list should
-            be used. Mozu uses the "admin" usage valued to indicate that an EntityList
+            for other applications as to the intended areas where the view should
+            be used. Mozu uses the "admin" usage valued to indicate that a ListView
             should appear in the EntityManager in the Admin UI.  The values are open
             ended and applications may provide any value for a usage. This field can
             be used in queries to the EntityList.
@@ -1415,183 +1615,22 @@ components:
             type: string
           nullable: true
           type: array
-        metadata:
-          description: An arbitrary json property to be used by external applications
-            for any purpose. MZDB will persist and retrieve the metadata without any
-            restrictions.
-          nullable: true
-        createDate:
-          format: date-time
-          type: string
-        updateDate:
-          format: date-time
-          type: string
-      type: object
-    EntityListCollection:
-      additionalProperties: false
-      example:
-        startIndex: 0
-        pageCount: 1
-        pageSize: 6
-        totalCount: 5
-        items:
-        - metadata: ""
-          updateDate: 2000-01-23T04:56:07.000+00:00
-          useSystemAssignedId: true
-          isSandboxDataCloningSupported: true
-          indexA:
-            propertyName: propertyName
-            dataType: dataType
-          isLocaleSpecific: true
-          isVisibleInStorefront: true
-          idProperty:
-            propertyName: propertyName
-            dataType: dataType
-          contextLevel: contextLevel
-          tenantId: 0
-          name: name
-          indexC:
-            propertyName: propertyName
-            dataType: dataType
-          indexB:
-            propertyName: propertyName
-            dataType: dataType
-          nameSpace: nameSpace
-          indexD:
-            propertyName: propertyName
-            dataType: dataType
-          usages:
-          - usages
-          - usages
-          isShopperSpecific: true
-          views:
-          - filter: filter
-            metaData: ""
-            security: security
-            name: name
-            usages:
-            - usages
-            - usages
-            defaultSort: defaultSort
-            fields:
-            - name: name
-              type: type
-              target: target
-            - name: name
-              type: type
-              target: target
-          - filter: filter
-            metaData: ""
-            security: security
-            name: name
-            usages:
-            - usages
-            - usages
-            defaultSort: defaultSort
-            fields:
-            - name: name
-              type: type
-              target: target
-            - name: name
-              type: type
-              target: target
-          createDate: 2000-01-23T04:56:07.000+00:00
-        - metadata: ""
-          updateDate: 2000-01-23T04:56:07.000+00:00
-          useSystemAssignedId: true
-          isSandboxDataCloningSupported: true
-          indexA:
-            propertyName: propertyName
-            dataType: dataType
-          isLocaleSpecific: true
-          isVisibleInStorefront: true
-          idProperty:
-            propertyName: propertyName
-            dataType: dataType
-          contextLevel: contextLevel
-          tenantId: 0
-          name: name
-          indexC:
-            propertyName: propertyName
-            dataType: dataType
-          indexB:
-            propertyName: propertyName
-            dataType: dataType
-          nameSpace: nameSpace
-          indexD:
-            propertyName: propertyName
-            dataType: dataType
-          usages:
-          - usages
-          - usages
-          isShopperSpecific: true
-          views:
-          - filter: filter
-            metaData: ""
-            security: security
-            name: name
-            usages:
-            - usages
-            - usages
-            defaultSort: defaultSort
-            fields:
-            - name: name
-              type: type
-              target: target
-            - name: name
-              type: type
-              target: target
-          - filter: filter
-            metaData: ""
-            security: security
-            name: name
-            usages:
-            - usages
-            - usages
-            defaultSort: defaultSort
-            fields:
-            - name: name
-              type: type
-              target: target
-            - name: name
-              type: type
-              target: target
-          createDate: 2000-01-23T04:56:07.000+00:00
-      properties:
-        startIndex:
-          format: int32
-          type: integer
-        pageSize:
-          format: int32
-          type: integer
-        pageCount:
-          format: int32
-          type: integer
-        totalCount:
-          format: int32
-          type: integer
-        items:
-          items:
-            $ref: '#/components/schemas/EntityList'
-          nullable: true
-          type: array
       type: object
     ListViewCollection:
-      additionalProperties: false
       example:
-        startIndex: 0
-        pageCount: 1
+        pageCount: 0
+        startIndex: 1
         pageSize: 6
         totalCount: 5
         items:
         - filter: filter
-          metaData: ""
+          metaData: "{}"
           security: security
           name: name
+          defaultSort: defaultSort
           usages:
           - usages
           - usages
-          defaultSort: defaultSort
           fields:
           - name: name
             type: type
@@ -1600,13 +1639,13 @@ components:
             type: type
             target: target
         - filter: filter
-          metaData: ""
+          metaData: "{}"
           security: security
           name: name
+          defaultSort: defaultSort
           usages:
           - usages
           - usages
-          defaultSort: defaultSort
           fields:
           - name: name
             type: type
@@ -1615,106 +1654,51 @@ components:
             type: type
             target: target
       properties:
-        startIndex:
-          format: int32
-          type: integer
-        pageSize:
-          format: int32
-          type: integer
-        pageCount:
-          format: int32
-          type: integer
-        totalCount:
-          format: int32
-          type: integer
         items:
           items:
             $ref: '#/components/schemas/ListView'
           nullable: true
           type: array
+        pageCount:
+          format: int32
+          type: integer
+        pageSize:
+          format: int32
+          type: integer
+        startIndex:
+          format: int32
+          type: integer
+        totalCount:
+          format: int32
+          type: integer
       type: object
-    AppDevHttpContent:
-      additionalProperties: false
+    ListViewField:
+      description: shared by cms/mzdb.
       example:
-        headers:
-        - value:
-          - value
-          - value
-          key: key
-        - value:
-          - value
-          - value
-          key: key
+        name: name
+        type: type
+        target: target
       properties:
-        headers:
-          items:
-            $ref: '#/components/schemas/StringStringIEnumerableKeyValuePair'
-          nullable: true
-          readOnly: true
-          type: array
-      type: object
-    AppDevHttpRequestMessage:
-      additionalProperties: false
-      example:
-        headers:
-        - value:
-          - value
-          - value
-          key: key
-        - value:
-          - value
-          - value
-          key: key
-        method:
-          method: method
-        requestUri: https://openapi-generator.tech
-        version: version
-        content:
-          headers:
-          - value:
-            - value
-            - value
-            key: key
-          - value:
-            - value
-            - value
-            key: key
-        properties:
-          key: ""
-      properties:
-        version:
+        name:
+          description: The name of the field in the view.
           nullable: true
           type: string
-        content:
-          $ref: '#/components/schemas/AppDevHttpContent'
-        method:
-          $ref: '#/components/schemas/HttpMethod'
-        requestUri:
-          format: uri
+        target:
+          description: A JPath query to the source property for this ViewField.
           nullable: true
           type: string
-        headers:
-          items:
-            $ref: '#/components/schemas/StringStringIEnumerableKeyValuePair'
+        type:
+          description: "The datatype of the field. Valid values are \"string\", \"\
+            integer\", \"decimal\", \"date\", \"bool\". See SharedConstants.DataTypeConst"
           nullable: true
-          readOnly: true
-          type: array
-        properties:
-          additionalProperties: {}
-          nullable: true
-          readOnly: true
-          type: object
+          type: string
       type: object
   securitySchemes:
     bearerAuth:
       bearerFormat: JWT
-      description: JWT Authorization header using the Bearer scheme.
+      description: "JWT Authorization header using the Bearer scheme. \r\n\r\n Enter\
+        \ 'Bearer' [space] and then your token in the text input below.\r\n\r\nExample:\
+        \ \"Bearer 12345abcdef\""
       scheme: bearer
       type: http
-    clientOauth2:
-      flows:
-        clientCredentials:
-          scopes: {}
-          tokenUrl: /api/platform/applications/authtickets/oauth
-      type: oauth2
 

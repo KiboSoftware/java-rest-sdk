@@ -8,7 +8,8 @@
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
 |**blockAssignment** | **Boolean** |  |  [optional] |
-|**canceledReason** | [**FulfillmentCanceledReason**](FulfillmentCanceledReason.md) |  |  [optional] |
+|**canceledReason** | [**FulfillmentAPICanceledReason**](FulfillmentAPICanceledReason.md) |  |  [optional] |
+|**holdBlockAssignment** | **Boolean** |  |  [optional] |
 |**sendNotifications** | **Boolean** |  |  [optional] |
 
 

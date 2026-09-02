@@ -7,12 +7,11 @@
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
-|**discountId** | **Integer** |  |  [optional] |
-|**message** | **String** |  |  [optional] |
-|**thresholdValue** | **Double** |  |  [optional] |
-|**showOnCheckout** | **Boolean** |  |  [optional] |
-|**showInCart** | **Boolean** |  |  [optional] |
-|**requiresCouponCode** | **Boolean** |  |  [optional] |
+|**discountId** | **Object** |  |  [optional] |
+|**requiresCouponCode** | **Object** |  |  [optional] |
+|**showInCart** | **Object** |  |  [optional] |
+|**showOnCheckout** | **Object** |  |  [optional] |
+|**thresholdValue** | **Object** |  |  [optional] |
 
 
 ## Implemented Interfaces

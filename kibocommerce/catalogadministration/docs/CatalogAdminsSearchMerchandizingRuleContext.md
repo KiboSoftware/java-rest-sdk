@@ -8,10 +8,10 @@ SearchMerchandizingRule Condition
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
+|**condition** | [**CatalogAdminsSearchMerchandizingRuleCondition**](CatalogAdminsSearchMerchandizingRuleCondition.md) |  |  [optional] |
+|**endDate** | **OffsetDateTime** | Defaults to MAXDATE |  [optional] |
 |**searchType** | **SearchType** |  |  [optional] |
 |**startDate** | **OffsetDateTime** | StartDate |  [optional] |
-|**endDate** | **OffsetDateTime** | Defaults to MAXDATE |  [optional] |
-|**condition** | [**CatalogAdminsSearchMerchandizingRuleCondition**](CatalogAdminsSearchMerchandizingRuleCondition.md) |  |  [optional] |
 
 
 ## Implemented Interfaces

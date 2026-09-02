@@ -13,11 +13,11 @@ All URIs are relative to *http://https:/api*
 
 <a name="createPropertyType"></a>
 # **createPropertyType**
-> PropertyType createPropertyType(propertyType)
+> PropertyType createPropertyType(responseFields, propertyType)
 
 Create Property Type
 
-Create Property Type
+Create Property Type. The immutable property types that are defined out-of-the-box are hidden, page_type_definition, string, int, dropzones, boolean, and datetime.
 
 ### Example
 ```java
@@ -38,14 +38,11 @@ public class Example {
     HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
     bearerAuth.setBearerToken("BEARER TOKEN");
 
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
-
     DocumentPropertyTypeApi apiInstance = new DocumentPropertyTypeApi(defaultClient);
+    String responseFields = "responseFields_example"; // String | limits which fields are returned in the response body
     PropertyType propertyType = new PropertyType(); // PropertyType | 
     try {
-      PropertyType result = apiInstance.createPropertyType(propertyType);
+      PropertyType result = apiInstance.createPropertyType(responseFields, propertyType);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling DocumentPropertyTypeApi#createPropertyType");
@@ -62,6 +59,7 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
+| **responseFields** | **String**| limits which fields are returned in the response body | [optional] |
 | **propertyType** | [**PropertyType**](PropertyType.md)|  | [optional] |
 
 ### Return type
@@ -70,17 +68,17 @@ public class Example {
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth), [clientOauth2](../README.md#clientOauth2)
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
- - **Content-Type**: text/plain, application/octet-stream, application/json
+ - **Content-Type**: application/json, application/octet-stream, text/plain
  - **Accept**: application/json, text/json, text/plain
 
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Success |  -  |
+| **200** | OK |  -  |
 
 <a name="deletePropertyType"></a>
 # **deletePropertyType**
@@ -109,10 +107,6 @@ public class Example {
     HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
     bearerAuth.setBearerToken("BEARER TOKEN");
 
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
-
     DocumentPropertyTypeApi apiInstance = new DocumentPropertyTypeApi(defaultClient);
     String propertyTypeName = "propertyTypeName_example"; // String | 
     try {
@@ -140,7 +134,7 @@ null (empty response body)
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth), [clientOauth2](../README.md#clientOauth2)
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
@@ -150,11 +144,11 @@ null (empty response body)
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Success |  -  |
+| **200** | OK |  -  |
 
 <a name="getPropertyType"></a>
 # **getPropertyType**
-> PropertyType getPropertyType(propertyTypeName)
+> PropertyType getPropertyType(propertyTypeName, responseFields)
 
 Get Property Type
 
@@ -179,14 +173,11 @@ public class Example {
     HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
     bearerAuth.setBearerToken("BEARER TOKEN");
 
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
-
     DocumentPropertyTypeApi apiInstance = new DocumentPropertyTypeApi(defaultClient);
     String propertyTypeName = "propertyTypeName_example"; // String | 
+    String responseFields = "responseFields_example"; // String | limits which fields are returned in the response body
     try {
-      PropertyType result = apiInstance.getPropertyType(propertyTypeName);
+      PropertyType result = apiInstance.getPropertyType(propertyTypeName, responseFields);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling DocumentPropertyTypeApi#getPropertyType");
@@ -204,6 +195,7 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **propertyTypeName** | **String**|  | |
+| **responseFields** | **String**| limits which fields are returned in the response body | [optional] |
 
 ### Return type
 
@@ -211,7 +203,7 @@ public class Example {
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth), [clientOauth2](../README.md#clientOauth2)
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
@@ -221,11 +213,11 @@ public class Example {
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Success |  -  |
+| **200** | OK |  -  |
 
 <a name="getPropertyTypes"></a>
 # **getPropertyTypes**
-> PropertyTypeCollection getPropertyTypes(pageSize, startIndex)
+> PropertyTypeCollection getPropertyTypes(pageSize, startIndex, responseFields)
 
 Get Property Types
 
@@ -250,15 +242,12 @@ public class Example {
     HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
     bearerAuth.setBearerToken("BEARER TOKEN");
 
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
-
     DocumentPropertyTypeApi apiInstance = new DocumentPropertyTypeApi(defaultClient);
     Integer pageSize = 10; // Integer | 
     Integer startIndex = 0; // Integer | 
+    String responseFields = "responseFields_example"; // String | limits which fields are returned in the response body
     try {
-      PropertyTypeCollection result = apiInstance.getPropertyTypes(pageSize, startIndex);
+      PropertyTypeCollection result = apiInstance.getPropertyTypes(pageSize, startIndex, responseFields);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling DocumentPropertyTypeApi#getPropertyTypes");
@@ -277,6 +266,7 @@ public class Example {
 |------------- | ------------- | ------------- | -------------|
 | **pageSize** | **Integer**|  | [optional] [default to 10] |
 | **startIndex** | **Integer**|  | [optional] [default to 0] |
+| **responseFields** | **String**| limits which fields are returned in the response body | [optional] |
 
 ### Return type
 
@@ -284,7 +274,7 @@ public class Example {
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth), [clientOauth2](../README.md#clientOauth2)
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
@@ -294,11 +284,11 @@ public class Example {
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Success |  -  |
+| **200** | OK |  -  |
 
 <a name="updatePropertyType"></a>
 # **updatePropertyType**
-> PropertyType updatePropertyType(propertyTypeName, propertyType)
+> PropertyType updatePropertyType(propertyTypeName, responseFields, propertyType)
 
 Update Property Type
 
@@ -323,15 +313,12 @@ public class Example {
     HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
     bearerAuth.setBearerToken("BEARER TOKEN");
 
-    // Configure OAuth2 access token for authorization: clientOauth2
-    OAuth clientOauth2 = (OAuth) defaultClient.getAuthentication("clientOauth2");
-    clientOauth2.setAccessToken("YOUR ACCESS TOKEN");
-
     DocumentPropertyTypeApi apiInstance = new DocumentPropertyTypeApi(defaultClient);
     String propertyTypeName = "propertyTypeName_example"; // String | 
+    String responseFields = "responseFields_example"; // String | limits which fields are returned in the response body
     PropertyType propertyType = new PropertyType(); // PropertyType | 
     try {
-      PropertyType result = apiInstance.updatePropertyType(propertyTypeName, propertyType);
+      PropertyType result = apiInstance.updatePropertyType(propertyTypeName, responseFields, propertyType);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling DocumentPropertyTypeApi#updatePropertyType");
@@ -349,6 +336,7 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **propertyTypeName** | **String**|  | |
+| **responseFields** | **String**| limits which fields are returned in the response body | [optional] |
 | **propertyType** | [**PropertyType**](PropertyType.md)|  | [optional] |
 
 ### Return type
@@ -357,15 +345,15 @@ public class Example {
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth), [clientOauth2](../README.md#clientOauth2)
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
- - **Content-Type**: text/plain, application/octet-stream, application/json
+ - **Content-Type**: application/json, application/octet-stream, text/plain
  - **Accept**: application/json, text/json, text/plain
 
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Success |  -  |
+| **200** | OK |  -  |
 

@@ -8,9 +8,9 @@ Contains settings for when payments should be auto-captured regardless of shipme
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
-|**captureAfterDays** | **Integer** |  |  [optional] |
-|**isEnabled** | **Boolean** | Specifies whether this job should run. |  [optional] |
 |**interval** | **Integer** | How often this job should run in minutes. |  [optional] |
+|**isEnabled** | **Boolean** | Specifies whether this job should run. |  [optional] |
+|**captureAfterDays** | **Integer** |  |  [optional] |
 
 
 ## Implemented Interfaces

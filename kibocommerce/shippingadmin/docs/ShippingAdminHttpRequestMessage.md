@@ -7,14 +7,14 @@
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
+|**content** | [**AppDevHttpContent**](AppDevHttpContent.md) |  |  [optional] |
+|**headers** | [**List&lt;StringStringIEnumerableKeyValuePair&gt;**](StringStringIEnumerableKeyValuePair.md) |  |  [optional] [readonly] |
+|**method** | [**HttpMethod**](HttpMethod.md) |  |  [optional] |
+|**options** | **Map&lt;String, Object&gt;** |  |  [optional] [readonly] |
+|**properties** | **Map&lt;String, Object&gt;** |  |  [optional] [readonly] |
+|**requestUri** | **URI** |  |  [optional] |
 |**version** | **String** |  |  [optional] |
 |**versionPolicy** | **ShippingAdminHttpVersionPolicy** |  |  [optional] |
-|**content** | [**AppDevHttpContent**](AppDevHttpContent.md) |  |  [optional] |
-|**method** | [**HttpMethod**](HttpMethod.md) |  |  [optional] |
-|**requestUri** | **URI** |  |  [optional] |
-|**headers** | [**List&lt;StringStringIEnumerableKeyValuePair&gt;**](StringStringIEnumerableKeyValuePair.md) |  |  [optional] [readonly] |
-|**properties** | **Map&lt;String, Object&gt;** |  |  [optional] [readonly] |
-|**options** | **Map&lt;String, Object&gt;** |  |  [optional] [readonly] |
 
 
 ## Implemented Interfaces
