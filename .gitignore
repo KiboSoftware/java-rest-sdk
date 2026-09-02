@@ -22,3 +22,6 @@ build
 
 .idea
 *.iml
+
+# openapi-generator jar, downloaded on demand by generator/generate.mjs
+generator/.jar/

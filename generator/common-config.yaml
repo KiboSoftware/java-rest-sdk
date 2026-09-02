@@ -1,0 +1,33 @@
+# openapi-generator config for the shared `common` module.
+#
+# The common module is not a service client. It carries the runtime every other
+# module depends on - ApiClient, KiboConfiguration, ApiCredentials, KiboHeaders -
+# and is produced by running the generator over one arbitrary spec (Tenant) with
+# these supporting-file templates. That is why the Java SDK has no `tenant`
+# module even though the TypeScript SDK ships a Tenant client.
+templateDir: generator/templates/common
+files:
+  KiboConfiguration.mustache:
+    folder: src/main/java/com/kibocommerce/sdk/common
+    destinationFilename: KiboConfiguration.java
+    templateType: SupportingFiles
+  KiboHeaders.mustache:
+    folder: src/main/java/com/kibocommerce/sdk/common
+    destinationFilename: KiboHeaders.java
+    templateType: SupportingFiles
+  ApiCredentials.mustache:
+    folder: src/main/java/com/kibocommerce/sdk/common
+    destinationFilename: ApiCredentials.java
+    templateType: SupportingFiles
+  ApiClientBuilder.mustache:
+    folder: src/main/java/com/kibocommerce/sdk/common
+    destinationFilename: ApiClientBuilder.java
+    templateType: SupportingFiles
+  constants/EnvironmentVars.mustache:
+    folder: src/main/java/com/kibocommerce/sdk/common/constants
+    destinationFilename: EnvironmentVars.java
+    templateType: SupportingFiles
+  constants/Templates.mustache:
+    folder: src/main/java/com/kibocommerce/sdk/common/constants
+    destinationFilename: Templates.java
+    templateType: SupportingFiles

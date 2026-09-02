@@ -1,0 +1,11 @@
+# openapi-generator config for the per-service API modules.
+#
+# Kibo's custom Java templates override the stock okhttp-gson ones. They exist
+# so that every module shares one hand-written runtime rather than each shipping
+# its own copy of ApiClient/JSON/Pair: generator/.openapi-generator-ignore
+# suppresses those per-module files, and the module's pom depends on
+# com.kibocommerce:common for them instead.
+#
+# templateDir is resolved relative to the process working directory, which
+# generate.mjs sets to the repository root.
+templateDir: generator/templates/api

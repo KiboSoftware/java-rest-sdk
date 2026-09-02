@@ -1,0 +1,56 @@
+# OpenAPI Generator Ignore
+
+# Lines beginning with a # are comments
+
+# This should match build.sh located anywhere.
+
+build.sh
+
+# Matches build.sh in the root
+
+/build.sh
+
+# Exclude all recursively
+
+
+# **ApiCallback.java
+# **ApiClient.java
+# **ApiException.java
+# **ApiResponse.java
+
+# **Configuration.java
+!**ServerConfiguration.java
+# **GzipRequestInterceptor.java
+# **JSON.java
+# **Pair.java
+# **ProgressRequestBody.java
+# **ProgressResponseBody.java
+# **StringUtil.java
+# **ServerVariable.java
+**/src/main/java/com/kibocommerce/**/auth/
+
+**/src/main/java/com/kibocommerce/**/ApiCallback.java
+**/src/main/java/com/kibocommerce/**/ApiClient.java
+**/src/main/java/com/kibocommerce/**/ApiException.java
+**/src/main/java/com/kibocommerce/**/ApiResponse.java
+**/src/main/java/com/kibocommerce/**/Configuration.java
+**/src/main/java/com/kibocommerce/**/GzipRequestInterceptor.java
+**/src/main/java/com/kibocommerce/**/JSON.java
+**/src/main/java/com/kibocommerce/**/Pair.java
+**/src/main/java/com/kibocommerce/**/ProgressRequestBody.java
+**/src/main/java/com/kibocommerce/**/ProgressResponseBody.java
+**/src/main/java/com/kibocommerce/**/StringUtil.java
+**/src/main/java/com/kibocommerce/**/ServerVariable.java
+**/src/main/java/com/kibocommerce/**/ServerVariable.java
+**/src/test/**
+# --- Kibo notes -------------------------------------------------------------
+# openapi-generator also emits Gradle, SBT, Travis and GitHub-Actions
+# scaffolding into every module, which is why the repo carries 24 copies of
+# gradle-wrapper.jar for a tree that only ever builds with Maven (see
+# Dockerfile). None of it is used.
+#
+# It is NOT suppressed here because --ignore-file-override does not apply to
+# those supporting files in openapi-generator 6.2.0 - only to the templated
+# sources below, which is why the test-file and runtime rules above do work.
+# Removing them needs --global-property supportingFiles=<explicit list>, which
+# is a deliberate change to make on its own rather than as part of a refresh.

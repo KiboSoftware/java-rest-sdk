@@ -1,0 +1,11 @@
+package {{invokerPackage}};
+
+import java.util.Map;
+
+/**
+ * Representing a Server configuration.
+ */
+public class ServerConfiguration {
+    // Default server host template for APIs in this package
+    public static String defaultServerTemplate = {{#servers}}{{#-first}} "{{{url}}}" {{/-first}}{{/servers}}{{^servers}}null{{/servers}};
+}
